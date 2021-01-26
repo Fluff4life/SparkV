@@ -1,22 +1,37 @@
 {
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
   "name": "ch1ll-bot",
   "version": "1.0.0",
   "description": "N/A",
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "download": "npm install -save discord.js dotenv fs node-fetch path random-puppy discord-tictactoe urban"
+    "download": "npm install --save discord.js dotenv fs node-fetch path random-puppy discord-tictactoe urban noblox.js"
   },
-  "author": "KingCh1ll#3616",
-  "license": "MIT",
   "dependencies": {
     "discord-tictactoe": "^2.0.7",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "fs": "^0.0.1-security",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "noblox.js": "^4.8.2",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "random-puppy": "^1.1.0",
     "urban": "^0.3.2"
-  }
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/ch1ll-bot"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
 }
