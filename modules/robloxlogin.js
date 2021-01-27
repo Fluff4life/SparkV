@@ -9,7 +9,5 @@ module.exports = bot => {
     .catch(function(err) {
       console.log("Failed to log into Roblox account.");
       process.exit(1);
-    });
-  
-  
+    }); 
 };

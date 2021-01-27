@@ -30,7 +30,7 @@ dotenv.config({
 
 // Bot creator //
 const Bot = new Discord.Client({
-  //retryLimit: 5,
+  retryLimit: 5,
   allowedMentions: true,
 
   presence: {
@@ -64,9 +64,9 @@ process.on("uncaughtException", err => {
   process.exit(1);
 });
 
-process.on("unhandledRejection", err => {
-  console.log(`Unhandled rejection error! ${err}`);
-});
+//process.on("unhandledRejection", err => {
+  //console.log(`Unhandled rejection error! ${err}`);
+//});
 
 // Code //
 RunFunctions(Bot);

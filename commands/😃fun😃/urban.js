@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const urban = require("urban");
 
-(exports.run = async (Bot, message, args) => {
+exports.run = async (Bot, message, args) => {
   if (args.length < 1) {
     const ErrorEmbed = new Discord.MessageEmbed()
       .setTitle("Invalid command usage!")
@@ -32,17 +32,19 @@ const urban = require("urban");
 
     return await message.reply(UrbanEmbed);
   });
-}),
-  (exports.config = {
+},
+
+exports.config = {
     enabled: true,
     guild_only: true,
     aliases: ["definition"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+  
+  exports.help = {
     name: "Urban",
     description: "I will return an urban dictionary definition of a word!",
     usage: "[word]",
     category: "😃fun😃",
     cooldown: 3.5
-  });
+  }

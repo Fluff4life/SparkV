@@ -25,9 +25,9 @@ exports.run = async (Bot, Message) => {
   if (!commandfile) {
     return
   }
-
-  if (commandfile.config.guild_only && Message.channel.type === "dm") {
-    return Message.reply(`I cannot execute ${command.help.name} inside DMs!`);
+  // Update 1.2: Forced to remove "commandfile.config.guild_only &&" because Discord.js broke message.reply().
+  if (Message.channel.type === "dm") {
+    return
   }
 
   if (!commandfile.config.enabled) {
@@ -49,36 +49,30 @@ exports.run = async (Bot, Message) => {
 
     if (Now < ExpireTime) {
       const TimeLeft = (ExpireTime - Now) / 1000;
-
-      const CooldownEmbed = new Discord.MessageEmbed()
-        .setTitle(`Whoa there ${Message.author.username}!`)
-        .setDescription(
-          `Please wait ${TimeLeft.toFixed(
-            1
-          )} more second(s) to use that command again!`
-        )
-        .setThumbnail(Message.author.avatarURL)
-        .setFooter(
-          "Maybe up vote our bot while you wait?",
-          process.env.bot_logo
-        )
-        .setColor("#0099ff")
-        .setTimestamp();
-
-      return Message.reply(CooldownEmbed);
+      
+      return Message.reply({
+        embed: {
+          title: `Whoa there ${Message.author.username}!`,
+          description: `Please wait ${TimeLeft.toFixed(1)} more second(s) to use that command again!`,
+          thumbnail: Message.author.avatarURL,
+          color: "#0099ff",
+          footer: {
+            text: "Maybe up vote our bot while you wait?",
+            icon_url: process.env.bot_logo
+          },
+        },
+        }
+      )}
     }
-  }
 
   Timestamps.set(Message.author.id, Now);
   setTimeout(() => Timestamps.delete(Message.author.id), CooldownAmount);
 
-  try {
-    commandfile.run(Bot, Message, args, command);
-  } catch (err) {
-    console.log(`Error running command: ${command}! Error: ${err}`);
-  }
-
-  console.log(
-    `\`\`\`\`\`\`\`\`\`\`\`\`\`\nNew Command!\nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``
-  );
-};
+  commandfile
+    .run(Bot, Message, args, command)
+    .then(() => {
+      console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nNew Command!\nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``);
+      
+      
+  })
+}

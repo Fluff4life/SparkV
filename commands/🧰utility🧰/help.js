@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-(exports.run = async (Bot, msg, args) => {
+exports.run = async (Bot, msg, args) => {
   const Commands = category => {
     return Bot.commands
       .filter(command => command.help.category === category)
@@ -91,17 +91,19 @@ const Discord = require("discord.js");
         msg.reply(CommandHelpEmbend);
       });
   }
-}),
-  (exports.config = {
+},
+
+exports.config = {
     enabled: true,
     guild_only: false,
     mod_only: false,
     aliases: ["commands", "h", "cs"]
-  }),
-  (exports.help = {
+  },
+
+exports.help = {
     name: "Help",
     description: `I will displays all commands. Need help with a command? Do ${process.env.prefix}Help [command name]!`,
     usage: "[command]",
     category: "🧰utility🧰",
     cooldown: 10
-  });
+  }
