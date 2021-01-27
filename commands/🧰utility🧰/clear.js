@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-(exports.run = async (Bot, msg, Arguments) => {
+exports.run = async (Bot, msg, Arguments) => {
   const DeleteCount = parseInt(Arguments[0], 10);
 
   if (!msg.member.hasPermission("BAN_MEMBERS")) {
@@ -28,18 +28,19 @@ const Discord = require("discord.js");
       }, 2000)
     )
     .catch(() => msg.reply(`Uh oh... I couldn't delete these messages!`));
-}),
-  (exports.config = {
+},
+
+exports.config = {
     enabled: true,
     guild_only: true,
     aliases: ["purge", "clr"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+  exports.help = {
     name: "Clear",
     description:
       "I can delete messages for you so you don't have to spend a while deleting them :)",
     usage: "[how many messages to delete]",
     category: "🧰utility🧰",
     cooldown: 3.5
-  });
+  }

@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-(exports.run = async (Bot, message) => {
+exports.run = async (Bot, message) => {
   request("https://dog.ceo/api/breeds/image/random")
     .then(res => res.json())
     .then(async json => {
@@ -11,35 +11,55 @@ const request = require("node-fetch");
           .setDescription("The website had an error. No pics for you D:")
           .setColor("#0099ff");
 
-        return await message.reply(ErrorEmbend);
+        return await message.channel.send({
+      embed: {
+          title: `Uh Oh ${message.author.username}!`,
+          description: `Looks like the website returned an error! Please try again later.`,
+          color: "#0099ff",
+          footer: {
+            text: "Maybe up vote our bot while you wait?",
+            icon_url: process.env.bot_logo
+          }
+        }
+        })
       }
 
-      const RedditEmbend = new Discord.MessageEmbed()
-        .setTitle("Bark Bark!")
-        .setImage(json.message)
-        .setURL(json.message)
-        .setFooter(
-          `Powered by https://dog.ceo/dog-api/documentation/`,
-          process.env.bot_logo
-        )
-        .setColor("#0099ff");
+      
+        
+    
+      const MemeMessage = await message.channel.send({
+        embed: {
+          title: "Bark Bark!",
+          description: "Aweeeeee :D",
+          color: "#0099ff",
+          url: json.message,
+          
+          image: { 
+            url: json.message
+          },
+          
+          footer: {
+            text: `Powered by https://dog.ceo/dog-api/documentation/`,
+            image: process.env.bot_logo
+          },
+        }
+      });
 
-      const MemeMessage = await message.reply(RedditEmbend);
+      MemeMessage.react("😍");
+    });
+},
 
-    MemeMessage.react("😍");
-      }
-    );
-}),
-  (exports.config = {
-    enabled: true,
-    guild_only: true,
-    mod_only: false,
-    aliases: ["cutedog"]
-  }),
-  (exports.help = {
-    name: "Dog",
-    description: "I will send a cute dog! Aweeeee :D",
-    usage: "",
-    category: "🐶animals🐶",
-    cooldown: 2
-  });
+exports.config = {
+  enabled: true,
+  guild_only: true,
+  mod_only: false,
+  aliases: ["cutedog"]
+},
+  
+exports.help = {
+  name: "Dog",
+  description: "I will send a cute dog! Aweeeee :D",
+  usage: "",
+  category: "🐶animals🐶",
+  cooldown: 2
+}

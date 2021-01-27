@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-(exports.run = async (Bot, msg, Arguments) => {
+exports.run = async (Bot, msg, Arguments) => {
   const UserToKick =
     msg.guild.member(msg.mentions.users.first()) ||
     msg.guild.members.cache.get(Arguments[0]) ||
@@ -46,18 +46,20 @@ const Discord = require("discord.js");
 
     msg.channel.send(KickEmbend);
   }
-}),
-  (exports.config = {
+},
+  
+  exports.config = {
     enabled: true,
     guild_only: true,
     aliases: ["k"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+  
+  exports.help = {
     name: "Kick",
     description:
       "Is a user bothering you? Using this command, you can kick them from the server!",
     usage: "[user] [reason]",
     category: "🛠️moderation🛠️",
     cooldown: 5
-  });
+  }

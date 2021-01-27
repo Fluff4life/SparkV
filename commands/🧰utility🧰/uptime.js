@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-(exports.run = async (Bot, msg) => {
+exports.run = async (Bot, msg) => {
     let BotMessage = await msg.reply("Getting uptime...");
 
     BotMessage.edit({
@@ -15,17 +15,19 @@ const Discord = require("discord.js");
         "Unknown error occurred. Do I have permision to Embed Links?"
       )
     );
-}),
-  (exports.config = {
+},
+  
+  exports.config = {
     enabled: true,
     guild_only: false,
     aliases: ["timeup", "ut"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+  
+  exports.help = {
     name: "Uptime",
     description: "I will return the ammount of time i've been running for!",
     usage: "",
     category: "🧰utility🧰",
     cooldown: 5
-  });
+  }

@@ -1,21 +1,7 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-async function DMReaction(message, Embed) {
-  const Message = await message.reply(Embed);
-
-  Message.react("🤯");
-  Message.react("😬");
-}
-
-async function ChannelReaction(message, Embed) {
-  const Message = await message.channel.send(Embed);
-
-  Message.react("🤯");
-  Message.react("😬");
-}
-
-(exports.run = async (Bot, message) => {
+exports.run = async (Bot, message) => {
   request("https://uselessfacts.jsph.pl/random.json?language=en")
     .then(res => res.json())
     .then(json => {
@@ -26,26 +12,25 @@ async function ChannelReaction(message, Embed) {
         .setColor("#0099ff")
         .setTimestamp();
 
-      if (message.channel.type === "dm") {
-        DMReaction(message, FunFactEmbed);
+      const Message = message.reply(FunFactEmbed);
 
-        return;
-      }
-
-      ChannelReaction(message, FunFactEmbed);
+  Message.react("🤯");
+  Message.react("😬");
     });
-}),
-  (exports.config = {
+},
+  
+exports.config = {
     enabled: true,
     guild_only: false,
     aliases: ["uf"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+  
+  exports.help = {
     name: "UselessFact",
     description:
       "I will get a useless fact! You're better off with the advice command...",
     usage: "",
     category: "😃fun😃",
     cooldown: 2
-  });
+  }

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-(exports.run = async (Bot, msg, Arguments) => {
+exports.run = async (Bot, msg, Arguments) => {
   const UserToBan =
     msg.guild.member(msg.mentions.users.first()) ||
     msg.guild.members.cache.get(Arguments[0]) ||
@@ -49,18 +49,20 @@ const Discord = require("discord.js");
 
     msg.channel.send(BanEmbed);
   }
-}),
-  (exports.config = {
+},
+  
+  exports.config = {
     enabled: true,
     guild_only: true,
     aliases: ["pban", "b"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+    
+  exports.help = {
     name: "Ban",
     description:
       "Is a user bothering you and keep coming back after you kick them? Using this command, they won't come back unless they are unbanned.",
     usage: "[user] [reason]",
     category: "🛠️moderation🛠️",
     cooldown: 5
-  });
+  }

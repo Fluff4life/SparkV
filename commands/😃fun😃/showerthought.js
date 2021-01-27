@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 const showerthoughts = ["showerthoughts"];
 
-(exports.run = async (Bot, message) => {
+exports.run = async (Bot, message) => {
   const random_showerthought =
     showerthoughts[Math.floor(Math.random() * showerthoughts.length)];
 
@@ -18,18 +18,20 @@ const showerthoughts = ["showerthoughts"];
     .setTimestamp();
 
   await message.reply(ShowerThoughtEmbed);
-}),
-  (exports.config = {
+},
+  
+  exports.config = {
     enabled: true,
     guild_only: false,
     aliases: ["sthought", "thought"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+  
+  exports.help = {
     name: "ShowerThought",
     description:
       "I will return a thought you would only think of in the shower. Hmmmm...",
     usage: "",
     category: "😃fun😃",
     cooldown: 1.5
-  });
+  }

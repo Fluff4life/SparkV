@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-(exports.run = async (Bot, msg) => {
+exports.run = async (Bot, msg) => {
   let icon = msg.guild.splashURL;
   let users = msg.guild.members.cache.filter(m => !m.user.bot).size;
   let bots = msg.guild.members.cache.filter(m => m.user.bot).size;
@@ -37,18 +37,20 @@ const Discord = require("discord.js");
     .setTimestamp();
 
   msg.channel.send(ServerInfo);
-}),
-  (exports.config = {
+},
+
+exports.config = {
     enabled: true,
     guild_only: true,
     aliases: ["ss", "serverdetails"],
     mod_only: false
-  }),
-  (exports.help = {
+  },
+  
+exports.help = {
     name: "ServerInfo",
     description:
       "I will get information of the server you are in and send it to you.",
     usage: "",
     category: "🧰utility🧰",
     cooldown: 1.5
-  });
+  }
