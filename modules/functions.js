@@ -38,8 +38,6 @@ module.exports = (bot) => {
   }
 
   bot.CheckPerm = function(message){
-    
-    
     if (message.author.id == process.env.owner){
       return true
     } else {

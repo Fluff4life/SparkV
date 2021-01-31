@@ -1,8 +1,22 @@
 const Discord = require("discord.js");
-const request = require("node-fetch");
+const got = require("got");
+
+const SubReddits = [
+  "terriblefacebookmemes",
+  "pewdiepiesubmissions",
+  "murderedbywords",
+  "ComedyCemetery",
+  "adviceanimals",
+  "PrequelMemes",
+  "memeeconomy",
+  "teenagers",
+  "dankmemes",
+  "memes",
+  "funny",
+]
 
 exports.run = async (Bot, message) => {
-  request("https://meme-api.herokuapp.com/gimme")
+  /* request("https://meme-api.herokuapp.com/gimme")
     .then(res => res.json())
     .then(async json => {
       if (json.nsfw == false) {
@@ -14,26 +28,50 @@ exports.run = async (Bot, message) => {
           .setFooter(`👍${json.ups} | 😃u/${json.author}`, process.env.bot_logo)
           .setColor("#0099ff");
         
-        console.log(RedditEmbend)
-
         const MemeMessage = await message.channel.send(RedditEmbend);
-
+      }
+    }); */
+  
+  const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
+  
+  got(`https://www.reddit.com/r/${RandomSubreddit}/random/.json`).then(async(ResponseData) => {
+    const [list] = JSON.parse(ResponseData.body);
+    const [post] = list.data.children;
+    
+    const MemeMessage = await message.channel.send({
+        embed: {
+          title: post.data.title,
+          description: post.data.description,
+          color: "#0099ff",
+          
+          url: `https://reddit.com${post.data.permalink}`,
+          
+          image: {
+            url: post.data.url,
+          },
+          
+          footer: {
+            text: `👍${post.data.ups} | 💬${post.data.num_comments} | 😃u/${post.data.author} | r/${RandomSubreddit}`,
+            icon_url: process.env.bot_logo
+          },
+        }
+      })
+      
     MemeMessage.react("😂");
     MemeMessage.react("👍");
     MemeMessage.react("👎");
     MemeMessage.react("😬");
-      }
-    });
+  })
 },
   
-  exports.config = {
+exports.config = {
     enabled: true,
     guild_only: false,
     mod_only: false,
     aliases: ["emem", "memey", "m"]
   },
     
-  exports.help = {
+exports.help = {
     name: "Meme",
     description:
       "I will send a popular meme trending on a choice of many different subreddits.",

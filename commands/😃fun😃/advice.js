@@ -28,7 +28,7 @@ exports.run = async (Bot, message) => {
   
   exports.help = {
     name: "Advice",
-    description: "I will send an advice. You'll need it buddy!",
+    description: "I will send an advice.",
     usage: "",
     category: "😃fun😃",
     cooldown: 2.5

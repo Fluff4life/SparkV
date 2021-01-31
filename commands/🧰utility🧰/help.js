@@ -1,52 +1,51 @@
 const Discord = require("discord.js");
+const fs = require("fs")
+const pagination = require("discord.js-pagination")
+
+var prefix = "UnknownPrefix"
 
 exports.run = async (Bot, msg, args) => {
-  const Commands = category => {
+  const pages = []
+
+  const Commands = (Bot, category) => {
     return Bot.commands
-      .filter(command => command.help.category === category)
-      .map(
-        command =>
-          `\`${process.env.prefix}${command.help.name}\`: *${command.help.description}*`
-      )
-      .join("\n");
-  };
+      .filter(command => command.config.enabled & command.help.category === category)
+      .map(command =>`\`${prefix}${command.help.name}\`: *${command.help.description}*`)
+      .join("\n")
+  }
+  const CreatePage = (Bot, Message, Category) => {
+    if (Category === ":red_square:"){
+      return
+    } else if (Category === "databases"){
+      return
+    }
+  
+    const NewEmbed = new Discord.MessageEmbed()
+      .setTitle(Category.toUpperCase())
+      .setDescription(Commands(Bot, Category))
+      .setColor("#0099ff")
+      .setThumbnail(Message.author.displayAvatarURL({ dynamic: true }))
+  
+    pages.push(NewEmbed)
+}
 
+  const data = await Bot.Settings.findOne({
+    Guild: `${msg.guild.name} (${msg.guild.id})`
+  })
+  
+  if (data){
+    prefix = data.Settings.Prefix
+  } else if (!data){
+    prefix = process.env.prefix
+  }
+  
   if (!args.length) {
-    const Description = Bot.categories
-      .map(cat => "\n" + `__***${cat.toUpperCase()}***__ \n${Commands(cat)}`)
-      .join("\n");
-
-    const HelpEmbend = new Discord.MessageEmbed()
-      .setTitle(":robot: Commands :robot:")
-      .setDescription(Description)
-      .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
-      .setFooter(
-        `${process.env.prefix}Help [command] to get infomation on a specific command.`,
-        process.env.bot_logo
-      )
-      .setColor("#0099ff");
-
-    return msg.author
-      .send(HelpEmbend)
-      .then(() => {
-        if (msg.channel.type === "dm") {
-          return;
-        } else {
-          msg.react("📩")
-        }
-      })
-      .catch(err => {
-        console.error(
-          `Failed to send help DM to ${msg.author.tag}.\n`,
-          err
-        );
-        msg.reply(HelpEmbend);
-      });
+     Bot.categories.map((cat) => CreatePage(Bot, msg, cat))
+    
+     pagination(msg, pages, ["⬅", "➡"])
   } else {
     const name = args[0].toLowerCase();
-    const command =
-      Bot.commands.get(name) ||
-      Bot.commands.find(c => c.aliases && c.aliases.includes(name));
+    const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
       return msg.reply("That's not a valid command!");
@@ -59,7 +58,7 @@ exports.run = async (Bot, msg, args) => {
       .addField("**Aliases:**", `${command.config.aliases.join("\n")}`, true)
       .addField(
         "**Usage:**",
-        `${process.env.prefix}${command.help.name} ${command.help.usage}`,
+        `${prefix}${command.help.name} ${command.help.usage}`,
         true
       )
       .addField("**Guild Only:**", `${command.config.guild_only}`, true)
@@ -69,27 +68,12 @@ exports.run = async (Bot, msg, args) => {
         true
       )
       .setFooter(
-        `${process.env.prefix}Help to get a list of all commands.`,
+        `${prefix}Help to get a list of all commands.`,
         process.env.bot_logo
       )
       .setColor("#0099ff");
 
-    return msg.author
-      .send(CommandHelpEmbend)
-      .then(() => {
-        if (msg.channel.type === "dm") {
-          return;
-        }
-
-        msg.react("📩")
-      })
-      .catch(err => {
-        console.error(
-          `Failed to send command help DM to ${msg.author.tag}.\n`,
-          err
-        );
-        msg.reply(CommandHelpEmbend);
-      });
+    return msg.channel.send(CommandHelpEmbend)
   }
 },
 
@@ -97,12 +81,12 @@ exports.config = {
     enabled: true,
     guild_only: false,
     mod_only: false,
-    aliases: ["commands", "h", "cs"]
+    aliases: ["cmds", "commands", "h"]
   },
 
 exports.help = {
     name: "Help",
-    description: `I will displays all commands. Need help with a command? Do ${process.env.prefix}Help [command name]!`,
+    description: `I will displays all commands. Need help with a command? Do ${prefix}Help [command name]!`,
     usage: "[command]",
     category: "🧰utility🧰",
     cooldown: 10
