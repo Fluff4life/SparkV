@@ -5,8 +5,18 @@ exports.run = async (Bot, Message) => {
     return;
   }
   
-  if (!Message.content.startsWith(process.env.prefix)) {
-    return;
+  const data = await Bot.Settings.findOne({
+    Guild: `${Message.guild.name} (${Message.guild.id})`
+  })
+  
+  if (data){
+    if (!Message.content.startsWith(data.Settings.Prefix)){
+      return
+    }
+  } else if (!data){
+    if (!Message.content.startsWith(process.env.prefix)){
+      return
+    }
   }
   
   const args = Message.content
@@ -25,6 +35,11 @@ exports.run = async (Bot, Message) => {
   if (!commandfile) {
     return
   }
+  
+  if (process.env.BannedUserIds.includes(Message.author.id)){
+    return Message.channel.send("Whoa there buster! You're banned. You cannot use this command.")
+  }
+  
   // Update 1.2: Forced to remove "commandfile.config.guild_only &&" because Discord.js broke message.reply().
   if (Message.channel.type === "dm") {
     return

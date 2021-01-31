@@ -1,39 +1,27 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments) => {
-  const UserToBan =
-    msg.guild.member(msg.mentions.users.first()) ||
-    msg.guild.members.cache.get(Arguments[0]) ||
-    `@<${Arguments[0]}>`;
-  const ReasonForBan = Arguments.join(" ").slice(22);
+  const UserToBan = msg.mentions.members.first() || msg.guild.members.cache.get(Arguments[0]) || msg.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
+  const ReasonForBan = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!UserToBan) {
-    return msg.reply("Please mention someone to ban :)");
+    return msg.channel.send("Please mention someone to ban!");
   }
 
-  if (!ReasonForBan)
-    return msg.reply("You have to tell a reason for the ban :)");
+  if (!msg.member.hasPermission("BAN_MEMBERS")){
+    return msg.channel.send("You don't have permision to do that!")
+  }
 
-  if (!msg.member.hasPermission("BAN_MEMBERS"))
-    return msg.reply("Uh oh... You don't have permision to do that!");
+    if (!UserToBan.bannable)
+      return msg.channel.send("Uh oh... I can't ban this user!");
 
-  if (UserToBan) {
-    if (ReasonForBan.length < 1)
-      return msg.reply("You have to tell a reason for the ban :)");
-    if (!msg.guild.member(UserToBan).bannable)
-      return msg.reply("Uh oh... I can't ban this user!");
+    UserToBan.send(`You have been banned due to the following reason: ${ReasonForBan}.`).catch(() => {})
 
-    UserToBan.send(
-      `You have been banned due to the following reason: ${ReasonForBan}.`
-    );
-
-    msg.guild.member(UserToBan).ban({
+    UserToBan.ban({
       reason: ReasonForBan
-    });
+    })
 
-    console.log(
-      `New ban: \nTarget: <@${UserToBan.tag}> \nAdmin/Moderator: ${msg.author.tag} \nReason: ${ReasonForBan}`
-    );
+    console.log(`New ban: \nTarget: <@${UserToBan.tag}> \nAdmin/Moderator: ${msg.author.tag} \nReason: ${ReasonForBan}`)
 
     const BanEmbed = new Discord.MessageEmbed()
       .setTitle("Ban Command")
@@ -49,7 +37,6 @@ exports.run = async (Bot, msg, Arguments) => {
 
     msg.channel.send(BanEmbed);
   }
-},
   
   exports.config = {
     enabled: true,

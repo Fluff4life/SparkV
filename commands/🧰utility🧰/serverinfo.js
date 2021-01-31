@@ -40,7 +40,7 @@ exports.run = async (Bot, msg) => {
 },
 
 exports.config = {
-    enabled: true,
+    enabled: false,
     guild_only: true,
     aliases: ["ss", "serverdetails"],
     mod_only: false

@@ -6,27 +6,20 @@ exports.run = async (Bot, message) => {
     .then(res => res.json())
     .then(async json => {
       if (!json.status === "success") {
-        const ErrorEmbend = new Discord.MessageEmbed()
-          .setTitle("Error!")
-          .setDescription("The website had an error. No pics for you D:")
-          .setColor("#0099ff");
-
         return await message.channel.send({
-      embed: {
-          title: `Uh Oh ${message.author.username}!`,
-          description: `Looks like the website returned an error! Please try again later.`,
-          color: "#0099ff",
-          footer: {
-            text: "Maybe up vote our bot while you wait?",
-            icon_url: process.env.bot_logo
+          embed: {
+            title: `Uh Oh ${message.author.username}!`,
+            description: `Looks like the website returned an error! Please try again later.`,
+            color: "#0099ff",
+            
+            footer: {
+              text: "Maybe up vote our bot while you wait?",
+              icon_url: process.env.bot_logo
+            },
           }
-        }
         })
       }
 
-      
-        
-    
       const MemeMessage = await message.channel.send({
         embed: {
           title: "Bark Bark!",
