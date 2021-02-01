@@ -1,2 +1,2 @@
-web: echo "I don't want a web process"
-service: npm start
+web: Please disable all web processers.
+worker: node index.js
