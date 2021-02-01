@@ -4,11 +4,15 @@
   "description": "N/A",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "node index.js",
     "download": "npm install --save discordjs/opus discord-tictactoe discord.js discord.js-pagination distube dotenv ffmpeg-static fs got lyrics-finder mongoose noblox.js node-fetch path random-puppy urban youtube-dl"
   },
   "author": "KingCh1ll#3616",
   "license": "MIT",
+  "engines": {
+    "node": "12.x",
+    "npm": "*"
+  },
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "discord-tictactoe": "^2.0.7",
