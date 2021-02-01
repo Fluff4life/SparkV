@@ -6,11 +6,11 @@ exports.run = async (Bot, msg, Arguments) => {
   }
   
   if (!msg.member.hasPermission("MANAGE_MESSAGES")){
-    return msg.channel.send("You don't have permision to run this command!").then(m => m.delete(500))
+    return msg.channel.send("You don't have permision to run this command!").then(m => m.delete(timeout: 500)
   }
 
   if (isNaN(Arguments[0]) || parseInt(Arguments[0]) <= 0){
-    return msg.channel.send("That's not a nunber lol.")
+    return msg.channel.send("That's not a nunber lol.").then(m => m.delete(timeout: 500)
   }
   
   let DeleteAmount
@@ -26,7 +26,7 @@ exports.run = async (Bot, msg, Arguments) => {
     .then(() => {
       msg.channel.send(`Successfully deleted ${DeleteAmount} messages.`).then(m => m.delete(timeout: 500)
     })
-    .catch(() => msg.channel.send(`Uh oh... I couldn't delete these messages!`));
+    .catch(() => msg.channel.send(`Uh oh... I couldn't delete these messages!`)).then(m => m.delete(timeout: 500)
 },
 
 exports.config = {
