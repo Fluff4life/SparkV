@@ -5,17 +5,13 @@ exports.run = async(Bot, guild) => {
     return
   }
 
-  var TotalMembers = 0
-
   console.log(`New guild removed: ${guild.name} (Id: ${guild.id})`)
 
-  Bot.guilds.cache.forEach(guild => {
-    TotalMembers = TotalMembers + guild.memberCount
-  })
-
+  Bot.TotalMembers = Bot.TotalMembers - guild.memberCount
+  
   Bot.user.setPresence({
     activity: {
-      name: `${process.env.prefix}Help | ${TotalMembers} users!`,
+      name: `${process.env.prefix}Help | ${Bot.TotalMembers} users!`,
       type: "WATCHING",
     },
     status: "online",
