@@ -47,9 +47,8 @@ const Bot = new Discord.Client({
 });
 
 // Get User Count //
-Bot.TotalMembers = 0
+Bot.TotalMembers = Bot.guilds.cache.reduce((res, guild) => res + guild.memberCount, 0)
 
-Bot.guilds.cache.map(guild => Bot.TotalMembers = Bot.TotalMembers + guild.cache.memberCount)
 // DataStores Modules //
 Bot.ModStore = require("./databases/mod_schema.js")
 Bot.Settings = require("./databases/settings.js")
