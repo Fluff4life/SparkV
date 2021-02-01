@@ -4,7 +4,7 @@ const TikTacToe = require("discord-tictactoe");
 exports.run = async (Bot, msg, Arguments, Command) => {
   new TikTacToe({
     language: "en",
-    command: process.env.prefix + "TicTacToe"
+    command: `${process.env.prefix}TicTacToe`
   }, Bot)
 },
 
