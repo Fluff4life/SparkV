@@ -47,12 +47,9 @@ const Bot = new Discord.Client({
 });
 
 // Get User Count //
-var TotalMembers = 0
+Bot.TotalMembers = 0
 
-Bot.guilds.cache.forEach(guild => {
-  console.log(guild)
-  TotalMembers = TotalMembers + guild.memberCount
-})
+Bot.guilds.cache.map(guild => Bot.TotalMembers = Bot.TotalMembers + guild.memberCount)
 
 console.log(TotalMembers)
 Bot.TotalMembers = TotalMembers
