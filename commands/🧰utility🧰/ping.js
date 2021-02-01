@@ -6,8 +6,14 @@ exports.run = async (Bot, msg) => {
   msg.channel.send({
     embed: {
       title: "Pong!",
-      description: `**Responce time:** ${BotMessage.createdAt - msg.createdAt}ms\n**Uptime**: ${Bot.MSToTime(Bot.uptime)}`,
-      color: "#0099ff",
+      description: [
+        `**Responce time**: ${BotMessage.createdAt - msg.createdAt}ms`,
+        `**Uptime**: ${Bot.MSToTime(Bot.uptime)}\n**Memory Usage:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
+        `**Users**: ${Bot.users.cache.size.toLocaleString()}`,
+        `**Servers**: ${Bot.guilds.cache.size.toLocaleString()}`,
+        `**Channels**: ${Bot.channels.cache.size.toLocaleString()}`
+      ],
+      color: "#0099ff"
     },
   })
 },
