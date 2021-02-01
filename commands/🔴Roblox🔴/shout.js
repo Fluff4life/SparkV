@@ -64,7 +64,7 @@ exports.config = {
 
 exports.help = {
   name: "Shout",  
-  description: "Ch1ll Bot will shout to any group!",
+  description: "Ch1ll Bot will shout to any group owned by you!",
   usage: "<What to shout>",
   cooldown: 10,
   category: "🔴Roblox🔴"
