@@ -50,10 +50,6 @@ const Bot = new Discord.Client({
 Bot.TotalMembers = 0
 
 Bot.guilds.cache.map(guild => Bot.TotalMembers = Bot.TotalMembers + guild.memberCount)
-
-console.log(TotalMembers)
-Bot.TotalMembers = TotalMembers
-
 // DataStores Modules //
 Bot.ModStore = require("./databases/mod_schema.js")
 Bot.Settings = require("./databases/settings.js")
