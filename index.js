@@ -54,7 +54,8 @@ Bot.guilds.cache.forEach(guild => {
   TotalMembers = TotalMembers + guild.memberCount
 })
 
-console.log(Bot.TotalMembers)
+console.log(TotalMembers)
+Bot.TotalMembers = TotalMembers
 
 // DataStores Modules //
 Bot.ModStore = require("./databases/mod_schema.js")
