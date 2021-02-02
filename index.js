@@ -86,7 +86,7 @@ RunFunctions(Bot);
 console.log("---------- Logging into Roblox ----------") 
 noblox
   .setCookie(process.env.RobloxBotCookie)
-  .then(await() => {
+  .then(await () => {
     const NewCookie = await noblox.refreshCookie(process.env.RobloxBotCookie)
   
     console.log(NewCookie)
