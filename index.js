@@ -283,7 +283,7 @@ fs.readdir("./commands/", (err, cats) => {
   });
 });
 
-setinterval(function() {
+setInterval(function() {
   if ((Bot.uptime) < 21600000) {
     process.exit(1)
   }
