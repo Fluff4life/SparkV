@@ -86,8 +86,11 @@ RunFunctions(Bot);
 console.log("---------- Logging into Roblox ----------") 
 noblox
   .setCookie(process.env.RobloxBotCookie)
-  .then(() => {
-    // Idk do somthing lol
+  .then(await() => {
+    const NewCookie = await noblox.refreshCookie(process.env.RobloxBotCookie)
+  
+    console.log(NewCookie)
+    process.env.RobloxBotCookie = NewCookie
   })
 
 console.log("---------- Loading DisTube ----------") 
@@ -108,10 +111,6 @@ console.log("---------- Loading DisTube ----------")
             name: `Views`,
             value: song.views,
             inline: true
-          },
-          
-          {
-            name: ``
           }
         ],
       
