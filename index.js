@@ -97,7 +97,7 @@ console.log("---------- Loading DisTube ----------")
     .on("playSong", (message, queue, song) => { 
     message.channel.send({
       embed: {
-        title: `🎵 Playing ${song.name}🎵`,
+        title: `🎵 Now Playing ${song.name}🎵`,
         description: `Added by ${song.user || "unknown"}`,
         color: "#0099ff",
       
