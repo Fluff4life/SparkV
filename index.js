@@ -86,11 +86,8 @@ RunFunctions(Bot);
 console.log("---------- Logging into Roblox ----------") 
 noblox
   .setCookie(process.env.RobloxBotCookie)
-  .then(await () => {
-    const NewCookie = await noblox.refreshCookie(process.env.RobloxBotCookie)
-  
-    console.log(NewCookie)
-    process.env.RobloxBotCookie = NewCookie
+  .then(() => {
+ 
   })
 
 console.log("---------- Loading DisTube ----------") 
