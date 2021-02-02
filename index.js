@@ -47,7 +47,7 @@ const Bot = new Discord.Client({
 });
 
 // Get User Count //
-Bot.TotalMembers = Bot.guilds.cache.reduce((res, guild) => res + guild.memberCount, 0)
+Bot.TotalMembers = 0
 
 // DataStores Modules //
 Bot.ModStore = require("./databases/mod_schema.js")
@@ -105,10 +105,22 @@ console.log("---------- Loading DisTube ----------")
         
         fields: [
           {
-            name: `Views`,
+            name: `▶Views`,
             value: song.views,
             inline: true
-          }
+          },
+          
+          {
+            name: `👍Likes`,
+            value: song.likes,
+            inline: true
+          },
+          
+          {
+            name: `👎Dislikes`,
+            value: song.dislikes,
+            inlineL true
+          },
         ],
       
         thumbnail: {
@@ -177,10 +189,10 @@ console.log("---------- Loading DisTube ----------")
     }))
   })
     .on("finish", (message) => {
-    message.channel.send("No songs left in queue. Add more songs!")
+    message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 2000 })
   })
     .on("noRelated", (message) => {
-    message.channel.send("I cannot find a related video to play. I am stopping the music.")
+    message.channel.send("I cannot find a related video to play. I am stopping the music.").then(m => m.delete({ timeout: 2000 })
   })
     .on("searchResult", (message, result) => {
     let Pages = []
@@ -204,6 +216,8 @@ console.log("---------- Loading DisTube ----------")
     .on("seachCancel", (message) => {
     message.channel.send(`Seaching canceled.`)
   })
+  
+    .on("empty", message => message.channel.send("Voice chat is empty. Leaving the VC.").then(m => m.delete({ timeout: 2000 }))
     .on("error", (message, err) => {
     console.error(err)
     
