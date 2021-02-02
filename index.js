@@ -97,8 +97,8 @@ console.log("---------- Loading DisTube ----------")
     .on("playSong", (message, queue, song) => { 
     message.channel.send({
       embed: {
-        title: `🎵 Playing 🎵`,
-        description: song.name,
+        title: `🎵 Playing ${song.name}🎵`,
+        description: `Added by ${song.user || "unknown"} `,
         color: "#0099ff",
       
         url: song.url,
@@ -107,19 +107,19 @@ console.log("---------- Loading DisTube ----------")
           {
             name: `▶Views`,
             value: song.views,
-            inline: true
+            inline: true,
           },
           
           {
             name: `👍Likes`,
             value: song.likes,
-            inline: true
+            inline: true,
           },
           
           {
             name: `👎Dislikes`,
             value: song.dislikes,
-            inlineL true
+            inline: true,
           },
         ],
       
@@ -128,7 +128,7 @@ console.log("---------- Loading DisTube ----------")
         },
         
         footer: {
-          text: `😀Added by ${song.username || "unknown"} | ${song.formattedDuration}`,
+          text: `😀 ${song.formattedDuration}`,
           icon_url: process.env.bot_logo
         },
       }
