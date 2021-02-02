@@ -114,9 +114,9 @@ exports.run = async (Bot, message, Arguments) => {
       
       newData.save()
       message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`)
-    } else {
+    } 
+  } else {
     return message.channel.send("Unknown setting. Settings: Prefix.")
-  }
   }
 },
   
