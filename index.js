@@ -217,23 +217,25 @@ console.log("---------- Loading DisTube ----------")
     message.channel.send(`Seaching canceled.`)
   })
   
-    .on("empty", message => message.channel.send("Voice chat is empty. Leaving the VC.").then(m => m.delete({ timeout: 2000 }))
+    .on("empty", (message) => {
+      message.channel.send("Voice chat is empty. Leaving the VC.").then(m => m.delete({ timeout: 2000 }))
+    })
     .on("error", (message, err) => {
-    console.error(err)
+      console.error(err)
     
-    message.channel.send({
-      embed: {
-        title: `Error Occured!`,
-        description: err,
-        color: "#0099ff",
+      message.channel.send({
+        embed: {
+          title: `Error Occured!`,
+          description: err,
+          color: "#0099ff",
       
-        footer: {
-          text: `Music command failed.`,
-          icon_url: process.env.bot_logo
+          footer: {
+            text: `Music command failed.`,
+            icon_url: process.env.bot_logo
+          }
         }
-      }
-    }) 
-  })
+      }) 
+    })
 
 console.log("---------- Loading Events ----------");
 fs.readdir("./events/", (err, files) => {
