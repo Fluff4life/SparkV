@@ -35,6 +35,6 @@ Ch1llBlox -
 ### Why I made Ch1llBlox
 I am always using Discord bots. Whether it's banning a bad actor to listening to music in a VC. But, I always run into a problem and that problem is that most commands cost money. When making my bot, I kept in mind this bot would not have a single thing you can buy.
 
-## Ch1llBlox's License
+### Ch1llBlox's License
 
 Distributed under the MIT License. See, "LICENSE" for more information.
