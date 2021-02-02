@@ -227,11 +227,11 @@ console.log("---------- Loading DisTube ----------")
         description: err,
         color: "#0099ff",
       
-      footer: {
-        text: `Music command failed.`,
-        icon_url: process.env.bot_logo
-      },
-    }
+        footer: {
+          text: `Music command failed.`,
+          icon_url: process.env.bot_logo
+        }
+      }
     }) 
   })
 
