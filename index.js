@@ -98,7 +98,7 @@ console.log("---------- Loading DisTube ----------")
     message.channel.send({
       embed: {
         title: `🎵 Playing ${song.name}🎵`,
-        description: `Added by ${song.user || "unknown"} `,
+        description: `Added by ${song.user || "unknown"}`,
         color: "#0099ff",
       
         url: song.url,
@@ -137,8 +137,8 @@ console.log("---------- Loading DisTube ----------")
     .on("addSong", (message, queue, song) => {
     message.channel.send({
       embed: {
-      title: `Added song to queue`,
-      description: song.name,
+      title: `Added ${song.name} to queue`,
+      description: `Added by ${song.user || "unknown"}`,
       color: "#0099ff",
       
       url: song.url,
@@ -148,7 +148,7 @@ console.log("---------- Loading DisTube ----------")
       },
       
       footer: {
-        text: `😀Added by ${song.username || "unknown"} | ${song.formattedDuration}`,
+        text: `\`${song.formattedDuration}\``,
         icon_url: process.env.bot_logo
       },
     }
@@ -157,8 +157,8 @@ console.log("---------- Loading DisTube ----------")
     .on("playList", (message, queue, playlist, song) => {
     message.channel.send(message.channel.send({
       embed: {
-        title: `Playing A Playlist`,
-        description: playlist.name,
+        title: `Playing ${playlist.name}`,
+        description: `Added by ${song.user || "unknown"}`,
         color: "#0099ff",
         
       thumbnail: {
@@ -168,7 +168,7 @@ console.log("---------- Loading DisTube ----------")
         url: song.url,
       
         footer: {
-          text: `${playlist.name} | 😀Added by ${song.username || "unknown"} | ${song.formattedDuration} (${playlist.songs.length} songs) - Now Playing ${song.name}`,
+          text: `(${playlist.songs.length} songs) - Now Playing ${song.name} (\`${song.formattedDuration}\)`,
           icon_url: process.env.bot_logo
         },
       }
@@ -177,12 +177,12 @@ console.log("---------- Loading DisTube ----------")
     .on("addList", (message, queue, playlist) => {
     message.channel.send(message.channel.send({
       embed: {
-        title: `Added Playlist to Queue`,
-        description: playlist.name + " - " + playlist.songs.length + " songs.",
+        title: `Added ${playlist.name} to Queue`,
+        description: `😀Added by ${playlist.user || "unknown"}`,
         color: "#0099ff",
 
         footer: {
-          text: `😀Added by ${playlist.username || "unknown"} | ${playlist.formattedDuration} (${playlist.songs.length} songs)`,
+          text: `${playlist.songs.length} songs (\`${playlist.formattedDuration}\`)`,
           icon_url: process.env.bot_logo
         },
       }
