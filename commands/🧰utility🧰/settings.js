@@ -89,7 +89,7 @@ exports.run = async (Bot, message, Arguments) => {
 
           WelcomeSettings: {
             WelcomeEnabled: Arguments[1],
-            WelcomeMessage: `${Arguments[2]}`,
+            WelcomeMessage: Arguments.slice(2),
             WelcomeChannelID: message.channel.id
           },
         }
@@ -106,7 +106,7 @@ exports.run = async (Bot, message, Arguments) => {
 
           WelcomeSettings: {
             WelcomeEnabled: Arguments[1],
-            WelcomeMessage: Arguments[2],
+            WelcomeMessage: Arguments.slice(2),
             WelcomeChannelID: message.channel.id
           },
         }
