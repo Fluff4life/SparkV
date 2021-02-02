@@ -21,6 +21,5 @@ exports.run = async(Bot, member) => {
       }
 }
 
-  console.log(`New guild added: ${guild.name} (Id: ${guild.id})`)
-  Bot.TotalMembers = Bot.TotalMembers - guild.memberCount
+  Bot.TotalMembers = Bot.TotalMembers - member.guild.memberCount
 }

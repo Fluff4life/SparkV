@@ -11,8 +11,6 @@ exports.run = async(Bot) => {
   }),
   
   Bot.guilds.cache.map((guild) => {
-    console.log(guild)
-    
     Bot.TotalMembers + guild.memberCount
   })
 
