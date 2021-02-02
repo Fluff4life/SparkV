@@ -283,4 +283,10 @@ fs.readdir("./commands/", (err, cats) => {
   });
 });
 
+setinterval(function() {
+  if (Bot.uptime < 21600000 {
+    process.exit(1)
+  }
+}, 1 * 1000)
+
 Bot.login(process.env.token)
