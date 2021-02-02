@@ -192,7 +192,7 @@ console.log("---------- Loading DisTube ----------")
     message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 2000 })
   })
     .on("noRelated", (message) => {
-    message.channel.send("I cannot find a related video to play. I am stopping the music.").then(m => m.delete({ timeout: 2000 })
+    message.channel.send("I cannot find a related video to play. I am stopping the music.").then(m => m.delete({ timeout: 2000 }))
   })
     .on("searchResult", (message, result) => {
     let Pages = []
