@@ -7,13 +7,4 @@ exports.run = async(Bot, guild) => {
 
   console.log(`New guild added: ${guild.name} (Id: ${guild.id})`)
   Bot.TotalMembers = Bot.TotalMembers - guild.memberCount
-  
-  Bot.user.setPresence({
-    activity: {
-      name: `${process.env.prefix}Help`,
-      type: "WATCHING",
-    },
-    
-    status: "online",
-  })
 }

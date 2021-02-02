@@ -35,6 +35,7 @@ mongoose.set("useFindAndModify", false)
 
 // Bot creator //
 const Bot = new Discord.Client({
+  disableEveryone: true,
   retryLimit: 5,
 
   presence: {

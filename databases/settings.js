@@ -5,6 +5,12 @@ let SettingsSchema = new mongoose.Schema({
   
   Settings: {
     Prefix: String,
+
+    WelcomeSettings: {
+      WelcomeEnabled: Boolean,
+      WelcomeMessage: String,
+      WelcomeChannelID: Number
+    },
   }
 });
 

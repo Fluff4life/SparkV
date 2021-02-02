@@ -1,20 +1,19 @@
 const Discord = require("discord.js");
 
-const Settings = [
-  "prefix"
-]
-
 exports.run = async (Bot, message, Arguments) => {
   const DataSettings = Bot.Settings
   const Data = await DataSettings.findOne({
     Guild: `${message.guild.name} (${message.guild.id})`,
   })
+
+  if (!msg.member.hasPermission("ADMINISTRATOR")){
+    return msg.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 500 }))
+  }
   
   if (!Arguments[0]){
     return message.channel.send("Please provide a valid setting.")
   }
   
-
   if (Arguments[0].toLowerCase() === "prefix"){
     // Prefix
     
@@ -35,7 +34,13 @@ exports.run = async (Bot, message, Arguments) => {
         Guild: `${message.guild.name} (${message.guild.id})`,
         
         Settings: {
-          Prefix: Arguments[1]
+          Prefix: Arguments[1],
+
+          WelcomeSettings: {
+            WelcomeEnabled: Data.Settings.WelcomeEnabled,
+            WelcomeMessage: Data.Settings.WelcomeMessage,
+            WelcomeChannelID: Data.Settings.WelcomeChannelID
+          },
         }
       })
       
@@ -48,15 +53,70 @@ exports.run = async (Bot, message, Arguments) => {
         Guild: `${message.guild.name} (${message.guild.id})`,
         
         Settings: {
-          Prefix: Arguments[1]
+          Prefix: Arguments[1],
+
+          WelcomeSettings: {
+            WelcomeEnabled: Data.Settings.WelcomeEnabled,
+            WelcomeMessage: Data.Settings.WelcomeMessage,
+            WelcomeChannelID: Data.Settings.WelcomeChannelID
+          },
         }
       })
       
       newData.save()
-    
     }
-  } else {
+  } else if (Arguments[0].toLowerCase() === "welcomechannel"){
+    // Welcome Channel
+
+    if (!Arguments[1]){
+      return message.channel.send("Should I enable or disable the welcome setting?")
+    }
+
+    if (!Arguments[2]){
+      return message.channel.send("What do I set the message to be?")
+    }
+    
+    if (Data){
+      await DataSettings.findOneAndRemove({
+        Guild: `${message.guild.name} (${message.guild.id})`
+      })
+      
+      let newData = new DataSettings({
+        Guild: `${message.guild.name} (${message.guild.id})`,
+        
+        Settings: {
+          Prefix: Data.Settings.Prefix,
+
+          WelcomeSettings: {
+            WelcomeEnabled: Arguments[1],
+            WelcomeMessage: `${Arguments[2]}`,
+            WelcomeChannelID: message.channel.id
+          },
+        }
+      })
+      
+      newData.save()
+      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`)
+    } else if (!Data){
+      let newData = new DataSettings({
+        Guild: `${message.guild.name} (${message.guild.id})`,
+        
+        Settings: {
+          Prefix: process.env.prefix,
+
+          WelcomeSettings: {
+            WelcomeEnabled: Arguments[1],
+            WelcomeMessage: Arguments[2],
+            WelcomeChannelID: message.channel.id
+          },
+        }
+      })
+      
+      newData.save()
+      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`)
+    } else {
     return message.channel.send("Unknown setting. Settings: Prefix.")
+  }
   }
 },
   
@@ -69,7 +129,7 @@ exports.run = async (Bot, message, Arguments) => {
   
   exports.help = {
     name: "Settings",
-    description: "Err",
+    description: "I will set a setting to your choice. Settings: Prefix, WelcomeChannel.",
     usage: "<Setting Type> <Setting Value>",
     category: "🧰utility🧰",
     cooldown: 2.5
