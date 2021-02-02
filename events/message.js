@@ -4,6 +4,8 @@ exports.run = async (Bot, Message) => {
   if (Message.author.Bot) {
     return;
   }
+
+  Bot.emit('guildMemberAdd', Message.member)
   
   const data = await Bot.Settings.findOne({
     Guild: `${Message.guild.name} (${Message.guild.id})`
