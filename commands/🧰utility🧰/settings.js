@@ -6,8 +6,8 @@ exports.run = async (Bot, message, Arguments) => {
     Guild: `${message.guild.name} (${message.guild.id})`,
   })
 
-  if (!msg.member.hasPermission("ADMINISTRATOR")){
-    return msg.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 500 }))
+  if (!message.member.hasPermission("ADMINISTRATOR")){
+    return message.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 500 }))
   }
   
   if (!Arguments[0]){
