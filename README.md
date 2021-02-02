@@ -5,6 +5,13 @@
   </a>
    
   <h3 align="center">Ch1llBlox</h3>
+  
+  <p align="center"> 
+   <a href="https://top.gg/bot/763126208149585961">
+    <img src="https://top.gg/api/widget/763126208149585961.svg" alt="Ch1llBlox" />
+   </a>
+   </p>
+  
   <h4 align="center">"The last bot you'll ever need!"</h4>
    
   <p align="center">
