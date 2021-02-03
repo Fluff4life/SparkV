@@ -4,6 +4,8 @@ exports.run = async (Bot, Message) => {
   if (Message.author.Bot) {
     return;
   }
+  
+  console.log("New Message.")
 
   const data = await Bot.Settings.findOne({
     Guild: `${Message.guild.name} (${Message.guild.id})`
@@ -18,6 +20,9 @@ exports.run = async (Bot, Message) => {
       return
     }
   }
+  
+  console.log("New command!")
+
   
   const args = Message.content
     .slice(process.env.prefix.length)
