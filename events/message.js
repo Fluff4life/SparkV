@@ -13,7 +13,7 @@ exports.run = async (Bot, Message) => {
     if (!Message.content.startsWith(data.Settings.Prefix)){
       return
     }
-  } else if (!data){
+  } else{
     if (!Message.content.startsWith(process.env.prefix)){
       return
     }
