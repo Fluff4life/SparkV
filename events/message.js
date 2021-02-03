@@ -5,8 +5,6 @@ exports.run = async (Bot, Message) => {
     return;
   }
   
-  console.log("New Message.")
-
   const data = await Bot.Settings.findOne({
     Guild: `${Message.guild.name} (${Message.guild.id})`
   })
@@ -20,9 +18,6 @@ exports.run = async (Bot, Message) => {
       return
     }
   }
-  
-  console.log("New command!")
-
   
   const args = Message.content
     .slice(process.env.prefix.length)
@@ -91,8 +86,6 @@ exports.run = async (Bot, Message) => {
   commandfile
     .run(Bot, Message, args, command)
     .then(() => {
-      console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nNew Command!\nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``);
-      
-      
+      console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nNew Command!\nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``); 
   })
 }
