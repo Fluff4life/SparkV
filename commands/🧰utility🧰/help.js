@@ -51,7 +51,7 @@ exports.run = async (Bot, msg, args) => {
       return msg.reply("That's not a valid command!");
     }
 
-    const CommandHelpEmbend = new Discord.MessageEmbed()
+    const CommandHelpEmbed = new Discord.MessageEmbed()
       .setTitle(`${command.help.name}`)
       .setDescription(command.help.description)
       .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
@@ -73,7 +73,7 @@ exports.run = async (Bot, msg, args) => {
       )
       .setColor("#0099ff");
 
-    return msg.channel.send(CommandHelpEmbend)
+    return msg.channel.send(CommandHelpEmbed)
   }
 },
 
