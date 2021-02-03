@@ -1,11 +1,13 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg) => {
-  const BotMessage = await msg.channel.send("Ping!")
-    
+  const BotMessage = await msg.channel.send("Fetching Stats...")
+  
   msg.channel.send({
+    context: "Stats Complete!",
+
     embed: {
-      title: "Pong!",
+      title: "Stats",
       description: `**Responce Time**: ${BotMessage.createdAt - msg.createdAt}ms\n**Up-Time**: ${Bot.MSToTime(Bot.uptime)}\n**Memory Usage:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\n**Users**: ${Bot.TotalMembers}\n**Servers**: ${Bot.guilds.cache.size.toLocaleString()}`,
       color: "#0099ff"
     },
@@ -15,13 +17,13 @@ exports.run = async (Bot, msg) => {
   exports.config = {
     enabled: true,
     guild_only: false,
-    aliases: ["ping", "pong", "up"],
+    aliases: ["ping", "pong", "up", "MU"],
     mod_only: false
   },
   
   exports.help = {
-    name: "Ping",
-    description: "I will return my responce time in ms and how long I've been running for.",
+    name: "Stats",
+    description: "I will say my stats.",
     usage: "",
     category: "🧰utility🧰",
     cooldown: 2.5

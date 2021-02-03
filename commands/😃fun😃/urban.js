@@ -8,14 +8,14 @@ exports.run = async (Bot, message, args) => {
       .setDescription("Please provide a word to urban!")
       .setFooter(`Try using "${process.env.prefix}Urban [Word]"`);
 
-    return await message.reply(ErrorEmbed);
+    return await message.channel.send(ErrorEmbed).then(m => m.delete({ timeout: 5000 }))
   }
 
   let word = args.join(" ");
 
   urban(word).first(async json => {
     if (!json) {
-      return message.reply("That word doesn't exist!");
+      return message.channel.send("That word doesn't exist!").then(m => m.delete({ timeout: 5000 }))
     }
 
     const UrbanEmbed = new Discord.MessageEmbed()
@@ -30,7 +30,7 @@ exports.run = async (Bot, message, args) => {
       )
       .setColor("#0099ff");
 
-    return await message.reply(UrbanEmbed);
+    return await message.channel.send(UrbanEmbed);
   });
 },
 

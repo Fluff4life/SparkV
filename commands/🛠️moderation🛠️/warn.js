@@ -7,26 +7,26 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
   
   if (!message.member.hasPermission("MANAGE_MESSAGES")){
-    return message.channel.send("You don't have permision to run this command!")
+    return message.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 5000 }))
   }
   
   if (!User){
-    return message.channel.send("Uhhh... who do I warn?")
+    return message.channel.send("Uhhh... who do I warn?").then(m => m.delete({ timeout: 5000 }))
   }
   
   if (message.author.id === User.id){
-    return message.channel.send("Why would you warn yourself? lol.")
+    return message.channel.send("Why would you warn yourself? lol.").then(m => m.delete({ timeout: 5000 }))
   }
   
   
   var data = await ModDatastore.findOne({
     Guild: `${message.guild.name} (${message.guild.id})`,
-    User: `${User.user.username} (${User.id})`
   })
   
   if (data){
     data.Punishments.unshift({
       PunishType: "Warn",
+      User: `${User.user.username} (${User.id})`,
       Moderator: `${message.author.user} (${message.author.id})`,
       Reason: Reason,
     })
@@ -50,10 +50,10 @@ exports.run = async (Bot, message, Arguments) => {
   } else if (!data){
     var newData = new ModDatastore({
       Guild: `${message.guild.name} (${message.guild.id})`,
-      User: `${User.user.username} (${User.id})`,
-      
+    
       Punishments: [{
         PunishType: "Warn",
+        User: `${User.user.username} (${User.id})`,
         Moderator: `${message.author.username} (${message.author.id})`,
         Reason: Reason,
       }, ],

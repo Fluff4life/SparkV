@@ -3,7 +3,7 @@ const LyricsFilder = require("lyrics-finder")
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
-    return message.reply("Please supply the title of the song and artist.")
+    return message.reply("Please supply the title of the song and artist.").then(m => m.delete({ timeout: 5000 }))
   }
   
   Arguments = Arguments.join()
@@ -17,8 +17,6 @@ exports.run = async (Bot, message, Arguments) => {
       color: "#0099ff",
     }
   })
-  
-
 },
 
 exports.config = {

@@ -5,11 +5,11 @@ exports.run = async (Bot, msg, Arguments) => {
   const Reason = Arguments[1] || "No reason provided."
 
   if (!UserToUnban){
-    return msg.channel.send("Please mention someone to unban!");
+    return msg.channel.send("Please mention someone to unban!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!msg.member.hasPermission("KICK_MEMBERS")){
-    return msg.channel.send("Uh oh... You don't have permision to do that!")
+    return msg.channel.send("Uh oh... You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
   }
   
   UserToUnban.send(`You have been **unbaned** for the reason: ${UserToUnban}.`).catch(() => {})

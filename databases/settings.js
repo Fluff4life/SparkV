@@ -3,7 +3,12 @@ const mongoose = require("mongoose")
 let SettingsSchema = new mongoose.Schema({
   Guild: String & Number,
   
-  Settings: {
+  Settings: Array
+});
+
+/* 
+
+{
     Prefix: String,
 
     WelcomeSettings: {
@@ -12,6 +17,7 @@ let SettingsSchema = new mongoose.Schema({
       WelcomeChannelID: Number
     },
   }
-});
+
+  */
 
 const MessageModel = module.exports = mongoose.model("Settings", SettingsSchema)

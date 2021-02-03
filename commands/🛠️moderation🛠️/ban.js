@@ -5,15 +5,16 @@ exports.run = async (Bot, msg, Arguments) => {
   const ReasonForBan = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!UserToBan) {
-    return msg.channel.send("Please mention someone to ban!");
+    return msg.channel.send("Please mention someone to ban!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!msg.member.hasPermission("BAN_MEMBERS")){
-    return msg.channel.send("You don't have permision to do that!")
+    return msg.channel.send("You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
   }
 
-    if (!UserToBan.bannable)
-      return msg.channel.send("Uh oh... I can't ban this user!");
+    if (!UserToBan.bannable){
+      return msg.channel.send("Uh oh... I can't ban this user!").then(m => m.delete({ timeout: 5000 }))
+    }
 
     UserToBan.send(`You have been banned due to the following reason: ${ReasonForBan}.`).catch(() => {})
 

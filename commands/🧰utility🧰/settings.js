@@ -7,22 +7,22 @@ exports.run = async (Bot, message, Arguments) => {
   })
 
   if (!message.member.hasPermission("ADMINISTRATOR")){
-    return message.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 500 }))
+    return message.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 5000 }))
   }
   
   if (!Arguments[0]){
-    return message.channel.send("Please provide a valid setting.")
+    return message.channel.send("Please provide a valid setting.").then(m => m.delete({ timeout: 5000 }))
   }
   
   if (Arguments[0].toLowerCase() === "prefix"){
     // Prefix
     
     if (!Arguments[1]){
-      return message.channel.send("What do I change the prefix to??")
+      return message.channel.send("What do I change the prefix to??").then(m => m.delete({ timeout: 5000 }))
     }
     
     if (Arguments[1].lenth > 5){
-      return message.channel.send("Your new prefix must be under 5 characters.")
+      return message.channel.send("Your new prefix must be under 5 characters.").then(m => m.delete({ timeout: 5000 }))
     }
     
     if (Data){
@@ -45,9 +45,9 @@ exports.run = async (Bot, message, Arguments) => {
       })
       
       newData.save()
-      message.channel.send(`The server's new prefix is now **${Arguments[1]}**`)
+      message.channel.send(`The server's new prefix is now **${Arguments[1]}**`).then(m => m.delete({ timeout: 5000 }))
     } else if (!Data){
-      message.channel.send(`The server's new prefix is now **${Arguments[1]}**`)
+      message.channel.send(`The server's new prefix is now **${Arguments[1]}**`).then(m => m.delete({ timeout: 5000 }))
       
       let newData = new DataSettings({
         Guild: `${message.guild.name} (${message.guild.id})`,
@@ -69,11 +69,11 @@ exports.run = async (Bot, message, Arguments) => {
     // Welcome Channel
 
     if (!Arguments[1]){
-      return message.channel.send("Should I enable or disable the welcome setting?")
+      return message.channel.send("Should I enable or disable the welcome setting?").then(m => m.delete({ timeout: 5000 }))
     }
 
     if (!Arguments[2]){
-      return message.channel.send("What do I set the message to be?")
+      return message.channel.send("What do I set the message to be?").then(m => m.delete({ timeout: 5000 }))
     }
     
     if (Data){
@@ -96,7 +96,7 @@ exports.run = async (Bot, message, Arguments) => {
       })
       
       newData.save()
-      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`)
+      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`).then(m => m.delete({ timeout: 5000 }))
     } else if (!Data){
       let newData = new DataSettings({
         Guild: `${message.guild.name} (${message.guild.id})`,
@@ -113,10 +113,10 @@ exports.run = async (Bot, message, Arguments) => {
       })
       
       newData.save()
-      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`)
+      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`).then(m => m.delete({ timeout: 5000 }))
     } 
   } else {
-    return message.channel.send("Unknown setting. Settings: Prefix.")
+    return message.channel.send("Unknown setting. Settings: Prefix, WelcomeChannel.").then(m => m.delete({ timeout: 5000 }))
   }
 },
   

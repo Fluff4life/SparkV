@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-    return message.channel.send("You don't have permision to run this command!");
+    return message.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 5000 }))
   }
   
   message.channel.setRateLimitPerUser(Arguments[0])

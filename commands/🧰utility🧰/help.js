@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs")
 const pagination = require("discord.js-pagination")
 
-var prefix = "UnknownPrefix"
+var prefix = "^"
 
 exports.run = async (Bot, msg, args) => {
   const pages = []
@@ -10,8 +10,8 @@ exports.run = async (Bot, msg, args) => {
   const Commands = (Bot, category) => {
     return Bot.commands
       .filter(command => command.config.enabled & command.help.category === category)
-      .map(command =>`\`${prefix}${command.help.name}\`: *${command.help.description}*`)
-      .join("\n")
+      .map(command =>`\`${prefix}${command.help.name} ${command.help.usage}\`\n${command.help.description}`)
+      .join("\n\n")
   }
   const CreatePage = (Bot, Message, Category) => {
     if (Category === ":red_square:"){

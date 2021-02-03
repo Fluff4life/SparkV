@@ -43,7 +43,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
     return msg.channel.send({
       embed: {
         title: "🚫 Invalid Permisions 🚫",
-        description: "You don't have permision to use this command!",
+        description: "You don't have permision to use this command. This command is disabled due to too many problems.",
         color: "#0099ff",
           
         footer: {

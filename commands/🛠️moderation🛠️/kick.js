@@ -5,15 +5,15 @@ exports.run = async (Bot, msg, Arguments) => {
   const ReasonForKick = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!UserToKick){
-    return msg.channel.send("Please mention someone to kick :)");
+    return msg.channel.send("Please mention someone to kick :)").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!msg.member.hasPermission("KICK_MEMBERS")){
-    return msg.channel.send("Uh oh... You don't have permision to do that!")
+    return msg.channel.send("Uh oh... You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!msg.guild.member(UserToKick).kickable){
-    return msg.channel.send("Uh oh... I can't kick this person! ❌")
+    return msg.channel.send("Uh oh... I can't kick this person! ❌").then(m => m.delete({ timeout: 5000 }))
   }
 
   UserToKick.send(`You have been **Kicked** for the reason: ${ReasonForKick}`)
