@@ -280,10 +280,4 @@ fs.readdir("./commands/", (err, cats) => {
   });
 });
 
-setInterval(function() {
-  if ((Bot.uptime) > process.env.MaximumUptime) {
-    process.exit(1)
-  }
-}, 1 * 1000)
-
 Bot.login(process.env.token)
