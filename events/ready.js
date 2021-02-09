@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 exports.run = async(Bot) => {
   Bot.user.setPresence({
     activity: {
-      name: `${process.env.prefix}Help`,
+      name: ` kingch1ll.glitch.me | ${process.env.prefix}Help`,
       type: "WATCHING",
     },
 
