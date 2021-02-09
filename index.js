@@ -87,9 +87,6 @@ RunFunctions(Bot);
 console.log("---------- Logging into Roblox ----------") 
 noblox
   .setCookie(process.env.RobloxBotCookie)
-  .then(() => {
- 
-  })
 
 console.log("---------- Loading DisTube ----------") 
   Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true })
