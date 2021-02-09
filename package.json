@@ -10,7 +10,7 @@
   "author": "KingCh1ll#3616",
   "license": "MIT",
   "engines": {
-    "node": "12.x",
+    "node": "15.x",
     "npm": "*"
   },
   "dependencies": {
