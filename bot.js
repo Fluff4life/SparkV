@@ -14,7 +14,6 @@ console.log("                                  |___/");
 
 // Librarys //
 const Discord = require("discord.js");
-const { ShardingManager } = require("discord.js")
 const noblox = require("noblox.js")
 const DisTube = require("distube")
 const fs = require("fs");
