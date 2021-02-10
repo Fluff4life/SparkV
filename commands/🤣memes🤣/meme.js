@@ -67,9 +67,8 @@ exports.run = async (Bot, message) => {
        })
         
       return MemeMessage
-    }
- })
-}
+    })
+ }
   
   const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
   const RedditPost = await GetReddit(RandomSubreddit)
