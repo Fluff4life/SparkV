@@ -9,7 +9,6 @@ const SubReddits = [
   "adviceanimals",
   "PrequelMemes",
   "memeeconomy",
-  "teenagers",
   "dankmemes",
   "memes",
   "funny",
@@ -37,7 +36,7 @@ exports.run = async (Bot, message) => {
       const [ list ] = JSON.parse(ResponseData.body);
       const [ post ] = list.data.children;
       
-    if ((post.data.ups) < 1000){
+    if ((post.data.ups) < 10000){
       Get(Subreddit, ResponseData)
     } else {
     const MemeMessage = await message.channel.send({
