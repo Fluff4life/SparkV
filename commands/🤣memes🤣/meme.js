@@ -64,9 +64,13 @@ exports.run = async (Bot, message) => {
   }
   
   const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
+  
+  message.channel.send(`Getting popular meme from r/${RandomSubreddit}.`)
+  message.channel.startTyping()
+  
   const RedditPost = await Get(RandomSubreddit)
-  RedditPost.react("👍")
-  RedditPost.react("👎")
+  
+  message.channel.stopTyping()
 },
   
 exports.config = {
