@@ -32,20 +32,14 @@ exports.run = async (Bot, message) => {
       }
     }); */
   
-  async function Get(ResponseData){
-    const [ list ] = JSON.parse(ResponseData.body);
-    const [ post ] = list.data.children;
-    
-    if ((post.data.ups) > 1000){
-      return post
-    } else {
-      Get(ResponseData)
-    }
-  }
-  
-  async function GetReddit(Subreddit){
+  async function Get(Subreddit){
     got(`https://www.reddit.com/r/${Subreddit}/random/.json`).then(async(ResponseData) => {
-      const post = Get(ResponseData)
+      const [ list ] = JSON.parse(ResponseData.body);
+      const [ post ] = list.data.children;
+      
+    if ((post.data.ups) < 1000){
+      return Get(Subreddit, ResponseData)
+    }
     
       const MemeMessage = await message.channel.send({
         embed: {
@@ -60,7 +54,7 @@ exports.run = async (Bot, message) => {
           },
           
           footer: {
-            text: `👍${post.data.ups} | 💬${post.data.num_comments} | 😃u/${post.data.author} | r/${RandomSubreddit}`,
+            text: `👍${post.data.ups} | 💬${post.data.num_comments} | 😃u/${post.data.author} | r/${Subreddit}`,
             icon_url: process.env.bot_logo
            },
          }
@@ -68,10 +62,10 @@ exports.run = async (Bot, message) => {
         
       return MemeMessage
     })
- }
+  }
   
   const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
-  const RedditPost = await GetReddit(RandomSubreddit)
+  const RedditPost = await Get(RandomSubreddit)
   RedditPost.react("👍")
   RedditPost.react("👎")
 },
