@@ -39,7 +39,7 @@ exports.run = async (Bot, message) => {
     if ((post.data.ups) < 10000){
       Get(Subreddit, ResponseData)
     } else {
-    const MemeMessage = await message.channel.send({
+      const MemeMessage = await message.channel.send({
         embed: {
           title: post.data.title,
           description: post.data.description,
@@ -59,7 +59,7 @@ exports.run = async (Bot, message) => {
        })
         
       return MemeMessage
-    })
+      }
     }
   }
   
