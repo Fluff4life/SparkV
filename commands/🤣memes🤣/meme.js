@@ -32,13 +32,22 @@ exports.run = async (Bot, message) => {
       }
     }); */
   
-  const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
-  
-  got(`https://www.reddit.com/r/${RandomSubreddit}/random/.json`).then(async(ResponseData) => {
-    const [list] = JSON.parse(ResponseData.body);
-    const [post] = list.data.children;
+  async function Get(ResponseData){
+    const [ list ] = JSON.parse(ResponseData.body);
+    const [ post ] = list.data.children;
     
-    const MemeMessage = await message.channel.send({
+    if ((post.data.ups) > 1000){
+      return post
+    } else {
+      Get(ResponseData)
+    }
+  }
+  
+  async function GetReddit(Subreddit){
+    got(`https://www.reddit.com/r/${Subreddit}/random/.json`).then(async(ResponseData) => {
+      const post = Get(ResponseData)
+    
+      const MemeMessage = await message.channel.send({
         embed: {
           title: post.data.title,
           description: post.data.description,
@@ -53,15 +62,19 @@ exports.run = async (Bot, message) => {
           footer: {
             text: `👍${post.data.ups} | 💬${post.data.num_comments} | 😃u/${post.data.author} | r/${RandomSubreddit}`,
             icon_url: process.env.bot_logo
-          },
-        }
-      })
-      
-    MemeMessage.react("😂");
-    MemeMessage.react("👍");
-    MemeMessage.react("👎");
-    MemeMessage.react("😬");
-  })
+           },
+         }
+       })
+        
+      return MemeMessage
+    }
+ })
+}
+  
+  const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
+  const RedditPost = await GetReddit(RandomSubreddit)
+  RedditPost.react("👍")
+  RedditPost.react("👎")
 },
   
 exports.config = {
