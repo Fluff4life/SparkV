@@ -38,10 +38,9 @@ exports.run = async (Bot, message) => {
       const [ post ] = list.data.children;
       
     if ((post.data.ups) < 1000){
-      return Get(Subreddit, ResponseData)
-    }
-    
-      const MemeMessage = await message.channel.send({
+      Get(Subreddit, ResponseData)
+    } else {
+    const MemeMessage = await message.channel.send({
         embed: {
           title: post.data.title,
           description: post.data.description,
@@ -62,6 +61,7 @@ exports.run = async (Bot, message) => {
         
       return MemeMessage
     })
+    }
   }
   
   const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
