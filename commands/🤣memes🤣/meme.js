@@ -2,16 +2,14 @@ const Discord = require("discord.js");
 const got = require("got");
 
 const SubReddits = [
-  "terriblefacebookmemes",
-  "pewdiepiesubmissions",
-  "murderedbywords",
+  "PewdiepieSubmissions",
   "ComedyCemetery",
-  "adviceanimals",
+  "AdviceAnimals",
   "PrequelMemes",
-  "memeeconomy",
-  "dankmemes",
-  "memes",
-  "funny",
+  "MemeEconomy",
+  "DankMemes",
+  "Memes",
+  "Funny",
 ]
 
 exports.run = async (Bot, message) => {
