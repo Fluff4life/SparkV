@@ -38,7 +38,7 @@ mongoose.set("useFindAndModify", false)
 // Deply Shards //
 const ShardManager = new ShardingManager("./index.js", { token: process.env.token })
 
-ShardManager.on("shardCreate", Shard => console.log(`Launched shard {Shard.id}`))
+ShardManager.on("shardCreate", Shard => console.log(`Launched shard ${Shard.id}`))
 ShardManager.spawn()
 
 // Create Bot //
