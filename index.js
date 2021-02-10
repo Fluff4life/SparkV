@@ -14,6 +14,7 @@ console.log("                                  |___/");
 
 // Librarys //
 const Discord = require("discord.js");
+const { ShardingManager } = require("discord.js")
 const noblox = require("noblox.js")
 const DisTube = require("distube")
 const fs = require("fs");
@@ -33,7 +34,14 @@ dotenv.config({
 mongoose.connect(`mongodb+srv://${process.env.mongoose_name}:${process.env.mongoose_password}@${process.env.mongoose_name_lowered}.egdb0.mongodb.net/Data`, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.set("useFindAndModify", false)
 
-// Bot creator //
+// Bot //
+// Deply Shards //
+const ShardManager = new ShardingManager("./index.js", { token: process.env.token })
+
+ShardManager.on("shardCreate", Shard => console.log(`Launched shard {Shard.id}`))
+ShardManager.spawn()
+
+// Create Bot //
 const Bot = new Discord.Client({
   disableEveryone: true,
   retryLimit: 5,
