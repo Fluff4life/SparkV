@@ -5,7 +5,8 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send("Acsess Denied. Only KingCh1ll can run this command!")
   }
 
-  message.channel.send("Shutting down...")
+  message.react("✔")
+  message.channel.send("Shutting down. Please wait.")
 
   Bot.user.setPresence({
     activity: {
@@ -15,6 +16,8 @@ exports.run = async (Bot, message, Arguments) => {
 
     status: "idle",
   }),
+
+  Bot.Wait(10)
 
   process.exit(1)
 },

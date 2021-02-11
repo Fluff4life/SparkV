@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const got = require("got");
+const request = require("node-fetch");
 
 const SubReddits = [
   "PewdiepieSubmissions",
@@ -30,11 +30,14 @@ exports.run = async (Bot, message) => {
     }); */
   
   async function Get(Subreddit){
-    got(`https://www.reddit.com/r/${Subreddit}/random/.json`).then(async(ResponseData) => {
-      const [ list ] = JSON.parse(ResponseData.body);
-      const [ post ] = list.data.children;
+    request(`https://www.reddit.com/r/${Subreddit}/random/.json`)
+      .then(res => res.json())
+      .then(async ResponseData => {
+        console.log(ResponseData)
+        const [ list ] = JSON.parse(ResponseData.body);
+        const [ post ] = list.data.children;
       
-    if ((post.data.ups) < 10000){
+    if ((post.data.ups) <= 15000){
       Get(Subreddit, ResponseData)
     } else {
       const MemeMessage = await message.channel.send({

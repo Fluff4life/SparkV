@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const request = require("node-fetch")
 
-module.exports = (bot) => {
+module.exports = async (bot) => {
   bot.MSToTime = function(ms){
     var days = Math.floor(ms / 86400000) // 24*60*60*1000
     var daysms = ms % 86400000 // 24*60*60*1000
@@ -49,6 +49,10 @@ module.exports = (bot) => {
       timeout = setTimeout(later, wait)
       if (callNow) func.apply(context, args)
     }
+  }
+
+  bot.Wait = async function(SecondsTime, Function){
+    return await new Promise(_ => setTimeout(Function, SecondsTime * 1000));
   }
 
   bot.CheckPerm = function(message){

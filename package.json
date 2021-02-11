@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "download": "npm install --save discordjs/opus discord-tictactoe discord.js discord.js-pagination distube dotenv ffmpeg-static fs got lyrics-finder mongoose noblox.js node-fetch path random-puppy urban youtube-dl"
+    "download": "npm i -save"
   },
   "author": "KingCh1ll#3616",
   "license": "MIT",
