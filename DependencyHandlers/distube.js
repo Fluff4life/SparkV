@@ -1,21 +1,21 @@
 const { MessageEmbed } = require("discord.js")
-const DisTube = require("distube")
 const pagination = require("discord.js-pagination")
 
 module.exports = async (Bot) => {
-Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true })
+    const DisTube = require("distube")
+    Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true })
   
-Bot.distube
-    .on("playSong", (message, queue, song) => { 
-    message.channel.send({
-      embed: {
-        title: `🎵 Now Playing ${song.name}🎵`,
-        description: `Added by ${song.user || "unknown"}`,
-        color: "#0099ff",
+    Bot.distube
+        .on("playSong", (message, queue, song) => { 
+        message.channel.send({
+        embed: {
+            title: `🎵 Now Playing ${song.name}🎵`,
+            description: `Added by ${song.user || "unknown"}`,
+            color: "#0099ff",
       
-        url: song.url,
+            url: song.url,
         
-        fields: [
+            fields: [
           {
             name: `▶Views`,
             value: song.views,
