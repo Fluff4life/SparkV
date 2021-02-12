@@ -36,6 +36,8 @@ exports.run = async (Bot, message, Arguments) => {
       // Yes
       VerificationMessage.delete()
 
+console.log(Bot.ServerData)
+
       var data = await Bot.ServerData.findOne({
         GuildID: message.guild.id
       })
