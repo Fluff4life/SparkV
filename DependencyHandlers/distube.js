@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const Distube = require("distube")
+const DisTube = require("distube")
 const pagination = require("discord.js-pagination")
 
 module.exports = async (Bot) => {
