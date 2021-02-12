@@ -4,10 +4,6 @@ exports.run = async (Bot, msg, Arguments) => {
   const UserToBan = msg.mentions.members.first() || msg.guild.members.cache.get(Arguments[0]) || msg.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
   const ReasonForBan = Arguments.join(" ").slice(22) || "No reason provided."
 
-  if (!message.guild.me.hasPermission("BAN_MEMBERS")){
-    return msg.channel.send("❌I don't have permision to do that! Please select my role and allow BAN_MEMBERS.").then(m => m.delete({ timeout: 5000 }))
-  }
-
   if (!msg.member.hasPermission("BAN_MEMBERS")){
     return msg.channel.send("❌You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
   }
@@ -71,7 +67,7 @@ exports.run = async (Bot, msg, Arguments) => {
     enabled: true,
     guild_only: true,
     aliases: ["pban", "b"],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "BAN_MEMBERS"]
   },
     
   exports.help = {

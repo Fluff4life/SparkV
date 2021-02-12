@@ -78,14 +78,13 @@ exports.run = async (Bot, message) => {
 exports.config = {
     enabled: true,
     guild_only: false,
-    mod_only: false,
-    aliases: ["emem", "memey", "m"]
+    aliases: ["emem", "memey", "m"],
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
   },
     
 exports.help = {
     name: "Meme",
-    description:
-      "I will send a popular meme trending on a choice of many different subreddits.",
+    description: "I will send a popular meme trending on a choice of many different subreddits.",
     usage: "",
     category: "🤣memes🤣",
     cooldown: 2

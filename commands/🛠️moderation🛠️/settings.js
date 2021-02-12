@@ -124,13 +124,13 @@ exports.run = async (Bot, message, Arguments) => {
     enabled: true,
     guild_only: false,
     aliases: [""],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
   },
   
   exports.help = {
     name: "Settings",
     description: "I will set a setting to your choice. Settings: Prefix, WelcomeChannel.",
     usage: "<Setting Type> <Setting Value>",
-    category: "🧰utility🧰",
+    category: "🛠️moderation🛠️",
     cooldown: 2.5
   }

@@ -22,8 +22,8 @@ exports.run = async (Bot, message) => {
   exports.config = {
     enabled: true,
     guild_only: false,
-    mod_only: false,
-    aliases: ["ad", "a"]
+    aliases: ["ad", "a"],
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
   },
   
   exports.help = {

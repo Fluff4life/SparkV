@@ -23,13 +23,12 @@ exports.config = {
     enabled: true,
     guild_only: false,
     aliases: ["uf"],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
   },
   
   exports.help = {
     name: "UselessFact",
-    description:
-      "I will get a useless fact! You're better off with the advice command...",
+    description: "I will get a useless fact! You're better off with the advice command...",
     usage: "",
     category: "😃fun😃",
     cooldown: 2

@@ -24,13 +24,12 @@ exports.run = async (Bot, message) => {
     enabled: true,
     guild_only: false,
     aliases: ["sthought", "thought"],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
   },
   
   exports.help = {
     name: "ShowerThought",
-    description:
-      "I will return a thought you would only think of in the shower. Hmmmm...",
+    description: "I will return a thought you would only think of in the shower. Hmmmm...",
     usage: "",
     category: "😃fun😃",
     cooldown: 1.5

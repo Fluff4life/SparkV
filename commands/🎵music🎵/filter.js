@@ -22,7 +22,7 @@ exports.config = {
   enabled: true,
   guild_only: true,
   aliases: ["f"],
-  mod_only: false
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
 },
     
 exports.help = {

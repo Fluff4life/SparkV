@@ -18,12 +18,12 @@ exports.run = async (Bot, msg) => {
     enabled: true,
     guild_only: false,
     aliases: ["ping", "pong", "up", "MU"],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
   },
   
   exports.help = {
     name: "Stats",
-    description: "I will say my stats.",
+    description: "I will display my stats.",
     usage: "",
     category: "🧰utility🧰",
     cooldown: 2.5

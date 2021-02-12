@@ -6,10 +6,6 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
 
-  if (!message.guild.me.hasPermission("MANAGE_MESSAGES")){
-    return message.channel.send("❌I don't have permision to do that! Please select my role and allow KICK_MEMBERS.").then(m => m.delete({ timeout: 5000 }))
-  }
-
   if (!message.member.hasPermission("MANAGE_MESSAGES")){
     return message.channel.send("❌You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
   }
@@ -110,7 +106,7 @@ exports.config = {
     enabled: true,
     guild_only: true,
     aliases: ["w"],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "ADD_REACTIONS"]
   },
   
 exports.help = {

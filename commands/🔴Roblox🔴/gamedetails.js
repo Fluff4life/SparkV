@@ -46,7 +46,7 @@ exports.config = {
   enabled: true,
   guild_only: false,
   aliases: ["gd"],
-  mod_only: false
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
 },
   
 exports.help = {

@@ -40,6 +40,12 @@ exports.run = async (Bot, Message) => {
     return
   }
 
+  for (const permission of commandfile.config.bot_permissions){
+    if (!message.guild.me.hasPermission(permission)){
+      return msg.channel.send(`❌I don't have permission to do that! Please select my role and allow ${permission}.`).then(m => m.delete({ timeout: 5000 }))
+    }
+  }
+
   if (!commandfile.config.enabled) {
     return Message.reply("This command is currently disabled! Please try again later.")
   }

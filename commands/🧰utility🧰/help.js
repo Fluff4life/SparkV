@@ -80,8 +80,8 @@ exports.run = async (Bot, msg, args) => {
 exports.config = {
     enabled: true,
     guild_only: false,
-    mod_only: false,
-    aliases: ["cmds", "commands", "h"]
+    aliases: ["cmds", "commands", "h"],
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
   },
 
 exports.help = {

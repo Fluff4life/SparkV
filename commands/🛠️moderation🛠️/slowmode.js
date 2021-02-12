@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+  if (!message.member.hasPermission("MANAGE_MESSAGES") && (!message.member.hasPermission("MANAGE_CHANNELS"))){
     return message.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 5000 }))
   }
   
@@ -13,13 +13,13 @@ exports.run = async (Bot, message, Arguments) => {
     enabled: true,
     guild_only: false,
     aliases: ["slow"],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "MANAGE_CHANNELS"]
   },
   
   exports.help = {
     name: "Slowmode",
     description: "I will set the channel's slowmode to anything you want.",
     usage: "<Slowmode number>",
-    category: "🧰utility🧰",
+    category: "🛠️moderation🛠️",
     cooldown: 5
   }

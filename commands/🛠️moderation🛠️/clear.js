@@ -10,7 +10,7 @@ exports.run = async (Bot, msg, Arguments) => {
   }
 
   if (isNaN(Arguments[0]) || parseInt(Arguments[0]) <= 0){
-    return msg.channel.send("That's not a nunber lol.").then(m => m.delete({ timeout: 5000 }))
+    return msg.channel.send("That's not a nunber.").then(m => m.delete({ timeout: 5000 }))
   }
   
   let DeleteAmount
@@ -33,14 +33,13 @@ exports.config = {
     enabled: true,
     guild_only: true,
     aliases: ["purge", "clr"],
-    mod_only: false
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"]
   },
   
 exports.help = {
     name: "Clear",
-    description:
-      "I can delete messages for you so you don't have to spend a while deleting them :)",
+    description: "I can delete messages for you so you don't have to spend a while deleting them :)",
     usage: "[how many messages to delete]",
-    category: "🧰utility🧰",
+    category: "🛠️moderation🛠️",
     cooldown: 3.5
   }

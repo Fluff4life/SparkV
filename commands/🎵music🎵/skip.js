@@ -31,12 +31,12 @@ exports.config = {
   enabled: true,
   guild_only: true,
   aliases: ["sk"],
-  mod_only: false
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
 },
     
 exports.help = {
   name: "Skip",
-  description: "Skip the currently playing song.",
+  description: "Skips to the next song in queue.",
   usage: "",
   category: "🎵music🎵",
   cooldown: 3

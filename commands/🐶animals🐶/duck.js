@@ -30,8 +30,8 @@ exports.run = async (Bot, message) => {
 exports.config = {
   enabled: true,
   guild_only: true,
-  mod_only: false,
-  aliases: ["cuteduck"]
+  aliases: ["cuteduck"],
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
 },
   
 exports.help = {

@@ -15,13 +15,13 @@ exports.run = async (Bot, message, Arguments) => {
 exports.config = {
   enabled: true,
   guild_only: true,
-  aliases: [""],
-  mod_only: false
+  aliases: ["see"],
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
 },
     
 exports.help = {
   name: "Seek",
-  description: "I will jump to a certain point in the current playing song.",
+  description: "Change the current track's position.",
   usage: "<number>",
   category: "🎵music🎵",
   cooldown: 3

@@ -17,13 +17,13 @@ exports.run = async (Bot, message, Arguments) => {
 exports.config = {
   enabled: true,
   guild_only: true,
-  aliases: ["repeat"],
-  mod_only: false
+  aliases: ["repeat", "loop"],
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
 },
     
 exports.help = {
-  name: "Loop",
-  description: "Loops the currently playing song.",
+  name: "replay",
+  description: "replays the currently playing song.",
   usage: "<Repeat Mode Default Inf>",
   category: "🎵music🎵",
   cooldown: 3
