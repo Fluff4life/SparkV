@@ -11,5 +11,5 @@ var ServerData = new Schema({
   Punishments: Array,
 })
 
-exports.User = model("UserData", UserData)
-exports.Server = model("ServerData", ServerData)
+module.exports.User = model("UserData", UserData)
+module.exports.Server = model("ServerData", ServerData)
