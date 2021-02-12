@@ -81,17 +81,17 @@ readdir("./events", (err, files) => {
 })
 
 console.log("---------- Loading Commands ----------")
-readdir("../commands", (err, cats) => {
+readdir("./commands", (err, cats) => {
   cats.forEach(cat => {
     Bot.categories.set(cat, cat)
 
-    readdir(`../commands/${cat}`, (err, files) => {
+    readdir(`./commands/${cat}`, (err, files) => {
       files.forEach(file => {
         if (!file.endsWith(".js")) {
           return
         }
 
-        let FileJs = require(`../commands/${cat}/${file}`)
+        let FileJs = require(`./commands/${cat}/${file}`)
         let commandname = file.split(".")[0]
 
         Bot.commands.set(commandname, FileJs)
