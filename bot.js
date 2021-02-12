@@ -40,6 +40,13 @@ const Bot = new Client({
 // DataModule //
 Bot.DataSchemas = require("./database/schemas")
 
+// Modules //
+const functions = require("./modules/functions")
+const Noblox = require("./DependencyHandlers/noblox")
+const Distube = require("./DependencyHandlers/distube")
+const EventLoader = require("./Loaders/eventloader")
+const CommandsLoader = require("./Loaders/commandsloader")
+
 // Get User Count //
 Bot.TotalMembers = 0
 
@@ -52,18 +59,18 @@ Bot.cooldowns = new Collection()
 
 // Code //
 console.log("---------- Loading Bot Functions ----------") 
-require("./modules/functions")(Bot)
-
-console.log("---------- Logging into Roblox ----------") 
-require("./DependencyHandlers/noblox")(Bot)
+functions(Bot)
 
 console.log("---------- Loading DisTube ----------") 
-require("./DependencyHandlers/distube")(Bot)
+Distube(Bot)
 
 console.log("---------- Loading Events ----------")
-require("./Loaders/eventloader")(Bot)
+EventLoader(Bot)
 
 console.log("---------- Loading Commands ----------")
-require("./Loaders/commandsloader")(Bot)
+CommandsLoader(Bot)
+
+console.log("---------- Logging into Roblox ----------") 
+Noblox(Bot)
 
 Bot.login(process.env.token)
