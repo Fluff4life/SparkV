@@ -56,7 +56,7 @@ module.exports = async (bot) => {
     return Target
   }
 
-  bot.PromptMessage = function(message, author, reactions, seconds){
+  bot.PromptMessage = async function(message, author, reactions, seconds){
     seconds = seconds * 1000
 
     for (const Reaction of reactions){
