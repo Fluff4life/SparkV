@@ -41,10 +41,6 @@ exports.run = async (Bot, message, Arguments) => {
       })
       
       if (data){
-        data.GuildExtraDetails.unshift({
-          GuildName: message.guild.name
-        })
-
         data.Punishments.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,
@@ -70,10 +66,6 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else {
-        data.GuildExtraDetails.unshift({
-          GuildName: message.guild.name
-        })
-
         data.Punishments.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,

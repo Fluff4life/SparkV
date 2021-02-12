@@ -2,8 +2,6 @@ const { Schema, model } = require("mongoose")
 
 var UserData = new Schema({
   UserID: Number,
-
-  UserExtraDetails: Array
 })
 
 var ServerData = new Schema({
@@ -11,7 +9,6 @@ var ServerData = new Schema({
 
   Settings: Array,
   Punishments: Array,
-  GuildExtraDetails: Array
 })
 
 exports.User = model("UserData", UserData)
