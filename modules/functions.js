@@ -1,7 +1,4 @@
-const { time } = require("console")
 const Discord = require("discord.js")
-const request = require("node-fetch")
-const { validateID } = require("ytdl-core")
 
 module.exports = async (bot) => {
   bot.MSToTime = function(ms){
@@ -32,28 +29,6 @@ module.exports = async (bot) => {
     }
   
     return str
-  }
-  
-  bot.GetUser = function(message, ToFind){
-    ToFind = ToFind.toLowerCase()
-
-    let Target = message.guild.members.get(toFind)
-
-    if (!Target && message.mentions.members){
-      Target = message.mentions.member.first()
-    }
-
-    if (!Target && ToFind){
-      Target = message.guild.members.find(member => {
-        return member.displayName.toLowerCase().includes(ToFind) || member.user.tag.toLowerCase().includes(toFind)
-      })
-    }
-
-    if (!Target){
-      Target = message.member
-    }
-
-    return Target
   }
 
   bot.PromptMessage = async function(message, author, reactions, seconds){
