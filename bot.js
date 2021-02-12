@@ -13,30 +13,29 @@ console.log("                                   __/ |");
 console.log("                                  |___/");
 
 // Librarys //
-const Discord = require("discord.js");
+const { Client, Collection, MessageEmbed } = require("discord.js");
 const noblox = require("noblox.js")
 const DisTube = require("distube")
-const fs = require("fs");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose")
+const { readdir } = require("fs");
+const { config } = require("dotenv");
+const { connect, set } = require("mongoose")
 const pagination = require("discord.js-pagination")
 
 // Modules //
 const RunFunctions = require("./modules/functions.js");
 
 // Start Dotenv //--
-dotenv.config({
+config({
   path: __dirname + "/.env"
 });
 
 // Prepare Database //
-mongoose.connect(`mongodb+srv://${process.env.mongoose_name}:${process.env.mongoose_password}@${process.env.mongoose_name_lowered}.egdb0.mongodb.net/Data`, { useNewUrlParser: true, useUnifiedTopology: true })
-mongoose.set("useFindAndModify", false)
+connect(`mongodb+srv://${process.env.mongoose_name}:${process.env.mongoose_password}@${process.env.mongoose_name_lowered}.egdb0.mongodb.net/Data`, { useNewUrlParser: true, useUnifiedTopology: true })
+set("useFindAndModify", false)
 
 // Create Bot //
-const Bot = new Discord.Client({
+const Bot = new Client({
   disableEveryone: true,
-  retryLimit: 5,
 
   presence: {
     activity: {
@@ -55,11 +54,11 @@ Bot.ModStore = require("./databases/mod_schema.js")
 Bot.Settings = require("./databases/settings.js")
 
 // Collections //
-Bot.categories = new Discord.Collection();
-Bot.commands = new Discord.Collection();
-Bot.aliases = new Discord.Collection();
-Bot.events = new Discord.Collection();
-Bot.cooldowns = new Discord.Collection();
+Bot.categories = new Collection();
+Bot.commands = new Collection();
+Bot.aliases = new Collection();
+Bot.events = new Collection();
+Bot.cooldowns = new Collection();
 
 const ConsoleLog = true;
 
@@ -196,7 +195,7 @@ console.log("---------- Loading DisTube ----------")
     let Pages = []
     
     const CreatePage = (Message, Song) => {
-      const NewEmbed = new Discord.MessageEmbed()
+      const NewEmbed = new MessageEmbed()
         .setTitle(`${Song.formattedDuration} | ${Song.name}`)
         .setDescription(`To select this song, send the page number.`)
         .setColor("#0099ff")
@@ -236,7 +235,7 @@ console.log("---------- Loading DisTube ----------")
     })
 
 console.log("---------- Loading Events ----------");
-fs.readdir("./events/", (err, files) => {
+readdir("./events/", (err, files) => {
   if (err) {
     return console.log(`Error! ${err}`);
   }
@@ -254,11 +253,11 @@ fs.readdir("./events/", (err, files) => {
 });
 
 console.log("---------- Loading Commands ----------");
-fs.readdir("./commands/", (err, cats) => {
+readdir("./commands/", (err, cats) => {
   cats.forEach(cat => {
     Bot.categories.set(cat, cat);
 
-    fs.readdir(`./commands/${cat}/`, (err, files) => {
+    readdir(`./commands/${cat}/`, (err, files) => {
       files.forEach(file => {
         if (!file.endsWith(".js")) {
           return;

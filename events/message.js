@@ -25,12 +25,7 @@ exports.run = async (Bot, Message) => {
     .split(/ +/);
   
   const command = args.shift().toLowerCase();
-  const commandfile =
-    Bot.commands.get(command) ||
-    Bot.commands.find(
-      command_ =>
-        command_.config.aliases && command_.config.aliases.includes(command)
-    );
+  const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
 
   if (!commandfile) {
     return
@@ -46,9 +41,7 @@ exports.run = async (Bot, Message) => {
   }
 
   if (!commandfile.config.enabled) {
-    return Message.reply(
-      "This command is currently disabled! Please try again later."
-    );
+    return Message.reply("This command is currently disabled! Please try again later.")
   }
 
   if (!Bot.cooldowns.has(command.name)) {
@@ -78,14 +71,13 @@ exports.run = async (Bot, Message) => {
         },
         }
       )}
-    }
+  }
 
   Timestamps.set(Message.author.id, Now);
   setTimeout(() => Timestamps.delete(Message.author.id), CooldownAmount);
 
   commandfile
     .run(Bot, Message, args, command)
-    .then(() => {
-      console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nNew Command!\nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``); 
+    .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nNew Command!\nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``); 
   })
 }

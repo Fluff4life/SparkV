@@ -33,7 +33,6 @@ exports.run = async (Bot, message) => {
     request(`https://www.reddit.com/r/${Subreddit}/random/.json`)
       .then(res => res.json())
       .then(async ResponseData => {
-        console.log(ResponseData)
         const [ list ] = JSON.parse(ResponseData.body);
         const [ post ] = list.data.children;
       
@@ -65,11 +64,13 @@ exports.run = async (Bot, message) => {
   }
   
   const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
-  
-  message.channel.send(`Getting popular meme from r/${RandomSubreddit}.`)
-  message.channel.startTyping()
-  
   const RedditPost = await Get(RandomSubreddit)
+
+  message.channel.startTyping()
+  message.channel.send(`Getting popular meme from r/${RandomSubreddit}.`)
+  
+  await RedditPost.react("👍")
+  await RedditPost.react("👎")
   
   message.channel.stopTyping()
 },
