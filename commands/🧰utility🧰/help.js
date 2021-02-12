@@ -30,7 +30,7 @@ exports.run = async (Bot, msg, args) => {
 }
 
   const data = await Bot.DataSchemas.Server.findOne({
-    GuildID: Message.guild.id
+    GuildID: msg.guild.id
   })
   
   if (data){
