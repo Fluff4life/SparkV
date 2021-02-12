@@ -1,8 +1,8 @@
-const { connect, set } = require("mongoose")
+const mongoose = require("mongoose")
 
 async function ConnectDatastore(){
-    connect(`mongodb+srv://${process.env.mongoose_name}:${process.env.mongoose_password}@${process.env.mongoose_name_lowered}.egdb0.mongodb.net/Data`, { useNewUrlParser: true, useUnifiedTopology: true })
-    set("useFindAndModify", false)
+    mongoose.connect(`mongodb+srv://${process.env.mongoose_name}:${process.env.mongoose_password}@${process.env.mongoose_name_lowered}.egdb0.mongodb.net/Data`, { useNewUrlParser: true, useUnifiedTopology: true })
+    mongoose.set("useFindAndModify", false)
 }
 
 ConnectDatastore().then(() => {

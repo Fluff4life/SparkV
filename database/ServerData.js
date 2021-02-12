@@ -7,4 +7,4 @@ var ServerData = new mongoose.Schema({
   Punishments: Array,
 })
 
-const MessageModel = module.exports = mongoose.model("UserData", ServerData)
+const MessageModel = module.exports = mongoose.model("ServerData", ServerData)
