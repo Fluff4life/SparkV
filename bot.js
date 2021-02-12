@@ -15,6 +15,7 @@ console.log("                                  |___/")
 // Librarys //
 const { Client, Collection } = require("discord.js")
 const { config } = require("dotenv")
+const { readdir } = require("fs")
 
 // Start Dotenv //--
 config({
