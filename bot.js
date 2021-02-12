@@ -39,7 +39,8 @@ const Bot = new Client({
 })
 
 // DataModule //
-Bot.DataSchemas = require("./database/schemas")
+Bot.UserData = require("./database/UserData")
+Bot.ServerData = require("./database/ServerData")
 
 // Modules //
 const functions = require("./modules/functions")

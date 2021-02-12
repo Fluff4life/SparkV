@@ -29,7 +29,7 @@ exports.run = async (Bot, msg, args) => {
     pages.push(NewEmbed)
 }
 
-  const data = await Bot.DataSchemas.Server.findOne({
+  const data = await Bot.ServerData.findOne({
     GuildID: msg.guild.id
   })
   

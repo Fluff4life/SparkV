@@ -36,13 +36,11 @@ exports.run = async (Bot, message, Arguments) => {
       // Yes
       VerificationMessage.delete()
 
-      var data = await Bot.DataSchemas.Server.findOne({
+      var data = await Bot.ServerData.findOne({
         GuildID: message.guild.id
       })
       
       if (data){
-        console.log(data)
-
         data.Punishments.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,
@@ -68,9 +66,6 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else if (!data){
-
-        console.log(data)
-
         data.Punishments.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,
