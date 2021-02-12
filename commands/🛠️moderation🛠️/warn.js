@@ -41,6 +41,8 @@ exports.run = async (Bot, message, Arguments) => {
       })
       
       if (data){
+        console.log(data)
+
         data.Punishments.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,
@@ -65,7 +67,10 @@ exports.run = async (Bot, message, Arguments) => {
             }
           }
         })
-      } else {
+      } else if (!data){
+
+        console.log(data)
+
         data.Punishments.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,
