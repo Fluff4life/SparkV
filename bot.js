@@ -70,8 +70,9 @@ readdir("./events", (err, files) => {
   }
 
   files.forEach(file => {
-    let FileEvent = require(`./events/${file}`)
+    require("./events/guildCreate")
     let EventName = file.split(".")[0]
+    let FileEvent = require(`./events/${EventName}`)
 
     if (process.env.ConsoleLog || false){
       console.log(`✅Successfully loaded Event ${EventName}`)
