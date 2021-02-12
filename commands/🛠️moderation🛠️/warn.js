@@ -7,27 +7,27 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
 
   if (!message.guild.me.hasPermission("MANAGE_MESSAGES")){
-    return msg.channel.send("❌I don't have permision to do that! Please select my role and allow KICK_MEMBERS.").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌I don't have permision to do that! Please select my role and allow KICK_MEMBERS.").then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (!msg.member.hasPermission("MANAGE_MESSAGES")){
-    return msg.channel.send("❌You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
+  if (!message.member.hasPermission("MANAGE_MESSAGES")){
+    return message.channel.send("❌You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!Arguments[0]){
-    return msg.channel.send("❌Please mention someone to warn!").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌Please mention someone to warn!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User){
-    return msg.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id){
-    return msg.channel.send("❌You cannot warn yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌You cannot warn yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable){
-      return msg.channel.send("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
+      return message.channel.send("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()
@@ -35,12 +35,13 @@ exports.run = async (Bot, message, Arguments) => {
   .setDescription("Are you sure you want to do this?")
   .setFooter("Canceling in 60 seconds if no emoji reacted.")
 
-  await message.channel.send(VerificationEmbed).then(async msg => {
-    const Emoji = await Bot.PromptMessage(msg, message.author, ["✅", "❌"], 60)
+  const VerificationMessage = await message.channel.send(VerificationEmbed)
+
+    const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
     if (Emoji === "✅"){
       // Yes
-      msg.delete()
+      VerificationMessage.delete()
 
       var data = await ModDatastore.findOne({
         Guild: `${message.guild.name} (${message.guild.id})`,
@@ -99,11 +100,10 @@ exports.run = async (Bot, message, Arguments) => {
         })
       }
     } else if (emoji === "❌"){
-      msg.delete()
+      VerificationMessage.delete()
 
       message.channel.send("❌Warn canceled.").then(m => m.delete({ timeout: 10000 }))
     }
-  })
 },
 
 exports.config = {
