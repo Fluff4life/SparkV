@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const { MessageEmbed  } = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments) => {
   const UserToKick = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.cache.get(Arguments[0]) || `@<${Arguments[0]}>`;
