@@ -14,7 +14,5 @@ var ServerData = new Schema({
   GuildExtraDetails: Array
 })
 
-module.exports = {
-  User: model("UserData", UserData),
-  Server: model("ServerData", ServerData)
-}
+exports.User = model("UserData", UserData)
+exports.Server = model("ServerData", ServerData)

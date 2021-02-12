@@ -70,11 +70,10 @@ readdir("./events", (err, files) => {
   }
 
   files.forEach(file => {
-    require("./events/guildCreate")
     let EventName = file.split(".")[0]
     let FileEvent = require(`./events/${EventName}`)
 
-    if (process.env.ConsoleLog || false){
+    if (process.env.ConsoleLog || true){
       console.log(`✅Successfully loaded Event ${EventName}`)
     }
 
@@ -84,25 +83,25 @@ readdir("./events", (err, files) => {
 
 console.log("---------- Loading Commands ----------")
 readdir("./commands", (err, cats) => {
-  console.log(cats)
+  if (err) {
+    return console.log(`Error! ${err}`)
+  }
+
   cats.forEach(cat => {
-    console.log(cat)
     Bot.categories.set(cat, cat)
 
     readdir(`./commands/${cat}`, (err, files) => {
-      console.log(files)
       files.forEach(file => {
-        console.log(file)
         if (!file.endsWith(".js")) {
           return
         }
 
-        let FileJs = require(`./commands/${cat}/${file}`)
         let commandname = file.split(".")[0]
+        let FileJs = require(`./commands/${cat}/${commandname}`)
 
         Bot.commands.set(commandname, FileJs)
 
-        if (process.env.ConsoleLog || false) {
+        if (process.env.ConsoleLog || true) {
           console.log(`✅Successfully loaded command: ${commandname}!`)
         }
       })
