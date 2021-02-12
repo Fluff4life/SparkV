@@ -41,7 +41,8 @@ exports.run = async (Bot, Message) => {
   }
 
   for (const permission of commandfile.config.bot_permissions){
-    if (!Message.guild.me.hasPermission(permission)){
+    console.log(permission)
+    if (!Message.guild.me.hasPermission([permission])){
       return msg.channel.send(`❌I don't have permission to do that! Please select my role and allow ${permission}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
