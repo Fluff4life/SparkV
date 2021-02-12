@@ -1,3 +1,5 @@
 const noblox = require("noblox.js")
 
-noblox.setCookie(process.env.RobloxBotCookie)
+module.exports = async (Bot) => {
+    noblox.setCookie(process.env.RobloxBotCookie)
+}
