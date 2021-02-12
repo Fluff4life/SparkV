@@ -82,11 +82,15 @@ readdir("./events", (err, files) => {
 
 console.log("---------- Loading Commands ----------")
 readdir("./commands", (err, cats) => {
+  console.log(cats)
   cats.forEach(cat => {
+    console.log(cat)
     Bot.categories.set(cat, cat)
 
     readdir(`./commands/${cat}`, (err, files) => {
+      console.log(files)
       files.forEach(file => {
+        console.log(file)
         if (!file.endsWith(".js")) {
           return
         }
