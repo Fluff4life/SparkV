@@ -39,9 +39,11 @@ exports.run = async (Bot, message, Arguments) => {
       var data = await Bot.ServerData.findOne({
         GuildID: message.guild.id
       })
+
+      console.log(data)
       
       if (data){
-        data.Punishments.Warnings.unshift({
+        data.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,
           Moderator_Name: message.author.user,
@@ -66,7 +68,7 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else if (!data){
-        data.Punishments.Warnings.unshift({
+        data.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           ModeratedUser_ID: User.id,
           Moderator_Name: message.author.user,

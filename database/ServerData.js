@@ -4,7 +4,7 @@ var ServerData = new mongoose.Schema({
   GuildID: Number,
 
   Settings: Array,
-  Punishments: Array,
+  Warnings: Array,
 })
 
 const MessageModel = module.exports = mongoose.model("ServerData", ServerData)

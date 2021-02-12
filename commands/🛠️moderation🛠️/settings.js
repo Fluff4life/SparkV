@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const Data = await Bot.DataSchemas.Server.findOne({
+  const Data = await Bot.ServerData.findOne({
     Guild: `${message.guild.name} (${message.guild.id})`,
   })
 
