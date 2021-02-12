@@ -41,7 +41,7 @@ exports.run = async (Bot, message, Arguments) => {
       })
       
       if (data){
-        data.ExtraDetails.unshift({
+        data.GuildExtraDetails.unshift({
           GuildName: message.guild.name
         })
 
@@ -70,7 +70,7 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else {
-        data.ExtraDetails.unshift({
+        data.GuildExtraDetails.unshift({
           GuildName: message.guild.name
         })
 
