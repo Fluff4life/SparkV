@@ -44,8 +44,6 @@ Bot.DataSchemas = require("./database/schemas")
 const functions = require("./modules/functions")
 const Noblox = require("./DependencyHandlers/noblox")
 const Distube = require("./DependencyHandlers/distube")
-const EventLoader = require("./Loaders/eventloader")
-const CommandsLoader = require("./Loaders/commandsloader")
 
 // Get User Count //
 Bot.TotalMembers = 0
@@ -65,10 +63,46 @@ console.log("---------- Loading DisTube ----------")
 Distube(Bot)
 
 console.log("---------- Loading Events ----------")
-EventLoader(Bot)
+readdir("./events", (err, files) => {
+  if (err) {
+    return console.log(`Error! ${err}`)
+  }
+
+  files.forEach(file => {
+    let FileEvent = require(`../events/${file}`)
+    let EventName = file.split(".")[0]
+
+    if (process.env.ConsoleLog || false){
+      console.log(`✅Successfully loaded Event ${EventName}`)
+    }
+
+    Bot.on(EventName, (...args) => FileEvent.run(Bot, ...args))
+  })
+})
 
 console.log("---------- Loading Commands ----------")
-CommandsLoader(Bot)
+readdir("../commands", (err, cats) => {
+  cats.forEach(cat => {
+    Bot.categories.set(cat, cat)
+
+    readdir(`../commands/${cat}`, (err, files) => {
+      files.forEach(file => {
+        if (!file.endsWith(".js")) {
+          return
+        }
+
+        let FileJs = require(`../commands/${cat}/${file}`)
+        let commandname = file.split(".")[0]
+
+        Bot.commands.set(commandname, FileJs)
+
+        if (process.env.ConsoleLog || false) {
+          console.log(`✅Successfully loaded command: ${commandname}!`)
+        }
+      })
+    })
+  })
+})
 
 console.log("---------- Logging into Roblox ----------") 
 Noblox(Bot)
