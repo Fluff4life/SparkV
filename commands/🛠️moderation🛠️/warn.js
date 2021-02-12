@@ -1,8 +1,7 @@
 const { MessageEmbed  } = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  const ModDatastore = Bot.ModStore
 
+exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
 
@@ -23,7 +22,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!User.kickable){
-      return message.channel.send("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()
@@ -32,7 +31,6 @@ exports.run = async (Bot, message, Arguments) => {
   .setFooter("Canceling in 60 seconds if no emoji reacted.")
 
   const VerificationMessage = await message.channel.send(VerificationEmbed)
-
     const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
     if (Emoji === "✅"){
@@ -40,15 +38,20 @@ exports.run = async (Bot, message, Arguments) => {
       VerificationMessage.delete()
 
       var data = await ModDatastore.findOne({
-        Guild: `${message.guild.name} (${message.guild.id})`,
+        GuildID: message.guild.id
       })
       
       if (data){
-        data.Punishments.unshift({
-          PunishType: "Warn",
-          User: `${User.user.username} (${User.id})`,
-          Moderator: `${message.author.user} (${message.author.id})`,
-          Reason: Reason,
+        data.ExtraDetails.unshift({
+          GuildName: message.guild.name
+        })
+
+        data.Punishments.Warnings.unshift({
+          ModeratedUser_Name: User.user.username,
+          ModeratedUser_ID: User.id,
+          Moderator_Name: message.author.user,
+          Moderator_ID: message.author.id,
+          Reason: Reason
         })
         
         User.send("You have been warned in **" + message.guild.name + "** for " + Reason)
@@ -67,16 +70,17 @@ exports.run = async (Bot, message, Arguments) => {
             }
           }
         })
-      } else if (!data){
-        var newData = new ModDatastore({
-          Guild: `${message.guild.name} (${message.guild.id})`,
-        
-          Punishments: [{
-            PunishType: "Warn",
-            User: `${User.user.username} (${User.id})`,
-            Moderator: `${message.author.username} (${message.author.id})`,
-            Reason: Reason,
-          }, ],
+      } else {
+        data.ExtraDetails.unshift({
+          GuildName: message.guild.name
+        })
+
+        data.Punishments.Warnings.unshift({
+          ModeratedUser_Name: User.user.username,
+          ModeratedUser_ID: User.id,
+          Moderator_Name: message.author.user,
+          Moderator_ID: message.author.id,
+          Reason: Reason
         })
         
         User.send("You have been warned in **" + message.guild.name + "** for " + Reason)
