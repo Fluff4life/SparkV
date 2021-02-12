@@ -5,7 +5,7 @@ exports.run = async (Bot, Message) => {
     return;
   }
   
-  const data = await Bot.Settings.findOne({
+  const data = await Bot.DataSchemas.Server.Settings.findOne({
     Guild: `${Message.guild.name} (${Message.guild.id})`
   })
   
