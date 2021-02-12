@@ -70,7 +70,7 @@ readdir("./events", (err, files) => {
   }
 
   files.forEach(file => {
-    let FileEvent = require(`../events/${file}`)
+    let FileEvent = require(`./events/${file}`)
     let EventName = file.split(".")[0]
 
     if (process.env.ConsoleLog || false){
