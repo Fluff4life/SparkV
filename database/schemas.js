@@ -5,7 +5,7 @@ var UserData = new Schema({
 })
 
 var ServerData = new Schema({
-  GuildID: String,
+  GuildID: Number,
 
   Settings: Array,
   Punishments: Array,
