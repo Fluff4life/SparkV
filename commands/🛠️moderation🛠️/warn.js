@@ -1,6 +1,5 @@
 const { MessageEmbed  } = require("discord.js");
 
-
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
@@ -37,7 +36,7 @@ exports.run = async (Bot, message, Arguments) => {
       // Yes
       VerificationMessage.delete()
 
-      var data = await ModDatastore.findOne({
+      var data = await Bot.DataSchemas.Server.findOne({
         GuildID: message.guild.id
       })
       
