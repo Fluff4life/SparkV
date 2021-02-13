@@ -40,7 +40,6 @@ console.log(Bot.ServerData)
 
       var data = await Bot.ServerData.findOne({
         GuildID: message.guild.id
-        UserID: User.id
       })
 
       console.log(data)
