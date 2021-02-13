@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-var ServerData = new mongoose.Schema({
+let ServerData = new mongoose.Schema({
   GuildID: Number,
 
   Settings: Array,
