@@ -36,14 +36,11 @@ exports.run = async (Bot, message, Arguments) => {
       // Yes
       VerificationMessage.delete()
 
-console.log(Bot.ServerData)
-
-      let data = await Bot.ServerData.findOne({
-        GuildID: message.guild.id
+      let data = await Bot.GlobalData.findOne({
+        GuildID: message.guild.id,
+        UserID: User.id
       })
 
-      console.log(data)
-      
       if (data){
         data.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
