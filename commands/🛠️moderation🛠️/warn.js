@@ -38,7 +38,7 @@ exports.run = async (Bot, message, Arguments) => {
 
 console.log(Bot.ServerData)
 
-      var data = await Bot.ServerData.ServerData.findOne({
+      let data = await Bot.ServerData.findOne({
         GuildID: message.guild.id
       })
 
