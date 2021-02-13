@@ -110,9 +110,9 @@ console.log("---------- Logging into Roblox ----------")
 Noblox(Bot)
 
 console.log("---------- Loading Extras ----------") 
-// DataModule //
 Bot.UserData = require("./database/UserData")
 Bot.ServerData = require("./database/ServerData")
+Bot.GlobalData = require("./database/GlobalData")
 
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
