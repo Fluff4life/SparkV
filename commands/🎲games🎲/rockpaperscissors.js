@@ -1,56 +1,43 @@
 const Discord = require("discord.js");
 
+const Emojis = ["🗻", "📄", "✂"]
+
 exports.run = async (Bot, message, Arguments) => {
+  function GetResult(BotChosen, UserChosen){
+    if ((BotChosen === "🗻" && UserChosen === "✂") || (BotChosen === "📄" && UserChosen === "🗻") || (BotChoice === "✂" && UserChosen === "📄")){
+      return "🎉You won!"
+    } else if (BotChosen === UserChosen){
+      return "It's a tie!"
+    } else {
+      return `🎉${process.env.name} won!`
+    }
+  }
+
   const embed = new Discord.MessageEmbed()
     .setTitle("Rock Paper Scissors")
     .setDescription("React to one of these emojis to begin!")
     .setFooter(process.env.name, Bot.user.displayAvatarURL)
     .setTimestamp()
 
+  const Message = await message.channel.send(embed)
+  const Reacted = await Bot.PromptMessage(Message, message.author, Emojis, 30)
+  const BotChoice = Emojis[Math.floor(Math.random() * Emojis.length)]
+  const Result = await GetResult(Reacted, BotChoice)
 
+  await Message.clearReactions()
 
+  embed
+  .setTitle("Game Over - Rock Paper Scissors")
+  .setDescription(`${Result}`)
+  .setFooter(`${Reacted} V.S. ${BotChoice}`)
 
-  const embed = new RichEmbed()
-  .setColor("#ffffff")
-  .setFooter(message.guild.me.displayName, client.user.displayAvatarURL)
-  .setDescription("Add a reaction to one of these emojis to play the game!")
-  .setTimestamp();
-
-const m = await message.channel.send(embed);
-// Wait for a reaction to be added
-const reacted = await promptMessage(m, message.author, 30, chooseArr);
-
-// Get a random emoji from the array
-const botChoice = chooseArr[Math.floor(Math.random() * chooseArr.length)];
-
-// Check if it's a win/tie/loss
-const result = await getResult(reacted, botChoice);
-// Clear the reactions
-await m.clearReactions();
-
-embed
-  .setDescription("")
-  .addField(result, `${reacted} vs ${botChoice}`);
-
-m.edit(embed);
-
-function getResult(me, clientChosen) {
-  if ((me === "🗻" && clientChosen === "✂") ||
-      (me === "📰" && clientChosen === "🗻") ||
-      (me === "✂" && clientChosen === "📰")) {
-          return "You won!";
-  } else if (me === clientChosen) {
-      return "It's a tie!";
-  } else {
-      return "You lost!";
-  }
-}
+  Message.edit(embed)
 },
 
 exports.config = {
   enabled: true,
   guild_only: true,
-  aliases: ["ttt"],
+  aliases: ["rps"],
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"]
 },
     
