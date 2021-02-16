@@ -31,7 +31,7 @@ exports.config = {
     
 exports.help = {
     name: "Stop",
-    description: "Disconnects me from the voice channel it is in and removes all songs in queue.",
+    description: "Disconnects me from the voice channel and removes all songs in queue.",
     usage: "",
     category: "🎵music🎵",
     cooldown: 3

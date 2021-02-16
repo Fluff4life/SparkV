@@ -27,7 +27,7 @@ exports.config = {
 exports.help = {
   name: "AutoPlay",
   description: "Sets AutoPlay. Requires Administrator.",
-  usage: "",
+  usage: "<Toggle>",
   category: "🎵music🎵",
   cooldown: 3
 }

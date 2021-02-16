@@ -19,7 +19,7 @@ exports.config = {
 exports.help = {
   name: "TicTacToe",
   description: "Play a game of Tic Tac Toe with me or mention someone to play with!",
-  usage: "<user>",
+  usage: "<optional user>",
   category: "🎲games🎲",
   cooldown: 60
 }

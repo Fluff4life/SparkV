@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "download": "npm i -save"
+    "download": "npm i --g"
   },
   "author": "KingCh1ll#3616",
   "license": "MIT",

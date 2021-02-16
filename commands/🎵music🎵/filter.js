@@ -28,7 +28,7 @@ exports.config = {
 exports.help = {
   name: "Filter",
   description: "Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave.",
-  usage: "<Type of Filter>",
+  usage: "<Filter>",
   category: "🎵music🎵",
   cooldown: 3
 }

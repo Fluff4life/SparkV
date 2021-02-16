@@ -24,7 +24,7 @@ exports.config = {
 exports.help = {
   name: "replay",
   description: "replays the currently playing song.",
-  usage: "<Repeat Mode Default Inf>",
+  usage: "<Optional amount of times - default inf>",
   category: "🎵music🎵",
   cooldown: 3
 }
