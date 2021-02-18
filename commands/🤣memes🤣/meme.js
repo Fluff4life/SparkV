@@ -42,7 +42,7 @@ exports.run = async (Bot, message) => {
         console.log(json)
         
         if ((json.response.data.ups) <= 12500) {
-          Get(Subreddit, ResponseData)
+          Get(Subreddit)
         } else {
           return message.channel.send({
             embed: {
