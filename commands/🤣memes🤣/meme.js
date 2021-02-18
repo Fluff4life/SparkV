@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const request = require("node-fetch");
+const got = require("got");
 
 const SubReddits = [
   "PewdiepieSubmissions",
@@ -30,8 +30,7 @@ exports.run = async (Bot, message) => {
     }); */
   
   async function Get(Subreddit){
-    request(`https://www.reddit.com/r/${Subreddit}/random/.json`)
-      .then(res => res.json())
+    got(`https://www.reddit.com/r/${Subreddit}/random/.json`)
       .then(async ResponseData => {
         const [ list ] = JSON.parse(ResponseData.body);
         const [ post ] = list.data.children;
@@ -64,6 +63,7 @@ exports.run = async (Bot, message) => {
   }
   
   const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
+  
   await Get(RandomSubreddit)
 
   message.channel.startTyping()
