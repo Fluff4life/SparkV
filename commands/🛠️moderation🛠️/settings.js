@@ -25,12 +25,12 @@ exports.run = async (Bot, message, Arguments) => {
     }
     
     if (Data){
-      await DataSettings.findOneAndRemove({
-        Guild: `${message.guild.name} (${message.guild.id})`
+      await require("../../database/server").findOneAndRemove({
+        GuildID: message.guild.id,
       })
       
-      let newData = new DataSettings({
-        Guild: `${message.guild.name} (${message.guild.id})`,
+      let newData = new require("../../database/server")({
+        GuildID: message.guild.id,
         
         Settings: {
           Prefix: Arguments[1],
@@ -42,8 +42,8 @@ exports.run = async (Bot, message, Arguments) => {
     } else if (!Data){
       message.channel.send(`The server's new prefix is now **${Arguments[1]}**`).then(m => m.delete({ timeout: 5000 }))
       
-      let newData = new DataSettings({
-        Guild: `${message.guild.name} (${message.guild.id})`,
+      let newData = new require("../../database/server")({
+        GuildID: message.guild.id,
         
         Settings: {
           Prefix: Arguments[1],
@@ -53,7 +53,7 @@ exports.run = async (Bot, message, Arguments) => {
       newData.save()
     }
   } else {
-    return message.channel.send("Unknown setting. Settings: Prefix, WelcomeChannel.").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("Unknown setting. Settings: Prefix.").then(m => m.delete({ timeout: 5000 }))
   }
 },
   
@@ -66,7 +66,7 @@ exports.run = async (Bot, message, Arguments) => {
   
   exports.help = {
     name: "Settings",
-    description: "I will set a setting to your choice. Settings: Prefix, WelcomeChannel.",
+    description: "I will set a setting to your choice. Settings: Prefix.",
     usage: "<Setting Type> <Setting Value>",
     category: "🛠️moderation🛠️",
     cooldown: 2.5
