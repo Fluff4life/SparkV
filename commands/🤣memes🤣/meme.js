@@ -53,11 +53,11 @@ exports.run = async (Bot, message) => {
               url: `https://reddit.com${json.response.permalink}`,
 
               image: {
-                url: data.url,
+                url: json.response.url,
               },
 
               footer: {
-                text: `👍${data.ups} | 💬${data.num_comments} | 😃u/${data.author} | r/${Subreddit}`,
+                text: `👍${json.response.ups} | 💬${json.response.num_comments} | 😃u/${json.response.author} | r/${Subreddit}`,
                 icon_url: process.env.bot_logo
               },
             }
