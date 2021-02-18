@@ -44,7 +44,7 @@ exports.run = async (Bot, message) => {
         if ((json.response.ups) <= 12500) {
           Get(Subreddit, ResponseData)
         } else {
-          return {
+          return message.channel.send({
             embed: {
               title: json.response.title,
               description: json.response.description,
@@ -61,7 +61,7 @@ exports.run = async (Bot, message) => {
                 icon_url: process.env.bot_logo
               },
             }
-          }
+          })
         }
       })
   }
@@ -70,9 +70,8 @@ const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)
 
 message.channel.startTyping()
 
-const Embed = await Get(RandomSubreddit)
+await Get(RandomSubreddit)
 
-message.channel.send(Embed)
 message.channel.stopTyping()
 },
 
