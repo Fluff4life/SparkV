@@ -41,30 +41,29 @@ exports.run = async (Bot, message) => {
 
         console.log(json)
         
-        if ((json.response.ups) <= 12500) {
+        if ((json.response.data.ups) <= 12500) {
           Get(Subreddit, ResponseData)
         } else {
           return message.channel.send({
             embed: {
-              title: json.response.title,
-              description: json.response.description,
+              title: json.response.data.title,
+              description: json.response.data.description,
               color: "#0099ff",
 
-              url: `https://reddit.com${json.response.permalink}`,
+              url: `https://reddit.com${json.response.data.permalink}`,
 
               image: {
-                url: json.response.url,
+                url: json.response.data.url,
               },
 
               footer: {
-                text: `👍${json.response.ups} | 💬${json.response.num_comments} | 😃u/${json.response.author} | r/${Subreddit}`,
+                text: `👍${json.response.data.data.ups} | 💬${json.response.data.num_comments} | 😃u/${json.response.data.author} | r/${Subreddit}`,
                 icon_url: process.env.bot_logo
               },
             }
           })
         }
       })
-  }
 
 const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
 
