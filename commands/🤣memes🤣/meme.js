@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const got = require("got");
+const request = require("node-fetch");
 
 const SubReddits = [
   "PewdiepieSubmissions",
@@ -28,58 +28,62 @@ exports.run = async (Bot, message) => {
         const MemeMessage = await message.channel.send(RedditEmbend);
       }
     }); */
-  
-  async function Get(Subreddit){
-    got(`https://www.reddit.com/r/${Subreddit}/random/.json`)
-      .then(async ResponseData => {
-        const [ list ] = JSON.parse(ResponseData.body);
-        const [ post ] = list.data.children;
-      
-    if ((post.data.ups) <= 15000){
-      Get(Subreddit, ResponseData)
-    } else {
-      const MemeMessage = await message.channel.send({
-        embed: {
-          title: post.data.title,
-          description: post.data.description,
-          color: "#0099ff",
-          
-          url: `https://reddit.com${post.data.permalink}`,
-          
-          image: {
-            url: post.data.url,
-          },
-          
-          footer: {
-            text: `👍${post.data.ups} | 💬${post.data.num_comments} | 😃u/${post.data.author} | r/${Subreddit}`,
-            icon_url: process.env.bot_logo
-           },
-         }
-       })
-        
-      return MemeMessage
-      }
-    })
-  }
-  
-  const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
-  
-  await Get(RandomSubreddit)
 
-  message.channel.startTyping()
-  message.channel.send(`Getting popular meme from r/${RandomSubreddit}.`)
-  
-  message.channel.stopTyping()
+  async function Get(Subreddit) {
+    request(`https://kingch1ll.repl.co/api/meme?subreddit=${Subreddit}`)
+      .then(json => json.json())
+      .then(json => {
+        if (!json.code){
+          return message.channel.send("Unknown error occured. Please try again!")
+        } else if (json.code === 400){
+          return message.channel.send("Failed to get meme. Please try again!")
+        }
+
+        console.log(json)
+        
+        if ((json.response.ups) <= 12500) {
+          Get(Subreddit, ResponseData)
+        } else {
+          return {
+            embed: {
+              title: json.response.title,
+              description: json.response.description,
+              color: "#0099ff",
+
+              url: `https://reddit.com${json.response.permalink}`,
+
+              image: {
+                url: data.url,
+              },
+
+              footer: {
+                text: `👍${data.ups} | 💬${data.num_comments} | 😃u/${data.author} | r/${Subreddit}`,
+                icon_url: process.env.bot_logo
+              },
+            }
+          }
+        }
+      })
+  }
+
+const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
+
+message.channel.startTyping()
+
+const Embed = await Get(RandomSubreddit)
+
+message.channel.send(Embed)
+message.channel.stopTyping()
 },
-  
+
 exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["emem", "memey", "m"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
-  },
-    
-exports.help = {
+  enabled: true,
+  guild_only: false,
+  aliases: ["emem", "memey", "m"],
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
+},
+
+  exports.help = {
     name: "Meme",
     description: "I will send a popular meme trending on a choice of many different subreddits.",
     usage: "",
