@@ -5,10 +5,10 @@ let ServerData = new mongoose.Schema({
 
 
   Warnings: Array,
-  
+
   Settings: {
     Prefix: Number
   },
 })
 
-const MessageModel = module.exports = mongoose.model("ServerData", ServerData)
+module.exports = mongoose.model("ServerData", ServerData)
