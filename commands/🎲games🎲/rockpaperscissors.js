@@ -24,8 +24,6 @@ exports.run = async (Bot, message, Arguments) => {
   const BotChoice = Emojis[Math.floor(Math.random() * Emojis.length)]
   const Result = await GetResult(Reacted, BotChoice)
 
-  await Message.clearReactions()
-
   embed
   .setTitle("Game Over - Rock Paper Scissors")
   .setDescription(`${Result}`)
