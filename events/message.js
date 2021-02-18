@@ -5,11 +5,11 @@ exports.run = async (Bot, Message) => {
     return;
   }
   
-  const data = await Bot.ServerData.findOne({
+  const data = await require("../database/server").findOne({
     GuildID: Message.guild.id
   })
   
-  if (data){
+  if (data && data.Settings.Prefix){
     if (!Message.content.startsWith(data.Settings.Prefix)){
       return
     }

@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const Data = await Bot.ServerData.findOne({
-    Guild: `${message.guild.name} (${message.guild.id})`,
+  const Data = await require("../../database/server").findOne({
+    GuildID: message.guild.id,
   })
 
   if (!message.member.hasPermission("ADMINISTRATOR")){
@@ -34,12 +34,6 @@ exports.run = async (Bot, message, Arguments) => {
         
         Settings: {
           Prefix: Arguments[1],
-
-          WelcomeSettings: {
-            WelcomeEnabled: Data.Settings.WelcomeEnabled,
-            WelcomeMessage: Data.Settings.WelcomeMessage,
-            WelcomeChannelID: Data.Settings.WelcomeChannelID
-          },
         }
       })
       
@@ -53,67 +47,11 @@ exports.run = async (Bot, message, Arguments) => {
         
         Settings: {
           Prefix: Arguments[1],
-
-          WelcomeSettings: {
-            WelcomeEnabled: Data.Settings.WelcomeEnabled,
-            WelcomeMessage: Data.Settings.WelcomeMessage,
-            WelcomeChannelID: Data.Settings.WelcomeChannelID
-          },
         }
       })
       
       newData.save()
     }
-  } else if (Arguments[0].toLowerCase() === "welcomechannel"){
-    // Welcome Channel
-
-    if (!Arguments[1]){
-      return message.channel.send("Should I enable or disable the welcome setting?").then(m => m.delete({ timeout: 5000 }))
-    }
-
-    if (!Arguments[2]){
-      return message.channel.send("What do I set the message to be?").then(m => m.delete({ timeout: 5000 }))
-    }
-    
-    if (Data){
-      await DataSettings.findOneAndRemove({
-        Guild: `${message.guild.name} (${message.guild.id})`
-      })
-      
-      let newData = new DataSettings({
-        Guild: `${message.guild.name} (${message.guild.id})`,
-        
-        Settings: {
-          Prefix: Data.Settings.Prefix,
-
-          WelcomeSettings: {
-            WelcomeEnabled: Arguments[1],
-            WelcomeMessage: Arguments.slice(2),
-            WelcomeChannelID: message.channel.id
-          },
-        }
-      })
-      
-      newData.save()
-      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`).then(m => m.delete({ timeout: 5000 }))
-    } else if (!Data){
-      let newData = new DataSettings({
-        Guild: `${message.guild.name} (${message.guild.id})`,
-        
-        Settings: {
-          Prefix: process.env.prefix,
-
-          WelcomeSettings: {
-            WelcomeEnabled: Arguments[1],
-            WelcomeMessage: Arguments.slice(2),
-            WelcomeChannelID: message.channel.id
-          },
-        }
-      })
-      
-      newData.save()
-      message.channel.send(`The server's new Welcome Settings has been updated. Welcome Enabled: **${Arguments[1]}**, Welcome Message: ${Arguments[2]}, Welcome Channel: ${message.channel.name}.`).then(m => m.delete({ timeout: 5000 }))
-    } 
   } else {
     return message.channel.send("Unknown setting. Settings: Prefix, WelcomeChannel.").then(m => m.delete({ timeout: 5000 }))
   }

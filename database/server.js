@@ -3,7 +3,12 @@ const mongoose = require("mongoose")
 let ServerData = new mongoose.Schema({
   GuildID: Number,
 
-  Settings: Array,
+
+  Warnings: Array,
+  
+  Settings: {
+    Prefix: Number
+  },
 })
 
 const MessageModel = module.exports = mongoose.model("ServerData", ServerData)

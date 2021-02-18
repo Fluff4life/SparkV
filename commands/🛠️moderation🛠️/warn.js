@@ -36,7 +36,7 @@ exports.run = async (Bot, message, Arguments) => {
       // Yes
       VerificationMessage.delete()
 
-      let data = await require("../../database/GlobalData").findOne({
+      let data = await require("../../database/server").findOne({
         GuildID: message.guild.id,
       })
 
