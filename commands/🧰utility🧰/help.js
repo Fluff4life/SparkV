@@ -30,7 +30,7 @@ exports.run = async (Bot, msg, args) => {
 }
 
   const Data = await require("../../database/server").findOne({
-    GuildID: message.guild.id,
+    GuildID: msg.guild.id,
   })
   
   if (data){
