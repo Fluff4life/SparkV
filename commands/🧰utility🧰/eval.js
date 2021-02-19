@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg) => {
-    if (!Bot.CheckPerms(msg)){
+    if (!Bot.CheckPerm(msg)){
         return msg.channel.send("❌Access denied.")
     }
 
