@@ -1,33 +1,31 @@
 const Discord = require("discord.js");
 
-const Emojis = ["🗻", "📄", "✂"]
+const Emojis = ["1️⃣", "2️⃣", "3️⃣"]
 
 exports.run = async (Bot, message, Arguments) => {
   function GetResult(BotChosen, UserChosen){
-    if ((BotChosen === "🗻" && UserChosen === "✂") || (BotChosen === "📄" && UserChosen === "🗻") || (UserChosen === "✂" && BotChosen === "📄")){
-      return "🎉You won!"
-    } else if (BotChosen === UserChosen){
-      return "It's a tie!"
+    if (UserChosen === BotChosen){
+      return "🎉You found the ball!"
     } else {
-      return `🎉${process.env.name} won!`
+      return `❌You failed to find the ball.`
     }
   }
 
   const embed = new Discord.MessageEmbed()
-    .setTitle("Rock Paper Scissors")
+    .setTitle("Cups")
     .setDescription("React to one of these emojis to begin!")
-    .setFooter(process.env.name, Bot.user.displayAvatarURL)
+    .setFooter(process.env.name, Bot.me.user.displayAvatarURL)
     .setColor("#0099ff")
 
   const Message = await message.channel.send(embed)
   const Reacted = await Bot.PromptMessage(Message, message.author, Emojis, 60)
-  const BotChoice = Emojis[Math.floor(Math.random() * Emojis.length)]
+  const BotChoice = Math.floor(Math.random() * Emojis.length)
   const Result = await GetResult(Reacted, BotChoice)
 
   embed
-  .setTitle("Game Over - Rock Paper Scissors")
+  .setTitle("Game Over! - cups")
   .setDescription(`${Result}`)
-  .setFooter(`${Reacted} V.S. ${BotChoice}`)
+  .setFooter(`The ball was under cup #${BotChoice}`)
 
   Message.edit(embed)
 },

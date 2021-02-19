@@ -4,44 +4,43 @@ exports.run = async (Bot, Message) => {
   if (Message.author.Bot) {
     return;
   }
-  
+
   const data = await require("../database/data").findOne({
     GuildID: Message.guild.id
   })
-  
-  if (data && data.Settings.Prefix){
-    if (!Message.content.startsWith(data.Settings.Prefix)){
+
+  if (data && data.Settings.Prefix) {
+    if (!Message.content.startsWith(data.Settings.Prefix)) {
       return
     }
-  } else{
-    if (!Message.content.startsWith(process.env.prefix)){
+  } else {
+    if (!Message.content.startsWith(process.env.prefix)) {
       return
     }
   }
-  
+
   const args = Message.content
     .slice(process.env.prefix.length)
     .trim()
     .split(/ +/);
-  
+
   const command = args.shift().toLowerCase();
   const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
 
   if (!commandfile) {
     return
   }
-  
-  if (process.env.BannedUserIds.includes(Message.author.id)){
-    return Message.channel.send("Whoa there buster! You're banned. You cannot use this command.")
+
+  if (process.env.UserBlacklist.includes(Message.author.id)) {
+    return
   }
-  
-  // Update 1.2: Forced to remove "commandfile.config.guild_only &&" because Discord.js broke message.reply().
+
   if (Message.channel.type === "dm") {
     return
   }
 
-  for (const permission of commandfile.config.bot_permissions){
-    if (!Message.guild.me.hasPermission([permission])){
+  for (const permission of commandfile.config.bot_permissions) {
+    if (!Message.guild.me.hasPermission([permission])) {
       return Message.channel.send(`❌I don't have permission to do that! Please select my role and allow ${permission}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
@@ -63,7 +62,7 @@ exports.run = async (Bot, Message) => {
 
     if (Now < ExpireTime) {
       const TimeLeft = (ExpireTime - Now) / 1000;
-      
+
       return Message.reply({
         embed: {
           title: `Whoa there ${Message.author.username}!`,
@@ -75,15 +74,19 @@ exports.run = async (Bot, Message) => {
             icon_url: process.env.bot_logo
           },
         },
-        }
-      )}
+      }
+      )
+    }
   }
 
   Timestamps.set(Message.author.id, Now);
   setTimeout(() => Timestamps.delete(Message.author.id), CooldownAmount);
 
-  commandfile
-    .run(Bot, Message, args, command)
-    .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nNew Command!\nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``); 
-  })
+  try {
+    commandfile
+      .run(Bot, Message, args, command)
+      .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nSucessfully ran command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``) })
+  } catch {
+    console.log(`Failed running command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}`)
+  }
 }

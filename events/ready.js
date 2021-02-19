@@ -1,18 +1,61 @@
 const Discord = require("discord.js")
 
-exports.run = async(Bot) => {
-  Bot.user.setPresence({
-    activity: {
-      name: `for ${process.env.prefix}Help`,
-      type: "WATCHING",
-    },
+const Activities = [
+  {
+    text: `${process.env.prefix}Help`,
+    type: "WATCHING",
+  },
 
-    status: "online",
-  }),
-  
-  Bot.guilds.cache.map((guild) => {
-    Bot.TotalMembers + guild.memberCount
-  })
+  {
+    text: `${Bot.guilds.cache.size} servers!`,
+    type: "WATCHING"
+  },
 
-  console.log(`Versions: \nNode Version: ${process.version}\nDiscord Version: ${Discord.version}\n${Bot.user.tag} is now ready to come online! \nThere are currently ${Bot.guilds.cache.size} servers with ${Bot.TotalMembers} members in them.`)
+  {
+    text: `${process.env.website}`,
+    type: "WATCHING"
+  }
+]
+
+exports.run = async (Bot) => {
+  Bot.setInterval(() => {
+    const Activity = Activities[Math.floor(Math.random() * Activities.length)]
+
+    Bot.user.setActivity({
+      activity: {
+        name: Activity.text,
+        type: Activity.type
+      }
+    })
+  }, 60 * 1000)
+
+  for (const guild of Bot.guilds.cache) {
+    if (process.env.GuildBlacklist.includes(guild.id)) {
+      try {
+        await guild.leave()
+
+        console.log(`Left guild ${guild.name} because it's on the GuildBlacklist.`)
+      } catch {
+        console.log(`Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`)
+      }
+    }
+  }
+
+  for (const guild of Bot.guilds.cache) {
+    if (process.env.UserBlacklist.includes(guild.ownerID)) {
+      try {
+        await guild.leave()
+
+        console.log(`Left guild ${guild.name} because it's on the UserBlacklist.`)
+      } catch {
+        console.log(`Failed to leave Blacklisted User's Guild! GuildName: ${guild.name} GuildID: ${id}`)
+      }
+    }
+  }
+
+  for (const guild of Bot.guilds.cache) {
+    Bot.UserCount = Bot.UserCount + guild.memberCount
+  }
+
+  console.log(`${Bot.user.tag} is now ready to come online! \nThere are currently ${Bot.guilds.cache.size} servers with ${Bot.TotalMembers} members in them.`)
 }

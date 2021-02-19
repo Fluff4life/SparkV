@@ -44,7 +44,7 @@ const Noblox = require("./DependencyHandlers/noblox")
 const Distube = require("./DependencyHandlers/distube")
 
 // Get User Count //
-Bot.TotalMembers = 0
+Bot.UserCount = 0
 
 // Collections //
 Bot.categories = new Collection()

@@ -11,7 +11,7 @@ exports.run = async (Bot, msg, Arguments, Command) => {
 exports.config = {
   enabled: true,
   guild_only: true,
-  aliases: ["ttt"],
+  aliases: ["TicTacToe"],
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"]
   
 },

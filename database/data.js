@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-let data = new mongoose.Schema({
+let BotData = new mongoose.Schema({
   GuildID: Number,
   UserID: Number,
 
@@ -8,4 +8,4 @@ let data = new mongoose.Schema({
   Settings: Array
 })
 
-module.exports = mongoose.model("data", data)
+module.exports = mongoose.model("BotData", BotData)
