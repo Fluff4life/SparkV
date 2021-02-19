@@ -21,6 +21,8 @@ exports.run = async (Bot) => {
   Bot.setInterval(() => {
     const Activity = Activities[Math.floor(Math.random() * Activities.length)]
 
+    console.log(Activity)
+
     Bot.user.setActivity({
       activity: {
         name: Activity.text,
