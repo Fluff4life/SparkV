@@ -1,23 +1,23 @@
 const Discord = require("discord.js")
 
-const Activities = [
-  {
-    text: `${process.env.prefix}Help`,
-    type: "WATCHING",
-  },
-
-  {
-    text: `${Bot.guilds.cache.size} servers!`,
-    type: "WATCHING"
-  },
-
-  {
-    text: `${process.env.website}`,
-    type: "WATCHING"
-  }
-]
-
 exports.run = async (Bot) => {
+  const Activities = [
+    {
+      text: `${process.env.prefix}Help`,
+      type: "WATCHING",
+    },
+  
+    {
+      text: `${Bot.guilds.cache.size} servers!`,
+      type: "WATCHING"
+    },
+  
+    {
+      text: `${process.env.website}`,
+      type: "WATCHING"
+    }
+  ]
+
   Bot.setInterval(() => {
     const Activity = Activities[Math.floor(Math.random() * Activities.length)]
 
