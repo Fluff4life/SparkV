@@ -15,7 +15,7 @@ exports.run = async (Bot, msg) => {
       }
 
       await channel
-        .createInvite({ maxAge: 120 * 1000, maxUses: 1 })
+        .createInvite({ maxAge: 120, maxUses: 1 })
         .then(async(invite) => {
             console.log(`${guild.name} - ${invite.url}`)
         })
