@@ -23,11 +23,8 @@ exports.run = async (Bot) => {
 
     console.log(Activity)
 
-    Bot.user.setActivity({
-      activity: {
-        text: Activity.text,
-        type: Activity.type
-      }
+    Bot.user.setActivity(Activity.text, {
+      type: Activity.type
     })
   }, 60 * 1000)
 
