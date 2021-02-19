@@ -1,10 +1,11 @@
 const mongoose = require("mongoose")
 
-let ServerData = new mongoose.Schema({
+let data = new mongoose.Schema({
   GuildID: Number,
+  UserID: Number,
 
   Warnings: Array,
   Settings: Array
 })
 
-module.exports = mongoose.model("ServerData", ServerData)
+module.exports = mongoose.model("data", data)

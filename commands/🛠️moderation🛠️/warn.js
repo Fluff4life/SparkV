@@ -37,14 +37,14 @@ exports.run = async (Bot, message, Arguments) => {
       // Yes
       VerificationMessage.delete()
 
-      let data = await require("../../database/server").findOne({
+      let data = await require("../../database/data").findOne({
         GuildID: message.guild.id,
+        UserID: User.id
       })
 
       if (data){
         data.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
-          ModeratedUser_ID: User.id,
           Moderator_Name: message.author.user,
           Moderator_ID: message.author.id,
           Reason: Reason
@@ -67,17 +67,23 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else if (!data){
-        data.Warnings.unshift({
-          ModeratedUser_Name: User.user.username,
-          ModeratedUser_ID: User.id,
-          Moderator_Name: message.author.user,
-          Moderator_ID: message.author.id,
-          Reason: Reason
+        let NewData = new require("../../database/data")({
+          GuildID: message.guild.id,
+          UserID: user.Id,
+
+          Punishments: [{
+            Warnings: {
+              ModeratedUser_Name: User.user.username,
+              Moderator_Name: message.author.user,
+              Moderator_ID: message.author.id,
+              Reason: Reason
+            }
+          }]
         })
         
         User.send("You have been warned in **" + message.guild.name + "** for " + Reason)
         
-        newData.save()
+        NewData.save()
         message.channel.send({
           embed: {
             title: `Successfully warned user.`,

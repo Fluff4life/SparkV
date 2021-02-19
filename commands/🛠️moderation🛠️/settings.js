@@ -26,7 +26,7 @@ exports.run = async (Bot, message, Arguments) => {
     
     if (Data){
       await require("../../database/server").findOneAndRemove({
-        GuildID: message.guild.id,
+        GuildID: message.guild.id
       })
       
       let newData = new require("../../database/server")({
@@ -40,17 +40,17 @@ exports.run = async (Bot, message, Arguments) => {
       newData.save()
       message.channel.send(`The server's new prefix is now **${Arguments[1]}**`).then(m => m.delete({ timeout: 5000 }))
     } else if (!Data){
-      message.channel.send(`The server's new prefix is now **${Arguments[1]}**`).then(m => m.delete({ timeout: 5000 }))
-      
       let newData = new require("../../database/server")({
         GuildID: message.guild.id,
         
-        Settings: {
+        Settings: [{
           Prefix: Arguments[1],
-        }
+        }]
       })
       
       newData.save()
+
+      message.channel.send(`The server's new prefix is now **${Arguments[1]}**`).then(m => m.delete({ timeout: 5000 }))
     }
   } else {
     return message.channel.send("Unknown setting. Settings: Prefix.").then(m => m.delete({ timeout: 5000 }))
