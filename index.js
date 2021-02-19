@@ -16,6 +16,7 @@ process.on("unhandledRejection", err => {
 })
 
 // Start Website //
+require("./website")
 
 // Shard Handlers //
 ShardManager.on("shardCreate", Shard => console.log(`Launched shard: ${Shard.id}.`))
