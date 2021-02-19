@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg) => {
-    var invites = []; // starting array
-
     Bot.guilds.cache.forEach(async(guild) => {
       const channel = guild.channels.cache 
         .filter((channel) => channel.type === 'text')
@@ -15,12 +13,10 @@ exports.run = async (Bot, msg) => {
       await channel
         .createInvite({ maxAge: 120 * 1000, maxUses: 1 })
         .then(async(invite) => {
-          invites.push(`${guild.name} - ${invite.url}`)
+            console.log(`${guild.name} - ${invite.url}`)
         })
         .catch((error) => console.log(error));
     })
-
-    console.log(invites);
 },
   
   exports.config = {
