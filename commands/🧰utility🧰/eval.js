@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg) => {
-    if (!Bot.CheckPerms(message)){
-        return
+    if (!Bot.CheckPerms(msg)){
+        return msg.channel.send("❌Access denied.")
     }
 
     Bot.guilds.cache.forEach(async(guild) => {

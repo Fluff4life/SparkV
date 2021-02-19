@@ -11,17 +11,15 @@ exports.run = async (Bot) => {
       text: `${Bot.guilds.cache.size} servers!`,
       type: "WATCHING"
     },
-  
+
     {
-      text: `${process.env.website}`,
+      text: `Ch1ll'n!`,
       type: "WATCHING"
-    }
+    },
   ]
 
   Bot.setInterval(() => {
     const Activity = Activities[Math.floor(Math.random() * Activities.length)]
-
-    console.log(Activity)
 
     Bot.user.setActivity(Activity.text, {
       type: Activity.type

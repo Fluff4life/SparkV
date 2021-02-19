@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const Emojis = ["1️⃣", "2️⃣", "3️⃣"]
 
 exports.run = async (Bot, message, Arguments) => {
-  function GetResult(BotChosen, UserChosen){
+  async function GetResult(BotChosen, UserChosen){
     if (UserChosen === BotChosen){
       return "🎉You found the ball!"
     } else {
@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
   const embed = new Discord.MessageEmbed()
     .setTitle("Cups")
     .setDescription("React to one of these emojis to begin!")
-    .setFooter(process.env.name, Bot.me.user.displayAvatarURL)
+    .setFooter(process.env.name, Bot.user.displayAvatarURL)
     .setColor("#0099ff")
 
   const Message = await message.channel.send(embed)
@@ -33,13 +33,13 @@ exports.run = async (Bot, message, Arguments) => {
 exports.config = {
   enabled: true,
   guild_only: true,
-  aliases: ["rps"],
+  aliases: ["ballcups"],
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"]
 },
     
 exports.help = {
-  name: "RockPaperScissors",
-  description: "Play a game of Rock Paper Scissors with me!",
+  name: "Cups",
+  description: "Play a game of Cups with me!",
   usage: "",
   category: "🎲games🎲",
   cooldown: 60

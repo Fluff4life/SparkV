@@ -54,6 +54,20 @@ Bot.events = new Collection()
 Bot.cooldowns = new Collection()
 
 // Code //
+console.log("---------- Starting")
+Bot.on("disconnect", event => {
+  console.log(`DISCONNECTED! => Bot disconnected with code ${event.code}.`)
+  process.exit(0)
+})
+
+Bot.on("error", (err) => {
+  console.log(`ERROR! => ${err.stack}`)
+})
+
+Bot.on("warn", (warn) => {
+  console.log(`WARNING => ${warn}`)
+})
+
 console.log("---------- Loading Bot Functions ----------") 
 functions(Bot)
 
