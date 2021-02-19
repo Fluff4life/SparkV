@@ -1,6 +1,10 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg) => {
+    if (!Bot.CheckPerms(message)){
+        return
+    }
+
     Bot.guilds.cache.forEach(async(guild) => {
       const channel = guild.channels.cache 
         .filter((channel) => channel.type === 'text')
