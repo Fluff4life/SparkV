@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 exports.run = async (Bot, msg) => {
   if (!Bot.CheckPerm(msg)){
