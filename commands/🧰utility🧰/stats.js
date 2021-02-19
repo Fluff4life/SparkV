@@ -8,7 +8,7 @@ exports.run = async (Bot, msg) => {
 
     embed: {
       title: "Stats",
-      description: `**Responce Time**: ${BotMessage.createdAt - msg.createdAt}ms\n**Up-Time**: ${Bot.MSToTime(Bot.uptime)}\n**Memory Usage:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\n**Users**: ${Bot.TotalMembers}\n**Servers**: ${Bot.guilds.cache.size.toLocaleString()}`,
+      description: `**Response Time**: ${BotMessage.createdAt - msg.createdAt}ms\n**Up-Time**: ${Bot.MSToTime(Bot.uptime)}\n**Memory Usage:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\n**Users**: ${Bot.TotalMembers}\n**Servers**: ${Bot.guilds.cache.size.toLocaleString()}`,
       color: "#0099ff"
     },
   })

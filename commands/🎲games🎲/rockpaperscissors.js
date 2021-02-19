@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setTitle("Rock Paper Scissors")
     .setDescription("React to one of these emojis to begin!")
     .setFooter(process.env.name, Bot.user.displayAvatarURL)
-    .setTimestamp()
+    .setColor("#0099ff")
 
   const Message = await message.channel.send(embed)
   const Reacted = await Bot.PromptMessage(Message, message.author, Emojis, 30)

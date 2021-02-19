@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const Data = await require("../../database/server").findOne({
+  const Data = await require("../../database/data").findOne({
     GuildID: message.guild.id,
   })
 
@@ -25,11 +25,11 @@ exports.run = async (Bot, message, Arguments) => {
     }
     
     if (Data){
-      await require("../../database/server").findOneAndRemove({
+      await require("../../database/data").findOneAndRemove({
         GuildID: message.guild.id
       })
       
-      let newData = new require("../../database/server")({
+      let newData = new require("../../database/data")({
         GuildID: message.guild.id,
         
         Settings: {
@@ -40,7 +40,7 @@ exports.run = async (Bot, message, Arguments) => {
       newData.save()
       message.channel.send(`The server's new prefix is now **${Arguments[1]}**`).then(m => m.delete({ timeout: 5000 }))
     } else if (!Data){
-      let newData = new require("../../database/server")({
+      let newData = new require("../../database/data")({
         GuildID: message.guild.id,
         
         Settings: [{

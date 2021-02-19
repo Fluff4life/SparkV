@@ -68,7 +68,7 @@ function RunWebsite() {
 }
 
 // Code //
-console.log("--------// Loading Websites //--------")
+console.log("--------// Loading Website //--------")
 if (process.env.WebsiteOnline == "true") {
   RunWebsite()
 } else if (process.env.WebsiteOnline == "false") {
