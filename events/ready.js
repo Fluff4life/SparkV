@@ -54,8 +54,9 @@ exports.run = async (Bot) => {
   }
 
   for (const guild of Bot.guilds.cache) {
-    Bot.UserCount = Bot.UserCount + guild.memberCount
+    console.log(parseInt(guild.memberCount))
+    Bot.UserCount = Bot.UserCount + parseInt(guild.memberCount)
   }
 
-  console.log(`${Bot.user.tag} is now ready to come online! \nThere are currently ${Bot.guilds.cache.size} servers with ${Bot.TotalMembers} members in them.`)
+  console.log(`${Bot.user.tag} is now ready to come online! \nThere are currently ${Bot.guilds.cache.size} servers with ${Bot.UserCount} members in them.`)
 }
