@@ -25,7 +25,7 @@ exports.run = async (Bot) => {
 
     Bot.user.setActivity({
       activity: {
-        name: Activity.text,
+        text: Activity.text,
         type: Activity.type
       }
     })
