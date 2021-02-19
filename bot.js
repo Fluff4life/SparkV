@@ -40,8 +40,8 @@ const Bot = new Client({
 
 // Modules //
 const functions = require("./modules/functions")
-const Noblox = require("./DependencyHandlers/noblox")
-const Distube = require("./DependencyHandlers/distube")
+const Noblox = require("./dependencyhandlers/noblox")
+const Distube = require("./dependencyhandlers/distube")
 
 // Get User Count //
 Bot.TotalMembers = 0
