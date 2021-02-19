@@ -69,9 +69,9 @@ function RunWebsite() {
 
 // Code //
 console.log("--------// Loading Websites //--------")
-if (process.env.WebsiteOnline == true) {
+if (process.env.WebsiteOnline == "true") {
   RunWebsite()
-} else if (process.env.WebsiteOnline == false) {
+} else if (process.env.WebsiteOnline == "false") {
   app.get("/api/status", (request, response) => {
     response.status(503).send({ status: 503, message: "down for mainmaintenance" })
   })
