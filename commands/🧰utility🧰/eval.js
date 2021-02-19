@@ -9,10 +9,10 @@ exports.run = async (Bot, msg) => {
       const channel = guild.channels.cache 
         .filter((channel) => channel.type === 'text')
         .first();
-      if (!channel || guild.member(client.user).hasPermission('CREATE_INSTANT_INVITE')) return;
-      
+      if (!channel || guild.member(Bot.user).hasPermission('CREATE_INSTANT_INVITE')) return;
+
       await channel
-        .createInvite({ maxAge: 0, maxUses: 0 })
+        .createInvite({ maxAge: 120 * 1000, maxUses: 1 })
         .then(async (invite) => {
           invites.push(`${guild.name} - ${invite.url}`); // push invite link and guild name to array
         })
