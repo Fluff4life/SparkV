@@ -8,7 +8,7 @@ exports.run = async (Bot, msg) => {
         .filter((channel) => channel.type === 'text')
         .first()
 
-      if (!channel || guild.member(Bot.user).hasPermission('CREATE_INSTANT_INVITE')){
+      if (!guild.member(Bot.user).hasPermission('CREATE_INSTANT_INVITE')){
           return;
       }
 
