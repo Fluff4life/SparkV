@@ -5,7 +5,7 @@ exports.run = async (Bot, Message) => {
     return;
   }
   
-  const data = await require("../database/server").findOne({
+  const data = await require("../database/data").findOne({
     GuildID: Message.guild.id
   })
   
