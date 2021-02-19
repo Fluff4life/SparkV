@@ -28,6 +28,10 @@ function RunWebsite() {
     response.redirect("/home")
   })
 
+  app.get("/maintenance", (request, response) => {
+    response.sendFile(__dirname + `/public/html/down.html`)
+  })
+
   app.get("/api/meme?", (request, response) => {
     if (!request.query.subreddit){
       return response.status(400).send({ code: 400, response: "Subreddit request not found. Make sure your request looks simular to /api/meme?subreddit=funny" })
@@ -69,23 +73,7 @@ function RunWebsite() {
 
 // Code //
 console.log("--------// Loading Website //--------")
-if (process.env.WebsiteOnline == "true") {
-  RunWebsite()
-} else if (process.env.WebsiteOnline == "false") {
-  app.get("/api/status", (request, response) => {
-    response.status(503).send({ status: 503, message: "down for mainmaintenance" })
-  })
-
-  app.use((req, res, next) => {
-    res.sendFile(__dirname + `/public/html/down.html`)
-  })
-} else {
-  console.log("Unknown error gettings status of website.")
-
-  app.get("/api/status", (request, response) => {
-    response.status(500).send({ status: 502, message: "service unavailable" })
-  })
-}
+RunWebsite()
 
 // Listener //
 const listener = app.listen(process.env.PORT, () => {
