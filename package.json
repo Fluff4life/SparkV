@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "download": "npm i --g"
+    "download": "npm i --force"
   },
   "author": "KingCh1ll#3616",
   "license": "MIT",
   "engines": {
-    "node": "15.x",
+    "node": "12.x",
     "npm": "*"
   },
   "dependencies": {
@@ -30,6 +30,8 @@
     "path": "^0.12.7",
     "random-puppy": "^1.1.0",
     "urban": "^0.3.2",
-    "youtube-dl": "^3.1.0"
+    "youtube-dl": "^3.1.0",
+    "express": "^4.17.1",
+    "got": "^11.8.1",
   }
 }
