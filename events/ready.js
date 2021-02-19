@@ -53,9 +53,6 @@ exports.run = async (Bot) => {
   }
 
   for (const guild of Bot.guilds.cache){
-    console.log(guild.memberCount)
-
-
     Bot.UserCount = Bot.UserCount + guild.memberCount
   }
 
