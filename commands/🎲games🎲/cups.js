@@ -19,7 +19,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Message = await message.channel.send(embed)
   const Reacted = await Bot.PromptMessage(Message, message.author, Emojis, 60)
-  const BotChoice = Math.floor(Math.random() * Emojis.length) - 1
+  const BotChoice = Math.floor(Math.random() * Emojis.length) + 1
   const Result = await GetResult(Reacted, BotChoice)
 
   embed
