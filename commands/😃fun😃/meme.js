@@ -39,7 +39,7 @@ exports.run = async (Bot, message) => {
           return message.channel.send("Failed to get meme. Please try again!")
         }
 
-        console.log(json)
+        console.log(json.response.data)
         
         if ((json.response.data.ups) <= 12500) {
           Get(Subreddit)
