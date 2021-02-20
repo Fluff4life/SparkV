@@ -69,7 +69,7 @@ exports.run = async (Bot, message, Arguments) => {
       } else if (!data){
         let NewData = new require("../../database/data")({
           GuildID: message.guild.id,
-          UserID: user.Id,
+          UserID: User.Id,
 
           Punishments: [{
             Warnings: {

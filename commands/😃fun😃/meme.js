@@ -86,6 +86,6 @@ exports.help = {
     name: "Meme",
     description: "I will send a popular meme trending on a choice of many different subreddits.",
     usage: "",
-    category: "🤣memes🤣",
+    category: "😃fun😃",
     cooldown: 2
 }
