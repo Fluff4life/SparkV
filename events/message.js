@@ -1,16 +1,65 @@
 const Discord = require("discord.js");
+const { message } = require("noblox.js");
 
 exports.run = async (Bot, Message) => {
   if (Message.author.Bot) {
     return;
   }
 
-  const data = await require("../database/prefix").findOne({
+  const AntiSpamMap = new Map()
+
+  const PrefixData = await require("../database/prefix").findOne({
     GuildID: Message.guild.id
   })
 
-  if (data) {
-    if (!Message.content.startsWith(data.Prefix)) {
+  const AntiSpamData = await require("../database/antispam").findOne({
+    GuildID: Message.guild.id
+  })
+
+  if (AntiSpamData.Enabled){
+    const { Limit, Time, Diff } = AntiSpamData
+
+    if (AntiSpamMap.has(Message.author.id)){
+      const UserData = AntiSpamMap.get(Message.author.id)
+      const { LastMessage, Timer } = UserData
+      var MessageCount = UserData.MessageCount
+      const Difference = Message.createdTimestamp - LastMessage.createdTimestamp
+
+      if (Difference > Diff){
+        clearTimeout(Timer)
+
+        UserData.MessageCount = 1
+        UserData.LastMessage = Message
+        UserData.LastMessage = Message
+        UserData.Timer = setTimeout(() => {
+          AntiSpamMap.delete(message.author.id)
+        }, Time)
+        AntiSpamMap.set(message.author.id, UserData)
+      } else {
+        ++MessageCount
+
+        if (parseInt(MessageCount) === Limit){
+          Message.delete()
+          Message.channel.send(`${message.author.name}, please stop spamming! You're now on a cooldown of ${Time} secconds.`)
+        } else {
+          AntUserData.MessageCount = MessageCount 
+          AntiSpamMap.set(message.author.id, AntUserData)
+        }
+      }
+    } else {
+      let Timeout = setTimeout(() => {
+        AntiSpamMap.delete(Message.author.id)
+      }, Time)
+      AntiSpamMap.set(message.author.id, {
+        MessageCount: 1,
+        LastMessage: Message,
+        Timer: Timeout
+      })
+    }
+  }
+
+  if (PrefixData) {
+    if (!Message.content.startsWith(PrefixData.Prefix)) {
       return
     }
   } else {

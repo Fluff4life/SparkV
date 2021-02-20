@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 
-let WarningsScema = new mongoose.Schema({
+let PunishmentsScema = new mongoose.Schema({
   GuildID: Number,
   UserID: Number,
 
   Warnings: Array
 })
 
-module.exports = mongoose.model("Warnings", WarningsScema)
+module.exports = mongoose.model("Punishments", PunishmentsScema)
