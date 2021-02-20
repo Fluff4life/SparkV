@@ -30,7 +30,7 @@ exports.run = async (Bot, message) => {
     }); */
 
   async function Get(Subreddit) {
-    request(`https://kingch1ll.repl.co/api/meme?subreddit=${Subreddit}`)
+    request(`https://kingch1ll.herokuapp.com/api/meme?subreddit=${Subreddit}`)
       .then(json => json.json())
       .then(json => {
         if (!json.code){

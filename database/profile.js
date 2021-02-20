@@ -5,7 +5,6 @@ let ProfileSchema = new mongoose.Schema({
   UserID: Number,
 
   Coins: Number,
-  Level: Number
 })
 
 module.exports = mongoose.model("Profile", ProfileSchema)
