@@ -8,4 +8,4 @@ let BotData = new mongoose.Schema({
   Settings: Array
 })
 
-module.exports = mongoose.model("BotData", BotData)
+module.exports = mongoose.model("BotDatas", BotData)
