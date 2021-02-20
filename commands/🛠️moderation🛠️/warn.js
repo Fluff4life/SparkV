@@ -37,13 +37,13 @@ exports.run = async (Bot, message, Arguments) => {
       // Yes
       VerificationMessage.delete()
 
-      let data = await require("../../database/data").findOne({
+      let data = await require("../../database/warnings").findOne({
         GuildID: message.guild.id,
-        UserID: User.id
+        UserID: User.id,
       })
 
       if (data){
-        data.Warnings.unshift({
+        data.Punishments.Warnings.unshift({
           ModeratedUser_Name: User.user.username,
           Moderator_Name: message.author.user,
           Moderator_ID: message.author.id,
@@ -67,7 +67,7 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else if (!data){
-        let NewData = new require("../../database/data")({
+        let NewData = new require("../../database/warnings")({
           GuildID: message.guild.id,
           UserID: User.Id,
 

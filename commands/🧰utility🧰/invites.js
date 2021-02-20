@@ -9,6 +9,7 @@ exports.run = async (Bot, msg) => {
     .addField("Bot Invite: ", process.env.bot_invite, true)
     .setFooter(`Try command ${process.env.prefix}Meme!`, process.env.bot_logo)
     .setColor("#0099ff");
+    
   await msg.channel.send(InvitesEmbend);
 },
   
