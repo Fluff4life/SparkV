@@ -10,4 +10,4 @@ let AntiSpamScema = new mongoose.Schema({
   Diff: Number
 })
 
-module.exports = mongoose.model("AntiSpamSettings", AntiSpamScema)
+module.exports = mongoose.model("AntiSpam", AntiSpamScema)

@@ -16,46 +16,50 @@ exports.run = async (Bot, Message) => {
     GuildID: Message.guild.id
   })
 
-  if (AntiSpamData.Enabled){
-    const { Limit, Time, Diff } = AntiSpamData
+  if (AntiSpamData) {
+    if (AntiSpamData.Enabled) {
+      const { Limit, Time, Diff } = AntiSpamData
 
-    if (AntiSpamMap.has(Message.author.id)){
-      const UserData = AntiSpamMap.get(Message.author.id)
-      const { LastMessage, Timer } = UserData
-      var MessageCount = UserData.MessageCount
-      const Difference = Message.createdTimestamp - LastMessage.createdTimestamp
+      if (AntiSpamMap.has(Message.author.id)) {
+        const UserData = AntiSpamMap.get(Message.author.id)
+        const { LastMessage, Timer } = UserData
+        var MessageCount = UserData.MessageCount
+        const Difference = Message.createdTimestamp - LastMessage.createdTimestamp
 
-      if (Difference > Diff){
-        clearTimeout(Timer)
+        if (Difference > Diff) {
+          clearTimeout(Timer)
 
-        UserData.MessageCount = 1
-        UserData.LastMessage = Message
-        UserData.LastMessage = Message
-        UserData.Timer = setTimeout(() => {
-          AntiSpamMap.delete(message.author.id)
-        }, Time)
-        AntiSpamMap.set(message.author.id, UserData)
-      } else {
-        ++MessageCount
-
-        if (parseInt(MessageCount) === Limit){
-          Message.delete()
-          Message.channel.send(`${message.author.name}, please stop spamming! You're now on a cooldown of ${Time} secconds.`)
+          UserData.MessageCount = 1
+          UserData.LastMessage = Message
+          UserData.LastMessage = Message
+          UserData.Timer = setTimeout(() => {
+            AntiSpamMap.delete(message.author.id)
+          }, Time)
+          AntiSpamMap.set(message.author.id, UserData)
         } else {
-          AntUserData.MessageCount = MessageCount 
-          AntiSpamMap.set(message.author.id, AntUserData)
+          ++MessageCount
+
+          if (parseInt(MessageCount) === Limit) {
+            Message.delete()
+            Message.channel.send(`${message.author.name}, please stop spamming! You're now on a cooldown of ${Time} secconds.`)
+          } else {
+            AntUserData.MessageCount = MessageCount
+            AntiSpamMap.set(message.author.id, AntUserData)
+          }
         }
+      } else {
+        let Timeout = setTimeout(() => {
+          AntiSpamMap.delete(Message.author.id)
+        }, Time)
+        AntiSpamMap.set(message.author.id, {
+          MessageCount: 1,
+          LastMessage: Message,
+          Timer: Timeout
+        })
       }
-    } else {
-      let Timeout = setTimeout(() => {
-        AntiSpamMap.delete(Message.author.id)
-      }, Time)
-      AntiSpamMap.set(message.author.id, {
-        MessageCount: 1,
-        LastMessage: Message,
-        Timer: Timeout
-      })
     }
+  } else {
+    // Nothing
   }
 
   if (PrefixData) {
