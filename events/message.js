@@ -9,8 +9,8 @@ exports.run = async (Bot, Message) => {
     GuildID: Message.guild.id
   })
 
-  if (data && data.Settings.Prefix) {
-    if (!Message.content.startsWith(data.Settings.Prefix)) {
+  if (data) {
+    if (!Message.content.startsWith(data.Prefix)) {
       return
     }
   } else {
