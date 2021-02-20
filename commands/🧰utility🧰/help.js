@@ -34,7 +34,7 @@ exports.run = async (Bot, msg, args) => {
   })
   
   if (data){
-    prefix = data.Settings.Prefix
+    prefix = data.Prefix
   } else {
     prefix = process.env.prefix
   }
