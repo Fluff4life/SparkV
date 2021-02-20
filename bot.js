@@ -53,8 +53,22 @@ Bot.aliases = new Collection()
 Bot.events = new Collection()
 Bot.cooldowns = new Collection()
 
+// Error Handlers //
+process.on("uncaughtException", err => {
+  const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
+
+  console.log(`Uncaught Exception error. ${ErrorMessage}`)
+  console.error(err)
+
+  process.exit(1)
+})
+
+process.on("unhandledRejection", err => {
+  console.log(`Unhandled rejection error. ${err}`)
+})
+
 // Code //
-console.log("---------- Starting")
+console.log("---------- Starting ----------")
 Bot.on("disconnect", event => {
   console.log(`DISCONNECTED! => Bot disconnected with code ${event.code}.`)
   process.exit(0)
