@@ -4,7 +4,7 @@ let WarningsScema = new mongoose.Schema({
   GuildID: Number,
   UserID: Number,
 
-  Punishments: Array
+  Warnings: Array
 })
 
 module.exports = mongoose.model("Warnings", WarningsScema)
