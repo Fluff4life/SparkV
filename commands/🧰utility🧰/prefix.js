@@ -23,6 +23,7 @@ exports.run = async (Bot, message, Arguments) => {
     })
 
     let newData = new require("../../database/prefix")({
+      GuildName: message.guild.name,
       GuildID: message.guild.id,
 
       Prefix: Arguments[0],
@@ -32,6 +33,7 @@ exports.run = async (Bot, message, Arguments) => {
     message.channel.send(`The server's new prefix is now **${Arguments[0]}**`).then(m => m.delete({ timeout: 5000 }))
   } else if (!Data) {
     let newData = new require("../../database/prefix")({
+      GuildName: message.guild.name,
       GuildID: message.guild.id,
       
       Prefix: Arguments[0],
