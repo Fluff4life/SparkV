@@ -39,7 +39,6 @@ exports.run = async (Bot, msg, Arguments, command) => {
         })
       })
     } else {
-    const NoPermsEmbed = new Discord.MessageEmbed()
     return msg.channel.send({
       embed: {
         title: "🚫 Invalid Permisions 🚫",

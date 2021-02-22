@@ -4,7 +4,7 @@ const Emojis = ["1️⃣", "2️⃣", "3️⃣"]
 
 exports.run = async (Bot, message, Arguments) => {
   async function GetResult(BotChosen, UserChosen){
-    if (UserChosen === BotChosen){
+    if (UserChosen == BotChosen){
       return "🎉You found the ball!"
     } else {
       return `❌You failed to find the ball.`
@@ -39,7 +39,7 @@ exports.config = {
     
 exports.help = {
   name: "Cups",
-  description: "Play a game of Cups with me!",
+  description: "Play a game of cups with me!",
   usage: "",
   category: "🎲games🎲",
   cooldown: 60

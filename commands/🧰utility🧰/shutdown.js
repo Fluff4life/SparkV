@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (Bot, msg) => {
   if (!Bot.CheckPerm(msg)){
-    return  msg.channel.send("❌Access denied.")
+    return msg.channel.send("❌Access denied.")
   }
 
   const VerificationEmbed = new MessageEmbed()
@@ -18,20 +18,18 @@ exports.run = async (Bot, msg) => {
       // Yes
       VerificationMessage.delete()
 
-      Bot.setActivity("Bot is now going offline.", { type: "OFFLINE" })
+      Bot.setActivity("Bot is now going offline.", { type: "IDLE" })
 
         message.channel.send({
           embed: {
             title: `Shutting Down`,
             description: `Bot is now going offline. Goodnight!`,
             color: "#0099ff",
-            
-            footer: {
-              text: "Goodnight!",
-              icon_url: process.env.bot_logo
-            }
           },
         })
+
+        process.exit(0)
+    
     } else if (emoji === "❌"){
       VerificationMessage.delete()
 

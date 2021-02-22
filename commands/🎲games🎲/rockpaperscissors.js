@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 
-const Emojis = ["🗻", "📄", "✂"]
+const Emojis = ["✂", "📄", "🗻"]
 
 exports.run = async (Bot, message, Arguments) => {
   function GetResult(BotChosen, UserChosen){
-    if ((BotChosen === "🗻" && UserChosen === "✂") || (BotChosen === "📄" && UserChosen === "🗻") || (UserChosen === "✂" && BotChosen === "📄")){
+    if ((UserChosen === "✂" && BotChosen === "📄") || (UserChosen === "📄" && BotChosen === "🗻") || (UserChosen === "🗻" && BotChosen === "✂")){
       return "🎉You won!"
     } else if (BotChosen === UserChosen){
       return "It's a tie!"
