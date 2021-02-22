@@ -3,8 +3,8 @@ html {
 }
 
 #home {
-    background-color: #1298ff;
-    color: #1298ff;
+    background-color: #31a6ff;
+    color: #3eacff;
     margin: auto;
     height: 100vh;
 	display: flex;
@@ -13,7 +13,7 @@ html {
 }
 
 :root{
-	--main-background: #008cff;
+	--main-background: #6cbdff;
 	--main-fonts-color: #fff;
 	--main-decor-color:rgb(0, 225, 255);
     --main-header-background:#00bfff;
