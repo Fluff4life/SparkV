@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+  }
+
 #home {
   background-color: #1298ff;
   color: #1298ff;
