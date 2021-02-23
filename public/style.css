@@ -72,7 +72,6 @@ header {
     position: relative;
     list-style: none;
     display: inline-flex;
-    margin: 270px auto 0;
     height: 50px;
     width: 590px;
     background: var(--main-header-background);
