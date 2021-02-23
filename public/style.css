@@ -54,12 +54,18 @@ Header
 */
 
 header {
-    -webkit-box-ordinal-group: 2;
-    -webkit-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
-    position: relative;
-    float: right;
+    margin: 0 auto;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--main-header-background);
+    position: fixed;
+    top: 0;
+    transition: 0.3;
+    z-index: 5;
+    opacity: 1;
 }
 
 .nav-bar {
