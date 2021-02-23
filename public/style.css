@@ -54,7 +54,7 @@ Header
 */
 
 header {
-    margin: 25px auto 0;
+    margin: 20px auto 0;
     height: 50px;
     width: 100%;
     display: flex;
@@ -115,6 +115,43 @@ a.nav-link {
 
 .nav-show {
     opacity: 0;
+}
+
+/*
+Header Fade
+*/
+.headfade {
+    display: none;
+}
+
+.headfade div {
+    height: 3px;
+    width: 30px;
+    background: white;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.toggle .fade1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .fade2 {
+    opacity: 0;
+}
+
+.toggle .fade3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+@keyframes nav-linkFade {
+    from {
+        opacity: 0;
+        transform: translatex(50px)
+    } to {
+        opacity: 1;
+        transform:translatex(0px)
+    }
 }
 
 /*
