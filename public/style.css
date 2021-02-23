@@ -139,13 +139,13 @@ Header Fade
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-@keyframes navlinkFade {
+@keyframes navLinkFade {
     from {
         opacity: 0;
-        transform: translatex(50px)
+        transform: translatex(50px);
     } to {
         opacity: 1;
-        transform:translatex(0px)
+        transform: translatex(0px);
     }
 }
 
