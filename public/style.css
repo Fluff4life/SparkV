@@ -54,16 +54,18 @@ Header
 */
 
 header {
-    margin: 270px auto 0;
+    margin: 25px auto 0;
     height: 50px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
     background: var(--main-header-background);
-    position: relative;
+    position: fixed;
     top: 0;
+    transition: 0.3;
     z-index: 5;
+    opacity: 1;
     border-radius: 8px;
     box-shadow: 0 2px 3px 0 var(--main-decor-color);
     font-size: 0;
