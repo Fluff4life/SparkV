@@ -21,6 +21,7 @@ Main
 * {
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 main {
@@ -55,7 +56,7 @@ Header
 
 header {
     margin: 0 auto;
-    height: 50px;
+    height: 70px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -76,11 +77,6 @@ header:hover {
     position: relative;
     list-style: none;
     display: inline-flex;
-    background: var(--main-header-background);
-    border-radius: 8px;
-    font-size: 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 3px 0 var(--main-decor-color);
 }
 
 a.nav-link {
@@ -523,7 +519,7 @@ Media
 }
 
 @media only screan and (max-width: 500px){
-    #home, #games, #team {
+    #home, #games, #creations, #team, #about {
         overflow-x: hidden;
     }
 
