@@ -105,6 +105,10 @@ a.nav-link {
     background: var(--main-decor-color);
 }
 
+.nav-show {
+    opacity: 1;
+}
+
 .logo img {
     position: relative;
     float: left;
