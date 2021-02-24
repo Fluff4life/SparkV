@@ -3,6 +3,8 @@ $(window).on("scroll", function(){
     $("header").addClass("nav-show")
   } else {
     $("header").removeClass("nav-show")
+
+    
   }
 })
 
