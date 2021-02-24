@@ -30,7 +30,7 @@ exports.run = async (Bot, message) => {
     }); */
 
   async function Get(Subreddit) {
-    request(`https://kingch1ll.herokuapp.com/api/meme?subreddit=${Subreddit}`)
+    request(`https://ch1ll.herokuapp.com/api/meme?subreddit=${Subreddit}`)
       .then(json => json.json())
       .then(json => {
         if (!json.code){
@@ -39,8 +39,6 @@ exports.run = async (Bot, message) => {
           return message.channel.send("Failed to get meme. Please try again!")
         }
 
-        console.log(json.response.data)
-        
           return message.channel.send({
             embed: {
               title: json.response.data.title,
