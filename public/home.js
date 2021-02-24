@@ -1,27 +1,24 @@
-$(window).on("scroll", function(){
-    if ($(window).scrollTop()){
-        $("header").addClass("nav-show")
-    } else {
-        $("header").removeClass("nav-show")
-    }
-})
-
-window.onload = () => {
-    const headfade = document.querySelector(".headfade")
-    const navbar = document.querySelector(".nav-bar")
-    const navlinks = document.querySelectorAll(".nav-bar li")
-
-    headfade.onclick = () => {
-        navbar.classList.toggle("nav-active")
-
-        navlinks.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = "";
-            } else {
-                link.style.animation = `navLinkFade 0.5 ease forwards ${index / 8}s`;
-            }
+$(document).ready(function(){
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
+  
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+  
+        // Store hash
+        var hash = this.hash;
+  
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+     
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
         });
-
-        headfade.classList.toggle("toggle")
-    }
-}
+      } // End if
+    });
+  });
