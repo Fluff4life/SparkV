@@ -520,10 +520,6 @@ Media
 }
 
 @media only screen and (max-width: 500px){
-    #home, #about, #creations {
-        overflow-x: hidden;
-    }
-
     header {
         background-color: var(--main-header-background);
     }

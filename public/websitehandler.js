@@ -7,8 +7,6 @@ $(window).on("scroll", function(){
 })
 
 $(document).ready(function(){
-  console.log("Document loaded.")
-
   $("a").on("click", function(event){
     if (this.hash !== ""){
       event.preventDefault()
@@ -28,15 +26,11 @@ const onload = () => {
   const headfade = document.querySelector(".headfade")
   const navbar = document.querySelector(".nav-bar")
   const navlinks = document.querySelectorAll(".nav-bar li")
-  console.log(headfade, navbar, navlinks)
 
   headfade.onclick = () => {
-    console.log("Clicked")
     navbar.classList.toggle("nav-active")
-    console.log("nav is now active")
 
     navlinks.forEach((link, index) => {
-      console.log(link, index)
       if (link.style.animation){
         link.style.animation = "";
       } else {
