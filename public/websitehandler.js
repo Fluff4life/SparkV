@@ -4,7 +4,7 @@ $(window).on("scroll", function(){
   } else {
     $("header").removeClass("nav-show")
 
-    
+
   }
 })
 
@@ -36,7 +36,7 @@ const onload = () => {
       if (link.style.animation){
         link.style.animation = "";
       } else {
-        link.style.animation = `navLinkFade 0.5 ease forwards ${index / 8}s`;
+        link.style.animation = `navLinkFade 0.5 ease forwards ${index / 6+2}s`;
     }
   });
 
