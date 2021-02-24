@@ -91,7 +91,7 @@ a.nav-link {
     margin: 2px;
     padding: 5px 10px;
     text-decoration: none;
-    color: black;
+    color: lightsteelblue;
     cursor: pointer;
     font-family: var(--main-font-family);
     text-transform: uppercase;
@@ -107,7 +107,7 @@ a.nav-link {
 }
 
 .nav-show {
-    opacity: 0;
+    opacity: 1;
 }
 
 .logo img {
