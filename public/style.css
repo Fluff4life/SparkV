@@ -95,11 +95,11 @@ a.nav-link {
     cursor: pointer;
     font-family: var(--main-font-family);
     text-transform: uppercase;
+    transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    color: black;
-    background: var(--main-decor-color);
+    color: white;
 }
 
 .active {
