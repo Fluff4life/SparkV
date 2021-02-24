@@ -1,23 +1,46 @@
-$(window).onload = function(){
+const LoadWindow = () => {
+  const headfade = document.querySelector(".headfade")
+  const navbar = document.querySelector(".nav-bar")
+  const navlinks = document.querySelectorAll(".nav-bar li")
+
   if ($(window).scrollTop()){
     $("header").addClass("nav-show")
   } else {
     $("header").removeClass("nav-show")
   }
-}
 
-$(document).ready(function(){
-  $("a").on("click", function(event){
-    if (this.hash !== ""){
-      event.preventDefault()
+  headfade.onclick = () => {
+    navbar.classList.toggle("nav-active")
 
-      var hash = this.hash
-
-      $("html, body").animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-        window.location.hash = hash
-      })
+    navlinks.forEach((link, index) => {
+      if (link.style.animation){
+        link.style.animation = "";
+      } else {
+        link.style.animation = `navLinkFade 0.5 ease forwards ${index / 7+1}s`;
     }
   })
-})
+
+  headfade.classList.toggle("toggle")
+  }
+}
+
+const ReadyDocument = () => {
+  $(document).ready(function(){
+    $("a").on("click", function(event){
+      if (this.hash !== ""){
+        event.preventDefault()
+  
+        var hash = this.hash
+  
+        $("html, body").animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+          window.location.hash = hash
+        })
+      }
+    })
+  })
+}
+
+$(window).onload = () => LoadWindow()
+$(document).ready = () => ReadyDocument()
