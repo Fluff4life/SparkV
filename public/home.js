@@ -1,4 +1,22 @@
-const LoadWindow = () => {
+$(document).ready = () => {
+  $(document).ready(function(){
+    $("a").on("click", function(event){
+      if (this.hash !== ""){
+        event.preventDefault()
+  
+        var hash = this.hash
+  
+        $("html, body").animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+          window.location.hash = hash
+        })
+      }
+    })
+  })
+}
+
+$(window).onload = () => {
   const headfade = document.querySelector(".headfade")
   const navbar = document.querySelector(".nav-bar")
   const navlinks = document.querySelectorAll(".nav-bar li")
@@ -23,24 +41,3 @@ const LoadWindow = () => {
   headfade.classList.toggle("toggle")
   }
 }
-
-const ReadyDocument = () => {
-  $(document).ready(function(){
-    $("a").on("click", function(event){
-      if (this.hash !== ""){
-        event.preventDefault()
-  
-        var hash = this.hash
-  
-        $("html, body").animate({
-          scrollTop: $(hash).offset().top
-        }, 800, function(){
-          window.location.hash = hash
-        })
-      }
-    })
-  })
-}
-
-$(window).onload = () => LoadWindow()
-$(document).ready = () => ReadyDocument()
