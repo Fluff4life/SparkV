@@ -4,6 +4,24 @@ if ($(window).scrollTop()){
   $("header").removeClass("nav-show")
 }
 
+$(document).ready(function(){
+  console.log("Document loaded.")
+
+  $("a").on("click", function(event){
+    if (this.hash !== ""){
+      event.preventDefault()
+  
+      var hash = this.hash
+  
+      $("html, body").animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+        window.location.hash = hash
+      })
+    }
+  })
+})
+
 const onload = () => {
   const headfade = document.querySelector(".headfade")
   const navbar = document.querySelector(".nav-bar")
@@ -27,21 +45,5 @@ const onload = () => {
   headfade.classList.toggle("toggle")
   }
 }
-
-$(document).ready(function(){
-  $("a").on("click", function(event){
-    if (this.hash !== ""){
-      event.preventDefault()
-  
-      var hash = this.hash
-  
-      $("html, body").animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-        window.location.hash = hash
-      })
-    }
-  })
-})
 
 $(window).onload = () => onload();
