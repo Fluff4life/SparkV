@@ -107,17 +107,13 @@ a.nav-link {
 }
 
 .nav-show {
-    opacity: 1;
+    opacity: 0;
 }
 
 .logo img {
     padding-top: 5px;
     height: 50px;
     cursor: pointer;
-}
-
-.nav-show {
-    opacity: 0;
 }
 
 /*
