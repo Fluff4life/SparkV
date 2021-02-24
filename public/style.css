@@ -507,21 +507,20 @@ hr {
 /*
 Media
 */
-
-@media only screen and (max-width: 1484) and (min-width: 1214px){
+@media only screen and (max-width: 1484px) and (min-width: 1214px){
     .work {
-        padding: 20px 20%
+        padding: 20px 20%;
     }
 }
 
-@media only screen and (max-width: 1214px) and (min-width: 1000px){
+@media only screen and (max-width: 1214) and (min-width: 1000px){
     .work {
         padding: 20px 12%;
     }
 }
 
 @media only screen and (max-width: 500px){
-    #home, #games, #creations, #team, #about {
+    #home, #about, #creations {
         overflow-x: hidden;
     }
 
@@ -533,6 +532,15 @@ Media
         position: absolute;
         top: 2px;
         left: 30px;
+    }
+
+    .nav-show {
+        opacity: 1;
+    }
+
+    .nav-bar {
+        position: fixed;
+        top: 0px;
         right: 0;
         height: 100vh;
         width: 60%;
@@ -540,26 +548,26 @@ Media
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
-        background:var(--main-header-background);
-        transform:translateX(100%);
+        background: var(--main-header-background);
+        transform:translatex(100%);
         transition: transform 0.5s ease-in;
         z-index: -1;
     }
 
-    .nav-show {
-        opacity: 1;
-    }
-    
-    .nav-bar {
-        position: fixed;
-        top: 0px;
+    .headfade {
+        position: absolute;
+        top: 17px;
+        right: 25%;
+        display: block;
+        cursor: pointer;
+        z-index: 5;
     }
 
     .nav-bar li {
         opacity: 0;
     }
+}
 
-    .nav-active {
-        transition:translateX(0%);
-    }
+.nav-active {
+    transform:translatex(0%);
 }

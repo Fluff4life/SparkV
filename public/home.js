@@ -1,10 +1,10 @@
-$(window).onload(function(){
+$(window).onload = function(){
   if ($(window).scrollTop()){
     $("header").addClass("nav-show")
   } else {
     $("header").removeClass("nav-show")
   }
-})
+}
 
 $(document).ready(function(){
   $("a").on("click", function(event){
