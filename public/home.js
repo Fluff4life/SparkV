@@ -1,4 +1,4 @@
-window.onload(function(){
+$(window).onload(function(){
   if ($(window).scrollTop()){
     $("header").addClass("nav-show")
   } else {
