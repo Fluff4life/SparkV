@@ -91,7 +91,7 @@ a.nav-link {
     margin: 2px;
     padding: 5px 10px;
     text-decoration: none;
-    color: var(--main-background);
+    color: black;
     cursor: pointer;
     font-family: var(--main-font-family);
     text-transform: uppercase;
