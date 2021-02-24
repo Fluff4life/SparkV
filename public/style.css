@@ -7,11 +7,11 @@ Style.css
 Root Varibles
 */
 :root {
-    --main-background: #6cbdff;
-    --main-fonts-color: #fff;
-    --main-decor-color: rgb(0, 225, 255);
-    --main-header-background: #00bfff;
-    --main-font-family: "Poppins", sans-serif;
+    --main-background: lightskyblue;
+    --main-fonts-color: white;
+    --main-decor-color: cyan;
+    --main-header-background: dodgerblue;
+    --main-font-family: sans-serif;
 }
 
 /*
@@ -91,7 +91,7 @@ a.nav-link {
     margin: 2px;
     padding: 5px 10px;
     text-decoration: none;
-    color: lightsteelblue;
+    color: lightskyblue;
     cursor: pointer;
     font-family: var(--main-font-family);
     text-transform: uppercase;
