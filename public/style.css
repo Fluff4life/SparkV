@@ -91,7 +91,7 @@ a.nav-link {
     margin: 2px;
     padding: 5px 10px;
     text-decoration: none;
-    color: var(--main-fonts-color);
+    color: var(--main-background);
     cursor: pointer;
     font-family: var(--main-font-family);
     text-transform: uppercase;
@@ -99,7 +99,7 @@ a.nav-link {
 }
 
 .nav-link:hover {
-    color: white;
+    color: var(--main-fonts-color);
 }
 
 .active {
