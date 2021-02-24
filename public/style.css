@@ -520,7 +520,7 @@ Media
     }
 }
 
-@media only screan and (max-width: 500px){
+@media only screen and (max-width: 500px){
     #home, #games, #creations, #team, #about {
         overflow-x: hidden;
     }
@@ -558,8 +558,8 @@ Media
     .nav-bar li {
         opacity: 0;
     }
-}
 
-.nav-active {
-    transition:translateX(0%);
+    .nav-active {
+        transition:translateX(0%);
+    }
 }
