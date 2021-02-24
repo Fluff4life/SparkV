@@ -36,18 +36,26 @@ Buttons
 */
 
 button {
-    margin: 2px;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: var(--main-fonts-color);
-    font-family: var(--main-font-family);
-    cursor: pointer;
-    text-transform: uppercase;
+    margin: 25px 0;
+    display: inline-flex;
 }
 
-button:hover {
-    color: black;
+button a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    border: 2px solid var(--main-decor-color);
+    color: var(--main-decor-color);
+    font-weight: 500;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+button a:hover {
     background: var(--main-decor-color);
+    color: var(--main-fonts-color);
 }
 
 /*
