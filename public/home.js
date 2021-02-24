@@ -1,8 +1,10 @@
-if ($(window).scrollTop()){
-  $("header").addClass("nav-show")
-} else {
-  $("header").removeClass("nav-show")
-}
+$(window).on("scroll", function(){
+  if ($(window).scrollTop()){
+    $("header").addClass("nav-show")
+  } else {
+    $("header").removeClass("nav-show")
+  }
+})
 
 $(document).ready(function(){
   console.log("Document loaded.")
@@ -46,4 +48,4 @@ const onload = () => {
   }
 }
 
-$(window).onload = () => onload();
+window.onload = () => onload();
