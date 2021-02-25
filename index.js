@@ -1,5 +1,3 @@
-return require("./bot")
-
 const { ShardingManager } = require("discord.js")
 
 const ShardManager = new ShardingManager("./bot.js", {
