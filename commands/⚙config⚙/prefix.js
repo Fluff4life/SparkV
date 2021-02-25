@@ -56,6 +56,6 @@ exports.run = async (Bot, message, Arguments) => {
     name: "Prefix",
     description: "I will set the server's Prefix to your choice.",
     usage: "<new prefix>",
-    category: "🛠️moderation🛠️",
+    category: "⚙config⚙",
     cooldown: 2.5
   }
