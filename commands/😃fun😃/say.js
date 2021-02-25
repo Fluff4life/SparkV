@@ -24,7 +24,6 @@ exports.config = {
   exports.help = {
     name: "Say",
     description: "I will say whatever you want me to say.",
-    aliases: ["talk"],
     usage: "[message]",
     category: "😃fun😃",
     cooldown: 5

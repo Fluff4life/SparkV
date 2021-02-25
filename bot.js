@@ -68,19 +68,7 @@ process.on("unhandledRejection", err => {
 })
 
 // Code //
-console.log("---------- Starting ----------")
-Bot.on("disconnect", event => {
-  console.log(`DISCONNECTED! => Bot disconnected with code ${event.code}.`)
-  process.exit(0)
-})
-
-Bot.on("error", (err) => {
-  console.log(`ERROR! => ${err.stack}`)
-})
-
-Bot.on("warn", (warn) => {
-  console.log(`WARNING => ${warn}`)
-})
+console.log("Loading Bot.")
 
 console.log("---------- Loading Bot Functions ----------") 
 functions(Bot)
@@ -140,4 +128,4 @@ Noblox(Bot)
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
 
-console.log("---------- Bot loading complete! ----------") 
+console.log("Bot loading complete!") 

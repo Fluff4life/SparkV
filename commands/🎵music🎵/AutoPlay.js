@@ -14,13 +14,13 @@ exports.run = async (Bot, message, Arguments, Command) => {
   }
   
  let Mode = Bot.distube.toggleAutoplay(message)
-    message.channel.send("Okay, I just set AutoPlay " + (Mode ? "On" : "Off") + ".").then(m => m.delete({ timeout: 5000 }))
+  message.channel.send("Okay, I just set AutoPlay " + (Mode ? "On" : "Off") + ".").then(m => m.delete({ timeout: 5000 }))
 },
 
 exports.config = {
   enabled: true,
   guild_only: true,
-  aliases: ["ap"],
+  aliases: ["autoplay"],
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
 },
     
