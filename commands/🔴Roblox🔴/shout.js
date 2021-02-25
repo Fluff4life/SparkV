@@ -32,7 +32,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
             url: "https://www.roblox.com/groups/7813201/Ch1ll-Studios",
           
             footer: {
-              text: "⚠️Shout Command Failled⚠️",
+              text: "⚠️Shout Command Failed⚠️",
               icon_url: process.env.bot_logo
             },
           }
