@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const { message } = require("noblox.js");
 
 exports.run = async (Bot, Message) => {
   if (Message.author.Bot) {

@@ -1,7 +1,11 @@
 const Discord = require("discord.js");
-const noblox = require("noblox.js");
 
 exports.run = async (Bot, msg, Arguments, command) => {
+  if (process.env.TestMode){
+    return
+  }
+  
+  const noblox = require("noblox.js");
   const IsAdmin = Bot.CheckPerm(msg);
 
   Arguments = Arguments.join(" ")

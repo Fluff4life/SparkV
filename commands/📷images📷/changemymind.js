@@ -1,10 +1,15 @@
 const Discord = require("discord.js");
-const canva = require("canvacord");
 
 exports.run = async (Bot, message, Arguments) => {
+  if (process.env.TestMode){
+    return
+  }
+
     if (!Arguments || !Arguments[0]){
       return message.channel.send("Please provide text.")
     }
+
+    const canva = require("canvacord");
 
     Arguments = Arguments.join()
 

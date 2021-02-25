@@ -3,12 +3,12 @@ const figlet = require("figlet")
 
 exports.run = async (Bot, msg, Arguments) => {
   if (!Arguments || !Arguments[0]){
-    return message.channel.send("Please provide text!")
+    return msg.channel.send("Please provide text!")
   }
 
   Arguments = Arguments.join(" ")
 
-  figlet.text(msg, function(err, data){
+  figlet.text(Arguments, function(err, data){
     if (err){
       msg.channel.send("Uh oh! Something went wrong.")
       console.log("Failed to figlet text: " + err)
@@ -17,10 +17,10 @@ exports.run = async (Bot, msg, Arguments) => {
     }
 
     if (data.length > 2000){
-      return message.channel.send("Please provide text shorter than 200 characters. This is because I cannot send text over discord's limit!")
+      return msg.channel.send("Please provide text shorter than 200 characters.")
     }
 
-    message.channel.send("```" + data + "```")
+    msg.channel.send("```" + data + "```")
   })
 },
   

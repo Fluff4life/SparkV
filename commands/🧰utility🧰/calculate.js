@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments) => {
   if (!Arguments || !Arguments[0]){
-    return message.channel.send("Please provide a question for me to answer.")
+    return msg.channel.send("Please provide a question for me to answer.")
   }
 
   Arguments = Arguments.join(" ")
@@ -12,7 +12,7 @@ exports.run = async (Bot, msg, Arguments) => {
   try {
     response = math.evaluate(Arguments)
   } catch(err){
-    return message.channel.send("Please provide a __**VALID**__ math question.")
+    return msg.channel.send("Please provide a __**VALID**__ math question.")
   }
 
   const CalculatorResult = new Discord.MessageEmbed()
@@ -21,7 +21,7 @@ exports.run = async (Bot, msg, Arguments) => {
   .addField("Answer:", `\`\`\`css\n${response}\`\`\``)
   .setColor("#0099ff")
 
-  message.channel.send(CalculatorResult)
+  msg.channel.send(CalculatorResult)
 },
   
   exports.config = {

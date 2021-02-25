@@ -1,8 +1,7 @@
 // KingCh1ll //
-// Last Edited: 1/21/2021 //
+// Last Edited: 2/25/2021 //
 // Index.js //
 
-// Please reframe from stealing as of copyright. //
 console.log("  _                     _ _             ")
 console.log(" | |                   | (_)            ")
 console.log(" | |     ___   __ _  __| |_ _ __   __ _ ")
@@ -31,7 +30,7 @@ const Bot = new Client({
 
   presence: {
     activity: {
-      name: `Loading bot!`,
+      name: `Time to wake up!`,
       type: "PLAYING"
     },
     status: "DND"
@@ -40,8 +39,11 @@ const Bot = new Client({
 
 // Modules //
 const functions = require("./modules/functions")
-const Noblox = require("./DependencyHandlers/noblox")
 const Distube = require("./DependencyHandlers/distube")
+
+if (!process.env.TestMode){
+  const Noblox = require("./DependencyHandlers/noblox")
+}
 
 // Get User Count //
 Bot.UserCount = 0
@@ -123,9 +125,11 @@ readdir("./commands", (err, cats) => {
 })
 
 console.log("---------- Logging into Roblox ----------") 
-Noblox(Bot)
+if (!process.env.TestMode){
+  Noblox(Bot)
+}
 
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
 
-console.log("Bot loading complete!") 
+console.log("Bot loading complete!")

@@ -1,7 +1,12 @@
 const Discord = require("discord.js");
-const canva = require("canvacord");
 
 exports.run = async (Bot, message) => {
+  if (process.env.TestMode){
+    return
+  }
+
+  const canva = require("canvacord");
+
     const Avatar = message.author.displayAvatarURL({
         dynamic: false,
         format: "png"
