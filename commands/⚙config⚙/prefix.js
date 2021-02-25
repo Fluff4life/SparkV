@@ -49,7 +49,7 @@ exports.run = async (Bot, message, Arguments) => {
     enabled: true,
     guild_only: false,
     aliases: ["pre"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"]
   },
 
   exports.help = {

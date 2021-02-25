@@ -2,26 +2,15 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments) => {
   if (!Arguments || !Arguments[0]){
-    return message.channel.send("Please provide a question for me to answer.")
+    return message.channel.send("Please provide a valid HEX color code. Example: #ff0000.")
   }
 
   Arguments = Arguments.join(" ")
 
-  let response
+  const Image = await canva.color(`#${Arguments}`)
+  const Color = new Discord.MessageAttachment(Image, "color.png")
 
-  try {
-    response = math.evaluate(Arguments)
-  } catch(err){
-    return message.channel.send("Please provide a __**VALID**__ math question.")
-  }
-
-  const CalculatorResult = new Discord.MessageEmbed()
-  .setTitle("Calculator")
-  .addField("Question:", `\`\`\`css\n${Arguments}\`\`\``)
-  .addField("Answer:", `\`\`\`css\n${response}\`\`\``)
-  .setColor("#0099ff")
-
-  message.channel.send(CalculatorResult)
+  message.channel.send(Color)
 },
   
   exports.config = {

@@ -1,17 +1,18 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg) => {
-  const BotMessage = await msg.channel.send("Fetching Stats...")
-  
-  msg.channel.send({
-    context: "Stats Complete!",
+  const BotMessage = await msg.channel.send("Fetching Stats. Please wait!")
 
-    embed: {
-      title: "Stats",
-      description: `**Response Time**: ${BotMessage.createdAt - msg.createdAt}ms\n**Up Time**: ${Bot.MSToTime(Bot.uptime)}\n**Memory Usage:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\n**Users**: ${Bot.UserCount}\n**Servers**: ${Bot.guilds.cache.size.toLocaleString()}`,
-      color: "#0099ff"
-    },
-  })
+  const StatsEmbed = new Discord.MessageEmbed()
+    .setTitle("Stats")
+    .addField("**Response Time**", `${BotMessage.createdAt - msg.createdAt}ms`, true)
+    .addField("**Memory Usage**", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true)
+    .addField("**Uptime**", Bot.MSToTime(Bot.uptime), true)
+    .setFooter("Ch1llBlox's Stats")
+    .setColor("#0099ff")
+    .setTimestamp()
+
+  BotMessage.edit(StatsEmbed)
 },
   
   exports.config = {

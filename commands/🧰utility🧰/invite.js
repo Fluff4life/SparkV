@@ -22,8 +22,7 @@ exports.run = async (Bot, msg) => {
   
   exports.help = {
     name: "Invite",
-    description:
-      "Need help with me or you want to invite me to your server? This command makes inviting easy!",
+    description: "Get an invite for me or to the support server.",
     usage: "",
     category: "🧰utility🧰",
     cooldown: 1.5

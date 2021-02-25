@@ -34,7 +34,7 @@ exports.config = {
   enabled: true,
   guild_only: true,
   aliases: ["ballcups"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"]
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS"]
 },
     
 exports.help = {

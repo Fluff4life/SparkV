@@ -86,7 +86,7 @@ exports.config = {
 
 exports.help = {
     name: "Help",
-    description: `I will displays all commands. Need help with a command? Do ${prefix}Help [command name]!`,
+    description: `I will displays all commands. Do ${prefix}Help [command name] for specific command information!`,
     usage: "[command]",
     category: "🧰utility🧰",
     cooldown: 10
