@@ -55,7 +55,19 @@ Bot.aliases = new Collection()
 Bot.events = new Collection()
 Bot.cooldowns = new Collection()
 
-// Removed for debug
+// Error Handlers //
+process.on("uncaughtException", err => {
+  const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
+
+  console.log(`Uncaught Exception error. ${ErrorMessage}`)
+  console.error(err)
+
+  process.exit(1)
+})
+
+process.on("unhandledRejection", err => {
+  console.log(`Unhandled rejection error. ${err}`)
+})
 
 // Code //
 console.log("Loading Bot.")
