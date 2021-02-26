@@ -1,7 +1,7 @@
 <!-- Project Logo -->
 <p align="center">
  <a href="https://github.com/KingCh1ll/Ch1llBlox">
-   <img src="assets/KingCh1ll_IRL.png" alt="Logo" width="80" height="80">
+   <img src="assets/images/KingCh1ll_IRL.png" alt="Logo" width="80" height="80">
   </a>
    
   <h3 align="center">Ch1llBlox</h3>
@@ -39,11 +39,11 @@
      
 <!-- About -->
 ## About Ch1llBlox
-Ch1llBlox -
+Ch1llBlox is a bot that has over 50+ commands and no commands that cost money. Our goal is to have over 400 commands with the one time price of $0.
 
 ### Why I made Ch1llBlox
-I am always using Discord bots. Whether it's banning a bad actor to listening to music in a VC. But, I always run into a problem and that problem is that most commands cost money. When making my bot, I kept in mind this bot would not have a single thing you can buy.
+I am always using Discord bots. Whether it's banning a bad actor to listening to music in a Voice Chat. But, I always run into a problem and that problem is that most commands with that select bot cost money. When making my bot, I kept in mind this bot would not have a single thing that would cost money to gain a benifit(s).
 
 ### Ch1llBlox's License
 
-Distributed under the MIT License. See, "LICENSE" for more information.
+Distributed under the Apache-2.0 License. See, "LICENSE" for more information.

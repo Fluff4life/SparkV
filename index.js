@@ -1,15 +1,32 @@
-const { ShardingManager } = require("discord.js")
+const { ShardingManager } = require("discord.js");
+const { config } = require("dotenv")
 
-try {
-    const ShardManager = new ShardingManager("./bot.js", {
-        token: process.env.token
-    })
+// Start Dotenv //--
+config({
+    path: __dirname + "/.env"
+})
 
-    // Shard Handlers //
-    ShardManager.on("shardCreate", Shard => console.log(`Launched shard: ${Shard.id}.`))
-    ShardManager.spawn()
-} catch(err){
-    console.log("WARNING => Failed to activate Shard Manager. Calling bot file without sharding fetures!")
+if (process.env.TestMode) {
+    console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
-    return require("./bot")
+    require("./ch1llblox");
+} else {
+    try {
+        const ShardManager = new ShardingManager("./ch1llblox.js", {
+            totalShards: "auto",
+            shardList: "auto",
+            mode: "process",
+            respawn: true,
+
+            token: process.env.token,
+        });
+
+        // Shard Handlers //
+        ShardManager.on("shardCreate", (Shard) => console.log(`SUCCESS - SHARD LAUNCH => Successfully launched shard ${Shard.id}.`))
+        ShardManager.spawn();
+    } catch (err) {
+        console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
+
+        require("./ch1llblox");
+    }
 }

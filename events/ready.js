@@ -5,24 +5,31 @@ exports.run = async (Bot) => {
     {
       text: `${process.env.prefix}Help`,
       type: "WATCHING",
+      status: "online"
     },
   
     {
       text: `${Bot.guilds.cache.size} servers!`,
-      type: "WATCHING"
+      type: "WATCHING",
+      status: "online"
     },
 
     {
       text: `Ch1ll'n!`,
-      type: "WATCHING"
+      type: "WATCHING",
+      status: "online"
     },
   ]
 
   Bot.setInterval(() => {
     const Activity = Activities[Math.floor(Math.random() * Activities.length)]
 
-    Bot.user.setActivity(Activity.text, {
-      type: Activity.type
+    Bot.user.setPresence({
+      activity: {
+        name: Activity.text,
+        type: Activity.type
+      },
+      status: Activity.status
     })
   }, 60 * 1000)
 
@@ -31,9 +38,9 @@ exports.run = async (Bot) => {
       try {
         await guild.leave()
 
-        console.log(`Left guild ${guild.name} because it's on the GuildBlacklist.`)
+        console.log(`SUCCESS - GUILD BLACKLIST => Left guild ${guild.name} because it's on the GuildBlacklist.`)
       } catch {
-        console.log(`Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`)
+        console.log(`ERROR - GUILD BLACKLIST => Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`)
       }
     }
   }
@@ -43,9 +50,9 @@ exports.run = async (Bot) => {
       try {
         await guild.leave()
 
-        console.log(`Left guild ${guild.name} because it's on the UserBlacklist.`)
+        Bot.Log("SUCCESS", "USER BLACKLIST GUILD", `Left guild ${guild.name} (${guild.id}) because the owner is on the UserBlacklist.`)
       } catch {
-        console.log(`Failed to leave Blacklisted User's Guild! GuildName: ${guild.name} GuildID: ${id}`)
+        Bot.Log("ERROR", "USER BLACKLIST GUILD", `Failed to leave Blacklisted User's Guild! ${guild.name} (${id})`)
       }
     }
   }
@@ -54,5 +61,5 @@ exports.run = async (Bot) => {
     Bot.UserCount = Bot.UserCount + guild.memberCount
   }
 
-  console.log(`${Bot.user.tag} is now ready to come online! \nThere are currently ${Bot.guilds.cache.size} servers with ${Bot.UserCount} members in them.`)
+  Bot.Log(Bot.user.tag, "BOT STATUS", `Bot is now up and running!\nServers: ${Bot.guilds.cache.size}\nUsers: ${Bot.UserCount}`)
 }

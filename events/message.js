@@ -137,8 +137,8 @@ exports.run = async (Bot, Message) => {
   try {
     commandfile
       .run(Bot, Message, args, command)
-      .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nSucessfully ran command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``) })
-  } catch {
-    console.log(`Failed running command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}`)
+      .then(() => { console.log(`COMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``) })
+  } catch(err) {
+    console.log(`FAILED - FAILEd to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err}\n\`\`\`\`\`\`\`\`\`\`\`\`\``)
   }
 }

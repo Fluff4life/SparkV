@@ -2,6 +2,7 @@
 // Last Edited: 2/25/2021 //
 // Index.js //
 
+/*
 console.log("  _                     _ _             ")
 console.log(" | |                   | (_)            ")
 console.log(" | |     ___   __ _  __| |_ _ __   __ _ ")
@@ -10,19 +11,13 @@ console.log(" | |___| (_) | (_| | (_| | | | | | (_| |")
 console.log(" |______\\___/ \\__,_|\\__,_|_|_| |_|\\__, |")
 console.log("                                   __/ |")
 console.log("                                  |___/")
+*/
+
+console.log("LOADING - BOT LOADING => Loading bot!")
 
 // Librarys //
 const { Client, Collection } = require("discord.js")
-const { config } = require("dotenv")
 const { readdir } = require("fs")
-
-// Start Dotenv //--
-config({
-  path: __dirname + "/.env"
-})
-
-// Prepare Database //
-require("./database/connector")
 
 // Create Bot //
 const Bot = new Client({
@@ -36,6 +31,9 @@ const Bot = new Client({
     status: "DND"
   }
 })
+
+// Database //
+require("./database/connector")(Bot)
 
 // Modules //
 const functions = require("./modules/functions")
@@ -59,19 +57,17 @@ Bot.cooldowns = new Collection()
 process.on("uncaughtException", err => {
   const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
-  console.log(`Uncaught Exception error. ${ErrorMessage}`)
+  console.log(`ERROR => Uncaught Exception error. ${ErrorMessage}`)
   console.error(err)
 
   process.exit(1)
 })
 
 process.on("unhandledRejection", err => {
-  console.log(`Unhandled rejection error. ${err}`)
+  console.log(`ERROR => Unhandled rejection error. ${err}`)
 })
 
 // Code //
-console.log("Loading Bot.")
-
 console.log("---------- Loading Bot Functions ----------") 
 functions(Bot)
 
@@ -81,7 +77,7 @@ Distube(Bot)
 console.log("---------- Loading Events ----------")
 readdir("./events", (err, files) => {
   if (err) {
-    return console.log(`Error! ${err}`)
+    return Bot.Log("ERROR", "EVENT LOADING ERROR", err)
   }
 
   files.forEach(file => {
@@ -89,7 +85,7 @@ readdir("./events", (err, files) => {
     let FileEvent = require(`./events/${EventName}`)
 
     if (process.env.ConsoleLog || true){
-      console.log(`✅Successfully loaded Event ${EventName}`)
+      Bot.Log("SUCCESS", "EVENT LOADING", `Successfully loaded event ${EventName}!`)
     }
 
     Bot.on(EventName, (...args) => FileEvent.run(Bot, ...args))
@@ -99,7 +95,7 @@ readdir("./events", (err, files) => {
 console.log("---------- Loading Commands ----------")
 readdir("./commands", (err, cats) => {
   if (err) {
-    return console.log(`Error! ${err}`)
+    return Bot.Log("ERROR", "COMMANDS LOADING ERROR", err)
   }
 
   cats.forEach(cat => {
@@ -117,7 +113,7 @@ readdir("./commands", (err, cats) => {
         Bot.commands.set(commandname, FileJs)
 
         if (process.env.ConsoleLog || true) {
-          console.log(`✅Successfully loaded command: ${commandname}!`)
+          Bot.Log("SUCCESS", "COMMAND LOADING", `Successfully loaded command ${commandname}!`)
         }
       })
     })
@@ -132,4 +128,4 @@ if (!process.env.TestMode){
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
 
-console.log("Bot loading complete!")
+Bot.Log("SUCCESS", "Bot Loading", "Bot loading complete!")

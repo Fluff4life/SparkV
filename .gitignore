@@ -1,3 +1,5 @@
 .env
 .eslintrc.json
+.prettierrc
+.editorconfig
 node_modules

@@ -31,6 +31,10 @@ module.exports = async (bot) => {
     return str
   }
 
+  bot.Log = function(Status, Type, Details){
+    console.log(`${Status} - ${Type} => ${Details}`)
+  }
+
   bot.PromptMessage = async function(message, author, reactions, seconds){
     seconds = seconds * 1000
 
