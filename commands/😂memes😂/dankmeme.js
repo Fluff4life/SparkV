@@ -37,7 +37,7 @@ exports.run = async (Bot, message) => {
   },
 
   exports.help = {
-    name: "Meme",
+    name: "DankMeme",
     description: "Meme but SUPER dank. Only the funnyiest memes.",
     usage: "",
     category: "😂memes😂",
