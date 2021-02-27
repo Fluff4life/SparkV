@@ -31,9 +31,7 @@
     "noblox.js": "^4.8.4",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
-    "urban": "^0.3.2",
-    "youtube-dl": "^3.5.0",
-    "ytdl-core": "^4.5.0"
+    "urban": "^0.3.2"
   },
   "devDependencies": {
     "prettier": "2.2.1"
