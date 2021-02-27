@@ -72,13 +72,18 @@ header {
     background: transparent;
     position: fixed;
     top: 0;
-    transition: 0.3;
+    transition: 0.3s;
     z-index: 5;
 }
 
 header:hover {
     opacity: 1;
     background: var(--main-header-background);
+}
+
+.nav-hide {
+    background: var(--main-header-background);
+    opacity: 1;
 }
 
 .nav-bar {
@@ -104,10 +109,6 @@ a.nav-link {
 
 .active {
     background: var(--main-decor-color);
-}
-
-.nav-show {
-    opacity: 1;
 }
 
 .logo img {
@@ -530,7 +531,8 @@ Media
         left: 30px;
     }
 
-    .nav-show {
+    .nav-hide {
+        background: var(--main-header-background);
         opacity: 1;
     }
 

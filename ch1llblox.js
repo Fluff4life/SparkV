@@ -13,7 +13,7 @@ console.log("                                   __/ |")
 console.log("                                  |___/")
 */
 
-console.log("LOADING - BOT LOADING => Loading bot!")
+console.log("LOADING STARTED - BOT => Now loading bot.")
 
 // Librarys //
 const { Client, Collection } = require("discord.js")
@@ -85,7 +85,7 @@ readdir("./events", (err, files) => {
     let EventName = file.split(".")[0]
     let FileEvent = require(`./events/${EventName}`)
 
-    if (process.env.ConsoleLog || true){
+    if (!process.env.ConsoleLog){
       Bot.Log("SUCCESS", "EVENT LOADING", `Successfully loaded event ${EventName}!`)
     }
 
@@ -113,7 +113,7 @@ readdir("./commands", (err, cats) => {
 
         Bot.commands.set(commandname, FileJs)
 
-        if (process.env.ConsoleLog || true) {
+        if (!process.env.ConsoleLog){
           Bot.Log("SUCCESS", "COMMAND LOADING", `Successfully loaded command ${commandname}!`)
         }
       })

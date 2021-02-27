@@ -10,6 +10,7 @@ if (process.env.TestMode) {
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
     require("./ch1llblox");
+    require("./ch1llwebsite")
 } else {
     try {
         const ShardManager = new ShardingManager("./ch1llblox.js", {
@@ -28,5 +29,6 @@ if (process.env.TestMode) {
         console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
         require("./ch1llblox");
+        require("./ch1llwebsite")
     }
 }

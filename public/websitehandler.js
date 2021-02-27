@@ -1,23 +1,21 @@
-$(window).on("scroll", function(){
-  if ($(window).scrollTop()){
-    $("header").addClass("nav-show")
+$(window).on("scroll", function () {
+  if ($(window).scrollTop()) {
+    $("header").removeClass("nav-hide")
   } else {
-    $("header").removeClass("nav-show")
-
-
+    $("header").addClass("nav-hide")
   }
 })
 
-$(document).ready(function(){
-  $("a").on("click", function(event){
-    if (this.hash !== ""){
+$(document).ready(function () {
+  $("a").on("click", function (event) {
+    if (this.hash !== "") {
       event.preventDefault()
-  
+
       var hash = this.hash
-  
+
       $("html, body").animate({
         scrollTop: $(hash).offset().top
-      }, 800, function(){
+      }, 800, function() {
         window.location.hash = hash
       })
     }
@@ -33,14 +31,13 @@ const onload = () => {
     navbar.classList.toggle("nav-active")
 
     navlinks.forEach((link, index) => {
-      if (link.style.animation){
+      if (link.style.animation) {
         link.style.animation = "";
       } else {
-        link.style.animation = `navLinkFade 0.5 ease forwards ${index / 6+2}s`;
-    }
-  });
-
-  headfade.classList.toggle("toggle")
+        link.style.animation = `navLinkFade 0.5 ease forwards ${index / 2+1}s`;
+      }
+    });
+    headfade.classList.toggle("toggle")
   }
 }
 

@@ -7,6 +7,10 @@
     "start": "node index.js",
     "download": "npm i --force"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KingCh1ll/Ch1ll"
+  },
   "author": "KingCh1ll#3616",
   "license": "MIT",
   "engines": {

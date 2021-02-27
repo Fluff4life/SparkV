@@ -2,6 +2,8 @@
 // Last Edited: 2/18/2021 //
 // website.js //
 
+console.log("LOADING STARTED - WEBSITE => Now loading website.")
+
 // Librarys //
 const got = require("got");
 const express = require("express");
@@ -30,25 +32,6 @@ function RunWebsite() {
 
   app.get("/maintenance", (request, response) => {
     response.sendFile(__dirname + `/public/html/down.html`);
-  });
-
-  app.get("/api/meme?", (request, response) => {
-    if (!request.query.subreddit) {
-      return response
-        .status(400)
-        .send({
-          code: 400,
-          response:
-            "Subreddit request not found. Make sure your request looks simular to /api/meme?subreddit=funny",
-        });
-    }
-
-    got(`https://www.reddit.com/r/${request.query.subreddit}/random/.json`).then((ResponseData) => {
-      const [list] = JSON.parse(ResponseData.body);
-      const [post] = list.data.children;
-
-      return response.status(200).send({ code: 200, response: post });
-    });
   });
 
   app.get("/api/status", (request, response) => {
@@ -86,6 +69,6 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-const listener = app.listen(process.env.PORT, () => {
-  console.log("WEBSITE PORT => Server listening on port " + listener.address().port + "!");
+const listener = app.listen(process.env.PORT, process.env.hostname, () => {
+  console.log(`SUCCESS - WEBSITE => Server running at http://${process.env.hostname}:${listener.address().port}/ & listening on port ${listener.address().port}.`);
 });
