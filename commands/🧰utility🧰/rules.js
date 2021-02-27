@@ -1,0 +1,50 @@
+const Discord = require("discord.js");
+const pagination = require("discord.js-pagination")
+
+var SetRules = false
+
+exports.run = async (Bot, msg, args) => {
+  if (SetRules === false){
+    Bot.Rules.set(1, {
+      Title: "Automation",
+      Description: "Using automation (Ex: auto-typers) is forbidden. Using automation (and with found proof) will cause a wipe of your data and a ban from using Ch1llBlox."
+    })
+
+    Bot.Rules.set(2, {
+      Title: "Command Spamming",
+      Description: "Spamming commands is forbidden. Spamming Ch1llBlox's commands will result with a warning. If continued, a complete wipe of your data and a ban from Ch1llBlox"
+    })
+
+    SetRules = true
+  }
+
+  const pages = []
+
+  const CreatePage = (Bot, Message, RuleNumber, RuleTitle, RuleDescription) => {
+    const NewEmbed = new Discord.MessageEmbed()
+      .setTitle(`Rule #${RuleNumber} - ${RuleTitle}`)
+      .setDescription(`\`\`\`${RuleDescription}\`\`\``)
+      .setColor("#0099ff")
+      .setThumbnail(Message.author.displayAvatarURL({ dynamic: true }))
+
+    pages.push(NewEmbed)
+  }
+
+  Bot.Rules.map((RuleDetails, RuleNumber) => CreatePage(Bot, msg, RuleNumber, RuleDetails.Title, RuleDetails.Description))  
+  pagination(msg, pages, ["⬅", "➡"])
+},
+
+  exports.config = {
+    enabled: true,
+    guild_only: false,
+    aliases: ["cmds", "commands", "h"],
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
+  },
+
+  exports.help = {
+    name: "Rules",
+    description: `Displays my rules.`,
+    usage: "",
+    category: "🧰utility🧰",
+    cooldown: 2.5
+  }

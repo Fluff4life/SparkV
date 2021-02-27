@@ -8,31 +8,39 @@ const SubReddits = [
   "PrequelMemes",
   "MemeEconomy",
   "DankMemes",
+  "me_irl",
   "Memes",
   "Funny",
 ]
 
 exports.run = async (Bot, message) => {
-  async function GetMeme(){
-    request("https://meme-api.herokuapp.com/gimme")
-      .then(res => res.json())
-      .then(json => {
-        if (json.ups > 7500) {
-          const MemeEmbed = new Discord.MessageEmbed()
-            .setTitle(json.title)
-            .setImage(json.url)
-            .setURL(json.postLink)
-            .setFooter(`👍${json.ups} |😃u/${json.author} | ⚙r/${json.subreddit}`, process.env.bot_logo)
-            .setColor("#0099ff");
+  const Subreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
 
-          return message.channel.send(MemeEmbed)
-        } else {
-          GetMeme()
-        }
-      });
-  }
+  request(`https://www.reddit.com/r/${Subreddit}/top/.json`)
+    .then(res => res.json())
+    .then(async json => {
+      const post = json.data.children[Math.floor(Math.random() * json.data.children.length)].data
 
-  GetMeme()
+      if (post.title.length > 256) {
+        const DankMemeEmbed = new Discord.MessageEmbed()
+          .setTitle("Title too long")
+          .setImage(post.url)
+          .setURL(`https://www.reddit.com${post.permalink}`)
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, process.env.bot_logo)
+          .setColor("#0099ff");
+
+        message.channel.send(DankMemeEmbed)
+      } else {
+        const DankMemeEmbed = new Discord.MessageEmbed()
+          .setTitle(post.title)
+          .setImage(post.url)
+          .setURL(`https://www.reddit.com${post.permalink}`)
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, process.env.bot_logo)
+          .setColor("#0099ff");
+
+        message.channel.send(DankMemeEmbed)
+      }
+    })
 
   /* 
   async function Get(Subreddit) {
@@ -80,14 +88,14 @@ message.channel.stopTyping()
   exports.config = {
     enabled: true,
     guild_only: false,
-    aliases: ["emem", "memey", "m"],
+    aliases: ["funny"],
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
   },
 
   exports.help = {
     name: "Meme",
-    description: "I will send a popular meme trending on a choice of many different subreddits.",
+    description: "LOL",
     usage: "",
-    category: "😃fun😃",
+    category: "😂memes😂",
     cooldown: 2
   }

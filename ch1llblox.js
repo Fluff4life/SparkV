@@ -47,6 +47,7 @@ if (!process.env.TestMode){
 Bot.UserCount = 0
 
 // Collections //
+Bot.Rules = new Collection()
 Bot.categories = new Collection()
 Bot.commands = new Collection()
 Bot.aliases = new Collection()

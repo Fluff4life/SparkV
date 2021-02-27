@@ -43,9 +43,7 @@ function RunWebsite() {
         });
     }
 
-    got(
-      `https://www.reddit.com/r/${request.query.subreddit}/random/.json`
-    ).then((ResponseData) => {
+    got(`https://www.reddit.com/r/${request.query.subreddit}/random/.json`).then((ResponseData) => {
       const [list] = JSON.parse(ResponseData.body);
       const [post] = list.data.children;
 
