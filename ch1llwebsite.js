@@ -8,12 +8,23 @@ console.log("LOADING STARTED - WEBSITE => Now loading website.")
 const got = require("got");
 const express = require("express");
 
+const down = false
+
 // App //
 const app = express();
 app.use(express.static("public"));
 
 // Functions //
 function RunWebsite() {
+  if (process.env.Down === "true"){
+    app.use((req, res, next) => {
+      res.status(500);
+      res.sendFile(__dirname + `/public/html/down.html`);
+    });
+
+    return
+  }
+
   app.get("/home", (request, response) => {
     response.sendFile(__dirname + `/public/html/home.html`);
   });
@@ -28,10 +39,6 @@ function RunWebsite() {
 
   app.get("/", (request, response) => {
     response.redirect("/home");
-  });
-
-  app.get("/maintenance", (request, response) => {
-    response.sendFile(__dirname + `/public/html/down.html`);
   });
 
   app.get("/api/status", (request, response) => {
@@ -70,5 +77,5 @@ RunWebsite();
 
 // Listener //
 const listener = app.listen(process.env.PORT, process.env.hostname, () => {
-  console.log(`SUCCESS - WEBSITE => Server running at http://${process.env.hostname}:${listener.address().port}/ & listening on port ${listener.address().port}.`);
+  console.log(`SUCCESS - WEBSITE => Server running at https://${process.env.hostname}:${listener.address().port} & listening on port ${listener.address().port}.`);
 });
