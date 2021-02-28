@@ -5,6 +5,7 @@ exports.run = async (Bot, msg) => {
 
   const StatsEmbed = new Discord.MessageEmbed()
     .setTitle("Stats")
+    .addField("**Ch1llBlox's Latency**", `\`\`\`${Bot.ws.ping}ms\`\`\``, true)
     .addField("**API Latency**", `\`\`\`${BotMessage.createdAt - msg.createdAt}ms\`\`\``, true)
     .addField("**RAM Usage**", `\`\`\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
     .addField("**Build Versions**", `\`\`\`Node.js: v${process.versions.node}\nDiscord.js: v${Discord.version}\`\`\``, true)
