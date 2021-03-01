@@ -9,6 +9,7 @@ const got = require("got");
 const express = require("express");
 
 const down = false
+const LocalHost = false
 
 // App //
 const app = express();
@@ -76,7 +77,7 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-if (process.env.TestMode) {
+if (LocalHost === "true"){
   const listener = app.listen(process.env.PORT, process.env.hostname, () => {
     console.log(`SUCCESS - WEBSITE => Server running at https://${process.env.hostname}:${listener.address().port} & listening on port ${listener.address().port}.`);
   })
