@@ -68,10 +68,7 @@ function RunWebsite() {
 
     console.log("Testing")
 
-    app.use((req, res, next) => {
-      res.status(404);
-      res.sendFile(__dirname + `/public/html/404.html`);
-    });
+    
   }
 }
 
