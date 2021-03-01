@@ -6,13 +6,13 @@ config({
     path: __dirname + "/.env"
 })
 
-if (process.env.TestMode) {
+if (process.env.TestMode){
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
     require("./ch1llblox");
     require("./ch1llwebsite")
 } else {
-    const ShardManager = new ShardingManager("./ch1llblox", {
+    const ShardManager = new ShardingManager("./ch1llblox.js", {
         totalShards: "auto",
         shardList: "auto",
         mode: "process",
