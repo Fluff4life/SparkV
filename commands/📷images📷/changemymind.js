@@ -9,11 +9,11 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send("Please provide text.")
     }
 
-    const canva = require("canvacord");
+    const canvacord = require("canvacord");
 
     Arguments = Arguments.join()
 
-    const Image = await canva.changemymind(Arguments)
+    const Image = await canvacord.canvas.changemymind(Arguments)
     const ChangeMyMind = new Discord.MessageAttachment(Image, "changemymind.png")
 
     message.channel.send(ChangeMyMind)
