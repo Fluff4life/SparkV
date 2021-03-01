@@ -9,7 +9,7 @@ config({
 if (process.env.TestMode){
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
-    require("./ch1llblox");
+    require("./distubehandler");
     require("./ch1llwebsite")
 } else {
     const ShardManager = new ShardingManager("./ch1llblox.js", {
