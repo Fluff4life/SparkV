@@ -35,6 +35,7 @@
     "noblox.js": "^4.8.4",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
+    "quickmongo": "^3.0.0",
     "urban": "^0.3.2"
   },
   "devDependencies": {

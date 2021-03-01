@@ -1,0 +1,54 @@
+DATA
+
+mongoose.connect(process.env.mongooseURL, {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+}).then(() => {
+   mongoose.set("useFindAndModify", false)
+
+   Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
+}).catch((err) => {
+   Bot.Log("ERROR", "DATABASE FAILURE", `Failed to connect to database. Error: ${err}`)
+   process.exit(0)
+})
+
+ANTISPAM
+
+const mongoose = require("mongoose")
+
+let AntiSpamScema = new mongoose.Schema({
+ GuildID: Number,
+
+ Enabled: Boolean,
+ Limit: Number,
+ Time: Number,
+ Diff: Number
+})
+
+module.exports = mongoose.model("AntiSpam", AntiSpamScema)
+
+PREFIX
+
+const mongoose = require("mongoose")
+
+let PrefixSchema = new mongoose.Schema({
+ GuildID: Number,
+ GuildName: String,
+
+ Prefix: String
+})
+
+module.exports = mongoose.model("Prefix", PrefixSchema)
+
+PUNISHMENTS
+
+const mongoose = require("mongoose")
+
+let PunishmentsScema = new mongoose.Schema({
+ GuildID: Number,
+ UserID: Number,
+
+ Warnings: Array
+})
+
+module.exports = mongoose.model("Punishments", PunishmentsScema)

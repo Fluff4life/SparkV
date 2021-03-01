@@ -48,25 +48,12 @@ Bot.UserCount = 0
 
 // Collections //
 Bot.Rules = new Collection()
+Bot.AntiSpamMap = new Map()
 Bot.categories = new Collection()
 Bot.commands = new Collection()
 Bot.aliases = new Collection()
 Bot.events = new Collection()
 Bot.cooldowns = new Collection()
-
-// Error Handlers //
-process.on("uncaughtException", err => {
-  const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
-
-  console.log(`ERROR => Uncaught Exception error. ${ErrorMessage}`)
-  console.error(err)
-
-  process.exit(1)
-})
-
-process.on("unhandledRejection", err => {
-  console.log(`ERROR => Unhandled rejection error. ${err}`)
-})
 
 // Code //
 console.log("---------- Loading Bot Functions ----------") 

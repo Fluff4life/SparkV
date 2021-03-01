@@ -5,64 +5,67 @@ exports.run = async (Bot, Message) => {
     return;
   }
 
-  const AntiSpamMap = new Map()
-
-  const PrefixData = await require("../database/prefix").findOne({
-    GuildID: Message.guild.id
-  })
-
-  const AntiSpamData = await require("../database/antispam").findOne({
-    GuildID: Message.guild.id
-  })
-
-  if (AntiSpamData) {
-    if (AntiSpamData.Enabled) {
-      const { Limit, Time, Diff } = AntiSpamData
-
-      if (AntiSpamMap.has(Message.author.id)) {
-        const UserData = AntiSpamMap.get(Message.author.id)
-        const { LastMessage, Timer } = UserData
-        var MessageCount = UserData.MessageCount
-        const Difference = Message.createdTimestamp - LastMessage.createdTimestamp
-
-        if (Difference > Diff) {
-          clearTimeout(Timer)
-
-          UserData.MessageCount = 1
-          UserData.LastMessage = Message
-          UserData.LastMessage = Message
-          UserData.Timer = setTimeout(() => {
-            AntiSpamMap.delete(message.author.id)
-          }, Time)
-          AntiSpamMap.set(message.author.id, UserData)
-        } else {
-          ++MessageCount
-
-          if (parseInt(MessageCount) === Limit) {
-            Message.delete()
-            Message.channel.send(`${message.author.name}, please stop spamming! You're now on a cooldown of ${Time} secconds.`)
-          } else {
-            AntUserData.MessageCount = MessageCount
-            AntiSpamMap.set(message.author.id, AntUserData)
-          }
-        }
-      } else {
-        let Timeout = setTimeout(() => {
-          AntiSpamMap.delete(Message.author.id)
-        }, Time)
-        AntiSpamMap.set(message.author.id, {
-          MessageCount: 1,
-          LastMessage: Message,
-          Timer: Timeout
-        })
-      }
-    }
-  } else {
-    // Nothing
+  if (!Message.guild){
+    return;
   }
 
-  if (PrefixData) {
-    if (!Message.content.startsWith(PrefixData.Prefix)) {
+  if (Bot.isURL(Message.content)){
+    Message.delete();
+
+    return Message.reply("Whoa there! You cannot send links here.").then(m => m.delete({ timeout: 5000 }))
+  }
+
+  const AntiSpam = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiSpam`)
+  const AntiSpamMap = Bot.AntiSpamMap
+
+  if (AntiSpam && AntiSpam === "on"){
+    const Limit = 5
+    const Time = 12
+    const Diff = 3
+
+    if (AntiSpamMap.has(Message.author.id)) {
+      const UserData = AntiSpamMap.get(Message.author.id)
+      const { LastMessage, Timer } = UserData
+      var MessageCount = UserData.MessageCount
+      const Difference = Message.createdTimestamp - LastMessage.createdTimestamp
+
+      if (Difference > Diff * 1000) {
+        clearTimeout(Timer)
+
+        UserData.MessageCount = 1
+        UserData.LastMessage = Message
+        UserData.LastMessage = Message
+        UserData.Timer = setTimeout(() => {
+          AntiSpamMap.delete(Message.author.id)
+        }, Time * 1000)
+        AntiSpamMap.set(Message.author.id, UserData)
+      } else {
+        ++MessageCount
+
+        if (parseInt(MessageCount) === Limit) {
+          Message.delete({ timeout: 5 })
+          Message.reply(`please stop spamming! You're now on a cooldown of ${Time} seconds.`).then(m => m.delete({ timeout: 5000 }))
+        } else {
+          UserData.MessageCount = MessageCount
+          AntiSpamMap.set(Message.author.id, UserData)
+        }
+      }
+    } else {
+      let Timeout = setTimeout(() => {
+        AntiSpamMap.delete(Message.author.id)
+      }, Time * 1000)
+      AntiSpamMap.set(Message.author.id, {
+        MessageCount: 1,
+        LastMessage: Message,
+        Timer: Timeout
+      })
+    }
+  }
+
+  const Prefix = await Bot.Database.get(`ServerData_${Message.guild.id}.Prefix`)
+
+  if (Prefix) {
+    if (!Message.content.startsWith(Prefix)) {
       return
     }
   } else {
@@ -71,8 +74,16 @@ exports.run = async (Bot, Message) => {
     }
   }
 
+  const PrefixLength = () => {
+    if (Prefix) {
+      return Prefix.length
+    } else {
+      return process.env.prefix.length
+    }
+  }
+
   const args = Message.content
-    .slice(process.env.prefix.length)
+    .slice(PrefixLength())
     .trim()
     .split(/ +/);
 
@@ -83,11 +94,11 @@ exports.run = async (Bot, Message) => {
     return
   }
 
-  if (process.env.UserBlacklist.includes(Message.author.id)) {
+  if (Message.channel.type === "dm") {
     return
   }
 
-  if (Message.channel.type === "dm") {
+  if (process.env.UserBlacklist.includes(Message.author.id)) {
     return
   }
 
@@ -137,8 +148,8 @@ exports.run = async (Bot, Message) => {
   try {
     commandfile
       .run(Bot, Message, args, command)
-      .then(() => { console.log(`COMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\n\`\`\`\`\`\`\`\`\`\`\`\`\``) })
-  } catch(err) {
-    console.log(`FAILED - FAILEd to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err}\n\`\`\`\`\`\`\`\`\`\`\`\`\``)
+      .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}`) })
+  } catch (err) {
+    console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nFAILED - FAILEd to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err}`)
   }
 }

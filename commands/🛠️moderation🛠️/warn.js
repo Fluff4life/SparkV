@@ -35,25 +35,27 @@ exports.run = async (Bot, message, Arguments) => {
 
     if (Emoji === "✅"){
       // Yes
+      const warningdata = Bot.Database.get(`ServerData_${message.guild.id}.warnings.${User.id}`)
       VerificationMessage.delete()
 
-      let data = await require("../../database/punishments").findOne({
-        GuildID: message.guild.id,
-        UserID: User.id,
-      })
+      if (warningdata.warnings === 3){
+        return message.channel.send(`${message.mentions.users.first().username} already reached their limit of 3 warnings!`)
+      }
 
-      if (data){
-        data.Warnings.unshift({
-          ModeratedUser_Name: User.user.username,
-          Moderator_Name: message.author.user,
-          Moderator_ID: message.author.id,
-          Reason: Reason
+      if (!warningdata.warnings){
+        Bot.Database.set(`ServerData_${message.guild.id}.${User.id}.warnings`, {
+          username: User.user.username,
+          modname: message.author.user,
+          reason: Reason,
+          warnings: 1,
         })
-        
-        User.send("You have been warned in **" + message.guild.name + "** for " + Reason)
-        
-        data.save()
-        
+
+        try {
+          User.send(`You've been warned in **${message.guild.name}** for ${Reason}`)
+        } catch(err) {
+          
+        }
+
         message.channel.send({
           embed: {
             title: `Successfully warned user.`,
@@ -66,22 +68,20 @@ exports.run = async (Bot, message, Arguments) => {
             }
           }
         })
-      } else if (!data){
-        let NewData = new require("../../database/punishments")({
-          GuildID: message.guild.id,
-          UserID: User.Id,
-
-            Warnings: {
-              ModeratedUser_Name: User.user.username,
-              Moderator_Name: message.author.user,
-              Moderator_ID: message.author.id,
-              Reason: Reason
-            }
+      } else if (warnings){
+        Bot.Database.add(`ServerData_${message.guild.id}.${User.id}.warnings`, {
+          username: User.user.username,
+          modname: message.author.user,
+          reason: Reason,
+          warnings: 1,
         })
-        
-        User.send("You have been warned in **" + message.guild.name + "** for " + Reason)
-        
-        NewData.save()
+
+        try {
+          User.send(`You've been warned in **${message.guild.name}** for ${Reason}`)
+        } catch(err) {
+          
+        }
+
         message.channel.send({
           embed: {
             title: `Successfully warned user.`,
@@ -92,7 +92,7 @@ exports.run = async (Bot, message, Arguments) => {
               text: "Warn command successful.",
               icon_url: process.env.bot_logo
             }
-          },
+          }
         })
       }
     } else if (emoji === "❌"){
@@ -110,7 +110,7 @@ exports.config = {
   },
   
 exports.help = {
-    name: "Warn",
+    name: "🆕Warn",
     description: "I will warn a user with the reason you want.",
     usage: "<user> <reason>",
     category: "🛠️moderation🛠️",

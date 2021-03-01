@@ -54,5 +54,5 @@ exports.help = {
   description: "I'll grab the details of any game for you.",
   usage: "<Game ID>",
   cooldown: 10,
-  category: "🔴Roblox🔴"
+  category: "🔴roblox🔴"
 }

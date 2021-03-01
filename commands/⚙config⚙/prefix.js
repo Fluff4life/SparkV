@@ -1,48 +1,20 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const Data = await require("../../database/prefix").findOne({
-    GuildID: message.guild.id,
-  })
-
   if (!message.member.hasPermission("ADMINISTRATOR")) {
     return message.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!Arguments[0]) {
-    return message.channel.send("What do I change the prefix to??").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("You have to tell me the prefix lol.").then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (Arguments[0].lenth > 5) {
+  if (Arguments[0].length > 5) {
     return message.channel.send("Your new prefix must be under 5 characters.").then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (Data) {
-    await require("../../database/prefix").findOneAndRemove({
-      GuildID: message.guild.id,
-    })
-
-    let newData = new require("../../database/prefix")({
-      GuildName: message.guild.name,
-      GuildID: message.guild.id,
-
-      Prefix: Arguments[0],
-    })
-
-    newData.save()
-    message.channel.send(`The server's new prefix is now **${Arguments[0]}**`).then(m => m.delete({ timeout: 5000 }))
-  } else if (!Data) {
-    let newData = new require("../../database/prefix")({
-      GuildName: message.guild.name,
-      GuildID: message.guild.id,
-      
-      Prefix: Arguments[0],
-    })
-
-    newData.save()
-
-    message.channel.send(`The server's new prefix is now **${Arguments[0]}**`).then(m => m.delete({ timeout: 5000 }))
-  }
+  Bot.Database.set(`ServerData_${message.guild.id}.Prefix`, Arguments[0])
+  message.channel.send(`Prefix has successfully been changed to **${Arguments[0]}**!`)
 },
 
   exports.config = {

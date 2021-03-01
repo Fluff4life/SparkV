@@ -29,12 +29,10 @@ exports.run = async (Bot, msg, args) => {
     pages.push(NewEmbed)
 }
 
-  const data = await require("../../database/prefix").findOne({
-    GuildID: msg.guild.id,
-  })
-  
-  if (data){
-    prefix = data.Prefix
+  const Prefix = await Bot.Database.get(`ServerData_${msg.guild.id}.Prefix`)
+
+  if (Prefix){
+    prefix = Prefix
   } else {
     prefix = process.env.prefix
   }

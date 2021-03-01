@@ -1,15 +1,11 @@
 const mongoose = require("mongoose")
+const QuickMongo = require("quickmongo")
+const Database = new QuickMongo.Database(process.env.mongooseURL)
 
 module.exports = async (Bot) => {
-    mongoose.connect(process.env.mongooseURL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }).then(() => {
-        mongoose.set("useFindAndModify", false)
-
+    Database.on("ready", () => {
         Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
-    }).catch((err) => {
-        Bot.Log("ERROR", "DATABASE FAILURE", `Failed to connect to database. Error: ${err}`)
-        process.exit(0)
     })
+
+    Bot.Database = Database
 }

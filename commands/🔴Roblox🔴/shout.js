@@ -70,5 +70,5 @@ exports.help = {
   description: "Ch1ll Bot will shout to any group owned by you!",
   usage: "<What to shout>",
   cooldown: 10,
-  category: "🔴Roblox🔴"
+  category: "🔴roblox🔴"
 }
