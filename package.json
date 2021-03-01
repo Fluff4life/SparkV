@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
+    "canvacord": "^5.1.0",
     "discord-anti-spam": "^2.5.0",
     "discord-tictactoe": "^2.0.7",
     "discord.js": "^12.5.1",
@@ -32,13 +33,13 @@
     "got": "^11.8.1",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
+    "nan": "^2.14.2",
+    "noblox.js": "^4.8.4",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "quickmongo": "^3.0.0",
     "simple-get": "^4.0.0",
-    "urban": "^0.3.2",
-    "canvacord": "^5.1.0",
-    "noblox.js": "^4.8.4"
+    "urban": "^0.3.2"
   },
   "devDependencies": {
     "prettier": "2.2.1"
