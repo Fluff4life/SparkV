@@ -16,4 +16,4 @@ assignees: ""
 *Please include screenshots if possible*
 
 **Additional Information**
-**Add any other information here**
+*Add any other information here*
