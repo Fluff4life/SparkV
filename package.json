@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "download": "npm i --force"
+    "download": "npm install --package-lock-only --no-package-lock"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,9 @@
     "npm": "6.14.11"
   },
   "dependencies": {
+    "@discordjs/opus": "github:discordjs/opus",
+    "canvacord": "^5.1.0",
+    "canvas": "^2.7.0",
     "discord-anti-spam": "^2.5.0",
     "discord-tictactoe": "^2.0.8",
     "discord.js": "^12.5.1",
@@ -25,13 +28,18 @@
     "distube": "^2.8.10",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "ffmpeg-static": "^4.2.7",
     "figlet": "^1.5.0",
     "fs": "0.0.1-security",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.18",
+    "noblox.js": "^4.8.4",
     "node-fetch": "^2.6.1",
+    "path": "^0.12.7",
     "quickmongo": "^3.0.2",
-    "urban": "^0.3.2"
+    "urban": "^0.3.2",
+    "youtube-dl": "^3.5.0",
+    "ytdl-core": "^4.5.0"
   },
   "devDependencies": {
     "prettier": "2.2.1"
