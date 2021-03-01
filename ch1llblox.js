@@ -143,10 +143,12 @@ readdir("./commands", (err, cats) => {
   })
 })
 
+/*
 console.log("---------- Logging into Roblox ----------") 
 if (!process.env.TestMode){
   Noblox(Bot)
 }
+*/
 
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
