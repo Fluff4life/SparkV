@@ -27,25 +27,25 @@ function RunWebsite() {
     app.get("/home", (request, response) => {
       response.sendFile(__dirname + `/public/html/home.html`);
     });
-  
+
     app.get("/ch1llstudios", (request, response) => {
       response.sendFile(__dirname + `/public/html/cshome.html`);
     });
-  
+
     app.get("/ch1llblox", (request, response) => {
       response.sendFile(__dirname + `/public/html/ch1llblox.html`);
     });
-  
+
     app.get("/", (request, response) => {
       response.redirect("/home");
     });
-  
+
     app.get("/api/status", (request, response) => {
       response.status(200).send({ status: 200, message: "OK" });
     });
 
     console.log("Hasn't crashed.")
-  
+
     if (process.env.BotOnline === "true") {
       console.log("True")
 
@@ -54,7 +54,7 @@ function RunWebsite() {
       });
 
       console.log("Success")
-    } else if (process.env.BotOnline === "false") {
+    } else {
       console.log("False")
 
       app.get("/api/ch1llblox/status", (request, response) => {
@@ -64,16 +64,10 @@ function RunWebsite() {
       });
 
       console.log("TEst")
-    } else {
-      console.log("WARNING => Unknown error gettings status of Ch1llBlox.");
-  
-      app.get("/api/ch1llblox/status", (request, response) => {
-        response
-          .status(500)
-          .send({ status: 500, message: "service unavailable" });
-      });
     }
-  
+
+    console.log("Testing")
+
     app.use((req, res, next) => {
       res.status(404);
       res.sendFile(__dirname + `/public/html/404.html`);
