@@ -46,16 +46,24 @@ function RunWebsite() {
 
     console.log("Hasn't crashed.")
   
-    if (process.env.BotOnline == "true") {
+    if (process.env.BotOnline === "true") {
+      console.log("True")
+
       app.get("/api/ch1llblox/status", (request, response) => {
         response.status(200).send({ status: 200, message: "OK" });
       });
-    } else if (process.env.BotOnline == "false") {
+
+      console.log("Success")
+    } else if (process.env.BotOnline === "false") {
+      console.log("False")
+
       app.get("/api/ch1llblox/status", (request, response) => {
         response
           .status(503)
           .send({ status: 503, message: "down for maintenance" });
       });
+
+      console.log("TEst")
     } else {
       console.log("WARNING => Unknown error gettings status of Ch1llBlox.");
   
