@@ -16,7 +16,7 @@ app.use(express.static("public"));
 
 // Functions //
 function RunWebsite() {
-  if (process.env.Down === "true"){
+  if (process.env.Down === "true") {
     app.use((req, res, next) => {
       res.status(500);
       res.sendFile(__dirname + `/public/html/down.html`);
@@ -76,6 +76,8 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-const listener = app.listen(process.env.PORT, process.env.hostname, () => {
-  console.log(`SUCCESS - WEBSITE => Server running at https://${process.env.hostname}:${listener.address().port} & listening on port ${listener.address().port}.`);
-});
+if (process.env.TestMode) {
+  const listener = app.listen(process.env.PORT, process.env.hostname, () => {
+    console.log(`SUCCESS - WEBSITE => Server running at https://${process.env.hostname}:${listener.address().port} & listening on port ${listener.address().port}.`);
+  })
+}
