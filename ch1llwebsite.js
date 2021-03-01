@@ -8,7 +8,6 @@ console.log("LOADING STARTED - WEBSITE => Now loading website.")
 const got = require("got");
 const express = require("express");
 
-const down = false
 const LocalHost = false
 
 // App //

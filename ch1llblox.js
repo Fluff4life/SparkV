@@ -38,11 +38,11 @@ require("./database/connector")(Bot)
 
 // Modules //
 const functions = require("./modules/functions")
-const Distube = require("./dependencyhandlers/distubehandler")
+const Distube = require("./modulehandlers/distubehandler")
 
-if (!process.env.TestMode){
-  const Noblox = require("./dependencyhandlers/noblox")
-}
+/* if (!process.env.TestMode){
+  const Noblox = require("./modulehandlers/noblox")
+} */
 
 // Get User Count //
 Bot.UserCount = 0
