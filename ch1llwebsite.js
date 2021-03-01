@@ -77,8 +77,12 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-/* if (LocalHost === "true"){
+if (LocalHost === "true"){
   const listener = app.listen(process.env.PORT, process.env.hostname, () => {
     console.log(`SUCCESS - WEBSITE => Server running at https://${process.env.hostname}:${listener.address().port} & listening on port ${listener.address().port}.`);
   })
-} */
+} else {
+  const listener = app.listen(process.env.PORT, () => {
+    console.log(`SUCCESS - WEBSITE => Server listening on port ${listener.address().port}.`);
+  })
+}
