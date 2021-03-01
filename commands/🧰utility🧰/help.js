@@ -46,29 +46,17 @@ exports.run = async (Bot, msg, args) => {
     const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-      return msg.reply("That's not a valid command!");
+      return msg.reply("that command doesn't exist or no longer exists!");
     }
 
     const CommandHelpEmbed = new Discord.MessageEmbed()
-      .setTitle(`${command.help.name}`)
+      .setTitle(`\`\`\`${prefix}${command.help.name} ${command.help.usage}\`\`\``)
       .setDescription(command.help.description)
       .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
-      .addField("**Aliases:**", `${command.config.aliases.join("\n")}`, true)
-      .addField(
-        "**Usage:**",
-        `${prefix}${command.help.name} ${command.help.usage}`,
-        true
-      )
-      .addField("**Guild Only:**", `${command.config.guild_only}`, true)
-      .addField(
-        "**Cooldown:**",
-        `${command.help.cooldown || 3} second(s)`,
-        true
-      )
-      .setFooter(
-        `${prefix}Help to get a list of all commands.`,
-        process.env.bot_logo
-      )
+      .addField("**ALIASES**", `\`\`\`${command.config.aliases.join(",\n")}\`\`\``, true)
+      .addField("**CATEGORY**", `\`\`\`${command.help.category}\`\`\``, true)
+      .addField("**COOLDOWN**", `\`\`\`${command.help.cooldown || 3} second(s)\`\`\``, true)
+      .setFooter(`${prefix}Help to get a list of all commands.`, process.env.bot_logo)
       .setColor("#0099ff");
 
     return msg.channel.send(CommandHelpEmbed)

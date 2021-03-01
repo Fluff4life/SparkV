@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KingCh1ll/Ch1ll"
+    "url": "https://github.com/KingCh1ll/Ch1llTech"
   },
   "author": "KingCh1ll#3616",
   "license": "MIT",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "canvacord": "^5.1.0",
+    "discord-anti-spam": "^2.5.0",
     "discord-tictactoe": "^2.0.7",
     "discord.js": "^12.5.1",
     "discord.js-pagination": "^1.0.3",
