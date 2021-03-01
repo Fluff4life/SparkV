@@ -27,7 +27,6 @@
     "express": "^4.17.1",
     "figlet": "^1.5.0",
     "fs": "0.0.1-security",
-    "got": "^11.8.2",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.18",
     "node-fetch": "^2.6.1",
