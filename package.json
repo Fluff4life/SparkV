@@ -36,7 +36,9 @@
     "path": "^0.12.7",
     "quickmongo": "^3.0.0",
     "simple-get": "^4.0.0",
-    "urban": "^0.3.2"
+    "urban": "^0.3.2",
+    "canvacord": "^5.1.0",
+    "noblox.js": "^4.8.4"
   },
   "devDependencies": {
     "prettier": "2.2.1"
