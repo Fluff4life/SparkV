@@ -20,7 +20,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Bruh he has under ❄250. Leave them alone!")
   }
 
-  const Result = results[Math.floor(Math.random() * Result.length)]
+  const Result = results[Math.floor(Math.random() * results.length)]
 
   if (!Ch1llBucks) {
     Ch1llBucks = 0
