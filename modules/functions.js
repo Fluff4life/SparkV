@@ -67,7 +67,7 @@ module.exports = async (bot) => {
     return CacheGuildCounts.reduce((p, n) => p + n, 0)
   }
 
-  bot.GetUserCount = function(){
+  bot.GetUserCount = async function(){
     return await bot.guilds.cache.reduce((res, guild) => res + guild.memberCount, 0)
   }
 
