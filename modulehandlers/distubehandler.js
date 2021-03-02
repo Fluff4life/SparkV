@@ -13,11 +13,11 @@ module.exports = async (Bot) => {
     .on("playSong", (message, queue, song) => {
       const card = new canvacord.Spotify()
         .setTitle(song.name)
-        .setAuthor(data.author)
-        .setAlbum(data.album)
+        .setAuthor(song.author)
+        .setAlbum(song.album)
         .setImage(image)
-        .setStartTimestamp(data.start)
-        .setEndTimestamp(data.end)
+        .setStartTimestamp(song.start)
+        .setEndTimestamp(song.end)
         
       card.build()
         .then(buffer => {
