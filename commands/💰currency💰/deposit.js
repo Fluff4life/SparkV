@@ -19,8 +19,6 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You need to tell me how much you want me to deposit. You can say all if you want all of your Ch1ll Bucks in your bank.")
   }
 
-  Arguments[0] = parseInt(Arguments[0])
-
   if (message.content.includes("-")) {
     return message.channel.send("You can't deposit negitive Ch1llBucks lol.")
   }
@@ -39,7 +37,7 @@ exports.run = async (Bot, message, Arguments) => {
 
     message.channel.send(`Deposited ❄**${Arguments[0]}** into bank.`)
   } else {
-    if (!Arguments[0]) {
+    if (parseInt(!Arguments[0])) {
       return message.channel.send("Bruh please say a number.")
     }
 
@@ -51,10 +49,10 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send("Bruh you don't have enough Ch1llBucks to deposit that much into your bank.")
     }
 
-    await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Arguments[0])
-    await Bot.Database.add(`UserData_${User.id}.bank`, Arguments[0])
+    await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, parseInt(Arguments[0]))
+    await Bot.Database.add(`UserData_${User.id}.bank`, parseInt(Arguments[0]))
 
-    message.channel.send(`Deposited ❄${Arguments[0]} into bank!`)
+    message.channel.send(`Deposited ❄${parseInt(Arguments[0])} into bank!`)
   }
 },
 
