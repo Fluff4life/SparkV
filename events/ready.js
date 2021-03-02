@@ -67,5 +67,5 @@ exports.run = async (Bot) => {
     Bot.UserCount = Bot.UserCount + guild.memberCount
   }
 
-  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.guilds.cache.size}\nUsers: ${Bot.UserCount}`)
+  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.guilds.cache.size}\nUsers: ${Bot.GetUserCount()}`)
 }
