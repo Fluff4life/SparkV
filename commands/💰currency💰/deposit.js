@@ -26,13 +26,9 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Bruh please say a number.")
   }
 
-  if (Arguments[0] > BankMax) {
-    return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
-  }
+  console.log(Arguments[0])
 
-  if (Arguments[0] > Ch1llBucks) {
-    return message.channel.send("You don't have enough Ch1llBucks to deposit that much into your bank.")
-  }
+  
 
   await Bot.Database.add(`UserData_${User.id}.bank`, Arguments[0])
   await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Arguments[0])
