@@ -19,13 +19,13 @@ exports.run = async (Bot, message, Arguments) => {
         fields: [
           {
             name: `Skipped To`,
-            value: queue.songs[1].name,
+            value: queue.songs[1],
             inline: true
           }
         ],
 
         thumbnail: {
-          url: queue.songs[1].thumbnail
+          url: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/YouTube.jpg"
         },
         
         footer: {
