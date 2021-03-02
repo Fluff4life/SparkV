@@ -83,13 +83,13 @@ exports.run = async (Bot, Message) => {
 
   const Now = Date.now();
   const Timestamps = Bot.cooldowns.get(command.name);
-  const CooldownAmount = (command.cooldown || 3) * 1000;
+  const CooldownAmount = ((command.cooldown) * 1000)
 
   if (Timestamps.has(Message.author.id)) {
     const ExpireTime = Timestamps.get(Message.author.id) + CooldownAmount;
 
     if (Now < ExpireTime) {
-      const TimeLeft = (ExpireTime - Now) / 1000;
+      const TimeLeft = ((ExpireTime - Now) / 1000)
 
       return Message.reply({
         embed: {
