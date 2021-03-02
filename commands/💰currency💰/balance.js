@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${user.id}.ch1llbucks`)
-  var Bank = await Bot.Database.get(`UserData_${user.id}.bank`)
+  var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
+  var Bank = await Bot.Database.get(`UserData_${User.id}.bank`)
 
   if (!Ch1llBucks){
     Ch1llBucks = 0

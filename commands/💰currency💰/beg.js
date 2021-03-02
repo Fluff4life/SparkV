@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 exports.run = async (Bot, message, Arguments) => {
   const User = message.author
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${user.id}.ch1llbucks`)
-  var Multiplier = await Bot.Database.get(`UserData_${user.id}.multiplier`)
+  var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
+  var Multiplier = await Bot.Database.get(`UserData_${User.id}.multiplier`)
   const RandomAmmount = Math.floor(Math.random() * 30) + 1
 
   if (!Ch1llBucks){
@@ -16,8 +16,8 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const Ammount = RandomAmmount * Multiplier
-  
-  await Bot.Database.add(`UserData_${user.id}.ch1llbucks`, Ammount)
+
+  await Bot.Database.add(`UserData_${User.id}.ch1llbucks`, Ammount)
   message.channel.send(`You begged and recieved ${Ammount} Ch1llBucks!`)
 },
 
