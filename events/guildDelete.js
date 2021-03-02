@@ -5,6 +5,5 @@ exports.run = async(Bot, guild) => {
     return
   }
 
-  console.log(`New guild removed: ${guild.name} (Id: ${guild.id})`)
-  Bot.TotalMembers = Bot.TotalMembers - guild.memberCount
+  console.log(`Guild removed: ${guild.name} (Id: ${guild.id})`)
 }

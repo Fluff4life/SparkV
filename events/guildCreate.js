@@ -27,12 +27,11 @@ exports.run = async(Bot, guild) => {
 
   if (guild.systemChannel && guild.systemChannel.permissionsFor(Bot.user).has("SEND_MESSAGES")){
     try {
-      await guild.systemChannel.send("Hi! My name's Ch1lBlox. I have over 50+ commands and more are constantly being added! Simply use the command ^Help to get a list of my commands. See you around!")
+      await guild.systemChannel.send("Hi! My name's Ch1llBlox. I'm a ch1ll bot with over 50+ commands and more are constantly being added! Simply use the command ^Help to get a list of my commands. See you around!")
     } catch {
       console.log(`Failed to send message to ${guild.name} (${guild.id})!`)
     }
   }
 
   console.log(`New guild added: ${guild.name} (Id: ${guild.id})`)
-  Bot.TotalMembers = Bot.TotalMembers - guild.memberCount
 }

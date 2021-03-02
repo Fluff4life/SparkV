@@ -39,6 +39,7 @@
     "path": "^0.12.7",
     "quickmongo": "^3.0.2",
     "urban": "^0.3.2",
+    "yargs-parser": "^13.1.2",
     "youtube-dl": "^3.5.0",
     "ytdl-core": "^4.5.0"
   },

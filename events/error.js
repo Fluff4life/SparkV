@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
 
 exports.run = async (Bot, event) => {
-  console.log(`ERROR! => ${err.stack}`)
+  console.log(`ERROR! => ${event.stack}`)
 }
