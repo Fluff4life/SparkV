@@ -13,7 +13,7 @@ exports.run = async (Bot, message, Arguments) => {
 
     Arguments = Arguments.join()
 
-    const Image = await canvacord.canvas.changemymind(Arguments)
+    const Image = await canvacord.Canvas.changemymind(Arguments)
     const ChangeMyMind = new Discord.MessageAttachment(Image, "changemymind.png")
 
     message.channel.send(ChangeMyMind)
