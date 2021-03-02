@@ -22,19 +22,19 @@ module.exports = async (Bot) => {
           fields: [
             {
               name: `▶Views`,
-              value: song.views,
+              value: `\`\`\`${song.views}\`\`\``,
               inline: true
             },
 
             {
               name: `👍Likes`,
-              value: song.likes,
+              value: `\`\`\`${song.likes}\`\`\``,
               inline: true
             },
 
             {
               name: `👎Dislikes`,
-              value: song.dislikes,
+              value: `\`\`\`${song.dislikes}\`\`\``,
               inline: true
             },
           ],
@@ -44,7 +44,7 @@ module.exports = async (Bot) => {
           },
 
           footer: {
-            text: `😀 ${song.formattedDuration}`,
+            text: `😀${song.formattedDuration}`,
             icon_url: process.env.bot_logo
           },
         }
@@ -74,7 +74,7 @@ module.exports = async (Bot) => {
 
             {
               name: `Queue`,
-              value: `${queue.songs.length} songs - \`${queue.duration}\``,
+              value: `\`\`\`${queue.songs.length} songs - ${queue.duration}\`\`\``,
               inline: true,
             },
           ],
