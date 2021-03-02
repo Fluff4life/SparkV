@@ -23,37 +23,22 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You can't deposit negitive Ch1llBucks lol.")
   }
 
-  if (Arguments[0] == "all") {
-    const Correct = () => {
-      if (Arguments[0] > BankMax) {
-        return BankMax
-      } else {
-        return Arguments[0]
-      }
-    }
-
-    await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Correct())
-    await Bot.Database.add(`UserData_${User.id}.bank`, Correct())
-
-    message.channel.send(`Deposited ❄**${Arguments[0]}** into bank.`)
-  } else {
-    if (parseInt(!Arguments[0])) {
-      return message.channel.send("Bruh please say a number.")
-    }
-
-    if (Arguments[0] > BankMax) {
-      return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
-    }
-
-    if (Arguments[0] > Ch1llBucks) {
-      return message.channel.send("Bruh you don't have enough Ch1llBucks to deposit that much into your bank.")
-    }
-
-    await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, parseInt(Arguments[0]))
-    await Bot.Database.add(`UserData_${User.id}.bank`, parseInt(Arguments[0]))
-
-    message.channel.send(`Deposited ❄${parseInt(Arguments[0])} into bank!`)
+  if (!parseInt(Arguments[0])) {
+    return message.channel.send("Bruh please say a number.")
   }
+
+  if (Arguments[0] > BankMax) {
+    return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
+  }
+
+  if (Arguments[0] > Ch1llBucks) {
+    return message.channel.send("You don't have enough Ch1llBucks to deposit that much into your bank.")
+  }
+
+  await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, parseInt(Arguments[0]))
+  await Bot.Database.add(`UserData_${User.id}.bank`, parseInt(Arguments[0]))
+
+  message.channel.send(`Deposited ❄${parseInt(Arguments[0])} into bank!`)
 },
 
   exports.config = {

@@ -76,7 +76,7 @@ module.exports = async (Bot) => {
               name: `Queue`,
               value: `\`\`\`${queue.songs.length} songs - ${queue.duration}\`\`\``,
               inline: true,
-            },
+            }
           ],
 
           thumbnail: {

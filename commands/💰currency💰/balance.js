@@ -15,7 +15,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const BalanceEmbed = new Discord.MessageEmbed()
-    .setTitle(`**${User.name}'s Balance**`)
+    .setTitle(`**${User}'s Balance**`)
     .setDescription(`Wallet: ❄${Ch1llBucks}\nBank: ❄${Bank}\nNet Worth: ${Ch1llBucks + Bank}`)
     .setColor("#0099ff")
     .setTimestamp()
