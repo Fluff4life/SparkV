@@ -43,10 +43,6 @@ module.exports = async (Bot) => {
             url: song.thumbnail
           },
 
-          image: {
-            url: card,
-          },
-
           footer: {
             text: `😀 ${song.formattedDuration}`,
             icon_url: process.env.bot_logo

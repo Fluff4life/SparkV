@@ -35,5 +35,5 @@ exports.help = {
   description: "View your balance.",
   usage: "<optional user>",
   category: "💰currency💰",
-  cooldown: 2
+  cooldown: 2.0
 }

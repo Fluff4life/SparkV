@@ -5,7 +5,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
   var Multiplier = await Bot.Database.get(`UserData_${User.id}.multiplier`)
-  const RandomAmmount = Math.floor(Math.random() * 30) + 1
+  const RandomAmmount = Math.floor(Math.random() * 500) + 1
 
   if (!Ch1llBucks){
     Ch1llBucks = 0
@@ -33,5 +33,5 @@ exports.help = {
   description: "Beg for coins.",
   usage: "",
   category: "💰currency💰",
-  cooldown: 45
+  cooldown: 45.0
 }

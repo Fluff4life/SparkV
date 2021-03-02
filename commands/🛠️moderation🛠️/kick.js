@@ -16,7 +16,7 @@ exports.run = async (Bot, msg, Arguments) => {
     return msg.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (UserToKick.id === message.author.id){
+  if (UserToKick.id === msg.author.id){
     return msg.channel.send("❌You cannot kick yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
@@ -29,15 +29,15 @@ exports.run = async (Bot, msg, Arguments) => {
   .setDescription("Are you sure you want to do this?")
   .setFooter("Canceling in 60 seconds if no emoji reacted.")
 
-  await message.channel.send(VerificationEmbed).then(async msg => {
-    const Emoji = await Bot.PromptMessage(msg, message.author, ["✅", "❌"], 60)
+  await msg.channel.send(VerificationEmbed).then(async msg => {
+    const Emoji = await Bot.PromptMessage(msg, msg.author, ["✅", "❌"], 60)
 
     if (Emoji === "✅"){
       // Yes
       msg.delete()
 
       UserToKick.send(`You have been kicked from ${guild.name}. Reason: ${ReasonForKick}.`).catch((err) => {
-        message.channel.send(`Failed to kick. Error: ${err}`)
+        msg.channel.send(`Failed to kick. Error: ${err}`)
       })
 
       UserToKick.kick()
@@ -56,7 +56,7 @@ exports.run = async (Bot, msg, Arguments) => {
     } else if (emoji === "❌"){
       msg.delete()
 
-      message.channel.send("❌Kick canceled.").then(m => m.delete({ timeout: 10000 }))
+      msg.channel.send("❌Kick canceled.").then(m => m.delete({ timeout: 10000 }))
     }
   })   
 },

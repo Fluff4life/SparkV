@@ -16,7 +16,7 @@ exports.run = async (Bot, msg, Arguments) => {
     return msg.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (UserToBan.id === message.author.id){
+  if (UserToBan.id === msg.author.id){
     return msg.channel.send("❌You cannot ban yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
@@ -29,15 +29,15 @@ exports.run = async (Bot, msg, Arguments) => {
   .setDescription("Are you sure you want to do this?")
   .setFooter("Canceling in 60 seconds if no emoji reacted.")
 
-  await message.channel.send(VerificationEmbed).then(async msg => {
-    const Emoji = await Bot.PromptMessage(msg, message.author, ["✅", "❌"], 60)
+  await msg.channel.send(VerificationEmbed).then(async msg => {
+    const Emoji = await Bot.PromptMessage(msg, msg.author, ["✅", "❌"], 60)
 
     if (Emoji === "✅"){
       // Yes
       msg.delete()
 
       UserToBan.send(`You have been banned from ${guild.name}. Reason: ${ReasonForBan}.`).catch((err) => {
-        message.channel.send(`Failed to ban. Error: ${err}`)
+        msg.channel.send(`Failed to ban. Error: ${err}`)
       })
 
       UserToBan.ban({
@@ -47,7 +47,7 @@ exports.run = async (Bot, msg, Arguments) => {
       const BanEmbed = new MessageEmbed()
       .setTitle("Ban Command")
       .setDescription(`*✅Successfully Banned <@${UserToBan.id}>(${UserToBan.id})✅*`)
-      .setThumbnail(message.author.displayAvatarURL)
+      .setThumbnail(msg.author.displayAvatarURL)
       .addField("Moderator/Admin: ", `${msg.author.tag}`)
       .addField("Reason: ", ReasonForBan)
       .setFooter(`${process.env.prefix}Kick to kick a player.`)
@@ -58,7 +58,7 @@ exports.run = async (Bot, msg, Arguments) => {
     } else if (emoji === "❌"){
       msg.delete()
 
-      message.channel.send("❌Ban canceled.").then(m => m.delete({ timeout: 10000 }))
+      msg.channel.send("❌Ban canceled.").then(m => m.delete({ timeout: 10000 }))
     }
   })  
 },
