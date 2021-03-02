@@ -13,11 +13,23 @@ exports.run = async (Bot, message, Arguments) => {
     message.channel.send({
       embed: {
         title: `Skipped Song`,
-        description: `Skipped Song`,
+        description: `Skipped currently playing song.`,
         color: "#0099ff",
+
+        fields: [
+          {
+            name: `Skipped To`,
+            value: queue.songs[1].name,
+            inline: true
+          }
+        ],
+
+        thumbnail: {
+          url: queue.songs[1].thumbnail
+        },
         
         footer: {
-          text: `Skipped song.`,
+          text: `Skipped song`,
           icon_url: process.env.bot_logo
         }
       }

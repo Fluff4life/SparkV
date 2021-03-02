@@ -13,7 +13,7 @@ module.exports = async (Bot) => {
     .on("playSong", (message, queue, song) => {
       message.channel.send({
         embed: {
-          title: `🎵 Now Playing ${song.name}🎵`,
+          title: `🎵 Now Playing ${song.name} 🎵`,
           description: `Added by ${song.user || "unknown"}`,
           color: "#0099ff",
 
@@ -23,19 +23,19 @@ module.exports = async (Bot) => {
             {
               name: `▶Views`,
               value: song.views,
-              inline: true,
+              inline: true
             },
 
             {
               name: `👍Likes`,
               value: song.likes,
-              inline: true,
+              inline: true
             },
 
             {
               name: `👎Dislikes`,
               value: song.dislikes,
-              inline: true,
+              inline: true
             },
           ],
 
@@ -53,18 +53,38 @@ module.exports = async (Bot) => {
     .on("addSong", (message, queue, song) => {
       message.channel.send({
         embed: {
-          title: `Added ${song.name} to queue`,
-          description: `Added by ${song.user || "unknown"}`,
+          title: `Added To Queue`,
+          description: song.name,
           color: "#0099ff",
 
           url: song.url,
+
+          fields: [
+            {
+              name: `Requester`,
+              value: song.user,
+              inline: true,
+            },
+
+            {
+              name: `Duration`,
+              value: `\`\`\`${song.formattedDuration}\`\`\``,
+              inline: true,
+            },
+
+            {
+              name: `Queue`,
+              value: `${queue.songs.length} songs - \`${queue.duration}\``,
+              inline: true,
+            },
+          ],
 
           thumbnail: {
             url: song.thumbnail
           },
 
           footer: {
-            text: `\`${song.formattedDuration}\``,
+            text: `${song.formattedDuration}`,
             icon_url: process.env.bot_logo
           },
         }
@@ -84,7 +104,7 @@ module.exports = async (Bot) => {
           url: song.url,
 
           footer: {
-            text: `(${playlist.songs.length} songs) - Now Playing ${song.name} (\`${song.formattedDuration}\)`,
+            text: `(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`,
             icon_url: process.env.bot_logo
           },
         }
@@ -98,7 +118,7 @@ module.exports = async (Bot) => {
           color: "#0099ff",
 
           footer: {
-            text: `${playlist.songs.length} songs (\`${playlist.formattedDuration}\`)`,
+            text: `${playlist.songs.length} songs (${playlist.formattedDuration})`,
             icon_url: process.env.bot_logo
           },
         }
@@ -130,9 +150,8 @@ module.exports = async (Bot) => {
       pagination(message, Pages, ["⬅", "➡"])
     })
     .on("seachCancel", (message) => {
-      message.channel.send(`Seaching canceled.`)
+      message.channel.send(`Searching canceled.`)
     })
-
     .on("empty", (message) => {
       message.channel.send("Voice chat is empty. Leaving the VC.").then(m => m.delete({ timeout: 2000 }))
     })
