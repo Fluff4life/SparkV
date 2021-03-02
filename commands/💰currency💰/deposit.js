@@ -4,8 +4,7 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.author
 
   var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
-  var Bank = await Bot.Database.get(`UserData_${User.id}.bank`)
-  var BankMax = await Bot.Database.get(`UserData_${User.id}.maxbank`)
+  var BankMax = await Bot.Database.get(`UserData_${User.id}.bankmax`)
 
   if (!Ch1llBucks) {
     return message.channel.send("Bruh you have no Ch1llBucks.")
@@ -35,8 +34,8 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You don't have enough Ch1llBucks to deposit that much into your bank.")
   }
 
-  await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Arguments[0])
   await Bot.Database.add(`UserData_${User.id}.bank`, Arguments[0])
+  await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Arguments[0])
 
   message.channel.send(`Deposited ❄${Arguments[0]} into bank!`)
 },
