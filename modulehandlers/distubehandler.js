@@ -15,7 +15,7 @@ module.exports = async (Bot) => {
         .setTitle(song.name)
         .setAuthor("Unknown")
         .setAlbum("Unknown")
-        .setImage(image)
+        .setImage(song.thumbnail)
         .setStartTimestamp(queue.currentTime)
         .setEndTimestamp(queue.beginTime)
         
