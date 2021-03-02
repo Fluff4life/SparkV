@@ -19,6 +19,12 @@ exports.run = async (Bot) => {
       type: "WATCHING",
       status: "online"
     },
+
+    {
+      text: `Watching over ${Bot.GetUserCount()} users!`,
+      type: "WATCHING",
+      status: "online"
+    }
   ]
 
   Bot.setInterval(() => {

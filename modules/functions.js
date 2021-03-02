@@ -61,6 +61,16 @@ module.exports = async (bot) => {
       }
   }
 
+  bot.GetServerCount = async function(){
+    const CacheGuildCounts = await bot.shard.fetchClientValues("guilds.cache.size")
+
+    return CacheGuildCounts.reduce((p, n) => p + n, 0)
+  }
+
+  bot.GetUserCount = async function(){
+    return Bot.guilds.cache.reduce((res, guild) => res + guild.memberCount, 0)
+  }
+
   bot.Debounce = function(func, wait, immediate){
     var timeout
   

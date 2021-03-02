@@ -11,20 +11,6 @@ module.exports = async (Bot) => {
 
   Bot.distube
     .on("playSong", (message, queue, song) => {
-      const card = new canvacord.Spotify()
-        .setTitle(song.name)
-        .setAuthor("Unknown")
-        .setAlbum("Unknown")
-        .setImage(song.thumbnail)
-        .setStartTimestamp(queue.currentTime)
-        .setEndTimestamp(queue.beginTime)
-        
-      card.build()
-        .then(buffer => {
-          canvacord.write(buffer, "spotify.png");
-          console.log(buffer)
-        });
-
       message.channel.send({
         embed: {
           title: `🎵 Now Playing ${song.name}🎵`,
