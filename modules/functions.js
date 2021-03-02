@@ -68,7 +68,7 @@ module.exports = async (bot) => {
   }
 
   bot.GetUserCount = async function(){
-    return Bot.guilds.cache.reduce((res, guild) => res + guild.memberCount, 0)
+    return bot.guilds.cache.reduce((res, guild) => res + guild.memberCount, 0)
   }
 
   bot.Debounce = function(func, wait, immediate){
