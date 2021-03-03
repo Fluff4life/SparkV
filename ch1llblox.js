@@ -40,9 +40,9 @@ require("./database/connector")(Bot)
 const functions = require("./modules/functions")
 const Distube = require("./modulehandlers/distubehandler")
 
-/* if (!process.env.TestMode){
+if (!process.env.TestMode){
   const Noblox = require("./modulehandlers/noblox")
-} */
+}
 
 // Get User Count //
 Bot.UserCount = 0
@@ -143,12 +143,10 @@ readdir("./commands", (err, cats) => {
   })
 })
 
-/*
 console.log("---------- Logging into Roblox ----------") 
 if (!process.env.TestMode){
-  Noblox(Bot)
+  Noblox(Bot, Bot.Database.get("BotData.RobloxCookie"))
 }
-*/
 
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)

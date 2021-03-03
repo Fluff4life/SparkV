@@ -22,24 +22,26 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You can't deposit negitive Ch1llBucks lol.")
   }
 
-  if (!parseFloat(Arguments[0])) {
+  if (!parseInt(Arguments[0])) {
     return message.channel.send("Bruh please say a number.")
   }
 
-  console.log(Arguments[0])
+  console.log(parseInt(Arguments[0]))
 
-  if (parseFloat(Arguments[0]) > BankMax) {
+  if (parseInt(Arguments[0]) > BankMax) {
     return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
   }
 
-  if (parseFloat(Arguments[0]) > Ch1llBucks) {
+  if (parseInt(Arguments[0]) > Ch1llBucks) {
     return message.channel.send("You don't have enough Ch1llBucks to deposit that much into your bank.")
   }
 
-  await Bot.Database.add(`UserData_${User.id}.bank`, parseFloat(Arguments[0]))
-  await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, parseFloat(Arguments[0]))
+  const Ammount = 
 
-  message.channel.send(`Deposited ❄${Arguments[0]} into bank!`)
+  await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, Ammount)
+  await Bot.Database.add(`UserData_${User.id}.bank`, Ammount)
+
+  message.channel.send(`Deposited ❄${parseInt(Arguments[0])} into bank!`)
 },
 
   exports.config = {
@@ -52,7 +54,7 @@ exports.run = async (Bot, message, Arguments) => {
   exports.help = {
     name: "Deposit",
     description: "Deposit your Ch1llBucks into your bank.",
-    usage: "<optional user>",
+    usage: "<Amount>",
     category: "💰currency💰",
     cooldown: 2.0
   }

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message) => {
+exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
 
   if (process.env.TestMode) {
@@ -9,28 +9,25 @@ exports.run = async (Bot, message) => {
 
   const canvacord = require("canvacord");
 
-  const Avatar = User.displayAvatarURL({
-    dynamic: false,
-    format: "png"
-  })
+  Arguments = Arguments.join(" ")
 
-  const Image = await canvacord.Canvas.trigger(Avatar)
-  const Triggered = new Discord.MessageAttachment(Image, "triggered.gif")
+  const Image = await canvacord.Canvas.ohno(Arguments)
+  const OhNo = new Discord.MessageAttachment(Image, "ohno.png")
 
-  message.channel.send(Triggered)
+  message.channel.send(OhNo)
 },
 
   exports.config = {
     enabled: true,
     guild_only: true,
-    aliases: ["mad"],
+    aliases: ["cmm"],
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
   },
 
   exports.help = {
-    name: "Trigger",
-    description: "Wow you are very angry!",
-    usage: "",
+    name: "ChangeMyMind",
+    description: "Change my mind meme.",
+    usage: "<text>",
     category: "📷images📷",
     cooldown: 2
   }
