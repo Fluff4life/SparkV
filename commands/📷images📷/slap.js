@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (Bot, message) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
 
   if (process.env.TestMode) {
@@ -9,28 +9,33 @@ exports.run = async (Bot, message, Arguments) => {
 
   const canvacord = require("canvacord");
 
-  const Avatar = User.displayAvatarURL({
+  const Avatar = message.author.displayAvatarURL({
     dynamic: false,
     format: "png"
   })
 
-  const Image = await canvacord.Canvas.invert(Avatar)
-  const Invert = new Discord.MessageAttachment(Image, "invert.png")
+  const UserAvatar = User.displayAvatarURL({
+    dynamic: false,
+    format: "png"
+  })
 
-  message.channel.send(Invert)
+  const Image = await canvacord.Canvas.slap(Avatar, UserAvatar)
+  const Slap = new Discord.MessageAttachment(Image, "slap.gif")
+
+  message.channel.send(Slap)
 },
 
   exports.config = {
     enabled: true,
     guild_only: true,
-    aliases: ["flipcolor"],
+    aliases: ["flip"],
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
   },
 
   exports.help = {
-    name: "Invert",
-    description: "Flip colors lol.",
-    usage: "<text>",
+    name: "Slap",
+    description: "SLAP SLAP!",
+    usage: "<user>",
     category: "📷images📷",
     cooldown: 2
   }

@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
     format: "png"
   })
 
-  const Image = await canvacord.Canvas.jail(Avatar, false)
+  const Image = await canvacord.Canvas.jail(Avatar, true)
   const Jail = new Discord.MessageAttachment(Image, "jail.png")
 
   message.channel.send(Jail)
@@ -23,14 +23,14 @@ exports.run = async (Bot, message, Arguments) => {
   exports.config = {
     enabled: true,
     guild_only: true,
-    aliases: ["cmm"],
+    aliases: ["lock"],
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
   },
 
   exports.help = {
-    name: "ChangeMyMind",
-    description: "Change my mind meme.",
-    usage: "<text>",
+    name: "Jail",
+    description: "Haha get in jail noob",
+    usage: "<user or self>",
     category: "📷images📷",
     cooldown: 2
   }

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (Bot, message) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
 
   if (process.env.TestMode) {
@@ -14,23 +14,23 @@ exports.run = async (Bot, message, Arguments) => {
     format: "png"
   })
 
-  const Image = await canvacord.Canvas.invert(Avatar)
-  const Invert = new Discord.MessageAttachment(Image, "invert.png")
+  const Image = await canvacord.Canvas.affect(Avatar)
+  const Affect = new Discord.MessageAttachment(Image, "affect.gif")
 
-  message.channel.send(Invert)
+  message.channel.send(Affect)
 },
 
   exports.config = {
     enabled: true,
     guild_only: true,
-    aliases: ["flipcolor"],
+    aliases: ["nope"],
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
   },
 
   exports.help = {
-    name: "Invert",
-    description: "Flip colors lol.",
-    usage: "<text>",
+    name: "Affect",
+    description: "Yes it does noob",
+    usage: "",
     category: "📷images📷",
     cooldown: 2
   }

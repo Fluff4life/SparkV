@@ -29,8 +29,8 @@ exports.run = async (Bot, message) => {
 
   exports.help = {
     name: "Trigger",
-    description: "Wow you are very angry!",
-    usage: "",
+    description: "Wow you mad bro",
+    usage: "<user or self>",
     category: "📷images📷",
     cooldown: 2
   }
