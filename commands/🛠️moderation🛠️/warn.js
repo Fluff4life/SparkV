@@ -60,7 +60,7 @@ exports.run = async (Bot, message, Arguments) => {
             
             footer: {
               text: "Warn command successful.",
-              icon_url: process.env.bot_logo
+              icon_url: process.env.AvatarURL
             }
           }
         })
@@ -86,7 +86,7 @@ exports.run = async (Bot, message, Arguments) => {
             
             footer: {
               text: "Warn command successful.",
-              icon_url: process.env.bot_logo
+              icon_url: process.env.AvatarURL
             }
           }
         })

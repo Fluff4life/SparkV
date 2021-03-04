@@ -8,7 +8,7 @@ exports.run = async (Bot, message) => {
 
   const ShowerThoughtEmbed = new Discord.MessageEmbed()
     .setTitle("Here's a shower thought")
-    .setFooter(`Shower Thought from r/${random_showerthought}`, process.env.bot_logo)
+    .setFooter(`Shower Thought from r/${random_showerthought}`, process.env.AvatarURL)
     .setURL(`https://reddit.com/r/${random_showerthought}`)
     .setColor("#0099ff")
     .setTimestamp();

@@ -33,7 +33,7 @@ exports.run = async (Bot, message) => {
           
           footer: {
             text: `Powered by https://dog.ceo/dog-api/documentation/`,
-            image: process.env.bot_logo
+            image: process.env.AvatarURL
           },
         }
       });

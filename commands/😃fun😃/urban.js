@@ -26,7 +26,7 @@ exports.run = async (Bot, message, args) => {
       .setURL(json.permalink)
       .setFooter(
         `👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author}`,
-        process.env.bot_logo
+        process.env.AvatarURL
       )
       .setColor("#0099ff");
 

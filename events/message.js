@@ -105,7 +105,7 @@ exports.run = async (Bot, Message) => {
           color: "#0099ff",
           footer: {
             text: "Maybe up vote our bot while you wait?",
-            icon_url: process.env.bot_logo
+            icon_url: process.env.AvatarURL
           },
         },
       }
