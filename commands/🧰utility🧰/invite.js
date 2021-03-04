@@ -12,18 +12,15 @@ exports.run = async (Bot, msg) => {
     
   await msg.channel.send(InvitesEmbend);
 },
-  
-  exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["invite", "support"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-  
-  exports.help = {
-    name: "Invite",
-    description: "Get an invite for me or to the support server.",
-    usage: "",
-    category: "🧰utility🧰",
-    cooldown: 1.5
-  }
+
+exports.config = {
+  name: "Invite",
+  description: "Get an invite for me or to the support server.",
+  aliases: ["invite", "support"],
+  usage: "",
+  category: "🧰utility🧰",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 1.5
+}

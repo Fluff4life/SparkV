@@ -4,10 +4,6 @@ exports.run = async (Bot, msg, Arguments) => {
   const UserToBan = msg.mentions.members.first() || msg.guild.members.cache.get(Arguments[0]) || msg.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
   const ReasonForBan = Arguments.join(" ").slice(22) || "No reason provided."
 
-  if (!msg.member.hasPermission("BAN_MEMBERS")){
-    return msg.channel.send("❌You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
-  }
-
   if (!Arguments[0]){
     return msg.channel.send("❌Please mention someone to ban!").then(m => m.delete({ timeout: 5000 }))
   }
@@ -64,16 +60,13 @@ exports.run = async (Bot, msg, Arguments) => {
 },
   
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["pban", "b"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "BAN_MEMBERS"]
-  },
-    
-  exports.help = {
-    name: "Ban",
+    name: "ban",
     description: "Is a user bothering you and keep coming back after you kick them? Using this command, they won't come back unless they are unbanned.",
-    usage: "[user] [optional reason]",
+    aliases: ["pban"],
+    usage: "<user> <optional reason>",
     category: "🛠️moderation🛠️",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "BAN_MEMBERS"],
+    member_permissions: ["BAN_MEMBERS"],
+    enabled: true,
     cooldown: 5
   }

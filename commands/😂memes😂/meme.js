@@ -85,17 +85,15 @@ message.channel.stopTyping()
 */
 },
 
-  exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["funny"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
-  },
 
-  exports.help = {
-    name: "Meme",
-    description: "LOL",
-    usage: "",
-    category: "😂memes😂",
-    cooldown: 2
-  }
+exports.config = {
+  name: "Meme",
+  description: "LOL",
+  aliases: ["memey"],
+  usage: "",
+  category: "😂memes😂",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3
+}

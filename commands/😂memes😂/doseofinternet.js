@@ -31,16 +31,13 @@ exports.run = async (Bot, message) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["doi", "di", "doseinternet"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
-  },
-
-  exports.help = {
     name: "DoseOfInternet",
     description: "I'll send a dose of the internet.",
+    aliases: ["doi", "di", "doseinternet"],
     usage: "",
     category: "😂memes😂",
-    cooldown: 2
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 3
   }

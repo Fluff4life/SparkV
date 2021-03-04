@@ -23,16 +23,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["wings"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "ADD_REACTIONS"]
-  },
-
-  exports.help = {
-    name: "🆕Warnings",
+    name: "Warnings",
     description: "I'll display a user's warnings.",
-    usage: "",
+    aliases: ["wings"],
+    usage: "<user>",
     category: "🛠️moderation🛠️",
+    bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 2.5
   }

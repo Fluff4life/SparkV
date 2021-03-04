@@ -59,16 +59,13 @@ exports.run = async (Bot, msg, Arguments, command) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: false,
-  aliases: ["s"],
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-},
-
-exports.help = {
-  name: "Shout",  
-  description: "Ch1ll Bot will shout to any group owned by you!",
+  name: "Shout",
+  description: "Ch1llBlox will shout to any group owned by you!",
+  aliases: ["prequelmeme"],
   usage: "<What to shout>",
-  cooldown: 10,
-  category: "🔴roblox🔴"
+  category: "🔴roblox🔴",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 10
 }

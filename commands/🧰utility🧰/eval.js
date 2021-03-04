@@ -22,18 +22,15 @@ exports.run = async (Bot, msg) => {
         .catch((error) => console.log(error));
     })
 },
-  
-  exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["invite", "support"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-  
-  exports.help = {
-    name: "Eval",
-    description: "undefined",
-    usage: "",
-    category: "🧰utility🧰",
-    cooldown: 1.5
-  }
+
+exports.config = {
+  name: "Eval",
+  description: "undefined",
+  aliases: [],
+  usage: "",
+  category: "🧰utility🧰",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 1.5
+}

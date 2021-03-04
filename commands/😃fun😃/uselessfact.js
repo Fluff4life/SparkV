@@ -14,22 +14,19 @@ exports.run = async (Bot, message) => {
 
       const Message = message.reply(FunFactEmbed);
 
-  Message.react("🤯");
-  Message.react("😬");
+      Message.react("🤯");
+      Message.react("😬");
     });
 },
-  
+
 exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["uf"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
-  },
-  
-  exports.help = {
-    name: "UselessFact",
-    description: "I will get a useless fact! You're better off with the advice command...",
-    usage: "",
-    category: "😃fun😃",
-    cooldown: 2
-  }
+  name: "UselessFact",
+  description: "I will get a useless fact! You're better off with the advice command...",
+  aliases: ["uf"],
+  usage: "",
+  category: "😃fun😃",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3
+}

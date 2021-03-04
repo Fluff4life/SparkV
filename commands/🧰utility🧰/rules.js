@@ -34,17 +34,14 @@ exports.run = async (Bot, msg, args) => {
   pagination(msg, pages, ["⬅", "➡"])
 },
 
-  exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["cmds", "commands", "h"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
-  },
-
-  exports.help = {
-    name: "Rules",
-    description: `Displays my rules.`,
-    usage: "",
-    category: "🧰utility🧰",
-    cooldown: 2.5
-  }
+exports.config = {
+  name: "Rules",
+  description: "Follow them lol.",
+  aliases: ["TOS"],
+  usage: "",
+  category: "🧰utility🧰",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 1.5
+}

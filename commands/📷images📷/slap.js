@@ -20,7 +20,7 @@ exports.run = async (Bot, message) => {
   })
 
   const Image = await canvacord.Canvas.slap(Avatar, UserAvatar)
-  const Slap = new Discord.MessageAttachment(Image, "slap.gif")
+  const Slap = new Discord.MessageAttachment(Image, "slap.png")
 
   message.channel.send(Slap)
 },

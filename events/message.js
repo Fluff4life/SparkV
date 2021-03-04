@@ -11,7 +11,7 @@ exports.run = async (Bot, Message) => {
 
   const AntiURL = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiURL`)
 
-  if (AntiURL && AntiURL === "on" && Bot.isURL(Message.content)){
+  if (AntiURL && AntiURL === "on" && Bot.isURL(Message.content) && !Message.author.hasPermission("EMBED_LINKS")){
     try {
       Message.delete();
     } catch (err){
@@ -68,8 +68,14 @@ exports.run = async (Bot, Message) => {
   }
 
   for (const permission of commandfile.config.bot_permissions) {
-    if (!Message.guild.me.hasPermission([permission])) {
+    if (!Message.guild.me.hasPermission(permission)) {
       return Message.channel.send(`❌I don't have permission to do that! Please select my role and allow ${permission}.`).then(m => m.delete({ timeout: 5000 }))
+    }
+  }
+
+  for (const permission of commandfile.config.member_permissions) {
+    if (!Message.author.hasPermission(permission)) {
+      return Message.channel.send(`❌You don't have permission to do that! You need the permision ${permission}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
 

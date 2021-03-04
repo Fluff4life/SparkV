@@ -18,16 +18,13 @@ exports.run = async (Bot, message, Arguments, Command) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["autoplay"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
-},
-    
-exports.help = {
   name: "AutoPlay",
   description: "Sets AutoPlay. Requires Administrator.",
+  aliases: ["autoplay"],
   usage: "<Toggle>",
   category: "🎵music🎵",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  member_permissions: ["ADMINISTRATOR"],
+  enabled: true,
   cooldown: 3
 }

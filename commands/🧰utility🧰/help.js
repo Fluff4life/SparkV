@@ -9,17 +9,11 @@ exports.run = async (Bot, msg, args) => {
 
   const Commands = (Bot, category) => {
     return Bot.commands
-      .filter(command => command.config.enabled & command.help.category === category)
-      .map(command =>`\`${prefix}${command.help.name} ${command.help.usage}\`\n${command.help.description}`)
+      .filter(command => command.config.enabled & command.config.category === category)
+      .map(command =>`\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`)
       .join("\n\n")
   }
   const CreatePage = (Bot, Message, Category) => {
-    if (Category === ":red_square:"){
-      return
-    } else if (Category === "databases"){
-      return
-    }
-  
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(Bot, Category))
@@ -50,12 +44,12 @@ exports.run = async (Bot, msg, args) => {
     }
 
     const CommandHelpEmbed = new Discord.MessageEmbed()
-      .setTitle(`\`\`\`${prefix}${command.help.name} ${command.help.usage}\`\`\``)
-      .setDescription(command.help.description)
+      .setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)
+      .setDescription(command.config.description)
       .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
       .addField("**ALIASES**", `\`\`\`${command.config.aliases.join(",\n")}\`\`\``, true)
-      .addField("**CATEGORY**", `\`\`\`${command.help.category}\`\`\``, true)
-      .addField("**COOLDOWN**", `\`\`\`${command.help.cooldown || 3} second(s)\`\`\``, true)
+      .addField("**CATEGORY**", `\`\`\`${command.config.category}\`\`\``, true)
+      .addField("**COOLDOWN**", `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
       .setFooter(`${prefix}Help to get a list of all commands.`, process.env.bot_logo)
       .setColor("#0099ff");
 
@@ -63,17 +57,14 @@ exports.run = async (Bot, msg, args) => {
   }
 },
 
-exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["cmds", "commands", "h"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
-  },
-
-exports.help = {
+  exports.config = {
     name: "Help",
     description: `I will displays all commands. Do ${prefix}Help [command name] for specific command information!`,
-    usage: "[command]",
+    aliases: ["cmds", "commands"],
+    usage: "<command>",
     category: "🧰utility🧰",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 10
   }

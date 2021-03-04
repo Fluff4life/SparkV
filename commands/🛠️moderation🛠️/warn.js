@@ -4,10 +4,6 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
 
-  if (!message.member.hasPermission("MANAGE_MESSAGES")){
-    return message.channel.send("❌You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
-  }
-
   if (!Arguments[0]){
     return message.channel.send("❌Please mention someone to warn!").then(m => m.delete({ timeout: 5000 }))
   }
@@ -102,17 +98,14 @@ exports.run = async (Bot, message, Arguments) => {
     }
 },
 
-exports.config = {
-    enabled: true,
-    guild_only: true,
+  exports.config = {
+    name: "Warnings",
+    description: "I will warn a user",
     aliases: ["w"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "ADD_REACTIONS"]
-  },
-  
-exports.help = {
-    name: "🆕Warn",
-    description: "I will warn a user with the reason you want.",
-    usage: "<user> <reason>",
+    usage: "<user> <optional reason>",
     category: "🛠️moderation🛠️",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "ADD_REACTIONS"],
+    member_permissions: ["MANAGE_MESSAGES"],
+    enabled: true,
     cooldown: 15
   }

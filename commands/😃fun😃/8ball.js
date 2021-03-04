@@ -32,17 +32,14 @@ exports.run = async (Bot, msg, Arguments) => {
   return msg.channel.send(Replies[ReplyText])
 },
   
-exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["ball"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"]
-  },
-  
-  exports.help = {
+  exports.config = {
     name: "8Ball",
     description: "Just a little fun.",
-    usage: "[question]",
+    aliases: ["ball"],
+    usage: "<question>",
     category: "😃fun😃",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 5
   }

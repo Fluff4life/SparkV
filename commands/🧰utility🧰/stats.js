@@ -14,18 +14,15 @@ exports.run = async (Bot, msg) => {
 
   BotMessage.edit(StatsEmbed)
 },
-  
+
   exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["ping", "pong", "up", "MU"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-  
-  exports.help = {
     name: "Stats",
-    description: "I will display my stats.",
+    description: "Stats for nerds.",
+    aliases: ["ping", "pong", "up", "MU"],
     usage: "",
     category: "🧰utility🧰",
-    cooldown: 2.5
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 1.5
   }

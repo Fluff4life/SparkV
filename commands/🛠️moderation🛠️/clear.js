@@ -29,17 +29,14 @@ exports.run = async (Bot, msg, Arguments) => {
     .catch(() => msg.channel.send(`Uh oh... I couldn't delete these messages!`)).then(m => m.delete({ timeout: 5000 }))
 },
 
-exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["purge", "clr"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"]
-  },
-  
-exports.help = {
+  exports.config = {
     name: "Clear",
     description: "I can delete messages for you so you don't have to spend a while deleting them :)",
-    usage: "[how many messages to delete]",
+    aliases: ["purge", "clr"],
+    usage: "<number of messages to delete>",
     category: "🛠️moderation🛠️",
-    cooldown: 3.5
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
+    member_permissions: ["KICK_MEMBERS"],
+    enabled: true,
+    cooldown: 5
   }

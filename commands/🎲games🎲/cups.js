@@ -31,16 +31,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["ballcups"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS"]
-},
-    
-exports.help = {
   name: "Cups",
-  description: "Play a game of cups with me!",
-  usage: "",
+  description: "Play a game of cups with me.",
+  aliases: ["ballcups"],
+  usage: "<on or off>",
   category: "🎲games🎲",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS"],
+  member_permissions: [],
+  enabled: true,
   cooldown: 60
 }

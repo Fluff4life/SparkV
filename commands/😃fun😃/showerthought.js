@@ -16,17 +16,14 @@ exports.run = async (Bot, message) => {
   await message.reply(ShowerThoughtEmbed);
 },
   
-  exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["sthought", "thought"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-  
-  exports.help = {
-    name: "ShowerThought",
-    description: "I will return a thought you would only think of in the shower. Hmmmm...",
-    usage: "",
-    category: "😃fun😃",
-    cooldown: 1.5
-  }
+exports.config = {
+  name: "ShowerThought",
+  description: "I will say whatever you want me to say.",
+  aliases: ["thought"],
+  usage: "",
+  category: "😃fun😃",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5
+}

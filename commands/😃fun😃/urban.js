@@ -34,17 +34,14 @@ exports.run = async (Bot, message, args) => {
   });
 },
 
-exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["definition"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-  
-  exports.help = {
-    name: "Urban",
+  exports.config = {
+    name: "urban",
     description: "I will return an urban dictionary definition of a word!",
-    usage: "[word]",
+    aliases: ["thought"],
+    usage: "<word>",
     category: "😃fun😃",
-    cooldown: 3.5
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 3
   }

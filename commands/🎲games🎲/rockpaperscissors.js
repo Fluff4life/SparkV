@@ -33,16 +33,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["rps"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"]
-},
-    
-exports.help = {
   name: "RockPaperScissors",
   description: "Play a game of Rock Paper Scissors with me!",
-  usage: "",
+  aliases: ["rps"],
+  usage: "<on or off>",
   category: "🎲games🎲",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
   cooldown: 60
 }

@@ -20,7 +20,7 @@ exports.run = async (Bot, message) => {
   })
 
   const Image = await canvacord.Canvas.bed(Avatar, UserAvatar)
-  const Bed = new Discord.MessageAttachment(Image, "bed.gif")
+  const Bed = new Discord.MessageAttachment(Image, "bed.png")
 
   message.channel.send(Bed)
 },

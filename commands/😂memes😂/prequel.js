@@ -30,16 +30,13 @@ exports.run = async (Bot, message) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: false,
-    aliases: ["prequelmeme"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"]
-  },
-
-  exports.help = {
     name: "Prequel",
     description: "Star Wars memes lol.",
+    aliases: ["prequelmeme"],
     usage: "",
     category: "😂memes😂",
-    cooldown: 2
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 3
   }

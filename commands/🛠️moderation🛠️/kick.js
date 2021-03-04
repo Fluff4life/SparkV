@@ -4,9 +4,6 @@ exports.run = async (Bot, msg, Arguments) => {
   const UserToKick = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.cache.get(Arguments[0]) || `@<${Arguments[0]}>`;
   const ReasonForKick = Arguments.join(" ").slice(22) || "No reason provided."
 
-  if (!msg.member.hasPermission("KICK_MEMBERS")){
-    return msg.channel.send("❌You don't have permision to do that!").then(m => m.delete({ timeout: 5000 }))
-  }
 
   if (!Arguments[0]){
     return msg.channel.send("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
@@ -60,18 +57,15 @@ exports.run = async (Bot, msg, Arguments) => {
     }
   })   
 },
-  
+
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["k"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "KICK_MEMBERS"]
-  },
-  
-  exports.help = {
     name: "Kick",
     description: "Is a user bothering you? Using this command, you can kick them from the server!",
-    usage: "[user] [reason]",
+    aliases: [],
+    usage: "<user> <optional user>",
     category: "🛠️moderation🛠️",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "KICK_MEMBERS"],
+    member_permissions: ["KICK_MEMBERS"],
+    enabled: true,
     cooldown: 5
   }
