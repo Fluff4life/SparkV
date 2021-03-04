@@ -5,15 +5,14 @@ exports.run = async (Bot, message, Arguments) => {
     return
   }
 
-  if (!Arguments || !Arguments[0]) {
-    return message.channel.send("Please provide text.")
-  }
-
   const canvacord = require("canvacord");
 
-  Arguments = Arguments.join(" ")
+  const Avatar = User.displayAvatarURL({
+    dynamic: false,
+    format: "png"
+  })
 
-  const Image = await canvacord.Canvas.shit(Arguments)
+  const Image = await canvacord.Canvas.shit(Avatar)
   const Shit = new Discord.MessageAttachment(Image, "shit.png")
 
   message.channel.send(Shit)
