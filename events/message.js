@@ -74,7 +74,7 @@ exports.run = async (Bot, Message) => {
   }
 
   for (const permission of commandfile.config.member_permissions) {
-    if (!Message.author.hasPermission(permission)) {
+    if (!Message.member.hasPermission(permission)) {
       return Message.channel.send(`❌You don't have permission to do that! You need the permision ${permission}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
