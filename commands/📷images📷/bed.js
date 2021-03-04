@@ -19,23 +19,20 @@ exports.run = async (Bot, message) => {
     format: "png"
   })
 
-  const Image = await canvacord.Canvas.bed(Avatar, UserAvatar)
+  const Image = await canvacord.Canvas.bed(UserAvatar, Avatar)
   const Bed = new Discord.MessageAttachment(Image, "bed.png")
 
   message.channel.send(Bed)
 },
 
-  exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["underbed"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
-    name: "Bed",
-    description: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH!!!!",
-    usage: "",
-    category: "📷images📷",
-    cooldown: 2
-  }
+exports.config = {
+  name: "Bed",
+  description: "AAAAAAAAAAAAAAAAAAAAAAAAAAAH!",
+  aliases: ["underbed"],
+  usage: "<<optional user>>",
+  category: "📷images📷",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 2
+}

@@ -21,16 +21,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["flipcolor"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
     name: "Invert",
     description: "Flip colors lol.",
-    usage: "<text>",
+    aliases: ["flipcolor"],
+    usage: "<optional user>",
     category: "📷images📷",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 2
   }

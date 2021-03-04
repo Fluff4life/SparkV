@@ -23,16 +23,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
+  name: "Pause",
+  description: "Pauses the current song playing.",
   aliases: ["softstop"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
-},
-    
-exports.help = {
-    name: "Pause",
-    description: "Pauses the current song playing.",
-    usage: "",
-    category: "🎵music🎵",
-    cooldown: 3
+  usage: "",
+  category: "🎵music🎵",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3
 }

@@ -20,16 +20,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["cmm"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
     name: "ChangeMyMind",
-    description: "Change my mind meme.",
+    description: "AAAAAAAAAAAAAAAAAAAAAAAAAAAH!",
+    aliases: ["cmm"],
     usage: "<text>",
     category: "📷images📷",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 2
   }

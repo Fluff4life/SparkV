@@ -25,17 +25,14 @@ exports.run = async (Bot, message) => {
   message.channel.send(Slap)
 },
 
-  exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["flip"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
-    name: "Slap",
-    description: "SLAP SLAP!",
-    usage: "<user>",
-    category: "📷images📷",
-    cooldown: 2
-  }
+exports.config = {
+  name: "Slap",
+  description: "SLAP SLAP SLAP!",
+  aliases: ["punch"],
+  usage: "<optional user>",
+  category: "📷images📷",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 2
+}

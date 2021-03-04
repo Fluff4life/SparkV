@@ -20,17 +20,14 @@ exports.run = async (Bot, message) => {
   message.channel.send(Triggered)
 },
 
-  exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["mad"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
-    name: "Trigger",
-    description: "Wow you mad bro",
-    usage: "<user or self>",
-    category: "📷images📷",
-    cooldown: 2
-  }
+exports.config = {
+  name: "Trigger",
+  description: "wow you mad bro",
+  aliases: ["mad"],
+  usage: "<optional user>",
+  category: "📷images📷",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 2
+}

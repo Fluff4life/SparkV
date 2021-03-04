@@ -20,17 +20,14 @@ exports.run = async (Bot, message, Arguments) => {
   message.channel.send(FacePalm)
 },
 
-  exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["fp"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
-    name: "FacePalm",
-    description: "Bruh",
-    usage: "<text>",
-    category: "📷images📷",
-    cooldown: 2
-  }
+exports.config = {
+  name: "Facepalm",
+  description: "bruh",
+  aliases: ["ow"],
+  usage: "<optional user>",
+  category: "📷images📷",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 2
+}

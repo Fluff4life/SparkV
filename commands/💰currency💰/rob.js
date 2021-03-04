@@ -47,17 +47,14 @@ exports.run = async (Bot, message, Arguments) => {
   }
 },
 
-exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["crime"],
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-},
-
-  exports.help = {
+  exports.config = {
     name: "Rob",
     description: "why u bully me?",
+    aliases: ["crime"],
     usage: "<user>",
     category: "💰currency💰",
-    cooldown: 45.0
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 45
   }

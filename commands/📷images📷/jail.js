@@ -21,16 +21,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["lock"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
     name: "Jail",
     description: "Haha get in jail noob",
-    usage: "<user or self>",
+    aliases: ["lockup"],
+    usage: "<optional user>",
     category: "📷images📷",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 2
   }

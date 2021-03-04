@@ -9,8 +9,8 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("A song must be playing to use this command!").then(m => m.delete({ timeout: 5000 }))
   }
   
-  if (parseInt(Arguments[0]) > 200){
-    return message.send("Due to performance reasons, songs cannot go louder than 200.").then(m => m.delete({ timeout: 5000 }))
+  if (parseInt(Arguments[0]) > 100){
+    return message.send("Due to performance reasons, songs cannot go louder than 100.").then(m => m.delete({ timeout: 5000 }))
   }
   
   Bot.distube.setVolume(message, parseInt(Arguments[0]))
@@ -18,16 +18,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["v", "set", "set-volume"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
-},
-    
-exports.help = {
   name: "Volume",
-  description: "Sets the volume of the current playing track.",
-  usage: "<volume>",
+  description: "Sets the volume of the currently playing track.",
+  aliases: ["vol"],
+  usage: "",
   category: "🎵music🎵",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  member_permissions: [],
+  enabled: true,
   cooldown: 3
 }

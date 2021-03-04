@@ -41,16 +41,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["que"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
-},
-    
-exports.help = {
   name: "Queue",
   description: "Shows the songs in queue.",
+  aliases: ["que"],
   usage: "",
   category: "🎵music🎵",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  member_permissions: [],
+  enabled: true,
   cooldown: 3
 }

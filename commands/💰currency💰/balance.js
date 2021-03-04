@@ -29,16 +29,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["bal"],
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-},
-  
-exports.help = {
   name: "Balance",
   description: "View your balance.",
+  aliases: ["bal"],
   usage: "<optional user>",
   category: "💰currency💰",
-  cooldown: 2.0
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 2
 }

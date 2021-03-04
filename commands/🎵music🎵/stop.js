@@ -23,16 +23,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
+  name: "Stop",
+  description: "Disconnects me from the voice channel and removes all songs in queue.",
   aliases: ["st"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
-},
-    
-exports.help = {
-    name: "Stop",
-    description: "Disconnects me from the voice channel and removes all songs in queue.",
-    usage: "",
-    category: "🎵music🎵",
-    cooldown: 3
+  usage: "",
+  category: "🎵music🎵",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3
 }

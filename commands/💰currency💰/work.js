@@ -5,16 +5,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["job"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
     name: "Work",
     description: "Work for your job and earn some Ch1llBucks.",
+    aliases: ["job"],
     usage: "",
     category: "💰currency💰",
-    cooldown: 2.0
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 45
   }

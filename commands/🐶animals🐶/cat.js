@@ -28,16 +28,13 @@ exports.run = async (Bot, message) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["cutecat"],
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-},
-  
-exports.help = {
   name: "Cat",
   description: "I will send a cute cat! Cute, but dogs are cuter.",
+  aliases: ["cutecat"],
   usage: "",
   category: "🐶animals🐶",
-  cooldown: 2
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3
 }

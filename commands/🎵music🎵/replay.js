@@ -15,16 +15,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  enabled: true,
-  guild_only: true,
+  name: "Replay",
+  description: "Replays the currently playing song.",
   aliases: ["repeat", "loop"],
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"]
-},
-    
-exports.help = {
-  name: "replay",
-  description: "replays the currently playing song.",
   usage: "<Optional amount of times - default inf>",
   category: "🎵music🎵",
+  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  member_permissions: [],
+  enabled: true,
   cooldown: 3
 }

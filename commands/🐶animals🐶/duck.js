@@ -27,17 +27,15 @@ exports.run = async (Bot, message) => {
     });
 },
 
+
 exports.config = {
-  enabled: true,
-  guild_only: true,
-  aliases: ["cuteduck"],
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-},
-  
-exports.help = {
   name: "Duck",
-  description: "I will send a cute duck! Quack! :D",
+  description: "Quack :D",
+  aliases: ["ducc", "cuteduck"],
   usage: "",
   category: "🐶animals🐶",
-  cooldown: 2
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3
 }

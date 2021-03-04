@@ -21,16 +21,13 @@ exports.run = async (Bot, message) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["nope"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
     name: "Affect",
     description: "Yes it does noob",
-    usage: "",
+    aliases: ["nope"],
+    usage: "<optional user>",
     category: "📷images📷",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 2
   }

@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
-
   if (process.env.TestMode) {
     return
   }
@@ -18,16 +16,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["on"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
     name: "OhNo",
     description: "OH NO HE'S STUPID!",
+    aliases: ["stupid"],
     usage: "<text>",
     category: "📷images📷",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
     cooldown: 2
   }

@@ -33,16 +33,13 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    enabled: false,
-    guild_only: true,
+    name: "Daily",
+    description: "error 503",
     aliases: ["dep"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
-
-  exports.help = {
-    name: "Deposit",
-    description: "Deposit your Ch1llBucks into your bank.",
-    usage: "<optional user>",
+    usage: "",
     category: "💰currency💰",
-    cooldown: 2.0
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: false,
+    cooldown: 45
   }

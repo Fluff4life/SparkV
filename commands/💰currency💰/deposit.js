@@ -44,17 +44,15 @@ exports.run = async (Bot, message, Arguments) => {
   message.channel.send(`Deposited ❄${parseInt(Arguments[0])} into bank!`)
 },
 
-  exports.config = {
-    enabled: true,
-    guild_only: true,
-    aliases: ["dep"],
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"]
-  },
 
-  exports.help = {
-    name: "Deposit",
-    description: "Deposit your Ch1llBucks into your bank.",
-    usage: "<Amount>",
-    category: "💰currency💰",
-    cooldown: 2.0
-  }
+exports.config = {
+  name: "Deposit",
+  description: "Deposit your Ch1llBucks into your bank.",
+  aliases: ["dep"],
+  usage: "",
+  category: "💰currency💰",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 45
+}
