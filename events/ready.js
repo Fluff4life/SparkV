@@ -67,5 +67,7 @@ exports.run = async (Bot) => {
     Bot.UserCount = Bot.UserCount + guild.memberCount
   }
 
+  Bot.user.setAvatar("https://imgur.com/ToaQigv.png")
+
   Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.guilds.cache.size}\nUsers: ${Bot.GetUserCount()}`)
 }
