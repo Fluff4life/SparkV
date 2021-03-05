@@ -19,7 +19,6 @@ exports.run = async (Bot, message, Arguments) => {
     .setLevel(User.level)
     .setCurrentXP(User.xp)
     .setRequiredXP(NeededXP)
-    .setStatus(User.presence.status)
     .setProgressBar("#0099ff", "COLOR")
 
   Rank.build().then(data => {
