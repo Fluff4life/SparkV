@@ -5,32 +5,32 @@ exports.run = async (Bot, Message) => {
     return;
   }
 
-  if (!Message.guild){
+  if (!Message.guild) {
     return;
   }
 
   const AntiURL = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiURL`)
 
-  if (AntiURL && AntiURL === "on" && Bot.isURL(Message.content) && !Message.author.hasPermission("EMBED_LINKS")){
+  if (AntiURL && AntiURL === "on" && Bot.isURL(Message.content) && !Message.author.hasPermission("EMBED_LINKS")) {
     try {
       Message.delete();
-    } catch (err){
+    } catch (err) {
       Message.channel.send(`${Message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`).then(m => m.delete({ timeout: 1000 }))
     }
-    
+
     return Message.reply("you cannot send links here.").then(m => m.delete({ timeout: 1000 }))
   }
 
   const AntiSpam = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiSpam`)
 
-  if (AntiSpam && AntiSpam === "on"){
+  if (AntiSpam && AntiSpam === "on") {
     Bot.AntiSpam.message(Message)
   }
 
   const Prefix = await Bot.Database.get(`ServerData_${Message.guild.id}.Prefix`)
 
   if (Prefix) {
-    if (!Message.content.startsWith(Prefix)){
+    if (!Message.content.startsWith(Prefix)) {
       return
     }
   } else {
@@ -64,17 +64,28 @@ exports.run = async (Bot, Message) => {
   }
 
   if (process.env.UserBlacklist.includes(Message.author.id)) {
-    return
+    try {
+      return Message.author.send("Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? Contact KingCh1ll.")
+        .then(() => {
+          Message.react("❌")
+        })
+    } catch {
+      Message.react("❌")
+    }
   }
 
-  for (const permission of commandfile.config.bot_permissions) {
-    if (!Message.guild.me.hasPermission(permission)) {
+  if (commandfile.config.bot_permissions) {
+    const BotPermisions = message.channel.permissionsFor(message.guild.me)
+
+    if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
       return Message.channel.send(`❌I don't have permission to do that! Please select my role and allow ${permission}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
 
-  for (const permission of commandfile.config.member_permissions) {
-    if (!Message.member.hasPermission(permission)) {
+  if (commandfile.config.member_permissions) {
+    const AuthorPermisions = message.channel.permissionsFor(message.author)
+
+    if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
       return Message.channel.send(`❌You don't have permission to do that! You need the permision ${permission}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
@@ -83,19 +94,19 @@ exports.run = async (Bot, Message) => {
     return Message.reply("This command is currently disabled! Please try again later.")
   }
 
-  if (!Bot.cooldowns.has(command.name)) {
-    Bot.cooldowns.set(command.name, new Discord.Collection());
+  if (!Bot.cooldowns.has(commandfile.config.name)) {
+    Bot.cooldowns.set(commandfile.config.name, new Discord.Collection());
   }
 
   const Now = Date.now();
-  const Timestamps = Bot.cooldowns.get(command.name);
-  const CooldownAmount = ((command.cooldown) * 1000)
+  const Timestamps = Bot.cooldowns.get(commandfile.config.name);
+  const CooldownAmount = (commandfile.config.cooldown | 3) * 1000;
 
   if (Timestamps.has(Message.author.id)) {
     const ExpireTime = Timestamps.get(Message.author.id) + CooldownAmount;
 
     if (Now < ExpireTime) {
-      const TimeLeft = ((ExpireTime - Now) / 1000)
+      const TimeLeft = (ExpireTime - Now) / 1000
 
       return Message.reply({
         embed: {
