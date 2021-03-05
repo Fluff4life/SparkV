@@ -3,12 +3,10 @@ const ms = require("parse-ms")
 
 exports.run = async (Bot, message, Arguments) => {
   const User = message.author
-  const Timeout = 86400
-  const RandomAmmount = Math.floor(Math.random() * 2500) + 1
+  const RandomAmmount = Math.floor(Math.random() * 3500) + 1
 
   var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
   var Multiplier = await Bot.Database.get(`UserData_${User.id}.multiplier`)
-  var Daily = await Bot.Database.get(`UserData_${User.id}.daily`)
 
   if (!Multiplier){
     Multiplier = 1
@@ -20,12 +18,6 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Ammount = RandomAmmount * Multiplier
 
-  if (Daily !== null && Timeout - (Date.now() - Daily) > 0){
-    // Cooldown here
-
-    const Time = ms(Timeout - (Date.now() - Daily))
-  }
-
   await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Ammount)
   await Bot.Database.add(`UserData_${User.id}.bank`, Ammount)
 
@@ -34,12 +26,12 @@ exports.run = async (Bot, message, Arguments) => {
 
   exports.config = {
     name: "Daily",
-    description: "error 503",
+    description: "Collect your daily ammount of money!",
     aliases: ["dep"],
     usage: "",
     category: "💰currency💰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
-    enabled: false,
-    cooldown: 45
+    enabled: true,
+    cooldown: 86400
   }

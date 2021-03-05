@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
+  const User = message.mentions.users.first() || message.author
 
   var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
   var Bank = await Bot.Database.get(`UserData_${User.id}.bank`)
@@ -19,9 +19,11 @@ exports.run = async (Bot, message, Arguments) => {
     Bank = 0
   }
 
+  const NetWorth = Bank + Ch1llBucks
+
   const BalanceEmbed = new Discord.MessageEmbed()
     .setTitle(`**${User}'s Balance**`)
-    .setDescription(`Wallet: ❄${Ch1llBucks}\nBank: ❄${Bank}/${BankMax}\nNet Worth: ${Bank + Ch1llBucks}`)
+    .setDescription(`Wallet: ❄${Ch1llBucks}\nBank: ❄${Bank}/${BankMax}\nNet Worth: ${NetWorth}`)
     .setColor("#0099ff")
     .setTimestamp()
 

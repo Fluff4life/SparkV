@@ -14,7 +14,7 @@ exports.run = async (Bot, message) => {
             
             footer: {
               text: "Maybe up vote our bot while you wait?",
-              icon_url: Bot.user.displayAvatarURL()
+              icon_url: process.env.AvatarURL
             },
           }
         })

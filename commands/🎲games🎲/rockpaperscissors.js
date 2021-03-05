@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
   const embed = new Discord.MessageEmbed()
     .setTitle("Rock Paper Scissors")
     .setDescription("React to one of these emojis to begin!")
-    .setFooter(process.env.name, Bot.user.displayAvatarURL)
+    .setFooter(process.env.name, Bot.user.AvatarURL)
     .setColor("#0099ff")
 
   const Message = await message.channel.send(embed)

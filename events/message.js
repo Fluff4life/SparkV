@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const Levels = require("discord-xp")
 
 exports.run = async (Bot, Message) => {
   if (Message.author.Bot) {
@@ -25,6 +26,19 @@ exports.run = async (Bot, Message) => {
 
   if (AntiSpam && AntiSpam === "on") {
     Bot.AntiSpam.message(Message)
+  }
+
+  const Leveling = await Bot.Database.get(`ServerData_${Message.guild.id}.Leveling`)
+
+  if (Leveling && Leveling === "on"){
+    const RandomAmountOfXP = Math.floor(Math.random() * 25) + 5;
+    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomAmountOfXP);
+
+    if (HasLeveledUp){
+      const User = await Levels.appendXp(message.author.id, message.guild.id, RandomAmountOfXP)
+
+      message.channel.send(`🎉${message.author}, you just leveled up to **${User.level}**`)
+    }
   }
 
   const Prefix = await Bot.Database.get(`ServerData_${Message.guild.id}.Prefix`)

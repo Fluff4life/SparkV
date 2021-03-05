@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
         
         footer: {
           text: `Displaying music queue.`,
-          icon_url: Bot.user.displayAvatarURL
+          icon_url: process.env.AvatarURL
         },
       }
     })
@@ -33,7 +33,7 @@ exports.run = async (Bot, message, Arguments) => {
       
         footer: {
           text: `Displaying music queue.`,
-          icon_url: Bot.user.displayAvatarURL
+          icon_url: process.env.AvatarURL
         },
       }
     })

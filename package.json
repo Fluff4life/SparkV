@@ -15,14 +15,14 @@
   "license": "MIT",
   "engines": {
     "node": "14.15.5",
-    "npm": "6.14.11"
+    "npm": "7.6.1"
   },
   "dependencies": {
-    "@discordjs/opus": "github:discordjs/opus",
     "canvacord": "^5.1.0",
     "canvas": "^2.7.0",
     "discord-anti-spam": "^2.5.0",
     "discord-tictactoe": "^2.0.8",
+    "discord-xp": "^1.1.8",
     "discord.js": "^12.5.1",
     "discord.js-pagination": "^1.0.3",
     "distube": "^2.8.10",
@@ -32,7 +32,6 @@
     "figlet": "^1.5.0",
     "fs": "0.0.1-security",
     "lyrics-finder": "^21.7.0",
-    "mongoose": "^5.11.18",
     "noblox.js": "^4.8.4",
     "node-fetch": "^2.6.1",
     "node-pre-gyp": "^0.17.0",

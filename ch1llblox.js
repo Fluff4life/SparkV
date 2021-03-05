@@ -26,7 +26,7 @@ const Bot = new Client({
 
   presence: {
     activity: {
-      name: `Time to wake up!`,
+      name: `Currently updating. Please wait!`,
       type: "PLAYING"
     },
     status: "DND"

@@ -26,8 +26,6 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Bruh please say a number.")
   }
 
-  console.log(parseInt(Arguments[0]))
-
   if (parseInt(Arguments[0]) > BankMax) {
     return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
   }
@@ -36,10 +34,8 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You don't have enough Ch1llBucks to deposit that much into your bank.")
   }
 
-  const Ammount = 
-
-  await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, Ammount)
-  await Bot.Database.add(`UserData_${User.id}.bank`, Ammount)
+  await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, parseInt(Arguments[0]))
+  await Bot.Database.add(`UserData_${User.id}.bank`, parseInt(Arguments[0]))
 
   message.channel.send(`Deposited ❄${parseInt(Arguments[0])} into bank!`)
 },
