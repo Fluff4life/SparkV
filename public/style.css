@@ -51,6 +51,9 @@ Buttons
     border-radius: 25px;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    height: 15px;
+    width: 50px;
+    font-size: 15px;
 }
 
 .buttons a:hover {
@@ -332,92 +335,21 @@ About
 }
 
 /*
-Creations
+Cards
 */
 
-#creations {
-    margin-top: 100px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--main-fonts-color);
-}
-
-#creations h3 {
-    padding-top: 70px;
-}
-
-#creations p {
-    font-family: var(--main-fonts-family);
-    font-size: 1.2rem;
-    padding: 10px;
-}
-
-.work {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    height: 250px;
-    width: 200px;
-    border-radius: 12px;
-    background:var(--main-decor-color);
-}
-
-.card img {
-    height: 70%;
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-}
-
-.card .work-content {
-    text-align: center;
-    padding: 10px 5px;
-    font-size: 1rem;
-    color: var(--main-fonts-color);
-    font-family: var(--main-font-family);
-    cursor: pointer;
-}
-
-.card a {
-    text-decoration: none;
-}
-
-.card .work-content:hover {
-    color: black;
-}
-
-.card:hover {
-    box-shadow: 0 0 1.5rem skyblue;
-}
-
-/*
-Team
-*/
-
-#team {
+#maincard {
     align-items: center;
 }
 
-#team h3 {
+#maincard h3 {
     text-align: center;
     padding-top: 70px;
     text-align: center;
     color: white;
 }
 
-#team p {
+#maincard p {
     font-family: var(--main-fonts-family);
     font-size: 1.2rem;
     padding: 10px;
@@ -425,7 +357,7 @@ Team
     color: white;
 }
 
-.team {
+.maincard {
     margin-top: 100px;
     height: 400px;
     width: 320px;
@@ -440,7 +372,7 @@ Team
     color: var(--main-fonts-color);
 }
 
-.team .card {
+.maincard .card {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -459,18 +391,18 @@ Team
     align-items: center;
 }
 
-.team:hover > .front-face {
+.maincard:hover > .front-face {
     transform: rotateY(-180deg);
 }
 
-.team .card img {
+.maincard .card img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     border-radius: 10px
 }
 
-.team .back-face {
+.maincard .back-face {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -478,11 +410,11 @@ Team
     transform: rotateY(180deg);
 }
 
-.team:hover > .back-face {
+.maincard:hover > .back-face {
     transform: rotateY(0deg);
 }
 
-.team .back-face img {
+.maincard .back-face img {
     height: 150px;
     width: 150px;
     padding: 5px;
@@ -490,7 +422,7 @@ Team
     background: linear-gradient(375deg, skyblue, white);
 }
 
-.team .back-face .info {
+.maincard .back-face .info {
     text-align: center;
 }
 
