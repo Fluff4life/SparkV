@@ -14,8 +14,8 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Rank = new canvacord.Rank()
     .setUsername(Target.username)
-    .setDiscriminator(Target.tag)
-    .setAvatar(Target.displayAvatarURL({ dynamic: true, format: "png" }))
+    .setDiscriminator(Target.discriminator)
+    .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
     .setLevel(User.level)
     .setCurrentXP(User.xp)
     .setRequiredXP(NeededXP)
