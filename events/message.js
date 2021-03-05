@@ -75,7 +75,7 @@ exports.run = async (Bot, Message) => {
   }
 
   if (commandfile.config.bot_permissions) {
-    const BotPermisions = message.channel.permissionsFor(message.guild.me)
+    const BotPermisions = Message.channel.permissionsFor(Message.guild.me)
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
       return Message.channel.send(`❌I don't have permission to do that! Please select my role and allow ${permission}.`).then(m => m.delete({ timeout: 5000 }))
@@ -83,7 +83,7 @@ exports.run = async (Bot, Message) => {
   }
 
   if (commandfile.config.member_permissions) {
-    const AuthorPermisions = message.channel.permissionsFor(message.author)
+    const AuthorPermisions = Message.channel.permissionsFor(Message.author)
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
       return Message.channel.send(`❌You don't have permission to do that! You need the permision ${permission}.`).then(m => m.delete({ timeout: 5000 }))
