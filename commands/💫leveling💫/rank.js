@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
 exports.run = async (Bot, message, Arguments) => {
-  const Target = message.mentions.users.first() || message.author
+  const Target = message.author
   const User = await Levels.fetch(Target.id, message.guild.id)
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
 
@@ -13,7 +13,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const Rank = new canvacord.Rank()
-    .setUsername(User.name)
+    .setUsername(Target.username)
     .setDiscriminator(Target.tag)
     .setAvatar(Target.displayAvatarURL({ dynamic: true, format: "png" }))
     .setLevel(User.level)

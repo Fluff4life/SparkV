@@ -35,7 +35,7 @@ exports.run = async (Bot, Message) => {
     const HasLeveledUp = await Levels.appendXp(Message.author.id, Message.guild.id, RandomAmountOfXP);
 
     if (HasLeveledUp){
-      const User = await Levels.appendXp(Message.author.id, Message.guild.id, RandomAmountOfXP)
+      const User = await Levels.fetch(Message.author.id, Message.guild.id)
 
       Message.channel.send(`🎉${Message.author}, you just leveled up to **${User.level}**`)
     }
