@@ -406,6 +406,16 @@ Creations
 Team
 */
 
+#team h3 {
+    padding-top: 70px;
+}
+
+#team p {
+    font-family: var(--main-fonts-family);
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
 .team {
     margin-top: 100px;
     height: 400px;
