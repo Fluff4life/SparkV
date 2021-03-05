@@ -32,12 +32,12 @@ exports.run = async (Bot, Message) => {
 
   if (Leveling && Leveling === "on"){
     const RandomAmountOfXP = Math.floor(Math.random() * 25) + 5;
-    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomAmountOfXP);
+    const HasLeveledUp = await Levels.appendXp(Message.author.id, Message.guild.id, RandomAmountOfXP);
 
     if (HasLeveledUp){
-      const User = await Levels.appendXp(message.author.id, message.guild.id, RandomAmountOfXP)
+      const User = await Levels.appendXp(Message.author.id, Message.guild.id, RandomAmountOfXP)
 
-      message.channel.send(`🎉${message.author}, you just leveled up to **${User.level}**`)
+      Message.channel.send(`🎉${Message.author}, you just leveled up to **${User.level}**`)
     }
   }
 

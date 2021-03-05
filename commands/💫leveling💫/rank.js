@@ -31,12 +31,12 @@ exports.run = async (Bot, message, Arguments) => {
 
   exports.config = {
     name: "Rank",
-    description: "View your ",
+    description: "View your rank!",
     aliases: [],
-    usage: "<on or off>",
-    category: "⚙config⚙",
+    usage: "",
+    category: "💫leveling💫",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
-    member_permissions: ["ADMINISTRATOR"],
+    member_permissions: [],
     enabled: true,
     cooldown: 2.5
   }

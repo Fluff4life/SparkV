@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const Levels = require("discord-xp")
 
 exports.run = async (Bot, message, Arguments) => {
   const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10)
@@ -24,9 +25,9 @@ exports.config = {
   description: "View the server's Level leaderboard.",
   aliases: [],
   usage: "",
-  category: "⚙config⚙",
+  category: "💫leveling💫",
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
-  member_permissions: ["ADMINISTRATOR"],
+  member_permissions: [],
   enabled: true,
   cooldown: 2.5
 }
