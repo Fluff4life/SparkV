@@ -20,7 +20,7 @@ exports.run = async (Bot, message, Arguments) => {
     name: "🆕SetGroupID",
     description: "Ch1llBlox will join your group and assist you.",
     aliases: ["nospam"],
-    usage: "<on or off>",
+    usage: "<ID>",
     category: "⚙config⚙",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     member_permissions: ["ADMINISTRATOR"],
