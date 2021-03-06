@@ -31,7 +31,7 @@ exports.run = async (Bot, Message) => {
   const Leveling = await Bot.Database.get(`ServerData_${Message.guild.id}.Leveling`)
 
   if (Leveling && Leveling === "on"){
-    const RandomAmountOfXP = Math.floor(Math.random() * 25) + 5;
+    const RandomAmountOfXP = Math.floor(Math.random() * 10) + 5;
     const HasLeveledUp = await Levels.appendXp(Message.author.id, Message.guild.id, RandomAmountOfXP);
 
     if (HasLeveledUp){
@@ -144,7 +144,7 @@ exports.run = async (Bot, Message) => {
   try {
     commandfile
       .run(Bot, Message, args, command)
-      .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}`) })
+      .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${Message.author.tag} ID: ${Message.author.id}`) })
   } catch (err) {
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nFAILED - FAILEd to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err}`)
   }
