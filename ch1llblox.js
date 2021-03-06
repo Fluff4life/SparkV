@@ -45,9 +45,6 @@ if (!process.env.TestMode){
   Noblox = require("./modulehandlers/noblox")
 }
 
-// Get User Count //
-Bot.UserCount = 0
-
 // Collections //
 Bot.Rules = new Collection()
 Bot.categories = new Collection()
