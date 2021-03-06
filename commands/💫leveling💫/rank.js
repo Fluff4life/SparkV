@@ -30,9 +30,9 @@ exports.run = async (Bot, message, Arguments) => {
       .setUsername(Target.username)
       .setDiscriminator(Target.discriminator)
       .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
-      .setLevel(Bot.FormatNumber(User.level))
-      .setCurrentXP(Bot.FormatNumber(User.xp))
-      .setRequiredXP(Bot.FormatNumber(NeededXP))
+      .setLevel(User.level)
+      .setCurrentXP(User.xp)
+      .setRequiredXP(NeededXP)
       .setProgressBar("#0099ff", "COLOR")
   }
 
