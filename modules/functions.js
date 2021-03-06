@@ -67,6 +67,8 @@ module.exports = async (bot) => {
     ];
     
     return Promise.all(promises).then(results => {
+      console.log(results)
+      
       results[0].reduce((acc, guildCount) => acc + guildCount, 0);
     })
   }
@@ -77,6 +79,7 @@ module.exports = async (bot) => {
     ];
     
     return Promise.all(promises).then(results => {
+      console.log(results)
       results[0].reduce((acc, memberCount) => acc + memberCount, 0);
     })
   }
