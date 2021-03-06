@@ -26,7 +26,7 @@ module.exports = async (bot) => {
     }
   }
 
-  await Bot.FormatNumber = function(string){
+  Bot.FormatNumber = function(string){
     const FormattedNumber = string
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
