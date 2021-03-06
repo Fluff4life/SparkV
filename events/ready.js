@@ -9,7 +9,7 @@ exports.run = async (Bot) => {
     },
   
     {
-      text: `${Bot.GetServerCount()} servers!`,
+      text: `${await Bot.GetServerCount()} servers!`,
       type: "WATCHING",
       status: "online"
     },
@@ -21,7 +21,7 @@ exports.run = async (Bot) => {
     },
 
     {
-      text: `Watching ${Bot.GetUserCount()} users!`,
+      text: `Watching ${await Bot.GetUserCount()} users!`,
       type: "WATCHING",
       status: "online"
     }
@@ -68,5 +68,5 @@ exports.run = async (Bot) => {
   }
 
   Bot.user.setAvatar(process.env.AvatarURL)
-  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.guilds.cache.size}\nUsers: ${Bot.GetUserCount()}`)
+  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${await Bot.GetUserCount()}\nUsers: ${await Bot.GetUserCount()}`)
 }
