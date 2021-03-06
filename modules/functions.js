@@ -66,11 +66,7 @@ module.exports = async (bot) => {
       bot.shard.fetchClientValues('guilds.cache.size'),
     ];
     
-    return Promise.all(promises).then(results => {
-      console.log(results)
-      
-      results[0].reduce((acc, guildCount) => acc + guildCount, 0);
-    })
+    return Promise.all(promises).then(results => results.reduce((acc, ServerCount) => acc + ServerCount, 0))
   }
 
   bot.GetUserCount = async function(){
@@ -78,10 +74,7 @@ module.exports = async (bot) => {
       bot.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)'),
     ];
     
-    return Promise.all(promises).then(results => {
-      console.log(results)
-      results[0].reduce((acc, memberCount) => acc + memberCount, 0);
-    })
+    return Promise.all(promises).then(results => results.reduce((acc, MemberCount) => acc + MemberCount, 0))
   }
 
   bot.Debounce = function(func, wait, immediate){
