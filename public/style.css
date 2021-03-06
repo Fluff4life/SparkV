@@ -7,11 +7,11 @@ Style.css
 Root Varibles
 */
 :root {
-    --main-background: lightskyblue;
-    --main-fonts-color: white;
-    --main-decor-color: cyan;
-    --main-header-background: dodgerblue;
-    --main-font-family: sans-serif;
+  --main-background: lightskyblue;
+  --main-fonts-color: white;
+  --main-decor-color: cyan;
+  --main-header-background: dodgerblue;
+  --main-font-family: sans-serif;
 }
 
 /*
@@ -19,16 +19,46 @@ Main
 */
 
 * {
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 main {
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--main-background);
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--main-background);
+}
+
+h3 {
+  padding-bottom: 15px;
+  letter-spacing: normal;
+  font-family: var(--main-font-family);
+  font-style: normal;
+  font-size: 60px;
+  color: var(--main-fonts-color);
+  text-shadow: 0px 0px 40px var(--main-decor-color);
+}
+
+h2 {
+  padding-bottom: 15px;
+  letter-spacing: normal;
+  font-family: var(--main-font-family);
+  font-style: normal;
+  text-align: center;
+  color: var(--main-fonts-color);
+  text-shadow: 0px 0px 40px var(--main-decor-color);
+}
+
+p {
+  padding-bottom: 15px;
+  letter-spacing: normal;
+  font-family: var(--main-font-family);
+  font-style: normal;
+  text-align: center;
+  color: var(--main-fonts-color);
+  text-shadow: 0px 0px 40px var(--main-decor-color);
 }
 
 /*
@@ -36,29 +66,29 @@ Buttons
 */
 
 .buttons {
-    margin: 25px 0;
-    display: inline-flex;
+  margin: 25px 0;
+  display: inline-flex;
 }
 
 .buttons a {
-    display: inline-block;
-    margin: 0 10px;
-    text-decoration: none;
-    border: 2px solid var(--main-decor-color);
-    color: var(--main-decor-color);
-    font-weight: 500;
-    padding: 10px 25px;
-    border-radius: 25px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    height: 15px;
-    width: 50px;
-    font-size: 15px;
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  border: 2px solid var(--main-decor-color);
+  color: var(--main-decor-color);
+  font-weight: 500;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  height: 15px;
+  width: 50px;
+  font-size: 15px;
 }
 
 .buttons a:hover {
-    background: var(--main-decor-color);
-    color: var(--main-fonts-color);
+  background: var(--main-decor-color);
+  color: var(--main-fonts-color);
 }
 
 /*
@@ -66,95 +96,96 @@ Header
 */
 
 header {
-    margin: 0 auto;
-    height: 70px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: transparent;
-    position: fixed;
-    top: 0;
-    transition: 0.3s;
-    z-index: 5;
+  margin: 0 auto;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  transition: 0.3s;
+  z-index: 5;
 }
 
 header:hover {
-    opacity: 1;
-    background: var(--main-header-background);
+  opacity: 1;
+  background: var(--main-header-background);
 }
 
 .nav-hide {
-    background: var(--main-header-background);
-    opacity: 1;
+  background: var(--main-header-background);
+  opacity: 1;
 }
 
 .nav-bar {
-    position: relative;
-    list-style: none;
-    display: inline-flex;
+  position: relative;
+  list-style: none;
+  display: inline-flex;
 }
 
 a.nav-link {
-    margin: 2px;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: lightskyblue;
-    cursor: pointer;
-    font-family: var(--main-font-family);
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+  margin: 2px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: lightskyblue;
+  cursor: pointer;
+  font-family: var(--main-font-family);
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    color: var(--main-fonts-color);
+  color: var(--main-fonts-color);
 }
 
 .active {
-    background: var(--main-decor-color);
+  background: var(--main-decor-color);
 }
 
 .logo img {
-    padding-top: 5px;
-    height: 50px;
-    cursor: pointer;
+  padding-top: 5px;
+  height: 50px;
+  cursor: pointer;
 }
 
 /*
 Header Fade
 */
 .headfade {
-    display: none;
+  display: none;
 }
 
 .headfade div {
-    height: 3px;
-    width: 30px;
-    background: white;
-    margin: 5px;
-    transition: all 0.3s ease;
+  height: 3px;
+  width: 30px;
+  background: white;
+  margin: 5px;
+  transition: all 0.3s ease;
 }
 
 .toggle .fade1 {
-    transform: rotate(-45deg) translate(-5px, 6px);
+  transform: rotate(-45deg) translate(-5px, 6px);
 }
 
 .toggle .fade2 {
-    opacity: 0;
+  opacity: 0;
 }
 
 .toggle .fade3 {
-    transform: rotate(45deg) translate(-5px, -6px);
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 @keyframes navLinkFade {
-    from {
-        opacity: 0;
-        transform: translatex(50px);
-    } to {
-        opacity: 1;
-        transform: translatex(0px);
-    }
+  from {
+    opacity: 0;
+    transform: translatex(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translatex(0px);
+  }
 }
 
 /*
@@ -162,50 +193,50 @@ Home
 */
 
 #home {
-    background-color: var(--main-background);
-    color: var(--main-fonts-color);
-    margin: auto;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: var(--main-background);
+  color: var(--main-fonts-color);
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #home .filter {
-    background: url("https://webstockreview.net/images/clipart-snow-flake-3.png");
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: .20;
+  background: url("https://webstockreview.net/images/clipart-snow-flake-3.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.2;
 }
 
 .intro {
-    text-align: center;
-    color: var(--main-fonts-color);
-    z-index: 1;
-    margin: auto;
-    padding: 20px;
+  text-align: center;
+  color: var(--main-fonts-color);
+  z-index: 1;
+  margin: auto;
+  padding: 20px;
 }
 
 .intro p {
-    margin: 5px;
-    font-size: 1.2rem;
-    font-family: var(--main-font-family);
-    text-align: center;
+  margin: 5px;
+  font-size: 1.2rem;
+  font-family: var(--main-font-family);
+  text-align: center;
 }
 
 h3 {
-    padding-bottom: 15px;
-    letter-spacing: normal;
-    font-family: var(--main-font-family);
-    font-style: normal;
-    font-size: 60px;
-    color: var(--main-fonts-color);
-    text-shadow: 0px 0px 40px var(--main-decor-color);
+  padding-bottom: 15px;
+  letter-spacing: normal;
+  font-family: var(--main-font-family);
+  font-style: normal;
+  font-size: 60px;
+  color: var(--main-fonts-color);
+  text-shadow: 0px 0px 40px var(--main-decor-color);
 }
 
 /*
@@ -213,28 +244,28 @@ Social Media
 */
 
 .social-media {
-    padding: 10px;
-    display: flex;
-    position: center;
-    align-items: space-around;
-    justify-content: center;
+  padding: 10px;
+  display: flex;
+  position: center;
+  align-items: space-around;
+  justify-content: center;
 }
 
 .social-media a {
-    margin: 10px;
-    font-size: 2rem;
-    text-align: center;
-    display: inline-block;
-    color: var(--main-fonts-color);
+  margin: 10px;
+  font-size: 2rem;
+  text-align: center;
+  display: inline-block;
+  color: var(--main-fonts-color);
 }
 
 .social-media a i {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .social-media a:hover {
-    color: var(--main-decor-color);
-    text-shadow: 0 0 50px var(--main-decor-color);
+  color: var(--main-decor-color);
+  text-shadow: 0 0 50px var(--main-decor-color);
 }
 
 /*
@@ -242,70 +273,70 @@ Games
 */
 
 #games {
-    margin-top: 100px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--main-fonts-color);
+  margin-top: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--main-fonts-color);
 }
 
 #games h3 {
-    padding-top: 70px;
+  padding-top: 70px;
 }
 
 #games p {
-    font-family: var(--main-fonts-family);
-    font-size: 1.2rem;
-    padding: 10px;
+  font-family: var(--main-fonts-family);
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
 .work {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    height: 250px;
-    width: 200px;
-    border-radius: 12px;
-    background:var(--main-decor-color);
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  height: 250px;
+  width: 200px;
+  border-radius: 12px;
+  background: var(--main-decor-color);
 }
 
 .card img {
-    height: 70%;
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
+  height: 70%;
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .card .work-content {
-    text-align: center;
-    padding: 10px 5px;
-    font-size: 1rem;
-    color: var(--main-fonts-color);
-    font-family: var(--main-font-family);
-    cursor: pointer;
+  text-align: center;
+  padding: 10px 5px;
+  font-size: 1rem;
+  color: var(--main-fonts-color);
+  font-family: var(--main-font-family);
+  cursor: pointer;
 }
 
 .card a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .card .work-content:hover {
-    color: black;
+  color: black;
 }
 
 .card:hover {
-    box-shadow: 0 0 1.5rem skyblue;
+  box-shadow: 0 0 1.5rem skyblue;
 }
 
 /*
@@ -313,24 +344,24 @@ About
 */
 
 #about {
-    margin-top: 100px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--main-fonts-color);
+  margin-top: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--main-fonts-color);
 }
 
 #about h3 {
-    padding-top: 70px;
+  padding-top: 70px;
 }
 
 #about p {
-    font-family: var(--main-fonts-family);
-    font-size: 1.2rem;
-    padding: 10px;
+  font-family: var(--main-fonts-family);
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
 /*
@@ -338,141 +369,141 @@ Cards
 */
 
 #title {
-    margin-top: 100px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--main-fonts-color);
+  margin-top: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--main-fonts-color);
 }
 
 #title h3 {
-    padding-top: 70px;
+  padding-top: 70px;
 }
 
 #title p {
-    font-family: var(--main-fonts-family);
-    font-size: 1.2rem;
-    padding: 10px;
+  font-family: var(--main-fonts-family);
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
 #maincard {
-    align-items: center;
+  align-items: center;
 }
 
 #maincard h3 {
-    text-align: center;
-    padding-top: 70px;
-    text-align: center;
-    color: white;
+  text-align: center;
+  padding-top: 70px;
+  text-align: center;
+  color: white;
 }
 
 #maincard p {
-    font-family: var(--main-fonts-family);
-    font-size: 1.2rem;
-    padding: 10px;
-    text-align: center;
-    color: white;
+  font-family: var(--main-fonts-family);
+  font-size: 1.2rem;
+  padding: 10px;
+  text-align: center;
+  color: white;
 }
 
 .maincard {
-    margin-top: 100px;
-    height: 400px;
-    width: 320px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--main-fonts-color);
+  margin-top: 100px;
+  height: 400px;
+  width: 320px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--main-fonts-color);
 }
 
 .maincard .card {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    padding: 5px;
-    background: var(--main-background);
-    border-radius: 10px;
-    transform: translateY(0deg);
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    box-shadow: 0px 10px 15px var(--main-decor-color);
-    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  background: var(--main-background);
+  border-radius: 10px;
+  transform: translateY(0deg);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  box-shadow: 0px 10px 15px var(--main-decor-color);
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .maincard:hover > .front-face {
-    transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
 .maincard .card img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .maincard .back-face {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-    transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  transform: rotateY(180deg);
 }
 
 .maincard:hover > .back-face {
-    transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 
 .maincard .back-face img {
-    height: 150px;
-    width: 150px;
-    padding: 5px;
-    border-radius: 50%;
-    background: linear-gradient(375deg, skyblue, white);
+  height: 150px;
+  width: 150px;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(375deg, skyblue, white);
 }
 
 .maincard .back-face .info {
-    text-align: center;
+  text-align: center;
 }
 
 .back-face .info .title {
-    font-size: 30px;
-    font-weight: 500;
+  font-size: 30px;
+  font-weight: 500;
 }
 
 .back-face ul {
-    display: flex;
+  display: flex;
 }
 
 .back-face ul a {
-    display: block;
-    height: 40px;
-    width: 40px;
-    color: white;
-    text-align: center;
-    margin: 0 5px;
-    line-height: 38px;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    background: linear-gradient(375deg, skyblue, white);
-    transition: all 0.5s ease;
+  display: block;
+  height: 40px;
+  width: 40px;
+  color: white;
+  text-align: center;
+  margin: 0 5px;
+  line-height: 38px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: linear-gradient(375deg, skyblue, white);
+  transition: all 0.5s ease;
 }
 
 .back-face ul a:hover {
-    color: lightblue;
-    border-color: white;
-    background: linear-gradient(375deg, transparent, transparent);
+  color: lightblue;
+  border-color: white;
+  background: linear-gradient(375deg, transparent, transparent);
 }
 
 /*
@@ -480,16 +511,16 @@ Footer
 */
 
 footer {
-    height: 100%;
-    width: 100%;
-    background-color: var(--main-header-background);
+  height: 100%;
+  width: 100%;
+  background-color: var(--main-header-background);
 }
 
 .copyright {
-    color: var(--main-fonts-color);
-    font-size: 1.2rem;
-    line-height: 40px;
-    text-align: center;
+  color: var(--main-fonts-color);
+  font-size: 1.2rem;
+  line-height: 40px;
+  text-align: center;
 }
 
 /*
@@ -497,77 +528,77 @@ Underline
 */
 
 hr {
-    background: var(--main-decor-color);
-    margin: 2px;
-    height: 3px;
-    width: 150px;
-    border-radius: 5px;
-    border: hidden;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
+  background: var(--main-decor-color);
+  margin: 2px;
+  height: 3px;
+  width: 150px;
+  border-radius: 5px;
+  border: hidden;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
 }
 
 /*
 Media
 */
-@media only screen and (max-width: 1484px) and (min-width: 1214px){
-    .work {
-        padding: 20px 20%;
-    }
+@media only screen and (max-width: 1484px) and (min-width: 1214px) {
+  .work {
+    padding: 20px 20%;
+  }
 }
 
-@media only screen and (max-width: 1214) and (min-width: 1000px){
-    .work {
-        padding: 20px 12%;
-    }
+@media only screen and (max-width: 1214) and (min-width: 1000px) {
+  .work {
+    padding: 20px 12%;
+  }
 }
 
-@media only screen and (max-width: 500px){
-    header {
-        background-color: var(--main-header-background);
-    }
+@media only screen and (max-width: 500px) {
+  header {
+    background-color: var(--main-header-background);
+  }
 
-    .logo {
-        position: absolute;
-        top: 2px;
-        left: 30px;
-    }
+  .logo {
+    position: absolute;
+    top: 2px;
+    left: 30px;
+  }
 
-    .nav-hide {
-        background: var(--main-header-background);
-        opacity: 1;
-    }
+  .nav-hide {
+    background: var(--main-header-background);
+    opacity: 1;
+  }
 
-    .nav-bar {
-        position: fixed;
-        top: 0px;
-        right: 0;
-        height: 100vh;
-        width: 60%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        background: var(--main-header-background);
-        transform:translatex(100%);
-        transition: transform 0.5s ease-in;
-        z-index: -1;
-    }
+  .nav-bar {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    height: 100vh;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: var(--main-header-background);
+    transform: translatex(100%);
+    transition: transform 0.5s ease-in;
+    z-index: -1;
+  }
 
-    .headfade {
-        position: absolute;
-        top: 17px;
-        right: 25%;
-        display: block;
-        cursor: pointer;
-        z-index: 5;
-    }
+  .headfade {
+    position: absolute;
+    top: 17px;
+    right: 25%;
+    display: block;
+    cursor: pointer;
+    z-index: 5;
+  }
 
-    .nav-bar li {
-        opacity: 0;
-    }
+  .nav-bar li {
+    opacity: 0;
+  }
 }
 
 .nav-active {
-    transform:translatex(0%);
+  transform: translatex(0%);
 }

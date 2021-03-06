@@ -1,4 +1,3 @@
-const { ShardingManager } = require("discord.js");
 const { config } = require("dotenv")
 
 // Start Dotenv //--
@@ -6,12 +5,13 @@ config({
     path: __dirname + "/.env"
 })
 
-if (process.env.TestMode){
+if (process.env.TestMode) {
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
-    require("./distubehandler");
+    require("./ch1llblox");
     require("./ch1llwebsite")
 } else {
+    const { ShardingManager } = require("discord.js");
     const ShardManager = new ShardingManager("./ch1llblox.js", {
         totalShards: 1,
         shardList: "auto",
