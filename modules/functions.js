@@ -72,7 +72,6 @@ module.exports = async (bot) => {
 
         return totalGuilds
       })
-      .catch(console.error);
   }
 
   bot.GetUserCount = async function(){
@@ -82,10 +81,10 @@ module.exports = async (bot) => {
     
     Promise.all(promises)
       .then(results => {
-        const totalMembers = results[1].reduce((acc, memberCount) => acc + memberCount, 0);
+        const totalMembers = results[0].reduce((acc, memberCount) => acc + memberCount, 0);
+        
         return totalMembers
       })
-      .catch(console.error);
   }
 
   bot.Debounce = function(func, wait, immediate){
