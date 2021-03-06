@@ -148,4 +148,4 @@ if (!process.env.TestMode){
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
 
-Bot.Log("SUCCESS", "Bot Loading", "Bot loading complete!")
+console.log("SUCCESS - BOT LOADING COMPLETE")
