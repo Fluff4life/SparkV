@@ -37,7 +37,7 @@ exports.run = async (Bot, message, Arguments) => {
     await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ammount)
     await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Ammount)
 
-    message.channel.send(`You robbed ${User} and recieved ${Bot.FormatNumber(Ammount)} Ch1llBucks!`)
+    message.channel.send(`You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
   } else {
 
     await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, 250)
