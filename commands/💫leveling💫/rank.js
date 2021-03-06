@@ -14,19 +14,22 @@ exports.run = async (Bot, message, Arguments) => {
 
   const canvacord = require("canvacord");
 
-  const Rank = new canvacord.Rank()
-    .setUsername(Target.username)
-    .setDiscriminator(Target.discriminator)
-    .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
+  var Rank
 
   if (!User) {
-    Rank
+    Rank = new canvacord.Rank()
+      .setUsername(Target.username)
+      .setDiscriminator(Target.discriminator)
+      .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
       .setLevel(1)
       .setCurrentXP(0)
       .setRequiredXP(100)
       .setProgressBar("#0099ff", "COLOR")
   } else {
-    Rank
+    Rank = new canvacord.Rank()
+      .setUsername(Target.username)
+      .setDiscriminator(Target.discriminator)
+      .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
       .setLevel(Bot.FormatNumber(User.level))
       .setCurrentXP(Bot.FormatNumber(User.xp))
       .setRequiredXP(Bot.FormatNumber(NeededXP))

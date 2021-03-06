@@ -146,7 +146,7 @@ exports.run = async (Bot, Message) => {
       .run(Bot, Message, args, command)
       .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${Message.author.tag} ID: ${Message.author.id}`) })
   } catch (err) {
-    await Message.channel.send(`❌**Failed**! Please alert KingCh1ll ASAP.`)
+    await Message.channel.send(`❌**Failed**! Please alert KingCh1ll with the following error. ${err}`)
     
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err.toString()}`)
   }
