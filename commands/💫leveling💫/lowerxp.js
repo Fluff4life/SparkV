@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
 exports.run = async (Bot, message, Arguments) => {
+  const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
   const Leveling = await Bot.Database.get(`ServerData_${message.guild.id}.Leveling`)
 
   if (!Leveling || !Leveling === "on") {
@@ -9,11 +10,11 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   try {
-    await Levels.setXp(message.author.id, message.guild.id, Arguments[0]).then(() => {
-      message.channel.send(`Successfully lowered xp to ${Arguments[0]}`)
+    await Levels.setXp(User.id, message.guild.id, Arguments[1]).then(() => {
+      message.channel.send(`Successfully lowered xp to ${Arguments[1]}`)
     })
   } catch (err) {
-    message.channel.send(`Error lowering xp to ${Arguments[0]}. Please try again later!`)
+    message.channel.send(`Error lowering xp to ${Arguments[1]}. Please try again later!`)
   }
 },
 

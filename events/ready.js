@@ -68,5 +68,5 @@ exports.run = async (Bot) => {
   }
 
   Bot.user.setAvatar(process.env.AvatarURL)
-  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${await await Bot.FormatNumber(Bot.GetServerCount())}\nUsers: ${await await Bot.FormatNumber(Bot.GetUserCount())}`)
+  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${await Bot.FormatNumber(Bot.GetServerCount())}\nUsers: ${await Bot.FormatNumber(Bot.GetUserCount())}`)
 }
