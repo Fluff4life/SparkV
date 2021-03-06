@@ -13,7 +13,7 @@ if (process.env.TestMode){
     require("./ch1llwebsite")
 } else {
     const ShardManager = new ShardingManager("./ch1llblox.js", {
-        totalShards: "auto",
+        totalShards: "1",
         shardList: "auto",
         mode: "process",
         respawn: true,
