@@ -26,6 +26,14 @@ module.exports = async (bot) => {
     }
   }
 
+  bot.FormatNumber = function(string){
+    const FormattedNumber = string
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+    return FormattedNumber
+  }
+
   bot.Log = function(Status, Type, Details){
     console.log(`${Status} - ${Type} => ${Details}`)
   }
@@ -109,35 +117,4 @@ module.exports = async (bot) => {
       return false
     }
   }
-
-  /*
-  OLD
-
-  MS to Time Converter:
-    var days = Math.floor(ms / 86400000) // 24*60*60*1000
-    var daysms = ms % 86400000 // 24*60*60*1000
-    var hours = Math.floor(daysms / 3600000) // 60*60*1000
-    var hoursms = ms % 3600000 // 60*60*1000
-    var minutes = Math.floor(hoursms / 60000) // 60*1000
-    var minutesms = ms % 60000 // 60*1000
-    var sec = Math.floor(minutesms / 1000)
-  
-    let str = ""
-
-    if (days){
-      str = str + days + " days "
-    }
-
-    if (hours){
-      str = str + hours + " hours " 
-    }
-
-    if (minutes){
-      str = str + minutes + " minutes " 
-    }
-
-    if (sec){ 
-      str = str + sec + " seconds"
-    }
-  */
 }
