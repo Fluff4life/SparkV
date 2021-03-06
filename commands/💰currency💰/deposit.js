@@ -37,7 +37,7 @@ exports.run = async (Bot, message, Arguments) => {
   await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, parseInt(Arguments[0]))
   await Bot.Database.add(`UserData_${User.id}.bank`, parseInt(Arguments[0]))
 
-  message.channel.send(`Deposited ❄${FormatNumber(Arguments[0])} into bank!`)
+  message.channel.send(`Deposited ❄${Bot.FormatNumber(Arguments[0])} into bank!`)
 },
 
 

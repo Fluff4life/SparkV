@@ -37,7 +37,7 @@ exports.run = async (Bot, Message) => {
     if (HasLeveledUp){
       const User = await Levels.fetch(Message.author.id, Message.guild.id)
 
-      Message.channel.send(`:lightningbolt: Congrats ${Message.author}, you're now at level **${FormatNumber(User.level)}**!`)
+      Message.channel.send(`:lightningbolt: Congrats ${Message.author}, you're now at level **${Bot.FormatNumber(User.level)}**!`)
     }
   }
 
