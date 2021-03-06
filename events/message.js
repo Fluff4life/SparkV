@@ -142,10 +142,12 @@ exports.run = async (Bot, Message) => {
   setTimeout(() => Timestamps.delete(Message.author.id), CooldownAmount);
 
   try {
-    commandfile
+    await commandfile
       .run(Bot, Message, args, command)
       .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${Message.author.tag} ID: ${Message.author.id}`) })
   } catch (err) {
-    console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nFAILED - FAILEd to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err}`)
+    await Message.channel.send(`❌**Failed**! Please alert KingCh1ll ASAP.`)
+    
+    console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err.toString()}`)
   }
 }

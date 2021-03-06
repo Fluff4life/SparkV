@@ -11,9 +11,9 @@ exports.run = async (Bot, message, Arguments) => {
 
   Bot.Database.set(`ServerData_${message.guild.id}.GroupID`, parseInt(Arguments[0]))
 
-  noblox.generalRequest("//www.roblox.com/Groups/Group.aspx?gid=1", { __EVENTTARGET: 'JoinGroupDiv', __EVENTARGUMENT: 'Click' })
+  Noblox.generalRequest("//www.roblox.com/Groups/Group.aspx?gid=1", { __EVENTTARGET: 'JoinGroupDiv', __EVENTARGUMENT: 'Click' })
 
-  message.channel.send(`Ch1llBlox is now joining your group. If he does not come on for longer than 10 minnutes, something is wrong. GroupID: ${Arguments[0]}.`)
+  message.channel.send(`Ch1llBlox is now joining your group. If he does not come on for longer than 10 minutes, something is wrong. GroupID: ${Arguments[0]}.`)
 },
 
   exports.config = {
