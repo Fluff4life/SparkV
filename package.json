@@ -18,6 +18,7 @@
     "npm": "7.6.1"
   },
   "dependencies": {
+    "@discordjs/opus": "^0.4.0",
     "canvacord": "^5.1.0",
     "canvas": "^2.7.0",
     "discord-anti-spam": "^2.5.0",
