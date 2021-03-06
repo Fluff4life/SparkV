@@ -15,7 +15,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const Leaderboard = await Levels.computeLeaderboard(Bot, RawLeaderboard, true)
-  const Leader = Leaderboard.map(data => `\`${FormatNumber(data.position.toNumber())}\`. ${FormatNumber(data.level.toNumber())} - ${data.username}#${data.discriminator}`)
+  const Leader = Leaderboard.map(data => `\`**${data.position}**\`. ${data.level} - **${data.username}#${data.discriminator}**`)
 
   const LeaderboardEmbed = new Discord.MessageEmbed()
     .setTitle(`${message.guild.name}'s Level Leaderboard`)

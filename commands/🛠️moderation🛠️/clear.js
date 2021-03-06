@@ -4,10 +4,6 @@ exports.run = async (Bot, msg, Arguments) => {
   if (msg.deletable){
     msg.delete()
   }
-  
-  if (!msg.member.hasPermission("MANAGE_MESSAGES")){
-    return msg.channel.send("You don't have permision to run this command!").then(m => m.delete({ timeout: 5000 }))
-  }
 
   if (isNaN(Arguments[0]) || parseInt(Arguments[0]) <= 0){
     return msg.channel.send("That's not a nunber.").then(m => m.delete({ timeout: 5000 }))
@@ -36,7 +32,7 @@ exports.run = async (Bot, msg, Arguments) => {
     usage: "<number of messages to delete>",
     category: "🛠️moderation🛠️",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
-    member_permissions: ["KICK_MEMBERS"],
+    member_permissions: ["MANAGE_MESSAGES"],
     enabled: true,
     cooldown: 5
   }
