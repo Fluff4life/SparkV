@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
 exports.run = async (Bot, Message) => {
-  if (Message.author.Bot) {
+  if (Message.author.bot) {
     return;
   }
 
