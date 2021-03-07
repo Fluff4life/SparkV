@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const TicTacToe = require("discord-tictactoe");
 
 exports.run = async (Bot, msg, Arguments, Command) => {
-  var Prefix = Bot.Database.get(`ServerData_${message.guild.id}.prefix`)
+  var Prefix = Bot.Database.get(`ServerData_${msg.guild.id}.prefix`)
 
   if (!Prefix){
     Prefix = process.env.prefix

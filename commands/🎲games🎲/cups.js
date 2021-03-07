@@ -34,7 +34,7 @@ exports.config = {
   name: "Cups",
   description: "Play a game of cups with me.",
   aliases: ["ballcups"],
-  usage: "<on or off>",
+  usage: "",
   category: "🎲games🎲",
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS"],
   member_permissions: [],
