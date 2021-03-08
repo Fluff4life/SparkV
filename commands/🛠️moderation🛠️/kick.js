@@ -35,7 +35,7 @@ exports.run = async (Bot, msg, Arguments) => {
 
     UserToKick.kick()
 
-    UserToKick.send(`You have been kicked from ${guild.name}. Reason: ${ReasonForKick}.`).catch((err) => {
+    UserToKick.send(`You have been kicked from ${msg.guild.name}. Reason: ${ReasonForKick}.`).catch((err) => {
       msg.channel.send(`Failed to kick. Error: ${err}`)
     })
 

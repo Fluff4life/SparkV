@@ -32,7 +32,7 @@ exports.run = async (Bot, msg, Arguments) => {
     // Yes
     msg.delete()
 
-    UserToBan.send(`You have been banned from ${guild.name}. Reason: ${ReasonForBan}.`).catch((err) => {
+    UserToBan.send(`You have been banned from ${msg.guild.name}. Reason: ${ReasonForBan}.`).catch((err) => {
       msg.channel.send(`Failed to ban. Error: ${err}`)
     })
 
