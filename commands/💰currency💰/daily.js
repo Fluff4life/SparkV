@@ -21,7 +21,7 @@ exports.run = async (Bot, message, Arguments) => {
   await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Ammount)
   await Bot.Database.add(`UserData_${User.id}.bank`, Ammount)
 
-  message.channel.send(`Deposited ❄${await Bot.FormatNumber(Arguments[0])} into bank!`)
+  message.channel.send(`You've just earned ❄${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
 },
 
   exports.config = {
