@@ -34,11 +34,8 @@ exports.run = async (Bot, message, Arguments) => {
       const warningdata = Bot.Database.get(`ServerData_${message.guild.id}.warnings.${User.id}`)
       VerificationMessage.delete()
 
-      if (warningdata.warnings === 3){
-        return message.channel.send(`${message.mentions.users.first().username} already reached their limit of 3 warnings!`)
-      }
-
-      if (!warningdata.warnings){
+      if (!warningdata){
+        Bot.Database.set(`ServerData_${message.guild.id}.${User.id}.warnings.count`, 1)
         Bot.Database.set(`ServerData_${message.guild.id}.${User.id}.warnings`, {
           username: User.user.username,
           modname: message.author.user,
@@ -65,11 +62,11 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else if (warnings){
+        Bot.Database.add(`ServerData_${message.guild.id}.${User.id}.warnings.count`, 1)
         Bot.Database.add(`ServerData_${message.guild.id}.${User.id}.warnings`, {
           username: User.user.username,
           modname: message.author.user,
           reason: Reason,
-          warnings: 1,
         })
 
         try {

@@ -7,8 +7,6 @@ console.log("LOADING STARTED - WEBSITE => Now loading website.")
 // Librarys //
 const express = require("express");
 
-const LocalHost = false
-
 // App //
 const app = express();
 app.use(express.static("public"));
@@ -65,9 +63,9 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-if (LocalHost === "true"){
+if (process.env.LocalHost === "true"){
   const listener = app.listen(process.env.PORT, process.env.hostname, () => {
-    console.log(`SUCCESS - WEBSITE => Server running at https://${process.env.hostname}:${listener.address().port} & listening on port ${listener.address().port}.`);
+    console.log(`SUCCESS - WEBSITE => Server running at http://${process.env.hostname}:${listener.address().port} & listening on port ${listener.address().port}.`);
   })
 } else {
   const listener = app.listen(process.env.PORT, () => {

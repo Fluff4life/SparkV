@@ -1,8 +1,10 @@
+$("header").removeClass("nav-hide")
+
 $(window).on("scroll", function () {
-  if ($(window).scrollTop()) {
-    $("header").removeClass("nav-hide")
+  if ($(window).scrollTop()){
+    $("header").addClass("nav-show")
   } else {
-    $("header").addClass("nav-hide")
+    $("header").removeClass("nav-show")
   }
 })
 
@@ -26,6 +28,18 @@ const onload = () => {
   const headfade = document.querySelector(".headfade")
   const navbar = document.querySelector(".nav-bar")
   const navlinks = document.querySelectorAll(".nav-bar li")
+  const background = document.querySelector(".filter")
+  let x, y
+
+  document.onmousemove = (movedata) => {
+    if (x && y){
+      background.style.backgroundPositionX = `${-x}px`
+      background.style.backgroundPositionY = `${-y}px`
+    }
+
+    x = movedata.clientX / 30
+    y = movedata.clientY / 30
+  }
 
   headfade.onclick = () => {
     navbar.classList.toggle("nav-active")

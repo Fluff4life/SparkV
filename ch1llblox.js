@@ -22,6 +22,7 @@ const AntiSpam = require("discord-anti-spam")
 
 // Create Bot //
 const Bot = new Client({
+  partials: ["MESSAGE", "CHANNEL", "REACTION"],
   disableEveryone: true,
 
   presence: {
