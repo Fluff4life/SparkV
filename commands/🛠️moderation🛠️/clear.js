@@ -26,10 +26,6 @@ exports.run = async (Bot, msg, Arguments) => {
   }
 },
 
-  message.channel.bulkDelete(100).then(() => {
-    message.channel.send("Deleted 100 messages.").then(msg => msg.delete(3000));
-  });
-
 exports.config = {
   name: "Clear",
   description: "I can delete messages for you so you don't have to spend a while deleting them :)",
