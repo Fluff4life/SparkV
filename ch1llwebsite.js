@@ -45,15 +45,15 @@ async function RunWebsite() {
 
       const code = request.query.code
       const creds = btoa(`763126208149585961:${process.env.CLIENT_SECRET}`)
-      const FetchReqponse = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=https://ch1ll.herokuapp.com/login/callback`, {
+      const FetchResponse = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=https://ch1ll.herokuapp.com/login/callback`, {
         method: "POST",
         headers: {
           Authorization: `Basic ${creds}`
         }
       })
     
-      const json = await response.json()
-      response.redirect(`/?token=${json.access_token}`)
+      const json = await FetchResponse.json()
+      FetchResponse.redirect(`/?token=${json.access_token}`)
     })
 
     app.get("/home", (request, response) => {
