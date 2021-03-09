@@ -15,16 +15,22 @@ exports.run = async (Bot) => {
     },
 
     {
+      text: `Watching ${await Bot.GetUserCount()} users!`,
+      type: "WATCHING",
+      status: "online"
+    },
+
+    {
       text: `Ch1ll'n!`,
       type: "WATCHING",
       status: "online"
     },
 
     {
-      text: `Watching ${await Bot.GetUserCount()} users!`,
+      text: `😏https://ch1ll.herokuapp.com/Ch1llBlox/donate`,
       type: "WATCHING",
       status: "online"
-    }
+    },
   ]
 
   Bot.setInterval(() => {
