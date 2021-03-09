@@ -9,7 +9,7 @@ exports.run = async (Bot) => {
     },
   
     {
-      text: `${Bot.GetServerCount()} servers!`,
+      text: `${await Bot.GetServerCount()} servers!`,
       type: "WATCHING",
       status: "online"
     },
@@ -21,7 +21,7 @@ exports.run = async (Bot) => {
     },
 
     {
-      text: `Watching ${Bot.GetUserCount()} users!`,
+      text: `Watching ${await Bot.GetUserCount()} users!`,
       type: "WATCHING",
       status: "online"
     }
@@ -40,33 +40,27 @@ exports.run = async (Bot) => {
   }, 60 * 1000)
 
   for (const guild of Bot.guilds.cache) {
-    if (process.env.GuildBlacklist.includes(guild.id)) {
-      try {
-        await guild.leave()
-
-        console.log(`SUCCESS - GUILD BLACKLIST => Left guild ${guild.name} because it's on the GuildBlacklist.`)
-      } catch {
-        console.log(`ERROR - GUILD BLACKLIST => Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`)
-      }
-    }
-  }
-
-  for (const guild of Bot.guilds.cache) {
     if (process.env.UserBlacklist.includes(guild.ownerID)) {
       try {
         await guild.leave()
 
-        Bot.Log("SUCCESS", "USER BLACKLIST GUILD", `Left guild ${guild.name} (${guild.id}) because the owner is on the UserBlacklist.`)
+        console.log(`Left guild ${guild.name} because it's on the UserBlacklist.`)
       } catch {
-        Bot.Log("ERROR", "USER BLACKLIST GUILD", `Failed to leave Blacklisted User's Guild! ${guild.name} (${id})`)
+        console.log(`Failed to leave Blacklisted User's Guild! GuildName: ${guild.name} GuildID: ${id}`)
+      }
+    }
+
+    if (process.env.GuildBlacklist.includes(guild.id)) {
+      try {
+        await guild.leave()
+
+        console.log(`Left guild ${guild.name} because it's on the GuildBlacklist.`)
+      } catch {
+        console.log(`Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`)
       }
     }
   }
 
-  for (const guild of Bot.guilds.cache){
-    Bot.UserCount = Bot.UserCount + guild.memberCount
-  }
-
   Bot.user.setAvatar(process.env.AvatarURL)
-  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.GetServerCount()}\nUsers: ${Bot.GetUserCount()}`)
+  Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${await Bot.GetServerCount()}\nUsers: ${await Bot.GetUserCount()}`)
 }
