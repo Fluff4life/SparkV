@@ -44,7 +44,7 @@ async function RunWebsite() {
       if (request.session.loggedin) {
         response.status(200).sendFile(__dirname + `/public/html/home.html`);
       } else {
-        response.status(401).sendFile(__dirname + `/public/html/login.html`);
+        response.status(200).sendFile(__dirname + `/public/html/home.html`);
       }
     });
 
