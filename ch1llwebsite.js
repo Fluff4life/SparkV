@@ -30,9 +30,11 @@ async function RunWebsite() {
       res.sendFile(__dirname + `/public/html/down.html`);
     });
   } else {
-    app.use("/discordapi", require("./public/discordapi"))
+    // app.use("/discordapi", require("./public/discordapi"))
 
     app.get("/", (request, response) => {
+      response.redirect("/home")
+
       if (request.session.loggedin) {
         response.redirect("/home")
       } else {
