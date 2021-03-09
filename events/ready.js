@@ -15,7 +15,13 @@ exports.run = async (Bot) => {
     },
 
     {
-      text: `Watching ${await Bot.GetUserCount()} users!`,
+      text: `${await Bot.GetUserCount()} users!`,
+      type: "WATCHING",
+      status: "online"
+    },
+
+    {
+      text: `${await Bot.GetUserCount()} cool kids 😎!`,
       type: "WATCHING",
       status: "online"
     },
@@ -27,7 +33,7 @@ exports.run = async (Bot) => {
     },
 
     {
-      text: `😏https://ch1ll.herokuapp.com/Ch1llBlox/donate`,
+      text: `😏ch1ll.herokuapp.com/ch1llblox/donate`,
       type: "WATCHING",
       status: "online"
     },
@@ -37,11 +43,13 @@ exports.run = async (Bot) => {
     const Activity = Activities[Math.floor(Math.random() * Activities.length)]
 
     Bot.user.setPresence({
+      status: Activity.status,
+
       activity: {
         name: Activity.text,
-        type: Activity.type
+        type: Activity.type,
+        url: Activity.url
       },
-      status: Activity.status
     })
   }, 60 * 1000)
 
