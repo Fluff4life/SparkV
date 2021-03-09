@@ -1,7 +1,7 @@
 $("header").addClass("nav-show")
 
 $(window).on("scroll", function () {
-  if ($(window).scrollTop()){
+  if ($(window).scrollTop()) {
     $("header").addClass("nav-show")
   } else {
     $("header").removeClass("nav-show")
@@ -9,9 +9,6 @@ $(window).on("scroll", function () {
 })
 
 $(document).ready(function () {
-  const background = document.querySelector(".filter")
-  let x, y
-
   $("a").on("click", function (event) {
     if (this.hash !== "") {
       event.preventDefault()
@@ -20,21 +17,11 @@ $(document).ready(function () {
 
       $("html, body").animate({
         scrollTop: $(hash).offset().top
-      }, 800, function() {
+      }, 800, function () {
         window.location.hash = hash
       })
     }
   })
-
-  document.onmousemove = (movedata) => {
-    if (x && y){
-      background.style.backgroundPositionX = `${-x}px`
-      background.style.backgroundPositionY = `${-y}px`
-    }
-
-    x = movedata.clientX / 30
-    y = movedata.clientY / 30
-  }
 })
 
 const onload = () => {
