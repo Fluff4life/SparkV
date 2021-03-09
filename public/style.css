@@ -125,7 +125,7 @@ header:hover {
   position: relative;
   list-style: none;
   display: inline-flex;
-  right: 150px;
+  right: 50px;
 }
 
 a.nav-link {
