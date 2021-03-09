@@ -35,17 +35,17 @@ async function RunWebsite() {
     });
 
     app.get("/login", (request, response) => {
-      response.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=763126208149585961&scope=identify&response_type=code&redirect_uri=${redirect}`)
+      response.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=763126208149585961&scope=identify&response_type=code&redirect_uri=https://ch1ll.herokuapp.com/login/callback`)
     });
 
-    app.get("/callback", async (request, response) => {
+    app.get("/login/callback", async (request, response) => {
       if (!request.query.code){
         return response.status(404)
       }
 
       const code = request.query.code
       const creds = btoa(`763126208149585961:${process.env.CLIENT_SECRET}`)
-      const FetchReqponse = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirect}`, {
+      const FetchReqponse = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=https://ch1ll.herokuapp.com/login/callback`, {
         method: "POST",
         headers: {
           Authorization: `Basic ${creds}`
