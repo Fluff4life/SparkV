@@ -53,7 +53,7 @@ async function RunWebsite() {
       })
     
       const json = await FetchResponse.json()
-      FetchResponse.redirect(`/?token=${json.access_token}`)
+      response.redirect(`/?token=${json.access_token}`)
     })
 
     app.get("/home", (request, response) => {
