@@ -1,4 +1,4 @@
-$("header").removeClass("nav-hide")
+$("header").removeClass("nav-show")
 
 $(window).on("scroll", function () {
   if ($(window).scrollTop()){

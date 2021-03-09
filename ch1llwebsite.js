@@ -8,6 +8,8 @@ console.log("LOADING STARTED - WEBSITE => Now loading website.")
 const express = require("express");
 const Session = require("express-session");
 const BodyParser = require("body-parser");
+const fetch = require("node-fetch")
+const btoa = require("btoa")
 
 // App //
 const app = express();
@@ -22,8 +24,6 @@ app.use(BodyParser.json());
 
 // Functions //
 async function RunWebsite() {
-  const Database = await require("./database/connector").Database
-
   if (process.env.Down === "true") {
     app.use((req, res, next) => {
       res.status(500);
@@ -31,28 +31,29 @@ async function RunWebsite() {
     });
   } else {
     app.get("/", (request, response) => {
-      response.sendFile(__dirname + `/public/html/login.html`)
+      response.status(200).sendFile(__dirname + `/public/html/login.html`)
     });
 
-    app.post("/auth", (request, response) => {
-      var username = request.body.username
-      var password = request.body.password
+    app.get("/login", (request, response) => {
+      response.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=763126208149585961&scope=identify&response_type=code&redirect_uri=${redirect}`)
+    });
 
-      if (username && password){
-        var Account = Database.get(`WebsiteAccounts.${username}`)
-
-        if (Account.password === password){
-          request.session.loggedin = true
-          request.session.username = username
-          response.redirect("/home")
-        } else {
-          response.send("Incorrect Username and/or Password.")
-        }
-        response.end()
-      } else {
-        response.send("Please enter a username & password.")
-        response.end()
+    app.get("/callback", async (request, response) => {
+      if (!request.query.code){
+        return response.status(404)
       }
+
+      const code = request.query.code
+      const creds = btoa(`763126208149585961:${process.env.CLIENT_SECRET}`)
+      const FetchReqponse = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirect}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${creds}`
+        }
+      })
+    
+      const json = await response.json()
+      response.redirect(`/?token=${json.access_token}`)
     })
 
     app.get("/home", (request, response) => {
