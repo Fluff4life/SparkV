@@ -34,12 +34,6 @@ async function RunWebsite() {
 
     app.get("/", (request, response) => {
       response.redirect("/home")
-
-      if (request.session.loggedin) {
-        response.redirect("/home")
-      } else {
-        response.status(401).sendFile(__dirname + `/public/html/login.html`);
-      }
     });
 
     app.get("/home", (request, response) => {

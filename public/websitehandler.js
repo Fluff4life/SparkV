@@ -1,4 +1,4 @@
-$("header").removeClass("nav-show")
+$("header").addClass("nav-show")
 
 $(window).on("scroll", function () {
   if ($(window).scrollTop()){
@@ -9,6 +9,9 @@ $(window).on("scroll", function () {
 })
 
 $(document).ready(function () {
+  const background = document.querySelector(".filter")
+  let x, y
+
   $("a").on("click", function (event) {
     if (this.hash !== "") {
       event.preventDefault()
@@ -22,14 +25,6 @@ $(document).ready(function () {
       })
     }
   })
-})
-
-const onload = () => {
-  const headfade = document.querySelector(".headfade")
-  const navbar = document.querySelector(".nav-bar")
-  const navlinks = document.querySelectorAll(".nav-bar li")
-  const background = document.querySelector(".filter")
-  let x, y
 
   document.onmousemove = (movedata) => {
     if (x && y){
@@ -40,6 +35,12 @@ const onload = () => {
     x = movedata.clientX / 30
     y = movedata.clientY / 30
   }
+})
+
+const onload = () => {
+  const headfade = document.querySelector(".headfade")
+  const navbar = document.querySelector(".nav-bar")
+  const navlinks = document.querySelectorAll(".nav-bar li")
 
   headfade.onclick = () => {
     navbar.classList.toggle("nav-active")
