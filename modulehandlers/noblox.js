@@ -9,6 +9,6 @@ module.exports = async (Bot) => {
 
     const CurrentCookie = await Bot.Database.get("BotConfig.RobloxCookie")
     await noblox.setCookie(CurrentCookie).then(() => {
-        setInterval(RefreshCookie, 10 * 1000)
+        setInterval(RefreshCookie, 300 * 1000)
     })
 }
