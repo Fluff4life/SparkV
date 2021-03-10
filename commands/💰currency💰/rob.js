@@ -17,10 +17,10 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (Ch1llBucks < 250) {
-    return message.channel.send("Bruh he has under ❄250. Leave them alone!")
+    return message.channel.send("Bruh you cannot rob someone unless you have over ❄250 Ch1llBucks.")
   }
 
-  if (Ch1llBucks.includes("-")) {
+  if (Ch1llBucks < 0){
     return message.channel.send("You can't rob someone in debt lol.")
   }
 

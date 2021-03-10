@@ -16,17 +16,18 @@ if (process.env.TestMode === "true") {
         require("./ch1llwebsite")
     }
 } else {
-    const { ShardingManager } = require("discord.js");
-    const ShardManager = new ShardingManager("./ch1llblox.js", {
-        totalShards: 1,
-        shardList: "auto",
-        mode: "process",
-        respawn: true,
-
+    const Discord = require("discord.js");
+    const ShardManager = new Discord.ShardingManager("./ch1llblox.js", {
         token: process.env.token,
-    });
+        totalShards: process.env.TotalShards || "auto",
+        shardArgs: typeof v8debug === "object" ? ["--inspect"] : undefined,
+        execArgv: ["--trace-warnings"]
+    })
 
     // Shard Handlers //
-    ShardManager.on("shardCreate", (Shard) => console.log(`SUCCESS - SHARD LAUNCH => Successfully launched shard ${Shard.id}.`))
-    ShardManager.spawn();
+    ShardManager.on("shardCreate", (Shard) => {
+        console.log(`SUCCESS - SHARD ${Shard.id + 1}/${ShardManager.totalShards} DEPLOYED`)
+    })
+
+    ShardManager.spawn(ShardManager.totalShards || "auto", 8000, -1);
 }

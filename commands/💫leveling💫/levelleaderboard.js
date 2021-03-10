@@ -27,7 +27,7 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  name: "Leaderboard",
+  name: "LevelLeaderboard",
   description: "View the server's Level leaderboard.",
   aliases: [],
   usage: "",
