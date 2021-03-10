@@ -8,7 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
   }
 
-  const Target = message.author
+  const Target = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
   const User = await Levels.fetch(Target.id, message.guild.id)
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
 
