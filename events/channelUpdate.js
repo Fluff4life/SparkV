@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 
-exports.run = async (Bot, event) => {
+exports.run = async (Bot, oldchannel, newchannel) => {
   for (const guild of Bot.guilds.cache) {
     if (process.env.UserBlacklist.includes(guild.ownerID)) {
       try {
@@ -22,6 +22,4 @@ exports.run = async (Bot, event) => {
       }
     }
   }
-
-  console.log(`ERROR! => ${event}`)
 }

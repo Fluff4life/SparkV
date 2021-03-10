@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 
-exports.run = async (Bot, event) => {
+exports.run = async (Bot, channel) => {
   for (const guild of Bot.guilds.cache) {
     if (process.env.UserBlacklist.includes(guild.ownerID)) {
       try {
@@ -23,5 +23,21 @@ exports.run = async (Bot, event) => {
     }
   }
 
-  console.log(`ERROR! => ${event}`)
+  const Logging = await Bot.Database.get(`ServerData_${Message.guild.id}.Logging.enabled`)
+  const LoggingChannelID = await Bot.Database.get(`ServerData_${Message.guild.id}.Logging.channelID`)
+
+  if (Logging && Logging === "on" && LoggingChannelID) {
+    const LoggingChannel = Bot.channels.get(LoggingChannelID)
+
+    if (LoggingChannel) {
+      const LogEmbed = new Discord.MessageEmbed()
+        .setTitle("❌Channel Removed")
+        .setDescription(`#${channel.name} was deleted.`)
+        .setAuthor(channel.guild.iconURL())
+        .setFooter(`Channel ID: ${channel.id}`, process.env.AvatarURL)
+        .setColor("#00FF6D");
+
+      LoggingChannel.send(LogEmbed)
+    }
+  }
 }

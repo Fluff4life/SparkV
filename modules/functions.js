@@ -20,9 +20,9 @@ module.exports = async (bot) => {
     let regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
       
     if(regexp.test(string)) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   }
 
@@ -65,7 +65,7 @@ module.exports = async (bot) => {
 			  mention = mention.slice(1);
 		  }
 
-		  return client.users.cache.get(mention);
+		  return bot.users.cache.get(mention);
       }
   }
 
@@ -85,28 +85,23 @@ module.exports = async (bot) => {
     return Promise.all(promises).then(results => results.flat().reduce((acc, MemberCount) => acc + MemberCount, 0))
   }
 
-  bot.Debounce = function(func, wait, immediate){
+  bot.Debounce = function(callback, wait, immediate){
     var timeout
   
-    return function () {
-      var context = this,
-        args = arguments
+    return function(){
+      var context = this, args = arguments
       var later = function () {
         timeout = null
-        if (!immediate) func.apply(context, args)
+        if (!immediate) callback.apply(context, args)
       }
       var callNow = immediate && !timeout
       clearTimeout(timeout)
       timeout = setTimeout(later, wait)
-      if (callNow) func.apply(context, args)
+      if (callNow) callback.apply(context, args)
     }
   }
 
-  bot.Wait = async function(SecondsTime, Function){
-    return await new Promise(_ => setTimeout(Function, SecondsTime * 1000));
-  }
-
-  bot.CheckPerm = function(message){
+  bot.IsAdmin = function(message){
     if (message.author.id == process.env.owner){
       return true
     } else {
