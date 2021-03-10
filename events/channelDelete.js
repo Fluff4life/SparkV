@@ -23,8 +23,8 @@ exports.run = async (Bot, channel) => {
     }
   }
 
-  const Logging = await Bot.Database.get(`ServerData_${Message.guild.id}.Logging.enabled`)
-  const LoggingChannelID = await Bot.Database.get(`ServerData_${Message.guild.id}.Logging.channelID`)
+  const Logging = await Bot.Database.get(`ServerData_${channel.guild.id}.Logging.enabled`)
+  const LoggingChannelID = await Bot.Database.get(`ServerData_${channel.guild.id}.Logging.channelID`)
 
   if (Logging && Logging === "on" && LoggingChannelID) {
     const LoggingChannel = Bot.channels.get(LoggingChannelID)
