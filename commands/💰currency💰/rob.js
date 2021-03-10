@@ -20,6 +20,10 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Bruh he has under ❄250. Leave them alone!")
   }
 
+  if (Ch1llBucks.includes("-")) {
+    return message.channel.send("You can't rob someone in debt lol.")
+  }
+
   const Result = results[Math.floor(Math.random() * results.length)]
 
   if (!Ch1llBucks) {
@@ -34,14 +38,14 @@ exports.run = async (Bot, message, Arguments) => {
     const RandomAmmount = Math.floor(Math.random() * UserCh1llBucks)
     const Ammount = RandomAmmount * Multiplier
 
-    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ammount)
-    await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Ammount)
+    await Bot.Database.set(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks + Ammount)
+    await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, UserCh1llBucks - Ammount)
 
     message.channel.send(`You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
   } else {
 
-    await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, 250)
-    await Bot.Database.add(`UserData_${User.id}.ch1llbucks`, 250)
+    await Bot.Database.set(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks - 250)
+    await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, UserCh1llBucks + 250)
 
     message.channel.send(`LOL you got caught! You payed ❄250 to ${User}.`)
   }

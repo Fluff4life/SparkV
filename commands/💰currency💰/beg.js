@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Ammount = RandomAmmount * Multiplier
 
-  await Bot.Database.add(`UserData_${User.id}.ch1llbucks`, Ammount)
+  await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, Ch1llBucks + Ammount)
   message.channel.send(`You begged and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
 },
 
