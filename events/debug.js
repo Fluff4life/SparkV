@@ -23,7 +23,7 @@ exports.run = async(Bot, info) => {
     }
   }
 
-  if (process.env.BotDebug){
+  if (process.env.BotDebug === "true"){
     Bot.Log("DEBUG", "BOT DEBUG", info)
   }
 }
