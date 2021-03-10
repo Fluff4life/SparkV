@@ -19,7 +19,7 @@ if (process.env.TestMode === "true") {
     const Discord = require("discord.js");
     const ShardManager = new Discord.ShardingManager("./ch1llblox.js", {
         token: process.env.token,
-        totalShards: process.env.TotalShards || "auto",
+        totalShards: Number(process.env.TotalShards) || "auto",
         shardArgs: typeof v8debug === "object" ? ["--inspect"] : undefined,
         execArgv: ["--trace-warnings"]
     })
