@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments) => {
   const UserToKick = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.cache.get(Arguments[0]) || `@<${Arguments[0]}>`;
@@ -21,7 +21,7 @@ exports.run = async (Bot, msg, Arguments) => {
     return msg.channel.send("❌Uh oh... I can't kick this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
-  const VerificationEmbed = new MessageEmbed()
+  const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle("Convermination Prompt")
     .setDescription("Are you sure you want to do this?")
     .setFooter("Canceling in 60 seconds if no emoji reacted.")
