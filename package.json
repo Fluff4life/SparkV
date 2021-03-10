@@ -18,34 +18,13 @@
     "npm": "7.6.1"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.4.0",
     "body-parser": "^1.19.0",
     "btoa": "^1.2.1",
-    "canvacord": "^5.1.0",
-    "canvas": "^2.7.0",
-    "discord-anti-spam": "^2.5.0",
-    "discord-tictactoe": "^2.0.8",
-    "discord-xp": "^1.1.8",
-    "discord.js": "^12.5.1",
-    "discord.js-pagination": "^1.0.3",
-    "distube": "^2.8.10",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "ffmpeg-static": "^4.2.7",
-    "figlet": "^1.5.0",
     "fs": "0.0.1-security",
-    "lyrics-finder": "^21.7.0",
-    "noblox.js": "^4.8.4",
-    "node-fetch": "^2.6.1",
-    "node-pre-gyp": "^0.17.0",
-    "parse-ms": "^2.1.0",
-    "path": "^0.12.7",
-    "quickmongo": "^3.0.2",
-    "urban": "^0.3.2",
-    "yargs-parser": "^13.1.2",
-    "youtube-dl": "^3.5.0",
-    "ytdl-core": "^4.5.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "prettier": "2.2.1"
