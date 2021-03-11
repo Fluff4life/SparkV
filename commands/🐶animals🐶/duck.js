@@ -18,7 +18,7 @@ exports.run = async (Bot, message) => {
           
           footer: {
             text: json.message,
-            image: Bot.user.displayAvatarURL()
+            image: Bot.user.AvatarURL()
           },
         }
       });

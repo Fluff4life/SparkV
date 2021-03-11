@@ -18,7 +18,7 @@ exports.run = async (Bot, message) => {
           
           footer: {
             text: `Powered by http://aws.random.cat/meow`,
-            image: Bot.user.displayAvatarURL()
+            image: Bot.user.AvatarURL()
           },
         }
       });

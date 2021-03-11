@@ -35,7 +35,7 @@ exports.run = async (Bot, message) => {
         .setTitle("❌Message Removed")
         .setDescription(`#${channel.name} was deleted.`)
         .setAuthor(message.channel.guild.iconURL())
-        .setFooter(`Channel ID: ${channel.id}`, Bot.user.displayAvatarURL())
+        .setFooter(`Channel ID: ${channel.id}`, Bot.user.AvatarURL())
         .setColor("#00FF6D");
 
       LoggingChannel.send(LogEmbed)

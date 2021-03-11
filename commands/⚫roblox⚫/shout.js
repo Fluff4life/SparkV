@@ -22,7 +22,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
 
           footer: {
             text: "Shout Command Successful",
-            icon_url: Bot.user.displayAvatarURL()
+            icon_url: Bot.user.AvatarURL()
           },
         }
       })
@@ -37,7 +37,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
 
           footer: {
             text: "⚠️Shout Command Failed⚠️",
-            icon_url: Bot.user.displayAvatarURL()
+            icon_url: Bot.user.AvatarURL()
           },
         }
       })
@@ -51,7 +51,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
 
         footer: {
           text: "⚠️Shout Command Failed⚠️",
-          icon_url: Bot.user.displayAvatarURL()
+          icon_url: Bot.user.AvatarURL()
         },
       }
     });

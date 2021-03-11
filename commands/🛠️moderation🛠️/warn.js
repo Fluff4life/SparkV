@@ -57,7 +57,7 @@ exports.run = async (Bot, message, Arguments) => {
             
             footer: {
               text: "Warn command successful.",
-              icon_url: Bot.user.displayAvatarURL()
+              icon_url: Bot.user.AvatarURL()
             }
           }
         })
@@ -83,7 +83,7 @@ exports.run = async (Bot, message, Arguments) => {
             
             footer: {
               text: "Warn command successful.",
-              icon_url: Bot.user.displayAvatarURL()
+              icon_url: Bot.user.AvatarURL()
             }
           }
         })
