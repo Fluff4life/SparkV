@@ -3,11 +3,11 @@ const Discord = require("discord.js");
 exports.run = async (Bot, msg) => {
   const InvitesEmbend = new Discord.MessageEmbed()
     .setTitle("Invites")
-    .setDescription(`The following are important links for Ch1llBlox!`)
+    .setDescription(`The following are links for Ch1llBlox!`)
     .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
-    .addField("Support Server: ", process.env.support_server_invite, true)
-    .addField("Bot Invite: ", "https://top.gg/bot/763126208149585961", true)
-    .setFooter(`Try command ${process.env.prefix}Meme!`, Bot.user.AvatarURL)
+    .addField("**Support Server**", `[Click Here](${process.env.support_server_invite})`, true)
+    .addField("Bot Invite: ", `[Click Here](https://ch1ll.herokuapp.com/ch1llblox/invite)`, true)
+    .setFooter(`Invites for Ch1llBlox.`, Bot.user.AvatarURL)
     .setColor(process.env.EmbedColor);
     
   await msg.channel.send(InvitesEmbend);
@@ -15,7 +15,7 @@ exports.run = async (Bot, msg) => {
 
 exports.config = {
   name: "Invite",
-  description: "Get an invite for me or to the support server.",
+  description: "Displays links.",
   aliases: ["invite", "support"],
   usage: "",
   category: "🧰utility🧰",
