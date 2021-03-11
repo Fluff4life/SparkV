@@ -9,14 +9,14 @@ exports.run = async (Bot, message, Arguments) => {
     } else if (BotChosen === UserChosen){
       return "It's a tie!"
     } else {
-      return `🎉${process.env.name} won!`
+      return `🎉${Bot.user.username} won!`
     }
   }
 
   const embed = new Discord.MessageEmbed()
     .setTitle("Rock Paper Scissors")
     .setDescription("React to one of these emojis to begin!")
-    .setFooter(process.env.name, Bot.user.AvatarURL)
+    .setFooter(Bot.user.username, Bot.user.AvatarURL)
     .setColor("#0099ff")
 
   const Message = await message.channel.send(embed)
