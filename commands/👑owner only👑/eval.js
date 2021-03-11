@@ -31,7 +31,6 @@ exports.run = async (Bot, msg, Arguments) => {
     })
   } else {
 
-
     try {
       const code = Arguments.join(" ")
       var evaled = eval(code)

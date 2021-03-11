@@ -4,23 +4,13 @@
 
 console.log("LOADING STARTED - WEBSITE => Now loading website.")
 
+const { request } = require("express");
 // Librarys //
 const express = require("express");
-const Session = require("express-session");
-const BodyParser = require("body-parser");
-const fetch = require("node-fetch")
-const btoa = require("btoa")
+const session = require("express-session");
 
 // App //
 const app = express();
-app.use(express.static("public"));
-app.use(Session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(BodyParser.urlencoded({ extended: true }));
-app.use(BodyParser.json());
 
 // Functions //
 async function RunWebsite() {
@@ -30,42 +20,32 @@ async function RunWebsite() {
       res.sendFile(__dirname + `/public/html/down.html`);
     });
   } else {
-    // app.use("/discordapi", require("./public/discordapi"))
+    app
+      .use(express.json())
+      .use(express.urlencoded({ extended: true }))
 
-    app.get("/", (request, response) => {
-      response.redirect("/home")
-    });
+      .use(express.static(path.join(__dirname + "website/public")))
+      .set("views", path.join(__dirname, "/website/views"))
+      .use(session({ secret: process.env.expresssessionpassword, resave: false, saveUninitialized: false }))
 
-    app.get("/home", (request, response) => {
-      // if (request.session.loggedin) {
-        // response.status(200).sendFile(__dirname + `/public/html/home.html`);
-      // } else {
-        response.status(200).sendFile(__dirname + `/public/html/home.html`);
-      // }
-    });
+      .use(async (request, response, next) => {
+        request.user = request.session.user
+        request.locale = request.user ? (request.user.locale === "fr" ? "fr-FR" : "en-US") : "en-US"
 
-    app.get("/ch1llstudios", (request, response) => {
-      response.sendFile(__dirname + `/public/html/cshome.html`);
-    });
+        next()
+      })
 
-    app.get("/ch1llblox", (request, response) => {
-      response.sendFile(__dirname + `/public/html/ch1llblox.html`);
-    });
-
-    app.get("/api/status", (request, response) => {
-      response.status(200).send({ status: 200, message: "OK" });
-    });
-
-    app.get("/ch1llblox/donate", (request, response) => {
-      response.status.send(404).send({ status: 404, message: "Error displaying this page: This page is under construction. Please come back soon!" })
-    });
-
-    app.get("/api/ch1llblox/status", (request, response) => {
-      response.status(process.env.BotOnline).send({ status: process.env.BotOnline });
-    });
+      .use("/", require("./website/routes/main"))
+      .use("/api", require("./website/routes/api"))
+      .use("/logout", require("./website/routes/logout"))
+    // .use("/manage", manage)
+    // .use("/stats", stats)
+    // .use("/settings", settings)
 
     app.use((req, res, next) => {
-      res.status(404).sendFile(__dirname + `/public/html/404.html`);
+      res
+        .status(404)
+        .sendFile(__dirname + `/public/html/404.html`);
     });
   }
 }
