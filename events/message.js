@@ -130,7 +130,7 @@ exports.run = async (Bot, Message) => {
           color: "#0099ff",
           footer: {
             text: "Maybe up vote our bot while you wait?",
-            icon_url: Bot.user.AvatarURL()
+            icon_url: Bot.user.AvatarURL
           },
         },
       }

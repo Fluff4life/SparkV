@@ -7,7 +7,7 @@ exports.run = async (Bot, msg) => {
     .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
     .addField("Support Server: ", process.env.support_server_invite, true)
     .addField("Bot Invite: ", "https://top.gg/bot/763126208149585961", true)
-    .setFooter(`Try command ${process.env.prefix}Meme!`, Bot.user.AvatarURL())
+    .setFooter(`Try command ${process.env.prefix}Meme!`, Bot.user.AvatarURL)
     .setColor("#0099ff");
     
   await msg.channel.send(InvitesEmbend);

@@ -12,7 +12,7 @@ exports.run = async (Bot, message) => {
         .setTitle("Title too long")
         .setImage(post.url)
         .setURL(`https://www.reddit.com${post.permalink}`)
-        .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${post.subreddit}`, Bot.user.AvatarURL())
+        .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${post.subreddit}`, Bot.user.AvatarURL)
         .setColor("#0099ff");
 
         
@@ -22,7 +22,7 @@ exports.run = async (Bot, message) => {
         .setTitle(post.title)
         .setImage(post.url)
         .setURL(`https://www.reddit.com${post.permalink}`)
-        .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${post.subreddit}`, Bot.user.AvatarURL())
+        .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${post.subreddit}`, Bot.user.AvatarURL)
         .setColor("#0099ff");
 
         message.channel.send(DOIEmbed)
