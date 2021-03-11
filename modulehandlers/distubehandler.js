@@ -45,7 +45,7 @@ module.exports = async (Bot) => {
 
           footer: {
             text: `😀${song.formattedDuration}`,
-            icon_url: process.env.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           },
         }
       })
@@ -85,7 +85,7 @@ module.exports = async (Bot) => {
 
           footer: {
             text: `${song.formattedDuration}`,
-            icon_url: process.env.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           },
         }
       })
@@ -105,7 +105,7 @@ module.exports = async (Bot) => {
 
           footer: {
             text: `(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`,
-            icon_url: process.env.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           },
         }
       }))
@@ -119,7 +119,7 @@ module.exports = async (Bot) => {
 
           footer: {
             text: `${playlist.songs.length} songs (${playlist.formattedDuration})`,
-            icon_url: process.env.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           },
         }
       }))
@@ -166,7 +166,7 @@ module.exports = async (Bot) => {
 
           footer: {
             text: `Music command failed.`,
-            icon_url: process.env.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           }
         }
       })

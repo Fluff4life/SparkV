@@ -30,7 +30,7 @@ exports.run = async (Bot, message, Arguments) => {
         
         footer: {
           text: `Skipped song`,
-          icon_url: process.env.AvatarURL
+          icon_url: Bot.user.displayAvatarURL()
         }
       }
     })

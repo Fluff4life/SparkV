@@ -20,7 +20,7 @@ exports.run = async (Bot, message, Arguments) => {
   const LeaderboardEmbed = new Discord.MessageEmbed()
     .setTitle(`${message.guild.name}'s Level Leaderboard`)
     .setDescription(Leader.join("\n"))
-    .setFooter(process.env.name, process.env.AvatarURL)
+    .setFooter(process.env.name, Bot.user.displayAvatarURL())
     .setColor("#0099ff")
 
   message.channel.send(LeaderboardEmbed)

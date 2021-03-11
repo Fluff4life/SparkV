@@ -14,7 +14,7 @@ exports.run = async (Bot, message) => {
             
             footer: {
               text: "Maybe up vote our bot while you wait?",
-              icon_url: process.env.AvatarURL
+              icon_url: Bot.user.displayAvatarURL()
             },
           }
         })
@@ -33,7 +33,7 @@ exports.run = async (Bot, message) => {
           
           footer: {
             text: `Powered by https://dog.ceo/dog-api/documentation/`,
-            image: process.env.AvatarURL
+            image: Bot.user.displayAvatarURL()
           },
         }
       });

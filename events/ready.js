@@ -75,6 +75,5 @@ exports.run = async (Bot) => {
     }
   }
 
-  Bot.user.setAvatar(process.env.AvatarURL)
   Bot.Log("BOT STATUS", Bot.user.tag, `Bot is now up and running!\nServers: ${await Bot.GetServerCount()}\nUsers: ${await Bot.GetUserCount()}`)
 }

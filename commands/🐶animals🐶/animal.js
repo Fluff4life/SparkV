@@ -21,7 +21,7 @@ exports.run = async (Bot, message) => {
           .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, process.env.AvatarURL)
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, Bot.user.displayAvatarURL())
           .setColor("#0099ff");
 
         message.channel.send(AnimalEmbed)
@@ -30,7 +30,7 @@ exports.run = async (Bot, message) => {
           .setTitle(post.title)
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, process.env.AvatarURL)
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, Bot.user.displayAvatarURL())
           .setColor("#0099ff");
 
         const AnimalMessage = await message.channel.send(AnimalEmbed)

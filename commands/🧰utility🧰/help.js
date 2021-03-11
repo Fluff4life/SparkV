@@ -50,7 +50,7 @@ exports.run = async (Bot, msg, args) => {
       .addField("**ALIASES**", `\`\`\`${command.config.aliases.join(",\n")}\`\`\``, true)
       .addField("**CATEGORY**", `\`\`\`${command.config.category}\`\`\``, true)
       .addField("**COOLDOWN**", `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
-      .setFooter(`${prefix}Help to get a list of all commands.`, process.env.AvatarURL)
+      .setFooter(`${prefix}Help to get a list of all commands.`, Bot.user.displayAvatarURL())
       .setColor("#0099ff");
 
     return msg.channel.send(CommandHelpEmbed)

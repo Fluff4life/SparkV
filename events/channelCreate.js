@@ -34,7 +34,7 @@ exports.run = async (Bot, channel) => {
         .setTitle("🆕Channel Created")
         .setDescription(`#${channel.name} was just created.`)
         .setAuthor(channel.guild.iconURL())
-        .setFooter(`Channel ID: ${channel.id}`, process.env.AvatarURL)
+        .setFooter(`Channel ID: ${channel.id}`, Bot.user.displayAvatarURL())
         .setColor("#00FF6D");
 
       LoggingChannel.send(LogEmbed)
