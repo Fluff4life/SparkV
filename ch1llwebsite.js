@@ -75,7 +75,7 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-if (process.env.Debug === "true") {
+if (process.env.Debug || false === "true") {
   const listener = app.listen(process.env.PORT, "127.0.0.1", () => {
     console.log(`SUCCESS - WEBSITE => Server running at http://127.0.0.1:${listener.address().port} & listening on port ${listener.address().port}.`);
   })

@@ -8,7 +8,7 @@ config({
     path: __dirname + "/.env"
 })
 
-if (process.env.Debug === "true") {
+if (process.env.Debug || false === "true") {
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
     if (process.env.BotEnabled === "true") {
