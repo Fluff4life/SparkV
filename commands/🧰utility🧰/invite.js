@@ -3,10 +3,10 @@ const Discord = require("discord.js");
 exports.run = async (Bot, msg) => {
   const InvitesEmbend = new Discord.MessageEmbed()
     .setTitle("Invites")
-    .setDescription(`Here are some invites!`)
+    .setDescription(`The following are important links for Ch1llBlox!`)
     .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
     .addField("Support Server: ", process.env.support_server_invite, true)
-    .addField("Bot Invite: ", process.env.bot_invite, true)
+    .addField("Bot Invite: ", "https://top.gg/bot/763126208149585961", true)
     .setFooter(`Try command ${process.env.prefix}Meme!`, Bot.user.displayAvatarURL())
     .setColor("#0099ff");
     

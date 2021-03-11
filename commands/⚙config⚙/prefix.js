@@ -17,7 +17,7 @@ exports.config = {
   name: "Prefix",
   description: "I'll set the prefix for your server to what you'd like.",
   aliases: ["nourl"],
-  usage: "<on or off>",
+  usage: "<prefix>",
   category: "⚙config⚙",
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   member_permissions: ["ADMINISTRATOR"],
