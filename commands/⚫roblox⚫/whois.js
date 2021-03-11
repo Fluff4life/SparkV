@@ -20,7 +20,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
         .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${UserID}&width=420&height=420&format=png`)
         .setURL(`https://www.roblox.com/users/${UserID}/profile`)
 
-        message.channel.send(InfoEmbed)
+        msg.channel.send(InfoEmbed)
     })
   } catch (err){
     const ErrorEmbed = new Discord.MessageEmbed()
@@ -28,9 +28,10 @@ exports.run = async (Bot, msg, Arguments, command) => {
       .setDescription("Uh oh! Looks like this user doesn't exist or roblox is down. Check, [Roblox Status](https://status.roblox.com/).")
       .setFooter(`404 | User not found. Check your spelling and enter the command again.`)
       .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
+      .setColor("#0099ff")
       .setTimestamp()
 
-      message.channel.send(ErrorEmbed)
+      msg.channel.send(ErrorEmbed)
   }
 },
 
