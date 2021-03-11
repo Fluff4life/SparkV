@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  name: "🆕AntiSpam",
+  name: "AntiSpam",
   description: "Stop spammers. Right now, you can only turn on and off.",
   aliases: ["nospam"],
   usage: "<on or off>",

@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    name: "🆕AntiURL",
+    name: "AntiURL",
     description: "If someone sends a link, Ch1llBlox will delete it. You can only turn on and off.",
     aliases: ["nourl"],
     usage: "<on or off>",

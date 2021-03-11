@@ -146,7 +146,13 @@ exports.run = async (Bot, Message) => {
       .run(Bot, Message, args, command)
       .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${Message.author.tag} ID: ${Message.author.id}`) })
   } catch (err) {
-    await Message.channel.send(`❌**Failed**! Please alert KingCh1ll with the following error. ${err}`)
+      const FailedEmbed = new Discord.MessageEmbed()
+        .setTitle("Failed!")
+        .setDescription(err)
+        .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
+        .setFooter("Please contact our support team and alert them about this error.", Bot.user.avatarURL)
+
+    await Message.channel.send(FailedEmbed)
     
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err.toString()}`)
   }

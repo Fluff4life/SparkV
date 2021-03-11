@@ -3,7 +3,7 @@ const request = require("node-fetch");
 
 exports.run = async (Bot, msg, Arguments) => {
 if (!Arguments){
-  return msg.channel.send("What's the ID??").then(m => m.delete({ timeout: 5000 }))
+  return msg.channel.send("What's the ID?").then(m => m.delete({ timeout: 5000 }))
 }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${Arguments}.json`)
