@@ -28,12 +28,12 @@ async function RunWebsite() {
       .set("views", path.join(__dirname, "/website/views"))
       .use(session({ secret: process.env.expresssessionpassword, resave: false, saveUninitialized: false }))
 
-      .use(async (request, response, next) => {
+      /* .use(async (request, response, next) => {
         request.user = request.session.user
         request.locale = request.user ? (request.user.locale === "fr" ? "fr-FR" : "en-US") : "en-US"
 
         next()
-      })
+      }) */
 
       .use("/", require("./website/routes/main"))
       .use("/api", require("./website/routes/api"))
