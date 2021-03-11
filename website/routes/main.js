@@ -7,15 +7,15 @@ Router.get("/", async (request, response) => {
 })
 
 Router.get("/home", async (request, response) => {
-    response.sendFile(__dirname + `/public/html/home.html`);
+    response.sendFile(`website/views/home.html`);
 })
 
 Router.get("/ch1llstudios", async (request, response) => {
-    response.sendFile(__dirname + `/public/html/cshome.html`);
+    response.sendFile(__dirname + `website/views/cshome.html`);
 })
 
 Router.get("/ch1llblox", async (request, response) => {
-    response.sendFile(__dirname + `/public/html/ch1llblox.html`);
+    response.sendFile(__dirname + `website/views/ch1llblox.html`);
 })
 
 module.exports = Router
