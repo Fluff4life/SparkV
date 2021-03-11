@@ -37,11 +37,11 @@ async function RunWebsite() {
     });
 
     app.get("/home", (request, response) => {
-      if (request.session.loggedin) {
+      // if (request.session.loggedin) {
+        // response.status(200).sendFile(__dirname + `/public/html/home.html`);
+      // } else {
         response.status(200).sendFile(__dirname + `/public/html/home.html`);
-      } else {
-        response.status(200).sendFile(__dirname + `/public/html/home.html`);
-      }
+      // }
     });
 
     app.get("/ch1llstudios", (request, response) => {
@@ -75,12 +75,12 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-if (process.env.Debug) {
-  const listener = app.listen(process.env.PORT, "127.0.0.1", () => {
+if (process.env.Debug === "true") {
+  const listener = app.listen(process.env.port, "127.0.0.1", () => {
     console.log(`SUCCESS - WEBSITE => Server running at http://127.0.0.1:${listener.address().port} & listening on port ${listener.address().port}.`);
   })
 } else {
-  const listener = app.listen(process.env.PORT, () => {
+  const listener = app.listen(process.env.port, () => {
     console.log(`SUCCESS - WEBSITE => Server listening on port ${listener.address().port}.`);
   })
 }
