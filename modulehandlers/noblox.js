@@ -1,7 +1,8 @@
 const noblox = require("noblox.js")
 
 module.exports = async (Bot) => {
-    async function RefreshCookie(CurrentCookie){
+    async function RefreshCookie(){
+        const CurrentCookie = await Bot.Database.get("BotConfig.RobloxCookie")
         const NewCookie = await noblox.refreshCookie(CurrentCookie)
 
         Bot.Database.set("BotConfig.RobloxCookie", NewCookie)
@@ -10,6 +11,6 @@ module.exports = async (Bot) => {
     const CurrentCookie = await Bot.Database.get("BotConfig.RobloxCookie")
     
     await noblox.setCookie(CurrentCookie).then(() => {
-        setInterval(RefreshCookie(await Bot.Database.get("BotConfig.RobloxCookie")), 300 * 1000)
+        setInterval(RefreshCookie(), 300 * 1000)
     })
 }
