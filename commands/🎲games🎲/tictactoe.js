@@ -10,7 +10,7 @@ exports.run = async (Bot, msg, Arguments, Command) => {
 
   new TicTacToe({
     language: "en",
-    command: `${prefix}TicTacToe`
+    command: `${Prefix}TicTacToe`
   }, Bot)
 },
 
