@@ -106,10 +106,6 @@ readdir("./events", (err, files) => {
     let EventName = file.split(".")[0]
     let FileEvent = require(`./events/${EventName}`)
 
-    if (!process.env.Debug || false){
-      Bot.Log("SUCCESS", "EVENT LOADING", `Successfully loaded event ${EventName}!`)
-    }
-
     Bot.on(EventName, (...args) => FileEvent.run(Bot, ...args))
   })
 })
@@ -133,10 +129,6 @@ readdir("./commands", (err, cats) => {
         let FileJs = require(`./commands/${cat}/${commandname}`)
 
         Bot.commands.set(commandname, FileJs)
-
-        if (!process.env.Debug || false){
-          Bot.Log("SUCCESS", "COMMAND LOADING", `Successfully loaded command ${commandname}!`)
-        }
       })
     })
   })
