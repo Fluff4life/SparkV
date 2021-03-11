@@ -1,5 +1,8 @@
 const Express = require("express")
+
 const CheckAuth = require("../CheckAuth")
+const Dirname = require("../GetDirname")
+
 const Router = Express.Router()
 
 Router.get("/", async (request, response) => {
@@ -7,15 +10,15 @@ Router.get("/", async (request, response) => {
 })
 
 Router.get("/home", async (request, response) => {
-    response.sendFile("../public/html/home.html");
+    response.sendFile(Dirname + "/public/html/home.html");
 })
 
 Router.get("/ch1llstudios", async (request, response) => {
-    response.sendFile("../public/html/cshome.html");
+    response.sendFile(Dirname + "/public/html/cshome.html");
 })
 
 Router.get("/ch1llblox", async (request, response) => {
-    response.sendFile("../public/html/ch1llblox.html");
+    response.sendFile(Dirname + "/public/html/ch1llblox.html")
 })
 
 module.exports = Router
