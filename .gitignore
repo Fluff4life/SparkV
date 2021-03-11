@@ -1,6 +1,18 @@
-.env
+# Node
+.node_repl_history
+.npm
+
+# Visual Studio
+.vscode/
 .eslintrc.json
 .prettierrc
 .editorconfig
+
+# Dependancy Directories
 node_modules
-launch.json
+
+# Environmental Variables
+.env
+
+# Recycle Bin
+$RECYCLE.BIN/
