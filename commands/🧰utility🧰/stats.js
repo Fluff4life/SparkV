@@ -18,7 +18,7 @@ exports.run = async (Bot, msg) => {
   exports.config = {
     name: "Stats",
     description: "Stats for nerds.",
-    aliases: ["ping", "pong", "up", "MU"],
+    aliases: ["ping", "pong", "up", "ram", "uptime", "latency", "data", "storage"],
     usage: "",
     category: "🧰utility🧰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
