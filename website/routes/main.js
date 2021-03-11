@@ -5,6 +5,8 @@ const Dirname = require("../GetDirname")
 
 const Router = Express.Router()
 
+console.log(Dirname)
+
 Router.get("/", async (request, response) => {
     response.redirect("/home")
 })
