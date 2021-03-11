@@ -71,7 +71,7 @@ module.exports = async (bot) => {
 
   bot.GetServerCount = async function(){
     const promises = [
-      bot.shards.fetchClientValues('guilds.cache.size'),
+      bot.shard.fetchClientValues('guilds.cache.size'),
     ];
     
     return Promise.all(promises).then(results => results.flat().reduce((acc, ServerCount) => acc + ServerCount, 0))
