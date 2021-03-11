@@ -13,12 +13,13 @@ exports.run = async (Bot, msg, Arguments, command) => {
     await noblox.getPlayerInfo(UserID).then((PlayerInfo) => {
       const InfoEmbed = new Discord.MessageEmbed()
         .setTitle(`${PlayerInfo.username}'s Profile`)
-        .addField(`**Status**`, PlayerInfo.status || "No status.")
-        .addField(`**Account Age**`, PlayerInfo.age || "N/A")
-        .addField(`Join Date`, PlayerInfo.joinDate || "N/A")
-        .addField(`Description`, PlayerInfo.blurb || "N/A")
+        .setDescription(`*${PlayerInfo.status || "No status."}*`)
+        .addField(`**Account Age**`, `${PlayerInfo.age || "N/A"} days old (${PlayerInfo.joinDate || "N/A"})`)
+        .addField(`**Description**`, PlayerInfo.blurb || "N/A")
         .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${UserID}&width=420&height=420&format=png`)
         .setURL(`https://www.roblox.com/users/${UserID}/profile`)
+        .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID}`)
+        .setColor("#0099ff")
 
         msg.channel.send(InfoEmbed)
     })
