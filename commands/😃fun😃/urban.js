@@ -35,7 +35,7 @@ exports.run = async (Bot, message, args) => {
 },
 
   exports.config = {
-    name: "urban",
+    name: "Urban",
     description: "I will return an urban dictionary definition of a word!",
     aliases: ["thought"],
     usage: "<word>",
