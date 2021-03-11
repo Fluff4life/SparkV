@@ -38,9 +38,9 @@ exports.run = async (Bot, msg, Arguments) => {
         evaled = require("util").inspect(evaled)
       }
   
-      message.channel.send(clean(evaled), { code: "xl" })
+      msg.channel.send(clean(evaled), { code: "xl" })
     } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``)
+      msg.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``)
     }
   }
 },
