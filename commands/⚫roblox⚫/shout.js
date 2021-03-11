@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments, command) => {
-  if (process.env.TestMode) {
+  if (process.env.Debug) {
     return
   }
 

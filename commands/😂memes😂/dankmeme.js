@@ -13,7 +13,7 @@ exports.run = async (Bot, message) => {
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author}`, Bot.user.AvatarURL)
-          .setColor("#0099ff");
+          .setColor(process.env.EmbedColor);
 
         message.channel.send(DankMemeEmbed)
       } else {
@@ -22,7 +22,7 @@ exports.run = async (Bot, message) => {
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author}`, Bot.user.AvatarURL)
-          .setColor("#0099ff");
+          .setColor(process.env.EmbedColor);
 
         message.channel.send(DankMemeEmbed)
       }

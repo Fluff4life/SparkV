@@ -137,7 +137,7 @@ module.exports = async (Bot) => {
         const NewEmbed = new MessageEmbed()
           .setTitle(`${Song.formattedDuration} | ${Song.name}`)
           .setDescription(`To select this song, send the page number.`)
-          .setColor("#0099ff")
+          .setColor(process.env.EmbedColor)
           .setURL(Song.url)
 
           .setImage(Song.thumbnail)

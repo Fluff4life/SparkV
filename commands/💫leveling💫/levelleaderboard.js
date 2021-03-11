@@ -21,7 +21,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setTitle(`${message.guild.name}'s Level Leaderboard`)
     .setDescription(Leader.join("\n"))
     .setFooter(Bot.user.username, Bot.user.AvatarURL)
-    .setColor("#0099ff")
+    .setColor(process.env.EmbedColor)
 
   message.channel.send(LeaderboardEmbed)
 },

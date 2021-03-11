@@ -151,7 +151,7 @@ exports.run = async (Bot, Message) => {
         .setDescription(err)
         .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
         .setFooter("Please contact our support team and alert them about this error.", Bot.user.avatarURL)
-        .setColor("#0099ff")
+        .setColor(process.env.EmbedColor)
         .setTimestamp()
 
     await Message.channel.send(FailedEmbed)

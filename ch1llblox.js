@@ -42,7 +42,7 @@ const functions = require("./modules/functions")
 const Distube = require("./modulehandlers/distubehandler")
 var Noblox
 
-if (!process.env.TestMode){
+if (!process.env.Debug){
   Noblox = require("./modulehandlers/noblox")
 }
 
@@ -106,7 +106,7 @@ readdir("./events", (err, files) => {
     let EventName = file.split(".")[0]
     let FileEvent = require(`./events/${EventName}`)
 
-    if (!process.env.ConsoleLog){
+    if (!process.env.Debug){
       Bot.Log("SUCCESS", "EVENT LOADING", `Successfully loaded event ${EventName}!`)
     }
 
@@ -134,7 +134,7 @@ readdir("./commands", (err, cats) => {
 
         Bot.commands.set(commandname, FileJs)
 
-        if (!process.env.ConsoleLog){
+        if (!process.env.Debug){
           Bot.Log("SUCCESS", "COMMAND LOADING", `Successfully loaded command ${commandname}!`)
         }
       })
@@ -142,7 +142,7 @@ readdir("./commands", (err, cats) => {
   })
 })
 
-if (!process.env.TestMode){
+if (!process.env.Debug){
   Noblox(Bot)
 }
 

@@ -102,7 +102,7 @@ module.exports = async (bot) => {
   }
 
   bot.IsAdmin = function(message){
-    if (message.author.id == process.env.owner){
+    if (message.author.id == process.env.ownerID){
       return true
     } else {
       if (process.env.Admins.includes(message.author.id)){

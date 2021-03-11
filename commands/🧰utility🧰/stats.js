@@ -9,7 +9,7 @@ exports.run = async (Bot, msg) => {
     .addField("**STORAGE**", `\`\`\`RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
     .addField("**DATA**", `\`\`\`Uptime: ${Bot.MSToTime(Bot.uptime)}\`\`\``, true)
     .setFooter("Ch1llBlox's Stats")
-    .setColor("#0099ff")
+    .setColor(process.env.EmbedColor)
     .setTimestamp()
 
   BotMessage.edit(StatsEmbed)

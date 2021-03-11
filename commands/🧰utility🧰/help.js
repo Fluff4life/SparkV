@@ -17,7 +17,7 @@ exports.run = async (Bot, msg, args) => {
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(Bot, Category))
-      .setColor("#0099ff")
+      .setColor(process.env.EmbedColor)
       .setThumbnail(Message.author.displayAvatarURL({ dynamic: true }))
   
     pages.push(NewEmbed)
@@ -51,7 +51,7 @@ exports.run = async (Bot, msg, args) => {
       .addField("**CATEGORY**", `\`\`\`${command.config.category}\`\`\``, true)
       .addField("**COOLDOWN**", `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
       .setFooter(`${prefix}Help to get a list of all commands.`, Bot.user.AvatarURL)
-      .setColor("#0099ff");
+      .setColor(process.env.EmbedColor);
 
     return msg.channel.send(CommandHelpEmbed)
   }

@@ -47,7 +47,7 @@ exports.run = async (Bot, msg, Arguments) => {
       .addField("Moderator/Admin: ", `${msg.author.tag}`)
       .addField("Reason: ", ReasonForBan)
       .setFooter(`${process.env.prefix}Kick to kick a player.`)
-      .setColor("#0099ff")
+      .setColor(process.env.EmbedColor)
       .setTimestamp()
 
     msg.channel.send(BanEmbed);

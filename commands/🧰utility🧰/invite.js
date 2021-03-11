@@ -8,7 +8,7 @@ exports.run = async (Bot, msg) => {
     .addField("Support Server: ", process.env.support_server_invite, true)
     .addField("Bot Invite: ", "https://top.gg/bot/763126208149585961", true)
     .setFooter(`Try command ${process.env.prefix}Meme!`, Bot.user.AvatarURL)
-    .setColor("#0099ff");
+    .setColor(process.env.EmbedColor);
     
   await msg.channel.send(InvitesEmbend);
 },
