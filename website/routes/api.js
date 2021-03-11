@@ -1,5 +1,4 @@
 const Express = require("express")
-const CheckAuth = require("../CheckAuth")
 const Router = Express.Router()
 
 Router.get("/status", async (request, response) => {
