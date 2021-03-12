@@ -20,6 +20,10 @@ process.on("unhandledRejection", (err, Origin) => {
     console.log(`ERROR => Unhandled rejection error. ${err}.`)
 })
 
+process.on("warning", (warning) => {
+    console.log(`WARNING - ${warning.name} => ${warning.message}.`)
+})
+
 if (process.env.Debug) {
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
