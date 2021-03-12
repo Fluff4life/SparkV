@@ -7,4 +7,8 @@ Router.get("/", async (request, response) => {
     response.redirect(process.env.failureURL)
 })
 
+Router.use((req, res, next) => {
+    res.status(404).sendFile(__dirname + "/public/html/404.html");
+});
+
 module.exports = Router

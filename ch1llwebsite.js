@@ -46,7 +46,7 @@ async function RunWebsite() {
     // .use("/settings", settings)
 
     app.use((req, res, next) => {
-      res.status(404).sendFile(__dirname + "/public/html/404");
+      res.status(404).sendFile(__dirname + "/public/html/404.html");
     });
   }
 }

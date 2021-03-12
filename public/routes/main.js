@@ -15,4 +15,8 @@ Router.get("/donate", async (request, response) => {
     response.sendFile("")
 })
 
+Router.use((req, res, next) => {
+    res.status(404).sendFile(__dirname + "/public/html/404.html");
+});
+
 module.exports = Router
