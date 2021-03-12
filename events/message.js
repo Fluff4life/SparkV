@@ -24,7 +24,7 @@ exports.run = async (Bot, Message) => {
 
   const AntiSpam = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiSpam`)
 
-  if (AntiSpam && AntiSpam === "on") {
+  if (AntiSpam && AntiSpam === "on" && !Message.channel.name === "spamhere" && !Message.channel.name === "spam-here") {
     Bot.AntiSpam.message(Message)
   }
 
