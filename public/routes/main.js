@@ -1,6 +1,6 @@
 const Express = require("express")
 
-const CheckAuth = require("../CheckAuth")
+const CheckAuth = require("../auth/CheckAuth")
 const Dirname = require("../GetDirname")
 
 const Router = Express.Router()

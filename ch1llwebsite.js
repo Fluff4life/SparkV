@@ -35,9 +35,9 @@ async function RunWebsite() {
         next()
       }) */
 
-      .use("/", require("./website/routes/main"))
-      .use("/api", require("./website/routes/api"))
-      .use("/logout", require("./website/routes/logout"))
+      .use("/", require("./public/routes/main"))
+      .use("/api", require("./public/routes/api"))
+      .use("/logout", require("./public/routes/logout"))
     // .use("/manage", manage)
     // .use("/stats", stats)
     // .use("/settings", settings)

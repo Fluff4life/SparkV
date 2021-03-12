@@ -1,13 +1,3 @@
-$("header").addClass("nav-show")
-
-$(window).on("scroll", function () {
-  if ($(window).scrollTop()) {
-    $("header").addClass("nav-show")
-  } else {
-    $("header").removeClass("nav-show")
-  }
-})
-
 $(document).ready(function () {
   $("a").on("click", function (event) {
     if (this.hash !== "") {
@@ -24,10 +14,20 @@ $(document).ready(function () {
   })
 })
 
-const onload = () => {
+$(window).onload = () => {
+  $(window).on("scroll", function () {
+    if ($(window).scrollTop()) {
+      $("header").addClass("nav-show")
+    } else {
+      $("header").removeClass("nav-show")
+    }
+  })
+
   const headfade = document.querySelector(".headfade")
   const navbar = document.querySelector(".nav-bar")
   const navlinks = document.querySelectorAll(".nav-bar li")
+
+  $("header").addClass("nav-show")
 
   headfade.onclick = () => {
     navbar.classList.toggle("nav-active")
@@ -42,5 +42,3 @@ const onload = () => {
     headfade.classList.toggle("toggle")
   }
 }
-
-window.onload = () => onload();
