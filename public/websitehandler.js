@@ -14,15 +14,15 @@ $(document).ready(function () {
   })
 })
 
-$(window).onload = () => {
-  $(window).on("scroll", function () {
-    if ($(window).scrollTop()) {
-      $("header").addClass("nav-show")
-    } else {
-      $("header").removeClass("nav-show")
-    }
-  })
+$(window).on("scroll", function () {
+  if ($(window).scrollTop()) {
+    $("header").addClass("nav-show")
+  } else {
+    $("header").removeClass("nav-show")
+  }
+})
 
+$(window).onload = () => {
   const headfade = document.querySelector(".headfade")
   const navbar = document.querySelector(".nav-bar")
   const navlinks = document.querySelectorAll(".nav-bar li")
