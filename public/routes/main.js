@@ -12,15 +12,15 @@ Router.get("/", async (request, response) => {
 })
 
 Router.get("/home", async (request, response) => {
-    response.sendFile(Dirname() + "/public/html/home.html");
+    response.sendFile(Dirname() + "/html/home.html");
 })
 
 Router.get("/ch1llstudios", async (request, response) => {
-    response.sendFile(Dirname() + "/public/html/cshome.html");
+    response.sendFile(Dirname() + "/html/cshome.html");
 })
 
 Router.get("/ch1llblox", async (request, response) => {
-    response.sendFile(Dirname() + "/public/html/ch1llblox.html")
+    response.sendFile(Dirname() + "/html/ch1llblox.html")
 })
 
 module.exports = Router
