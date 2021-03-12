@@ -4,7 +4,7 @@ const Topgg = require("@top-gg/sdk")
 module.exports = async (Bot) => {
     const API = new Topgg.Api(process.env.dblkey)
 
-    setInterval(() => {
+    setInterval(async () => {
         const ServerCount = await Bot.GetServerCount()
 
         API.postStats({
