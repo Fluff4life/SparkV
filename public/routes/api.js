@@ -15,9 +15,7 @@ Router.get("/ch1llblox/status", async (request, response) => {
 Router.post("/ch1llblox/uservote", Webhook.middleware(), (request, response) => {
     try {
         const Bot = global.Bot
-        const User = Bot.users.cache.fetch(request.vote.user);
-
-        client.users.fetch('IDHERE');
+        const User = Bot.users.fetch(request.vote.user);
 
         if (!User){
             return response.status(404).send({ status: 404, message: "User not found on Bot's Cashe" })
