@@ -20,12 +20,12 @@ exports.run = async (Bot, message, Arguments, Command) => {
 
 exports.config = {
   name: "Filter",
-  description: "Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave.",
+  description: "Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse.",
   aliases: ["addfilter"],
   usage: "<Filter>",
   category: "🎵music🎵",
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
-  member_permissions: [],
+  member_permissions: ["ADMINISTRATOR"],
   enabled: true,
-  cooldown: 3
+  cooldown: 5
 }

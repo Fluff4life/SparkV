@@ -41,5 +41,5 @@ exports.run = async (Bot, msg, Arguments) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
     member_permissions: [],
     enabled: true,
-    cooldown: 5
+    cooldown: 3
   }

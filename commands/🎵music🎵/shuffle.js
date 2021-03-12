@@ -16,12 +16,12 @@ exports.run = async (Bot, message, Arguments) => {
 
 exports.config = {
   name: "Shuffle",
-  description: "Shuffles the queue.",
+  description: "Shuffles the queue. Requires administartor to prevent abuse.",
   aliases: [],
   usage: "",
   category: "🎵music🎵",
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
-  member_permissions: [],
+  member_permissions: ["ADMINISTRATOR"],
   enabled: true,
-  cooldown: 3
+  cooldown: 5
 }

@@ -30,6 +30,6 @@ exports.config = {
   category: "🎵music🎵",
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
   member_permissions: [],
-  enabled: false,
-  cooldown: 3
+  enabled: true,
+  cooldown: 5
 }
