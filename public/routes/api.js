@@ -12,14 +12,10 @@ Router.get("/ch1llblox/status", async (request, response) => {
     response.status(process.env.BotOnline).send({ status: process.env.BotOnline });
 })
 
-Router.get("/ch1llblox/uservote", Webhook.middleware(), (request, response) => {
+Router.post("/ch1llblox/uservote", Webhook.middleware(), (request, response) => {
     try {
         const Bot = global.Bot
         const User = Bot.users.cache.fetch(request.vote.user);
-
-        if (!User){
-            return response.status(404).send({ status: 404, message: "User not found on Bot's cache." })
-        }
       
         var Ch1llBucks = await Bot.Database.get(`UserData_${request.vote.user}.ch1llbucks`)
         var Multiplier = await Bot.Database.get(`UserData_${request.vote.user}.multiplier`)
