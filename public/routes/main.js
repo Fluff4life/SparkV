@@ -12,7 +12,7 @@ Router.get("/", async (request, response) => {
 })
 
 Router.get("/donate", async (request, response) => {
-    response.sendFile("")
+    response.send({ message: "Coming soon!" })
 })
 
 Router.use((req, res, next) => {

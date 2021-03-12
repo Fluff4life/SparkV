@@ -13,7 +13,7 @@ Router.get("/ch1llblox/status", async (request, response) => {
     response.status(process.env.BotOnline).send({ status: process.env.BotOnline });
 })
 
-Router.post("/ch1llblox/uservote", Webhook.middleware(), (request, response) => {
+Router.post("/ch1llblox/uservote", Webhook.middleware(), async (request, response) => {
     try {
         const Bot = global.Bot
         const User = Bot.users.cache.fetch(request.vote.user);
