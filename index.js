@@ -8,6 +8,20 @@ config({
     path: __dirname + "/.env"
 })
 
+// Error Handlers //
+
+// Error Handlers //
+process.on("uncaughtException", (err, Origin) => {
+    const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
+
+    console.log(`ERROR => Uncaught Exception error. ${ErrorMessage}. Origin: ${Origin}.`)
+    process.exit(1)
+})
+
+process.on("unhandledRejection", (err, Origin) => {
+    console.log(`ERROR => Unhandled rejection error. ${err}. Origin: ${Origin}.`)
+})
+
 if (process.env.Debug === "true") {
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
@@ -35,7 +49,7 @@ if (process.env.Debug === "true") {
     ShardManager.spawn(Number(process.env.TotalShards) || "auto", 8000, -1);
     global.GlobalCache = new GlobalCache(ShardManager)
 
-    if (process.env.ShardLifeTime){
+    if (process.env.ShardLifeTime) {
         setTimeout(() => {
             ShardManager.respawn = false
             ShardManager.broadcastEval("process.exit()")

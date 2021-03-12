@@ -75,20 +75,6 @@ Bot.AntiSpam = new AntiSpam({
 	removeMessages: true // If the bot should remove all the spam messages when taking action on a user!
 })
 
-// Error Handlers //
-process.on("uncaughtException", err => {
-  const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
-
-  console.log(`ERROR => Uncaught Exception error. ${ErrorMessage}`)
-  console.error(err)
-
-  process.exit(1)
-})
-
-process.on("unhandledRejection", err => {
-  console.log(`ERROR => Unhandled rejection error. ${err}`)
-})
-
 // Code //
 console.log("---------- Loading Bot Functions ----------") 
 functions(Bot)
