@@ -44,7 +44,7 @@ const dbl = require("./modules/dependencies/dbl")
 var Noblox
 
 if (!process.env.Debug || false){
-  Noblox = require("./modules/noblox")
+  Noblox = require("./modules/dependencies/noblox")
 }
 
 // Collections //
