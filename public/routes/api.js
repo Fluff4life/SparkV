@@ -40,8 +40,4 @@ Router.post("/ch1llblox/uservote", Webhook.middleware(), async (request, respons
     }
 })
 
-Router.use((req, res, next) => {
-    res.status(404).sendFile(Dirname() + "/html/404.html");
-});
-
 module.exports = Router
