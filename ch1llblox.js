@@ -35,15 +35,16 @@ const Bot = new Client({
 })
 
 // Database //
-require("./database/connector").StartUp(Bot)
+require("./modules/dependencies/databasehandler").StartUp(Bot)
 
 // Modules //
 const functions = require("./modules/functions")
-const Distube = require("./modulehandlers/distubehandler")
+const Distube = require("./modules/dependencies/distubehandler")
+const dbl = require("./modules/dependencies/dbl")
 var Noblox
 
 if (!process.env.Debug || false){
-  Noblox = require("./modulehandlers/noblox")
+  Noblox = require("./modules/noblox")
 }
 
 // Collections //
@@ -81,6 +82,9 @@ functions(Bot)
 
 console.log("---------- Loading DisTube ----------") 
 Distube(Bot)
+
+console.log("---------- Loading DBL ----------") 
+dbl(Bot)
 
 console.log("---------- Loading Events ----------")
 readdir("./events", (err, files) => {
