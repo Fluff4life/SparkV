@@ -14,12 +14,12 @@ config({
 process.on("uncaughtException", (err, Origin) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
-    console.log(`ERROR => Uncaught Exception error. ${ErrorMessage}. Origin: ${Origin}.`)
+    console.log(`ERROR => Uncaught Exception error. ${ErrorMessage}.`)
     process.exit(1)
 })
 
 process.on("unhandledRejection", (err, Origin) => {
-    console.log(`ERROR => Unhandled rejection error. ${err}. Origin: ${Origin}.`)
+    console.log(`ERROR => Unhandled rejection error. ${err}.`)
 })
 
 if (process.env.Debug === "true") {
