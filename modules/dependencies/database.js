@@ -5,7 +5,7 @@ const Database = new QuickMongo.Database(process.env.mongooseURL)
 var bot
 
 module.exports.StartUp = async (Bot) => {
-    Database.on("ready", () => {
+    Database.on("ready", async () => {
         Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
 
         if ((await Database.get("giveaways")) === null){
