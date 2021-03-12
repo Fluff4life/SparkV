@@ -9,8 +9,6 @@ config({
 })
 
 // Error Handlers //
-
-// Error Handlers //
 process.on("uncaughtException", (err, Origin) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
@@ -22,14 +20,14 @@ process.on("unhandledRejection", (err, Origin) => {
     console.log(`ERROR => Unhandled rejection error. ${err}.`)
 })
 
-if (process.env.Debug === "true") {
+if (process.env.Debug) {
     console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
 
-    if (process.env.BotEnabled === "true") {
+    if (process.env.BotEnabled) {
         require("./ch1llblox");
     }
 
-    if (process.env.WebsiteEnabled === "true") {
+    if (process.env.WebsiteEnabled) {
         require("./ch1llwebsite")
     }
 } else {
