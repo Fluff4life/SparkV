@@ -35,7 +35,7 @@ const Bot = new Client({
 })
 
 // Database //
-require("./modules/dependencies/databasehandler").StartUp(Bot)
+require("./modules/dependencies/database").StartUp(Bot)
 
 // Modules //
 const functions = require("./modules/functions")
