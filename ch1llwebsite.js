@@ -24,8 +24,8 @@ async function RunWebsite() {
       .use(express.json())
       .use(express.urlencoded({ extended: true }))
 
-      .use(express.static(path.join(__dirname + "website/public")))
-      .set("views", path.join(__dirname, "/website/views"))
+      .use(express.static(path.join(__dirname + "/public")))
+      .set("views", path.join(__dirname, "/views"))
       .use(session({ secret: process.env.expresssessionpassword, resave: false, saveUninitialized: false }))
 
       /* .use(async (request, response, next) => {
@@ -45,7 +45,7 @@ async function RunWebsite() {
     app.use((req, res, next) => {
       res
         .status(404)
-        .sendFile(__dirname + `/website/public/html/404.html`);
+        .sendFile(__dirname + `/public/html/404.html`);
     });
   }
 }
