@@ -11,7 +11,7 @@ Router.get("/", async (request, response) => {
 })
 
 Router.use((req, res, next) => {
-    res.status(404).sendFile(__dirname + "/public/html/404.html");
+    res.status(404).sendFile(Dirname() + "/html/404.html");
 });
 
 module.exports = Router

@@ -2,6 +2,7 @@ const Express = require("express")
 const Topgg = require("@top-gg/sdk")
 
 const Router = Express.Router()
+const Dirname = require("../GetDirname")
 const Webhook = new Topgg.Webhook("Ch1llBloxTopAuth0808")
 
 Router.get("/status", async (request, response) => {
@@ -40,7 +41,7 @@ Router.post("/ch1llblox/uservote", Webhook.middleware(), (request, response) => 
 })
 
 Router.use((req, res, next) => {
-    res.status(404).sendFile(__dirname + "/public/html/404.html");
+    res.status(404).sendFile(Dirname() + "/html/404.html");
 });
 
 module.exports = Router
