@@ -6,7 +6,7 @@ module.exports = async (Bot) => {
 
     setInterval(() => {
         API.postStats({
-            serverCount: Bot.GetServerCount(),
+            serverCount: await Bot.GetServerCount(),
             shardId: Bot.shard.ids[0],
             shardCount: Bot.options.shardCount
         })
