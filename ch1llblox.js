@@ -131,4 +131,6 @@ if (!process.env.Debug || false){
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
 
+global.Bot = Bot
+
 console.log("SUCCESS - BOT LOADING COMPLETE")
