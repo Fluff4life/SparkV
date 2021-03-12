@@ -5,8 +5,10 @@ module.exports = async (Bot) => {
     const API = new Topgg.Api(process.env.dblkey)
 
     setInterval(() => {
+        const ServerCount = await Bot.GetServerCount()
+
         API.postStats({
-            serverCount: await Bot.GetServerCount(),
+            serverCount: ServerCount,
             shardId: Bot.shard.ids[0],
             shardCount: Bot.options.shardCount
         })
