@@ -36,16 +36,17 @@ async function RunWebsite() {
       }) */
 
       .use("/", require("./public/routes/main"))
+      .use("/home", require("./public/routes/home"))
+      .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
+      .use("/ch1llblox", require("./public/routes/ch1llblox"))
       .use("/api", require("./public/routes/api"))
-      .use("/logout", require("./public/routes/logout"))
+    // .use("/logout", require("./public/routes/logout"))
     // .use("/manage", manage)
     // .use("/stats", stats)
     // .use("/settings", settings)
 
     app.use((req, res, next) => {
-      res
-        .status(404)
-        .sendFile(__dirname + `/public/html/404.html`);
+      res.status(404).sendFile(__dirname + "/public/html/404");
     });
   }
 }
