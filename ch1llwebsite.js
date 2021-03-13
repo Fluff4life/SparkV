@@ -2,12 +2,13 @@
 // Last Edited: 2/18/2021 //
 // website.js //
 
-console.log("LOADING STARTED - WEBSITE => Now loading website.")
+console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading website."))
 
 // Librarys //
 const express = require("express");
 const session = require("express-session");
 const path = require("path")
+const Chalk = require("chalk")
 
 // App //
 const app = express();
@@ -58,10 +59,10 @@ RunWebsite();
 // Listener //
 if (process.env.Debug || false === "true") {
   const listener = app.listen(process.env.PORT, "127.0.0.1", () => {
-    console.log(`SUCCESS - WEBSITE => Server running at http://127.0.0.1:${listener.address().port} & listening on port ${listener.address().port}.`);
+    console.log(Chalk.blue(`SUCCESS - WEBSITE => Server running at http://127.0.0.1:${listener.address().port} & listening on port ${listener.address().port}.`));
   })
 } else {
   const listener = app.listen(process.env.PORT, () => {
-    console.log(`SUCCESS - WEBSITE => Server listening on port ${listener.address().port}.`);
+    console.log(Chalk.blue(`SUCCESS - WEBSITE => Server listening on port ${listener.address().port}.`));
   })
 }

@@ -12,20 +12,20 @@ config({
 process.on("uncaughtException", (err, Origin) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
-    console.log(`ERROR => Uncaught Exception error. ${ErrorMessage}.`)
+    console.log(require("chalk").red(`ERROR => Uncaught Exception error. ${ErrorMessage}.`))
     process.exit(1)
 })
 
 process.on("unhandledRejection", (err, Origin) => {
-    console.log(`ERROR => Unhandled rejection error. ${err}.`)
+    console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err}.`))
 })
 
 process.on("warning", (warning) => {
-    console.log(`WARNING - ${warning.name} => ${warning.message}.`)
+    console.log(require("chalk").yellow(`WARNING - ${warning.name} => ${warning.message}.`))
 })
 
 if (process.env.Debug) {
-    console.log("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!");
+    console.log(require("chalk").yellow("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!"))
 
     if (process.env.BotEnabled) {
         require("./ch1llblox");
@@ -45,7 +45,7 @@ if (process.env.Debug) {
 
     // Shard Handlers //
     ShardManager.on("shardCreate", (Shard) => {
-        console.log(`SUCCESS - SHARD ${Shard.id + 1}/${ShardManager.totalShards} DEPLOYED`)
+        console.log(require("chalk").blue(`SUCCESS - SHARD ${Shard.id + 1}/${ShardManager.totalShards} DEPLOYED`))
     })
 
     ShardManager.spawn(Number(process.env.TotalShards) || "auto", 8000, -1);

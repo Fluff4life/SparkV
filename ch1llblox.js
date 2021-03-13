@@ -13,12 +13,14 @@ console.log("                                   __/ |")
 console.log("                                  |___/")
 */
 
-console.log("LOADING STARTED - BOT => Now loading bot.")
+console.log(require("chalk").green("LOADING STARTED - BOT => Now loading bot."))
 
 // Librarys //
 const { Client, Collection } = require("discord.js")
 const { readdir } = require("fs")
 const AntiSpam = require("discord-anti-spam")
+const Chalk = require("chalk")
+new Chalk.Instance({ level: 3 });
 
 // Create Bot //
 const Bot = new Client({
@@ -133,4 +135,4 @@ Bot.login(process.env.token)
 
 global.Bot = Bot
 
-console.log("SUCCESS - BOT LOADING COMPLETE")
+console.log(Chalk.blue("SUCCESS - BOT LOADING COMPLETE"))

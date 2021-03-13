@@ -35,7 +35,17 @@ module.exports = async (bot) => {
   }
 
   bot.Log = function(Status, Type, Details){
-    console.log(`${Status} - ${Type} => ${Details}`)
+    const chalk = require("chalk")
+
+    if (Status === "SUCCESS"){
+      console.log(chalk.blue(`${Status} - ${Type} => ${Details}`))
+    } else if (Status === "ERROR"){
+      console.log(chalk.red(`${Status} - ${Type} => ${Details}`))
+    } else if (Status === "WARNING"){
+      console.log(chalk.yellow(`${Status} - ${Type} => ${Details}`))
+    } else if (Status === "DEBUG"){
+      console.log(chalk.green(`${Status} - ${Type} => ${Details}`))
+    }
   }
 
   bot.PromptMessage = async function(message, author, reactions, seconds){
