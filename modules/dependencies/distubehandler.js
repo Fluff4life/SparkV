@@ -147,7 +147,7 @@ module.exports = async (Bot) => {
 
       pagination(message, Pages, ["⬅", "➡"])
     })
-    .on("seachCancel", (message) => {
+    .on("searchCancel", (message) => {
       message.channel.send(`Searching canceled.`)
     })
     .on("empty", (message) => {
