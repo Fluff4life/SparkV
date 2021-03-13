@@ -1,4 +1,16 @@
-$(document).ready(function () {
+$(window).on("scroll", function () {
+  if ($(window).scrollTop()) {
+    $("header").addClass("nav-show")
+  } else {
+    $("header").removeClass("nav-show")
+  }
+})
+
+$(document).ready(function() {
+  const headfade = document.querySelector(".headfade")
+  const navbar = document.querySelector(".nav-bar")
+  const navlinks = document.querySelectorAll(".nav-bar li")
+
   $("a").on("click", function (event) {
     if (this.hash !== "") {
       event.preventDefault()
@@ -12,22 +24,6 @@ $(document).ready(function () {
       })
     }
   })
-})
-
-$(window).on("scroll", function () {
-  if ($(window).scrollTop()) {
-    $("header").addClass("nav-show")
-  } else {
-    $("header").removeClass("nav-show")
-  }
-})
-
-$(window).onload = () => {
-  const headfade = document.querySelector(".headfade")
-  const navbar = document.querySelector(".nav-bar")
-  const navlinks = document.querySelectorAll(".nav-bar li")
-
-  $("header").addClass("nav-show")
 
   headfade.onclick = () => {
     navbar.classList.toggle("nav-active")
@@ -41,4 +37,4 @@ $(window).onload = () => {
     });
     headfade.classList.toggle("toggle")
   }
-}
+})

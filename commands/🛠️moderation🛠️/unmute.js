@@ -13,18 +13,25 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (User.id === message.author.id) {
-    return message.channel.send("❌You cannot mute yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌You cannot unmute yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable) {
-    return message.channel.send("❌Uh oh... I can't mute this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌Uh oh... I can't unmute this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const Role = message.guild.roles.cache.find(role => role.name === "Muted")
 
   if (!Role){
-    return message.channel.send("I couldn't find the muted role! Please make sure the role is called, \"Muted\".")
+    return message.channel.send("❌I couldn't find the muted role! Please make sure the role is called, \"Muted\".")
   }
+
+  if (User.roles.cache.has(Role)){
+    return message.channel.send("❌This user isn't muted!")
+  }
+
+  if(user.roles.cache.has(role)) return message.channel.send("This member isn't muted");
+
 
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle("Convermination Prompt")
@@ -39,15 +46,15 @@ exports.run = async (Bot, message, Arguments) => {
     message.delete()
 
     User.roles.add(Role)
-    User.send(`You have been muted in ${message.guild.name}. Reason: ${Reason}.`).catch((err) => {})
+    User.send(`You have been unmuted in ${message.guild.name}. Reason: ${Reason}.`).catch((err) => {})
 
     const MuteEmbend = new Discord.MessageEmbed()
-      .setTitle("Mute Command")
-      .setDescription(`*✅Successfully Muted <@${User.id}>(${User.id})✅*`)
+      .setTitle("Unmute Command")
+      .setDescription(`*✅Successfully unmuted ${User}(${User.id})✅*`)
       .setThumbnail(User.avatar)
       .addField("Moderator/Admin: ", `${message.author.tag}`)
       .addField("Reason: ", Reason)
-      .setFooter(`${process.env.prefix}Unmute to unmute a user.`)
+      .setFooter(`${process.env.prefix}Mute to mute a user.`)
       .setColor(process.env.EmbedColor)
       .setTimestamp();
 
@@ -55,13 +62,13 @@ exports.run = async (Bot, message, Arguments) => {
   } else if (emoji === "❌") {
     message.delete()
 
-    message.channel.send("Mute canceled.").then(m => m.delete({ timeout: 10000 }))
+    message.channel.send("❌Unmute canceled.").then(m => m.delete({ timeout: 10000 }))
   }
 },
  
   exports.config = {
-    name: "Mute",
-    description: "I'll mute someone.",
+    name: "Unmute",
+    description: "I'll unmute someone who was muted previously.",
     aliases: [],
     usage: "<user> <reason>",
     category: "🛠️moderation🛠️",

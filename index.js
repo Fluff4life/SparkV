@@ -1,7 +1,4 @@
 const { config } = require("dotenv")
-const Discord = require("discord.js")
-
-const { GlobalCache } = require("./modules/globalcache")
 
 // Start Dotenv //--
 config({
@@ -34,17 +31,13 @@ process.on("exit", (code) => {
     console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
 })
 
-if (process.env.Debug) {
+if (process.env.BotEnabled){
     console.log(require("chalk").yellow("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!"))
 
-    if (process.env.BotEnabled) {
-        require("./ch1llblox");
-    }
-
-    if (process.env.WebsiteEnabled) {
-        require("./ch1llwebsite")
-    }
+    require("./ch1llblox");
 } else {
+    const { GlobalCache } = require("./modules/globalcache")
+
     const Discord = require("discord.js");
     const ShardManager = new Discord.ShardingManager("./ch1llblox.js", {
         token: process.env.token,

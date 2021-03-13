@@ -32,12 +32,18 @@ exports.run = async (Bot, msg, Arguments) => {
     // Yes
     msg.delete()
 
-    UserToBan.send(`You have been banned from ${msg.guild.name}. Reason: ${ReasonForBan}.`).catch((err) => {
-      msg.channel.send(`Failed to ban. Error: ${err}`)
-    })
+    try {
+      UserToBan.send(`You have been banned from ${msg.guild.name}. Reason: ${ReasonForBan}.`)
+    } catch (err) {
+      
+    }
+
+    
 
     UserToBan.ban({
       reason: ReasonForBan
+    }).catch((err) => {
+      msg.channel.send(`Failed to ban. Error: ${err}`)
     })
 
     const BanEmbed = new MessageEmbed()
@@ -46,7 +52,7 @@ exports.run = async (Bot, msg, Arguments) => {
       .setThumbnail(msg.author.displayAvatarURL)
       .addField("Moderator/Admin: ", `${msg.author.tag}`)
       .addField("Reason: ", ReasonForBan)
-      .setFooter(`${process.env.prefix}Kick to kick a player.`)
+      .setFooter(`${process.env.prefix}Kick to kick a user.`)
       .setColor(process.env.EmbedColor)
       .setTimestamp()
 

@@ -3,7 +3,7 @@
 .npm
 
 # Visual Studio
-.launch.json
+.vscode
 .eslintrc.json
 .prettierrc
 .editorconfig

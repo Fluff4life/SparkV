@@ -4,7 +4,6 @@ exports.run = async (Bot, msg, Arguments) => {
   const UserToKick = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.cache.get(Arguments[0]) || `@<${Arguments[0]}>`;
   const ReasonForKick = Arguments.join(" ").slice(22) || "No reason provided."
 
-
   if (!Arguments[0]) {
     return msg.channel.send("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
   }
@@ -33,11 +32,15 @@ exports.run = async (Bot, msg, Arguments) => {
     // Yes
     msg.delete()
 
-    UserToKick.kick()
-
-    UserToKick.send(`You have been kicked from ${msg.guild.name}. Reason: ${ReasonForKick}.`).catch((err) => {
+    UserToKick.kick().catch((err) => {
       msg.channel.send(`Failed to kick. Error: ${err}`)
     })
+
+    try {
+      UserToKick.send(`You have been kicked from ${msg.guild.name}. Reason: ${ReasonForKick}.`)
+    } catch (err) {
+
+    }
 
     const KickEmbend = new Discord.MessageEmbed()
       .setTitle("Kick Command")
@@ -45,7 +48,7 @@ exports.run = async (Bot, msg, Arguments) => {
       .setThumbnail(UserToKick.avatar)
       .addField("Moderator/Admin: ", `${msg.author.tag}`)
       .addField("Reason: ", ReasonForKick)
-      .setFooter(`${process.env.prefix}Ban to ban a player.`)
+      .setFooter(`${process.env.prefix}Ban to ban a user.`)
       .setColor(process.env.EmbedColor)
       .setTimestamp();
 
@@ -57,14 +60,14 @@ exports.run = async (Bot, msg, Arguments) => {
   }
 },
 
-exports.config = {
-  name: "Kick",
-  description: "Is a user bothering you? Using this command, you can kick them from the server!",
-  aliases: [],
-  usage: "<user> <optional user>",
-  category: "🛠️moderation🛠️",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "KICK_MEMBERS"],
-  member_permissions: ["KICK_MEMBERS"],
-  enabled: true,
-  cooldown: 5
-}
+  exports.config = {
+    name: "Kick",
+    description: "Is a user bothering you? Using this command, you can kick them from the server!",
+    aliases: [],
+    usage: "<user> <optional user>",
+    category: "🛠️moderation🛠️",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES", "KICK_MEMBERS"],
+    member_permissions: ["KICK_MEMBERS"],
+    enabled: true,
+    cooldown: 5
+  }

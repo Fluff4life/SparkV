@@ -1,2 +1,2 @@
-web: node ch1llwebsite.js
-worker: node index.js
+web: npm run startweb
+worker: npm run startbot
