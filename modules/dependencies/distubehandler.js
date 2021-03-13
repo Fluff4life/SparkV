@@ -3,112 +3,130 @@ const pagination = require("discord.js-pagination")
 
 module.exports = async (Bot) => {
   const DisTube = require("distube")
+  const Discord = require("discord.js")
   const canvacord = require("canvacord")
 
   Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true, leaveOnEmpty: true, leaveOnStop: true, highWaterMark: 1<<25, youtubeDL: true, updateYouTubeDL: true })
 
   Bot.distube
     .on("playSong", (message, queue, song) => {
-      message.channel.send({
-        embed: {
-          title: `🎵 Now Playing ${song.name} 🎵`,
-          description: `Added by ${song.user || "unknown"}`,
-          color: "#0099ff",
-
-          url: song.url,
-
-          fields: [
-            {
-              name: `▶Views`,
-              value: `\`\`\`${song.views}\`\`\``,
-              inline: true
-            },
-
-            {
-              name: `👍Likes`,
-              value: `\`\`\`${song.likes}\`\`\``,
-              inline: true
-            },
-
-            {
-              name: `👎Dislikes`,
-              value: `\`\`\`${song.dislikes}\`\`\``,
-              inline: true
-            },
-          ],
-
-          thumbnail: {
-            url: song.thumbnail
+      const NowPlayingEmbed = new Discord.MessageEmbed()
+        .setTitle(`🎵 Now Playing a Song 🎵`)
+        .setDescription(song.name)
+        .setThumbnail(song.thumbnail)
+        .addFields(
+          {
+            name: `Requester`,
+            value: song.user,
+            inline: true,
           },
 
-          footer: {
-            text: `😀${song.formattedDuration}`,
-            icon_url: Bot.user.AvatarURL
-          },
-        }
-      })
-    })
-    .on("addSong", (message, queue, song) => {
-      message.channel.send({
-        embed: {
-          title: `Added To Queue`,
-          description: song.name,
-          color: "#0099ff",
-
-          url: song.url,
-
-          fields: [
-            {
-              name: `Requester`,
-              value: song.user,
-              inline: true,
-            },
-
-            {
-              name: `Duration`,
-              value: `\`\`\`${song.formattedDuration}\`\`\``,
-              inline: true,
-            },
-
-            {
-              name: `Queue`,
-              value: `\`\`\`${queue.songs.length} songs - ${queue.duration}\`\`\``,
-              inline: true,
-            }
-          ],
-
-          thumbnail: {
-            url: song.thumbnail
+          {
+            name: `▶Views`,
+            value: `\`\`\`${song.views}\`\`\``,
+            inline: true
           },
 
-          footer: {
-            text: `${song.formattedDuration}`,
-            icon_url: Bot.user.AvatarURL
+          {
+            name: `Stats`,
+            value: `\`\`\`👍Likes: ${song.likes}\n👎Dislikes: ${song.dislikes}\`\`\``,
+            inline: true
           },
-        }
-      })
+        )
+        .setURL(song.url)
+        .setColor(process.env.EmbedColor)
+        .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
+        .setTimestamp()
+
+      message.channel.send(NowPlayingEmbed)
     })
     .on("playList", (message, queue, playlist, song) => {
-      message.channel.send(message.channel.send({
-        embed: {
-          title: `Playing ${playlist.name}`,
-          description: `Added by ${song.user || "unknown"}`,
-          color: "#0099ff",
-
-          thumbnail: {
-            url: song.thumbnail
+      const NowPlayingEmbed = new Discord.MessageEmbed()
+        .setTitle(`🎵 Now Playing a Playlist 🎵`)
+        .setDescription(`${playlist.name}`)
+        .setThumbnail(song.thumbnail)
+        .addFields(
+          {
+            name: `Requester`,
+            value: song.user,
+            inline: true,
           },
 
-          url: song.url,
-
-          footer: {
-            text: `(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`,
-            icon_url: Bot.user.AvatarURL
+          {
+            name: `▶Views`,
+            value: `\`\`\`${song.views}\`\`\``,
+            inline: true
           },
-        }
-      }))
+
+          {
+            name: `Stats`,
+            value: `\`\`\`👍Likes: ${song.likes}\n👎Dislikes: ${song.dislikes}\`\`\``,
+            inline: true
+          },
+        )
+        .setURL(song.url)
+        .setColor(process.env.EmbedColor)
+        .setFooter(`(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`, Bot.user.AvatarURL)
+        .setTimestamp()
+
+      message.channel.send(NowPlayingEmbed)
+    })
+    .on("addSong", (message, queue, song) => {
+      const SongAddedQueue = new Discord.MessageEmbed()
+        .setTitle("➕Added Song To Queue")
+        .setDescription(song.name)
+        .setThumbnail(song.thumbnail)
+        .addFields(
+          {
+            name: `Requester`,
+            value: song.user,
+            inline: true,
+          },
+
+          {
+            name: `Duration`,
+            value: `\`\`\`${song.formattedDuration}\`\`\``,
+            inline: true,
+          },
+
+          {
+            name: `Queue`,
+            value: `\`\`\`${queue.songs.length} songs - ${queue.duration}\`\`\``,
+            inline: true,
+          }
+        )
+        .setURL(song.url)
+        .setColor(process.env.EmbedColor)
+        .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
+        .setTimestamp()
+
+      message.channel.send(SongAddedQueue)
     })
     .on("addList", (message, queue, playlist) => {
+      const SongAddedQueue = new Discord.MessageEmbed()
+        .setTitle("➕Added Playlist To Queue")
+        .setDescription(playlist.name)
+        .setThumbnail(song.thumbnail)
+        .addFields(
+          {
+            name: `Requester`,
+            value: song.user,
+            inline: true,
+          },
+
+          {
+            name: `Queue`,
+            value: `\`\`\`${queue.songs.length} songs - ${queue.duration}\`\`\``,
+            inline: true,
+          }
+        )
+        .setURL(song.url)
+        .setColor(process.env.EmbedColor)
+        .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
+        .setTimestamp()
+
+      message.channel.send(SongAddedQueue)
+
       message.channel.send(message.channel.send({
         embed: {
           title: `Added ${playlist.name} to Queue`,
@@ -122,22 +140,15 @@ module.exports = async (Bot) => {
         }
       }))
     })
-    .on("finish", (message) => {
-      message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 2000 }))
-    })
-    .on("noRelated", (message) => {
-      message.channel.send("I cannot find a related video to play. I am stopping the music.").then(m => m.delete({ timeout: 2000 }))
-    })
     .on("searchResult", (message, result) => {
       let Pages = []
 
       const CreatePage = (Message, Song) => {
         const NewEmbed = new MessageEmbed()
           .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-          .setDescription(`To select this song, send the page number.`)
+          .setDescription(`To select this song, send the page number. Example: 1`)
           .setColor(process.env.EmbedColor)
           .setURL(Song.url)
-
           .setImage(Song.thumbnail)
 
         Pages.push(NewEmbed)
@@ -147,11 +158,17 @@ module.exports = async (Bot) => {
 
       pagination(message, Pages, ["⬅", "➡"])
     })
+    .on("finish", (message) => {
+      message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 10000 }))
+    })
+    .on("noRelated", (message) => {
+      message.channel.send("I cannot find a related video to play. I am stopping the music.").then(m => m.delete({ timeout: 10000 }))
+    })
     .on("searchCancel", (message) => {
-      message.channel.send(`Searching canceled.`)
+      message.channel.send(`Searching canceled.`).then(m => m.delete({ timeout: 10000 }))
     })
     .on("empty", (message) => {
-      message.channel.send("Voice chat is empty. Leaving the VC.").then(m => m.delete({ timeout: 2000 }))
+      message.channel.send("Voice chat is empty. Leaving the VC.").then(m => m.delete({ timeout: 10000 }))
     })
     .on("error", (message, err) => {
       console.error(err)
@@ -160,10 +177,10 @@ module.exports = async (Bot) => {
         embed: {
           title: `Error Occured!`,
           description: err,
-          color: "#0099ff",
+          color: process.env.EmbedColor,
 
           footer: {
-            text: `Music command failed.`,
+            text: `⚠Music command failed.`,
             icon_url: Bot.user.AvatarURL
           }
         }
