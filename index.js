@@ -9,19 +9,29 @@ config({
 })
 
 // Error Handlers //
-process.on("uncaughtException", (err, Origin) => {
+process.on("uncaughtException", (err, promise) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
     console.log(require("chalk").red(`ERROR => Uncaught Exception error. ${ErrorMessage}.`))
     process.exit(1)
 })
 
-process.on("unhandledRejection", (err, Origin) => {
+process.on("unhandledRejection", (err, promise) => {
     console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err}.`))
+})
+
+process.on("multipleResolves", (type, promise, reason) => {
+    console.log(require("chalk").red(`ERROR => Multiple resolves detected. ${type} - ${promise} - ${reason}.`))
+
+    setImmediate(() => process.exit(1))
 })
 
 process.on("warning", (warning) => {
     console.log(require("chalk").yellow(`WARNING - ${warning.name} => ${warning.message}.`))
+})
+
+process.on("exit", (code) => {
+    console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
 })
 
 if (process.env.Debug) {
