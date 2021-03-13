@@ -5,9 +5,7 @@ module.exports = async (Bot) => {
   const DisTube = require("distube")
   const canvacord = require("canvacord")
 
-
-
-  Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true })
+  Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true, leaveOnEmpty: true, leaveOnStop: true, highWaterMark: 1<<25, youtubeDL: true, updateYouTubeDL: true })
 
   Bot.distube
     .on("playSong", (message, queue, song) => {
