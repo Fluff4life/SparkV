@@ -8,6 +8,10 @@ const results = [
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
 
+  if (User.id === process.env.OwnerID){
+    return message.channel.send("This user is protected! You can buy a protection shield from being robbed in the shop.")
+  }
+
   var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
   var UserCh1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
   var Multiplier = await Bot.Database.get(`UserData_${User.id}.multiplier`)
