@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Bank) {
-    Bank = 4500
+    Bank = 0
   }
 
   if (!Arguments) {
@@ -18,7 +18,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   if (Arguments[0].toLowerCase() === "all") {
     if (Bank === 0 || Bank === null) {
-      return message.channel.send("You have no Ch1llBucks!")
+      return message.channel.send("You have no Ch1llBucks in your bank!")
     }
 
     await Bot.Database.subtract(`UserData_${message.author.id}.bank`, Ch1llBucks)
