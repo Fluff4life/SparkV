@@ -24,8 +24,9 @@ new Chalk.Instance({ level: 3 });
 
 // Create Bot //
 const Bot = new Client({
-  partials: ["MESSAGE", "CHANNEL", "REACTION"],
+  retryLimit: 3,
   disableEveryone: true,
+  partials: ["MESSAGE", "CHANNEL", "REACTION"],
 
   presence: {
     activity: {
