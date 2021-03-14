@@ -14,29 +14,25 @@ Router.get("/ch1llblox/status", async (request, response) => {
 })
 
 Router.post("/ch1llblox/uservote", Webhook.middleware(), async (request, response) => {
-    try {
-        const Bot = global.Bot
-        const User = Bot.users.cache.fetch(request.vote.user);
+    const User = global.Bot.users.fetch(request.vote.user)
 
-        var Ch1llBucks = await Bot.Database.get(`UserData_${request.vote.user}.ch1llbucks`)
-        var Multiplier = await Bot.Database.get(`UserData_${request.vote.user}.multiplier`)
-
-        if (!Multiplier) {
-            Multiplier = 1
+    if (User){
+        try {
+            var Multiplier = await global.Bot.Database.get(`UserData_${request.vote.user}.multiplier`)
+  
+            if (!Multiplier) {
+                Multiplier = 1
+            }
+    
+            await global.Bot.Database.add(`UserData_${request.vote.user}.ch1llbucks`, 1000 * Multiplier)
+    
+            User.send(`Thanks for voting!\nYou just earned yourself \`❄${await global.Bot.FormatNumber(1000 * Multiplier)}\` coins for voting on top.gg.`)
+            console.log(`User voted! Username: ${User} ID: ${request.vote.user}.`)
+    
+            return response.status(200).send({ status: 200, message: "OK" })
+        } catch(err) {
+            
         }
-
-        if (!Ch1llBucks) {
-            Ch1llBucks = 0
-        }
-
-        await Bot.Database.set(`UserData_${request.vote.user}.ch1llbucks`, Ch1llBucks + 1000 * Multiplier)
-
-        User.send(`You've just earned ❄${await Bot.FormatNumber(1000 * Multiplier)} Ch1llBucks for voting. Enjoy!`)
-        console.log(`User voted! ID: ${request.vote.user}.`)
-
-        return response.status(200).send({ status: 200, message: "OK" })
-    } catch {
-        return response.status(500).send({ status: 500, message: "Bad Request" })
     }
 })
 

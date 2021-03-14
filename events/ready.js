@@ -21,19 +21,13 @@ exports.run = async (Bot) => {
     },
 
     {
-      text: `${await Bot.GetUserCount()} cool kids 😎!`,
-      type: "WATCHING",
-      status: "online"
-    },
-
-    {
       text: `Ch1ll'n!`,
       type: "WATCHING",
       status: "online"
     },
 
     {
-      text: `😏ch1ll.herokuapp.com/ch1llblox/donate`,
+      text: `😏ch1ll.herokuapp.com/donate`,
       type: "WATCHING",
       status: "online"
     },
