@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments) => {
-  if (msg.author.id !== Bot.Config.Owner.ID) {
+  if (msg.author.id !== process.env.OwnerID) {
     return msg.channel.send("❌Access denied.")
   }
 
