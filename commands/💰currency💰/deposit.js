@@ -58,10 +58,10 @@ exports.run = async (Bot, message, Arguments) => {
     name: "Deposit",
     description: "Deposit your Ch1llBucks into your bank.",
     aliases: ["dep"],
-    usage: "",
+    usage: "<all or ammount>",
     category: "💰currency💰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
-    cooldown: 45
+    cooldown: 15
   }

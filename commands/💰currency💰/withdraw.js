@@ -59,5 +59,5 @@ exports.config = {
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
   member_permissions: [],
   enabled: true,
-  cooldown: 45
+  cooldown: 15
 }
