@@ -8,23 +8,26 @@ const results = [
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
 
-  if (User.id === process.env.OwnerID){
-    return message.channel.send("This user is protected! You can buy a protection shield from being robbed in the shop.")
-  }
-
-  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
+  var RobberCh1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
   var UserCh1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
-  var Multiplier = await Bot.Database.get(`UserData_${User.id}.multiplier`)
 
-  if (!UserCh1llBucks) {
-    return message.channel.send("Bruh he has no money leave them alone you noob!")
-  }
-
-  if (Ch1llBucks < 250) {
+  if (RobberCh1llBucks < 500) {
     return message.channel.send("Bruh you cannot rob someone unless you have over ❄250 Ch1llBucks.")
   }
 
-  if (Ch1llBucks < 0){
+  if (UserCh1llBucks <= 0 || UserCh1llBucks === null) {
+    return message.channel.send("Bruh they have no money leave them alone you noob!")
+  }
+
+  if (message.author.id === User.id) {
+    return message.channel.send("Why do you want to rob yourself lol.")
+  }
+
+  if (User.id === process.env.OwnerID) {
+    return message.channel.send("This user is protected! You can buy a protection shield from being robbed in the shop.")
+  }
+
+  if (UserCh1llBucks < 0) {
     return message.channel.send("You can't rob someone in debt lol.")
   }
 
@@ -34,35 +37,30 @@ exports.run = async (Bot, message, Arguments) => {
     Ch1llBucks = 0
   }
 
-  if (!Multiplier) {
-    Multiplier = 1
-  }
-
   if (Result === "WIN") {
-    const RandomAmmount = Math.floor(Math.random() * UserCh1llBucks)
-    const Ammount = RandomAmmount * Multiplier
+    const Ammount = Math.floor(Math.random() * UserCh1llBucks)
 
-    await Bot.Database.set(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks + Ammount)
-    await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, UserCh1llBucks - Ammount)
+    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ammount)
+    await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Ammount)
 
     message.channel.send(`You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
   } else {
 
-    await Bot.Database.set(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks - 250)
-    await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, UserCh1llBucks + 250)
+    await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, 250)
+    await Bot.Database.add(`UserData_${User.id}.ch1llbucks`, 250)
 
     message.channel.send(`LOL you got caught! You payed ❄250 to ${User}.`)
   }
 },
 
-  exports.config = {
-    name: "Rob",
-    description: "why u bully me?",
-    aliases: ["crime"],
-    usage: "<user>",
-    category: "💰currency💰",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 45
-  }
+exports.config = {
+  name: "Rob",
+  description: "why u bully me?",
+  aliases: ["crime"],
+  usage: "<user>",
+  category: "💰currency💰",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 45
+}

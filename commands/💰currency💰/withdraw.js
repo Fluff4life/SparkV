@@ -1,38 +1,52 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const User = message.author
+  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
+  var Bank = await Bot.Database.get(`UserData_${message.author.id}.bank`)
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
+  if (!Ch1llBucks){
+    Ch1llBucks = 0
+  }
 
-  if (!Ch1llBucks) {
-    return message.channel.send("Bruh you have no Ch1llBucks.")
+  if (!Bank) {
+    Bank = 4500
   }
 
   if (!Arguments) {
-    return message.channel.send("You need to tell me how much you want me to deposit. You can say all if you want all of your Ch1ll Bucks in your bank.")
+    return message.channel.send("You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.")
   }
 
-  if (message.content.includes("-")) {
-    return message.channel.send("You can't deposit negitive Ch1llBucks lol.")
+  if (Arguments[0].toLowerCase() === "all") {
+    if (Bank === 0 || Bank === null) {
+      return message.channel.send("You have no Ch1llBucks!")
+    }
+
+    await Bot.Database.subtract(`UserData_${message.author.id}.bank`, Ch1llBucks)
+    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks)
+
+    message.channel.send(`You just withdrawed ❄${await Bot.FormatNumber(Arguments[0])} from your bank!`)
+  } else {
+    if (!Arguments[0]) {
+      return message.channel.send("lol you can't withdraw nothing.")
+    }
+
+    if (isNaN(Arguments[0])) {
+      return message.channel.send("Bruh please say a number.")
+    }
+
+    if (message.content.includes("-")) {
+      return message.channel.send("You can't withdraw negitive Ch1llBucks lol.")
+    }
+
+    if (Bank < Arguments[0]) {
+      return message.channel.send("You don't have that much Ch1llBucks in your bank!")
+    }
+
+    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
+    await Bot.Database.subtract(`UserData_${message.author.id}.bank`, parseInt(Arguments[0]))
+
+    message.channel.send(`Withdrawed ❄${await Bot.FormatNumber(Arguments[0])} from your bank!`)
   }
-
-  if (!parseInt(Arguments[0])) {
-    return message.channel.send("Bruh please say a number.")
-  }
-
-  if (parseInt(Arguments[0]) > BankMax) {
-    return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
-  }
-
-  if (parseInt(Arguments[0]) > Ch1llBucks) {
-    return message.channel.send("You don't have enough Ch1llBucks to deposit that much into your bank.")
-  }
-
-  await Bot.Database.set(`UserData_${User.id}.ch1llbucks`, Ch1llBucks - parseInt(Arguments[0]))
-  await Bot.Database.set(`UserData_${User.id}.bank`, Ch1llBucks + parseInt(Arguments[0]))
-
-  message.channel.send(`Deposited ❄${await Bot.FormatNumber(Arguments[0])} into bank!`)
 },
 
 

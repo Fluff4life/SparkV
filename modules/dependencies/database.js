@@ -13,6 +13,10 @@ module.exports.StartUp = async (Bot) => {
         }
     })
 
+    Database.on("error", async (err) => {
+        Bot.Log("ERROR", "DATABASE ERROR", err)
+    })
+
     Levels.setURL(process.env.mongooseURL)
 
     bot = Bot    
