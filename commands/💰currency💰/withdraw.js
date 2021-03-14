@@ -21,10 +21,10 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send("You have no Ch1llBucks in your bank!")
     }
 
-    await Bot.Database.subtract(`UserData_${message.author.id}.bank`, Ch1llBucks)
-    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks)
+    await Bot.Database.subtract(`UserData_${message.author.id}.bank`, Bank)
+    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Bank)
 
-    message.channel.send(`You just withdrawed ❄${await Bot.FormatNumber(Ch1llBucks)} from your bank!`)
+    message.channel.send(`You just withdrawed ❄${await Bot.FormatNumber(Bank)} from your bank!`)
   } else {
     if (!Arguments[0]) {
       return message.channel.send("lol you can't withdraw nothing.")
