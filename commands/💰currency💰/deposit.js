@@ -24,7 +24,7 @@ exports.run = async (Bot, message, Arguments) => {
     await Bot.Database.add(`UserData_${message.author.id}.bank`, Ch1llBucks)
     await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks)
 
-    message.channel.send(`You just deposited ❄${await Bot.FormatNumber(Arguments[0])} into your bank!`)
+    message.channel.send(`You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
   } else {
     if (!Arguments[0]) {
       return message.channel.send("lol you can't deposit nothing.")

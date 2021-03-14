@@ -45,7 +45,7 @@ exports.run = async (Bot, message, Arguments) => {
     await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
     await Bot.Database.subtract(`UserData_${message.author.id}.bank`, parseInt(Arguments[0]))
 
-    message.channel.send(`Withdrawed ❄${await Bot.FormatNumber(Arguments[0])} from your bank!`)
+    message.channel.send(`Withdrawed ❄${await Bot.FormatNumber(Ch1llBucks)} from your bank!`)
   }
 },
 
