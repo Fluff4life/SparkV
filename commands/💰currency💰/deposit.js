@@ -46,7 +46,6 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
     }
 
-
     await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
     await Bot.Database.add(`UserData_${message.author.id}.bank`, parseInt(Arguments[0]))
 

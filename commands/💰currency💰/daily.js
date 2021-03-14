@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
   exports.config = {
     name: "Daily",
     description: "Collect your daily ammount of money!",
-    aliases: ["dep"],
+    aliases: [],
     usage: "",
     category: "💰currency💰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
