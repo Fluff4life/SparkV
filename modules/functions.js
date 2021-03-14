@@ -29,7 +29,7 @@ module.exports = async (bot) => {
   bot.FormatNumber = function(string){
     const FormattedNumber = string
       .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ", ")
 
     return FormattedNumber
   }
