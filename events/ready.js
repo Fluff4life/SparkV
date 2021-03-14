@@ -54,7 +54,7 @@ exports.run = async (Bot) => {
   }, 60 * 1000)
 
   Bot.setInterval(() => {
-    Bot.user.member.voice.setDeaf(true, "To protect & respect users' privacy, Ch1llBlox will always stay deafened.");
+    Bot.user.voice.setDeaf(true, "To protect & respect users' privacy, Ch1llBlox will always stay deafened.");
   }, 1000)
 
   for (const guild of Bot.guilds.cache) {
