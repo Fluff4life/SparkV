@@ -39,7 +39,7 @@ exports.run = async (Bot, message, Arguments) => {
     }
 
     if (Ch1llBucks < Arguments[0]) {
-      return message.channel.send("You don't have that much money.")
+      return message.channel.send("You don't have that much Ch1llBucks.")
     }
 
     if (BankMax < Arguments[0]) {

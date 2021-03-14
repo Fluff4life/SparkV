@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (UserCh1llBucks <= 0 || UserCh1llBucks === null) {
-    return message.channel.send("Bruh they have no money leave them alone you noob!")
+    return message.channel.send("Bruh they have no Ch1llBucks leave them alone you noob!")
   }
  
   if (message.author.id === User.id) {

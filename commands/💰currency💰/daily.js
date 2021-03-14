@@ -2,11 +2,10 @@ const Discord = require("discord.js");
 const ms = require("parse-ms")
 
 exports.run = async (Bot, message, Arguments) => {
-  const User = message.author
   const RandomAmmount = Math.floor(Math.random() * 3500) + 1
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
-  var Multiplier = await Bot.Database.get(`UserData_${User.id}.multiplier`)
+  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
+  var Multiplier = await Bot.Database.get(`UserData_${message.author.id}.multiplier`)
 
   if (!Multiplier){
     Multiplier = 1
@@ -18,13 +17,13 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Ammount = RandomAmmount * Multiplier
 
-  await Bot.Database.add(`UserData_${User.id}.ch1llbucks`, Ammount)
+  await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ammount)
   message.channel.send(`You've just earned ❄${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
 },
 
   exports.config = {
     name: "Daily",
-    description: "Collect your daily ammount of money!",
+    description: "Collect your daily ammount of Ch1llBucks!",
     aliases: [],
     usage: "",
     category: "💰currency💰",
