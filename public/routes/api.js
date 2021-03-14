@@ -10,7 +10,7 @@ Router.get("/status", async (request, response) => {
 })
 
 Router.get("/ch1llblox/status", async (request, response) => {
-    response.status(global.Bot.Config.website.BotOnline).send({ status: global.Bot.Config.website.BotOnline });
+    response.status(200).send({ status: 200, message: "OK" });
 })
 
 Router.post("/ch1llblox/uservote", Webhook.middleware(), async (request, response) => {

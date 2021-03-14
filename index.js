@@ -18,12 +18,6 @@ process.on("unhandledRejection", (err, promise) => {
     console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err}.`))
 })
 
-process.on("multipleResolves", (type, promise, reason) => {
-    console.log(require("chalk").red(`ERROR => Multiple resolves detected. ${type} - ${promise} - ${reason}.`))
-
-    setImmediate(() => process.exit(1))
-})
-
 process.on("warning", (warning) => {
     console.log(require("chalk").yellow(`WARNING - ${warning.name} => ${warning.message}.`))
 })
