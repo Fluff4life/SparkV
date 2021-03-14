@@ -32,7 +32,7 @@ process.on("exit", (code) => {
     console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
 })
 
-if (Config.SystemsEnabled.BotEnabled){
+if (Config.Debug){
     console.log(require("chalk").yellow("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!"))
 
     require("./ch1llblox");
@@ -43,8 +43,8 @@ if (Config.SystemsEnabled.BotEnabled){
     const ShardManager = new Discord.ShardingManager("./ch1llblox.js", {
         token: process.env.token,
         totalShards: Number(process.env.TotalShards) || "auto",
-        shardArgs: typeof v8debug === "object" ? ["--inspect"] : undefined,
-        execArgv: ["--trace-warnings"]
+        // shardArgs: typeof v8debug === "object" ? ["--inspect"] : undefined,
+        // execArgv: ["--trace-warnings"]
     })
 
     // Shard Handlers //
