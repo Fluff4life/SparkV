@@ -36,7 +36,7 @@ process.on("warning", (warning) => {
 })
 
 process.on("exit", (code) => {
-  console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
+  console.log(require("chalk").red(`EXITED - Process exited with code ${code}.`))
 })
 
 // Functions //
