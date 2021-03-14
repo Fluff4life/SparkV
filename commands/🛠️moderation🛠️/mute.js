@@ -47,8 +47,8 @@ exports.run = async (Bot, message, Arguments) => {
       .setThumbnail(User.avatar)
       .addField("Moderator/Admin: ", `${message.author.tag}`)
       .addField("Reason: ", Reason)
-      .setFooter(`${process.env.prefix}Unmute to unmute a user.`)
-      .setColor(process.env.EmbedColor)
+      .setFooter(`${Bot.Config.Bot.prefix}Unmute to unmute a user.`)
+      .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp();
 
     message.channel.send(MuteEmbend);

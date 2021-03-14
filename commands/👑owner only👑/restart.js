@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments) => {
-  if (msg.author.id !== process.env.ownerID) {
+  if (msg.author.id !== Bot.Config.Owner.ID) {
     return msg.channel.send("❌Access denied.")
   }
 
@@ -11,7 +11,7 @@ exports.run = async (Bot, msg, Arguments) => {
 },
 
   exports.config = {
-    name: "Eval",
+    name: "Restart",
     description: "This is an owner only command.",
     aliases: [],
     usage: "",
@@ -19,5 +19,5 @@ exports.run = async (Bot, msg, Arguments) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
-    cooldown: 1.5
+    cooldown: 5
   }

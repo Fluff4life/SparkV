@@ -5,10 +5,10 @@ exports.run = async (Bot, msg) => {
     .setTitle("Invites")
     .setDescription(`The following are links for Ch1llBlox!`)
     .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
-    .addField("**Support Server**", `[Click Here](${process.env.support_server_invite})`, true)
+    .addField("**Support Server**", `[Click Here](${Bot.Config.Support.invite})`, true)
     .addField("Bot Invite: ", `[Click Here](https://ch1ll.herokuapp.com/ch1llblox/invite)`, true)
     .setFooter(`Invites for Ch1llBlox.`, Bot.user.AvatarURL)
-    .setColor(process.env.EmbedColor);
+    .setColor(Bot.Config.Embed.EmbedColor);
     
   await msg.channel.send(InvitesEmbend);
 },

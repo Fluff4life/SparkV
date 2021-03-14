@@ -24,7 +24,7 @@ exports.run = async (Bot, msg, args) => {
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(`Rule #${RuleNumber} - ${RuleTitle}`)
       .setDescription(`\`\`\`${RuleDescription}\`\`\``)
-      .setColor(process.env.EmbedColor)
+      .setColor(Bot.Config.Embed.EmbedColor)
       .setThumbnail(Message.author.displayAvatarURL({ dynamic: true }))
 
     pages.push(NewEmbed)

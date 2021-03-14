@@ -24,7 +24,7 @@ exports.run = async (Bot, message, Arguments) => {
   .setTitle("Convermination Prompt")
   .setDescription("Are you sure you want to do this?")
   .setFooter("Canceling in 60 seconds if no emoji reacted.")
-  .setColor(process.env.EmbedColor)
+  .setColor(Bot.Config.Embed.EmbedColor)
 
   const VerificationMessage = await message.channel.send(VerificationEmbed)
     const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)

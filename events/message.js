@@ -48,7 +48,7 @@ exports.run = async (Bot, Message) => {
       return
     }
   } else {
-    if (!Message.content.startsWith(process.env.prefix)) {
+    if (!Message.content.startsWith(Bot.Config.Bot.prefix)) {
       return
     }
   }
@@ -57,7 +57,7 @@ exports.run = async (Bot, Message) => {
     if (Prefix) {
       return Prefix.length
     } else {
-      return process.env.prefix.length
+      return Bot.Config.Bot.prefix.length
     }
   }
 
@@ -151,7 +151,7 @@ exports.run = async (Bot, Message) => {
         .setDescription(err)
         .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
         .setFooter("Please contact our support team and alert them about this error.", Bot.user.avatarURL)
-        .setColor(process.env.EmbedColor)
+        .setColor(Bot.Config.Embed.EmbedColor)
         .setTimestamp()
 
     await Message.channel.send(FailedEmbed)

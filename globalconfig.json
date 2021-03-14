@@ -1,0 +1,38 @@
+{
+    "Bot": {
+        "ClientID": 763126208149585961,
+        "Permissions": 0,
+        "prefix": "^"
+    },
+
+    "Owner": {
+        "name": "KingCh1ll#3616",
+        "ID": 571811686617710592
+    },
+
+    "Support": {
+        "invite": "",
+        "id": 763803059876397056
+    },
+
+    "Embed": {
+        "EmbedColor": "#0099ff"
+    },
+
+    "SystemsEnabled": {
+        "WebsiteEnabled": true,
+        "Down": false,
+        "BotEnabled": true
+    },
+
+    "website": {
+        "BotOnline": true
+    },
+
+    "links": {
+        "GitHub": "https://github.com/KingCh1ll",
+        "donate": "https://roblox.com/"
+    },
+
+    "Debug": true
+}

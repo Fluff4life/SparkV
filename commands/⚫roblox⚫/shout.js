@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, msg, Arguments, command) => {
-  if (process.env.Debug || false) {
+  if (Bot.Config.Debug === true) {
     return
   }
 
@@ -12,13 +12,13 @@ exports.run = async (Bot, msg, Arguments, command) => {
   const RobloxGroupID = Bot.Database.get(`ServerData_${message.guild.id}.GroupID`)
 
   if (RobloxGroupID) {
-    noblox.shout(process.env.RobloxGroup, Arguments).then(() => {
+    noblox.shout((RobloxGroupID), Arguments).then(() => {
       msg.channel.send({
         embed: {
           title: "Successfully Shouted",
           description: "Successfully shouted " + Arguments,
           color: "#0099ff",
-          url: "https://www.roblox.com/groups/7813201/Ch1ll-Studios",
+          url: `https://www.roblox.com/groups/${RobloxGroupID}/`,
 
           footer: {
             text: "Shout Command Successful",
@@ -33,7 +33,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
           title: "⚠️Failed to Shout⚠️",
           description: "Failed to shout " + Arguments,
           color: "#0099ff",
-          url: "https://www.roblox.com/groups/7813201/Ch1ll-Studios",
+          url: `https://www.roblox.com/groups/${RobloxGroupID}/`,
 
           footer: {
             text: "⚠️Shout Command Failed⚠️",

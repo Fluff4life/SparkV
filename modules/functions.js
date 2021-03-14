@@ -29,7 +29,7 @@ module.exports = async (bot) => {
   bot.FormatNumber = function(string){
     const FormattedNumber = string
       .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ", ")
+      .replace(/\B(?=(\d{3})+(?!\d))/g, " ,")
 
     return FormattedNumber
   }
@@ -112,7 +112,7 @@ module.exports = async (bot) => {
   }
 
   bot.IsAdmin = function(message){
-    if (message.author.id == process.env.ownerID){
+    if (message.author.id == Bot.Config.Owner.ID){
       return true
     } else {
       if (process.env.Admins.includes(message.author.id)){

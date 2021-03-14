@@ -3,10 +3,9 @@ const Discord = require("discord.js");
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
 
-  if (process.env.Debug || false) {
+  if (Bot.Config.Debug === true) {
     return
   }
-
   const canvacord = require("canvacord");
 
   const Avatar = User.displayAvatarURL({

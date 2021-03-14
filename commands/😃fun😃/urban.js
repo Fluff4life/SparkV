@@ -6,7 +6,7 @@ exports.run = async (Bot, message, args) => {
     const ErrorEmbed = new Discord.MessageEmbed()
       .setTitle("Invalid command usage!")
       .setDescription("Please provide a word to urban!")
-      .setFooter(`Try using "${process.env.prefix}Urban [Word]"`);
+      .setFooter(`Try using "${Bot.Config.Bot.prefix}Urban [Word]"`);
 
     return await message.channel.send(ErrorEmbed).then(m => m.delete({ timeout: 5000 }))
   }
@@ -28,7 +28,7 @@ exports.run = async (Bot, message, args) => {
         `👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author}`,
         Bot.user.AvatarURL
       )
-      .setColor(process.env.EmbedColor);
+      .setColor(Bot.Config.Embed.EmbedColor);
 
     return await message.channel.send(UrbanEmbed);
   });

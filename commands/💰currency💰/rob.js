@@ -23,7 +23,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Why do you want to rob yourself lol.")
   }
 
-  if (User.id === process.env.OwnerID) {
+  if (User.id === Bot.Config.Owner.ID){
     return message.channel.send("This user is protected! You can buy a protection shield from being robbed in the shop.")
   }
 

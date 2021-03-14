@@ -5,7 +5,7 @@ exports.run = async (Bot, msg, Arguments) => {
   var Prefix = Bot.Database.get(`ServerData_${msg.guild.id}.prefix`)
 
   if (!Prefix){
-    Prefix = process.env.prefix
+    Prefix = Bot.Config.Bot.prefix
   }
 
   new TicTacToe({

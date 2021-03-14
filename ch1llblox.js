@@ -44,9 +44,10 @@ require("./modules/dependencies/database").StartUp(Bot)
 const functions = require("./modules/functions")
 const Distube = require("./modules/dependencies/distubehandler")
 const dbl = require("./modules/dependencies/dbl")
+const Config = require("./globalconfig.json")
 var Noblox
 
-if (!process.env.Debug || false){
+if (Config.Debug === false){
   Noblox = require("./modules/dependencies/noblox")
 }
 
@@ -127,7 +128,7 @@ readdir("./commands", (err, cats) => {
   })
 })
 
-if (!process.env.Debug || false){
+if (Config.Debug === false){
   Noblox(Bot)
 }
 
@@ -135,5 +136,6 @@ console.log("---------- Logging into Bot ----------")
 Bot.login(process.env.token)
 
 global.Bot = Bot
+Bot.Config = Config
 
 console.log(Chalk.blue("SUCCESS - BOT LOADING COMPLETE"))

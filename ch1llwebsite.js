@@ -9,6 +9,7 @@ const express = require("express");
 const session = require("express-session");
 const path = require("path")
 const Chalk = require("chalk")
+const Config = require("./globalconfig.json")
 
 // App //
 const app = express();
@@ -41,7 +42,7 @@ process.on("exit", (code) => {
 
 // Functions //
 async function RunWebsite() {
-  if (process.env.Down === "true") {
+  if (Config.SystemsEnabled.Down === true){
     app.use((req, res, next) => {
       res.status(500);
       res.sendFile(__dirname + `/public/html/down.html`);
@@ -83,7 +84,7 @@ console.log("-------- Loading Website --------");
 RunWebsite();
 
 // Listener //
-if (process.env.Debug || false === "true") {
+if (Config.Debug === true) {
   const listener = app.listen(process.env.PORT, "127.0.0.1", () => {
     console.log(Chalk.blue(`SUCCESS - WEBSITE => Server running at http://127.0.0.1:${listener.address().port} & listening on port ${listener.address().port}.`));
   })

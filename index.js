@@ -1,4 +1,5 @@
 const { config } = require("dotenv")
+const Config = require("./globalconfig.json")
 
 // Start Dotenv //--
 config({
@@ -31,7 +32,7 @@ process.on("exit", (code) => {
     console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
 })
 
-if (process.env.BotEnabled){
+if (Config.SystemsEnabled.BotEnabled){
     console.log(require("chalk").yellow("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!"))
 
     require("./ch1llblox");

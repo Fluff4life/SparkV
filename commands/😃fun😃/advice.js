@@ -9,7 +9,7 @@ exports.run = async (Bot, message) => {
         .setTitle("Here's an advice")
         .setDescription(json.slip.advice)
         .setFooter(`You got advice #${json.slip.id}`, Bot.user.AvatarURL)
-        .setColor(process.env.EmbedColor)
+        .setColor(Bot.Config.Embed.EmbedColor)
         .setTimestamp();
 
       const Message = await message.channel.send(AdviceEmbed);

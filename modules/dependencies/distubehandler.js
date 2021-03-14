@@ -34,7 +34,7 @@ module.exports = async (Bot) => {
           },
         )
         .setURL(song.url)
-        .setColor(process.env.EmbedColor)
+        .setColor(Bot.Config.Embed.EmbedColor)
         .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
         .setTimestamp()
 
@@ -65,7 +65,7 @@ module.exports = async (Bot) => {
           },
         )
         .setURL(song.url)
-        .setColor(process.env.EmbedColor)
+        .setColor(Bot.Config.Embed.EmbedColor)
         .setFooter(`(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`, Bot.user.AvatarURL)
         .setTimestamp()
 
@@ -96,7 +96,7 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(process.env.EmbedColor)
+        .setColor(Bot.Config.Embed.EmbedColor)
         .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
         .setTimestamp()
 
@@ -121,7 +121,7 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(process.env.EmbedColor)
+        .setColor(Bot.Config.Embed.EmbedColor)
         .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
         .setTimestamp()
 
@@ -147,7 +147,7 @@ module.exports = async (Bot) => {
         const NewEmbed = new MessageEmbed()
           .setTitle(`${Song.formattedDuration} | ${Song.name}`)
           .setDescription(`To select this song, send the page number. Example: 1`)
-          .setColor(process.env.EmbedColor)
+          .setColor(Bot.Config.Embed.EmbedColor)
           .setURL(Song.url)
           .setImage(Song.thumbnail)
 
@@ -177,7 +177,7 @@ module.exports = async (Bot) => {
         embed: {
           title: `Error Occured!`,
           description: err,
-          color: process.env.EmbedColor,
+          color: Bot.Config.Embed.EmbedColor,
 
           footer: {
             text: `⚠Music command failed.`,

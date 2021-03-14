@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 exports.run = async (Bot) => {
   const Activities = [
     {
-      text: `${process.env.prefix}Help`,
+      text: `${Bot.Config.Bot.prefix}Help`,
       type: "WATCHING",
       status: "online"
     },

@@ -38,11 +38,11 @@ module.exports = async (Bot) => {
         default: {
             botsCanWin: false,
             exemptPermissions: ["MANAGE_MESSAGES"],
-            embedColor: process.env.EmbedColor,
+            embedColor: Bot.Config.Embed.EmbedColor,
             embedColorEnd: "#FF0000",
             reaction: "🎉"
         }
     })
 
-    Bot.GiveawaysManager = GiveawaysManager
+    Bot.GiveawaysManager = GiveawayManager
 }
