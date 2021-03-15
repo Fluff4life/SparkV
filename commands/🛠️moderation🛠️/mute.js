@@ -20,10 +20,34 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("❌Uh oh... I can't mute this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
-  const Role = message.guild.roles.cache.find(role => role.name === "Muted")
+  if (User.user.bot) {
+    return message.channel.send("I cannot mute bots!")
+  }
 
-  if (!Role){
-    return message.channel.send("I couldn't find the muted role! Please make sure the role is called, \"Muted\".")
+  const Roles = User.roles.cache.filter(role => role.id !== message.guild.id).map(role => role.id)
+  var MutedRole = message.guild.roles.cache.find(role => role.name === "Muted")
+
+  if (!MutedRole) {
+    MutedRole = await message.guild.roles.create({
+      data: {
+        name: "Muted",
+        color: "#514f48",
+        permissions: []
+      }
+    })
+
+    message.guild.channels.cache.forEach(async (channel) => {
+      await channel.createOverwrite(MutedRole, {
+        SEND_MESSAGES: false,
+        ADD_REACTIONS: true,
+        SPEAK: false,
+        CONNECT: true
+      })
+    })
+  }
+
+  if (User.roles.cache.has(MutedRole.id)) {
+    return message.channel.send("This user is already muted!")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -38,8 +62,8 @@ exports.run = async (Bot, message, Arguments) => {
     // Yes
     message.delete()
 
-    User.roles.add(Role)
-    User.send(`You have been muted in ${message.guild.name}. Reason: ${Reason}.`).catch((err) => {})
+    User.roles.add(MutedRole)
+    User.send(`You have been muted in ${message.guild.name}. Reason: ${Reason}.`).catch((err) => { })
 
     const MuteEmbend = new Discord.MessageEmbed()
       .setTitle("Mute Command")
@@ -58,14 +82,14 @@ exports.run = async (Bot, message, Arguments) => {
     message.channel.send("Mute canceled.").then(m => m.delete({ timeout: 10000 }))
   }
 },
- 
+
   exports.config = {
     name: "Mute",
     description: "I'll mute someone.",
     aliases: [],
     usage: "<user> <reason>",
     category: "🛠️moderation🛠️",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_CHANNELS"],
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_CHANNELS", "MANAGE_ROLES"],
     member_permissions: ["MANAGE_ROLES"],
     enabled: true,
     cooldown: 5
