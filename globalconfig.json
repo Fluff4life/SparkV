@@ -29,5 +29,6 @@
         "donate": "https://roblox.com/"
     },
 
+    "ShardingEnabled": false,
     "Debug": false
 }

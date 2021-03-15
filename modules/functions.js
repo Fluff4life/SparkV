@@ -80,6 +80,10 @@ module.exports = async (bot) => {
   }
 
   bot.GetServerCount = async function(){
+    if (bot.Config.ShardingEnabled === false){
+      return bot.guilds.cache.size
+    }
+
     const promises = [
       bot.shard.fetchClientValues('guilds.cache.size'),
     ];
@@ -88,6 +92,10 @@ module.exports = async (bot) => {
   }
 
   bot.GetUserCount = async function(){
+    if (bot.Config.ShardingEnabled === false){
+      return bot.users.cache.size
+    }
+
     const promises = [
       bot.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)'),
     ];

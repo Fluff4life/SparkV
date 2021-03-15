@@ -26,57 +26,64 @@ process.on("exit", (code) => {
     console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
 })
 
-if (Config.Debug){
+if (Config.Debug) {
     console.log(require("chalk").yellow("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!"))
 
     require("./ch1llblox");
 } else {
-    const { GlobalCache } = require("./modules/globalcache")
+    if (Config.ShardingEnabled === true) {
+        const { GlobalCache } = require("./modules/globalcache")
 
-    const Discord = require("discord.js");
-    const ShardManager = new Discord.ShardingManager("./ch1llblox.js", {
-        token: process.env.token,
-        totalShards: Number(process.env.TotalShards) || "auto",
-        shardArgs: typeof v8debug === "object" ? ["--inspect"] : undefined,
-        execArgv: ["--trace-warnings"]
-    })
-
-    // Shard Handlers //
-    ShardManager.on("shardCreate", (Shard) => {
-        console.log(require("chalk").green(`DEPLOYING - SHARD ${Shard.id}/${ShardManager.totalShards} DEPLOYING`))
-
-        Shard.on("ready", () => {
-            console.log(require("chalk").blue(`DEPLOY SUCCESS - SHARD ${Shard.id}/${ShardManager.totalShards} DEPLOYED SUCCESSFULLY`))
+        const Discord = require("discord.js");
+        const ShardManager = new Discord.ShardingManager("./ch1llblox.js", {
+            token: process.env.token,
+            totalShards: Number(process.env.TotalShards) || "auto",
+            shardArgs: typeof v8debug === "object" ? ["--inspect"] : undefined,
+            execArgv: ["--trace-warnings"]
         })
 
-        Shard.on("disconnect", (event) => {
-            console.log(require("chalk").red(`SHARD DISCONNECTED - SHARD ${Shard.id}/${ShardManager.totalShards} DISCONNECTED. ${event}`))
+        // Shard Handlers //
+        ShardManager.on("shardCreate", (Shard) => {
+            console.log(require("chalk").green(`DEPLOYING - SHARD ${Shard.id}/${ShardManager.totalShards} DEPLOYING`))
+
+            Shard.on("ready", () => {
+                console.log(require("chalk").blue(`DEPLOY SUCCESS - SHARD ${Shard.id}/${ShardManager.totalShards} DEPLOYED SUCCESSFULLY`))
+            })
+
+            Shard.on("disconnect", (event) => {
+                console.log(require("chalk").red(`SHARD DISCONNECTED - SHARD ${Shard.id}/${ShardManager.totalShards} DISCONNECTED. ${event}`))
+            })
+
+            Shard.on("reconnecting", () => {
+                console.log(require("chalk").red(`SHARD RECONNECTING - SHARD ${Shard.id}/${ShardManager.totalShards} RECONNECTING`))
+            })
+
+            Shard.on("death", (event) => {
+                console.log(require("chalk").red(`SHARD CLOSED - SHARD ${Shard.id}/${ShardManager.totalShards} UNEXPECTEDLY CLOSED!\nPID: ${event.pid}\nExit Code: ${event.exitCode}.`))
+
+                if (!event.exitCode) {
+                    console.warn(`WARNING: SHARD ${Shard.id}/${ShardManager.totalShards} EXITED DUE TO LACK OF AVAILABLE MEMORY.`)
+                }
+            })
         })
 
-        Shard.on("reconnecting", () => {
-            console.log(require("chalk").red(`SHARD RECONNECTING - SHARD ${Shard.id}/${ShardManager.totalShards} RECONNECTING`))
-        })
+        ShardManager.spawn(Number(process.env.TotalShards) || "auto", 8000, -1);
+        global.GlobalCache = new GlobalCache(ShardManager)
 
-        Shard.on("death", (event) => {
-            console.log(require("chalk").red(`SHARD CLOSED - SHARD ${Shard.id}/${ShardManager.totalShards} UNEXPECTEDLY CLOSED!\nPID: ${event.pid}\nExit Code: ${event.exitCode}.`))
+        if (process.env.ShardLifeTime) {
+            setTimeout(() => {
+                ShardManager.respawn = false
+                ShardManager.broadcastEval("process.exit()")
+            }, process.env.ShardLifeTime * 1000)
 
-            if (!event.exitCode){
-                console.warn(`WARNING: SHARD ${Shard.id}/${ShardManager.totalShards} EXITED DUE TO LACK OF AVAILABLE MEMORY.`)
-            }
-        })
-    })
+            setTimeout(() => {
+                process.exit()
+            }, (process.env.ShardLifeTime + 5) * 1000)
+        }
+    } else {
+        const Discord = require("discord.js");
 
-    ShardManager.spawn(Number(process.env.TotalShards) || "auto", 8000, -1);
-    global.GlobalCache = new GlobalCache(ShardManager)
-
-    if (process.env.ShardLifeTime) {
-        setTimeout(() => {
-            ShardManager.respawn = false
-            ShardManager.broadcastEval("process.exit()")
-        }, process.env.ShardLifeTime * 1000)
-
-        setTimeout(() => {
-            process.exit()
-        }, (process.env.ShardLifeTime + 5) * 1000)
+        console.log(require("chalk").yellow("WARNING - SHARDING DISABLED"))
+        require("./ch1llblox")
     }
 }
