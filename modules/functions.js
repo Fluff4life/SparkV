@@ -26,13 +26,38 @@ module.exports = async (bot) => {
     }
   }
 
-  bot.FormatNumber = function(string){
-    const FormattedNumber = string
+  bot.FormatNumber = function(Number){
+    if (!Number || isNaN(Number)){
+      return "0"
+    }
+
+    const DecPlaces = Math.pow(10, 1)
+    var Abbrev = ["K", "M", "B", "T"]
+
+    for (var i = Abbrev.length - 1; i >= 0; i--){
+      var Size = Math.pow(10, (i + 1) * 3)
+
+      if (Size <= Number){
+        Number == Math.round((Number * DecPlaces) / Size) / DecPlaces
+
+        if (Number == 1000 && i < Abbrev.length - 1){
+          Number = 1
+          i++
+        }
+
+        Number += Abbrev[i]
+        break
+      }
+    }
+
+    return Number
+    /* const FormattedNumber = string
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
     return FormattedNumber
-  }
+  } */
+}
 
   bot.Log = function(Status, Type, Details){
     const chalk = require("chalk")
