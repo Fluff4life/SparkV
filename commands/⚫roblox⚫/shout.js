@@ -9,7 +9,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
 
   Arguments = Arguments.join(" ")
 
-  const RobloxGroupID = Bot.Database.get(`ServerData_${message.guild.id}.config.GroupID`)
+  const RobloxGroupID = Bot.Database.get(`ServerData_${message.guild.id}.GroupID`)
 
   if (RobloxGroupID) {
     noblox.shout((RobloxGroupID), Arguments).then(() => {

@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("That's not a number!")
   }
 
-  Bot.Database.set(`ServerData_${message.guild.id}.config.GroupID`, parseInt(Arguments[0]))
+  Bot.Database.set(`ServerData_${message.guild.id}.GroupID`, parseInt(Arguments[0]))
 
   Noblox.generalRequest("www.roblox.com/Groups/Group.aspx?gid=1", { __EVENTTARGET: 'JoinGroupDiv', __EVENTARGUMENT: 'Click' })
 

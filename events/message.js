@@ -6,7 +6,7 @@ exports.run = async (Bot, Message) => {
     return;
   }
 
-  const AntiURL = await Bot.Database.get(`ServerData_${Message.guild.id}.config.AntiURL`)
+  const AntiURL = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiURL`)
 
   if (AntiURL && AntiURL === "on" && Bot.isURL(Message.content) && !Message.author.hasPermission("MANAGE_MESSAGES")) {
     try {
@@ -18,13 +18,13 @@ exports.run = async (Bot, Message) => {
     return Message.reply("you cannot send links here.").then(m => m.delete({ timeout: 1000 }))
   }
 
-  const AntiSpam = await Bot.Database.get(`ServerData_${Message.guild.id}.config.AntiSpam`)
+  const AntiSpam = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiSpam`)
 
   if (AntiSpam && AntiSpam === "on" && !Message.channel.name === "spamhere" && !Message.channel.name === "spam-here") {
     Bot.AntiSpam.message(Message)
   }
 
-  const Leveling = await Bot.Database.get(`ServerData_${Message.guild.id}.config.Leveling`)
+  const Leveling = await Bot.Database.get(`ServerData_${Message.guild.id}.Leveling`)
 
   if (Leveling && Leveling === "on") {
     const RandomAmountOfXP = Math.floor(Math.random() * 10) + 5;
@@ -37,7 +37,7 @@ exports.run = async (Bot, Message) => {
     }
   }
 
-  const Prefix = await Bot.Database.get(`ServerData_${Message.guild.id}.config.Prefix`)
+  const Prefix = await Bot.Database.get(`ServerData_${Message.guild.id}.Prefix`)
 
   if (Prefix) {
     if (!Message.content.startsWith(Prefix)) {
@@ -136,7 +136,7 @@ exports.run = async (Bot, Message) => {
     await commandfile
       .run(Bot, Message, args, command)
       .then(() => {
-        const DeleteUsage = Bot.Database.get(`ServerData_${Message.guild.id}.config.DeleteUsage`)
+        const DeleteUsage = Bot.Database.get(`ServerData_${Message.guild.id}.DeleteUsage`)
 
         if (DeleteUsage && DeleteUsage === "on") {
           Message.delete().catch(err => { })
