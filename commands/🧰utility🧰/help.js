@@ -23,7 +23,7 @@ exports.run = async (Bot, msg, args) => {
     pages.push(NewEmbed)
 }
 
-  const Prefix = await Bot.Database.get(`ServerData_${msg.guild.id}.config.Prefix`)
+  const Prefix = await Bot.Database.get(`ServerData_${msg.guild.id}.Prefix`)
 
   if (Prefix){
     prefix = Prefix
