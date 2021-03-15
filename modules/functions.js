@@ -31,6 +31,10 @@ module.exports = async (bot) => {
       return "0"
     }
 
+    if (typeof Number === "string"){
+      Number = parseInt(Number)
+    }
+
     const DecPlaces = Math.pow(10, 1)
     var Abbrev = ["K", "M", "B", "T"]
 
@@ -38,7 +42,7 @@ module.exports = async (bot) => {
       var Size = Math.pow(10, (i + 1) * 3)
 
       if (Size <= Number){
-        Number == Math.round((Number * DecPlaces) / Size) / DecPlaces
+        Number = Math.round((Number * DecPlaces) / Size) / DecPlaces
 
         if (Number == 1000 && i < Abbrev.length - 1){
           Number = 1
@@ -51,6 +55,7 @@ module.exports = async (bot) => {
     }
 
     return Number
+
     /* const FormattedNumber = string
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
