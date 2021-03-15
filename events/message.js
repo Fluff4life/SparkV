@@ -42,10 +42,10 @@ exports.run = async (Bot, Message) => {
   if (Prefix) {
     if (Prefix === Bot.Config.Bot.prefix){
       await Bot.Database.delete(`ServerData_${Message.guild.id}.Prefix`)
-    }
-
-    if (Message.content.startsWith(Bot.Config.Bot.prefix)){
-      return Message.channel.send(`The prefix for this server is **${Prefix}**!`)
+    } else {
+      if (Message.content.startsWith(Bot.Config.Bot.prefix)){
+        return Message.channel.send(`The prefix for this server is **${Prefix}**!`)
+      }
     }
 
     if (!Message.content.startsWith(Prefix)) {
