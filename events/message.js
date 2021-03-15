@@ -2,17 +2,13 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
 exports.run = async (Bot, Message) => {
-  if (Message.author.bot) {
+  if (Message.author.bot || !Message.guild) {
     return;
   }
 
-  if (!Message.guild) {
-    return;
-  }
+  const AntiURL = await Bot.Database.get(`ServerData_${Message.guild.id}.config.AntiURL`)
 
-  const AntiURL = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiURL`)
-
-  if (AntiURL && AntiURL === "on" && Bot.isURL(Message.content) && !Message.author.hasPermission("EMBED_LINKS")) {
+  if (AntiURL && AntiURL === "on" && Bot.isURL(Message.content) && !Message.author.hasPermission("MANAGE_MESSAGES")) {
     try {
       Message.delete();
     } catch (err) {
@@ -22,26 +18,26 @@ exports.run = async (Bot, Message) => {
     return Message.reply("you cannot send links here.").then(m => m.delete({ timeout: 1000 }))
   }
 
-  const AntiSpam = await Bot.Database.get(`ServerData_${Message.guild.id}.AntiSpam`)
+  const AntiSpam = await Bot.Database.get(`ServerData_${Message.guild.id}.config.AntiSpam`)
 
   if (AntiSpam && AntiSpam === "on" && !Message.channel.name === "spamhere" && !Message.channel.name === "spam-here") {
     Bot.AntiSpam.message(Message)
   }
 
-  const Leveling = await Bot.Database.get(`ServerData_${Message.guild.id}.Leveling`)
+  const Leveling = await Bot.Database.get(`ServerData_${Message.guild.id}.config.Leveling`)
 
-  if (Leveling && Leveling === "on"){
+  if (Leveling && Leveling === "on") {
     const RandomAmountOfXP = Math.floor(Math.random() * 10) + 5;
     const HasLeveledUp = await Levels.appendXp(Message.author.id, Message.guild.id, RandomAmountOfXP);
 
-    if (HasLeveledUp){
+    if (HasLeveledUp) {
       const User = await Levels.fetch(Message.author.id, Message.guild.id)
 
-      Message.channel.send(`:zap: Congrats ${Message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
+      Message.channel.send(`⚡ Congrats ${Message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
     }
   }
 
-  const Prefix = await Bot.Database.get(`ServerData_${Message.guild.id}.Prefix`)
+  const Prefix = await Bot.Database.get(`ServerData_${Message.guild.id}.config.Prefix`)
 
   if (Prefix) {
     if (!Message.content.startsWith(Prefix)) {
@@ -73,16 +69,11 @@ exports.run = async (Bot, Message) => {
     return
   }
 
-  if (Message.channel.type === "dm") {
-    return
-  }
-
   if (process.env.UserBlacklist.includes(Message.author.id)) {
     try {
-      return Message.author.send("Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? Contact KingCh1ll.")
-        .then(() => {
-          Message.react("❌")
-        })
+      return Message.author.send("Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? Contact KingCh1ll.").then(() => {
+        Message.react("❌")
+      })
     } catch {
       Message.react("❌")
     }
@@ -144,18 +135,26 @@ exports.run = async (Bot, Message) => {
   try {
     await commandfile
       .run(Bot, Message, args, command)
-      .then(() => { console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${Message.author.tag} ID: ${Message.author.id}`) })
+      .then(() => {
+        const DeleteUsage = Bot.Database.get(`ServerData_${message.guild.id}.config.DeleteUsage`)
+
+        if (DeleteUsage && DeleteUsage === "on") {
+          Message.delete().catch(err => { })
+        }
+
+        console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${Message.author.tag} ID: ${Message.author.id}`)
+      })
   } catch (err) {
-      const FailedEmbed = new Discord.MessageEmbed()
-        .setTitle("Failed!")
-        .setDescription(err)
-        .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
-        .setFooter("Please contact our support team and alert them about this error.", Bot.user.avatarURL)
-        .setColor(Bot.Config.Embed.EmbedColor)
-        .setTimestamp()
+    const FailedEmbed = new Discord.MessageEmbed()
+      .setTitle("Failed!")
+      .setDescription(err)
+      .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
+      .setFooter("Please contact our support team and alert them about this error.", Bot.user.avatarURL)
+      .setColor(Bot.Config.Embed.EmbedColor)
+      .setTimestamp()
 
     await Message.channel.send(FailedEmbed)
-    
+
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${Message.author.tag}\nError: ${err.toString()}`)
   }
 }

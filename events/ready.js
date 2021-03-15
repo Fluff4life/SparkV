@@ -25,12 +25,6 @@ exports.run = async (Bot) => {
       type: "WATCHING",
       status: "online"
     },
-
-    {
-      text: `😏ch1ll.herokuapp.com/donate`,
-      type: "WATCHING",
-      status: "online"
-    },
   ]
 
   Bot.setInterval(() => {

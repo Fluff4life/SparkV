@@ -6,19 +6,19 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (Arguments[0].toLowerCase() === "on"){
-    Bot.Database.set(`ServerData_${message.guild.id}.config.AntiSpam`, Arguments[0])
-    message.channel.send(`AntiSpam is now ${Arguments[0]}.`)
+    Bot.Database.set(`ServerData_${message.guild.id}.config.DeleteUsage`, Arguments[0])
+    message.channel.send(`DeleteUsage is now ${Arguments[0]}.`)
   } else if (Arguments[0].toLowerCase() === "off"){
-    Bot.Database.set(`ServerData_${message.guild.id}.config.AntiSpam`, Arguments[0])
-    message.channel.send(`AntiSpam is now ${Arguments[0]}.`)
+    Bot.Database.set(`ServerData_${message.guild.id}.config.DeleteUsage`, Arguments[0])
+    message.channel.send(`DeleteUsage is now ${Arguments[0]}.`)
   } else {
-    message.channel.send(`Unknown on or off value. Right usage would be (your prefix)AntiSpam <on or off>.`)
+    message.channel.send(`Unknown on or off value. Right usage would be (your prefix)DeleteUsage <on or off>.`)
   }
 },
 
 exports.config = {
-  name: "AntiSpam",
-  description: "Stop spammers. Right now, you can only turn on and off.",
+  name: "DeleteUsage",
+  description: "Deletes command usage when on.",
   aliases: ["nospam"],
   usage: "<on or off>",
   category: "⚙config⚙",
