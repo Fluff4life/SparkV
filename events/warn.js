@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 
 exports.run = async (Bot, event) => {
   for (const guild of Bot.guilds.cache) {
-    if (process.env.UserBlacklist.includes(guild.owner.id)) {
+    if (process.env.UserBlacklist.includes(guild.ownerID)) {
       try {
         await guild.leave()
 
