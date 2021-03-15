@@ -6,11 +6,18 @@ module.exports = async (Bot) => {
 
     setInterval(async () => {
         const ServerCount = await Bot.GetServerCount()
-
-        API.postStats({
-            serverCount: ServerCount,
-            shardId: Bot.shard.ids[0],
-            shardCount: Bot.options.shardCount
-        })
+        if (Bot.Config.ShardingEnabled === true){
+            API.postStats({
+                serverCount: ServerCount,
+                shardId: Bot.shard.ids[0],
+                shardCount: Bot.options.shardCount
+            })
+        } else {
+            API.postStats({
+                serverCount: ServerCount,
+                shardId: 0,
+                shardCount: 0
+            })
+        }
     }, 300 * 1000)
 }
