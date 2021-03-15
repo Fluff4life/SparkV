@@ -57,8 +57,8 @@ module.exports = async (bot) => {
     return Number
 
     /* const FormattedNumber = string
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
     return FormattedNumber
   } */

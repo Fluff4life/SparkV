@@ -9,7 +9,7 @@ module.exports = async (Bot) => {
   Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true, leaveOnEmpty: true, leaveOnStop: true, highWaterMark: 1<<25, youtubeDL: true, updateYouTubeDL: true })
 
   Bot.distube
-    .on("playSong", (message, queue, song) => {
+    .on("playSong", async (message, queue, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
         .setTitle(`🎵 Now Playing a Song 🎵`)
         .setDescription(song.name)
@@ -23,13 +23,13 @@ module.exports = async (Bot) => {
 
           {
             name: `▶Views`,
-            value: `\`\`\`${song.views}\`\`\``,
+            value: `\`\`\`${await Bot.FormatNumber(song.views)}\`\`\``,
             inline: true
           },
 
           {
             name: `Stats`,
-            value: `\`\`\`👍Likes: ${song.likes}\n👎Dislikes: ${song.dislikes}\`\`\``,
+            value: `\`\`\`👍Likes: ${await Bot.FormatNumber(song.likes)}\n👎Dislikes: ${await Bot.FormatNumber(song.dislikes)}\`\`\``,
             inline: true
           },
         )
@@ -40,7 +40,7 @@ module.exports = async (Bot) => {
 
       message.channel.send(NowPlayingEmbed)
     })
-    .on("playList", (message, queue, playlist, song) => {
+    .on("playList", async (message, queue, playlist, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
         .setTitle(`🎵 Now Playing a Playlist 🎵`)
         .setDescription(`${playlist.name}`)
@@ -54,13 +54,13 @@ module.exports = async (Bot) => {
 
           {
             name: `▶Views`,
-            value: `\`\`\`${song.views}\`\`\``,
+            value: `\`\`\`${await Bot.FormatNumber(song.views)}\`\`\``,
             inline: true
           },
 
           {
             name: `Stats`,
-            value: `\`\`\`👍Likes: ${song.likes}\n👎Dislikes: ${song.dislikes}\`\`\``,
+            value: `\`\`\`👍Likes: ${await Bot.FormatNumber(song.likes)}\n👎Dislikes: ${await Bot.FormatNumber(song.dislikes)}\`\`\``,
             inline: true
           },
         )
@@ -71,7 +71,7 @@ module.exports = async (Bot) => {
 
       message.channel.send(NowPlayingEmbed)
     })
-    .on("addSong", (message, queue, song) => {
+    .on("addSong", async (message, queue, song) => {
       const SongAddedQueue = new Discord.MessageEmbed()
         .setTitle("➕Added Song To Queue")
         .setDescription(song.name)
@@ -91,7 +91,7 @@ module.exports = async (Bot) => {
 
           {
             name: `Queue`,
-            value: `\`\`\`${queue.songs.length} songs - ${queue.duration}\`\`\``,
+            value: `\`\`\`${await Bot.FormatNumber(queue.songs.length)} songs - ${queue.duration}\`\`\``,
             inline: true,
           }
         )
@@ -102,7 +102,7 @@ module.exports = async (Bot) => {
 
       message.channel.send(SongAddedQueue)
     })
-    .on("addList", (message, queue, playlist) => {
+    .on("addList", async (message, queue, playlist) => {
       const SongAddedQueue = new Discord.MessageEmbed()
         .setTitle("➕Added Playlist To Queue")
         .setDescription(playlist.name)
@@ -116,7 +116,7 @@ module.exports = async (Bot) => {
 
           {
             name: `Queue`,
-            value: `\`\`\`${queue.songs.length} songs - ${queue.duration}\`\`\``,
+            value: `\`\`\`${await Bot.FormatNumber(queue.songs.length)} songs - ${queue.duration}\`\`\``,
             inline: true,
           }
         )
