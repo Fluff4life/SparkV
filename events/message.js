@@ -136,7 +136,7 @@ exports.run = async (Bot, Message) => {
     await commandfile
       .run(Bot, Message, args, command)
       .then(() => {
-        const DeleteUsage = Bot.Database.get(`ServerData_${message.guild.id}.config.DeleteUsage`)
+        const DeleteUsage = Bot.Database.get(`ServerData_${Message.guild.id}.config.DeleteUsage`)
 
         if (DeleteUsage && DeleteUsage === "on") {
           Message.delete().catch(err => { })
