@@ -14,9 +14,7 @@ module.exports = async (Bot) => {
             })
         } else {
             API.postStats({
-                serverCount: ServerCount,
-                shardId: 0,
-                shardCount: 0
+                serverCount: ServerCount
             })
         }
     }, 300 * 1000)
