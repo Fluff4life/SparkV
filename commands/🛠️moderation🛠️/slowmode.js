@@ -8,7 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (isNaN(Arguments[0])){
-    return msg.channel.send("That's not a nunber.").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("That's not a nunber.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (Arguments[0] > 21600){

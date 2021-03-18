@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg, Arguments) => {
-  if (msg.author.id !== Bot.Config.Owner.ID) {
-    return msg.channel.send("❌Access denied.")
+exports.run = async (Bot, message, Arguments) => {
+  if (message.author.id !== Bot.Config.Owner.ID) {
+    return message.channel.send("❌Access denied.")
   }
 
-  msg.channel.send("Ch1llBlox is now restarting.")
+  message.channel.send("Ch1llBlox is now restarting.")
 
   process.exit()
 },

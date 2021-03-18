@@ -44,6 +44,7 @@ require("./modules/dependencies/database").StartUp(Bot)
 const functions = require("./modules/functions")
 const Distube = require("./modules/dependencies/distubehandler")
 const dbl = require("./modules/dependencies/dbl")
+const giveawayshandler = require("./modules/dependencies/giveawayshandler")
 const Config = require("./globalconfig.json")
 var Noblox
 
@@ -81,6 +82,9 @@ Bot.AntiSpam = new AntiSpam({
 })
 
 // Code //
+global.Bot = Bot
+Bot.Config = Config
+
 console.log("---------- Loading Bot Functions ----------") 
 functions(Bot)
 
@@ -89,6 +93,9 @@ Distube(Bot)
 
 console.log("---------- Loading DBL ----------") 
 dbl(Bot)
+
+console.log("---------- Loading GiveawaysHandler ----------") 
+giveawayshandler(Bot)
 
 console.log("---------- Loading Events ----------")
 readdir("./events", (err, files) => {
@@ -134,8 +141,5 @@ if (Config.Debug === false){
 
 console.log("---------- Logging into Bot ----------") 
 Bot.login(process.env.token)
-
-global.Bot = Bot
-Bot.Config = Config
 
 console.log(Chalk.blue("SUCCESS - BOT LOADING COMPLETE"))

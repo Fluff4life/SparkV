@@ -1,10 +1,9 @@
 const { MessageEmbed } = require("discord.js")
-const pagination = require("discord.js-pagination")
+const discordeasypages = require("discordeasypages")
 
 module.exports = async (Bot) => {
   const DisTube = require("distube")
   const Discord = require("discord.js")
-  const canvacord = require("canvacord")
 
   Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true, leaveOnEmpty: true, leaveOnStop: true, highWaterMark: 1<<25, youtubeDL: true, updateYouTubeDL: true })
 
@@ -156,7 +155,7 @@ module.exports = async (Bot) => {
 
       result.map(song => CreatePage(message, song))
 
-      pagination(message, Pages, ["⬅", "➡"])
+      discordeasypages(message, pages, ["⏪", "⏩"])
     })
     .on("finish", (message) => {
       message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 10000 }))

@@ -14,8 +14,14 @@ exports.run = async (Bot, message, Arguments) => {
     return message.reply("nobody's on the leaderboard yet.")
   }
 
+  const Emotes = [
+    "🥇",
+    "🥈",
+    "🥉"
+  ]
+
   const Leaderboard = await Levels.computeLeaderboard(Bot, RawLeaderboard, true)
-  const Leader = Leaderboard.map(data => `\`${data.position}\`. **${data.username}#${data.discriminator}** - Level ${data.level}`)
+  const Leader = Leaderboard.map(data => `${Emotes[data.position - 1] || `${data.position}.`} **${data.username}#${data.discriminator}** - Level ${data.level}`)
 
   const LeaderboardEmbed = new Discord.MessageEmbed()
     .setTitle(`${message.guild.name}'s Level Leaderboard`)
@@ -29,7 +35,7 @@ exports.run = async (Bot, message, Arguments) => {
 exports.config = {
   name: "LevelLeaderboard",
   description: "View the server's Level leaderboard.",
-  aliases: [],
+  aliases: ["levelboard", "llb"],
   usage: "",
   category: "💫leveling💫",
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],

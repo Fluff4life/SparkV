@@ -27,9 +27,10 @@ process.on("exit", (code) => {
 })
 
 if (Config.Debug) {
-    console.log(require("chalk").yellow("WARNING - SHARDMANAGER => Failed to activate Shard Manager. Calling bot file without sharding features!"))
+    console.log(require("chalk").yellow("WARNING - DEBUG ONLINE! SHARDING DISABLED => Calling Ch1llBlox without sharding features & website on local-host."))
 
-    require("./ch1llblox");
+    require("./ch1llblox")
+    require("./ch1llwebsite")
 } else {
     if (Config.ShardingEnabled === true) {
         const { GlobalCache } = require("./modules/globalcache")

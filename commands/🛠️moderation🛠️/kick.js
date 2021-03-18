@@ -1,23 +1,23 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg, Arguments) => {
-  const UserToKick = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.cache.get(Arguments[0]) || `@<${Arguments[0]}>`;
+exports.run = async (Bot, message, Arguments) => {
+  const UserToKick = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(Arguments[0]) || `@<${Arguments[0]}>`;
   const ReasonForKick = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return msg.channel.send("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToKick) {
-    return msg.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (UserToKick.id === msg.author.id) {
-    return msg.channel.send("❌You cannot kick yourself.").then(m => m.delete({ timeout: 5000 }))
+  if (UserToKick.id === message.author.id) {
+    return message.channel.send("❌You cannot kick yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToKick.kickable) {
-    return msg.channel.send("❌Uh oh... I can't kick this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("❌Uh oh... I can't kick this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -25,19 +25,19 @@ exports.run = async (Bot, msg, Arguments) => {
     .setDescription("Are you sure you want to do this?")
     .setFooter("Canceling in 60 seconds if no emoji reacted.")
 
-  const VerificationMessage = await msg.channel.send(VerificationEmbed)
-  const Emoji = await Bot.PromptMessage(VerificationMessage, msg.author, ["✅", "❌"], 60)
+  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
   if (Emoji === "✅") {
     // Yes
-    msg.delete()
+    message.delete()
 
     UserToKick.kick().catch((err) => {
-      msg.channel.send(`Failed to kick. Error: ${err}`)
+      message.channel.send(`Failed to kick. Error: ${err}`)
     })
 
     try {
-      UserToKick.send(`You have been kicked from ${msg.guild.name}. Reason: ${ReasonForKick}.`)
+      UserToKick.send(`You have been kicked from ${message.guild.name}. Reason: ${ReasonForKick}.`)
     } catch (err) {
 
     }
@@ -46,17 +46,17 @@ exports.run = async (Bot, msg, Arguments) => {
       .setTitle("Kick Command")
       .setDescription(`*✅Successfully kicked <@${UserToKick.id}>(${UserToKick.id})✅*`)
       .setThumbnail(UserToKick.avatar)
-      .addField("Moderator/Admin: ", `${msg.author.tag}`)
+      .addField("Moderator/Admin: ", `${message.author.tag}`)
       .addField("Reason: ", ReasonForKick)
       .setFooter(`${Bot.Config.Bot.prefix}Ban to ban a user.`)
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp();
 
-    msg.channel.send(KickEmbend);
+    message.channel.send(KickEmbend);
   } else if (emoji === "❌") {
-    msg.delete()
+    message.delete()
 
-    msg.channel.send("❌Kick canceled.").then(m => m.delete({ timeout: 10000 }))
+    message.channel.send("❌Kick canceled.").then(m => m.delete({ timeout: 10000 }))
   }
 },
 

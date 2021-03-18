@@ -12,11 +12,11 @@ module.exports = async (Bot) => {
             return true
         }
 
-        async EditGiveaway(MessageID, NewGiveawayData){
+        async editGiveaway(MessageID, NewGiveawayData){
             const Giveaways = await Bot.Database.get("giveaways")
             const NewGiveawaysArray = Giveaways.filter((giveaway) => giveaway.messageID !== MessageID)
 
-            NewGiveawaysArray.push(GiveawayData)
+            NewGiveawaysArray.push(NewGiveawayData)
             await Bot.Database.set("giveaways", NewGiveawaysArray)
 
             return true
@@ -32,17 +32,16 @@ module.exports = async (Bot) => {
         }
     }
 
-    const GiveawayManager = new GiveawayManagerWithOwnDatabase(Bot, {
-        storage: false,
-        updateCountdownEvery: 10000,
+    const Manager = new GiveawayManagerWithOwnDatabase(Bot, {
+        updateCountdownEvery: 5 * 1000,
         default: {
             botsCanWin: false,
-            exemptPermissions: ["MANAGE_MESSAGES"],
+            exemptPermissions: [],
             embedColor: Bot.Config.Embed.EmbedColor,
             embedColorEnd: "#FF0000",
             reaction: "🎉"
         }
     })
 
-    Bot.GiveawaysManager = GiveawayManager
+    Bot.GiveawayManager = Manager
 }

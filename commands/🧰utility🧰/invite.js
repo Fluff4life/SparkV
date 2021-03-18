@@ -1,16 +1,16 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg) => {
+exports.run = async (Bot, message) => {
   const InvitesEmbend = new Discord.MessageEmbed()
     .setTitle("Invites")
     .setDescription(`The following are links for Ch1llBlox!`)
-    .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
+    .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
     .addField("**Support Server**", `[Click Here](${Bot.Config.Support.invite})`, true)
     .addField("Bot Invite: ", `[Click Here](https://ch1ll.herokuapp.com/ch1llblox/invite)`, true)
     .setFooter(`Invites for Ch1llBlox.`, Bot.user.AvatarURL)
     .setColor(Bot.Config.Embed.EmbedColor);
     
-  await msg.channel.send(InvitesEmbend);
+  await message.channel.send(InvitesEmbend);
 },
 
 exports.config = {

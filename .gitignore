@@ -10,6 +10,7 @@
 
 # Dependancy Directories
 node_modules
+dependerros
 
 # Environmental Variables
 .env

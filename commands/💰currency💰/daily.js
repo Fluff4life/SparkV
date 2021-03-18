@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const ms = require("parse-ms")
 
 exports.run = async (Bot, message, Arguments) => {
   const RandomAmmount = Math.floor(Math.random() * 3500) + 1

@@ -3,19 +3,23 @@ const Discord = require("discord.js");
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || message.author
 
+  if (!User) {
+    return message.channel.send("Please say a person to rob.")
+  }
+
   var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
   var Bank = await Bot.Database.get(`UserData_${User.id}.bank`)
   var BankMax = await Bot.Database.get(`userData_${User.id}.bankmax`)
 
-  if (!Ch1llBucks){
+  if (!Ch1llBucks) {
     Ch1llBucks = 0
   }
 
-  if (!BankMax){
+  if (!BankMax) {
     BankMax = 4500
   }
 
-  if (!Bank){
+  if (!Bank) {
     Bank = 0
   }
 
@@ -30,14 +34,14 @@ exports.run = async (Bot, message, Arguments) => {
   message.channel.send(BalanceEmbed)
 },
 
-exports.config = {
-  name: "Balance",
-  description: "View your balance.",
-  aliases: ["bal"],
-  usage: "<optional user>",
-  category: "💰currency💰",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 2
-}
+  exports.config = {
+    name: "Balance",
+    description: "View your balance.",
+    aliases: ["bal"],
+    usage: "<optional user>",
+    category: "💰currency💰",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 2
+  }

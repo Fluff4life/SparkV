@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 const fs = require("fs")
-const pagination = require("discord.js-pagination")
+const discordeasypages = require("discordeasypages")
 
 var prefix = "^"
 
-exports.run = async (Bot, msg, args) => {
+exports.run = async (Bot, message, args) => {
   const pages = []
 
   const Commands = (Bot, category) => {
@@ -23,7 +23,7 @@ exports.run = async (Bot, msg, args) => {
     pages.push(NewEmbed)
 }
 
-  const Prefix = await Bot.Database.get(`ServerData_${msg.guild.id}.Prefix`)
+  const Prefix = await Bot.Database.get(`ServerData_${message.guild.id}.Prefix`)
 
   if (Prefix){
     prefix = Prefix
@@ -32,28 +32,28 @@ exports.run = async (Bot, msg, args) => {
   }
   
   if (!args.length) {
-     Bot.categories.map((cat) => CreatePage(Bot, msg, cat))
+    Bot.categories.map((cat) => CreatePage(Bot, message, cat))
     
-     pagination(msg, pages, ["⬅", "➡"])
+    discordeasypages(message, pages, ["⏪", "⏩"])
   } else {
     const name = args[0].toLowerCase();
     const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-      return msg.reply("that command doesn't exist or no longer exists!");
+      return message.reply("that command doesn't exist or no longer exists!");
     }
 
     const CommandHelpEmbed = new Discord.MessageEmbed()
       .setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)
       .setDescription(command.config.description)
-      .setThumbnail(msg.author.displayAvatarURL({ dynamic: true }))
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
       .addField("**ALIASES**", `\`\`\`${command.config.aliases.join(",\n")}\`\`\``, true)
       .addField("**CATEGORY**", `\`\`\`${command.config.category}\`\`\``, true)
       .addField("**COOLDOWN**", `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
       .setFooter(`${prefix}Help to get a list of all commands.`, Bot.user.AvatarURL)
       .setColor(Bot.Config.Embed.EmbedColor);
 
-    return msg.channel.send(CommandHelpEmbed)
+    return message.channel.send(CommandHelpEmbed)
   }
 },
 

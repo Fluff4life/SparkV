@@ -1,13 +1,13 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg, Arguments) => {
+exports.run = async (Bot, message, Arguments) => {
   Arguments = Arguments.join(" ")
 
-  msg
+  message
     .delete()
     .catch(_ => {});
   
-  msg.channel.send(Arguments + "\n*-" + msg.author.username + "*")
+  message.channel.send(Arguments + "\n*-" + message.author.username + "*")
 },
   
   exports.config = {

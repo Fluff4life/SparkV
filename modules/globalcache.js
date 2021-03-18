@@ -144,17 +144,17 @@ class Cache {
   /**
    * Called when a new message comes in from the master process
    * Resolves all promises related to the message id
-   * @param {object} msg The new message
+   * @param {object} message The new message
    * @returns {undefined}
    * @memberof Cache
    */
-  onMessage (msg) {
-    if (typeof msg.id === 'undefined' || !this.promises[msg.id]) {
+  onMessage (message) {
+    if (typeof message.id === 'undefined' || !this.promises[message.id]) {
       return
     }
 
     // Resolve the promise with the value
-    this.promises[msg.id](msg.value)
+    this.promises[message.id](message.value)
   }
 
   /**

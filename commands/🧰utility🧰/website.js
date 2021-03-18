@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg) => {
-  msg.channel.send("Here's our website! https://ch1ll.herokuapp.com/Ch1llBlox")
+exports.run = async (Bot, message) => {
+  message.channel.send("Here's our website! https://ch1ll.herokuapp.com/Ch1llBlox")
 },
 
 

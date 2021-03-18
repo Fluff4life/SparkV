@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg, Arguments, command) => {
+exports.run = async (Bot, message, Arguments, command) => {
   if (Bot.Config.Debug === true) {
     return
   }
@@ -21,7 +21,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
         .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID}`)
         .setColor(Bot.Config.Embed.EmbedColor)
 
-        msg.channel.send(InfoEmbed)
+        message.channel.send(InfoEmbed)
     })
   } catch (err){
     const ErrorEmbed = new Discord.MessageEmbed()
@@ -32,7 +32,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp()
 
-      msg.channel.send(ErrorEmbed)
+      message.channel.send(ErrorEmbed)
   }
 },
 

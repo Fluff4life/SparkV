@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg, Arguments, command) => {
+exports.run = async (Bot, message, Arguments, command) => {
   if (Bot.Config.Debug === true) {
     return
   }
@@ -13,7 +13,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
 
   if (RobloxGroupID) {
     noblox.shout((RobloxGroupID), Arguments).then(() => {
-      msg.channel.send({
+      message.channel.send({
         embed: {
           title: "Successfully Shouted",
           description: "Successfully shouted " + Arguments,
@@ -28,7 +28,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
       })
 
     }).catch((err) => {
-      msg.channel.send({
+      message.channel.send({
         embed: {
           title: "⚠️Failed to Shout⚠️",
           description: "Failed to shout " + Arguments,
@@ -43,7 +43,7 @@ exports.run = async (Bot, msg, Arguments, command) => {
       })
     })
   } else {
-    return msg.channel.send({
+    return message.channel.send({
       embed: {
         title: "🚫 Roblox Group ID Error 🚫",
         description: "Roblox Group ID has not been set for this server. You can set it up by doing (prefix)SetGroupID <GroupID>.",

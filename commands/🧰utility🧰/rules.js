@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
-const pagination = require("discord.js-pagination")
+const discordeasypages = require("discordeasypages")
 
 var SetRules = false
 
-exports.run = async (Bot, msg, args) => {
+exports.run = async (Bot, message, args) => {
   if (SetRules === false){
     Bot.Rules.set(1, {
       Title: "Automation",
@@ -30,8 +30,8 @@ exports.run = async (Bot, msg, args) => {
     pages.push(NewEmbed)
   }
 
-  Bot.Rules.map((RuleDetails, RuleNumber) => CreatePage(Bot, msg, RuleNumber, RuleDetails.Title, RuleDetails.Description))  
-  pagination(msg, pages, ["⬅", "➡"])
+  Bot.Rules.map((RuleDetails, RuleNumber) => CreatePage(Bot, message, RuleNumber, RuleDetails.Title, RuleDetails.Description))  
+  discordeasypages(message, pages, ["⏪", "⏩"])
 },
 
 exports.config = {

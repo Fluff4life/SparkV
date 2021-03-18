@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg, Arguments) => {
-  if (msg.author.id !== process.env.OwnerID) {
-    return msg.channel.send("❌Access denied.")
+exports.run = async (Bot, message, Arguments) => {
+  if (message.author.id !== process.env.OwnerID) {
+    return message.channel.send("❌Access denied.")
   }
 
   function clean(text) {
@@ -43,9 +43,9 @@ exports.run = async (Bot, msg, Arguments) => {
         evaled = evaled.replace(process.env.token, "BOT_TOKEN")
       }
   
-      msg.channel.send(clean(evaled), { code: "js" })
+      message.channel.send(clean(evaled), { code: "js" })
     } catch (err) {
-      msg.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``)
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``)
     }
   }
 },

@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first()
-
+  
   if (!Arguments){
     return message.channel.send("You need to mention someone to pay and how much.")
   }

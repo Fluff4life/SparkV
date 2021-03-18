@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg, Arguments) => {
-  if (msg.deletable) {
-    msg.delete()
+exports.run = async (Bot, message, Arguments) => {
+  if (message.deletable) {
+    message.delete()
   }
 
   if (isNaN(Arguments[0]) || parseInt(Arguments[0]) <= 0) {
-    return msg.channel.send("That's not a number.").then(m => m.delete({ timeout: 5000 }))
+    return message.channel.send("That's not a number.").then(m => m.delete({ timeout: 5000 }))
   }
 
   let DeleteAmount
@@ -18,11 +18,11 @@ exports.run = async (Bot, msg, Arguments) => {
   }
 
   try {
-    msg.channel.bulkDelete(DeleteAmount, true).then(() => {
-      msg.channel.send(`Successfully deleted ${DeleteAmount} messages.`).then(m => m.delete({ timeout: 5000 }))
+    message.channel.bulkDelete(DeleteAmount, true).then(() => {
+      message.channel.send(`Successfully deleted ${DeleteAmount} messages.`).then(m => m.delete({ timeout: 5000 }))
     })
   } catch (err) {
-    msg.channel.send(`Uh oh... I couldn't delete these messages!`).then(m => m.delete({ timeout: 5000 }))
+    message.channel.send(`Uh oh... I couldn't delete these messages!`).then(m => m.delete({ timeout: 5000 }))
   }
 },
 

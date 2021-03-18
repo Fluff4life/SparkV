@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, msg) => {
-  const BotMessage = await msg.channel.send("Fetching Stats. Please wait!")
+exports.run = async (Bot, message) => {
+  const BotMessage = await message.channel.send("Fetching Stats. Please wait!")
 
   const StatsEmbed = new Discord.MessageEmbed()
     .setTitle("Stats")
-    .addField("**LATENCY**", `\`\`\`Ch1llBlox: ${Bot.ws.ping}ms\nAPI: ${BotMessage.createdAt - msg.createdAt}ms\`\`\``, true)
+    .addField("**LATENCY**", `\`\`\`Ch1llBlox: ${Bot.ws.ping}ms\nAPI: ${BotMessage.createdAt - message.createdAt}ms\`\`\``, true)
     .addField("**STORAGE**", `\`\`\`RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
     .addField("**DATA**", `\`\`\`Uptime: ${Bot.MSToTime(Bot.uptime)}\`\`\``, true)
     .setFooter("Ch1llBlox's Stats")

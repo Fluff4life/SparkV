@@ -2,10 +2,15 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
+  var Bank = await Bot.Database.get(`UserData_${message.author.id}.bank`)
   var BankMax = await Bot.Database.get(`UserData_${message.author.id}.bankmax`)
 
-  if (!Ch1llBucks){
+  if (!Ch1llBucks) {
     Ch1llBucks = 0
+  }
+
+  if (!Bank){
+    Bank = 0
   }
 
   if (!BankMax) {
@@ -21,10 +26,21 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send("You have no Ch1llBucks!")
     }
 
-    await Bot.Database.add(`UserData_${message.author.id}.bank`, Ch1llBucks)
-    await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks)
+    if (Bank === BankMax){
+      return message.channel.send("Your bank is full!")
+    }
 
-    message.channel.send(`You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
+    if (Ch1llBucks > BankMax) {
+      await Bot.Database.add(`UserData_${message.author.id}.bank`, BankMax)
+      await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, BankMax)
+
+      message.channel.send(`You just deposited ❄${await Bot.FormatNumber(BankMax)} into your bank!`)
+    } else {
+      await Bot.Database.add(`UserData_${message.author.id}.bank`, Ch1llBucks)
+      await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks)
+
+      message.channel.send(`You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
+    }
   } else {
     if (!Arguments[0]) {
       return message.channel.send("lol you can't deposit nothing.")
@@ -63,5 +79,5 @@ exports.run = async (Bot, message, Arguments) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
-    cooldown: 15
+    cooldown: 5
   }

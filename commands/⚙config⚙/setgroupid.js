@@ -1,6 +1,12 @@
 const Discord = require("discord.js");
-const Noblox = require("noblox.js")
+
 exports.run = async (Bot, message, Arguments) => {
+  if (Bot.Config.Debug === true) {
+    return
+  }
+
+  const Noblox = require("noblox.js")
+
   if (!Arguments[0]) {
     return message.channel.send("You have to tell me your group ID.").then(m => m.delete({ timeout: 5000 }))
   }

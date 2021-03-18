@@ -1,16 +1,16 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-exports.run = async (Bot, msg, Arguments) => {
+exports.run = async (Bot, message, Arguments) => {
 if (!Arguments){
-  return msg.channel.send("What's the ID?").then(m => m.delete({ timeout: 5000 }))
+  return message.channel.send("What's the ID?").then(m => m.delete({ timeout: 5000 }))
 }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${Arguments}.json`)
     .then(res => res.json())
     .then(async json => {
     
-      await msg.channel.send({
+      await message.channel.send({
         embed: {
           title: json.title,
           description: json.description,

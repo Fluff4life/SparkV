@@ -25,6 +25,11 @@ exports.run = async(Bot, guild) => {
 
   if (guild.systemChannel && guild.systemChannel.permissionsFor(Bot.user).has("SEND_MESSAGES") && guild.systemChannel.permissionsFor(Bot.user).has("VIEW_CHANNEL")){
     try {
+      const HelloEmbed = new Discord.MessageEmbed()
+        .setTitle("Hi!")
+        .setDescription("My name is **Ch1llBlox**! I'm a bot with 60+ commands all for the one time price of $0.")
+        .setFooter("Hi!")
+
       await guild.systemChannel.send("Hi! My name's Ch1llBlox. I'm a *ch1ll* bot with over 60+ commands and more are constantly being added! Simply use the command ^Help to get a list of my commands. Want to enable a setting? Do ^Help Config. See you around, new friends!")
     } catch {
       console.log(`Failed to send message to ${guild.name} (${guild.id})!`)
