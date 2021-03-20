@@ -9,11 +9,15 @@ exports.run = async (Bot, message, args) => {
 
   const Commands = (Bot, category) => {
     return Bot.commands
-      .filter(command => command.config.enabled & command.config.category === category)
+      .filter(command => command.config.enabled && command.config.category === category)
       .map(command =>`\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`)
       .join("\n\n")
   }
   const CreatePage = (Bot, Message, Category) => {
+    if (Category === "👑owner👑" && message.author.id !== process.env.OwnerID){
+      return
+    }
+
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(Bot, Category))
@@ -50,7 +54,7 @@ exports.run = async (Bot, message, args) => {
       .addField("**ALIASES**", `\`\`\`${command.config.aliases.join(",\n")}\`\`\``, true)
       .addField("**CATEGORY**", `\`\`\`${command.config.category}\`\`\``, true)
       .addField("**COOLDOWN**", `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
-      .setFooter(`${prefix}Help to get a list of all commands.`, Bot.user.AvatarURL)
+      .setFooter(`${prefix}Help to get a list of all commands.`, Bot.user.displayAvatarURL())
       .setColor(Bot.Config.Embed.EmbedColor);
 
     return message.channel.send(CommandHelpEmbed)

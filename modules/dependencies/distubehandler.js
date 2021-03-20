@@ -34,7 +34,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
+        .setFooter(`😀${song.formattedDuration}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
@@ -65,7 +65,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`, Bot.user.AvatarURL)
+        .setFooter(`(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
@@ -96,7 +96,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
+        .setFooter(`😀${song.formattedDuration}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)
@@ -121,7 +121,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`😀${song.formattedDuration}`, Bot.user.AvatarURL)
+        .setFooter(`😀${song.formattedDuration}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)
@@ -134,7 +134,7 @@ module.exports = async (Bot) => {
 
           footer: {
             text: `${playlist.songs.length} songs (${playlist.formattedDuration})`,
-            icon_url: Bot.user.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           },
         }
       }))
@@ -180,7 +180,7 @@ module.exports = async (Bot) => {
 
           footer: {
             text: `⚠Music command failed.`,
-            icon_url: Bot.user.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           }
         }
       })

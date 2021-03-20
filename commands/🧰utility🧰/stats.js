@@ -15,7 +15,7 @@ exports.run = async (Bot, message) => {
   BotMessage.edit(StatsEmbed)
 },
 
-  exports.config = {
+  module.exports = {
     name: "Stats",
     description: "Stats for nerds.",
     aliases: ["ping", "pong", "up", "ram", "uptime", "latency", "data", "storage"],

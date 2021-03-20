@@ -21,7 +21,7 @@ exports.run = async (Bot, message, Arguments) => {
   exports.config = {
     name: "Warnings",
     description: "I'll display a user's warnings.",
-    aliases: ["wings"],
+    aliases: [],
     usage: "<user>",
     category: "🛠️moderation🛠️",
     bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],

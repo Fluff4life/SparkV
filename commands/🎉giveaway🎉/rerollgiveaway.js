@@ -27,9 +27,9 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  name: "Reroll",
+  name: "RerollGiveaway",
   description: "Rerolls a giveaway. Requires the permision MANAGE_MESSAGES.",
-  aliases: [],
+  aliases: ["rerollg"],
   usage: "<MessageID>",
   category: "🎉giveaway🎉",
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],

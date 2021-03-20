@@ -19,7 +19,7 @@ exports.run = async (Bot, message, Arguments) => {
         fields: [
           {
             name: `Skipped To`,
-            value: queue.songs[1],
+            value: queue.songs[0],
             inline: true
           }
         ],
@@ -30,17 +30,15 @@ exports.run = async (Bot, message, Arguments) => {
         
         footer: {
           text: `Skipped song`,
-          icon_url: Bot.user.AvatarURL
+          icon_url: Bot.user.displayAvatarURL()
         }
       }
     })
-  } else if (!queue){
-    return
   }
 },
 
 exports.config = {
-  name: "Shuffle",
+  name: "Skip",
   description: "Skip to the next song in the queue.",
   aliases: [],
   usage: "",

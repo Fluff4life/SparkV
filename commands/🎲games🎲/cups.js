@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
   const embed = new Discord.MessageEmbed()
     .setTitle("Cups")
     .setDescription("React to one of these emojis to begin!")
-    .setFooter(Bot.user.username, Bot.user.AvatarURL)
+    .setFooter(Bot.user.username, Bot.user.displayAvatarURL())
     .setColor(Bot.Config.Embed.EmbedColor)
 
   const Message = await message.channel.send(embed)

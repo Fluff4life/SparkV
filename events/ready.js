@@ -7,7 +7,7 @@ exports.run = async (Bot) => {
       type: "WATCHING",
       status: "online"
     },
-  
+
     {
       text: `${await Bot.GetServerCount()} servers!`,
       type: "WATCHING",
@@ -27,7 +27,7 @@ exports.run = async (Bot) => {
     },
   ]
 
-  Bot.setInterval(() => {
+  setInterval(() => {
     const Activity = Activities[Math.floor(Math.random() * Activities.length)]
 
     Bot.user.setPresence({

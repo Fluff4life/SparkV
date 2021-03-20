@@ -6,20 +6,19 @@ exports.run = async (Bot, message, Arguments) => {
   } 
   
   let queue = await Bot.distube.getQueue(message)
-  
-  if (queue){
-    Bot.distube.pause(message)
-    
-    message.channel.send({
-      embed: {
-        title: `Paused`,
-        description: `Paused song`,
-        color: "#0099ff",
-      }
-    })
-  } else if (!queue){
-    return
+
+  if (!queue){
+    return message.channel.send("There is nothing in the queue right now! Try playing some songs.")
   }
+
+  if (queue.pause){
+    Bot.distube.resume(message)
+
+    return message.channel.send("I resumed the paused song for you!")
+  }
+
+  Bot.distube.pause(message)
+  message.channel.send("I paused the song for you!")
 },
 
 exports.config = {

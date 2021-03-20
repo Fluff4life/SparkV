@@ -7,9 +7,11 @@ exports.run = async (Bot, message, Arguments) => {
   
   let queue = await Bot.distube.getQueue(message)
   
-  if (queue){
-    Bot.distube.resume(message)
-    
+  if (!queue){
+    return message.channel.send("No songs was ever/still is paused.")
+  }
+
+  Bot.distube.resume(message).then(() => {
     message.channel.send({
       embed: {
         title: `Resumed`,
@@ -17,15 +19,13 @@ exports.run = async (Bot, message, Arguments) => {
         color: "#0099ff",
       }
     })
-  } else if (!queue){
-    return
-  }
+  })
 },
 
 exports.config = {
   name: "Resume",
   description: "Resume playing the current song.",
-  aliases: [],
+  aliases: ["unpause"],
   usage: "",
   category: "🎵music🎵",
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],

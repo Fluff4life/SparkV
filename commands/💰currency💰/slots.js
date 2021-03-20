@@ -1,13 +1,23 @@
 const Discord = require("discord.js");
 
 const SlotItems = [
+  "🍅",
   "🍇",
+  "🍈",
   "🍉",
   "🍊",
-  "🍎",
-  "🎰",
+  "🍌",
+  "🍍",
+  "🍑",
+  "🍒",
   "🍓",
-  "🍒"
+  "🍋",
+  "🍐",
+  "🍎",
+  "🍏",
+  "🥑",
+  "🥝",
+  "🥭"
 ]
 
 exports.run = async (Bot, message, Arguments) => {

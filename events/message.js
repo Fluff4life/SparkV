@@ -40,10 +40,10 @@ exports.run = async (Bot, message) => {
   const Prefix = await Bot.Database.get(`ServerData_${message.guild.id}.Prefix`)
 
   if (Prefix) {
-    if (Prefix === Bot.Config.Bot.prefix){
+    if (Prefix === Bot.Config.Bot.prefix) {
       await Bot.Database.delete(`ServerData_${message.guild.id}.Prefix`)
     } else {
-      if (message.content.startsWith(Bot.Config.Bot.prefix)){
+      if (message.content.startsWith(Bot.Config.Bot.prefix)) {
         return message.channel.send(`The prefix for this server is **${Prefix}**!`)
       }
     }
@@ -113,23 +113,23 @@ exports.run = async (Bot, message) => {
 
   const Now = Date.now();
   const Timestamps = Bot.cooldowns.get(commandfile.config.name);
-  const CooldownAmount = (commandfile.config.cooldown | 3) * 1000;
+  const CooldownAmount = Math.round(commandfile.config.cooldown | 3 * 1000)
 
   if (Timestamps.has(message.author.id)) {
-    const ExpireTime = Timestamps.get(message.author.id) + CooldownAmount;
+    const ExpireTime = Math.round(Timestamps.get(message.author.id) + CooldownAmount)
 
     if (Now < ExpireTime) {
-      const TimeLeft = (ExpireTime - Now) / 1000
+      const TimeLeft = Math.round((ExpireTime - Now) / 1000)
 
       return message.reply({
         embed: {
           title: `Whoa there ${message.author.username}!`,
-          description: `Please wait ${TimeLeft.toFixed(1)} more second(s) to use that command again!`,
+          description: `Please wait ${TimeLeft} more seconds to use that command again!`,
           thumbnail: message.author.avatarURL,
           color: "#0099ff",
           footer: {
             text: "Maybe up vote our bot while you wait?",
-            icon_url: Bot.user.AvatarURL
+            icon_url: Bot.user.displayAvatarURL()
           },
         },
       }
@@ -147,81 +147,13 @@ exports.run = async (Bot, message) => {
         const DeleteUsage = await Bot.Database.get(`ServerData_${message.guild.id}.DeleteUsage`)
 
         if (DeleteUsage && DeleteUsage === "on") {
-          message.delete().catch((err) => { console.log(err) })
+          message.delete().catch((err) => {})
         }
 
         console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)
       })
   } catch (err) {
-    err = err.toString()
-
-    const clean = (err) => {
-      if (err.includes(process.env.token)){
-        err = err.replace(process.env.token, "BOT_TOKEN")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-
-        
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-
-        
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-  
-      if (err.includes("Jake&Ryan")){
-        err = err.replace("Jake&Ryan", "USER")
-      }
-
-      return err
-    }
-
-    const FailedEmbed = new Discord.MessageEmbed()
-      .setTitle("**Failed!**")
-      .setDescription(clean(err))
-      .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
-      .setFooter("Please contact our support team and alert them about this error.", Bot.user.avatarURL)
-      .setColor(Bot.Config.Embed.EmbedColor)
-      .setTimestamp()
-
-    await message.channel.send(FailedEmbed)
+    message.channel.send("❌ Uh oh! Something went wrong with handling that command. Please try again later.")
 
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${message.author.tag}\nError: ${err.toString()}`)
   }

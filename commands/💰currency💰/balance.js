@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
   var Bank = await Bot.Database.get(`UserData_${User.id}.bank`)
-  var BankMax = await Bot.Database.get(`userData_${User.id}.bankmax`)
+  var BankMax = await Bot.Database.get(`UserData_${User.id}.bankmax`)
 
   if (!Ch1llBucks) {
     Ch1llBucks = 0

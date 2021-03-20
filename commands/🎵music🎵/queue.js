@@ -1,43 +1,28 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  let queue = Bot.distube.getQueue(message)
-  
-  if (queue){
-    message.channel.send({
-      embed: {
-        title: `Queue for ${message.guild.name}`,
-        description: queue.songs.map((song, id) => `**${id + 1}**. ${song.name} - ${song.formattedDuration}`).slice(0, 10).join("\n"),
-        color: "#0099ff",
-      
-        thumbnail: {
-          url: message.author.displayAvatarURL({ dynamic: true })
-        },
-        
-        footer: {
-          text: `Displaying music queue.`,
-          icon_url: Bot.user.AvatarURL
-        },
-      }
-    })
-  } else {
-    message.channel.send({
-      embed: {
-        title: `Queue for ${message.guild.name}`,
-        description: `Nothing in queue!`,
-        color: "#0099ff",
-        
-        thumbnail: {
-          url: message.author.displayAvatarURL({ dynamic: true })
-        },
-      
-        footer: {
-          text: `Displaying music queue.`,
-          icon_url: Bot.user.AvatarURL
-        },
-      }
-    })
+  const queue = Bot.distube.getQueue(message)
+
+  if (!queue){
+    return message.channel.send("The queue is empty! Try adding some songs.")
   }
+
+  message.channel.send({
+    embed: {
+      title: `Queue for ${message.guild.name}`,
+      description: queue.songs.map((song, id) => `**${id + 1}**. ${song.name} - ${song.formattedDuration}`).slice(0, 10).join("\n"),
+      color: "#0099ff",
+    
+      thumbnail: {
+        url: message.author.displayAvatarURL({ dynamic: true })
+      },
+      
+      footer: {
+        text: `Displaying music queue.`,
+        icon_url: Bot.user.displayAvatarURL()
+      },
+    }
+  })
 },
 
 exports.config = {

@@ -1,6 +1,12 @@
 const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
+const Emotes = [
+  "🥇",
+  "🥈",
+  "🥉"
+]
+
 exports.run = async (Bot, message, Arguments) => {
   const Leveling = await Bot.Database.get(`ServerData_${message.guild.id}.Leveling`)
 
@@ -9,24 +15,13 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10)
-  
-  if (RawLeaderboard.length < 1){
-    return message.reply("nobody's on the leaderboard yet.")
-  }
-
-  const Emotes = [
-    "🥇",
-    "🥈",
-    "🥉"
-  ]
-
   const Leaderboard = await Levels.computeLeaderboard(Bot, RawLeaderboard, true)
-  const Leader = Leaderboard.map(data => `${Emotes[data.position - 1] || `${data.position}.`} **${data.username}#${data.discriminator}** - Level ${data.level}`)
+  const Leader = Leaderboard.map(data => `${Emotes[data.position - 1] || `${"🔹"}`} **Level ${data.level}** - ${data.username}#${data.discriminator}`)
 
   const LeaderboardEmbed = new Discord.MessageEmbed()
     .setTitle(`${message.guild.name}'s Level Leaderboard`)
     .setDescription(Leader.join("\n"))
-    .setFooter(Bot.user.username, Bot.user.AvatarURL)
+    .setFooter(Bot.user.username, Bot.user.displayAvatarURL())
     .setColor(Bot.Config.Embed.EmbedColor)
 
   message.channel.send(LeaderboardEmbed)

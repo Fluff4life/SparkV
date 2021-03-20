@@ -33,7 +33,7 @@ module.exports = async (Bot) => {
     }
 
     const Manager = new GiveawayManagerWithOwnDatabase(Bot, {
-        updateCountdownEvery: 5 * 1000,
+        updateCountdownEvery: 2.5 * 1000,
         default: {
             botsCanWin: false,
             exemptPermissions: [],

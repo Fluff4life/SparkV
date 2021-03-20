@@ -57,7 +57,7 @@ exports.run = async (Bot, message, Arguments) => {
             
             footer: {
               text: "Warn command successful.",
-              icon_url: Bot.user.AvatarURL
+              icon_url: Bot.user.displayAvatarURL()
             }
           }
         })
@@ -83,7 +83,7 @@ exports.run = async (Bot, message, Arguments) => {
             
             footer: {
               text: "Warn command successful.",
-              icon_url: Bot.user.AvatarURL
+              icon_url: Bot.user.displayAvatarURL()
             }
           }
         })
@@ -96,7 +96,7 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    name: "Warnings",
+    name: "Warn",
     description: "I will warn a user",
     aliases: ["w"],
     usage: "<user> <optional reason>",

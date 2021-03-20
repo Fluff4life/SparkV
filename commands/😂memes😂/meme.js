@@ -26,7 +26,7 @@ exports.run = async (Bot, message) => {
           .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, Bot.user.AvatarURL)
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
         message.channel.send(DankMemeEmbed)
@@ -35,7 +35,7 @@ exports.run = async (Bot, message) => {
           .setTitle(post.title)
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, Bot.user.AvatarURL)
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
         message.channel.send(DankMemeEmbed)
@@ -67,7 +67,7 @@ exports.run = async (Bot, message) => {
 
               footer: {
                 text: `👍${json.response.data.data.ups} | 💬${json.response.data.num_comments} | 😃u/${json.response.data.author} | r/${Subreddit}`,
-                icon_url: Bot.user.AvatarURL
+                icon_url: Bot.user.displayAvatarURL()
               },
             }
           })

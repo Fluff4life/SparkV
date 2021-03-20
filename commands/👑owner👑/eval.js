@@ -55,7 +55,7 @@ exports.run = async (Bot, message, Arguments) => {
     description: "This is an owner only command.",
     aliases: [],
     usage: "",
-    category: "👑owner only👑",
+    category: "👑owner👑",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

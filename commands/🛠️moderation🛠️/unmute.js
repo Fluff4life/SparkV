@@ -30,9 +30,6 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("❌This user isn't muted!")
   }
 
-  if(user.roles.cache.has(role)) return message.channel.send("This member isn't muted");
-
-
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle("Convermination Prompt")
     .setDescription("Are you sure you want to do this?")
@@ -45,7 +42,7 @@ exports.run = async (Bot, message, Arguments) => {
     // Yes
     message.delete()
 
-    User.roles.add(Role)
+    User.roles.remove(Role)
     User.send(`You have been unmuted in ${message.guild.name}. Reason: ${Reason}.`).catch((err) => {})
 
     const MuteEmbend = new Discord.MessageEmbed()
