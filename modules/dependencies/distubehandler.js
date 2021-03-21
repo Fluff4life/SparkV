@@ -154,8 +154,7 @@ module.exports = async (Bot) => {
       }
 
       result.map(song => CreatePage(message, song))
-
-      discordeasypages(message, pages, ["⏪", "⏩"])
+      discordeasypages(message, pages, ["⏪", "⏩", "🗑"])
     })
     .on("finish", (message) => {
       message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 10000 }))

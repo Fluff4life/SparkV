@@ -23,8 +23,8 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You cannot give a user negitive Ch1llBucks lol.")
   }
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
-  var UserCh1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
+  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
+  var UserCh1llBucks = await Bot.Database.get(`UserData.${User.id}.ch1llbucks`)
 
   if (!Ch1llBucks){
     Ch1llBucks = 0
@@ -38,8 +38,8 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You don't have that much money!")
   }
 
-  await Bot.Database.add(`UserData_${User.id}.ch1llbucks`, parseInt(Arguments[1]))
-  await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, parseInt(Arguments[1]))
+  await Bot.Database.add(`UserData.${User.id}.ch1llbucks`, parseInt(Arguments[1]))
+  await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, parseInt(Arguments[1]))
 
   message.channel.send(`You gave ${User} ❄${await Bot.FormatNumber(Arguments[1])} Ch1llBucks!`)
 },

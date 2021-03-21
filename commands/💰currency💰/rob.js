@@ -12,8 +12,8 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Please say a person to rob.")
   }
 
-  var RobberCh1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
-  var UserCh1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
+  var RobberCh1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
+  var UserCh1llBucks = await Bot.Database.get(`UserData.${User.id}.ch1llbucks`)
 
   if (!RobberCh1llBucks) {
     RobberCh1llBucks = 0
@@ -44,14 +44,14 @@ exports.run = async (Bot, message, Arguments) => {
   if (Result === "WIN") {
     const Ammount = Math.floor(Math.random() * UserCh1llBucks)
 
-    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ammount)
-    await Bot.Database.subtract(`UserData_${User.id}.ch1llbucks`, Ammount)
+    await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Ammount)
+    await Bot.Database.subtract(`UserData.${User.id}.ch1llbucks`, Ammount)
 
     message.channel.send(`You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
   } else {
 
-    await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, 250)
-    await Bot.Database.add(`UserData_${User.id}.ch1llbucks`, 250)
+    await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, 250)
+    await Bot.Database.add(`UserData.${User.id}.ch1llbucks`, 250)
 
     message.channel.send(`LOL you got caught! You payed ❄250 to ${User}.`)
   }

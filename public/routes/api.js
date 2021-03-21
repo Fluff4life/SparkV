@@ -18,7 +18,7 @@ Router.post("/ch1llblox/uservote", Webhook.middleware(), async (request, respons
 
     if (User){
         try {
-            var Multiplier = await global.Bot.Database.get(`UserData_${request.vote.user}.multiplier`)
+            var Multiplier = await global.Bot.Database.get(`${request.vote.user}.multiplier`)
   
             if (!Multiplier) {
                 Multiplier = 1

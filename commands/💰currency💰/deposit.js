@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
-  var Bank = await Bot.Database.get(`UserData_${message.author.id}.bank`)
-  var BankMax = await Bot.Database.get(`UserData_${message.author.id}.bankmax`)
+  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
+  var Bank = await Bot.Database.get(`UserData.${message.author.id}.bank`)
+  var BankMax = await Bot.Database.get(`UserData.${message.author.id}.bankmax`)
 
   if (!Ch1llBucks) {
     Ch1llBucks = 0
@@ -31,13 +31,13 @@ exports.run = async (Bot, message, Arguments) => {
     }
 
     if (Ch1llBucks > BankMax) {
-      await Bot.Database.add(`UserData_${message.author.id}.bank`, BankMax)
-      await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, BankMax)
+      await Bot.Database.add(`UserData.${message.author.id}.bank`, BankMax)
+      await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, BankMax)
 
       message.channel.send(`You just deposited ❄${await Bot.FormatNumber(BankMax)} into your bank!`)
     } else {
-      await Bot.Database.add(`UserData_${message.author.id}.bank`, Ch1llBucks)
-      await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, Ch1llBucks)
+      await Bot.Database.add(`UserData.${message.author.id}.bank`, Ch1llBucks)
+      await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, Ch1llBucks)
 
       message.channel.send(`You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
     }
@@ -62,8 +62,8 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
     }
 
-    await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
-    await Bot.Database.add(`UserData_${message.author.id}.bank`, parseInt(Arguments[0]))
+    await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
+    await Bot.Database.add(`UserData.${message.author.id}.bank`, parseInt(Arguments[0]))
 
     message.channel.send(`Deposited ❄${await Bot.FormatNumber(Arguments[0])} into bank!`)
   }

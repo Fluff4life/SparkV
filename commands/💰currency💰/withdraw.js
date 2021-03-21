@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
-  var Bank = await Bot.Database.get(`UserData_${message.author.id}.bank`)
+  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
+  var Bank = await Bot.Database.get(`UserData.${message.author.id}.bank`)
 
   if (!Ch1llBucks){
     Ch1llBucks = 0
@@ -21,8 +21,8 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send("You have no Ch1llBucks in your bank!")
     }
 
-    await Bot.Database.subtract(`UserData_${message.author.id}.bank`, Bank)
-    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Bank)
+    await Bot.Database.subtract(`UserData.${message.author.id}.bank`, Bank)
+    await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Bank)
 
     message.channel.send(`You just withdrawed ❄${await Bot.FormatNumber(Bank)} from your bank!`)
   } else {
@@ -42,8 +42,8 @@ exports.run = async (Bot, message, Arguments) => {
       return message.channel.send("You don't have that much Ch1llBucks in your bank!")
     }
 
-    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
-    await Bot.Database.subtract(`UserData_${message.author.id}.bank`, parseInt(Arguments[0]))
+    await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
+    await Bot.Database.subtract(`UserData.${message.author.id}.bank`, parseInt(Arguments[0]))
 
     message.channel.send(`Withdrawed ❄${await Bot.FormatNumber(Arguments[0])} from your bank!`)
   }

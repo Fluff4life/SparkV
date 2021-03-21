@@ -7,9 +7,9 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Please say a person to rob.")
   }
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${User.id}.ch1llbucks`)
-  var Bank = await Bot.Database.get(`UserData_${User.id}.bank`)
-  var BankMax = await Bot.Database.get(`UserData_${User.id}.bankmax`)
+  var Ch1llBucks = await Bot.Database.get(`UserData.${User.id}.ch1llbucks`)
+  var Bank = await Bot.Database.get(`UserData.${User.id}.bank`)
+  var BankMax = await Bot.Database.get(`UserData.${User.id}.bankmax`)
 
   if (!Ch1llBucks) {
     Ch1llBucks = 0

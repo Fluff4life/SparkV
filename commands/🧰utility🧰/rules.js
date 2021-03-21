@@ -31,7 +31,7 @@ exports.run = async (Bot, message, args) => {
   }
 
   Bot.Rules.map((RuleDetails, RuleNumber) => CreatePage(Bot, message, RuleNumber, RuleDetails.Title, RuleDetails.Description))  
-  discordeasypages(message, pages, ["⏪", "⏩"])
+  discordeasypages(message, pages, ["⏪", "⏩", "🗑"])
 },
 
 exports.config = {

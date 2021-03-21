@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 exports.run = async (Bot, message, Arguments) => {
   const RandomAmmount = Math.floor(Math.random() * 3500) + 1
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
-  var Multiplier = await Bot.Database.get(`UserData_${message.author.id}.multiplier`)
+  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
+  var Multiplier = await Bot.Database.get(`UserData.${message.author.id}.multiplier`)
 
   if (!Multiplier){
     Multiplier = 1
@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Ammount = RandomAmmount * Multiplier
 
-  await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Ammount)
+  await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Ammount)
   message.channel.send(`You've just earned ❄${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
 },
 

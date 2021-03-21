@@ -9,13 +9,13 @@ exports.run = async (Bot) => {
     },
 
     {
-      text: `${await Bot.GetServerCount()} servers!`,
+      text: `${Bot.FormatNumber(await Bot.GetServerCount())} servers!`,
       type: "WATCHING",
       status: "online"
     },
 
     {
-      text: `${await Bot.GetUserCount()} users!`,
+      text: `${Bot.FormatNumber(await Bot.GetUserCount())} users!`,
       type: "WATCHING",
       status: "online"
     },
@@ -63,5 +63,5 @@ exports.run = async (Bot) => {
     }
   }
 
-  Bot.Log("SUCCESS", Bot.user.tag, `Bot is now up and running!\nServers: ${await Bot.GetServerCount()}\nUsers: ${await Bot.GetUserCount()}`)
+  Bot.Log("SUCCESS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`)
 }

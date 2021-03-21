@@ -17,7 +17,16 @@ const SlotItems = [
   "🍏",
   "🥑",
   "🥝",
-  "🥭"
+  "🥭",
+  "🍠",
+  "🍅",
+  "🍆",
+  "🥔",
+  "🥕",
+  "🥒",
+  "💵",
+  "💸",
+  "💰"
 ]
 
 exports.run = async (Bot, message, Arguments) => {
@@ -25,7 +34,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("lol you need to tell me how much to bet.")
   }
 
-  var Ch1llBucks = await Bot.Database.get(`UserData_${message.author.id}.ch1llbucks`)
+  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
   var win = false
 
   if (Ch1llBucks === 0 || Ch1llBucks === null) {
@@ -59,13 +68,13 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (win){
-    message.channel.send(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\nYou won ❄${parseInt(Arguments[0]) * 4} Ch1llBucks!`)
+    message.channel.send(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\nYou won ❄${await Bot.FormatNumber(parseInt(Arguments[0]) * 4)} Ch1llBucks!`)
     
-    await Bot.Database.add(`UserData_${message.author.id}.ch1llbucks`, Arguments[0] * 4)
+    await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Arguments[0] * SlotItems.length)
   } else {
-    message.channel.send(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\nYou lost ❄${parseInt(Arguments[0])} Ch1llBucks.`)
+    message.channel.send(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\nYou lost ❄${await Bot.FormatNumber(parseInt(Arguments[0]))} Ch1llBucks.`)
     
-    await Bot.Database.subtract(`UserData_${message.author.id}.ch1llbucks`, Arguments[0])
+    await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, Arguments[0])
   }
 },
 

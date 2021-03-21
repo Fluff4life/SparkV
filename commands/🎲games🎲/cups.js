@@ -4,10 +4,11 @@ const Emojis = ["1️⃣", "2️⃣", "3️⃣"]
 
 exports.run = async (Bot, message, Arguments) => {
   async function GetResult(BotChosen, UserChosen) {
-    if (UserChosen == BotChosen) {
-      return "🎉You found the ball!"
+    console.log(BotChosen, UserChosen)
+    if (UserChosen === BotChosen) {
+      return "🎉 You found the ball!"
     } else {
-      return `❌You failed to find the ball.`
+      return `❌ You failed to find the ball.`
     }
   }
 
@@ -20,12 +21,12 @@ exports.run = async (Bot, message, Arguments) => {
   const Message = await message.channel.send(embed)
   const Reacted = await Bot.PromptMessage(Message, message.author, Emojis, 60)
   const BotChoice = Math.floor(Math.random() * Emojis.length) + 1
-  const Result = await GetResult(Reacted, BotChoice)
+  const Result = await GetResult(Emojis[BotChoice], Reacted)
 
   embed
-    .setTitle("Game Over! - cups")
+    .setTitle("Game Over! - Cups")
     .setDescription(`${Result}`)
-    .setFooter(`The ball was under cup #${BotChoice}`)
+    .setFooter(`The ball was under cup #${BotChoice - 1}`)
 
   Message.edit(embed)
 },
