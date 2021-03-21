@@ -20,7 +20,10 @@
     "npm": "*"
   },
   "dependencies": {
+    "@discordjs/opus": "^0.4.0",
     "@top-gg/sdk": "^3.0.9",
+    "canvacord": "^5.1.0",
+    "canvas": "^2.7.0",
     "chalk": "^4.1.0",
     "discord-anti-spam": "^2.5.0",
     "discord-giveaways": "^4.4.3",
@@ -34,22 +37,19 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "ffmpeg-static": "^4.2.7",
+    "figlet": "^1.5.0",
     "fs": "0.0.1-security",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
+    "noblox.js": "^4.8.4",
     "path": "^0.12.7",
     "quickmongo": "^3.0.2",
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
     "yargs-parser": "^13.1.2",
-    "ytdl-core": "^4.5.0",
-    "@discordjs/opus": "^0.4.0",
-    "canvacord": "^5.1.0",
-    "canvas": "^2.7.0",
-    "figlet": "^1.5.0",
-    "noblox.js": "^4.8.4",
-    "youtube-dl": "^3.4.1"
+    "youtube-dl": "^3.4.1",
+    "ytdl-core": "^4.5.0"
   },
   "devDependencies": {
     "prettier": "2.2.1"
