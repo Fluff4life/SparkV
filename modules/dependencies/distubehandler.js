@@ -140,9 +140,10 @@ module.exports = async (Bot) => {
       }))
     })
     .on("searchResult", (message, result) => {
-      let Pages = []
+      console(message, result)
+      var Pages = []
 
-      const CreatePage = (Message, Song) => {
+      const CreatePage = (Song) => {
         const NewEmbed = new MessageEmbed()
           .setTitle(`${Song.formattedDuration} | ${Song.name}`)
           .setDescription(`To select this song, send the page number. Example: 1`)
@@ -153,7 +154,7 @@ module.exports = async (Bot) => {
         Pages.push(NewEmbed)
       }
 
-      result.map(song => CreatePage(message, song))
+      result.map(song => CreatePage(song))
       discordeasypages(message, pages, ["⏪", "⏩", "🗑"])
     })
     .on("finish", (message) => {
