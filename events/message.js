@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
 exports.run = async (Bot, message) => {
-  if (message.author.bot || !message.guild) {
+  if (message.author.Bot || !message.guild) {
     return;
   }
 
@@ -20,14 +20,14 @@ exports.run = async (Bot, message) => {
 
   const AntiSpam = await Bot.Database.get(`ServerData_${message.guild.id}.AntiSpam`)
 
-  if (AntiSpam && AntiSpam === "on" && !message.channel.name === "spamhere" && !message.channel.name === "spam-here") {
+  if (AntiSpam && AntiSpam === "on" && !message.channel.name.endsWith("spamhere") && !message.channel.name.endsWith("spam-here")){
     Bot.AntiSpam.message(message)
   }
 
   const Leveling = await Bot.Database.get(`ServerData_${message.guild.id}.Leveling`)
 
   if (Leveling && Leveling === "on") {
-    const RandomAmountOfXP = Math.floor(Math.random() * 10) + 5;
+    const RandomAmountOfXP = Math.floor(Math.random() * 15) + 10;
     const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomAmountOfXP);
 
     if (HasLeveledUp) {
@@ -43,7 +43,7 @@ exports.run = async (Bot, message) => {
     if (Prefix === Bot.Config.Bot.prefix) {
       await Bot.Database.delete(`ServerData_${message.guild.id}.Prefix`)
     } else {
-      if (message.content.startsWith(Bot.Config.Bot.prefix)) {
+      if (!message.mentions.has(Bot.user) || message.content.startsWith(Bot.Config.Bot.prefix)) {
         return message.channel.send(`The prefix for this server is **${Prefix}**!`)
       }
     }
@@ -128,7 +128,7 @@ exports.run = async (Bot, message) => {
           thumbnail: message.author.avatarURL,
           color: "#0099ff",
           footer: {
-            text: "Maybe up vote our bot while you wait?",
+            text: "Maybe up vote our Bot while you wait?",
             icon_url: Bot.user.displayAvatarURL()
           },
         },

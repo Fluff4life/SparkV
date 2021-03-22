@@ -20,7 +20,6 @@ const { Client, Collection } = require("discord.js")
 const { readdir } = require("fs")
 const AntiSpam = require("discord-anti-spam")
 const Chalk = require("chalk")
-new Chalk.Instance({ level: 3 });
 
 // Create Bot //
 const Bot = new Client({
