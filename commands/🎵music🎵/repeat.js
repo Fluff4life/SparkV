@@ -14,23 +14,27 @@ exports.run = async (Bot, message, Arguments) => {
   
   if (Arguments[0].toLowerCase() === "song"){
     mode = 1
-  } else if (Arguments[0].toLowerCase() === "queue") {
+  } else if (Arguments[0].toLowerCase() === "queue"){
+    if (!Queue){
+      return message.channel.send("There must be more than 2 songs in the queue to use this command!").then(m => m.delete({ timeout: 5000 }))
+    }
+
     mode = 2
   } else {
     mode = 0
   }
 
   mode = Bot.distube.setRepeatMode(message, mode)
-  mode = mode ? mode === 2 ? "Repeat the Queue" : "Repeat the currently playing Song" : "turn repeat mode off"
+  mode = mode ? mode === 2 ? "repeat the Queue" : "repeat the currently playing song" : "turn repeat mode off"
    
-  message.channel.send(`Okay, I'll ${mode}.`).then(m => m.delete({ timeout: 5000 }))
+  message.channel.send(`Okay, I'll ${mode}.`)
 },
 
 exports.config = {
   name: "Repeat",
   description: "Replays the currently playing song.",
   aliases: ["replay", "loop"],
-  usage: "<Optional amount of times - default inf>",
+  usage: "<song or queue. Leave empty to deactivate.>",
   category: "🎵music🎵",
   bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
   member_permissions: [],
