@@ -146,7 +146,6 @@ module.exports = async (Bot) => {
         const CreatePage = (Song) => {
           const NewEmbed = new MessageEmbed()
             .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-            .setDescription(`To select this song, send the page number. Example: 1`)
             .setColor(Bot.Config.Embed.EmbedColor)
             .setURL(Song.url)
             .setImage(Song.thumbnail)
@@ -155,7 +154,7 @@ module.exports = async (Bot) => {
         }
   
         result.map(song => CreatePage(song))
-        discordeasypages(message, Pages, ["⏪", "⏩", "🗑"])
+        discordeasypages(message, Pages, ["⏪", "⏩", "🗑"], `To select this song, send the page number! For example, 1.`)
       } catch(err) {
         console.error(err)
       }
