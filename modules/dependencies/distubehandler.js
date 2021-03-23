@@ -155,7 +155,7 @@ module.exports = async (Bot) => {
         }
   
         result.map(song => CreatePage(song))
-        discordeasypages(message, pages, ["⏪", "⏩", "🗑"])
+        discordeasypages(message, Pages, ["⏪", "⏩", "🗑"])
       } catch(err) {
         console.error(err)
       }
