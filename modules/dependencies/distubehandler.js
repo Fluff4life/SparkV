@@ -140,22 +140,25 @@ module.exports = async (Bot) => {
       }))
     })
     .on("searchResult", (message, result) => {
-      console(message, result)
-      var Pages = []
+      try {
+        var Pages = []
 
-      const CreatePage = (Song) => {
-        const NewEmbed = new MessageEmbed()
-          .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-          .setDescription(`To select this song, send the page number. Example: 1`)
-          .setColor(Bot.Config.Embed.EmbedColor)
-          .setURL(Song.url)
-          .setImage(Song.thumbnail)
-
-        Pages.push(NewEmbed)
+        const CreatePage = (Song) => {
+          const NewEmbed = new MessageEmbed()
+            .setTitle(`${Song.formattedDuration} | ${Song.name}`)
+            .setDescription(`To select this song, send the page number. Example: 1`)
+            .setColor(Bot.Config.Embed.EmbedColor)
+            .setURL(Song.url)
+            .setImage(Song.thumbnail)
+  
+          Pages.push(NewEmbed)
+        }
+  
+        result.map(song => CreatePage(song))
+        discordeasypages(message, pages, ["⏪", "⏩", "🗑"])
+      } catch(err) {
+        console.error(err)
       }
-
-      result.map(song => CreatePage(song))
-      discordeasypages(message, pages, ["⏪", "⏩", "🗑"])
     })
     .on("finish", (message) => {
       message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 10000 }))
