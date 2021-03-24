@@ -1,19 +1,9 @@
 const Discord = require("discord.js");
 
-const Numbers = [
-  "1⃣",
-  "2⃣",
-  "3⃣",
-  "4⃣",
-  "5⃣",
-  "6⃣",
-  "7⃣"
-]
-
 const GenerateBoard = () => {
   const Array = []
 
-  for (let i = 0; i < 6; i++){
+  for (let i = 0; i < 6; i++) {
     Array.push([null, null, null, null, null, null, null, null])
   }
 
@@ -25,33 +15,33 @@ const CheckLine = (a, b, c, d) => {
 }
 
 const HasWon = (board) => {
-  for (let b = 0; b < 3; b++){
-    for (let bb = 0; bb < 7; bb++){
-      if (CheckLine(board[b][bb], board[b + 1][bb], board[b + 2][bb], board[b + 3][bb])){
+  for (let b = 0; b < 3; b++) {
+    for (let bb = 0; bb < 7; bb++) {
+      if (CheckLine(board[b][bb], board[b + 1][bb], board[b + 2][bb], board[b + 3][bb])) {
         return board[b][bb]
       }
     }
   }
 
-  for (let b = 0; b < 6; b++){
-    for (let bb = 0; bb < 4; bb++){
-      if (CheckLine(board[b][bb], board[b][bb + 1], board[b][bb + 2], board[b][bb + 3])){
+  for (let b = 0; b < 6; b++) {
+    for (let bb = 0; bb < 4; bb++) {
+      if (CheckLine(board[b][bb], board[b][bb + 1], board[b][bb + 2], board[b][bb + 3])) {
         return board[b][bb]
       }
     }
   }
 
-  for (let b = 0; b < 3; b++){
-    for (let bb = 0; bb < 4; bb++){
-      if (CheckLine(board[b][bb], board[b + 1][bb + 1], board[b + 2][bb + 2])){
+  for (let b = 0; b < 3; b++) {
+    for (let bb = 0; bb < 4; bb++) {
+      if (CheckLine(board[b][bb], board[b + 1][bb + 1], board[b + 2][bb + 2])) {
         return board[b][bb]
       }
     }
   }
 
-  for (let b = 3; b < 6; b++){
-    for (let bb = 0; bb < 4; bb++){
-      if (CheckLine(board[b][bb], board[b - 1][bb + 1], board[b - 2][bb + 2], board[b - 3][bb + 3])){
+  for (let b = 3; b < 6; b++) {
+    for (let bb = 0; bb < 4; bb++) {
+      if (CheckLine(board[b][bb], board[b - 1][bb + 1], board[b - 2][bb + 2], board[b - 3][bb + 3])) {
         return board[b][bb]
       }
     }
@@ -62,9 +52,9 @@ const HasWon = (board) => {
 
 const DisplayBoard = (board) => {
   const Map = board.map(row => row.map(turn => {
-    if (turn === "user"){
+    if (turn === "user") {
       return "🟡"
-    } else if (turn === "opponent"){
+    } else if (turn === "opponent") {
       return "🔴"
     }
 
@@ -89,87 +79,94 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("You cannot play against yourself lol.")
   }
 
-  try {
-    const VerificationEmbed = new Discord.MessageEmbed()
-      .setTitle("Convermination Prompt")
-      .setDescription(`${Opponent}, do you accept this challenge?`)
-      .setFooter("Canceling in 60 seconds.")
+  const VerificationEmbed = new Discord.MessageEmbed()
+    .setTitle("⚔ Connect Four Duel")
+    .setDescription(`${Opponent}, ${message.author} challenged you to a duel! React to this message to accpet or decline.`)
+    .setFooter("Canceling in 60 seconds.")
+    .setColor(Bot.Config.Embed.EmbedColor)
 
-    const VerificationMessage = await message.channel.send(VerificationEmbed)
-    const Emoji = await Bot.PromptMessage(VerificationMessage, Opponent.user, ["✅", "❌"], 60)
+  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const Emoji = await Bot.PromptMessage(VerificationMessage, Opponent.user, ["👍", "👎"], 250)
 
-    if (Emoji === "❌") {
-      await VerificationMessage.delete()
+  if (Emoji === "👎") {
+    await VerificationMessage.delete()
 
-      return message.channel.send(`${Opponent} doesn't want to play. What a noob!`)
-    } else if (Emoji === "✅") {
-      await VerificationMessage.delete()
+    return message.channel.send(`${Opponent} doesn't want to play. What a noob!`)
+  } else if (Emoji === "👍") {
+    await VerificationMessage.delete()
 
-      const Board = GenerateBoard()
-      const ColLevels = [5, 5, 5, 5, 5, 5, 5]
+    const Board = GenerateBoard()
+    const ColLevels = [5, 5, 5, 5, 5, 5, 5]
 
-      var UserTurn = true
-      var Winner
+    var UserTurn = true
+    var Winner = null
+    var LastTurnDebounce = false
 
-      const GameMessage = await message.channel.send(`${DisplayBoard(Board)}\nLoading reactions. Please wait...`)
+    const GameMessage = await message.channel.send(DisplayBoard(Board))
 
-      for (const emoji of Numbers) {
-        try {
-          await GameMessage.react(emoji)
-        } catch (err) {
-          GameMessage.edit("Error occured!")
+    while (!Winner && Board.some(row => row.includes(null))) {
+      const User = UserTurn ? message.author : Opponent
+      const Sign = UserTurn ? "user" : "opponent"
+
+      await GameMessage.edit(`${DisplayBoard(Board)}\n${User}, which column do you pick? Type end to forfeit.`)
+
+      const Filter = async (response) => {
+        if (response.author.id !== User.id) {
+          return false
+        }
+
+        const Choice = response.content
+
+        if (Choice.toLowerCase() === "end") {
+          await response.delete()
+
+          return true
+        }
+
+        const spot = parseInt(Choice, 10) - 1
+        await response.delete()
+        return Board[ColLevels[spot]] && Board[ColLevels[spot]][spot] !== undefined
+      }
+      const Turn = await message.channel.awaitMessages(Filter, {
+        max: 1,
+        time: 350 * 1000
+      })
+
+      if (!Turn.size) {
+        if (LastTurnDebounce) {
+          Winner = "time"
+          break
+        } else {
+          LastTurnDebounce = true
+          UserTurn = !UserTurn
+          continue
         }
       }
 
-      GameMessage.edit(`${DisplayBoard(Board)}\nLoading comeplete!`)
+      const Choice = Turn.first().content
 
-      while (!Winner && Board.some(row => row.includes(null))){
-        const User = UserTurn ? message.author : Opponent
-        const Sign = UserTurn ? "user" : "opponent"
+      if (Choice.toLowerCase() === "end") {
+        Winner = UserTurn ? Opponent : message.author
 
-        const Filter = (reaction, user) => Numbers.includes(reaction.emoji.name) && user.id === User.id
-        const ReactionCollector = GameMessage.createReactionCollector(Filter, {
-          time: 600 * 1000
-        })
-
-        ReactionCollector.on("collect", async (reaction) => {
-          reaction.users.remove(message.author)
-
-          if (reaction.emoji.name) {
-            if (reaction.emoji.name === Numbers[11]) {
-              // TODO: Add end button
-            } else if (Numbers[reaction.emoji.name]) {
-              const number = Number.parseInt(Numbers[reaction.emoji.name], 10) - 1
-              Board[ColLevels[number]][number] = Sign
-              ColLevels[number] -= 1
-
-              if (HasWon(Board)) {
-                winner = UserTurn ? message.author : Opponent
-              }
-
-              UserTurn = !UserTurn
-            } else {
-              return
-            }
-          }
-        })
-
-        ReactionCollector.on("end", () => {
-          if (GameMessage.deleted) {
-            return
-          }
-
-          GameMessage.reactions.removeAll()
-          winner = UserTurn ? Opponent : message.author
-          GameMessage.edit(`Game ended because of inactivity. ${winner} won!`)
-        })
+        GameMessage.edit(`🎉 ${User} forfitted. ${Winner} won!`)
       }
 
-      message.channel.send(Winner ? `Congrats, ${Winner}. You won!` : "It's a draw!")
+      const Spot = parseInt(Choice, 10) - 1
+      Board[ColLevels[Spot]][Spot] = Sign
+      ColLevels[Spot] -= 1
+
+      if (HasWon(Board)) {
+        Winner = UserTurn ? message.author : Opponent
+      }
+
+      if (LastTurnDebounce) {
+        LastTurnDebounce = false
+      }
+
+      UserTurn = !UserTurn
     }
-  } catch (err){
-    console.error(err)
-    message.channel.send("Uh oh! An error occured.")
+
+    GameMessage.edit(Winner ? `🎉 ${DisplayBoard(Board)}\nCongrats, ${Winner}. You won!` : `⚔ ${DisplayBoard(Board)}\nIt's a draw!`)
   }
 },
 

@@ -160,9 +160,7 @@ module.exports = async (bot) => {
   }
 
   bot.wait = (ms) => {
-    const Promise = new Promise(r => setTimeout(r, ms))
-
-    return Promise
+    return new Promise(r => setTimeout(r, ms))
   }
 
   bot.FormatDate = (date) => {
