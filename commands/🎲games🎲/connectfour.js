@@ -7,8 +7,7 @@ const Numbers = [
   "4⃣",
   "5⃣",
   "6⃣",
-  "7⃣",
-  "🔚"
+  "7⃣"
 ]
 
 const GenerateBoard = () => {
