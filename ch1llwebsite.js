@@ -40,7 +40,6 @@ async function RunWebsite() {
           ],
           styleSrc: [
             `'self'`,
-            "unsafe-inline",
             'ch1ll.herokuapp.com',
             "use.fontawesome.com"
           ],
@@ -51,6 +50,7 @@ async function RunWebsite() {
             "i.imgur.com",
             "discord.com",
             "cdn.discordapp.com",
+            "www.roblox.com",
             "t0.rbxcdn.com",
             "t1.rbxcdn.com",
             "t2.rbxcdn.com",
