@@ -155,6 +155,10 @@ exports.run = async (Bot, message, Arguments) => {
       Board[ColLevels[Spot]][Spot] = Sign
       ColLevels[Spot] -= 1
 
+      if (Winner === "time"){
+        return GameMessage.edit(`${DisplayBoard(Board)}\n❔ Game expired due to inactivity.`)
+      }
+
       if (HasWon(Board)) {
         Winner = UserTurn ? message.author : Opponent
       }
@@ -166,7 +170,7 @@ exports.run = async (Bot, message, Arguments) => {
       UserTurn = !UserTurn
     }
 
-    GameMessage.edit(Winner ? `🎉 ${DisplayBoard(Board)}\nCongrats, ${Winner}. You won!` : `⚔ ${DisplayBoard(Board)}\nIt's a draw!`)
+    GameMessage.edit(Winner ? `${DisplayBoard(Board)}\n🎉 Congrats, ${Winner}. You won!` : `⚔ ${DisplayBoard(Board)}\nIt's a draw!`)
   }
 },
 
