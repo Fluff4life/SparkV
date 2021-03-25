@@ -40,8 +40,9 @@ async function RunWebsite() {
           ],
           styleSrc: [
             `'self'`,
+            "unsafe-inline",
             'ch1ll.herokuapp.com',
-            "use.fontawesome.com",
+            "use.fontawesome.com"
           ],
           imgSrc: [
             `'self'`,
