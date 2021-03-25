@@ -32,24 +32,35 @@ async function RunWebsite() {
       .use(helmet())
       .use(helmet.contentSecurityPolicy({
         directives: {
-          defaultSrc: [`"self"`],
+          defaultSrc: [`'self'`],
           scriptSrc: [
-            `"self"`,
-            "use.fontawesome.com"
+            `'self'`,
+            "use.fontawesome.com",
+            'ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'
           ],
           styleSrc: [
-            `"self"`,
+            `'self'`,
+            'ch1ll.herokuapp.com/style.css',
+            "use.fontawesome.com/releases/v5.13.0/css/all.css",
           ],
           imgSrc: [
-            `"self"`,
+            `'self'`,
             "data:",
             "imgur.com",
             "i.imgur.com",
             "discord.com",
-            "cdn.discordapp.com"
+            "cdn.discordapp.com",
+            "t0.rbxcdn.com",
+            "t1.rbxcdn.com",
+            "t2.rbxcdn.com",
+            "t3.rbxcdn.com",
+            "t4.rbxcdn.com",
+            "t5.rbxcdn.com",
+            "t6.rbxcdn.com"
+            
           ],
           fontSrc: [
-            `"self"`,
+            `'self'`,
           ]
         }
       }))
@@ -57,7 +68,6 @@ async function RunWebsite() {
       .use(favicon(__dirname + "/public/assets/images/favicon.ico"))
       // .use(passport.initialize())
       // .use(passport.session())
-
 
       .use("/", require("./public/routes/main"))
       .use("/home", require("./public/routes/home"))
