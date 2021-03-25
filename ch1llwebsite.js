@@ -54,7 +54,7 @@ async function RunWebsite() {
         }
       }))
 
-      .use(favicon(__dirname + "/public/images/favicon.ico"))
+      .use(favicon(__dirname + "/public/assets/images/favicon.ico"))
       .use(passport.initialize())
       .use(passport.session())
 
