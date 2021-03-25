@@ -35,5 +35,5 @@
     },
 
     "ShardingEnabled": false,
-    "Debug": true
+    "Debug": false
 }
