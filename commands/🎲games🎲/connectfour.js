@@ -148,7 +148,7 @@ exports.run = async (Bot, message, Arguments) => {
       if (Choice.toLowerCase() === "end") {
         Winner = UserTurn ? Opponent : message.author
 
-        GameMessage.edit(`🎉 ${User} forfitted. ${Winner} won!`)
+        return GameMessage.edit(`🎉 ${User} forfitted. ${Winner} won!`)
       }
 
       const Spot = parseInt(Choice, 10) - 1
