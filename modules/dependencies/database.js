@@ -1,4 +1,3 @@
-const mongoose = require("mongoose")
 const QuickMongo = require("quickmongo")
 const Levels = require("discord-xp");
 const Database = new QuickMongo.Database(process.env.mongooseURL)

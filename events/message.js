@@ -6,7 +6,7 @@ exports.run = async (Bot, message) => {
     return;
   }
 
-  const AntiURL = await Bot.Database.get(`ServerData_${message.guild.id}.AntiURL`)
+  const AntiURL = await Bot.Database.get(`ServerData.${message.guild.id}.AntiURL`)
 
   if (AntiURL && AntiURL === "on" && Bot.isURL(message.content) && !message.author.hasPermission("MANAGE_MESSAGES")) {
     try {
@@ -18,13 +18,13 @@ exports.run = async (Bot, message) => {
     return message.reply("you cannot send links here.").then(m => m.delete({ timeout: 1000 }))
   }
 
-  const AntiSpam = await Bot.Database.get(`ServerData_${message.guild.id}.AntiSpam`)
+  const AntiSpam = await Bot.Database.get(`ServerData.${message.guild.id}.AntiSpam`)
 
   if (AntiSpam && AntiSpam === "on" && !message.channel.name.endsWith("spamhere") && !message.channel.name.endsWith("spam-here")){
     Bot.AntiSpam.message(message)
   }
 
-  const Leveling = await Bot.Database.get(`ServerData_${message.guild.id}.Leveling`)
+  const Leveling = await Bot.Database.get(`ServerData.${message.guild.id}.Leveling`)
 
   if (Leveling && Leveling === "on") {
     const RandomAmountOfXP = Math.floor(Math.random() * 15) + 10;
@@ -37,11 +37,11 @@ exports.run = async (Bot, message) => {
     }
   }
 
-  const Prefix = await Bot.Database.get(`ServerData_${message.guild.id}.Prefix`)
+  const Prefix = await Bot.Database.get(`ServerData.${message.guild.id}.Prefix`)
 
   if (Prefix) {
     if (Prefix === Bot.Config.Bot.prefix) {
-      await Bot.Database.delete(`ServerData_${message.guild.id}.Prefix`)
+      await Bot.Database.delete(`ServerData.${message.guild.id}.Prefix`)
     } else {
       if (!message.mentions.has(Bot.user) || message.content.startsWith(Bot.Config.Bot.prefix)) {
         return message.channel.send(`The prefix for this server is **${Prefix}**!`)
@@ -79,7 +79,7 @@ exports.run = async (Bot, message) => {
 
   if (process.env.UserBlacklist.includes(message.author.id)) {
     try {
-      return message.author.send("Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? Contact KingCh1ll.").then(() => {
+      return message.author.send("❗ Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? You may appeal [here](appealformtodo).").then(() => {
         message.react("❌")
       })
     } catch {
@@ -144,7 +144,7 @@ exports.run = async (Bot, message) => {
     await commandfile
       .run(Bot, message, args, command)
       .then(async () => {
-        const DeleteUsage = await Bot.Database.get(`ServerData_${message.guild.id}.DeleteUsage`)
+        const DeleteUsage = await Bot.Database.get(`ServerData.${message.guild.id}.DeleteUsage`)
 
         if (DeleteUsage && DeleteUsage === "on") {
           message.delete().catch((err) => {})

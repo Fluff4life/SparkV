@@ -6,7 +6,9 @@ console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading web
 
 // Librarys //
 const express = require("express");
-const session = require("express-session");
+const favicon = require("serve-favicon")
+const passport = require("passport-discord")
+const helmet = require("helmet");
 const path = require("path")
 const Chalk = require("chalk")
 const Config = require("./globalconfig.json")
@@ -16,7 +18,7 @@ const app = express();
 
 // Functions //
 async function RunWebsite() {
-  if (Config.SystemsEnabled.Down === true){
+  if (Config.SystemsEnabled.Down === true) {
     app.use((req, res, next) => {
       res.status(500);
       res.sendFile(__dirname + `/public/html/down.html`);
@@ -27,28 +29,49 @@ async function RunWebsite() {
       .use(express.urlencoded({ extended: true }))
 
       .use(express.static(path.join(__dirname + "/public")))
-      .use(session({ secret: process.env.expresssessionpassword, resave: false, saveUninitialized: false }))
+      .use(helmet())
+      .use(helmet.contentSecurityPolicy({
+        directives: {
+          defaultSrc: [`"self"`],
+          scriptSrc: [
+            `"self"`,
+            "use.fontawesome.com"
+          ],
+          styleSrc: [
+            `"self"`,
+          ],
+          imgSrc: [
+            `"self"`,
+            "data:",
+            "imgur.com",
+            "i.imgur.com",
+            "discord.com",
+            "cdn.discordapp.com"
+          ],
+          fontSrc: [
+            `"self"`,
+          ]
+        }
+      }))
 
-      /* .use(async (request, response, next) => {
-        request.user = request.session.user
-        request.locale = request.user ? (request.user.locale === "fr" ? "fr-FR" : "en-US") : "en-US"
+      .use(favicon(__dirname + "/public/images/favicon.ico"))
+      .use(passport.initialize())
+      .use(passport.session())
 
-        next()
-      }) */
 
       .use("/", require("./public/routes/main"))
       .use("/home", require("./public/routes/home"))
       .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
       .use("/ch1llblox", require("./public/routes/ch1llblox"))
       .use("/api", require("./public/routes/api"))
-    // .use("/logout", require("./public/routes/logout"))
-    // .use("/manage", manage)
-    // .use("/stats", stats)
-    // .use("/settings", settings)
+      // .use("/logout", require("./public/routes/logout"))
+      // .use("/manage", manage)
+      // .use("/stats", stats)
+      // .use("/settings", settings)
 
-    app.use((req, res, next) => {
-      res.status(404).sendFile(__dirname + "/public/html/404.html");
-    });
+      .use((req, res, next) => {
+        res.status(404).sendFile(__dirname + "/public/html/404.html");
+      });
   }
 }
 

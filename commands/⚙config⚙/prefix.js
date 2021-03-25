@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("Your new prefix must be under 5 characters.").then(m => m.delete({ timeout: 5000 }))
   }
 
-  Bot.Database.set(`ServerData_${message.guild.id}.Prefix`, Arguments[0])
+  Bot.Database.set(`ServerData.${message.guild.id}.Prefix`, Arguments[0])
   message.channel.send(`Prefix has successfully been changed to **${Arguments[0]}**!`)
 },
 

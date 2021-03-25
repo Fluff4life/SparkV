@@ -31,12 +31,12 @@ exports.run = async (Bot, message, Arguments) => {
 
     if (Emoji === "✅"){
       // Yes
-      const warningdata = Bot.Database.get(`ServerData_${message.guild.id}.warnings.${User.id}`)
+      const warningdata = Bot.Database.get(`ServerData.${message.guild.id}.warnings.${User.id}`)
       VerificationMessage.delete()
 
       if (!warningdata){
-        Bot.Database.set(`ServerData_${message.guild.id}.${User.id}.warnings.count`, 1)
-        Bot.Database.set(`ServerData_${message.guild.id}.${User.id}.warnings`, {
+        Bot.Database.set(`ServerData.${message.guild.id}.${User.id}.warnings.count`, 1)
+        Bot.Database.set(`ServerData.${message.guild.id}.${User.id}.warnings`, {
           username: User.user.username,
           modname: message.author.user,
           reason: Reason,
@@ -62,8 +62,8 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       } else if (warnings){
-        Bot.Database.add(`ServerData_${message.guild.id}.${User.id}.warnings.count`, 1)
-        Bot.Database.add(`ServerData_${message.guild.id}.${User.id}.warnings`, {
+        Bot.Database.add(`ServerData.${message.guild.id}.${User.id}.warnings.count`, 1)
+        Bot.Database.add(`ServerData.${message.guild.id}.${User.id}.warnings`, {
           username: User.user.username,
           modname: message.author.user,
           reason: Reason,

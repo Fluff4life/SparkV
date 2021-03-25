@@ -3,7 +3,7 @@ const Levels = require("discord-xp")
 
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
-  const Leveling = await Bot.Database.get(`ServerData_${message.guild.id}.Leveling`)
+  const Leveling = await Bot.Database.get(`ServerData.${message.guild.id}.Leveling`)
 
   if (!Leveling || !Leveling === "on") {
     return message.channel.send("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")

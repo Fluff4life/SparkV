@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
-  var warnings = Bot.Database.get(`ServerData_${message.guild.id}.${User.id}.warnings`)
+  var warnings = Bot.Database.get(`ServerData.${message.guild.id}.${User.id}.warnings`)
 
   if (!warnings){
     warnings = 0
