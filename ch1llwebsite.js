@@ -40,8 +40,8 @@ async function RunWebsite() {
           ],
           styleSrc: [
             `'self'`,
-            'ch1ll.herokuapp.com/style.css',
-            "use.fontawesome.com/releases/v5.13.0/css/all.css",
+            'ch1ll.herokuapp.com',
+            "use.fontawesome.com",
           ],
           imgSrc: [
             `'self'`,
@@ -57,10 +57,10 @@ async function RunWebsite() {
             "t4.rbxcdn.com",
             "t5.rbxcdn.com",
             "t6.rbxcdn.com"
-            
           ],
           fontSrc: [
             `'self'`,
+            "use.fontawesome.com"
           ]
         }
       }))
