@@ -55,8 +55,8 @@ async function RunWebsite() {
       }))
 
       .use(favicon(__dirname + "/public/assets/images/favicon.ico"))
-      .use(passport.initialize())
-      .use(passport.session())
+      // .use(passport.initialize())
+      // .use(passport.session())
 
 
       .use("/", require("./public/routes/main"))
