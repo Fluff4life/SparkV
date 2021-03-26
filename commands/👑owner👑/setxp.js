@@ -29,7 +29,7 @@ exports.config = {
   usage: "<Ammount>",
   category: "👑owner👑",
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
-  member_permissions: ["ADMINISTRATOR"],
+  member_permissions: [],
   enabled: true,
   cooldown: 2.5
 }
