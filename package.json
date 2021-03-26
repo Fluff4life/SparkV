@@ -20,7 +20,10 @@
     "npm": "*"
   },
   "dependencies": {
+    "@discordjs/opus": "^0.4.0",
     "@top-gg/sdk": "^3.0.9",
+    "canvacord": "^5.1.0",
+    "canvas": "^2.7.0",
     "chalk": "^4.1.0",
     "discord-anti-spam": "^2.5.0",
     "discord-giveaways": "^4.4.3",
@@ -39,6 +42,7 @@
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
+    "noblox.js": "^4.8.5",
     "passport-discord": "^0.1.4",
     "path": "^0.12.7",
     "quickmongo": "^3.0.2",
@@ -46,6 +50,7 @@
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
     "yargs-parser": "^13.1.2",
+    "youtube-dl": "^3.5.0",
     "ytdl-core": "^4.5.0"
   },
   "devDependencies": {
