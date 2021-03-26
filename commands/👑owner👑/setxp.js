@@ -8,6 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
   const Leveling = await Bot.Database.get(`ServerData.${message.guild.id}.Leveling`)
+  const FormattedNumber = await Bot.FormatNumber(Arguments[1])
 
   if (!Leveling || !Leveling === "on") {
     return message.channel.send("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
@@ -15,10 +16,10 @@ exports.run = async (Bot, message, Arguments) => {
 
   try {
     await Levels.setXp(User.id, message.guild.id, Arguments[1]).then(() => {
-      message.channel.send(`Successfully set ${User}'s XP to ${await Bot.FormatNumber(Arguments[1])}!`)
+      message.channel.send(`Successfully set ${User}'s XP to ${FormattedNumber}!`)
     })
   } catch (err) {
-    message.channel.send(`Error setting ${User}'s XP to ${await Bot.FormatNumber(Arguments[1])}.`)
+    message.channel.send(`Error setting ${User}'s XP to ${FormattedNumber}.`)
   }
 },
 
