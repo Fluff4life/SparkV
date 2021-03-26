@@ -38,13 +38,24 @@ exports.run = async (Bot, message, Arguments) => {
     var Winner = null
     var LastTurnDebounce = false
 
-    const GameMessage = await message.channel.send(DisplayBoard(Board))
+    var GameEmbed = new Discord.MessageEmbed()
+    .setTitle(`**${message.author} V.S ${Opponent}**`)
+    .setDescription(`${DisplayBoard(Board)}`)
+    .setColor(Bot.Config.Embed.EmbedColor)
+    .setTimestamp()
+    
+    const GameMessage = await message.channel.send(GameEmbed)
 
     while (!Winner && Board.some(row => row.includes(null))) {
       const User = UserTurn ? message.author : Opponent
       const Sign = UserTurn ? "user" : "opponent"
 
-      await GameMessage.edit(`${DisplayBoard(Board)}\n${User}, which column do you pick? Type end to forfeit.`)
+      GameEmbed = new Discord.MessageEmbed()
+        
+      await GameMessage.edit(GameEmbed
+        .setDescription(`${DisplayBoard(Board)}`)
+        .setFooter(`${User}, which column do you pick? Type \`end\` to forfeit.`)
+      )
 
       const Filter = async (response) => {
         if (response.author.id !== User.id) {
@@ -84,7 +95,7 @@ exports.run = async (Bot, message, Arguments) => {
       if (Choice.toLowerCase() === "end") {
         Winner = UserTurn ? Opponent : message.author
 
-        GameMessage.edit(`🎉 ${User} forfitted. ${Winner} won!`)
+        GameMessage.edit(GameEmbed.setTitle(`🎉${Winner} won!`).setDescription(DisplayBoard(Board)).setFooter(`${User} forfeited. ${Winner} won!`))
       }
 
       const Spot = parseInt(Choice, 10) - 1
@@ -92,7 +103,9 @@ exports.run = async (Bot, message, Arguments) => {
       ColLevels[Spot] -= 1
 
       if (Winner === "time"){
-        return GameMessage.edit(`${DisplayBoard(Board)}\n❔ Game expired due to inactivity.`)
+        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity.`))
+
+        return
       }
 
       if (HasWon(Board)) {
@@ -113,7 +126,7 @@ exports.run = async (Bot, message, Arguments) => {
   exports.config = {
     name: "BlackJack",
     description: "Play a game of BlackJack with someone!",
-    aliases: ["cf"],
+    aliases: ["bj"],
     usage: "<optional user>",
     category: "🎲games🎲",
     bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"],

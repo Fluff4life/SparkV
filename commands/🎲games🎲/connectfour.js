@@ -1,20 +1,10 @@
 const Discord = require("discord.js");
 
-const GenerateBoard = () => {
-  const Array = []
-
-  for (let i = 0; i < 6; i++) {
-    Array.push([null, null, null, null, null, null, null, null])
-  }
-
-  return Array
-}
-
-const CheckLine = (a, b, c, d) => {
+function CheckLine(a, b, c, d) {
   return (a !== null) && (a === b) && (a === c) && (a === d)
 }
 
-const HasWon = (board) => {
+function HasWon(board) {
   for (let b = 0; b < 3; b++) {
     for (let bb = 0; bb < 7; bb++) {
       if (CheckLine(board[b][bb], board[b + 1][bb], board[b + 2][bb], board[b + 3][bb])) {
@@ -50,7 +40,7 @@ const HasWon = (board) => {
   return null
 }
 
-const DisplayBoard = (board) => {
+function DisplayBoard(board) {
   const Map = board.map(row => row.map(turn => {
     if (turn === "user") {
       return "🟡"
@@ -95,21 +85,40 @@ exports.run = async (Bot, message, Arguments) => {
   } else if (Emoji === "👍") {
     await VerificationMessage.delete()
 
-    const Board = GenerateBoard()
+    const Array = []
+
+    for (let i = 0; i < 6; i++) {
+      Array.push([null, null, null, null, null, null, null, null])
+    }
+
+    const Board = Array
     const ColLevels = [5, 5, 5, 5, 5, 5, 5]
 
     var UserTurn = true
     var Winner = null
     var LastTurnDebounce = false
 
-    const GameMessage = await message.channel.send(DisplayBoard(Board))
+    var GameEmbed = new Discord.MessageEmbed()
+      .setTitle(`**${message.author} V.S ${Opponent}**`)
+      .setDescription(`${DisplayBoard(Board)}`)
+      .setColor(Bot.Config.Embed.EmbedColor)
+      .setTimestamp()
+
+    const GameMessage = await message.channel.send(GameEmbed)
 
     while (!Winner && Board.some(row => row.includes(null))) {
       const User = UserTurn ? message.author : Opponent
       const Sign = UserTurn ? "user" : "opponent"
 
-      await GameMessage.edit(`${DisplayBoard(Board)}\n${User}, which column do you pick? Type end to forfeit.`)
+      GameEmbed = new Discord.MessageEmbed()
 
+      await GameMessage.edit(GameEmbed
+        .setTitle(`**${message.author.username} V.S ${Opponent.user.username}**`)
+        .setDescription(`${DisplayBoard(Board)}\n${User}, which column do you pick?`)
+        .setFooter(`Type "end" to forfeit.`)
+        .setColor(Bot.Config.Embed.EmbedColor)
+        .setTimestamp()
+      )
       const Filter = async (response) => {
         if (response.author.id !== User.id) {
           return false
@@ -148,15 +157,17 @@ exports.run = async (Bot, message, Arguments) => {
       if (Choice.toLowerCase() === "end") {
         Winner = UserTurn ? Opponent : message.author
 
-        return GameMessage.edit(`🎉 ${User} forfitted. ${Winner} won!`)
+        return GameMessage.edit(`${DisplayBoard(Board)}\n🎉${Winner} won!`)
       }
 
       const Spot = parseInt(Choice, 10) - 1
       Board[ColLevels[Spot]][Spot] = Sign
       ColLevels[Spot] -= 1
 
-      if (Winner === "time"){
-        return GameMessage.edit(`${DisplayBoard(Board)}\n❔ Game expired due to inactivity.`)
+      if (Winner === "time") {
+        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity.`))
+
+        return
       }
 
       if (HasWon(Board)) {
