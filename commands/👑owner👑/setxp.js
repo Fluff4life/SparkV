@@ -15,10 +15,10 @@ exports.run = async (Bot, message, Arguments) => {
 
   try {
     await Levels.setXp(User.id, message.guild.id, Arguments[1]).then(() => {
-      message.channel.send(`Successfully added xp to ${Arguments[1]}`)
+      message.channel.send(`Successfully set ${User}'s XP to ${await Bot.FormatNumber(Arguments[1])}!`)
     })
   } catch (err) {
-    message.channel.send(`Error adding xp to ${Arguments[1]}. Please try again later!`)
+    message.channel.send(`Error setting ${User}'s XP to ${await Bot.FormatNumber(Arguments[1])}.`)
   }
 },
 
