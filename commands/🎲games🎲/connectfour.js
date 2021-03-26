@@ -48,7 +48,7 @@ function DisplayBoard(board) {
       return "🔴"
     }
 
-    return "⚪"
+    return "⬜"
   }).join("")).join("\n")
 
   return Map
