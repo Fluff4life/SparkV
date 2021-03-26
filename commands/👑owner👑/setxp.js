@@ -2,15 +2,15 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
 exports.run = async (Bot, message, Arguments) => {
+  if (message.author.id !== process.env.OwnerID) {
+    return message.channel.send("❌Access denied.")
+  }
+
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
   const Leveling = await Bot.Database.get(`ServerData.${message.guild.id}.Leveling`)
 
   if (!Leveling || !Leveling === "on") {
     return message.channel.send("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
-  }
-
-  if (!Arguments){
-    return message.channel.send("Please state the user & the ammount of xp.")
   }
 
   try {
@@ -23,11 +23,11 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  name: "AddXP",
-  description: "Add XP.",
+  name: "SetXP",
+  description: "Set XP.",
   aliases: [],
   usage: "<Ammount>",
-  category: "💫leveling💫",
+  category: "👑owner👑",
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   member_permissions: ["ADMINISTRATOR"],
   enabled: true,
