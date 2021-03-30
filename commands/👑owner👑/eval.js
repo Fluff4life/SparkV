@@ -17,29 +17,6 @@ exports.run = async (Bot, message, Arguments) => {
     const pages = []
 
     const CreatePage = (Bot, Server, ServerID) => {
-      /* var OpenInvite
-      
-      Server
-        .fetchInvites()
-        .then(guildInvites => {
-          if (!guildInvites.size === 0){
-            if (!guildInvites.size === 1){
-              console.log(guildInvites.size)
-              const Invite = guildInvites.sort((a, b) => b.uses - a.uses)
-
-              OpenInvite = Invite
-            } else {
-              console.log(`One invite for ${Server.name}`)
-              OpenInvite = guildInvites[1]
-            }
-          } else {
-            console.log(`No invites for ${Server.name}.`)
-            Server.systemChannel.send("Hey! Looks like you're using an outdated version of ch1llblox meaning most features will not work. To fix this, please remove my bot and add it again by clicking the link here. https://discord.com/api/oauth2/authorize?client_id=763126208149585961&permissions=4231916662&scope=bot").catch(() => {})
-            OpenInvite = "NoCode"
-          }
-        })
-        */
-
       const NewEmbed = new Discord.MessageEmbed()
         .setTitle(`**${Server.name}**`)
         .setDescription(`*${Server.description || "N/A"}*`)
@@ -62,7 +39,10 @@ exports.run = async (Bot, message, Arguments) => {
   } else {
     try {
       const code = Arguments.join(" ")
-      var evaled = eval(code)
+
+      let evaled = async () => {
+        evaled = await eval(code)
+      }
 
       if (typeof evaled !== "string") {
         evaled = require("util").inspect(evaled)
