@@ -27,8 +27,8 @@
 
     "website": {
         "BotOnline": false,
-        "baseURL": "http://127.0.0.1:3000",
-        "failureURL": "https://e.com"
+        "baseURL": "https://ch1ll.herokuapp.com/home",
+        "failureURL": "https://ch1ll.herokuapp.com/505"
     },
 
     "links": {
@@ -37,5 +37,5 @@
     },
 
     "ShardingEnabled": false,
-    "Debug": true
+    "Debug": false
 }
