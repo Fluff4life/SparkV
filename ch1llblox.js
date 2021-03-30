@@ -65,7 +65,7 @@ Bot.AntiSpam = new AntiSpam({
   kickThreshold: 12, // Amount of messages sent in a row that will cause a kick.
   banThreshold: 24, // Amount of messages sent in a row that will cause a ban.
   maxInterval: 5500, // Amount of time (in milliseconds) in which messages are considered spam.
-  warnMessage: '{@user} stop spamming. If you continue to spam, you\'ll be muted.', // Message that will be sent in chat upon warning a user.
+  warnMessage: '{@user}, please stop spamming. If you continue to spam, you\'ll be muted!', // Message that will be sent in chat upon warning a user.
   kickMessage: '**{user_tag}** has been kicked for spamming.', // Message that will be sent in chat upon kicking a user.
   muteMessage: '**{user_tag}** has been muted for spamming.',// Message that will be sent in chat upon muting a user.
   banMessage: '**{user_tag}** has been banned for spamming.', // Message that will be sent in chat upon banning a user.
@@ -75,7 +75,7 @@ Bot.AntiSpam = new AntiSpam({
   exemptPermissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"], // Bypass users with any of these permissions.
   ignoreBots: true, // Ignore bot messages.
   verbose: true, // Extended Logs from module.
-  ignoredUsers: [571811686617710592], // Array of User IDs that get ignored.
+  ignoredUsers: [], // Array of User IDs that get ignored.
   muteRoleName: "Muted", // Name of the role that will be given to muted users!
   removeMessages: true // If the bot should remove all the spam messages when taking action on a user!
 })

@@ -1,7 +1,5 @@
 const Express = require("express")
 
-const Dirname = require("../GetDirname")
-
 const Router = Express.Router()
 
 Router.get("/", async (request, response) => {

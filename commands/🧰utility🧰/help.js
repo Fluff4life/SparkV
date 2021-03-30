@@ -1,10 +1,11 @@
 const Discord = require("discord.js");
 const fs = require("fs")
 const discordeasypages = require("discordeasypages")
-
 var prefix = "^"
 
 exports.run = async (Bot, message, args) => {
+  prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
+
   const pages = []
 
   const Commands = (Bot, category) => {
@@ -27,14 +28,6 @@ exports.run = async (Bot, message, args) => {
     pages.push(NewEmbed)
 }
 
-  const Prefix = await Bot.Database.get(`ServerData.${message.guild.id}.Prefix`)
-
-  if (Prefix){
-    prefix = Prefix
-  } else {
-    prefix = Bot.Config.Bot.prefix
-  }
-  
   if (!args.length) {
     Bot.categories.map((cat) => CreatePage(Bot, message, cat))
     

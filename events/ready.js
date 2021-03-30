@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const botdash = require("botdash.pro")
 
 exports.run = async (Bot) => {
   const Activities = [
@@ -64,6 +65,7 @@ exports.run = async (Bot) => {
   }
 
   Bot.user.setAvatar("https://imgur.com/rR11mRZ.png")
-
+  
+  Bot.dashboard = new botdash.APIclient(process.env.dashapikey)
   Bot.Log("SUCCESS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`)
 }

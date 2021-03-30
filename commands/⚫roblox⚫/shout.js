@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments, command) => {
 
   Arguments = Arguments.join(" ")
 
-  const RobloxGroupID = Bot.Database.get(`ServerData.${message.guild.id}.GroupID`)
+  const RobloxGroupID = await Bot.dashboard.getVal("GroupID")
 
   if (RobloxGroupID) {
     noblox.shout((RobloxGroupID), Arguments).then(() => {
@@ -46,7 +46,7 @@ exports.run = async (Bot, message, Arguments, command) => {
     return message.channel.send({
       embed: {
         title: "🚫 Roblox Group ID Error 🚫",
-        description: "Roblox Group ID has not been set for this server. You can set it up by doing (prefix)SetGroupID <GroupID>.",
+        description: "Roblox Group ID has not been set for this server.",
         color: "#0099ff",
 
         footer: {

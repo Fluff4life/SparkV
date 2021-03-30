@@ -1,16 +1,17 @@
 const Express = require("express")
-
-const CheckAuth = require("../auth/CheckAuth")
-const Dirname = require("../GetDirname")
-
 const Router = Express.Router()
 
+const CheckAuth = require("../auth/CheckAuth")
+
 Router.get("/", async (request, response) => {
-    response.redirect("/home")
+    response.redirect("/selector")
 })
 
-Router.get("/donate", async (request, response) => {
-    response.send({ message: "Coming soon!" })
+Router.get("/selector", CheckAuth, async (request, response) => {
+    response.render("selector", {
+        user: request.userinfo,
+        currentURL: `${global.Bot.Config.website.baseURL}/${request.originalUrl}`
+    })
 })
 
 module.exports = Router

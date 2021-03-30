@@ -7,17 +7,17 @@ console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading web
 // Librarys //
 const express = require("express");
 const favicon = require("serve-favicon")
-const passport = require("passport-discord")
 const helmet = require("helmet");
 const path = require("path")
 const Chalk = require("chalk")
-const Config = require("./globalconfig.json")
+const Config = require("./globalconfig.json");
+const session = require("express-session");
 
 // App //
 const app = express();
 
 // Functions //
-async function RunWebsite() {
+async function RunWebsite(Bot) {
   if (Config.SystemsEnabled.Down === true) {
     app.use((req, res, next) => {
       res.status(500);
@@ -27,8 +27,12 @@ async function RunWebsite() {
     app
       .use(express.json())
       .use(express.urlencoded({ extended: true }))
+      .engine("html", require("ejs").renderFile)
+      .set("view engine", "ejs")
 
       .use(express.static(path.join(__dirname + "/public")))
+      .set("views", __dirname + "/views")
+
       .use(helmet())
       .use(helmet.contentSecurityPolicy({
         directives: {
@@ -36,12 +40,15 @@ async function RunWebsite() {
           scriptSrc: [
             `'self'`,
             "use.fontawesome.com",
-            'ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'
+            'ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
+            "cdn.jsdelivr.net",
+            "www.google-analytics.com"
           ],
           styleSrc: [
             `'self'`,
             'ch1ll.herokuapp.com',
-            "use.fontawesome.com"
+            "use.fontawesome.com",
+            "cdn.jsdelivr.net",
           ],
           imgSrc: [
             `'self'`,
@@ -65,24 +72,51 @@ async function RunWebsite() {
           ]
         }
       }))
+      .use(session({ secret: process.env.expresspassword, resave: false, saveUninitialized: false }))
 
       .use(favicon(__dirname + "/public/assets/images/favicon.ico"))
-      // .use(passport.initialize())
-      // .use(passport.session())
+      
+      .use(async (request, response, next) => {
+        request.user = request.session.user
+        request.Bot = Bot
+        request.states = []
+        
+        next()
+      })
 
       .use("/", require("./public/routes/main"))
       .use("/home", require("./public/routes/home"))
+      .use("/api", require("./public/routes/api"))
+      .use("/logout", require("./public/routes/logout"))
+
+
       .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
       .use("/ch1llblox", require("./public/routes/ch1llblox"))
-      .use("/api", require("./public/routes/api"))
-      // .use("/logout", require("./public/routes/logout"))
-      // .use("/manage", manage)
-      // .use("/stats", stats)
-      // .use("/settings", settings)
 
-      .use((req, res, next) => {
-        res.status(404).sendFile(__dirname + "/public/html/404.html");
-      });
+      
+    // .use("/logout", require("./public/routes/logout"))
+    // .use("/manage", manage)
+    // .use("/stats", stats)
+    // .use("/settings", settings)
+
+      .use((request, response, next) => {
+        response
+          .status(404)
+          .render("404", {
+            user: request.user,
+            currentURL: `${request.protocol}://${request.get("host")}${request.originalUrl}`
+          })
+      })
+      .use((err, request, response) => {
+        console.error(err.stack)
+
+        response
+          .status(500)
+          .render("500", {
+            user: request.userinfo,
+            currentURL: `${request.protocol}://${request.get("host")}${request.originalUrl}`
+          })
+      })
   }
 }
 

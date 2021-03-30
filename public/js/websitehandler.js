@@ -6,7 +6,7 @@ $(window).on("scroll", function () {
   }
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
   const headfade = document.querySelector(".headfade")
   const navbar = document.querySelector(".nav-bar")
   const navlinks = document.querySelectorAll(".nav-bar li")
@@ -32,7 +32,7 @@ $(document).ready(function() {
       if (link.style.animation) {
         link.style.animation = "";
       } else {
-        link.style.animation = `navLinkFade 0.5 ease forwards ${index / 2+1}s`;
+        link.style.animation = `navLinkFade 0.5 ease forwards ${index / 2 + 1}s`;
       }
     });
     headfade.classList.toggle("toggle")

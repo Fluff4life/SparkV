@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-color">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ntoggle" aria-controls="ntoggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="ntoggle">
+            <a class="navbar-brand" href="/">
+            <img src="<%= bot.avatar %>" alt="Bot Avatar" width="60" height="60" class="d-inline-block align-top">
+            <b><%= bot.name %></b>
+            </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li><a class="nav-link" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="<%= bot.invite %>">Invite</a></li>
+          <li><a class="nav-link" href="/commands">Commands</a></li>
+          <li><a class="nav-link" href="/faq">FAQ</a></li>
+          <li><a class="nav-link" href="/support">Support</a></li>
+            </ul>
+            <% if (user){ %>
+                <a href="/me"><%- user.tag %></a>
+                <a href="/servers">My Servers</a>
+                <a href="/api/logout">Logout</a>
+            <% } else { %>
+                <form class="d-flex">
+                    <button class="btn btn-outline-success" type="button"><b>Login</b></button>
+                </form>
+            <% } %>
+        </div>
+    </div>
+</nav>

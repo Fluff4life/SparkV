@@ -1,5 +1,5 @@
 module.exports = async (request, response, next) => {
-    if (request.session.user){
+    if (request.session.user) {
         return next()
     } else {
         const RedirectURL = ((request.originalUrl.includes("login") || request.originalUrl === "/") ? "/selector" : request.originalUrl)
@@ -8,6 +8,8 @@ module.exports = async (request, response, next) => {
             .toString()
             .substring(5)
 
-        return response.redirect(`api/login?state=${State}`)
+        request.states[State] = RedirectURL
+
+        return response.redirect(`/api/login?state=${State}`)
     }
 }

@@ -52,6 +52,16 @@ module.exports = async (bot) => {
 
     const filter = (reaction, user) => reactions.includes(reaction.emoji.name) && user.id === author.id
 
+    setTimeout(() => {
+      if (message.deleted) {
+        return
+      }
+
+      message.reactions.removeAll()
+
+      return false
+    }, seconds)
+
     return message
       .awaitReactions(filter, {
         max: 1,

@@ -2,13 +2,17 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 
 exports.run = async (Bot, message) => {
-  if (message.author.Bot || !message.guild) {
+  if (message.author.bot) {
+    return
+  }
+
+  if (!message.guild) {
     return;
   }
 
-  const AntiURL = await Bot.Database.get(`ServerData.${message.guild.id}.AntiURL`)
+  const AntiURL = await Bot.dashboard.getVal(message.guild.id, "AntiURL")
 
-  if (AntiURL && AntiURL === "on" && Bot.isURL(message.content) && !message.author.hasPermission("MANAGE_MESSAGES")) {
+  if (AntiURL === true && Bot.isURL(message.content) && !message.author.hasPermission("MANAGE_MESSAGES")) {
     try {
       message.delete();
     } catch (err) {
@@ -18,13 +22,13 @@ exports.run = async (Bot, message) => {
     return message.reply("you cannot send links here.").then(m => m.delete({ timeout: 1000 }))
   }
 
-  const AntiSpam = await Bot.Database.get(`ServerData.${message.guild.id}.AntiSpam`)
+  const AntiSpam = await Bot.dashboard.getVal(message.guild.id, "AntiSpam")
 
-  if (AntiSpam && AntiSpam === "on" && !message.channel.name.endsWith("spamhere") && !message.channel.name.endsWith("spam-here")){
+  if (AntiSpam === true && !message.channel.name.endsWith("spamhere") && !message.channel.name.endsWith("spam-here")) {
     Bot.AntiSpam.message(message)
   }
 
-  const Leveling = await Bot.Database.get(`ServerData.${message.guild.id}.Leveling`)
+  const Leveling = await Bot.dashboard.getVal(message.guild.id, "Leveling")
 
   if (Leveling && Leveling === "on") {
     const RandomAmountOfXP = Math.floor(Math.random() * 15) + 10;
@@ -37,36 +41,19 @@ exports.run = async (Bot, message) => {
     }
   }
 
-  const Prefix = await Bot.Database.get(`ServerData.${message.guild.id}.Prefix`)
+  const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (Prefix) {
-    if (Prefix === Bot.Config.Bot.prefix) {
-      await Bot.Database.delete(`ServerData.${message.guild.id}.Prefix`)
-    } else {
-      if (!message.mentions.has(Bot.user) || message.content.startsWith(Bot.Config.Bot.prefix)) {
-        return message.channel.send(`The prefix for this server is **${Prefix}**!`)
-      }
+  if (Prefix !== Bot.Config.Bot.Prefix) {
+    if (message.content.startsWith(Bot.Config.Bot.Prefix)) {
+      return message.channel.send("The prefix for this server is " + Prefix)
     }
-
+  } else {
     if (!message.content.startsWith(Prefix)) {
       return
     }
-  } else {
-    if (!message.content.startsWith(Bot.Config.Bot.prefix)) {
-      return
-    }
   }
-
-  const PrefixLength = () => {
-    if (Prefix) {
-      return Prefix.length
-    } else {
-      return Bot.Config.Bot.prefix.length
-    }
-  }
-
   const args = message.content
-    .slice(PrefixLength())
+    .slice(Prefix.length)
     .trim()
     .split(/ +/);
 
@@ -144,10 +131,10 @@ exports.run = async (Bot, message) => {
     await commandfile
       .run(Bot, message, args, command)
       .then(async () => {
-        const DeleteUsage = await Bot.Database.get(`ServerData.${message.guild.id}.DeleteUsage`)
+        const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, "DeleteUsage")
 
-        if (DeleteUsage && DeleteUsage === "on") {
-          message.delete().catch((err) => {})
+        if (DeleteUsage === true) {
+          message.delete().catch((err) => { })
         }
 
         console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)

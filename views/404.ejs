@@ -5,25 +5,7 @@
     <!-- Title -->
     <title>Error 404 - Ch1ll</title>
 
-    <!-- Meta Data -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#03c6fc" />
-    <meta name="author" content="KingCh1ll" />
-    <meta name="description" content="404 (Not Found) | KingCh1ll's website." />
-    <meta name="keywords" content="kingch1ll,website,creations,ch1ll,studios,creations,inc,."/>
-
-    <!-- Icon -->
-    <link rel="icon" href="/favicon.ico"/>
-
-    <!-- Style Sheets -->
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"/>
-
-    <!-- Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/websitehandler.js"></script>
+    <%- include("components/head") %>
   </head>
 
   <!-- Frames -->
@@ -65,9 +47,8 @@
           </section>
         </div>
       </main>
-      <footer class="copyright">
-        © 2021 KingCh1ll. All rights reserved. KingCh1ll is NOT affiliated with <a href="https://discordapp.com">Discord Inc.</a> nor <a href="https://roblox.com">Roblox Inc.</a>
-      </footer>
+
+      <%- include("components/footer") -%>
     </div>
     </div>
   </body>

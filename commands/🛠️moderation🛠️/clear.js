@@ -52,7 +52,7 @@ exports.run = async (Bot, message, Arguments) => {
     }
 
     var messages = await message.channel.messages.fetch({
-      limit: 100
+      limit: Arguments[1] || Arguments[0]
     })
 
     messages = messages.array()

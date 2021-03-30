@@ -8,9 +8,9 @@ const Emotes = [
 ]
 
 exports.run = async (Bot, message, Arguments) => {
-  const Leveling = await Bot.Database.get(`ServerData.${message.guild.id}.Leveling`)
+  const Leveling = await Bot.dashboard.getVal("Leveling")
 
-  if (!Leveling || !Leveling === "on"){
+  if (!Leveling === true){
     return message.channel.send("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
   }
 

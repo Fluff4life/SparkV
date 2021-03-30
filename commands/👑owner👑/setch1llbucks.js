@@ -22,7 +22,7 @@ exports.config = {
   description: "Set someone's Ch1llBucks!",
   aliases: [],
   usage: "<user> <ammount>",
-  category: "💰currency💰",
+  category: "👑owner👑",
   bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
   member_permissions: [],
   enabled: true,
