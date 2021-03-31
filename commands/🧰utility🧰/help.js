@@ -23,9 +23,9 @@ exports.run = async (Bot, message, args) => {
       return await Bot.dashboard.getVal(message.guild.id, ID)
     }
 
-    if (Category === "🎵music🎵" && await CheckIfEnabled("MusicEnabled") === false){
+    if (Category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === false){
       return
-    } else if (Category === "💫leveling💫" && await CheckIfEnabled("Leveling") === false){
+    } else if (Category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === false){
       return
     }
 
