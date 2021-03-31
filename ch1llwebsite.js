@@ -11,7 +11,6 @@ const helmet = require("helmet");
 const path = require("path")
 const Chalk = require("chalk")
 const session = require("express-session");
-const dashboard = require("discord-bot-dashboard")
 const Config = require("./globalconfig.json");
 
 // App //
@@ -117,17 +116,6 @@ async function RunWebsite(Bot) {
             currentURL: `${request.protocol}://${request.get("host")}${request.originalUrl}`
           })
       })
-
-      setInterval(() => {
-        global.Bot.Dashboard = new dashboard(global.Bot, {
-          port: parseInt(process.env.port), 
-          clientSecret: process.env.secretid,
-          redirectURI: `${Config.website.baseURL}/auth/discord/callback`,
-          maintenanceNotification: process.env.BotEnabled === "true" ? true : false,
-          maintenanceGame: "Maintence Enabled. Please check back later!",
-          maintenanceStatus: "idle"
-        });
-      }, 150 * 1000)
   }
 }
 
