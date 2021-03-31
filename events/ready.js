@@ -70,7 +70,7 @@ exports.run = async (Bot) => {
 
   setInterval(async () => {
     Bot.Dashboard.run()
-  }, 300 * 1000)
+  }, 175 * 1000)
 
   Bot.Log("SUCCESS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`)
 }
