@@ -1,14 +1,14 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message) => {
-  message.channel.send("[Click here to view my website!](https://ch1ll.herokuapp.com/Ch1llBlox)")
+  message.channel.send("[Click here to view my dashboard!](https://ch1llblox.botdash.pro/)")
 },
 
 
   exports.config = {
-    name: "Website",
-    description: "I'll send my website!",
-    aliases: ["web"],
+    name: "Dashboard",
+    description: "I'll send my dashboard!",
+    aliases: ["dash"],
     usage: "",
     category: "🧰utility🧰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],

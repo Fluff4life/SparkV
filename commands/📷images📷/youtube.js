@@ -13,7 +13,9 @@ exports.run = async (Bot, message, Arguments) => {
 
   const canvacord = require("canvacord");
 
-  Arguments = Arguments.join(" ")
+  Arguments = Arguments
+    .join(" ")
+    .slice(22)
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
@@ -21,7 +23,7 @@ exports.run = async (Bot, message, Arguments) => {
   })
 
   const Image = await canvacord.Canvas.youtube({
-    username: message.author.username,
+    username: User.username,
     avatar: Avatar,
     content: Arguments
   })
