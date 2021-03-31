@@ -43,15 +43,14 @@ exports.run = async (Bot, message) => {
 
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (Prefix !== Bot.Config.Bot.Prefix) {
-    if (message.content.startsWith(Bot.Config.Bot.Prefix)) {
-      return message.channel.send("The prefix for this server is " + Prefix)
-    }
+  if (message.content.startsWith(Bot.Config.Bot.prefix) && Prefix !== Bot.Config.Bot.prefix){
+    return message.channel.send("The prefix for this server is " + Prefix)
   } else {
     if (!message.content.startsWith(Prefix)) {
       return
     }
   }
+
   const args = message.content
     .slice(Prefix.length)
     .trim()

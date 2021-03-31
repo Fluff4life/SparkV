@@ -23,9 +23,10 @@ const Chalk = require("chalk")
 
 // Create Bot //
 const Bot = new Client({
-  retryLimit: 3,
-  disableEveryone: true,
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
+  disableMentions: "all",
+  fetchAllMembers: true,
+  retryLimit: 3,
 
   presence: {
     activity: {

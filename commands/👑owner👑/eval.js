@@ -39,10 +39,7 @@ exports.run = async (Bot, message, Arguments) => {
   } else {
     try {
       const code = Arguments.join(" ")
-
-      let evaled = async () => {
-        evaled = await eval(code)
-      }
+      let evaled = eval(code)
 
       if (typeof evaled !== "string") {
         evaled = require("util").inspect(evaled)
@@ -54,7 +51,7 @@ exports.run = async (Bot, message, Arguments) => {
 
       message.channel.send(clean(evaled), { code: "js" })
     } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``)
+      message.channel.send(`\`ERROR\` \`\`\`js\n${clean(err)}\n\`\`\``)
     }
   }
 },
