@@ -138,10 +138,10 @@ readdir("./commands", (err, cats) => {
 
 console.log("---------- Loading Dashboard ----------")
 Bot.Dashboard = new dashboard(Bot, {
-  port: process.env.port, 
+  port: parseInt(process.env.port), 
   clientSecret: process.env.secretid, 
   redirectURI: `${Config.website.baseURL}/auth/discord/callback`,
-  maintenanceNotification: process.env.BotEnabled,
+  maintenanceNotification: process.env.BotEnabled ? true : false,
   maintenanceGame: "Maintence Enabled. Please check back later!",
   maintenanceStatus: "idle"
 });
