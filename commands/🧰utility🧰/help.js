@@ -14,18 +14,17 @@ exports.run = async (Bot, message, args) => {
       .map(command =>`\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`)
       .join("\n\n")
   }
-  const CreatePage = (Bot, Message, Category) => {
+  const CreatePage = async (Bot, Message, Category) => {
     if (Category === "👑owner👑" && message.author.id !== process.env.OwnerID){
       return
     }
 
-    const CheckIfEnabled = async (ID) => {
-      return await Bot.dashboard.getVal(message.guild.id, ID)
-    }
+    const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, "MusicEnabled")
+    const LevelingEnabled = await Bot.dashboard.getVal(message.guild.id, "Leveling")
 
-    if (Category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === false){
+    if (Category === "🎵music🎵" && MusicEnabled === false){
       return
-    } else if (Category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === false){
+    } else if (Category === "💫leveling💫" && LevelingEnabled === false){
       return
     }
 
