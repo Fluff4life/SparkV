@@ -10,7 +10,7 @@ const favicon = require("serve-favicon")
 const helmet = require("helmet");
 const path = require("path")
 const Chalk = require("chalk")
-const session = require("express-session");
+const session = require("cookie-session");
 const Config = require("./globalconfig.json");
 
 // App //
@@ -84,15 +84,14 @@ async function RunWebsite(Bot) {
         next()
       })
 
-      //.use("/", require("./public/routes/main"))
-      //.use("/home", require("./public/routes/home"))
+      .use("/", require("./public/routes/main"))
+      .use("/home", require("./public/routes/home"))
       .use("/api", require("./public/routes/api"))
-      //.use("/logout", require("./public/routes/logout"))
+      .use("/logout", require("./public/routes/logout"))
 
 
-      //.use("/ch1llstudios", require("./public/routes/ch1llstudios"))
-      //.use("/ch1llblox", require("./public/routes/ch1llblox"))
-
+      .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
+      .use("/ch1llblox", require("./public/routes/ch1llblox"))
 
     // .use("/manage", manage)
     // .use("/stats", stats)
