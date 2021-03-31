@@ -137,10 +137,10 @@ readdir("./commands", (err, cats) => {
 })
 
 console.log("---------- Loading Dashboard ----------")
-dashboard.run(Bot, {
+Bot.Dashboard = new dashboard(Bot, {
   port: process.env.port, 
   clientSecret: process.env.secretid, 
-  redirectURI: "",
+  redirectURI: `${Config.website.baseURL}/auth/discord/callback`,
   maintenanceNotification: process.env.BotEnabled,
   maintenanceGame: "Maintence Enabled. Please check back later!",
   maintenanceStatus: "idle"

@@ -27,8 +27,8 @@
 
     "website": {
         "BotOnline": false,
-        "baseURL": "https://ch1ll.herokuapp.com/home",
-        "failureURL": "https://ch1ll.herokuapp.com/505"
+        "baseURL": "https://ch2ll.herokuapp.com",
+        "failureURL": "https://ch2ll.herokuapp.com/505"
     },
 
     "links": {
