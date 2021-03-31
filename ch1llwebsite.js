@@ -84,17 +84,16 @@ async function RunWebsite(Bot) {
         next()
       })
 
-      .use("/", require("./public/routes/main"))
-      .use("/home", require("./public/routes/home"))
+      //.use("/", require("./public/routes/main"))
+      //.use("/home", require("./public/routes/home"))
       .use("/api", require("./public/routes/api"))
-      .use("/logout", require("./public/routes/logout"))
+      //.use("/logout", require("./public/routes/logout"))
 
 
-      .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
-      .use("/ch1llblox", require("./public/routes/ch1llblox"))
+      //.use("/ch1llstudios", require("./public/routes/ch1llstudios"))
+      //.use("/ch1llblox", require("./public/routes/ch1llblox"))
 
-      
-    // .use("/logout", require("./public/routes/logout"))
+
     // .use("/manage", manage)
     // .use("/stats", stats)
     // .use("/settings", settings)
