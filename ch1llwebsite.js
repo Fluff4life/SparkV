@@ -137,11 +137,11 @@ RunWebsite();
 
 // Listener //
 if (Config.Debug === true) {
-  const listener = app.listen(process.env.port, "localhost", () => {
+  const listener = app.listen(process.env.PORT, "localhost", () => {
     console.log(Chalk.blue(`SUCCESS - WEBSITE => Server running at http://localhost:${listener.address().port} & listening on port ${listener.address().port}.`));
   })
 } else {
-  const listener = app.listen(process.env.port, () => {
+  const listener = app.listen(process.env.PORT, () => {
     console.log(Chalk.blue(`SUCCESS - WEBSITE => Server listening on port ${listener.address().port}.`));
   })
 }
