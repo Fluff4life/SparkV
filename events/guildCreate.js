@@ -1,6 +1,10 @@
 const Discord = require("discord.js")
 
 exports.run = async(Bot, guild) => {
+  if (!guild.available){
+    return
+  }
+
   if (guild.systemChannel && guild.systemChannel.permissionsFor(Bot.user).has("SEND_MESSAGES") && guild.systemChannel.permissionsFor(Bot.user).has("VIEW_CHANNEL")){
     try {
       const HelloEmbed = new Discord.MessageEmbed()

@@ -21,12 +21,12 @@ exports.run = async (Bot, message, Arguments) => {
   })
 
   const Image = await canvacord.Canvas.youtube({
-    username: message.author.user.username,
+    username: message.author.username,
     avatar: Avatar,
     content: Arguments
   })
 
-  const YouTube = new Discord.MessageAttachment(Image, "opinion.png")
+  const YouTube = new Discord.MessageAttachment(Image, "youtube.png")
 
   message.channel.send(YouTube)
 },

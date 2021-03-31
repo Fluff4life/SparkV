@@ -1,6 +1,5 @@
 const Express = require("express")
 const fetch = require("node-fetch")
-const btoa = require("btoa")
 
 const Router = Express.Router()
 
