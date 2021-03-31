@@ -8,12 +8,6 @@ const Emotes = [
 ]
 
 exports.run = async (Bot, message, Arguments) => {
-  const Leveling = await Bot.dashboard.getVal("Leveling")
-
-  if (!Leveling === true){
-    return message.channel.send("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
-  }
-
   const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10)
   const Leaderboard = await Levels.computeLeaderboard(Bot, RawLeaderboard, true)
   const Leader = Leaderboard.map(data => `${Emotes[data.position - 1] || `${"🔹"}`} **Level ${data.level}** - ${data.username}#${data.discriminator}`)

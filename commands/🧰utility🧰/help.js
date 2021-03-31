@@ -19,6 +19,16 @@ exports.run = async (Bot, message, args) => {
       return
     }
 
+    const CheckIfEnabled = async (ID) => {
+      return await Bot.dashboard.getVal(message.guild.id, ID)
+    }
+
+    if (Category === "🎵music🎵" && await CheckIfEnabled("MusicEnabled") === false){
+      return
+    } else if (Category === "💫leveling💫" && await CheckIfEnabled("Leveling") === false){
+      return
+    }
+
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(Bot, Category))

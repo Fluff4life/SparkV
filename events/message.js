@@ -93,6 +93,12 @@ exports.run = async (Bot, message) => {
     return message.reply("This command is currently disabled! Please try again later.")
   }
 
+  if (commandfile.config.category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled")){
+    return message.reply("This command is disabled by the server owner.")
+  } else if (commandfile.config.category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling")){
+    return message.reply("This command is disabled by the server owner.")
+  }
+
   if (!Bot.cooldowns.has(commandfile.config.name)) {
     Bot.cooldowns.set(commandfile.config.name, new Discord.Collection());
   }
