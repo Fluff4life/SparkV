@@ -19,7 +19,6 @@ console.log(require("chalk").green("LOADING STARTED - BOT => Now loading bot."))
 const { Client, Collection } = require("discord.js")
 const { readdir } = require("fs")
 const AntiSpam = require("discord-anti-spam")
-const dashboard = require("discord-bot-dashboard")
 const Chalk = require("chalk")
 
 // Create Bot //
@@ -137,14 +136,6 @@ readdir("./commands", (err, cats) => {
 })
 
 console.log("---------- Loading Dashboard ----------")
-Bot.Dashboard = new dashboard(Bot, {
-  port: parseInt(process.env.port), 
-  clientSecret: process.env.secretid, 
-  redirectURI: `${Config.website.baseURL}/auth/discord/callback`,
-  maintenanceNotification: process.env.BotEnabled ? true : false,
-  maintenanceGame: "Maintence Enabled. Please check back later!",
-  maintenanceStatus: "idle"
-});
 
 if (Config.Debug === false) {
   Noblox(Bot)

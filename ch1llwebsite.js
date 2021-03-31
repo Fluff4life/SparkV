@@ -10,8 +10,9 @@ const favicon = require("serve-favicon")
 const helmet = require("helmet");
 const path = require("path")
 const Chalk = require("chalk")
-const Config = require("./globalconfig.json");
 const session = require("express-session");
+const dashboard = require("discord-bot-dashboard")
+const Config = require("./globalconfig.json");
 
 // App //
 const app = express();
@@ -116,6 +117,15 @@ async function RunWebsite(Bot) {
             currentURL: `${request.protocol}://${request.get("host")}${request.originalUrl}`
           })
       })
+
+      global.Bot.Dashboard = new dashboard(global.Bot, {
+        port: parseInt(process.env.port), 
+        clientSecret: process.env.secretid,
+        redirectURI: `${Config.website.baseURL}/auth/discord/callback`,
+        maintenanceNotification: process.env.BotEnabled === "true" ? true : false,
+        maintenanceGame: "Maintence Enabled. Please check back later!",
+        maintenanceStatus: "idle"
+      });
   }
 }
 
