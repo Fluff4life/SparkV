@@ -1,14 +1,14 @@
 const Discord = require("discord.js");
-const request = require("node-superfetch")
+const fetch = require("node-fetch")
 const path = require("path")
-const Canvas = require("canvas")
+const Canvas = require("canvas");
 
 const GenerateQuestion = async () => {
-  const Body = await request
-    .get("https://jservice.io/api/random")
-    .query({ count: 1 })
-
-  return Body[0]
+  fetch("https://jservice.io/api/random")
+    .then(response => response.json())
+    .then(body => {
+      return body.body
+    })
 }
 
 const WrapText = async (ctx, text, maxWidth) => {
@@ -83,12 +83,10 @@ exports.run = async (Bot, message, Arguments) => {
 
   try {
     if (Channel){
-      Connection = message.guild ? await Channel.join : null
+      Connection = message.guild ? await Channel.join() : null
 
       if (Connection){
         Connection.play(path.join(__dirname, "..", "..", "assets", "sounds", "thinking.mp3"))
-
-        await message.react("🔊")
       }
     }
   } catch(err){
@@ -96,7 +94,6 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const Question = await GenerateQuestion()
-  console.log(Question)
   const ClueCard = await GenerateClueCard(Question.question.replace(/<\/?i>/gi, ""))
 
   const Category = new Discord.MessageEmbed()
