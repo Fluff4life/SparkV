@@ -79,9 +79,6 @@ const GenerateClueCard = async (Question) => {
 
 exports.run = async (Bot, message, Arguments) => {
   const Channel = message.member.voice.channel
-
-  const Question = await GenerateQuestion()
-  const ClueCard = await GenerateClueCard(Question.question.replace(/<\/?i>/gi, ""))
   var Connection
 
   try {
@@ -97,6 +94,10 @@ exports.run = async (Bot, message, Arguments) => {
   } catch(err){
     return message.channel.send("Uh oh! Something went wrong. Please try again later or leave the VC.")
   }
+
+  const Question = await GenerateQuestion()
+  console.log(Question)
+  const ClueCard = await GenerateClueCard(Question.question.replace(/<\/?i>/gi, ""))
 
   const Category = new Discord.MessageEmbed()
     .setTitle(Question.category.title.toUpperCase())
