@@ -59,7 +59,7 @@ exports.run = async (Bot, message) => {
 
   if (ChatBotEnabled === true){
     if (!message.content.startsWith(Prefix)) {
-      fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message)}&gender=true&name=Ch1llBlox`)
+      fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.content)}&gender=male&name=Ch1llBlox`)
         .then((res) => res.json())
         .then((body) => {
           const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
