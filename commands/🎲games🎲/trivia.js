@@ -3,6 +3,14 @@ const request = require("node-superfetch")
 const path = require("path")
 const Canvas = require("canvas")
 
+const GenerateQuestion = async () => {
+  const Body = await request
+    .get("https://jservice.io/api/random")
+    .query({ count: 1 })
+
+  return Body[0]
+}
+
 const WrapText = async (ctx, text, maxWidth) => {
   return new Promise(resolve => {
     if (ctx.measureText(text).width < maxWidth){
@@ -72,11 +80,7 @@ const GenerateClueCard = async (Question) => {
 exports.run = async (Bot, message, Arguments) => {
   const Channel = message.member.voice.channel
 
-  const Body = await request
-    .get("https://jservice.io/api/random")
-    .query({ count: 1 })
-
-  const Question = await Body[0]
+  const Question = await GenerateQuestion()
   const ClueCard = await GenerateClueCard(Question.question.replace(/<\/?i>/gi, ""))
   var Connection
 
