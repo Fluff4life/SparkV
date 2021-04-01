@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const Levels = require("discord-xp")
+const fetch = require("node-fetch")
 const AntiSwearPackage = require("anti-swear-words-packages-discord")
 
 exports.run = async (Bot, message) => {
@@ -57,7 +58,7 @@ exports.run = async (Bot, message) => {
   const ChatBotEnabled = await Bot.dashboard.getVal(message.guild.id, "ChatBotEnabled")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (ChatBotEnabled === true){
+  if (ChatBotEnabled === true) {
     if (!message.content.startsWith(Prefix)) {
       fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.content)}&gender=male&name=Ch1llBlox`)
         .then((res) => res.json())
@@ -120,9 +121,9 @@ exports.run = async (Bot, message) => {
     return message.reply("This command is currently disabled! Please try again later.")
   }
 
-  if (commandfile.config.category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === true){
+  if (commandfile.config.category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === true) {
     return message.reply("This command is disabled by the server owner.")
-  } else if (commandfile.config.category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === true){
+  } else if (commandfile.config.category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === true) {
     return message.reply("This command is disabled by the server owner.")
   }
 
