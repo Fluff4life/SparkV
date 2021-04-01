@@ -11,7 +11,9 @@
     },
 
     "Embed": {
-        "EmbedColor": "#0099ff"
+        "EmbedColor": "BLUE",
+        "SuccessColor": "#0099ff",
+        "ErrorColor": "RED"
     },
 
     "Emojis": {
