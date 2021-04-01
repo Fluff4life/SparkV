@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const Levels = require("discord-xp")
+const AntiSwearPackage = require("anti-swear-words-packages-discord")
 
 exports.run = async (Bot, message) => {
   if (message.author.bot) {
@@ -22,6 +23,18 @@ exports.run = async (Bot, message) => {
     return message.reply("you cannot send links here.").then(m => m.delete({ timeout: 1000 }))
   }
 
+  const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "AntiSwear")
+
+  if (AntiSwear === true && !message.author.hasPermission("MANAGE_MESSAGES")) {
+    AntiSwearPackage(Bot, message, {
+      warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
+      muteRole: message.guild.roles.cache.find(role => role.name === "Muted"),
+      muteCount: 3,
+      kickCount: 6,
+      banCount: 12
+    })
+  }
+
   const AntiSpam = await Bot.dashboard.getVal(message.guild.id, "AntiSpam")
 
   if (AntiSpam === true && !message.channel.name.endsWith("spamhere") && !message.channel.name.endsWith("spam-here")) {
@@ -30,7 +43,7 @@ exports.run = async (Bot, message) => {
 
   const Leveling = await Bot.dashboard.getVal(message.guild.id, "Leveling")
 
-  if (Leveling && Leveling === "on") {
+  if (Leveling === true) {
     const RandomAmountOfXP = Math.floor(Math.random() * 15) + 10;
     const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomAmountOfXP);
 
@@ -41,14 +54,28 @@ exports.run = async (Bot, message) => {
     }
   }
 
+  const ChatBotEnabled = await Bot.dashboard.getVal(message.guild.id, "ChatBotEnabled")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (message.content.startsWith(Bot.Config.Bot.prefix) && Prefix !== Bot.Config.Bot.prefix){
-    return message.channel.send("The prefix for this server is " + Prefix)
-  } else {
+  if (ChatBotEnabled === true){
     if (!message.content.startsWith(Prefix)) {
-      return
+      fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message)}&gender=true&name=Ch1llBlox`)
+        .then((res) => res.json())
+        .then((body) => {
+          const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
+
+          return message.reply(APIMessage)
+        })
+        .catch((err) => {
+          console.error(err)
+
+          return message.channel.send("Wha- what? Something went wrong.")
+        })
     }
+  }
+
+  if (!message.content.startsWith(Prefix)) {
+    return
   }
 
   const args = message.content

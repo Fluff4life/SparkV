@@ -50,9 +50,8 @@ async function RunWebsite(Bot) {
       .use("/api", require("./public/routes/api"))
       .use("/logout", require("./public/routes/logout"))
 
-
-      .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
-      .use("/ch1llblox", require("./public/routes/ch1llblox"))
+      // .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
+      .use("/bot", require("./public/routes/bot"))
 
     // .use("/manage", manage)
     // .use("/stats", stats)

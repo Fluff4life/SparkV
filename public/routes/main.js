@@ -7,6 +7,10 @@ Router.get("/", async (request, response) => {
     response.redirect("/selector")
 })
 
+Router.get("/status", async (request, response) => {
+    response.redirect("https://stats.uptimerobot.com/x84NBTJEkN")
+})
+
 Router.get("/selector", CheckAuth, async (request, response) => {
     response.render("selector", {
         user: request.userinfo,

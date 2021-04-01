@@ -22,6 +22,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.4.0",
     "@top-gg/sdk": "^3.0.9",
+    "anti-swear-words-packages-discord": "^1.1.43",
     "botdash.pro": "^1.0.2",
     "canvacord": "^5.1.0",
     "canvas": "^2.7.0",
