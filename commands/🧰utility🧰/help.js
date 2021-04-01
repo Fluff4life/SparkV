@@ -19,15 +19,6 @@ exports.run = async (Bot, message, args) => {
       return
     }
 
-    const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, "MusicEnabled")
-    const LevelingEnabled = await Bot.dashboard.getVal(message.guild.id, "Leveling")
-
-    if (Category === "🎵music🎵" && MusicEnabled === false){
-      return
-    } else if (Category === "💫leveling💫" && LevelingEnabled === false){
-      return
-    }
-
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(Bot, Category))
