@@ -7,7 +7,6 @@ console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading web
 // Librarys //
 const express = require("express");
 const favicon = require("serve-favicon")
-const helmet = require("helmet");
 const path = require("path")
 const Chalk = require("chalk")
 const session = require("cookie-session");
@@ -27,54 +26,16 @@ async function RunWebsite(Bot) {
     app
       .use(express.json())
       .use(express.urlencoded({ extended: true }))
+
       .engine("html", require("ejs").renderFile)
       .set("view engine", "ejs")
+
+      .use(favicon(__dirname + "/public/assets/images/favicon.ico"))
 
       .use(express.static(path.join(__dirname + "/public")))
       .set("views", __dirname + "/views")
 
-      .use(helmet())
-      .use(helmet.contentSecurityPolicy({
-        directives: {
-          defaultSrc: [`'self'`],
-          scriptSrc: [
-            `'self'`,
-            "use.fontawesome.com",
-            'ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
-            "cdn.jsdelivr.net",
-            "www.google-analytics.com"
-          ],
-          styleSrc: [
-            `'self'`,
-            'ch1ll.herokuapp.com',
-            "use.fontawesome.com",
-            "cdn.jsdelivr.net",
-          ],
-          imgSrc: [
-            `'self'`,
-            "data:",
-            "imgur.com",
-            "i.imgur.com",
-            "discord.com",
-            "cdn.discordapp.com",
-            "www.roblox.com",
-            "t0.rbxcdn.com",
-            "t1.rbxcdn.com",
-            "t2.rbxcdn.com",
-            "t3.rbxcdn.com",
-            "t4.rbxcdn.com",
-            "t5.rbxcdn.com",
-            "t6.rbxcdn.com"
-          ],
-          fontSrc: [
-            `'self'`,
-            "use.fontawesome.com"
-          ]
-        }
-      }))
       .use(session({ secret: process.env.expresspassword, resave: false, saveUninitialized: false }))
-
-      .use(favicon(__dirname + "/public/assets/images/favicon.ico"))
       
       .use(async (request, response, next) => {
         request.user = request.session.user
