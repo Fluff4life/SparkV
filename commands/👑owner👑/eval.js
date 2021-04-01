@@ -22,7 +22,6 @@ exports.run = async (Bot, message, Arguments) => {
         .setDescription(`*${Server.description || "N/A"}*`)
         .addField("Member Count", Server.memberCount || "N/A", true)
         .addField("Region", `${Server.region || "N/A"}`, true)
-        .addField("Invite", `${OpenInvite}`)
         .setColor(Bot.Config.Embed.EmbedColor)
         .setThumbnail(Server.iconURL() || null)
         .setImage(Server.bannerURL() || "https://www.adl.org/sites/default/files/styles/open_graph_image_1200_x_628_/public/2019-08/discord-logo.jpg?itok=LMNTgq_N")
