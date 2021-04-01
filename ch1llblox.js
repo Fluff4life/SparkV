@@ -2,24 +2,28 @@
 // Last Edited: 2/25/2021 //
 // Index.js //
 
-/*
-console.log("  _                     _ _             ")
-console.log(" | |                   | (_)            ")
-console.log(" | |     ___   __ _  __| |_ _ __   __ _ ")
-console.log(" | |    / _ \\ / _` |/ _` | | '_ \\ / _` |")
-console.log(" | |___| (_) | (_| | (_| | | | | | (_| |")
-console.log(" |______\\___/ \\__,_|\\__,_|_|_| |_|\\__, |")
-console.log("                                   __/ |")
-console.log("                                  |___/")
-*/
-
-console.log(require("chalk").green("LOADING STARTED - BOT => Now loading bot."))
-
 // Librarys //
 const { Client, Collection } = require("discord.js")
 const { readdir } = require("fs")
 const AntiSpam = require("discord-anti-spam")
 const Chalk = require("chalk")
+
+console.log(Chalk.green("  _                     _ _             "))
+console.log(Chalk.green(" | |                   | (_)            "))
+console.log(Chalk.green(" | |     ___   __ _  __| |_ _ __   __ _ "))
+console.log(Chalk.green(" | |    / _ \\ / _` |/ _` | | '_ \\ / _` |"))
+console.log(Chalk.green(" | |___| (_) | (_| | (_| | | | | | (_| |"))
+console.log(Chalk.green(" |______\\___/ \\__,_|\\__,_|_|_| |_|\\__, |"))
+console.log(Chalk.green("                                   __/ |"))
+console.log(Chalk.green("                                  |___/"))
+
+console.log(Chalk.grey("----------------------------------------"))
+
+console.log(Chalk.blue("   ____ _     _ _ _ ____  _           "))
+console.log(Chalk.blue("  / ___| |__ / | | | __ )| | _____  __"))
+console.log(Chalk.blue(" | |   | '_ \| | | |  _ \| |/ _ \ \/ /"))
+console.log(Chalk.blue(" | |___| | | | | | | |_) | | (_) >  < "))
+console.log(Chalk.blue("  \____|_| |_|_|_|_|____/|_|\___/_/\_\ "))                                 
 
 // Create Bot //
 const Bot = new Client({
