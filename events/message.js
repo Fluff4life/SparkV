@@ -66,7 +66,7 @@ exports.run = async (Bot, message) => {
         .then((body) => {
           const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
 
-          return message.reply(APIMessage)
+          return message.channel.send(`> ${message.content}\n${APIMessage}`)
         })
         .catch((err) => {
           console.error(err)
