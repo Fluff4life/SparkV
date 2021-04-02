@@ -17,9 +17,9 @@ exports.run = async (Bot, message, Arguments) => {
     .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
     .setStatus(Target.presence.status)
     .setRank(User.position)
-    .setLevel(User.level)
-    .setCurrentXP(User.xp)
-    .setRequiredXP(NeededXP)
+    .setLevel(User.level || 0)
+    .setCurrentXP(User.xp || 0)
+    .setRequiredXP(NeededXP || 100)
     .setProgressBar("#0099ff", "COLOR")
 
   Rank.build().then(data => {
