@@ -1,39 +1,34 @@
 const Discord = require("discord.js");
-const Levels = require("discord-xp")
+const Levels = require("discord-xp");
+const canvacord = require("canvacord");
 
 exports.run = async (Bot, message, Arguments) => {
-  const Target = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
+  const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, message.guild.memberCount)
+  const Leaderboard = await Levels.computeLeaderboard(Bot, RawLeaderboard, true)
+
+  const Target = message.mentions.users.first() || message.author
   const User = await Levels.fetch(Target.id, message.guild.id)
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
 
-  const canvacord = require("canvacord");
-
-  var Rank
-
   if (!User) {
-    Rank = new canvacord.Rank()
-      .setUsername(Target.username)
-      .setDiscriminator(Target.discriminator)
-      .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
-      .setLevel(1)
-      .setCurrentXP(0)
-      .setRequiredXP(100)
-      .setProgressBar("#0099ff", "COLOR")
-  } else {
-    Rank = new canvacord.Rank()
-      .setUsername(Target.username)
-      .setDiscriminator(Target.discriminator)
-      .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
-      .setLevel(User.level)
-      .setCurrentXP(User.xp)
-      .setRequiredXP(NeededXP)
-      .setProgressBar("#0099ff", "COLOR")
+    return message.channel.send("This user hasn't earned any XP yet!")
   }
+
+  const Rank = new canvacord.Rank()
+    .setUsername(Target.username)
+    .setDiscriminator(Target.discriminator)
+    .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
+    .setStatus(Target.presence.status)
+    .setRank(Leaderboard.map(data => data.userID === Target.id ? data.position : 0))
+    .setLevel(User.level)
+    .setCurrentXP(User.xp)
+    .setRequiredXP(NeededXP)
+    .setProgressBar("#0099ff", "COLOR")
 
   Rank.build().then(data => {
     const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.png`)
 
-    message.channel.send(Attachment)
+    return message.channel.send(Attachment)
   })
 },
 
