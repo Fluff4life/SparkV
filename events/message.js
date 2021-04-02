@@ -28,7 +28,7 @@ exports.run = async (Bot, message) => {
   const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "AntiSwear")
 
   if (AntiSwear === "true" && !user.hasPermission("MANAGE_MESSAGES")) {
-    AntiSwearPackage(Bot, message.content, {
+    AntiSwearPackage(Bot, message, {
       warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
       muteRole: "Muted",
       muteCount: 3,
