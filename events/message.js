@@ -12,10 +12,10 @@ exports.run = async (Bot, message) => {
     return;
   }
 
-  const User = message.guild.members.cache.get(message.author.id);
+  const user = message.guild.members.cache.get(message.author.id);
   const AntiURL = await Bot.dashboard.getVal(message.guild.id, "AntiURL")
 
-  if (AntiURL === "true" && Bot.isURL(message.content) && !User.hasPermission("MANAGE_MESSAGES")) {
+  if (AntiURL === "true" && Bot.isURL(message.content) && !user.hasPermission("MANAGE_MESSAGES")) {
     try {
       message.delete();
     } catch (err) {
@@ -27,7 +27,7 @@ exports.run = async (Bot, message) => {
 
   const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "AntiSwear")
 
-  if (AntiSwear === "true" && !User.hasPermission("MANAGE_MESSAGES")) {
+  if (AntiSwear === "true" && !user.hasPermission("MANAGE_MESSAGES")) {
     AntiSwearPackage(Bot, message.content, {
       warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
       muteRole: "Muted",
