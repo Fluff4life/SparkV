@@ -3,8 +3,6 @@ const Levels = require("discord-xp");
 const canvacord = require("canvacord");
 
 exports.run = async (Bot, message, Arguments) => {
-  const user = await Levels.fetch(target.id, message.guild.id, true);
-
   const Target = message.mentions.users.first() || message.author
   const User = await Levels.fetch(Target.id, message.guild.id, true)
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
