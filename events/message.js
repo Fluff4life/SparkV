@@ -62,7 +62,7 @@ exports.run = async (Bot, message) => {
 
   if (ChatBotEnabled === "true") {
     if (ChatBotCooldown === true){
-      return message.reply("You're on cooldown!")
+      return message.reply("To prevent spam, I've placed you on a cooldown for 10 seconds.")
     }
 
     if (!message.content.startsWith(Prefix)) {
@@ -77,7 +77,7 @@ exports.run = async (Bot, message) => {
 
           setTimeout(() => {
             ChatBotCooldown = false
-          }, 5 * 1000)
+          }, 10 * 1000)
 
           return
         })
