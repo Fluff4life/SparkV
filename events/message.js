@@ -135,9 +135,9 @@ exports.run = async (Bot, message) => {
     return message.reply("This command is currently disabled! Please try again later.")
   }
 
-  if (commandfile.config.category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === "true") {
+  if (commandfile.config.category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === "false") {
     return message.reply("This command is disabled by the server owner.")
-  } else if (commandfile.config.category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === "true") {
+  } else if (commandfile.config.category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === "false") {
     return message.reply("This command is disabled by the server owner.")
   }
 
