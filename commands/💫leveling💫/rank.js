@@ -3,11 +3,10 @@ const Levels = require("discord-xp");
 const canvacord = require("canvacord");
 
 exports.run = async (Bot, message, Arguments) => {
-  const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, message.guild.memberCount)
-  const Leaderboard = await Levels.computeLeaderboard(Bot, RawLeaderboard, true)
+  const user = await Levels.fetch(target.id, message.guild.id, true);
 
   const Target = message.mentions.users.first() || message.author
-  const User = await Levels.fetch(Target.id, message.guild.id)
+  const User = await Levels.fetch(Target.id, message.guild.id, true)
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
 
   if (!User) {
@@ -19,7 +18,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setDiscriminator(Target.discriminator)
     .setAvatar(Target.displayAvatarURL({ dynamic: false, format: "png" }))
     .setStatus(Target.presence.status)
-    .setRank(Leaderboard.map(data => data.userID === Target.id ? data.position : 0))
+    .setRank(User.position)
     .setLevel(User.level)
     .setCurrentXP(User.xp)
     .setRequiredXP(NeededXP)
