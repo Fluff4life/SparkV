@@ -62,13 +62,17 @@ exports.run = async (Bot, message) => {
 
   if (ChatBotEnabled === "true") {
     if (ChatBotCooldown === true){
-      return message.reply("To prevent spam, I've placed you on a cooldown for 10 seconds.")
+      return
     }
 
     if (!message.content.startsWith(Prefix)) {
       fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.content)}&gender=male&name=Ch1llBlox`)
         .then((res) => res.json())
         .then((body) => {
+          if (message.deleted){
+            return
+          }
+
           const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
 
           message.channel.send(`> ${message.content}\n${APIMessage}`)
@@ -78,8 +82,6 @@ exports.run = async (Bot, message) => {
           setTimeout(() => {
             ChatBotCooldown = false
           }, 10 * 1000)
-
-          return
         })
         .catch((err) => {
           console.error(err)
