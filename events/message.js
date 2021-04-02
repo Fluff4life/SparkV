@@ -58,15 +58,28 @@ exports.run = async (Bot, message) => {
 
   const ChatBotEnabled = await Bot.dashboard.getVal(message.guild.id, "ChatBotEnabled")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
+  var ChatBotCooldown = false
 
   if (ChatBotEnabled === "true") {
+    if (ChatBotCooldown === true){
+      return message.reply("You're on cooldown!")
+    }
+
     if (!message.content.startsWith(Prefix)) {
       fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.content)}&gender=male&name=Ch1llBlox`)
         .then((res) => res.json())
         .then((body) => {
           const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
 
-          return message.channel.send(`> ${message.content}\n${APIMessage}`)
+          message.channel.send(`> ${message.content}\n${APIMessage}`)
+
+          ChatBotCooldown = true
+
+          setTimeout(() => {
+            ChatBotCooldown = false
+          }, 5 * 1000)
+
+          return
         })
         .catch((err) => {
           console.error(err)
