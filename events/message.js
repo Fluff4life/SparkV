@@ -22,14 +22,14 @@ exports.run = async (Bot, message) => {
       message.channel.send(`${message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`).then(m => m.delete({ timeout: 1000 }))
     }
 
-    return message.channel.send(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
+    return message.channel.send(`🔨 <@${message.author.id}>, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
   }
 
   const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "AntiSwear")
 
   if (AntiSwear === "true" && !user.hasPermission("MANAGE_MESSAGES")) {
     AntiSwearPackage(Bot, message, {
-      warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
+      warnMSG: `🔨 <@${message.author.id}>, please stop cursing. If you curse again, you'll be muted.`,
       muteRole: "Muted",
       ignoreWord: ["hello"],
       muteCount: 3,
@@ -53,19 +53,14 @@ exports.run = async (Bot, message) => {
     if (HasLeveledUp) {
       const User = await Levels.fetch(message.author.id, message.guild.id)
 
-      message.channel.send(`⚡ Congrats ${message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
+      message.channel.send(`⚡ Congrats <@${message.author.id}>, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
     }
   }
 
   const ChatBotEnabled = await Bot.dashboard.getVal(message.guild.id, "ChatBotEnabled")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
-  var ChatBotCooldown = false
 
   if (ChatBotEnabled === "true") {
-    if (ChatBotCooldown === true){
-      return
-    }
-
     if (!message.content.startsWith(Prefix)) {
       fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.content)}&gender=male&name=Ch1llBlox`)
         .then((res) => res.json())
@@ -77,12 +72,6 @@ exports.run = async (Bot, message) => {
           const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
 
           message.channel.send(`> ${message.content}\n${APIMessage}`)
-
-          ChatBotCooldown = true
-
-          setTimeout(() => {
-            ChatBotCooldown = false
-          }, 10 * 1000)
         })
         .catch((err) => {
           console.error(err)
