@@ -31,6 +31,7 @@ exports.run = async (Bot, message) => {
     AntiSwearPackage(Bot, message, {
       warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
       muteRole: "Muted",
+      ignoreWord: ["hello"],
       muteCount: 3,
       kickCount: 6,
       banCount: 12
