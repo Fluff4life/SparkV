@@ -35,7 +35,11 @@ async function RunWebsite(Bot) {
       .use(express.static(path.join(__dirname + "/public")))
       .set("views", __dirname + "/views")
 
-      .use(session({ secret: process.env.expresspassword, resave: false, saveUninitialized: false }))
+      .use(session({
+        secret: process.env.expresspassword,
+        resave: false,
+        saveUninitialized: false
+      }))
       
       .use(async (request, response, next) => {
         request.user = request.session.user
@@ -48,14 +52,9 @@ async function RunWebsite(Bot) {
       .use("/", require("./public/routes/main"))
       .use("/home", require("./public/routes/home"))
       .use("/api", require("./public/routes/api"))
-      .use("/logout", require("./public/routes/logout"))
+      .use("/user", auth, require("./public/routes/user"))
 
-      // .use("/ch1llstudios", require("./public/routes/ch1llstudios"))
       .use("/bot", require("./public/routes/bot"))
-
-    // .use("/manage", manage)
-    // .use("/stats", stats)
-    // .use("/settings", settings)
 
       .use((request, response, next) => {
         response
