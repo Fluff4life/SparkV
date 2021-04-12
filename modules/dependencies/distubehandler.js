@@ -43,25 +43,13 @@ module.exports = async (Bot) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
         .setTitle(`🎵 Now Playing a Playlist 🎵`)
         .setDescription(`${playlist.name}`)
-        .setThumbnail(song.thumbnail)
+        .setThumbnail(playlist.thumbnail)
         .addFields(
           {
             name: `Requester`,
-            value: song.user,
+            value: playlist.user,
             inline: true,
-          },
-
-          {
-            name: `▶Views`,
-            value: `\`\`\`${await Bot.FormatNumber(song.views)}\`\`\``,
-            inline: true
-          },
-
-          {
-            name: `Stats`,
-            value: `\`\`\`👍Likes: ${await Bot.FormatNumber(song.likes)}\n👎Dislikes: ${await Bot.FormatNumber(song.dislikes)}\`\`\``,
-            inline: true
-          },
+          }
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
