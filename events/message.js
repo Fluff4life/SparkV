@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 const fetch = require("node-fetch")
 const AntiSwearPackage = require("anti-swear-words-packages-discord")
+const discordreply = require("discord-reply")
 
 exports.run = async (Bot, message) => {
   if (message.author.bot) {
@@ -62,7 +63,9 @@ exports.run = async (Bot, message) => {
 
   if (ChatBotEnabled === "true") {
     if (!message.content.startsWith(Prefix) && message.mentions.has(Bot.user)) {
-      fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.content)}&gender=male&name=Ch1llBlox`)
+      var CleanedMessage = Discord.Util.cleanContent(message.content, message)
+
+      fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(CleanedMessage)}&gender=male&name=Ch1llBlox`)
         .then((res) => res.json())
         .then((body) => {
           if (message.deleted){
@@ -71,7 +74,7 @@ exports.run = async (Bot, message) => {
 
           const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
 
-          message.channel.send(`> ${message.content}\n${APIMessage}`)
+          message.lineReplyNoMention(APIMessage)
         })
         .catch((err) => {
           console.error(err)

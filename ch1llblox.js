@@ -26,6 +26,8 @@ console.log(Chalk.blue(" | |___| | | | | | | |_) | | (_) >  < "))
 console.log(Chalk.blue("  \____|_| |_|_|_|_|____/|_|\___/_/\_\ "))                                 
 
 // Create Bot //
+require("discord-reply") // Until discord.js releases 2021 replys, I have this module to do it for me. Will be removed in the future!
+
 const Bot = new Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
   disableMentions: "all",
