@@ -61,7 +61,7 @@ exports.run = async (Bot, message) => {
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
   if (ChatBotEnabled === "true") {
-    if (!message.content.startsWith(Prefix)) {
+    if (!message.content.startsWith(Prefix) && message.mentions.has(Bot.user)) {
       fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.content)}&gender=male&name=Ch1llBlox`)
         .then((res) => res.json())
         .then((body) => {
