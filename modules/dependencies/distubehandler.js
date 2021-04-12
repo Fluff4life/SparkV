@@ -93,7 +93,7 @@ module.exports = async (Bot) => {
       const SongAddedQueue = new Discord.MessageEmbed()
         .setTitle("➕Added Playlist To Queue")
         .setDescription(playlist.name)
-        .setThumbnail(song.thumbnail)
+        .setThumbnail(playlist.thumbnail)
         .addFields(
           {
             name: `Requester`,
