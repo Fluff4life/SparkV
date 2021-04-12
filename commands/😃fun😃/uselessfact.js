@@ -8,7 +8,7 @@ exports.run = async (Bot, message) => {
       const FunFactEmbed = new Discord.MessageEmbed()
         .setTitle("Did you know?")
         .setDescription(json.text)
-        .setFooter(`Fun facts powered by https://uselessfacts.jsph.pl!`)
+        .setFooter(`Fun facts powered by https://uselessfacts.jsph.pl! • ${Bot.Config.Embed.EmbedFooter}`)
         .setColor(Bot.Config.Embed.EmbedColor)
         .setTimestamp();
 

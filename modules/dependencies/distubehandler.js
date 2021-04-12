@@ -34,7 +34,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`😀${song.formattedDuration}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 ${song.formattedDuration} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
@@ -53,7 +53,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`(${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration})`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 (${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
@@ -84,7 +84,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`😀${song.formattedDuration}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 ${song.formattedDuration} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)
@@ -109,7 +109,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`😀${song.formattedDuration}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 ${song.formattedDuration} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)

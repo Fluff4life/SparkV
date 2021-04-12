@@ -32,7 +32,7 @@ exports.run = async (Bot, message, Arguments) => {
             .addField(`**Feels Like**`, `${Current.temperature}°F`, true)
             .addField(`**Humidity**`, `${Current.humidity}%`, true)
             .addField(`**Timezone**`, `${Location.timezone} UTC`, true)
-            .setFooter(`Weather forecast for ${Current.observationpoint}`)
+            .setFooter(`Weather forecast for ${Current.observationpoint}! • ${Bot.Config.Embed.EmbedFooter}`)
             .setColor(Bot.Config.Embed.EmbedColor)
             .setTimestamp()
 

@@ -8,7 +8,7 @@ exports.run = async (Bot, message) => {
     .addField("**LATENCY**", `\`\`\`Ch1llBlox: ${Bot.ws.ping}ms\nAPI: ${BotMessage.createdAt - message.createdAt}ms\`\`\``, true)
     .addField("**STORAGE**", `\`\`\`RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
     .addField("**DATA**", `\`\`\`Uptime: ${Bot.MSToTime(Bot.uptime)}\`\`\``, true)
-    .setFooter("Ch1llBlox's Stats")
+    .setFooter(`Ch1llBlox's Stats • ${Bot.Config.Embed.EmbedFooter}`)
     .setColor(Bot.Config.Embed.EmbedColor)
     .setTimestamp()
 

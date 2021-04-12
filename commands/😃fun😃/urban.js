@@ -6,7 +6,7 @@ exports.run = async (Bot, message, args) => {
     const ErrorEmbed = new Discord.MessageEmbed()
       .setTitle("Invalid command usage!")
       .setDescription("Please provide a word to urban!")
-      .setFooter(`Try using "${Bot.Config.Bot.prefix}Urban [Word]"`);
+      .setFooter(`Try ^Urban [Word] • ${Bot.Config.Embed.EmbedFooter}`);
 
     return await message.channel.send(ErrorEmbed).then(m => m.delete({ timeout: 5000 }))
   }
@@ -24,10 +24,7 @@ exports.run = async (Bot, message, args) => {
       .setThumbnail("https://i.imgur.com/VFXr0ID.jpg")
       .addField(`Example`, json.example)
       .setURL(json.permalink)
-      .setFooter(
-        `👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author}`,
-        Bot.user.displayAvatarURL()
-      )
+      .setFooter(`👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
       .setColor(Bot.Config.Embed.EmbedColor);
 
     return await message.channel.send(UrbanEmbed);

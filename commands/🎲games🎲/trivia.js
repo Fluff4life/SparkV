@@ -99,7 +99,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Category = new Discord.MessageEmbed()
     .setTitle(Question.category.title.toUpperCase())
     .setDescription(`The category is ${Question.category.title.toUpperCase()}!`)
-    .setFooter("You have 120 seconds to anwser.")
+    .setFooter(`You have 120 seconds to anwser. • ${Bot.Config.Embed.EmbedFooter}`)
     .setImage(ClueCard)
     .setColor(Bot.Config.Embed.EmbedColor)
 

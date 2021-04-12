@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
     const VerificationEmbed = new Discord.MessageEmbed()
       .setTitle("Convermination Prompt")
       .setDescription("Are you sure you want to do this?")
-      .setFooter("Canceling in 60 seconds if no emoji reacted.")
+      .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Embed.EmbedFooter}`)
 
     const VerificationMessage = await message.channel.send(VerificationEmbed)
     const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)

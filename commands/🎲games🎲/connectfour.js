@@ -72,7 +72,7 @@ exports.run = async (Bot, message, Arguments) => {
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle("⚔ Connect Four Duel")
     .setDescription(`${Opponent}, ${message.author} challenged you to a duel! React to this message to accpet or decline.`)
-    .setFooter("Canceling in 60 seconds.")
+    .setFooter(`Canceling in 60 seconds. • ${Bot.Config.Embed.EmbedFooter}`)
     .setColor(Bot.Config.Embed.EmbedColor)
 
   const VerificationMessage = await message.channel.send(VerificationEmbed)
@@ -115,7 +115,7 @@ exports.run = async (Bot, message, Arguments) => {
       await GameMessage.edit(GameEmbed
         .setTitle(`**${message.author.username} V.S ${Opponent.user.username}**`)
         .setDescription(`${DisplayBoard(Board)}\n${User}, which column do you pick?`)
-        .setFooter(`Type "end" to forfeit.`)
+        .setFooter(`Type "end" to forfeit. • ${Bot.Config.Embed.EmbedFooter}`)
         .setColor(Bot.Config.Embed.EmbedColor)
         .setTimestamp()
       )
@@ -165,7 +165,7 @@ exports.run = async (Bot, message, Arguments) => {
       ColLevels[Spot] -= 1
 
       if (Winner === "time") {
-        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity.`))
+        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity. • ${Bot.Config.Embed.EmbedFooter}`))
 
         return
       }

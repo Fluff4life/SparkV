@@ -8,7 +8,7 @@ exports.run = async (Bot, message) => {
       const AdviceEmbed = new Discord.MessageEmbed()
         .setTitle("Here's an advice")
         .setDescription(json.slip.advice)
-        .setFooter(`You got advice #${json.slip.id}`, Bot.user.displayAvatarURL())
+        .setFooter(`You got advice #${json.slip.id} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setColor(Bot.Config.Embed.EmbedColor)
         .setTimestamp();
 

@@ -12,6 +12,7 @@
 
     "Embed": {
         "EmbedColor": "BLUE",
+        "EmbedFooter": "Join my Support Server! ^Support.",
         "SuccessColor": "#0099ff",
         "ErrorColor": "RED"
     },

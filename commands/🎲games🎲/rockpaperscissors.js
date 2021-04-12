@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
   const embed = new Discord.MessageEmbed()
     .setTitle("Rock Paper Scissors")
     .setDescription("React to one of these emojis to begin!")
-    .setFooter(Bot.user.username, Bot.user.displayAvatarURL())
+    .setFooter(`${Bot.user.username} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
     .setColor(Bot.Config.Embed.EmbedColor)
 
   const Message = await message.channel.send(embed)
@@ -27,7 +27,7 @@ exports.run = async (Bot, message, Arguments) => {
   embed
     .setTitle("Game Over - Rock Paper Scissors")
     .setDescription(`${Result}`)
-    .setFooter(`${Reacted} V.S. ${BotChoice}`)
+    .setFooter(`${Reacted} V.S. ${BotChoice} • ${Bot.Config.Embed.EmbedFooter}`)
 
   Message.edit(embed)
 },
