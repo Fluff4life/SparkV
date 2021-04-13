@@ -28,7 +28,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
@@ -53,7 +53,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} (${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) (${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
@@ -78,7 +78,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 Added by ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)
@@ -103,7 +103,7 @@ module.exports = async (Bot) => {
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)
@@ -129,16 +129,16 @@ module.exports = async (Bot) => {
       }
     })
     .on("finish", (message) => {
-      message.channel.send("No songs left in queue. Add more songs!").then(m => m.delete({ timeout: 10000 }))
+      message.channel.send("No songs left in queue. Add more songs!")
     })
     .on("noRelated", (message) => {
-      message.channel.send("I cannot find a related video to play. I am stopping the music.").then(m => m.delete({ timeout: 10000 }))
+      message.channel.send("I cannot find a related video to play. I am stopping the music.")
     })
     .on("searchCancel", (message) => {
-      message.channel.send(`Searching canceled.`).then(m => m.delete({ timeout: 10000 }))
+      message.channel.send(`Searching canceled.`)
     })
     .on("empty", (message) => {
-      message.channel.send("Voice chat is empty. Leaving the VC.").then(m => m.delete({ timeout: 10000 }))
+      message.channel.send("Voice chat is empty. Leaving the VC.")
     })
     .on("error", (message, err) => {
       console.error(err)
