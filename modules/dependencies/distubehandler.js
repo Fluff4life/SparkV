@@ -37,7 +37,7 @@ module.exports = async (Bot) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
         .setTitle(`🎵 Now Playing a Playlist 🎵`)
         .setDescription(playlist.name)
-        .setThumbnail(playlist.thumbnail)
+        .setThumbnail(playlist.thumbnail.url)
         .addFields(
           {
             name: `⚙︱Audio Stats`,
