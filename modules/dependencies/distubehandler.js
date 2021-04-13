@@ -56,13 +56,13 @@ module.exports = async (Bot) => {
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
           }
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) (${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
