@@ -15,26 +15,20 @@ module.exports = async (Bot) => {
         .setThumbnail(song.thumbnail)
         .addFields(
           {
-            name: `Requester`,
-            value: song.user,
+            name: `⚙︱Audio Stats`,
+            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true
+          },
+
+          {
+            name: `🔊︱Audio Settings`,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
-          },
-
-          {
-            name: `▶Views`,
-            value: `\`\`\`${await Bot.FormatNumber(song.views)}\`\`\``,
-            inline: true
-          },
-
-          {
-            name: `Stats`,
-            value: `\`\`\`👍Likes: ${await Bot.FormatNumber(song.likes)}\n👎Dislikes: ${await Bot.FormatNumber(song.dislikes)}\`\`\``,
-            inline: true
-          },
+          }
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.formattedDuration} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
@@ -42,90 +36,77 @@ module.exports = async (Bot) => {
     .on("playList", async (message, queue, playlist, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
         .setTitle(`🎵 Now Playing a Playlist 🎵`)
-        .setDescription(`${playlist.name}`)
+        .setDescription(playlist.name)
         .setThumbnail(playlist.thumbnail)
         .addFields(
           {
-            name: `Requester`,
-            value: playlist.user,
+            name: `⚙︱Audio Stats`,
+            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true
+          },
+
+          {
+            name: `🔊︱Audio Settings`,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
           }
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 (${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} (${playlist.songs.length} songs) - Now Playing ${song.name} (${song.formattedDuration}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(NowPlayingEmbed)
     })
     .on("addSong", async (message, queue, song) => {
       const SongAddedQueue = new Discord.MessageEmbed()
-        .setTitle("➕Added Song To Queue")
+        .setTitle("➕ Added Song To Queue")
         .setDescription(song.name)
         .setThumbnail(song.thumbnail)
         .addFields(
           {
-            name: `Requester`,
-            value: song.user,
-            inline: true,
+            name: `⚙︱Audio Stats`,
+            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true
           },
 
           {
-            name: `Duration`,
-            value: `\`\`\`${song.formattedDuration}\`\`\``,
-            inline: true,
-          },
-
-          {
-            name: `Queue`,
-            value: `\`\`\`${await Bot.FormatNumber(queue.songs.length)} songs - ${queue.duration}\`\`\``,
+            name: `🔊︱Audio Settings`,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
           }
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.formattedDuration} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)
     })
     .on("addList", async (message, queue, playlist) => {
       const SongAddedQueue = new Discord.MessageEmbed()
-        .setTitle("➕Added Playlist To Queue")
+        .setTitle("➕ Added Playlist To Queue")
         .setDescription(playlist.name)
         .setThumbnail(playlist.thumbnail)
         .addFields(
           {
-            name: `Requester`,
-            value: song.user,
-            inline: true,
+            name: `⚙︱Audio Stats`,
+            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true
           },
 
           {
-            name: `Queue`,
-            value: `\`\`\`${await Bot.FormatNumber(queue.songs.length)} songs - ${queue.duration}\`\`\``,
+            name: `🔊︱Audio Settings`,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
           }
         )
         .setURL(song.url)
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.formattedDuration} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`📼 Added by ${song.user.username}#${song.user.tag} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.channel.send(SongAddedQueue)
-
-      message.channel.send(message.channel.send({
-        embed: {
-          title: `Added ${playlist.name} to Queue`,
-          description: `😀Added by ${playlist.user || "unknown"}`,
-          color: "#0099ff",
-
-          footer: {
-            text: `${playlist.songs.length} songs (${playlist.formattedDuration})`,
-            icon_url: Bot.user.displayAvatarURL()
-          },
-        }
-      }))
     })
     .on("searchResult", (message, result) => {
       try {
@@ -169,7 +150,7 @@ module.exports = async (Bot) => {
           color: Bot.Config.Embed.EmbedColor,
 
           footer: {
-            text: `⚠Music command failed.`,
+            text: `⚠ Music command failed.`,
             icon_url: Bot.user.displayAvatarURL()
           }
         }
