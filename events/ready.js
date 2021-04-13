@@ -28,7 +28,7 @@ exports.run = async (Bot) => {
     },
   ]
 
-  setInterval(() => {
+  setInterval(async () => {
     const Activity = Activities[Math.floor(Math.random() * Activities.length)]
 
     Bot.user.setPresence({
