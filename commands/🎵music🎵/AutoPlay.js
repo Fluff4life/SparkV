@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments, Command) => {
     return message.channel.send("A song must be playing to use this command!").then(m => m.delete({ timeout: 5000 }))
   }
   
- let Mode = Bot.distube.toggleAutoplay(message)
+  let Mode = Bot.distube.toggleAutoplay(message)
   message.channel.send("Okay, I just set AutoPlay " + (Mode ? "On" : "Off") + ".").then(m => m.delete({ timeout: 5000 }))
 },
 

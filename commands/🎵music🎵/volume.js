@@ -17,9 +17,8 @@ exports.run = async (Bot, message, Arguments) => {
     return message.send("Due to performance reasons, songs cannot go louder than 100.").then(m => m.delete({ timeout: 5000 }))
   }
   
-  Bot.distube.setVolume(message, parseInt(Arguments[0])).then(() => {
-    message.channel.send(`I set the volume to ${Arguments[0]}!`)
-  })
+  Bot.distube.setVolume(message, parseInt(Arguments[0]))
+  message.channel.send(`I set the volume to ${Arguments[0]}!`)
 },
 
 exports.config = {

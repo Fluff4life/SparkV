@@ -5,7 +5,16 @@ module.exports = async (Bot) => {
   const DisTube = require("distube")
   const Discord = require("discord.js")
 
-  Bot.distube = new DisTube(Bot, { searchSongs: true, emitNewSongOnly: true, leaveOnFinish: true, leaveOnEmpty: true, leaveOnStop: true, highWaterMark: 1<<25, youtubeDL: true, updateYouTubeDL: true })
+  Bot.distube = new DisTube(Bot, {
+    searchSongs: true,
+    emitNewSongOnly: true,
+    leaveOnFinish: true,
+    leaveOnEmpty: true,
+    leaveOnStop: true,
+    highWaterMark: 1<<25,
+    youtubeDL: true,
+    updateYouTubeDL: true
+  })
 
   Bot.distube
     .on("playSong", async (message, queue, song) => {
@@ -143,17 +152,6 @@ module.exports = async (Bot) => {
     .on("error", (message, err) => {
       console.error(err)
 
-      message.channel.send({
-        embed: {
-          title: `Error Occured!`,
-          description: err,
-          color: Bot.Config.Embed.EmbedColor,
-
-          footer: {
-            text: `⚠ Music command failed.`,
-            icon_url: Bot.user.displayAvatarURL()
-          }
-        }
-      })
+      message.channel.send(`❎︱Uh oh! An error occured. Please try again later.`)
     })
 }
