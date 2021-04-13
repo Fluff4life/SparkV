@@ -23,14 +23,14 @@ exports.run = async (Bot, message) => {
       message.channel.send(`${message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`).then(m => m.delete({ timeout: 1000 }))
     }
 
-    return message.channel.send(`🔨 <@${message.author.id}>, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
+    return message.channel.send(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
   }
 
   const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "AntiSwear")
 
   if (AntiSwear === "true" && !user.hasPermission("MANAGE_MESSAGES")) {
     AntiSwearPackage(Bot, message, {
-      warnMSG: `🔨 <@${message.author.id}>, please stop cursing. If you curse again, you'll be muted.`,
+      warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
       muteRole: "Muted",
       ignoreWord: ["hello"],
       muteCount: 3,
@@ -54,7 +54,7 @@ exports.run = async (Bot, message) => {
     if (HasLeveledUp) {
       const User = await Levels.fetch(message.author.id, message.guild.id)
 
-      message.channel.send(`⚡ Congrats <@${message.author.id}>, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
+      message.channel.send(`⚡ Congrats ${message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
     }
   }
 
@@ -182,7 +182,7 @@ exports.run = async (Bot, message) => {
         console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)
       })
   } catch (err) {
-    message.channel.send("❌ Uh oh! Something went wrong with handling that command. Please try again later.")
+    message.channel.send("❌ Uh oh... Something went wrong with handling that command. If this happends again, please join my [support server](https://discord.gg/PPtzT8Mu3h) and report this error.")
 
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${message.author.tag}\nError: ${err.toString()}`)
   }
