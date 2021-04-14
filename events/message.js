@@ -57,11 +57,11 @@ exports.run = async (Bot, message) => {
     }
   }
 
-  const ChatBotEnabled = await Bot.dashboard.getVal(message.guild.id, "ChatBotEnabled")
+  const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (ChatBotEnabled === "true") {
-    if (!message.content.startsWith(Prefix) && message.mentions.has(Bot.user)) {
+  if (!ChatBot === "false" && !message.content.startsWith(Prefix)) {
+    const ActivateChatBot = () => {
       var CleanedMessage = Discord.Util.cleanContent(message.content, message)
 
       fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(CleanedMessage)}&gender=male&name=Ch1llBlox`)
@@ -80,6 +80,12 @@ exports.run = async (Bot, message) => {
 
           return message.lineReplyNoMention("Wha- what? Something went wrong.")
         })
+    }
+
+    if (ChatBot === "On Mention" && message.mentions.has(Bot.user)){
+      ActivateChatBot()
+    } else {
+      ActivateChatBot()
     }
   }
 
