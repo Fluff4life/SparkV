@@ -47,7 +47,7 @@ if (Config.SystemsEnabled.Down === true) {
 
     .use(async (request, response, next) => {
       request.user = request.session.user
-      request.Bot = Bot
+      request.Bot = global.Bot
       request.states = []
 
       next()
