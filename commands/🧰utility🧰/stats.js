@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const os = require("os")
 
 exports.run = async (Bot, message) => {
-  const BotMessage = await message.lineReplyNoMention("Fetching UserInfo. Please wait!")
+  const BotMessage = await message.lineReplyNoMention("Fetching Stats. Please wait!")
   var UsedMemory = os.totalmem() - os.freemem()
   var TotalMemory = os.totalmem()
   var MemoryPersentage = ((UsedMemory/TotalMemory) * 100).toFixed(2) + "%"
