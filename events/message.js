@@ -60,7 +60,7 @@ exports.run = async (Bot, message) => {
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (!ChatBot.toLowerCase() === "false" && !message.content.startsWith(Prefix)) {
+  if (!message.content.startsWith(Prefix)) {
     const ActivateChatBot = () => {
       var CleanedMessage = Discord.Util.cleanContent(message.content, message)
 
