@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const os = require("os")
 
 exports.run = async (Bot, message) => {
-  const BotMessage = await message.lineReplyNoMention("Fetching Stats. Please wait!")
+  const BotMessage = await message.lineReplyNoMention("Fetching Stats...")
   var UsedMemory = os.totalmem() - os.freemem()
   var TotalMemory = os.totalmem()
   var MemoryPersentage = ((UsedMemory/TotalMemory) * 100).toFixed(2) + "%"
@@ -16,6 +16,7 @@ exports.run = async (Bot, message) => {
     .setColor(Bot.Config.Embed.EmbedColor)
     .setTimestamp()
 
+  BotMessage.edit("Stats achieved!")
   BotMessage.edit(StatsEmbed)
 },
 
