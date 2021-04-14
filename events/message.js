@@ -60,7 +60,7 @@ exports.run = async (Bot, message) => {
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (!ChatBot === "false" && !message.content.startsWith(Prefix)) {
+  if (!ChatBot.toLowerCase() === "false" && !message.content.startsWith(Prefix)) {
     const ActivateChatBot = () => {
       var CleanedMessage = Discord.Util.cleanContent(message.content, message)
 
@@ -82,9 +82,9 @@ exports.run = async (Bot, message) => {
         })
     }
 
-    if (ChatBot === "On Mention" && message.mentions.has(Bot.user)){
+    if (ChatBot.toLowerCase() === "mention" && message.mentions.has(Bot.user)){
       ActivateChatBot()
-    } else {
+    } else if (ChatBot.toLowerCase() === "message") {
       ActivateChatBot()
     }
   }
