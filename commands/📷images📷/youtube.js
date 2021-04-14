@@ -8,7 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Arguments || !Arguments[0]) {
-    return message.channel.send("Please provide text.")
+    return message.lineReplyNoMention("Please provide text.")
   }
 
   const canvacord = require("canvacord");
@@ -30,7 +30,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   const YouTube = new Discord.MessageAttachment(Image, "youtube.png")
 
-  message.channel.send(YouTube)
+  message.lineReplyNoMention(YouTube)
 },
 
   exports.config = {

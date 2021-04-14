@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.facepalm(Avatar)
   const FacePalm = new Discord.MessageAttachment(Image, "facepalm.png")
 
-  message.channel.send(FacePalm)
+  message.lineReplyNoMention(FacePalm)
 },
 
 exports.config = {

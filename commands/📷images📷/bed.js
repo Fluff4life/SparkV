@@ -22,7 +22,7 @@ exports.run = async (Bot, message) => {
   const Image = await canvacord.Canvas.bed(UserAvatar, Avatar)
   const Bed = new Discord.MessageAttachment(Image, "bed.png")
 
-  message.channel.send(Bed)
+  message.lineReplyNoMention(Bed)
 },
 
 exports.config = {

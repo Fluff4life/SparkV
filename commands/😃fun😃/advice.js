@@ -12,7 +12,7 @@ exports.run = async (Bot, message) => {
         .setColor(Bot.Config.Embed.EmbedColor)
         .setTimestamp();
 
-      const Message = await message.channel.send(AdviceEmbed);
+      const Message = await message.lineReplyNoMention(AdviceEmbed);
 
       Message.react("👍");
       Message.react("👎");

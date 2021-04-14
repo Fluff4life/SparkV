@@ -29,7 +29,7 @@ exports.run = async (Bot, message) => {
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
-        message.channel.send(DankMemeEmbed)
+        message.lineReplyNoMention(DankMemeEmbed)
       } else {
         const DankMemeEmbed = new Discord.MessageEmbed()
           .setTitle(post.title)
@@ -38,7 +38,7 @@ exports.run = async (Bot, message) => {
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
-        message.channel.send(DankMemeEmbed)
+        message.lineReplyNoMention(DankMemeEmbed)
       }
     })
 
@@ -48,12 +48,12 @@ exports.run = async (Bot, message) => {
       .then(json => json.json())
       .then(json => {
         if (!json.code){
-          return message.channel.send("Unknown error occured. Please try again!")
+          return message.lineReplyNoMention("Unknown error occured. Please try again!")
         } else if (json.code === 400){
-          return message.channel.send("Failed to get meme. Please try again!")
+          return message.lineReplyNoMention("Failed to get meme. Please try again!")
         }
 
-          return message.channel.send({
+          return message.lineReplyNoMention({
             embed: {
               title: json.response.data.title,
               description: json.response.data.description,

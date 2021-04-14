@@ -16,7 +16,7 @@ exports.run = async (Bot, message) => {
         .setColor(Bot.Config.Embed.EmbedColor);
 
         
-        message.channel.send(DOIEmbed)
+        message.lineReplyNoMention(DOIEmbed)
       } else {
         const DOIEmbed = new Discord.MessageEmbed()
         .setTitle(post.title)
@@ -25,7 +25,7 @@ exports.run = async (Bot, message) => {
         .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${post.subreddit} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setColor(Bot.Config.Embed.EmbedColor);
 
-        message.channel.send(DOIEmbed)
+        message.lineReplyNoMention(DOIEmbed)
       }
     })
 },

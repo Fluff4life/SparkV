@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.shit(Avatar)
   const Shit = new Discord.MessageAttachment(Image, "shit.png")
 
-  message.channel.send(Shit)
+  message.lineReplyNoMention(Shit)
 },
 
   exports.config = {

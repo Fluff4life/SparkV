@@ -90,7 +90,7 @@ exports.run = async (Bot, message, Arguments) => {
       }
     }
   } catch(err){
-    return message.channel.send("Uh oh! Something went wrong. Please try again later or leave the VC.")
+    return message.lineReplyNoMention("Uh oh! Something went wrong. Please try again later or leave the VC.")
   }
 
   const Question = await GenerateQuestion()
@@ -103,7 +103,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setImage(ClueCard)
     .setColor(Bot.Config.Embed.EmbedColor)
 
-  await message.channel.send(Category)
+  await message.lineReplyNoMention(Category)
 
   const Messages = await message.channel.awaitMessages(response => response.author.id === message.author.id, {
     max: 1,
@@ -118,7 +118,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Answer = Question.answer.replace(/<\/?i>/gi, "*")
 
   if (!Messages.size){
-    return message.channel.send(`**Times up! the answer was ${Answer}.**`)
+    return message.lineReplyNoMention(`**Times up! the answer was ${Answer}.**`)
   }
 
   const Won = Messages
@@ -126,9 +126,9 @@ exports.run = async (Bot, message, Arguments) => {
     .toLowerCase() === Answer.toLocaleLowerCase()
 
   if (Won){
-    return message.channel.send("🎉 Correct!")
+    return message.lineReplyNoMention("🎉 Correct!")
   } else {
-    return message.channel.send(`❌ Wrong! The answer was ${Answer}.`)
+    return message.lineReplyNoMention(`❌ Wrong! The answer was ${Answer}.`)
   }
 },
 

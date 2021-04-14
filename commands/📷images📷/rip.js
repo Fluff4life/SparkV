@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.rip(Avatar)
   const Rip = new Discord.MessageAttachment(Image, "rip.png")
 
-  message.channel.send(Rip)
+  message.lineReplyNoMention(Rip)
 },
 
   exports.config = {

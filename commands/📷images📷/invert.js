@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.invert(Avatar)
   const Invert = new Discord.MessageAttachment(Image, "invert.png")
 
-  message.channel.send(Invert)
+  message.lineReplyNoMention(Invert)
 },
 
   exports.config = {

@@ -17,7 +17,7 @@ exports.run = async (Bot, message) => {
   const Image = await canvacord.Canvas.opinion(Avatar)
   const Rainbow = new Discord.MessageAttachment(Image, "raindow.png")
 
-  message.channel.send(Rainbow)
+  message.lineReplyNoMention(Rainbow)
 },
 
   exports.config = {

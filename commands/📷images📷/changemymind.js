@@ -6,7 +6,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Arguments || !Arguments[0]) {
-    return message.channel.send("Please provide text.")
+    return message.lineReplyNoMention("Please provide text.")
   }
 
   const canvacord = require("canvacord");
@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.changemymind(Arguments)
   const ChangeMyMind = new Discord.MessageAttachment(Image, "changemymind.png")
 
-  message.channel.send(ChangeMyMind)
+  message.lineReplyNoMention(ChangeMyMind)
 },
 
   exports.config = {

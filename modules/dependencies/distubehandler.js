@@ -40,7 +40,7 @@ module.exports = async (Bot) => {
         .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.channel.send(NowPlayingEmbed)
+      message.lineReplyNoMention(NowPlayingEmbed)
     })
     .on("playList", async (message, queue, playlist, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
@@ -65,7 +65,7 @@ module.exports = async (Bot) => {
         .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.channel.send(NowPlayingEmbed)
+      message.lineReplyNoMention(NowPlayingEmbed)
     })
     .on("addSong", async (message, queue, song) => {
       const SongAddedQueue = new Discord.MessageEmbed()
@@ -90,7 +90,7 @@ module.exports = async (Bot) => {
         .setFooter(`📼 Added by ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.channel.send(SongAddedQueue)
+      message.lineReplyNoMention(SongAddedQueue)
     })
     .on("addList", async (message, queue, playlist) => {
       const SongAddedQueue = new Discord.MessageEmbed()
@@ -115,7 +115,7 @@ module.exports = async (Bot) => {
         .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.channel.send(SongAddedQueue)
+      message.lineReplyNoMention(SongAddedQueue)
     })
     .on("searchResult", (message, result) => {
       try {
@@ -138,20 +138,20 @@ module.exports = async (Bot) => {
       }
     })
     .on("finish", (message) => {
-      message.channel.send("No songs left in queue. Add more songs!")
+      message.lineReplyNoMention("No songs left in queue. Add more songs!")
     })
     .on("noRelated", (message) => {
-      message.channel.send("I cannot find a related video to play. I am stopping the music.")
+      message.lineReplyNoMention("I cannot find a related video to play. I am stopping the music.")
     })
     .on("searchCancel", (message) => {
-      message.channel.send(`Searching canceled.`)
+      message.lineReplyNoMention(`Searching canceled.`)
     })
     .on("empty", (message) => {
-      message.channel.send("Voice chat is empty. Leaving the VC.")
+      message.lineReplyNoMention("Voice chat is empty. Leaving the VC.")
     })
     .on("error", (message, err) => {
       console.error(err)
 
-      message.channel.send(`❎︱Uh oh! An error occured. Please try again later.`)
+      message.lineReplyNoMention(`❎︱Uh oh! An error occured. Please try again later.`)
     })
 }

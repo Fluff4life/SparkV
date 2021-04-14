@@ -12,7 +12,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.ohno(Arguments)
   const OhNo = new Discord.MessageAttachment(Image, "ohno.png")
 
-  message.channel.send(OhNo)
+  message.lineReplyNoMention(OhNo)
 },
 
   exports.config = {

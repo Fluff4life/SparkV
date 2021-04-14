@@ -24,12 +24,12 @@ const Replies = [
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments || !Arguments[0]){
-    return message.channel.send("Please provide a question to ask 8ball.")
+    return message.lineReplyNoMention("Please provide a question to ask 8ball.")
   }
 
   const ReplyText = Math.floor((Math.random() * Replies.length) + 0)
 
-  return message.channel.send(Replies[ReplyText])
+  return message.lineReplyNoMention(Replies[ReplyText])
 },
   
   exports.config = {

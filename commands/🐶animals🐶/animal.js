@@ -24,7 +24,7 @@ exports.run = async (Bot, message) => {
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
-        message.channel.send(AnimalEmbed)
+        message.lineReplyNoMention(AnimalEmbed)
       } else {
         const AnimalEmbed = new Discord.MessageEmbed()
           .setTitle(post.title)
@@ -33,7 +33,7 @@ exports.run = async (Bot, message) => {
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
-        const AnimalMessage = await message.channel.send(AnimalEmbed)
+        const AnimalMessage = await message.lineReplyNoMention(AnimalEmbed)
         AnimalMessage.react("😍");
       }
     })

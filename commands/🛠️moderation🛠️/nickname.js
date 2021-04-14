@@ -5,23 +5,23 @@ exports.run = async (Bot, message, Arguments) => {
   const NewNickname = Arguments.join(" ").slice(22)
 
   if (!Arguments[0]) {
-    return message.channel.send("❌Please mention someone to change their nickname!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Please mention someone to change their nickname!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.roles){
-    return message.channel.send("That's not a user! That's a role.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("That's not a user! That's a role.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!NewNickname) {
-    return message.channel.send("❌Please mention their new nickname!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Please mention their new nickname!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.roles.highest.comparePositionTo(message.guild.me.roles.highest) >= 0) {
-    return message.channel.send("Uh oh! I cannot change their nickname. They're a higher role than me!")
+    return message.lineReplyNoMention("Uh oh! I cannot change their nickname. They're a higher role than me!")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -29,7 +29,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setDescription("Are you sure you want to do this?")
     .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Embed.EmbedFooter}`)
 
-  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
   const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
   if (Emoji === "✅") {
@@ -40,14 +40,14 @@ exports.run = async (Bot, message, Arguments) => {
     User.setNickname(NewNickname).then(() => {
       message.reply(`I successfully changed ${User}'s nickname to ${NewNickname}!`)
     }).catch((err) => {
-      message.channel.send("Uh oh! I cannot change their nickname.").then(() => {
+      message.lineReplyNoMention("Uh oh! I cannot change their nickname.").then(() => {
         console.error(err)
       })
     })
   } else if (emoji === "❌") {
     message.delete()
 
-    message.channel.send("Nickname change canceled.").then(m => m.delete({ timeout: 10000 }))
+    message.lineReplyNoMention("Nickname change canceled.").then(m => m.delete({ timeout: 10000 }))
   }
 },
 

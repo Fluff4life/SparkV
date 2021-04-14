@@ -13,7 +13,7 @@ exports.run = async (Bot, message, Arguments, command) => {
 
   if (RobloxGroupID) {
     noblox.shout((RobloxGroupID), Arguments).then(() => {
-      message.channel.send({
+      message.lineReplyNoMention({
         embed: {
           title: "Successfully Shouted",
           description: "Successfully shouted " + Arguments,
@@ -28,7 +28,7 @@ exports.run = async (Bot, message, Arguments, command) => {
       })
 
     }).catch((err) => {
-      message.channel.send({
+      message.lineReplyNoMention({
         embed: {
           title: "⚠️Failed to Shout⚠️",
           description: "Failed to shout " + Arguments,
@@ -43,7 +43,7 @@ exports.run = async (Bot, message, Arguments, command) => {
       })
     })
   } else {
-    return message.channel.send({
+    return message.lineReplyNoMention({
       embed: {
         title: "🚫 Roblox Group ID Error 🚫",
         description: "Roblox Group ID has not been set for this server.",

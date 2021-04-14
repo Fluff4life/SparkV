@@ -7,7 +7,7 @@ exports.run = async (Bot, message, Arguments) => {
     .delete()
     .catch(_ => {});
   
-  message.channel.send(Arguments + "\n*-" + message.author.username + "*")
+  message.lineReplyNoMention(Arguments + "\n*-" + message.author.username + "*")
 },
   
   exports.config = {

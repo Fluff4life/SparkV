@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  message.channel.send("You don't have a job noob. You have to go get one to work lol.")
+  message.lineReplyNoMention("You don't have a job noob. You have to go get one to work lol.")
 },
 
   exports.config = {

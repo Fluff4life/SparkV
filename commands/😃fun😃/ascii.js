@@ -8,24 +8,24 @@ exports.run = async (Bot, message, Arguments) => {
   const figlet = require("figlet")
 
   if (!Arguments || !Arguments[0]){
-    return message.channel.send("Please provide text!")
+    return message.lineReplyNoMention("Please provide text!")
   }
 
   Arguments = Arguments.join(" ")
 
   figlet.text(Arguments, function(err, data){
     if (err){
-      message.channel.send("Uh oh! Something went wrong.")
+      message.lineReplyNoMention("Uh oh! Something went wrong.")
       console.log("Failed to figlet text: " + err)
 
       return
     }
 
     if (data.length > 2000){
-      return message.channel.send("Please provide text shorter than 200 characters.")
+      return message.lineReplyNoMention("Please provide text shorter than 200 characters.")
     }
 
-    message.channel.send("```" + data + "```")
+    message.lineReplyNoMention("```" + data + "```")
   })
 },
   

@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
     })
   } catch(err){}
 
-  message.channel.send("Channel is now unlocked.")
+  message.lineReplyNoMention("Channel is now unlocked.")
 },
  
   exports.config = {

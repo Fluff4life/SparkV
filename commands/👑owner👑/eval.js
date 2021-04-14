@@ -3,7 +3,7 @@ const DiscordEasyPages = require("discordeasypages")
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.channel.send("❌Access denied.")
+    return message.lineReplyNoMention("❌Access denied.")
   }
 
   function clean(text) {
@@ -48,9 +48,9 @@ exports.run = async (Bot, message, Arguments) => {
         evaled = evaled.replace(process.env.token, "BOT_TOKEN")
       }
 
-      message.channel.send(clean(evaled), { code: "js" })
+      message.lineReplyNoMention(clean(evaled), { code: "js" })
     } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`js\n${clean(err)}\n\`\`\``)
+      message.lineReplyNoMention(`\`ERROR\` \`\`\`js\n${clean(err)}\n\`\`\``)
     }
   }
 },

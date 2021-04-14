@@ -18,7 +18,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setFooter(`${Bot.user.username} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
     .setColor(Bot.Config.Embed.EmbedColor)
 
-  message.channel.send(LeaderboardEmbed)
+  message.lineReplyNoMention(LeaderboardEmbed)
 },
 
 exports.config = {

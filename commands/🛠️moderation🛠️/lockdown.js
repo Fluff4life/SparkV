@@ -10,7 +10,7 @@ exports.run = async (Bot, message, Arguments) => {
       })
     })
 
-    message.channel.send("🔒 Server is now locked. Users can no longer chat.")
+    message.lineReplyNoMention("🔒 Server is now locked. Users can no longer chat.")
   } else if (Arguments[0].toLowerCase() === "off"){
     Channels.forEach(Channel => {
       Channel.updateOverwrite(message.guild.roles.everyone, {
@@ -18,7 +18,7 @@ exports.run = async (Bot, message, Arguments) => {
       })
     })
 
-    message.channel.send("🔒 Server is now unlocked. Users can now chat.")
+    message.lineReplyNoMention("🔒 Server is now unlocked. Users can now chat.")
   }
 },
  

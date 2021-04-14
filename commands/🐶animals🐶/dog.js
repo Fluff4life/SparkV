@@ -6,7 +6,7 @@ exports.run = async (Bot, message) => {
     .then(res => res.json())
     .then(async json => {
       if (!json.status === "success") {
-        return await message.channel.send({
+        return await message.lineReplyNoMention({
           embed: {
             title: `Uh Oh ${message.author.username}!`,
             description: `Looks like the website returned an error! Please try again later.`,
@@ -20,7 +20,7 @@ exports.run = async (Bot, message) => {
         })
       }
 
-      const MemeMessage = await message.channel.send({
+      const MemeMessage = await message.lineReplyNoMention({
         embed: {
           title: "Bark Bark!",
           description: "Aweeeeee :D",

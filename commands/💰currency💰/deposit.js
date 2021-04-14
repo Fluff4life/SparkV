@@ -18,54 +18,54 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Arguments) {
-    return message.channel.send("You need to tell me how much you want me to deposit. You can say all if you want all of your Ch1ll Bucks in your bank.")
+    return message.lineReplyNoMention("You need to tell me how much you want me to deposit. You can say all if you want all of your Ch1ll Bucks in your bank.")
   }
 
   if (Arguments[0].toLowerCase() === "all") {
     if (Ch1llBucks === 0 || Ch1llBucks === null) {
-      return message.channel.send("You have no Ch1llBucks!")
+      return message.lineReplyNoMention("You have no Ch1llBucks!")
     }
 
     if (Bank === BankMax){
-      return message.channel.send("Your bank is full!")
+      return message.lineReplyNoMention("Your bank is full!")
     }
 
     if (Ch1llBucks > BankMax) {
       await Bot.Database.add(`UserData.${message.author.id}.bank`, BankMax)
       await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, BankMax)
 
-      message.channel.send(`You just deposited ❄${await Bot.FormatNumber(BankMax)} into your bank!`)
+      message.lineReplyNoMention(`You just deposited ❄${await Bot.FormatNumber(BankMax)} into your bank!`)
     } else {
       await Bot.Database.add(`UserData.${message.author.id}.bank`, Ch1llBucks)
       await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, Ch1llBucks)
 
-      message.channel.send(`You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
+      message.lineReplyNoMention(`You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
     }
   } else {
     if (!Arguments[0]) {
-      return message.channel.send("lol you can't deposit nothing.")
+      return message.lineReplyNoMention("lol you can't deposit nothing.")
     }
 
     if (isNaN(Arguments[0])) {
-      return message.channel.send("Bruh please say a number.")
+      return message.lineReplyNoMention("Bruh please say a number.")
     }
 
     if (message.content.includes("-")) {
-      return message.channel.send("You can't deposit negitive Ch1llBucks lol.")
+      return message.lineReplyNoMention("You can't deposit negitive Ch1llBucks lol.")
     }
 
     if (Ch1llBucks < Arguments[0]) {
-      return message.channel.send("You don't have that much Ch1llBucks.")
+      return message.lineReplyNoMention("You don't have that much Ch1llBucks.")
     }
 
     if (BankMax < Arguments[0]) {
-      return message.channel.send(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
+      return message.lineReplyNoMention(`You don't have enough bank space to hold ❄${Arguments[0]}!`)
     }
 
     await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
     await Bot.Database.add(`UserData.${message.author.id}.bank`, parseInt(Arguments[0]))
 
-    message.channel.send(`Deposited ❄${await Bot.FormatNumber(Arguments[0])} into bank!`)
+    message.lineReplyNoMention(`Deposited ❄${await Bot.FormatNumber(Arguments[0])} into bank!`)
   }
 },
 

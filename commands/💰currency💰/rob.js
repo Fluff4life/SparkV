@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
 
   if (!User) {
-    return message.channel.send("Please say a person to rob.")
+    return message.lineReplyNoMention("Please say a person to rob.")
   }
 
   var RobberCh1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
@@ -20,23 +20,23 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (RobberCh1llBucks < 500) {
-    return message.channel.send("Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.")
+    return message.lineReplyNoMention("Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.")
   }
 
   if (UserCh1llBucks <= 0 || UserCh1llBucks === null) {
-    return message.channel.send("Bruh they have no Ch1llBucks leave them alone you noob!")
+    return message.lineReplyNoMention("Bruh they have no Ch1llBucks leave them alone you noob!")
   }
 
   if (message.author.id === User.id) {
-    return message.channel.send("Why do you want to rob yourself lol.")
+    return message.lineReplyNoMention("Why do you want to rob yourself lol.")
   }
 
   if (User.id === process.env.OwnerID) {
-    return message.channel.send("This user is protected! You can buy a protection shield from being robbed in the shop.")
+    return message.lineReplyNoMention("This user is protected! You can buy a protection shield from being robbed in the shop.")
   }
 
   if (UserCh1llBucks < 0) {
-    return message.channel.send("You can't rob someone in debt lol.")
+    return message.lineReplyNoMention("You can't rob someone in debt lol.")
   }
 
   const Result = results[Math.floor(Math.random() * results.length)]
@@ -47,13 +47,13 @@ exports.run = async (Bot, message, Arguments) => {
     await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Ammount)
     await Bot.Database.subtract(`UserData.${User.id}.ch1llbucks`, Ammount)
 
-    message.channel.send(`You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
+    message.lineReplyNoMention(`You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
   } else {
 
     await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, 250)
     await Bot.Database.add(`UserData.${User.id}.ch1llbucks`, 250)
 
-    message.channel.send(`LOL you got caught! You payed ❄250 to ${User}.`)
+    message.lineReplyNoMention(`LOL you got caught! You payed ❄250 to ${User}.`)
   }
 },
 

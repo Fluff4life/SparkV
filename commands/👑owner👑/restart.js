@@ -2,10 +2,10 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.channel.send("❌Access denied.")
+    return message.lineReplyNoMention("❌Access denied.")
   }
   
-  const RestartStatus = await message.channel.send(`⚡ Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`)
+  const RestartStatus = await message.lineReplyNoMention(`⚡ Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`)
   var Timer = 15
 
   setTimeout(() => {

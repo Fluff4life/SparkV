@@ -3,7 +3,7 @@ const Weather = require("weather-js")
 
 exports.run = async (Bot, message, Arguments) => {
     if (!Arguments){
-        return message.channel.send("Please specify a location!")
+        return message.lineReplyNoMention("Please specify a location!")
     }
 
     Arguments = Arguments.join(" ")
@@ -13,11 +13,11 @@ exports.run = async (Bot, message, Arguments) => {
         degreeType: "F"         
     }, (error, result) => {
         if (error){
-            return message.channel.send(error)
+            return message.lineReplyNoMention(error)
         }
 
         if (result === undefined || result.length === 0){
-            return message.channel.send("Invalid location!")
+            return message.lineReplyNoMention("Invalid location!")
         }
 
         const Current = result[0].current
@@ -36,7 +36,7 @@ exports.run = async (Bot, message, Arguments) => {
             .setColor(Bot.Config.Embed.EmbedColor)
             .setTimestamp()
 
-        message.channel.send(WeatherInformation)
+        message.lineReplyNoMention(WeatherInformation)
 
     })     
 },

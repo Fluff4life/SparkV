@@ -1,4 +1,5 @@
 module.exports = async (request, response, next) => {
+    /*
     if (request.session.user) {
         return next()
     } else {
@@ -12,4 +13,7 @@ module.exports = async (request, response, next) => {
 
         return response.redirect(`/api/login?state=${State}`)
     }
+    */
+
+    
 }

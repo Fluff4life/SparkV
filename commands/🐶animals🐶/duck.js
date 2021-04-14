@@ -5,7 +5,7 @@ exports.run = async (Bot, message) => {
   request("https://random-d.uk/api/random?format=json")
     .then(res => res.json())
     .then(async json => {
-      const MemeMessage = await message.channel.send({
+      const MemeMessage = await message.lineReplyNoMention({
         embed: {
           title: "Quack!",
           description: "Aweeeeee :D",

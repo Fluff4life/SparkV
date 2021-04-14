@@ -8,7 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Arguments || !Arguments[0]) {
-    return message.channel.send("Please provide text.")
+    return message.lineReplyNoMention("Please provide text.")
   }
 
   const canvacord = require("canvacord");
@@ -23,7 +23,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.opinion(Avatar, Arguments)
   const Opinion = new Discord.MessageAttachment(Image, "opinion.png")
 
-  message.channel.send(Opinion)
+  message.lineReplyNoMention(Opinion)
 },
 
   exports.config = {

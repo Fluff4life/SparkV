@@ -30,16 +30,16 @@ const GenerateArray = (level) => {
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
-    return message.channel.send("Next time, say how many directions you want to challenge yourself with.")
+    return message.lineReplyNoMention("Next time, say how many directions you want to challenge yourself with.")
   }
 
   if (Arguments[0] < 1 || Arguments[0] > 20){
-    return message.channel.send("You can only select between 1-20.")
+    return message.lineReplyNoMention("You can only select between 1-20.")
   }
 
   try {
     const Memorize = GenerateArray(Arguments[0])
-    const MemorizeMessage = await message.channel.send(Memorize.map(emoji => `${emoji}`).join(" "))
+    const MemorizeMessage = await message.lineReplyNoMention(Memorize.map(emoji => `${emoji}`).join(" "))
 
     await Bot.wait(25 * 1000)
     MemorizeMessage.edit("⚡ Now, type what you saw.")

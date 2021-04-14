@@ -2,15 +2,15 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.voice.channel){
-    return message.channel.send("You must be in a __**voice channel**__ to use this command!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("You must be in a __**voice channel**__ to use this command!").then(m => m.delete({ timeout: 5000 }))
   }
  
   if (!Bot.distube.isPlaying(message)){
-    return message.channel.send("A song must be playing to use this command!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("A song must be playing to use this command!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (isNaN(Arguments[0])){
-    return message.channel.send("That's not a valid number!")
+    return message.lineReplyNoMention("That's not a valid number!")
   }
   
   if (parseInt(Arguments[0]) > 100){
@@ -18,7 +18,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
   
   Bot.distube.setVolume(message, parseInt(Arguments[0]))
-  message.channel.send(`I set the volume to ${Arguments[0]}!`)
+  message.lineReplyNoMention(`I set the volume to ${Arguments[0]}!`)
 },
 
 exports.config = {

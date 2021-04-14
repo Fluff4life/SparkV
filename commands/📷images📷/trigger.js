@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.trigger(Avatar)
   const Triggered = new Discord.MessageAttachment(Image, "triggered.gif")
 
-  message.channel.send(Triggered)
+  message.lineReplyNoMention(Triggered)
 },
 
 exports.config = {

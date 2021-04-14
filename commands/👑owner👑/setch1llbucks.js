@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.channel.send("❌Access denied.")
+    return message.lineReplyNoMention("❌Access denied.")
   }
 
   const User = message.mentions.users.first()
@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   await Bot.Database.set(`${User.id}.ch1llbucks`, parseInt(Arguments[1]))
 
-  message.channel.send(`Success.`)
+  message.lineReplyNoMention(`Success.`)
 },
 
 exports.config = {

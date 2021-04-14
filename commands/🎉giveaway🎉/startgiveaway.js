@@ -8,19 +8,19 @@ exports.run = async (Bot, message, Arguments) => {
   const Prize = Arguments.slice(3).join(" ")
 
   if (!Channel){
-    return message.channel.send("Please provide a valid channel.")
+    return message.lineReplyNoMention("Please provide a valid channel.")
   }
 
   if (!Duration || isNaN(ms(Duration))){
-    return message.channel.send("Please provide a valid duration.")
+    return message.lineReplyNoMention("Please provide a valid duration.")
   }
 
   if (!Winners || isNaN(Winners) || (parseInt(Winners) <= 0)){
-    return message.channel.send("Please provide a valid number of winners!")
+    return message.lineReplyNoMention("Please provide a valid number of winners!")
   }
 
   if (!Prize){
-    return message.channel.send("Why do you want to give away nothing lol.")
+    return message.lineReplyNoMention("Why do you want to give away nothing lol.")
   }
 
   Bot.GiveawayManager.start(Channel, {
@@ -50,7 +50,7 @@ exports.run = async (Bot, message, Arguments) => {
     }
   })
 
-  message.channel.send(`Giveaway starting in ${Channel}!`)
+  message.lineReplyNoMention(`Giveaway starting in ${Channel}!`)
 },
 
 exports.config = {

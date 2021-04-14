@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 const fetch = require("node-fetch")
 const AntiSwearPackage = require("anti-swear-words-packages-discord")
-const discordreply = require("discord-reply")
 
 exports.run = async (Bot, message) => {
   if (message.author.bot) {
@@ -20,10 +19,10 @@ exports.run = async (Bot, message) => {
     try {
       message.delete();
     } catch (err) {
-      message.channel.send(`${message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`).then(m => m.delete({ timeout: 1000 }))
+      message.lineReplyNoMention(`${message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`).then(m => m.delete({ timeout: 1000 }))
     }
 
-    return message.channel.send(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
+    return message.lineReplyNoMention(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
   }
 
   const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "AntiSwear")
@@ -54,7 +53,7 @@ exports.run = async (Bot, message) => {
     if (HasLeveledUp) {
       const User = await Levels.fetch(message.author.id, message.guild.id)
 
-      message.channel.send(`⚡ Congrats ${message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
+      message.lineReplyNoMention(`⚡ Congrats ${message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`)
     }
   }
 
@@ -79,7 +78,7 @@ exports.run = async (Bot, message) => {
         .catch((err) => {
           console.error(err)
 
-          return message.channel.send("Wha- what? Something went wrong.")
+          return message.lineReplyNoMention("Wha- what? Something went wrong.")
         })
     }
   }
@@ -114,7 +113,7 @@ exports.run = async (Bot, message) => {
     const BotPermisions = message.channel.permissionsFor(message.guild.me)
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.channel.send(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`).then(m => m.delete({ timeout: 5000 }))
+      return message.lineReplyNoMention(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
 
@@ -122,7 +121,7 @@ exports.run = async (Bot, message) => {
     const AuthorPermisions = message.channel.permissionsFor(message.author)
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.channel.send(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`).then(m => m.delete({ timeout: 5000 }))
+      return message.lineReplyNoMention(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`).then(m => m.delete({ timeout: 5000 }))
     }
   }
 
@@ -182,7 +181,7 @@ exports.run = async (Bot, message) => {
         console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)
       })
   } catch (err) {
-    message.channel.send("❌ Uh oh... Something went wrong with handling that command. If this happends again, please join my [support server](https://discord.gg/PPtzT8Mu3h) and report this error.")
+    message.lineReplyNoMention("❌ Uh oh... Something went wrong with handling that command. If this happends again, please join my [support server](https://discord.gg/PPtzT8Mu3h) and report this error.")
 
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${message.author.tag}\nError: ${err.toString()}`)
   }

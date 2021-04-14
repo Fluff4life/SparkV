@@ -5,23 +5,23 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return message.channel.send("❌Please mention someone to mute!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Please mention someone to mute!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id) {
-    return message.channel.send("❌You cannot mute yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌You cannot mute yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable) {
-    return message.channel.send("❌Uh oh... I can't mute this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Uh oh... I can't mute this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.user.bot) {
-    return message.channel.send("I cannot mute bots!")
+    return message.lineReplyNoMention("I cannot mute bots!")
   }
 
   const Roles = User.roles.cache.filter(role => role.id !== message.guild.id).map(role => role.id)
@@ -47,7 +47,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (User.roles.cache.has(MutedRole.id)) {
-    return message.channel.send("This user is already muted!")
+    return message.lineReplyNoMention("This user is already muted!")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -55,7 +55,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setDescription("Are you sure you want to do this?")
     .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Embed.EmbedFooter}`)
 
-  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
   const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
   if (Emoji === "✅") {
@@ -75,11 +75,11 @@ exports.run = async (Bot, message, Arguments) => {
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp();
 
-    message.channel.send(MuteEmbend);
+    message.lineReplyNoMention(MuteEmbend);
   } else if (emoji === "❌") {
     message.delete()
 
-    message.channel.send("Mute canceled.").then(m => m.delete({ timeout: 10000 }))
+    message.lineReplyNoMention("Mute canceled.").then(m => m.delete({ timeout: 10000 }))
   }
 },
 

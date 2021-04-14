@@ -3,7 +3,7 @@ const Levels = require("discord-xp")
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.channel.send("❌Access denied.")
+    return message.lineReplyNoMention("❌Access denied.")
   }
 
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
@@ -11,15 +11,15 @@ exports.run = async (Bot, message, Arguments) => {
   const FormattedNumber = await Bot.FormatNumber(Arguments[1])
 
   if (!Leveling === true) {
-    return message.channel.send("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
+    return message.lineReplyNoMention("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
   }
 
   try {
     await Levels.setXp(User.id, message.guild.id, Arguments[1]).then(() => {
-      message.channel.send(`Successfully set ${User}'s XP to ${FormattedNumber}!`)
+      message.lineReplyNoMention(`Successfully set ${User}'s XP to ${FormattedNumber}!`)
     })
   } catch (err) {
-    message.channel.send(`Error setting ${User}'s XP to ${FormattedNumber}.`)
+    message.lineReplyNoMention(`Error setting ${User}'s XP to ${FormattedNumber}.`)
   }
 },
 

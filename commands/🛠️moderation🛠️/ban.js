@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const ReasonForBan = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return message.channel.send("❌Please mention someone to ban!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Please mention someone to ban!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToBan) {
-    return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (UserToBan.id === message.author.id) {
-    return message.channel.send("❌You cannot ban yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌You cannot ban yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToBan.bannable) {
-    return message.channel.send("❌Uh oh... I can't ban this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Uh oh... I can't ban this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()
@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setDescription("Are you sure you want to do this?")
     .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Embed.EmbedFooter}`)
 
-  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
   const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
   if (Emoji === "✅") {
@@ -43,7 +43,7 @@ exports.run = async (Bot, message, Arguments) => {
     UserToBan.ban({
       reason: ReasonForBan
     }).catch((err) => {
-      message.channel.send(`Failed to ban. Error: ${err}`)
+      message.lineReplyNoMention(`Failed to ban. Error: ${err}`)
     })
 
     const BanEmbed = new MessageEmbed()
@@ -56,11 +56,11 @@ exports.run = async (Bot, message, Arguments) => {
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp()
 
-    message.channel.send(BanEmbed);
+    message.lineReplyNoMention(BanEmbed);
   } else if (emoji === "❌") {
     message.delete()
 
-    message.channel.send("❌Ban canceled.").then(m => m.delete({ timeout: 10000 }))
+    message.lineReplyNoMention("❌Ban canceled.").then(m => m.delete({ timeout: 10000 }))
   } 
 },
 

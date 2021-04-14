@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
 
   if (!Arguments[0]){
-    return message.channel.send("❌Please mention someone to warn!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Please mention someone to warn!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User){
-    return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id){
-    return message.channel.send("❌You cannot warn yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌You cannot warn yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable){
-    return message.channel.send("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()
@@ -26,7 +26,7 @@ exports.run = async (Bot, message, Arguments) => {
   .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Embed.EmbedFooter}`)
   .setColor(Bot.Config.Embed.EmbedColor)
 
-  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
     const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
     if (Emoji === "✅"){
@@ -49,7 +49,7 @@ exports.run = async (Bot, message, Arguments) => {
           
         }
 
-        message.channel.send({
+        message.lineReplyNoMention({
           embed: {
             title: `Successfully warned user.`,
             description: `Successfully warned ${User} for ${Reason}`,
@@ -75,7 +75,7 @@ exports.run = async (Bot, message, Arguments) => {
           
         }
 
-        message.channel.send({
+        message.lineReplyNoMention({
           embed: {
             title: `Successfully warned user.`,
             description: `Successfully warned ${User} for ${Reason}`,
@@ -91,7 +91,7 @@ exports.run = async (Bot, message, Arguments) => {
     } else if (emoji === "❌"){
       VerificationMessage.delete()
 
-      message.channel.send("❌Warn canceled.").then(m => m.delete({ timeout: 10000 }))
+      message.lineReplyNoMention("❌Warn canceled.").then(m => m.delete({ timeout: 10000 }))
     }
 },
 

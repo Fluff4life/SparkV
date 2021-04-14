@@ -15,7 +15,7 @@ exports.run = async (Bot, message) => {
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
-        message.channel.send(AdviceAnimalsEmbed)
+        message.lineReplyNoMention(AdviceAnimalsEmbed)
       } else {
         const AdviceAnimalsEmbed = new Discord.MessageEmbed()
           .setTitle(post.title)
@@ -24,7 +24,7 @@ exports.run = async (Bot, message) => {
           .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
           .setColor(Bot.Config.Embed.EmbedColor);
 
-        message.channel.send(AdviceAnimalsEmbed)
+        message.lineReplyNoMention(AdviceAnimalsEmbed)
       }
     })
 },

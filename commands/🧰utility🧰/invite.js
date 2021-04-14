@@ -10,7 +10,7 @@ exports.run = async (Bot, message) => {
     .setFooter(`Invites for Ch1llBlox • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
     .setColor(Bot.Config.Embed.EmbedColor);
     
-  await message.channel.send(InvitesEmbend);
+  await message.lineReplyNoMention(InvitesEmbend);
 },
 
 exports.config = {

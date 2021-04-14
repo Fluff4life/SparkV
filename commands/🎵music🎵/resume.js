@@ -2,17 +2,17 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.voice.channel){
-    return message.channel.send("You must be in a __**voice channel**__ to use this command!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("You must be in a __**voice channel**__ to use this command!").then(m => m.delete({ timeout: 5000 }))
   } 
   
   let queue = await Bot.distube.getQueue(message)
   
   if (!queue){
-    return message.channel.send("No songs was ever/still is paused.")
+    return message.lineReplyNoMention("No songs was ever/still is paused.")
   }
 
   Bot.distube.resume(message).then(() => {
-    message.channel.send({
+    message.lineReplyNoMention({
       embed: {
         title: `Resumed`,
         description: `Resumed song`,

@@ -5,7 +5,7 @@ exports.run = async (Bot, message) => {
   request("https://randomfox.ca/floof/")
     .then(res => res.json())
     .then(async json => {
-      const MemeMessage = await message.channel.send({
+      const MemeMessage = await message.lineReplyNoMention({
         embed: {
           title: "What does the fox say!?",
           description: "Awee :D",

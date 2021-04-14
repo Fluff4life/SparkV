@@ -4,10 +4,10 @@ exports.run = async (Bot, message, Arguments) => {
   const queue = Bot.distube.getQueue(message)
 
   if (!queue){
-    return message.channel.send("The queue is empty! Try adding some songs.")
+    return message.lineReplyNoMention("The queue is empty! Try adding some songs.")
   }
 
-  message.channel.send({
+  message.lineReplyNoMention({
     embed: {
       title: `Queue for ${message.guild.name}`,
       description: queue.songs.map((song, id) => `**${id + 1}**. ${song.name} - ${song.formattedDuration}`).slice(0, 10).join("\n"),

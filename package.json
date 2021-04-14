@@ -20,14 +20,10 @@
     "npm": "*"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.4.0",
     "@top-gg/sdk": "^3.0.9",
     "anti-swear-words-packages-discord": "^1.1.43",
     "botdash.pro": "^1.0.2",
-    "canvacord": "^5.1.0",
-    "canvas": "^2.7.0",
     "chalk": "^4.1.0",
-    "cookie-session": "^1.4.0",
     "dbl-api": "^1.2.1",
     "dblapi.js": "^2.4.0",
     "discord-anti-spam": "^2.5.0",
@@ -49,15 +45,19 @@
     "ms": "^2.0.0",
     "noblox.js": "^4.8.5",
     "node-fetch": "^2.6.1",
-    "node-superfetch": "^0.1.11",
     "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
     "path": "^0.12.7",
     "quickmongo": "^3.0.2",
     "serve-favicon": "^2.5.0",
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
     "yargs-parser": "^13.1.2",
-    "ytdl-core": "^4.5.0"
+    "ytdl-core": "^4.5.0",
+    "@discordjs/opus": "^0.4.0",
+    "canvacord": "^5.1.0",
+    "canvas": "^2.7.0",
+    "youtube-dl": "^3.5.0"
   },
   "devDependencies": {
     "prettier": "2.2.1"

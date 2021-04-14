@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const ReasonForKick = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return message.channel.send("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToKick) {
-    return message.channel.send("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (UserToKick.id === message.author.id) {
-    return message.channel.send("❌You cannot kick yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌You cannot kick yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToKick.kickable) {
-    return message.channel.send("❌Uh oh... I can't kick this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("❌Uh oh... I can't kick this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setDescription("Are you sure you want to do this?")
     .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Embed.EmbedFooter}`)
 
-  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
   const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, ["✅", "❌"], 60)
 
   if (Emoji === "✅") {
@@ -33,7 +33,7 @@ exports.run = async (Bot, message, Arguments) => {
     message.delete()
 
     UserToKick.kick().catch((err) => {
-      message.channel.send(`Failed to kick. Error: ${err}`)
+      message.lineReplyNoMention(`Failed to kick. Error: ${err}`)
     })
 
     try {
@@ -52,11 +52,11 @@ exports.run = async (Bot, message, Arguments) => {
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp();
 
-    message.channel.send(KickEmbend);
+    message.lineReplyNoMention(KickEmbend);
   } else if (emoji === "❌") {
     message.delete()
 
-    message.channel.send("❌Kick canceled.").then(m => m.delete({ timeout: 10000 }))
+    message.lineReplyNoMention("❌Kick canceled.").then(m => m.delete({ timeout: 10000 }))
   }
 },
 

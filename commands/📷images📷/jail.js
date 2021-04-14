@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.jail(Avatar, true)
   const Jail = new Discord.MessageAttachment(Image, "jail.png")
 
-  message.channel.send(Jail)
+  message.lineReplyNoMention(Jail)
 },
 
   exports.config = {

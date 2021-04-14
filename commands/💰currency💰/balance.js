@@ -4,7 +4,7 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || message.author
 
   if (!User) {
-    return message.channel.send("Please say a person to rob.")
+    return message.lineReplyNoMention("Please say a person to rob.")
   }
 
   var Ch1llBucks = await Bot.Database.get(`UserData.${User.id}.ch1llbucks`)
@@ -31,7 +31,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setColor(Bot.Config.Embed.EmbedColor)
     .setTimestamp()
 
-  message.channel.send(BalanceEmbed)
+  message.lineReplyNoMention(BalanceEmbed)
 },
 
   exports.config = {

@@ -58,15 +58,15 @@ exports.run = async (Bot, message, Arguments) => {
   const Opponent = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0])
 
   if (!Arguments) {
-    return message.channel.send("This command doesn't support API yet. Please mention someone to challenge.")
+    return message.lineReplyNoMention("This command doesn't support API yet. Please mention someone to challenge.")
   }
 
   if (Opponent.user.bot) {
-    return message.channel.send("That user is a bot lol.")
+    return message.lineReplyNoMention("That user is a bot lol.")
   }
 
   if (Opponent.user.id === message.author.id) {
-    return message.channel.send("You cannot play against yourself lol.")
+    return message.lineReplyNoMention("You cannot play against yourself lol.")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -75,13 +75,13 @@ exports.run = async (Bot, message, Arguments) => {
     .setFooter(`Canceling in 60 seconds. • ${Bot.Config.Embed.EmbedFooter}`)
     .setColor(Bot.Config.Embed.EmbedColor)
 
-  const VerificationMessage = await message.channel.send(VerificationEmbed)
+  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
   const Emoji = await Bot.PromptMessage(VerificationMessage, Opponent.user, ["👍", "👎"], 250)
 
   if (Emoji === "👎") {
     await VerificationMessage.delete()
 
-    return message.channel.send(`${Opponent} doesn't want to play. What a noob!`)
+    return message.lineReplyNoMention(`${Opponent} doesn't want to play. What a noob!`)
   } else if (Emoji === "👍") {
     await VerificationMessage.delete()
 
@@ -104,7 +104,7 @@ exports.run = async (Bot, message, Arguments) => {
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp()
 
-    const GameMessage = await message.channel.send(GameEmbed)
+    const GameMessage = await message.lineReplyNoMention(GameEmbed)
 
     while (!Winner && Board.some(row => row.includes(null))) {
       const User = UserTurn ? message.author : Opponent

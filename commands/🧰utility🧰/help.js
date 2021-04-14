@@ -50,7 +50,7 @@ exports.run = async (Bot, message, args) => {
       .setFooter(`${prefix}Help to get a list of all commands • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
       .setColor(Bot.Config.Embed.EmbedColor);
 
-    return message.channel.send(CommandHelpEmbed)
+    return message.lineReplyNoMention(CommandHelpEmbed)
   }
 },
 

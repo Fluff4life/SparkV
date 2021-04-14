@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.wanted(Avatar)
   const Wanted = new Discord.MessageAttachment(Image, "wanted.png")
 
-  message.channel.send(Wanted)
+  message.lineReplyNoMention(Wanted)
 },
 
   exports.config = {

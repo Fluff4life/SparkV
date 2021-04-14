@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message) => {
-  const BotMessage = await message.channel.send("Fetching Stats. Please wait!")
+  const BotMessage = await message.lineReplyNoMention("Fetching Stats. Please wait!")
 
   const StatsEmbed = new Discord.MessageEmbed()
     .setTitle("Stats")

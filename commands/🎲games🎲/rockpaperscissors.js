@@ -19,7 +19,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setFooter(`${Bot.user.username} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
     .setColor(Bot.Config.Embed.EmbedColor)
 
-  const Message = await message.channel.send(embed)
+  const Message = await message.lineReplyNoMention(embed)
   const Reacted = await Bot.PromptMessage(Message, message.author, Emojis, 60)
   const BotChoice = Emojis[Math.floor(Math.random() * Emojis.length)]
   const Result = await GetResult(Reacted, BotChoice)
