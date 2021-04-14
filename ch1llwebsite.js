@@ -53,6 +53,8 @@ if (Config.SystemsEnabled.Down === true) {
       next()
     })
 
+    .set("port", process.env.port)
+
     .use("/", require("./public/routes/main"))
     .use("/home", require("./public/routes/home"))
     .use("/api", require("./public/routes/api"))
@@ -80,7 +82,7 @@ if (Config.SystemsEnabled.Down === true) {
     })
 
     // Listener //
-    .listen(process.env.PORT, Config.Debug == true ? "localhost" : null, () => {
-      console.log(Chalk.blue(`SUCCESS - WEBSITE => Server running on http://localhost:${listener.address().port} & listening on port ${listener.address().port}.`));
+    const listener = app.listen(process.env.PORT, Config.Debug == true ? "localhost" : null, () => {
+        console.log(Chalk.blue(`SUCCESS - WEBSITE => ${Config.Debug == true ? `Server running at http://localhost:${listener.address().port}` :  `Server running on port ${listener.address().port}`}`))
     })
 }
