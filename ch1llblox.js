@@ -30,8 +30,6 @@ require("discord-reply") // Until discord.js releases 2021 replys, I have this m
 
 const Bot = new Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
-  disableMentions: "all",
-  fetchAllMembers: true,
   retryLimit: 3,
 
   presence: {
