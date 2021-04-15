@@ -9,39 +9,47 @@ exports.run = async (Bot, message) => {
   }
 
   if (!message.guild) {
-    return;
+    return
   }
 
   const user = message.guild.members.cache.get(message.author.id);
-  const AntiURL = await Bot.dashboard.getVal(message.guild.id, "AntiURL")
+  const AntiURL = await Bot.dashboard.getVal(message.guild.id, "removelinks")
 
-  if (AntiURL === "true" && Bot.isURL(message.content) && !user.hasPermission("MANAGE_MESSAGES")) {
-    try {
-      message.delete();
-    } catch (err) {
-      message.lineReplyNoMention(`${message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`).then(m => m.delete({ timeout: 1000 }))
+  if (!AntiURL === "Disabled") {
+    if (!user.hasPermission("MANAGE_MESSAGES") && Bot.isURL(message.content)){
+      if (AntiURL === "Enabled"){
+        try {
+          message.delete();
+        } catch (err) {
+          message.lineReplyNoMention(`${message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`).then(m => m.delete({ timeout: 1000 }))
+        }
+      }
     }
-
+    
     return message.lineReplyNoMention(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
   }
 
-  const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "AntiSwear")
+  const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "removebadwords")
 
-  if (AntiSwear === "true" && !user.hasPermission("MANAGE_MESSAGES")) {
-    AntiSwearPackage(Bot, message, {
-      warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
-      muteRole: "Muted",
-      ignoreWord: ["hello"],
-      muteCount: 3,
-      kickCount: 6,
-      banCount: 12
-    })
+  if (AntiSwear === "Enabled"){
+    if (!user.hasPermission("MANAGE_MESSAGES")) {
+      AntiSwearPackage(Bot, message, {
+        warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
+        muteRole: "Muted",
+        ignoreWord: ["hello"],
+        muteCount: 3,
+        kickCount: 6,
+        banCount: 12
+      })
+    }
   }
 
-  const AntiSpam = await Bot.dashboard.getVal(message.guild.id, "AntiSpam")
+  const AntiSpam = await Bot.dashboard.getVal(message.guild.id, "removerepeatedtext")
 
-  if (AntiSpam === "true" && !message.channel.name.endsWith("spamhere") && !message.channel.name.endsWith("spam-here")) {
-    Bot.AntiSpam.message(message)
+  if (AntiSpam === "Enabled"){
+    if (!message.channel.name.startsWith("spam") && !message.channel.name.endsWith("spam")){
+      Bot.AntiSpam.message(message)
+    }
   }
 
   const Leveling = await Bot.dashboard.getVal(message.guild.id, "Leveling")
