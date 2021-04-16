@@ -4,25 +4,25 @@ const botdash = require("botdash.pro")
 exports.run = async (Bot) => {
   const Activities = [
     {
-      text: `${Bot.Config.Bot.prefix}Help`,
+      text: `${Bot.Config.Bot.prefix}Help | ^Invite`,
       type: "WATCHING",
       status: "online"
     },
 
     {
-      text: `${Bot.FormatNumber(await Bot.GetServerCount())} servers!`,
+      text: `${Bot.FormatNumber(await Bot.GetServerCount())} servers! | ^Invite`,
       type: "WATCHING",
       status: "online"
     },
 
     {
-      text: `${Bot.FormatNumber(await Bot.GetUserCount())} users!`,
+      text: `${Bot.FormatNumber(await Bot.GetUserCount())} users | ^Invite!`,
       type: "WATCHING",
       status: "online"
     },
 
     {
-      text: `Ch1ll'n!`,
+      text: `Ch1ll'n! | ^Invite`,
       type: "WATCHING",
       status: "online"
     },

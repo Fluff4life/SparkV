@@ -26,7 +26,7 @@ exports.run = async (Bot, message) => {
       }
     }
     
-    return message.lineReplyNoMention(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
+    return message.channel.send(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
   }
 
   const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "removebadwords")
