@@ -52,11 +52,22 @@ exports.run = async (Bot, message) => {
     }
   }
 
-  const Leveling = await Bot.dashboard.getVal(message.guild.id, "Leveling")
+  const Leveling = await Bot.dashboard.getVal(message.guild.id, "leveling")
 
-  if (Leveling === "true") {
-    const RandomAmountOfXP = Math.floor(Math.random() * 15) + 10;
-    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomAmountOfXP);
+  if (Leveling === "Enabled") {
+    let MaxXP = await Bot.dashboard.getVal(message.guild.id, "leveling_maxxp")
+    let MinXP = await Bot.dashboard.getVal(message.guild.id, "leveling_minxp")
+
+    if (isNaN(MaxXP)){
+      MaxXP = 15
+    }
+
+    if (isNaN(MinXP)){
+      MinXP = 10
+    }
+
+    const RandomXP = Math.floor(Math.random() * MaxXP || 15) + MinXP || 10;
+    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP);
 
     if (HasLeveledUp) {
       const User = await Levels.fetch(message.author.id, message.guild.id)
@@ -127,7 +138,7 @@ exports.run = async (Bot, message) => {
     const BotPermisions = message.channel.permissionsFor(message.guild.me)
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.lineReplyNoMention(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`).then(m => m.delete({ timeout: 5000 }))
+      return message.lineReplyNoMention(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`)
     }
   }
 
@@ -135,7 +146,7 @@ exports.run = async (Bot, message) => {
     const AuthorPermisions = message.channel.permissionsFor(message.author)
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.lineReplyNoMention(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`).then(m => m.delete({ timeout: 5000 }))
+      return message.lineReplyNoMention(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`)
     }
   }
 
@@ -186,16 +197,16 @@ exports.run = async (Bot, message) => {
     await commandfile
       .run(Bot, message, args, command)
       .then(async () => {
-        const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, "DeleteUsage")
+        const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, "deletecommandusage")
 
-        if (DeleteUsage === "true") {
+        if (DeleteUsage === "Enabled") {
           message.delete().catch((err) => { })
         }
 
         console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)
       })
   } catch (err) {
-    message.lineReplyNoMention("❌ Uh oh... Something went wrong with handling that command. If this happends again, please join my [support server](https://discord.gg/PPtzT8Mu3h) and report this error.")
+    message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!")
 
     console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${message.author.tag}\nError: ${err.toString()}`)
   }
