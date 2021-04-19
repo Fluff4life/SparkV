@@ -66,7 +66,7 @@ exports.run = async (Bot, message) => {
   }
 
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
-  const Prefix = await Bot.dashboard.getVal(message.guild.id, "prefix")
+  const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
   if (!message.content.startsWith(Prefix)) {
     const ActivateChatBot = () => {
