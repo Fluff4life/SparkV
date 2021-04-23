@@ -45,7 +45,6 @@
     "express-session": "^1.17.1",
     "ffmpeg-static": "^4.2.7",
     "fs": "0.0.1-security",
-    "i": "^0.3.6",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
