@@ -10,7 +10,7 @@
 
 # Dependancy Directories
 node_modules
-dependerros
+localhost
 
 # Environmental Variables
 .env
