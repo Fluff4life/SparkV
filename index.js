@@ -91,7 +91,9 @@ if (Config.Debug) {
             })
 
             Shard.on("disconnect", (event) => {
-                LogError("Fatal", event)
+                LogError("Fatal", err, {
+                    shard: Shard.id
+                })
 
                 console.log(require("chalk").red(`SHARD DISCONNECTED - SHARD ${Shard.id}/${ShardManager.totalShards} DISCONNECTED. ${event}`))
             })
@@ -101,7 +103,10 @@ if (Config.Debug) {
             })
 
             Shard.on("death", (event) => {
-                LogError("Fatal", event)
+                LogError("Fatal", err, {
+                    shard: Shard.id
+                })
+
                 console.log(require("chalk").red(`SHARD CLOSED - SHARD ${Shard.id}/${ShardManager.totalShards} UNEXPECTEDLY CLOSED!\nPID: ${event.pid}\nExit Code: ${event.exitCode}.`))
 
                 if (!event.exitCode) {
