@@ -47,14 +47,7 @@ exports.run = async (Bot, message, Arguments) => {
       if (typeof result !== "string") {
         result = require("util").inspect(result, false, 1)
       }
-
-      const array = [
-        process.env.token.escapeRegex()
-      ]
-
-      const regex = new RegExp(array.join("|"), "g")
-      result = result.replace(regex, "XXXXXXXXXX")
-
+      
       message.lineReplyNoMention(`✅︱Code executed successfully. \`\`\`js\n${result}\`\`\``)
     } catch (err) {
       console.error(err)
