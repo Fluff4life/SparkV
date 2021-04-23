@@ -3,7 +3,11 @@ const DiscordEasyPages = require("discordeasypages")
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReplyNoMention("❌Access denied.")
+    return message.lineReplyNoMention("❌ Access denied.")
+  }
+
+  if (Arguments.length == 0) {
+    return message.lineReplyNoMention("❌︱Please input code.")
   }
 
   function clean(text) {
@@ -37,20 +41,25 @@ exports.run = async (Bot, message, Arguments) => {
     DiscordEasyPages(message, pages, ["⏪", "⏩", "🗑"], `Server List`)
   } else {
     try {
-      const code = Arguments.join(" ")
-      let evaled = eval(code)
+      const asyncify = code => `(async () => {\nreturn ${clean(code.trim())}\n})`
+      let result = await eval(asyncify(Arguments.join(" ")))
 
-      if (typeof evaled !== "string") {
-        evaled = require("util").inspect(evaled)
+      if (typeof result !== "string") {
+        result = require("util").inspect(result, false, 1)
       }
 
-      if (evaled.includes(process.env.token)) {
-        evaled = evaled.replace(process.env.token, "BOT_TOKEN")
-      }
+      const array = [
+        process.env.token.escapeRegex()
+      ]
 
-      message.lineReplyNoMention(clean(evaled), { code: "js" })
+      const regex = new RegExp(array.join("|"), "g")
+      result = result.replace(regex, "XXXXXXXXXX")
+
+      message.lineReplyNoMention(`✅︱Code executed successfully. \`\`\`js\n${result}\`\`\``)
     } catch (err) {
-      message.lineReplyNoMention(`\`ERROR\` \`\`\`js\n${clean(err)}\n\`\`\``)
+      console.error(err)
+
+      return message.lineReplyNoMention(`❌︱Uh oh! There was an error executing that code.\n\`\`\`js\n${err}\`\`\``)
     }
   }
 },

@@ -31,14 +31,7 @@ exports.run = async (Bot, message, Arguments) => {
   if (Emoji === "✅") {
     // Yes
     message.delete()
-
-    try {
-      UserToBan.send(`You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`)
-    } catch (err) {
-      
-    }
-
-    
+    UserToBan.send(`You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`).catch((err) => { })
 
     UserToBan.ban({
       reason: ReasonForBan

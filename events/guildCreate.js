@@ -13,5 +13,5 @@ exports.run = async(Bot, guild) => {
     }
   }
 
-  console.log(`New guild added: ${guild.name} (Id: ${guild.id})`)
+  console.log(`New guild added! ${guild.name} (Id: ${guild.id})\nMember Count: ${Bot.FormatNumber(guild.memberCount)}`)
 }

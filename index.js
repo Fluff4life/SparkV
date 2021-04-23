@@ -1,28 +1,67 @@
+// KingCh1ll //
+// 4/22/2021 //
+
+// Libarys //
 const { config } = require("dotenv")
+const { init, withScope, captureException, Severity, captureEvent, captureMessage } = require("@sentry/node");
+const { Transaction } = require("@sentry/integrations");
+const { name, version } = require("./package.json");
+
+// Varibles //
 const Config = require("./globalconfig.json")
 
-// Start Dotenv //--
+// Start Env //--
 config({
     path: __dirname + "/.env"
 })
+
+init({
+    dsn: process.env.SentryToken,
+    release: `${name}@${version}`,
+    integrations: [
+        new Transaction()
+    ],
+});
+
+const LogError = (type, err, obj) => {
+    withScope(scope => {
+        scope.setLevel(Severity[type])
+
+        if (obj) {
+            for (const key of Object.keys(obj)){
+                scope.setExtra(key, obj[key])
+            }
+        }
+
+        captureException(err)
+    })
+}
+
+global.LogError = (err, obj) => {
+    LogError(err, obj)
+}
 
 // Error Handlers //
 process.on("uncaughtException", (err, promise) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
+    LogError("Fatal", err)
     console.log(require("chalk").red(`ERROR => Uncaught Exception error. ${ErrorMessage}.`))
     process.exit(1)
 })
 
 process.on("unhandledRejection", (err, promise) => {
+    LogError("Fatal", err)
     console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err}.`))
 })
 
 process.on("warning", (warning) => {
+    LogError("Fatal", err)
     console.log(require("chalk").yellow(`WARNING - ${warning.name} => ${warning.message}.`))
 })
 
 process.on("exit", (code) => {
+    LogError("Fatal", err)
     console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
 })
 
@@ -52,6 +91,8 @@ if (Config.Debug) {
             })
 
             Shard.on("disconnect", (event) => {
+                LogError("Fatal", event)
+
                 console.log(require("chalk").red(`SHARD DISCONNECTED - SHARD ${Shard.id}/${ShardManager.totalShards} DISCONNECTED. ${event}`))
             })
 
@@ -60,6 +101,7 @@ if (Config.Debug) {
             })
 
             Shard.on("death", (event) => {
+                LogError("Fatal", event)
                 console.log(require("chalk").red(`SHARD CLOSED - SHARD ${Shard.id}/${ShardManager.totalShards} UNEXPECTEDLY CLOSED!\nPID: ${event.pid}\nExit Code: ${event.exitCode}.`))
 
                 if (!event.exitCode) {

@@ -19,6 +19,8 @@ exports.run = async (Bot, message, Arguments) => {
       message.lineReplyNoMention(`Successfully set ${User}'s XP to ${FormattedNumber}!`)
     })
   } catch (err) {
+    console.error(err)
+
     message.lineReplyNoMention(`Error setting ${User}'s XP to ${FormattedNumber}.`)
   }
 },

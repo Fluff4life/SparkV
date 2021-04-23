@@ -90,6 +90,8 @@ exports.run = async (Bot, message, Arguments) => {
       }
     }
   } catch(err){
+    console.error(err)
+
     return message.lineReplyNoMention("Uh oh! Something went wrong. Please try again later or leave the VC.")
   }
 

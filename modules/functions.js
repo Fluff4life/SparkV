@@ -90,8 +90,12 @@ module.exports = async (bot) => {
     if (Status === "SUCCESS") {
       console.log(chalk.blue(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "ERROR") {
+      global.LogError("Fatal", Details)
+
       console.log(chalk.red(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "WARNING") {
+      global.LogError("Fatal", Details)
+
       console.log(chalk.yellow(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "DEBUG") {
       console.log(chalk.green(`${Status} - ${Type} => ${Details}`))

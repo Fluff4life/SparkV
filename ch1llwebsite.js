@@ -70,15 +70,27 @@ if (Config.SystemsEnabled.Down === true) {
           currentURL: `${request.protocol}://${request.get("host")}${request.originalUrl}`
         })
     })
-    .use((err, request, response) => {
-      console.error(err.stack)
+    .use((err, request, response, next) => {
+      if (error instanceof SyntaxError) {
+        response
+          .status(400)
+          .send({
+            error: {
+              status: 400,
+              message: "Syntax Error"
+            }
+          })
+      } else {
+        console.error("Website Error!", err.stack)
 
-      response
-        .status(500)
-        .render("500", {
-          user: request.userinfo,
-          currentURL: `${request.protocol}://${request.get("host")}${request.originalUrl}`
-        })
+        response
+          .status(500)
+          .render("500", {
+            user: request.userinfo,
+            currentURL: `${request.protocol}://${request.get("host")}${request.originalUrl}`,
+            error: err
+          })
+        }
     })
 
     // Listener //

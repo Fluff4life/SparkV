@@ -14,6 +14,8 @@ exports.run = async (Bot, message, Arguments) => {
   try {
     Bot.distube.play(message, Arguments)
   } catch (err) {
+    console.error(err)
+
     message.lineReplyNoMention(`Error! ${err}`)
   }
 },
