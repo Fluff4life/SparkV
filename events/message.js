@@ -195,6 +195,8 @@ exports.run = async (Bot, message) => {
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount);
 
   try {
+    const { username, discriminator, id } = message.author
+
     configureScope(scope => {
       scope.setUser({
         username,
