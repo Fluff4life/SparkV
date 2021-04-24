@@ -24,7 +24,7 @@ init({
 });
 
 const LogError = (type, err, obj) => {
-    withScope(scope => {
+    withScope((scope) => {
         scope.setLevel(Severity[type])
 
         if (obj) {
@@ -33,25 +33,24 @@ const LogError = (type, err, obj) => {
             }
         }
 
+        console.log("Logging!")
         captureException(err)
     })
 }
 
-global.LogError = (err, obj) => {
-    LogError(err, obj)
-}
+global.LogError = LogError
 
 // Error Handlers //
-process.on("uncaughtException", (err, promise) => {
+process.on("uncaughtException", async (err, promise) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
-    LogError("Fatal", err)
+    await LogError("Fatal", err)
     console.log(require("chalk").red(`ERROR => Uncaught Exception error. ${ErrorMessage}.`))
     process.exit(1)
 })
 
-process.on("unhandledRejection", (err, promise) => {
-    LogError("Fatal", err)
+process.on("unhandledRejection", async (err, promise) => {
+    await LogError("Fatal", err)
     console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err}.`))
 })
 
