@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const Levels = require("discord-xp")
 const fetch = require("node-fetch")
 const AntiSwearPackage = require("anti-swear-words-packages-discord")
+const { configureScope } = require("@sentry/node")
 
 exports.run = async (Bot, message) => {
   if (message.author.bot) {
@@ -194,6 +195,17 @@ exports.run = async (Bot, message) => {
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount);
 
   try {
+    configureScope(scope => {
+      scope.setUser({
+        username,
+        discriminator,
+        id
+      })
+
+      scope.setTag("command", commandfile.config.name)
+      scope.setTag("guild", message.channel.guild.id || "DM")
+    })
+
     await commandfile
       .run(Bot, message, args, command)
       .then(async () => {
@@ -206,8 +218,7 @@ exports.run = async (Bot, message) => {
         console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)
       })
   } catch (err) {
+    console.error(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${message.author.tag}\nError: ${err.toString()}`)
     message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!")
-
-    console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\n❌FAILED - FAILED to run command! \nCommand: ${command}\nArguments: ${args}\nUser who activated this command: ${message.author.tag}\nError: ${err.toString()}`)
   }
 }
