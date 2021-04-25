@@ -5,7 +5,7 @@ const Express = require("express")
 module.exports = async (Bot) => {
     const topgg = new TopggAPI(process.env.dblkey, Bot)
     const botlistspace = new botlistspaceapi.Client({
-        id: Bot.Config.Bot.ClientID,
+        id: Bot.Config.Bot.ClientID.toString(),
         botToken: process.env.BotListToken
     });
    
