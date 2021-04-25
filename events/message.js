@@ -220,8 +220,19 @@ exports.run = async (Bot, message) => {
         console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)
       })
   } catch (err) {
-    console.error(err)
-    global.
+    const { username, discriminator, id } = message.author
+
+    configureScope(scope => {
+      scope.setUser({
+        username,
+        discriminator,
+        id
+      })
+
+      scope.setTag("command", commandfile.config.name)
+      scope.setTag("guild", message.channel.guild.id || "DM")
+    })
+
     message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!")
   }
 }
