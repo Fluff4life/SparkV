@@ -82,7 +82,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   exports.config = {
     name: "Clear",
-    description: "I can delete messages for you so you don't have to spend a while deleting them :)",
+    description: "I'll delete messages for you!",
     aliases: ["purge", "clr"],
     usage: "<all or number or user> <if user then number>",
     category: "🛠️moderation🛠️",

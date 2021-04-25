@@ -11,7 +11,7 @@ module.exports = async (bot) => {
     var time = (Days > 0) ? `${Days} Day${Days === 1 ? "" : "s"}, ` : ""
     time += (Hours > 0) ? `${Hours} Hour${Hours === 1 ? "" : "s"}, ` : ""
     time += (Mins > 0) ? `${Mins} Minute${Mins === 1 ? "" : "s"} & ` : ""
-    time += (Secs > 0) ? `${Secs} Seconds.` : "0 Seconds."
+    time += (Secs > 0) ? `${Secs} Second${Secs === 1 ? "" : "s"}.` : "0 Seconds."
 
     return time
   }

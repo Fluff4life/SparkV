@@ -1,9 +1,8 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message) => {
-  message.lineReplyNoMention("[Click here to view my dashboard!](https://ch1llblox.botdash.pro/)")
+  message.lineReplyNoMention("Click the following link to view my dashboard! Link: https://ch1llblox.botdash.pro/")
 },
-
 
   exports.config = {
     name: "Dashboard",
