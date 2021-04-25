@@ -24,6 +24,14 @@ init({
 });
 
 const LogError = (type, err, obj) => {
+    if (!type){
+        type = "Fatal"
+    }
+
+    if (!err){
+        err = "Error not specified."
+    }
+
     withScope((scope) => {
         scope.setLevel(Severity[type])
 
@@ -33,7 +41,6 @@ const LogError = (type, err, obj) => {
             }
         }
 
-        console.log("Logging!")
         captureException(err)
     })
 }
@@ -50,22 +57,22 @@ process.on("uncaughtException", async (err, promise) => {
 })
 
 process.on("unhandledRejection", async (err, promise) => {
-    await LogError("Fatal", err)
+    await LogError("Error", err)
     console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err}.`))
 })
 
 process.on("warning", (warning) => {
-    LogError("Fatal", err)
-    console.log(require("chalk").yellow(`WARNING - ${warning.name} => ${warning.message}.`))
+    LogError("Warning", err)
+    console.log(require("chalk").yellow(`WARNING => ${warning.name} => ${warning.message}.`))
 })
 
 process.on("exit", (code) => {
     LogError("Fatal", err)
-    console.log(require("chalk").red(`EXIT - Process exited with code ${code}.`))
+    console.log(require("chalk").red(`EXIT => Process exited with code ${code}.`))
 })
 
 if (Config.Debug) {
-    console.log(require("chalk").yellow("WARNING - DEBUG ONLINE! SHARDING DISABLED => Calling Ch1llBlox without sharding features & website on local-host."))
+    console.log(require("chalk").yellow("WARNING => DEBUG ONLINE! SHARDING DISABLED => Calling Ch1llBlox without sharding features & website on local-host."))
 
     require("./ch1llblox")
     require("./ch1llwebsite")
@@ -117,15 +124,15 @@ if (Config.Debug) {
         ShardManager.spawn(Number(process.env.TotalShards) || "auto", 8000, -1);
         global.GlobalCache = new GlobalCache(ShardManager)
 
-        if (process.env.ShardLifeTime) {
+        if (Config.sharding.ShardingEnabled) {
             setTimeout(() => {
                 ShardManager.respawn = false
                 ShardManager.broadcastEval("process.exit()")
-            }, process.env.ShardLifeTime * 1000)
+            }, Config.sharding.ShardLifeTime * 1000)
 
             setTimeout(() => {
                 process.exit()
-            }, (process.env.ShardLifeTime + 5) * 1000)
+            }, (Config.sharding.ShardLifeTime + 5) * 1000)
         }
     } else {
         const Discord = require("discord.js");

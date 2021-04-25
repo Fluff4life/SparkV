@@ -39,6 +39,10 @@
         "donate": "https://roblox.com/"
     },
 
-    "ShardingEnabled": false,
+    "sharding": {
+        "ShardingEnabled": false,
+        "ShardLifeTime": 518400
+    },
+
     "Debug": false
 }
