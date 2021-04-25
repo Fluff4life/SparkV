@@ -48,7 +48,7 @@ require("./modules/dependencies/database").StartUp(Bot)
 // Modules //
 const functions = require("./modules/functions")
 const Distube = require("./modules/dependencies/distubehandler")
-const dbl = require("./modules/dependencies/dbl")
+const botlists = require("./modules/dependencies/botlists")
 const giveawayshandler = require("./modules/dependencies/giveawayshandler")
 const Config = require("./globalconfig.json")
 var Noblox
@@ -95,8 +95,8 @@ functions(Bot)
 console.log("---------- Loading DisTube ----------")
 Distube(Bot)
 
-console.log("---------- Loading DBL ----------")
-dbl(Bot)
+console.log("---------- Loading botlists ----------")
+botlists(Bot)
 
 console.log("---------- Loading GiveawaysHandler ----------")
 giveawayshandler(Bot)
