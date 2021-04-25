@@ -94,7 +94,7 @@ if (Config.SystemsEnabled.Down === true) {
     })
 
     // Listener //
-    const listener = app.listen(process.env.PORT, Config.Debug == true ? "localhost" : null, () => {
+    const listener = app.listen(Config.Debug == true ? 3000 : process.env.PORT, Config.Debug == true ? "localhost" : null, () => {
         console.log(Chalk.blue(`SUCCESS - WEBSITE => ${Config.Debug == true ? `Server running at http://localhost:${listener.address().port}` :  `Server running on port ${listener.address().port}`}`))
     })
 }

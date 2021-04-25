@@ -6,10 +6,10 @@ Router.get("/", async (request, response) => {
     response.render("ch1llblox", {
         bot: {
             name: "Ch1llBlox",
-            avatar: await global.Bot.user.displayAvatarURL()
+            avatar: await global.Bot.user.displayAvatarURL() || "https://cdn.icon-icons.com/icons2/1476/PNG/512/discord_101785.png"
         },
         
-        user: request.user || null
+        user: request.session.user || null
     })
 })
 

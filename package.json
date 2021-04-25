@@ -1,6 +1,6 @@
 {
   "name": "ch1llblox",
-  "version": "4.5.8",
+  "version": "4.5.9",
   "description": "...",
   "main": "index.js",
   "scripts": {
@@ -20,15 +20,12 @@
     "npm": "*"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.4.0",
     "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
     "@top-gg/sdk": "^3.0.9",
     "anti-swear-words-packages-discord": "^1.1.43",
     "botdash.pro": "^1.0.2",
     "botlist.space": "^3.3.1",
-    "canvacord": "^5.1.0",
-    "canvas": "^2.7.0",
     "chalk": "^4.1.0",
     "dbl-api": "^1.2.1",
     "dblapi.js": "^2.4.0",
@@ -39,7 +36,7 @@
     "discord-xp": "^1.1.8",
     "discord.js": "^12.5.1",
     "discordeasypages": "^0.1.9",
-    "distube": "^2.8.10",
+    "distube": "^2.8.12",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -60,7 +57,6 @@
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
     "yargs-parser": "^13.1.2",
-    "youtube-dl": "^3.5.0",
     "ytdl-core": "^4.5.0"
   },
   "devDependencies": {
