@@ -9,7 +9,7 @@ Router.get("/", async (request, response) => {
             avatar: await global.Bot.user.displayAvatarURL()
         },
         
-        user: response.user
+        user: request.user || null
     })
 })
 
