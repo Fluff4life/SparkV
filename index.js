@@ -77,7 +77,7 @@ if (Config.Debug) {
     require("./ch1llblox")
     require("./ch1llwebsite")
 } else {
-    if (Config.ShardingEnabled === true) {
+    if (Config.sharding.ShardingEnabled === true) {
         const { GlobalCache } = require("./modules/globalcache")
 
         const Discord = require("discord.js");
