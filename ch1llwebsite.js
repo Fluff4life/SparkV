@@ -71,7 +71,7 @@ if (Config.SystemsEnabled.Down === true) {
         })
     })
     .use((err, request, response, next) => {
-      if (error instanceof SyntaxError) {
+      if (err instanceof SyntaxError) {
         response
           .status(400)
           .send({

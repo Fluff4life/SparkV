@@ -15,16 +15,9 @@ Router.get("/ch1llblox/status", async (request, response) => {
     response.status(200).send({ status: 200, message: "OK" });
 })
 
-Router.get("/auth", async (request, response) => passport.authenticate("discord"))
-Router.get("/auth/logout", async (request, response) => {
-	request.logout()
-	response.redirect("/")
-})
-
-/*
 Router.get("/login", async (request, response) => {
     if (!request.user || !request.user.id || !request.user.guilds){
-        return response.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=763126208149585961&scope=identify%20guilds&response_type=code&redirect_uri=${encodeURIComponent(global.Bot.Config.website.baseURL + "/api/callback")}&state=${request.query.state || "no"}`)
+        return response.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=763126208149585961&scope=identify%20guilds&response_type=code&redirect_uri=${process.env.baseURL}/api/callback)}&state=${request.query.state || "no"}`)
     }
 
     response.redirect("/selector")
@@ -63,7 +56,7 @@ Router.get("/callback", async (request, response) => {
 	var Data = await APIResponse.json()
 
 	if (Data.error || !Data.access_token){
-		return response.redirect(`/api/login&state=${request.query.state}`)
+		return response.redirect(`/api/login?state=${request.query.state}`)
 	}
 
 	const UserData = {
@@ -116,6 +109,5 @@ Router.get("/callback", async (request, response) => {
 	request.session.user = { ... UserData.userinfo, ... { Guilds } }
 	response.redirect(RedirectURL)
 })
-*/
 
 module.exports = Router
