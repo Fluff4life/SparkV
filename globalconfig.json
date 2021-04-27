@@ -12,7 +12,7 @@
 
     "Embed": {
         "EmbedColor": "BLUE",
-        "EmbedFooter": "Join my Support Server! ^Invite.",
+        "EmbedFooter": "^Invite | ^Dashboard",
         "SuccessColor": "#0099ff",
         "ErrorColor": "RED"
     },
