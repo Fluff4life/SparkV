@@ -29,6 +29,18 @@ Root Varibles
   background: var(--main-color);
 }
 
+.background {
+    background: url("https://imgur.com/ONg5yUO.png");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.2; 
+}
+
 .footer-dark {
   padding: 50px 0;
 }
