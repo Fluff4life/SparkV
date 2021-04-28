@@ -4,11 +4,7 @@ const Router = Express.Router()
 const CheckAuth = require("../auth/CheckAuth")
 
 Router.get("/", async (request, response) => {
-    response.redirect("/selector")
-})
-
-Router.get("/test", async (request, response) => {
-    response.render("test")
+    response.redirect("/home")
 })
 
 Router.get("/status", async (request, response) => {

@@ -12,7 +12,7 @@
 
     "Embed": {
         "EmbedColor": "BLUE",
-        "EmbedFooter": "^Invite | ^Dashboard",
+        "EmbedFooter": "^Donate | ^Invite",
         "SuccessColor": "#0099ff",
         "ErrorColor": "RED"
     },

@@ -314,6 +314,13 @@ div#features:hover {
   color: #fff;
   position: relative;
 }
+.price-area .inner-area .text{
+  font-size: 25px;
+  font-weight: 400;
+  position: absolute;
+  top: -10px;
+  left: 17px;
+}
 .price-area .inner-area .price{
   font-size: 45px;
   font-weight: 500;

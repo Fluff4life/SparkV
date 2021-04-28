@@ -17,7 +17,7 @@ Router.get("/ch1llblox/status", async (request, response) => {
 
 Router.get("/login", async (request, response) => {
     if (!request.user || !request.user.id || !request.user.guilds){
-        return response.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=763126208149585961&scope=identify%20guilds&response_type=code&redirect_uri=${process.env.baseURL}/api/callback)}&state=${request.query.state || "no"}`)
+        return response.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=763126208149585961&scope=identify%20guilds&response_type=code&redirect_uri=${encodeURIComponent(process.env.baseURL)}/api/callback)}&state=${request.query.state || "no"}`)
     }
 
     response.redirect("/selector")

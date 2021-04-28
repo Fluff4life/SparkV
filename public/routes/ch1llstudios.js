@@ -3,12 +3,7 @@ const Express = require("express")
 const Router = Express.Router()
 
 Router.get("/", async (request, response) => {
-    response.sendFile(Dirname() + "/html/cshome.html");
-})
-
-Router.get("/", async (request, response) => {
-    response.status(500)
-    // response.sendFile(Dirname() + "/html/cshome.html");
+    response.render("ch1llstudios/cshome");
 })
 
 module.exports = Router
