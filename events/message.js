@@ -195,19 +195,6 @@ exports.run = async (Bot, message) => {
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount);
 
   try {
-    const { username, discriminator, id } = message.author
-
-    configureScope(scope => {
-      scope.setUser({
-        username,
-        discriminator,
-        id
-      })
-
-      scope.setTag("command", commandfile.config.name)
-      scope.setTag("guild", message.channel.guild.id || "DM")
-    })
-
     await commandfile
       .run(Bot, message, args, command)
       .then(async () => {
@@ -216,21 +203,18 @@ exports.run = async (Bot, message) => {
         if (DeleteUsage === "Enabled") {
           message.delete().catch((err) => { })
         }
-
-        console.log(`\`\`\`\`\`\`\`\`\`\`\`\`\`\nCOMMAND SUCCESS! \nCommand: ${command}\nArguments: ${args}\nUsername: ${message.author.tag} ID: ${message.author.id}`)
       })
   } catch (err) {
-    const { username, discriminator, id } = message.author
+    const AnnonymousUser = "Annonymous"
 
     configureScope(scope => {
       scope.setUser({
-        username,
-        discriminator,
-        id
+        AnnonymousUser
       })
 
-      scope.setTag("command", commandfile.config.name)
-      scope.setTag("guild", message.channel.guild.id || "DM")
+      scope.setTag("Command", commandfile.config.name)
+      scope.setTag("CurrentPing", Bot.ws.ping)
+      scope.setTag("GuildType", message.channel.type)
     })
 
     message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!")
