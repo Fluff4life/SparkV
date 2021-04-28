@@ -2,6 +2,10 @@ const TopggAPI = require("dblapi.js")
 const botlistspaceapi = require("botlist.space")
 
 module.exports = async (Bot) => {
+    if (process.env.alpha === "true"){
+        return
+    }
+
     const topgg = new TopggAPI(process.env.dblkey, Bot)
     const botlistspace = new botlistspaceapi.Client({
         id: Bot.Config.Bot.ClientID.toString(),
