@@ -178,11 +178,11 @@ exports.run = async (Bot, message) => {
       return message.reply({
         embed: {
           title: `Whoa there ${message.author.username}!`,
-          description: `Please wait ${TimeLeft} more seconds to use that command again!`,
+          description: `Please wait ${TimeLeft} more seconds to use that command again.`,
           thumbnail: message.author.avatarURL,
           color: "#0099ff",
           footer: {
-            text: "Maybe up vote our Bot while you wait?",
+            text: Bot.Config.Embed.EmbedFooter,
             icon_url: Bot.user.displayAvatarURL()
           },
         },
