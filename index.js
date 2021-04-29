@@ -5,7 +5,6 @@
 const { config } = require("dotenv")
 const { init, withScope, captureException, Severity, captureEvent, captureMessage } = require("@sentry/node");
 const { Transaction } = require("@sentry/integrations");
-const { BrowserTracking } = require("@sentry/tracing")
 const { name, version } = require("./package.json");
 
 // Varibles //
@@ -19,13 +18,8 @@ config({
 init({
     dsn: process.env.SentryToken,
     release: `${name}@${version}`,
-    tracesSampleRate: 1,
-    tracesSampler: samplingContext => {  },
     integrations: [
-        new Transaction(),
-        new BrowserTracking({
-            tracingOrigins: ["localhost", process.env.baseURL, /^\//]
-        })
+        new Transaction()
     ]
 });
 
