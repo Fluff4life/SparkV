@@ -48,7 +48,7 @@ function DisplayBoard(board) {
       return "🔴"
     }
 
-    return "⬜"
+    return "⚪"
   }).join("")).join("\n")
 
   return Map
@@ -88,7 +88,7 @@ exports.run = async (Bot, message, Arguments) => {
     const Array = []
 
     for (let i = 0; i < 6; i++) {
-      Array.push([null, null, null, null, null, null, null, null])
+      Array.push([null, null, null, null, null, null, null, null, null])
     }
 
     const Board = Array
