@@ -13,7 +13,7 @@ exports.run = async (Bot, message) => {
     .setColor(Bot.Config.Embed.EmbedColor)
     .setTimestamp();
 
-  await message.reply(ShowerThoughtEmbed);
+  await message.lineReply(ShowerThoughtEmbed);
 },
   
 exports.config = {

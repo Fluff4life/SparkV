@@ -37,7 +37,7 @@ exports.run = async (Bot, message, args) => {
     const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-      return message.reply("that command doesn't exist or no longer exists!");
+      return message.lineReply("That command doesn't exist or no longer exists!");
     }
 
     const CommandHelpEmbed = new Discord.MessageEmbed()

@@ -21,9 +21,9 @@ exports.run = async (Bot, message, Arguments) => {
       color: "#0099ff",
     }
   }).then(() => {
-    message.reply("I sent the song's lyrics to your DMs.")
+    message.lineReply("I sent the song's lyrics to your DMs.")
   }).catch(() => {
-    message.reply("to prevent spam, please enable your DMs so I can DM you with the lyrics.")
+    message.lineReply("to prevent spam, please enable your DMs so I can DM you with the lyrics.")
     })
 },
 

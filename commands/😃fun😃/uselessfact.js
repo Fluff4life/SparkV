@@ -12,7 +12,7 @@ exports.run = async (Bot, message) => {
         .setColor(Bot.Config.Embed.EmbedColor)
         .setTimestamp();
 
-      const Message = message.reply(FunFactEmbed);
+      const Message = message.lineReply(FunFactEmbed);
 
       Message.react("🤯");
       Message.react("😬");

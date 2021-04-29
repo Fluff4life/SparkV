@@ -38,7 +38,7 @@ exports.run = async (Bot, message, Arguments) => {
     VerificationMessage.delete()
 
     User.setNickname(NewNickname).then(() => {
-      message.reply(`I successfully changed ${User}'s nickname to ${NewNickname}!`)
+      message.lineReply(`I successfully changed ${User}'s nickname to ${NewNickname}!`)
     }).catch((err) => {
       message.lineReplyNoMention("Uh oh! I cannot change their nickname.").then(() => {
         console.error(err)

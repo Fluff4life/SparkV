@@ -152,13 +152,13 @@ exports.run = async (Bot, message) => {
   }
 
   if (!commandfile.config.enabled) {
-    return message.reply("This command is currently disabled! Please try again later.")
+    return message.lineReply("This command is currently disabled! Please try again later.")
   }
 
   if (commandfile.config.category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === "false") {
-    return message.reply("This command is disabled by the server owner.")
+    return message.lineReply("This command is disabled by the server owner.")
   } else if (commandfile.config.category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === "false") {
-    return message.reply("This command is disabled by the server owner.")
+    return message.lineReply("This command is disabled by the server owner.")
   }
 
   if (!Bot.cooldowns.has(commandfile.config.name)) {
@@ -175,7 +175,7 @@ exports.run = async (Bot, message) => {
     if (Now < ExpireTime) {
       const TimeLeft = Math.round((ExpireTime - Now) / 1000)
 
-      return message.reply({
+      return message.lineReply({
         embed: {
           title: `Whoa there ${message.author.username}!`,
           description: `Please wait ${TimeLeft} more seconds to use that command again.`,
@@ -201,7 +201,7 @@ exports.run = async (Bot, message) => {
         const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, "deletecommandusage")
 
         if (DeleteUsage === "Enabled") {
-          message.delete().catch((err) => { })
+          message.delete().catch(() => { })
         }
       })
   } catch (err) {
