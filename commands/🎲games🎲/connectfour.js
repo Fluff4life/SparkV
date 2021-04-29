@@ -180,8 +180,7 @@ exports.run = async (Bot, message, Arguments) => {
 
       UserTurn = !UserTurn
     }
-
-    GameMessage.edit(Winner ? `${DisplayBoard(Board)}\n🎉 Congrats, ${Winner}. You won!` : `⚔ ${DisplayBoard(Board)}\nIt's a draw!`)
+    GameMessage.edit(GameEmbed.setTitle(Winner ? `${Winner} won!` : "It's a draw!").setDescription(DisplayBoard(Board)).setFooter(`${message.author} V.S. ${Opponent} • ${Bot.Config.Embed.EmbedFooter}`))
   }
 },
 
