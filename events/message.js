@@ -99,6 +99,8 @@ exports.run = async (Bot, message) => {
 
   } else {
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+    const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
 
     HandleCommand(Bot, message, args, command, commandfile)
   }
