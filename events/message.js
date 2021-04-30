@@ -104,7 +104,7 @@ exports.run = async (Bot, message) => {
   }
 }
 
-function HandleCommand(Bot, message, args, command, commandfile) {
+async function HandleCommand(Bot, message, args, command, commandfile) {
   const user = message.guild.members.cache.get(message.author.id);
 
   if (!commandfile) {
@@ -141,9 +141,12 @@ function HandleCommand(Bot, message, args, command, commandfile) {
     return message.lineReply("This command is currently disabled! Please try again later.")
   }
 
-  if (commandfile.config.category === "🎵music🎵" && await Bot.dashboard.getVal(message.guild.id, "MusicEnabled") === "false") {
+  const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, "MusicEnabled")
+  const Leveling = await Bot.dashboard.getVal(message.guild.id, "Leveling")
+
+  if (commandfile.config.category === "🎵music🎵" && MusicEnabled === "Disabled") {
     return message.lineReply("This command is disabled by the server owner.")
-  } else if (commandfile.config.category === "💫leveling💫" && await Bot.dashboard.getVal(message.guild.id, "Leveling") === "false") {
+  } else if (commandfile.config.category === "💫leveling💫" && Leveling === "Disabled") {
     return message.lineReply("This command is disabled by the server owner.")
   }
 
@@ -207,7 +210,7 @@ function HandleCommand(Bot, message, args, command, commandfile) {
   }
 }
 
-function ActivateChatBot(message) {
+async function ActivateChatBot(message) {
   var CleanedMessage = Discord.Util.cleanContent(message.content, message)
 
   fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(CleanedMessage)}&gender=male&name=Ch1llBlox`)
