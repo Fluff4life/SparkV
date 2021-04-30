@@ -81,7 +81,8 @@ exports.run = async (Bot, message) => {
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
   if (message.mentions.has(Bot.user.id)){
-    const args = message.content.slice(Bot.user.id.length).trim().split(/ +/);
+    console.log(Bot.user.id.length + 3)
+    const args = message.content.slice(Bot.user.id.length + 3).trim().split(/ +/);
     const command = args.shift().toLowerCase();
     const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
 
@@ -90,11 +91,10 @@ exports.run = async (Bot, message) => {
     } else {
       if (!message.channel.type === "news") {
         if (ChatBot.toLowerCase() === "mention") {
-          ActivateChatBot(message)
+          return ActivateChatBot(message)
         }
       }
     }
-
   } else {
     if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message"){
       return ActivateChatBot(message)
