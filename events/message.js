@@ -81,12 +81,10 @@ exports.run = async (Bot, message) => {
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
   if (message.mentions.has(Bot.user)){
-    const args = message.content.slice(Bot.user.id.length + 3).trim().split(/ +/);
-    console.log(args)
+    const args = message.content.slice(Bot.user.id.length + 4).trim().split(/ +/);
     const command = args.shift().toLowerCase();
-    console.log(command)
     const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
-    console.log(commandfile)
+    
     if (commandfile){
       return HandleCommand(Bot, message, args, command, commandfile)
     } else {
