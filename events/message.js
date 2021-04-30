@@ -80,7 +80,7 @@ exports.run = async (Bot, message) => {
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (message.mentions.has(Bot.user.id)){
+  if (message.mentions.has(Bot.user)){
     console.log(Bot.user.id.length + 3)
     const args = message.content.slice(Bot.user.id.length + 3).trim().split(/ +/);
     const command = args.shift().toLowerCase();
