@@ -77,9 +77,6 @@ exports.run = async (Bot, message) => {
     }
   }
 
-  const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
-  const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
-
   if (message.mentions.has(Bot.user)) {
     const args = message.content.slice(Bot.user.id.length + 4).trim().split(/ +/);
     const command = args.shift().toLowerCase();
@@ -88,11 +85,16 @@ exports.run = async (Bot, message) => {
     if (commandfile) {
       return HandleCommand(Bot, message, args, command, commandfile)
     } else {
+      const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
+
       if (ChatBot.toLowerCase() === "mention") {
         return ActivateChatBot(message)
       }
     }
   } else {
+    const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
+    const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
+
     if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message") {
       return ActivateChatBot(message)
     }
