@@ -17,8 +17,8 @@ exports.run = async (Bot, message) => {
   const AntiURL = await Bot.dashboard.getVal(message.guild.id, "removelinks")
 
   if (!AntiURL === "Disabled") {
-    if (!user.hasPermission("MANAGE_MESSAGES") && Bot.isURL(message.content)){
-      if (AntiURL === "Enabled"){
+    if (!user.hasPermission("MANAGE_MESSAGES") && Bot.isURL(message.content)) {
+      if (AntiURL === "Enabled") {
         try {
           message.delete();
         } catch (err) {
@@ -26,13 +26,13 @@ exports.run = async (Bot, message) => {
         }
       }
     }
-    
+
     return message.channel.send(`🔨 ${message.author}, you cannot send links here!`).then(m => m.delete({ timeout: 1000 }))
   }
 
   const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "removebadwords")
 
-  if (AntiSwear === "Enabled"){
+  if (AntiSwear === "Enabled") {
     if (!user.hasPermission("MANAGE_MESSAGES")) {
       AntiSwearPackage(Bot, message, {
         warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
@@ -47,8 +47,8 @@ exports.run = async (Bot, message) => {
 
   const AntiSpam = await Bot.dashboard.getVal(message.guild.id, "removerepeatedtext")
 
-  if (AntiSpam === "Enabled"){
-    if (!message.channel.name.startsWith("spam") && !message.channel.name.endsWith("spam")){
+  if (AntiSpam === "Enabled") {
+    if (!message.channel.name.startsWith("spam") && !message.channel.name.endsWith("spam")) {
       Bot.AntiSpam.message(message)
     }
   }
@@ -59,11 +59,11 @@ exports.run = async (Bot, message) => {
     let MaxXP = await Bot.dashboard.getVal(message.guild.id, "leveling_maxxp")
     let MinXP = await Bot.dashboard.getVal(message.guild.id, "leveling_minxp")
 
-    if (isNaN(MaxXP)){
+    if (isNaN(MaxXP)) {
       MaxXP = 15
     }
 
-    if (isNaN(MinXP)){
+    if (isNaN(MinXP)) {
       MinXP = 10
     }
 
@@ -80,47 +80,31 @@ exports.run = async (Bot, message) => {
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (!message.content.startsWith(Prefix)) {
-    const ActivateChatBot = () => {
-      var CleanedMessage = Discord.Util.cleanContent(message.content, message)
+  if (message.content.startsWith("<@763126208149585961>")){
+    const args = message.content.slice(21).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+    const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
 
-      fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(CleanedMessage)}&gender=male&name=Ch1llBlox`)
-        .then((res) => res.json())
-        .then((body) => {
-          if (message.deleted){
-            return
-          }
-
-          const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
-
-          message.lineReplyNoMention(APIMessage)
-        })
-        .catch((err) => {
-          console.error(err)
-
-          return message.lineReplyNoMention("Wha- what? Something went wrong.")
-        })
+    if (commandfile){
+      return HandleCommand(message, args, command, commandfile)
+    } else {
+      if (!message.content.startsWith(Prefix) && !message.channel.type === "news") {
+        if (ChatBot.toLowerCase() === "mention" && message.content.startsWith("<@763126208149585961>")) {
+          ActivateChatBot(message)
+        } else if (ChatBot.toLowerCase() === "message") {
+          ActivateChatBot(message)
+        }
+      }
     }
 
-    if (ChatBot.toLowerCase() === "mention" && message.mentions.has(Bot.user)){
-      ActivateChatBot()
-    } else if (ChatBot.toLowerCase() === "message") {
-      ActivateChatBot()
-    }
+  } else {
+    const args = message.content.slice(Prefix.length).trim().split(/ +/);
+
+    HandleCommand(message, args, command, commandfile)
   }
+}
 
-  if (!message.content.startsWith(Prefix)) {
-    return
-  }
-
-  const args = message.content
-    .slice(Prefix.length)
-    .trim()
-    .split(/ +/);
-
-  const command = args.shift().toLowerCase();
-  const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
-
+function HandleCommand(message, args, command, commandfile) {
   if (!commandfile) {
     return
   }
@@ -219,4 +203,25 @@ exports.run = async (Bot, message) => {
 
     message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!")
   }
+}
+
+function ActivateChatBot(message) {
+  var CleanedMessage = Discord.Util.cleanContent(message.content, message)
+
+  fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(CleanedMessage)}&gender=male&name=Ch1llBlox`)
+    .then((res) => res.json())
+    .then((body) => {
+      if (message.deleted) {
+        return
+      }
+
+      const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
+
+      message.lineReplyNoMention(APIMessage)
+    })
+    .catch((err) => {
+      console.error(err)
+
+      return message.lineReplyNoMention("Wha- what? Something went wrong.")
+    })
 }
