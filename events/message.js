@@ -80,28 +80,26 @@ exports.run = async (Bot, message) => {
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (message.mentions.has(Bot.user)){
+  if (message.mentions.has(Bot.user)) {
     const args = message.content.slice(Bot.user.id.length + 4).trim().split(/ +/);
     const command = args.shift().toLowerCase();
-    const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
-    
-    if (commandfile){
+    const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
+
+    if (commandfile) {
       return HandleCommand(Bot, message, args, command, commandfile)
     } else {
-      if (!message.channel.type === "news") {
-        if (ChatBot.toLowerCase() === "mention") {
-          return ActivateChatBot(message)
-        }
+      if (ChatBot.toLowerCase() === "mention") {
+        return ActivateChatBot(message)
       }
     }
   } else {
-    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message"){
+    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message") {
       return ActivateChatBot(message)
     }
 
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
-    const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
+    const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
 
     HandleCommand(Bot, message, args, command, commandfile)
   }
