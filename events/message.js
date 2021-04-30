@@ -80,7 +80,7 @@ exports.run = async (Bot, message) => {
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
 
-  if (message.content.startsWith("<@763126208149585961>")){
+  if (message.mentions.has(Bot.user)){
     const args = message.content.slice(21).trim().split(/ +/);
     const command = args.shift().toLowerCase();
     const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
@@ -89,7 +89,7 @@ exports.run = async (Bot, message) => {
       return HandleCommand(Bot, message, args, command, commandfile)
     } else {
       if (!message.content.startsWith(Prefix) && !message.channel.type === "news") {
-        if (ChatBot.toLowerCase() === "mention" && message.content.startsWith("<@763126208149585961>")) {
+        if (ChatBot.toLowerCase() === "mention" && message.mentions.has(Bot.user)) {
           ActivateChatBot(message)
         } else if (ChatBot.toLowerCase() === "message") {
           ActivateChatBot(message)
