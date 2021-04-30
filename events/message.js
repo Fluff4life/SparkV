@@ -86,7 +86,7 @@ exports.run = async (Bot, message) => {
     const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
 
     if (commandfile){
-      return HandleCommand(message, args, command, commandfile)
+      return HandleCommand(Bot, message, args, command, commandfile)
     } else {
       if (!message.content.startsWith(Prefix) && !message.channel.type === "news") {
         if (ChatBot.toLowerCase() === "mention" && message.content.startsWith("<@763126208149585961>")) {
@@ -100,11 +100,13 @@ exports.run = async (Bot, message) => {
   } else {
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
 
-    HandleCommand(message, args, command, commandfile)
+    HandleCommand(Bot, message, args, command, commandfile)
   }
 }
 
-function HandleCommand(message, args, command, commandfile) {
+function HandleCommand(Bot, message, args, command, commandfile) {
+  const user = message.guild.members.cache.get(message.author.id);
+
   if (!commandfile) {
     return
   }
