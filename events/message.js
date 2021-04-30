@@ -82,8 +82,8 @@ exports.run = async (Bot, message) => {
 
   console.log(message.mentions)
 
-  if (message.mentions.has(Bot.user)){
-    const args = message.content.slice(21).trim().split(/ +/);
+  if (message.mentions.has(Bot.user.id)){
+    const args = message.content.slice(Bot.user.id.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
     const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
 
@@ -91,15 +91,17 @@ exports.run = async (Bot, message) => {
       return HandleCommand(Bot, message, args, command, commandfile)
     } else {
       if (!message.channel.type === "news") {
-        if (ChatBot.toLowerCase() === "mention" && message.mentions.has(Bot.user)) {
-          ActivateChatBot(message)
-        } else if (ChatBot.toLowerCase() === "message") {
+        if (ChatBot.toLowerCase() === "mention") {
           ActivateChatBot(message)
         }
       }
     }
 
   } else {
+    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message"){
+      return ActivateChatBot(message)
+    }
+
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
     const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));  
