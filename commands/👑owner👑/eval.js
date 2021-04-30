@@ -17,43 +17,19 @@ exports.run = async (Bot, message, Arguments) => {
       return text;
   }
 
-  if (Arguments[0].toLowerCase() === "bot:fetchguilds()") {
-    const pages = []
+  try {
+    const asyncify = code => `(async () => {\nawait ${clean(code.trim())}\n})`
+    let result = await eval(asyncify(Arguments.join(" ")))
 
-    const CreatePage = (Bot, Server, ServerID) => {
-      const NewEmbed = new Discord.MessageEmbed()
-        .setTitle(`**${Server.name}**`)
-        .setDescription(`*${Server.description || "N/A"}*`)
-        .addField("Member Count", Server.memberCount || "N/A", true)
-        .addField("Region", `${Server.region || "N/A"}`, true)
-        .setColor(Bot.Config.Embed.EmbedColor)
-        .setThumbnail(Server.iconURL() || null)
-        .setImage(Server.bannerURL() || "https://www.adl.org/sites/default/files/styles/open_graph_image_1200_x_628_/public/2019-08/discord-logo.jpg?itok=LMNTgq_N")
-
-      pages.push(NewEmbed)
+    if (typeof result !== "string") {
+      result = require("util").inspect(result, false, 1)
     }
 
-    Bot.guilds.cache
-      .sort((a, b) => b.memberCount - a.memberCount)
-      .map((Server, ServerID) => CreatePage(Bot, Server, ServerID))
-      .slice(0, 10)
+    message.lineReplyNoMention(`✅︱Code executed successfully. \`\`\`js\n${result}\`\`\``)
+  } catch (err) {
+    console.error(err)
 
-    DiscordEasyPages(message, pages, ["⏪", "⏩", "🗑"], `Server List`)
-  } else {
-    try {
-      const asyncify = code => `(async () => {\nreturn ${clean(code.trim())}\n})`
-      let result = await eval(asyncify(Arguments.join(" ")))
-
-      if (typeof result !== "string") {
-        result = require("util").inspect(result, false, 1)
-      }
-      
-      message.lineReplyNoMention(`✅︱Code executed successfully. \`\`\`js\n${result}\`\`\``)
-    } catch (err) {
-      console.error(err)
-
-      return message.lineReplyNoMention(`❌︱Uh oh! There was an error executing that code.\n\`\`\`js\n${err}\`\`\``)
-    }
+    return message.lineReplyNoMention(`❌︱Uh oh! There was an error executing that code.\n\`\`\`js\n${err}\`\`\``)
   }
 },
 
