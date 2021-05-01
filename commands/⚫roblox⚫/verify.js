@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 function CreateID() {
     let text = ""
-    let codes = ["watermellon", "sugar", "HA", "yea", "let's", "go", "haha", "yes", "kingch1ll", "is", "not", "noob", "lol"]
+    let codes = ["❄", "🌨", "⛄", "☃", "🏂", "🎿", "⛷", "🏔", "🍧"]
 
     text += codes[Math.floor(Math.random() * codes.length)]
     text += codes[Math.floor(Math.random() * codes.length)]
@@ -44,9 +44,6 @@ exports.run = async (Bot, message, Arguments, command) => {
 
         MessageColector.on("collect", async (msg) => {
             if (msg.content.toLowerCase() === "cancel") {
-                PromptEmbed.delete().catch((err) => { })
-                msg.delete().catch(err => { })
-
                 return message.lineReplyNoMention("Verification canceled.")
             }
 
@@ -61,9 +58,7 @@ exports.run = async (Bot, message, Arguments, command) => {
                     .setTimestamp()
 
                 message.lineReplyNoMention(UsernameFound)
-                PromptEmbed.delete().catch((err) => { })
-                msg.delete().catch(err => { })
-
+                
                 const VerifyMessageColector = message.channel.createMessageCollector(Filter, {
                     max: 1,
                     maxMatches: 1,
