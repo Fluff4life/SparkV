@@ -38,6 +38,7 @@ exports.run = async (Bot, message, Arguments, command) => {
             .setTitle("Verification Prompt")
             .setDescription("What's your Roblox username?")
             .setFooter("This verification prompt will cancel after 200 seconds.")
+            .setColor(Bot.Config.Embed.EmbedColor)
             .setTimestamp()
 
         message.lineReplyNoMention(PromptEmbed)
@@ -58,7 +59,7 @@ exports.run = async (Bot, message, Arguments, command) => {
                     .setTimestamp()
 
                 message.lineReplyNoMention(UsernameFound)
-                
+
                 const VerifyMessageColector = message.channel.createMessageCollector(Filter, {
                     max: 1,
                     maxMatches: 1,
