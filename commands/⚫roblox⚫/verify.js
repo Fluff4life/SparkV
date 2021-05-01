@@ -53,7 +53,7 @@ exports.run = async (Bot, message, Arguments, command) => {
 
                 const UsernameFound = new Discord.MessageEmbed()
                     .setTitle("Verification Prompt")
-                    .setDescription(`Hi, **${msg.content}**! To verify that you are indeed, ${msg.content}, please put "${VerificationID}" anywhere in your about section.\nSay **Done** when comeplete.\nSay **Cancel** to cancel.`)
+                    .setDescription(`Hi, **${msg.content}**! To verify that you are indeed, ${msg.content}, please put "${VerificationID}" anywhere in your about section.\n\nSay **Done** when comeplete.\nSay **Cancel** to cancel.`)
                     .setFooter(`ID: ${id} • ${Bot.Config.Embed.EmbedFooter}`)
                     .setColor(Bot.Config.Embed.EmbedColor)
                     .setTimestamp()
