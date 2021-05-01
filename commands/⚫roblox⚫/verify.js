@@ -95,19 +95,19 @@ exports.run = async (Bot, message, Arguments, command) => {
                                     const RocordNicknameTemplate = await Bot.dashboard.getVal(message.guild.id, "RocordNicknameTemplate")
 
                                     if (RocordNicknameTemplate){
-                                        if (RocordNicknameTemplate.Includes("{discord-name}")){
+                                        if (RocordNicknameTemplate.find("{discord-name}")){
                                             RocordNicknameTemplate.replace("{discord-name}", message.author.name)
                                         }
 
-                                        if (RocordNicknameTemplate.Includes("{discord-id}")){
+                                        if (RocordNicknameTemplate.find("{discord-id}")){
                                             RocordNicknameTemplate.replace("{discord-id}", message.author.id)
                                         }
 
-                                        if (RocordNicknameTemplate.Includes("{roblox-username}")){
+                                        if (RocordNicknameTemplate.find("{roblox-username}")){
                                             RocordNicknameTemplate.replace("{roblox-username}", m.content)
                                         }
 
-                                        if (RocordNicknameTemplate.Includes("{roblox-id}")){
+                                        if (RocordNicknameTemplate.find("{roblox-id}")){
                                             RocordNicknameTemplate.replace("{roblox-id}", id)
                                         }
 
