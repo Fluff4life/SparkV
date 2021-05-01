@@ -32,11 +32,6 @@ const LogError = (type, err, obj) => {
         err = "Error not specified."
     }
 
-    if (typeof err === Object){
-        obj = err
-        err = "Object Error"
-    }
-
     withScope((scope) => {
         scope.setLevel(Severity[type])
 
