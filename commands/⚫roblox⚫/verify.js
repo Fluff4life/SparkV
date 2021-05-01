@@ -42,7 +42,7 @@ exports.run = async (Bot, message, Arguments, command) => {
 
         message.lineReplyNoMention(PromptEmbed)
 
-        MessageColector.on("collect", (msg) => {
+        MessageColector.on("collect", async (msg) => {
             if (msg.content.toLowerCase() === "cancel") {
                 PromptEmbed.delete().catch((err) => { })
                 msg.delete().catch(err => { })
@@ -50,7 +50,7 @@ exports.run = async (Bot, message, Arguments, command) => {
                 return message.lineReplyNoMention("Verification canceled.")
             }
 
-            noblox.getIdFromUsername(msg.content).then((id) => {
+            noblox.getIdFromUsername(msg.content).then(async (id) => {
                 const VerificationID = CreateID() + CreateID() + CreateID() + CreateID()
 
                 const UsernameFound = new Discord.MessageEmbed()
@@ -74,8 +74,8 @@ exports.run = async (Bot, message, Arguments, command) => {
                     if (msg_.content.includes("done") && msg_.author.id == message.author.id){
                         message.lineReplyNoMention("Fetching about status. Please wait...")
 
-                        setTimeout(() => {
-                            noblox.getBlurb(id).then((about) => {
+                        setTimeout(async () => {
+                            noblox.getBlurb(id).then(async (about) => {
                                 if (about.includes(VerificationID)){
                                     const Verified = new Discord.MessageEmbed()
                                         .setTitle("Verification Prompt")
