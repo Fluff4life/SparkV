@@ -81,14 +81,14 @@ exports.run = async (Bot, message, Arguments, command) => {
                                     const RocordRoleEnabled = await Bot.dashboard.getVal(message.guild.id, "RocordVerifyRoleEnabled")
 
                                     if (RocordRoleEnabled === "Enabled"){
-                                        let VerifiedRole = message.guild.roles.find((r) => r.name.toLowerCase() === "verified" || r.name.toLowerCase().startsWith("verified") || r.name.toLowerCase().endsWith("verified"))
+                                        let VerifiedRole = message.guild.roles.cache.find((r) => r.name.toLowerCase() === "verified" || r.name.toLowerCase().startsWith("verified") || r.name.toLowerCase().endsWith("verified"))
                                     
                                         if (!VerifiedRole){
                                             return message.lineReplyNoMention("This server isn't set up right! Verified role not found. Make sure you've created a role that contains \"Verified\".")
                                         }
     
                                         message.member.roles.add(VerifiedRole).catch(() => {
-                                            return message.lineReplyNoMention("I cannot give you this role! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.")
+                                            message.lineReplyNoMention("I cannot give you this role! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.")
                                         })
                                     }
 
