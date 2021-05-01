@@ -225,7 +225,7 @@ async function ActivateChatBot(message) {
 
       const APIMessage = body.message.replace("CleverChat", "Ch1llBlox")
 
-      message.lineReplyNoMention(APIMessage)
+      message.lineReplyNoMention(`${APIMessage}\n\nNEVER send any personal details to Ch1llBlox.`)
     })
     .catch((err) => {
       console.error(err)
