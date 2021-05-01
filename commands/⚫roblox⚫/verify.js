@@ -1,13 +1,10 @@
 const Discord = require("discord.js");
 
 function CreateID() {
-    let text = ""
+    let text = "haha yes"
     let codes = ["apples", "bannanas", "apple", "bannas", "went", "swimming", "donut", "hi", "bye", "I", "was", "like", "yo", "what"]
 
-    text += codes[Math.floor(Math.random() * codes.length)]
-    text += codes[Math.floor(Math.random() * codes.length)]
-    text += codes[Math.floor(Math.random() * codes.length)]
-    text += codes[Math.floor(Math.random() * codes.length)]
+    text = `${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]}`
 
     return text
 }
@@ -49,7 +46,7 @@ exports.run = async (Bot, message, Arguments, command) => {
             }
 
             noblox.getIdFromUsername(msg.content).then(async (id) => {
-                const VerificationID = CreateID() + CreateID() + CreateID() + CreateID()
+                const VerificationID = CreateID()
 
                 const UsernameFound = new Discord.MessageEmbed()
                     .setTitle("Verification Prompt")
