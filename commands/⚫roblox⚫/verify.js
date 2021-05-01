@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 function CreateID() {
     let text = ""
-    let codes = ["❄", "🌨", "⛄", "☃", "🏂", "🎿", "⛷", "🏔", "🍧"]
+    let codes = ["apples", "bannanas", "apple", "bannas", "went", "swimming", "donut", "hi", "bye", "I", "was", "like", "yo", "what"]
 
     text += codes[Math.floor(Math.random() * codes.length)]
     text += codes[Math.floor(Math.random() * codes.length)]
