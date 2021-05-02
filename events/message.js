@@ -215,7 +215,7 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 
 async function ActivateChatBot(message) {
   message.channel.startTyping()
-  
+
   Bot.ChatBot(message).then((msg) => {
     if (!msg.content){
       return message.lineReplyNoMention("Wait... what?")
@@ -225,6 +225,7 @@ async function ActivateChatBot(message) {
     
     return message.lineReplyNoMention(msg.content)
   }).catch((err) => {
+    console.error(err)
     message.channel.stopTyping(true)
 
     return message.lineReplyNoMention("Wait... what?")

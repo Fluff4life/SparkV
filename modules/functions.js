@@ -89,6 +89,8 @@ module.exports = async (bot) => {
 
       return response.sentence
     } catch (err) {
+      console.error(err)
+
       return "Wait... what?"
     }
   }
