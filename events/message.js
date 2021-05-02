@@ -216,20 +216,10 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 async function ActivateChatBot(message) {
   message.channel.startTyping()
 
-  Bot.ChatBot(message).then((msg) => {
-    if (!msg.content){
-      return message.lineReplyNoMention("Wait... what?")
-    }
+  const response = Bot.ChatBot(message)
+  message.lineReply(response)
 
-    message.channel.stopTyping(true)
-    
-    return message.lineReplyNoMention(msg.content)
-  }).catch((err) => {
-    console.error(err)
-    message.channel.stopTyping(true)
-
-    return message.lineReplyNoMention("Wait... what?")
-  })
+  message.channel.stopTyping(true)
 
   /*
   var CleanedMessage = Discord.Util.cleanContent(message.content, message)

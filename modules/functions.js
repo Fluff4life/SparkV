@@ -3,7 +3,6 @@ const ector = require("ector")
 
 const ChatBot = new ector()
 ChatBot.setName("Ch1llBlox")
-ChatBot.setUser("User")
 
 module.exports = async (bot) => {
   bot.MSToTime = (ms) => {
