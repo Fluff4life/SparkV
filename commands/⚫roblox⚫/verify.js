@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 function CreateID() {
     let text = "haha yes"
-    let codes = ["apples", "bannanas", "apple", "bannas", "went", "swimming", "donut", "hi", "bye", "I", "was", "like", "yo", "what"]
+    let codes = ["🥶", "😰", "😅", "😓", "⛄", "💧", "🧊"]
 
     text = `${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]}`
 
@@ -117,7 +117,7 @@ exports.run = async (Bot, message, Arguments, command) => {
                                             })
                                         }
                                     } else {
-                                        message.lineReplyNoMention("Failed to find Verification ID on your about page.")
+                                        message.lineReplyNoMention("Failed to find Verification ID on your status/about page.")
                                     }
                                 })
                             })
@@ -128,6 +128,8 @@ exports.run = async (Bot, message, Arguments, command) => {
                 })
             })
         })
+    } else {
+        return message.lineReplyNoMention("Rocord isn't enabled in the dashboard. Please enable it and run this command again!")
     }
 },
 
@@ -138,7 +140,7 @@ exports.run = async (Bot, message, Arguments, command) => {
         usage: "<username>",
         category: "⚫roblox⚫",
         bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-        member_permissions: ["ADMINISTRATOR"],
+        member_permissions: [],
         enabled: true,
         cooldown: 60
     }
