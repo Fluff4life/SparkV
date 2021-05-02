@@ -214,6 +214,23 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 }
 
 async function ActivateChatBot(message) {
+  message.channel.startTyping()
+  
+  Bot.ChatBot(message).then((msg) => {
+    if (!msg.content){
+      return message.lineReplyNoMention("Wait... what?")
+    }
+
+    message.channel.stopTyping(true)
+    
+    return message.lineReplyNoMention(msg.content)
+  }).catch((err) => {
+    message.channel.stopTyping(true)
+
+    return message.lineReplyNoMention("Wait... what?")
+  })
+
+  /*
   var CleanedMessage = Discord.Util.cleanContent(message.content, message)
 
   fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(CleanedMessage)}&gender=male&name=Ch1llBlox`)
@@ -232,4 +249,5 @@ async function ActivateChatBot(message) {
 
       return message.lineReplyNoMention("Wha- what? Something went wrong.")
     })
+    */
 }
