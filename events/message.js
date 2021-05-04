@@ -99,22 +99,18 @@ exports.run = async (Bot, message) => {
       return ActivateChatBot(message);
     }
   }
-  
+
   if (message.mentions.has(Bot.user)){
     if (ChatBot.toLowerCase() === "mention"){
       return ActivateChatBot(message);
     }
   }
 
+  console.log(Prefix)
+
   const args = message.content.slice(Prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
   const commandfile = Bot.commands.get(command) || Bot.commands.find((command_) => command_.config.aliases && command_.config.aliases.includes(command));
-
-  HandleCommand(Bot, message, args, command, commandfile);
-};
-
-async function HandleCommand(Bot, message, args, command, commandfile) {
-  const user = message.guild.members.cache.get(message.author.id);
 
   if (!commandfile) {
     return;
@@ -218,7 +214,7 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 
     message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!");
   }
-}
+};
 
 async function ActivateChatBot(message) {
   message.channel.startTyping();
