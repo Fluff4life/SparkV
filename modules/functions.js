@@ -1,8 +1,4 @@
 const Discord = require("discord.js");
-const ector = require("ector")
-
-const ChatBot = new ector()
-ChatBot.setName("Ch1llBlox")
 
 module.exports = async (bot) => {
   bot.MSToTime = (ms) => {
@@ -72,26 +68,6 @@ module.exports = async (bot) => {
         time: seconds
       })
       .then(collected => collected.first() && collected.first().emoji.name)
-  }
-
-  bot.ChatBot = async (message) => {
-    ChatBot.setUser(message.author.username.length < 15 ? "User" : message.author.tag)
-
-    try {
-      ChatBot.addEntry(message.cleanContent)
-
-      const response = ChatBot.generateResponse()
-
-      if (!response.sentence){
-        return "Wait... what?"
-      }
-
-      return response.sentence
-    } catch (err) {
-      console.error(err)
-
-      return "Wait... what?"
-    }
   }
 
   bot.isURL = (string) => {
