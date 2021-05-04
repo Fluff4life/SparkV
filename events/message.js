@@ -94,8 +94,10 @@ exports.run = async (Bot, message) => {
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix");
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot");
 
-  if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message") {
-    return ActivateChatBot(message);
+  if (message.mentions.has(Bot.user)) {
+    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message") {
+      return ActivateChatBot(message);
+    }
   }
 
   const args = message.content.slice(Prefix.length).trim().split(/ +/);
@@ -127,13 +129,8 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   if (commandfile.config.bot_permissions) {
     const BotPermisions = message.channel.permissionsFor(message.guild.me);
 
-    if (
-      !BotPermisions ||
-      !BotPermisions.has(commandfile.config.bot_permissions)
-    ) {
-      return message.lineReplyNoMention(
-        `❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`
-      );
+    if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
+      return message.lineReplyNoMention(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`);
     }
   }
 
