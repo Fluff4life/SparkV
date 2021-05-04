@@ -106,6 +106,10 @@ exports.run = async (Bot, message) => {
     }
   }
 
+  if (!message.content.startsWith(Prefix)){
+    return
+  }
+
   console.log(Prefix)
 
   const args = message.content.slice(Prefix.length).trim().split(/ +/);
