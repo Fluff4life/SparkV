@@ -64,6 +64,15 @@ exports.run = async (Bot) => {
     }
   }, 60 * 1000)
 
+  Bot.user.setPresence({
+    status: "dnd",
+
+    activity: {
+      name: "Loading Ch1llBlox (100%)",
+      type: "CUSTOM_STATUS"
+    },
+  })
+
   Bot.dashboard = new botdash.APIclient(process.env.dashapikey)
   Bot.Log("SUCCESS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`)
 }
