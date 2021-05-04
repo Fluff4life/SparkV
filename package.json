@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "startbot": "node index.js",
-    "startweb": "node ch1llwebsite.js",
+    "startweb": "node website/website.js",
     "download": "npm install --package-lock-only"
   },
   "repository": {
@@ -20,16 +20,14 @@
     "npm": "*"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.4.0",
     "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
     "@sentry/tracing": "^6.3.1",
     "@top-gg/sdk": "^3.0.9",
     "anti-swear-words-packages-discord": "^1.1.43",
+    "body-parser": "^1.19.0",
     "botdash.pro": "^1.0.2",
     "botlist.space": "^3.3.1",
-    "canvacord": "^5.1.0",
-    "canvas": "^2.7.0",
     "chalk": "^4.1.0",
     "dbl-api": "^1.2.1",
     "dblapi.js": "^2.4.0",
@@ -42,13 +40,13 @@
     "discordeasypages": "^0.2.2",
     "distube": "^2.8.13",
     "dotenv": "^8.2.0",
-    "ector": "^1.0.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "ffmpeg-static": "^4.2.7",
     "fs": "0.0.1-security",
     "lyrics-finder": "^21.7.0",
+    "memorystore": "^1.6.6",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
     "noblox.js": "^4.8.5",
@@ -62,7 +60,6 @@
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
     "yargs-parser": "^13.1.2",
-    "youtube-dl": "^3.5.0",
     "ytdl-core": "^4.5.0"
   },
   "devDependencies": {

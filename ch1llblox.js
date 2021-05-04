@@ -34,16 +34,26 @@ const Bot = new Client({
 
   presence: {
     activity: {
-      name: `Currently updating. Please wait!`,
+      name: `Loading Ch1llBlox (0%)`,
       type: "PLAYING"
     },
-    status: "DND"
+    status: "dnd"
   }
 })
 global.Bot = Bot
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)
+
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (10%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
 // Modules //
 const functions = require("./modules/functions")
@@ -91,15 +101,51 @@ Bot.Config = Config
 
 console.log("---------- Loading Bot Functions ----------")
 functions(Bot)
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (20%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
 console.log("---------- Loading DisTube ----------")
 Distube(Bot)
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (30%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
 console.log("---------- Loading botlists ----------")
 botlists(Bot)
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (40%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
 console.log("---------- Loading GiveawaysHandler ----------")
 giveawayshandler(Bot)
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (50%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
 console.log("---------- Loading Events ----------")
 readdir("./events", (err, files) => {
@@ -113,6 +159,15 @@ readdir("./events", (err, files) => {
 
     Bot.on(EventName, (...args) => FileEvent.run(Bot, ...args))
   })
+})
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (60%)",
+    type: Activity.type,
+    url: Activity.url
+  },
 })
 
 console.log("---------- Loading Commands ----------")
@@ -138,15 +193,40 @@ readdir("./commands", (err, cats) => {
     })
   })
 })
+Bot.user.setPresence({
+  status: "dnd",
 
-console.log("---------- Loading Dashboard ----------")
+  activity: {
+    name: "Loading Ch1llBlox (70%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
+console.log("---------- Logging into Roblox ----------")
 if (Config.Debug === false) {
   Noblox(Bot)
 }
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (80%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
 console.log("---------- Logging into Bot ----------")
-
 Bot.login(process.env.token)
+Bot.user.setPresence({
+  status: "dnd",
+
+  activity: {
+    name: "Loading Ch1llBlox (100%)",
+    type: Activity.type,
+    url: Activity.url
+  },
+})
 
 console.log(Chalk.blue("SUCCESS - BOT LOADING COMPLETE"))

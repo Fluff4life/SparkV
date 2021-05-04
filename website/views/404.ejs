@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head -->
+  <head>
+    <!-- Title -->
+    <title>Error 404 - KingCh1ll</title>
+
+    <%- include("Parts/head") %>
+  </head>
+
+  <!-- Frames -->
+  <body style="background-color: var(--background-color);">
+    <div id="top" style="height: 12px;">
+      <div class="background"></div>
+      
+      <%- include("Parts/navagation") -%>
+    </div>
+
+    <header class="d-xl-flex flex-column justify-content-xl-center align-items-xl-center"
+    style="height: 418px; text-align: center; margin: 55px;">
+    <img class="rounded" src="/assets/images/404.png" width="150" height="150" style="margin-top: 30px;">
+    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--bot-text-color);">404 | Not Found</h1>
+    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--secondary-text-color);">Whatever page you were looking for wasn't found. Dang man!</h1>
+
+    <div class="tada animated">
+      <div role="group" class="btn-group">
+        <a href="/home" class="btn btn-primary shadow-none" type="button"
+          style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Go Home</a>
+      </div>
+  </header>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

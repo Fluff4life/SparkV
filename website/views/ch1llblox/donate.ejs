@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Donate - Ch1llBlox</title>
+
+  <%- include("Parts/head") %>
+</head>
+
+<body style="background-color: var(--background-color);">
+  <div id="top" style="height: 12px;">
+    <div class="background"></div>
+    
+    <%- include("Parts/navagation") -%>
+  </div>
+
+  <header class="d-xl-flex flex-column justify-content-xl-center align-items-xl-center"
+    style="height: 418px; text-align: center; margin: 55px;">
+    <img class="rounded" src="/assets/images/botlogo.png" width="150" height="150" style="margin-top: 30px;">
+    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--bot-text-color);">Donate to Ch1llBlox</h1>
+    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--secondary-text-color);">Select a plan.</h1>
+  </header>
+
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="var(--secondary-color)" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,117.3C1120,85,1280,75,1360,69.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+  </svg>
+
+  <div class="features-boxed" style="background: var(--secondary-color);">
+    <div class="container" style="color: var(--main-color);">
+      <div class="intro">
+        <h2 class="text-center" style="color: var(--text-color)">Donation Plans</h2>
+      </div>
+
+      <div class="row justify-content-center features">
+        <div class="wrapper">
+            <div class="table basic">
+            <div class="ribbon"><span>Most Popular</span></div>
+              <div class="price-section">
+                <div class="price-area">
+                  <div class="inner-area">
+                    <span class="price">R$ 100</span>
+                  </div>
+                </div>
+              </div>
+              <div class="package-name"></div>
+              <ul class="features">
+                <li>
+                  <span class="list-name">Basic Role</span>
+                  <span class="icon check"><i class="fas fa-check"></i></span>
+                </li>
+                <li>
+                    <span class="list-name">Respect from KingCh1ll</span>
+                    <span class="icon check"><i class="fas fa-check"></i></span>
+                  </li>
+              </ul>
+              <a href="https://www.roblox.com/game-pass/17287015/Basic-Donation">
+                <div class="btn"><button>Purchase</button></div>
+              </a>
+            </div>
+            <div class="table premium">
+              <div class="price-section">
+                <div class="price-area">
+                  <div class="inner-area">
+                    <span class="price">R$ 1k</span>
+                  </div>
+                </div>
+              </div>
+              <div class="package-name"></div>
+              <ul class="features">
+                <li>
+                  <span class="list-name">Basic benifits included</span>
+                  <span class="icon check"><i class="fas fa-check"></i></span>
+                </li>
+                <li>
+                  <span class="list-name">Prenium role</span>
+                  <span class="icon check"><i class="fas fa-check"></i></span>
+                </li>
+              </ul>
+              <a href="https://www.roblox.com/game-pass/17287040/Premium-Donation">
+                <div class="btn"><button>Purchase</button></div>
+              </a>
+            </div>
+            <div class="table ultimate">
+              <div class="price-section">
+                <div class="price-area">
+                  <div class="inner-area">
+                    <span class="price">R$ 10k</span>
+                  </div>
+                </div>
+              </div>
+              <div class="package-name"></div>
+              <ul class="features">
+                <li>
+                  <span class="list-name">All other benifits included.</span>
+                  <span class="icon check"><i class="fas fa-check"></i></span>
+                </li>
+                <li>
+                  <span class="list-name">You can be friends with KingCh1ll on Roblox.</span>
+                  <span class="icon check"><i class="fas fa-check"></i></span>
+                </li>
+              </ul>
+              <a href="https://www.roblox.com/game-pass/17287066/Ultimate-Donation">
+                <div class="btn"><button>Purchase</button></div>
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color: var(--background-color);">
+    <div style="height: 150px; overflow: hidden;">
+    <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+      <path d="M-41.53,-9.56 C167.83,173.98 302.14,-60.89 534.09,89.10 L500.00,0.00 L0.00,0.00 Z"
+        style="stroke: none; fill: var(--secondary-color);"></path>
+    </svg>
+  </div>
+  </div>
+  
+  <div class="footer-dark" style="background: var(--secondary-color); padding-top: 0px; padding-bottom: 0px;">
+  <div class="container">
+    <div class="row">
+      <div class="col item social">
+        <a href="#top">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+    <p class="copyright" style="color: var(--text-color);">
+        To recieve your benifits, message KingCh1ll.
+        © 2021 Ch1llBlox. All rights reserved. Ch1llBlox is NOT affiliated with <a href="https://discordapp.com/">Discord</a> nor <a href="https://roblox.com/home">Roblox</a>.
+    </p>
+  </div>
+  </div>
+
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/js/counting.js"></script>
+  <script src="/assets/js/handle.js"></script>
+</body>
+</html>

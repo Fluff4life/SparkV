@@ -75,7 +75,7 @@ if (Config.Debug) {
     console.log(require("chalk").yellow("WARNING => DEBUG ONLINE! SHARDING DISABLED => Calling Ch1llBlox without sharding features & website on local-host."))
 
     require("./ch1llblox")
-    require("./ch1llwebsite")
+    require("./website/website")
 } else {
     if (Config.sharding.ShardingEnabled === true) {
         const { GlobalCache } = require("./modules/globalcache")
