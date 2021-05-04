@@ -149,7 +149,6 @@ exports.run = async (Bot, message) => {
   }
 
   const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, "MusicEnabled");
-  const Leveling = await Bot.dashboard.getVal(message.guild.id, "Leveling");
 
   if (commandfile.config.category === "🎵music🎵" && MusicEnabled === "Disabled") {
     return message.lineReply("This command is disabled by the server owner.");
