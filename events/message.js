@@ -17,8 +17,6 @@ exports.run = async (Bot, message) => {
 
   if (!BotPermisions || !BotPermisions.has(["SEND_MESSAGES", "EMBED_LINKS"])) {
     message.react("❎").catch((err) => { })
-
-    return message.author.send(`❌ I cannot send messages in that channel!`);
   }
 
   const user = message.guild.members.cache.get(message.author.id);
