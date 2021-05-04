@@ -94,8 +94,14 @@ exports.run = async (Bot, message) => {
   const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix");
   const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot");
 
-  if (message.mentions.has(Bot.user)) {
-    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message") {
+  if (!message.content.startsWith(Prefix)){
+    if (ChatBot.toLowerCase() === "message"){
+      return ActivateChatBot(message);
+    }
+  }
+  
+  if (message.mentions.has(Bot.user)){
+    if (ChatBot.toLowerCase() === "mention"){
       return ActivateChatBot(message);
     }
   }
