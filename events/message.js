@@ -13,6 +13,14 @@ exports.run = async (Bot, message) => {
     return;
   }
 
+  const BotPermisions = message.channel.permissionsFor(Bot.user);
+
+  if (!BotPermisions || !BotPermisions.has(["SEND_MESSAGES", "EMBED_LINKS"])) {
+    message.react("❎").catch((err) => { })
+
+    return message.author.send(`❌ I cannot send messages in that channel!`);
+  }
+
   const user = message.guild.members.cache.get(message.author.id);
   const AntiURL = await Bot.dashboard.getVal(message.guild.id, "removelinks");
 
@@ -36,10 +44,7 @@ exports.run = async (Bot, message) => {
       .then((m) => m.delete({ timeout: 1000 }));
   }
 
-  const AntiSwear = await Bot.dashboard.getVal(
-    message.guild.id,
-    "removebadwords"
-  );
+  const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "removebadwords");
 
   if (AntiSwear === "Enabled") {
     if (!user.hasPermission("MANAGE_MESSAGES")) {
@@ -54,16 +59,10 @@ exports.run = async (Bot, message) => {
     }
   }
 
-  const AntiSpam = await Bot.dashboard.getVal(
-    message.guild.id,
-    "removerepeatedtext"
-  );
+  const AntiSpam = await Bot.dashboard.getVal(message.guild.id, "removerepeatedtext");
 
   if (AntiSpam === "Enabled") {
-    if (
-      !message.channel.name.startsWith("spam") &&
-      !message.channel.name.endsWith("spam")
-    ) {
+    if (!message.channel.name.startsWith("spam") && !message.channel.name.endsWith("spam")) {
       Bot.AntiSpam.message(message);
     }
   }
@@ -83,67 +82,27 @@ exports.run = async (Bot, message) => {
     }
 
     const RandomXP = Math.floor(Math.random() * MaxXP || 15) + MinXP || 10;
-    const HasLeveledUp = await Levels.appendXp(
-      message.author.id,
-      message.guild.id,
-      RandomXP
-    );
+    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP);
 
     if (HasLeveledUp) {
       const User = await Levels.fetch(message.author.id, message.guild.id);
 
-      message.lineReplyNoMention(
-        `⚡ Congrats ${
-          message.author
-        }, you're now at level **${await Bot.FormatNumber(User.level)}**!`
-      );
+      message.lineReplyNoMention(`⚡ Congrats ${message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`);
     }
   }
 
-  if (message.mentions.has(Bot.user)) {
-    const args = message.content
-      .slice(Bot.user.id.length + 4)
-      .trim()
-      .split(/ +/);
-    const command = args.shift().toLowerCase();
-    const commandfile =
-      Bot.commands.get(command) ||
-      Bot.commands.find(
-        (command_) =>
-          command_.config.aliases && command_.config.aliases.includes(command)
-      );
+  const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix");
+  const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot");
 
-    if (commandfile) {
-      return HandleCommand(Bot, message, args, command, commandfile);
-    } else {
-      const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot");
-
-      if (ChatBot.toLowerCase() === "mention") {
-        return ActivateChatBot(message);
-      }
-    }
-  } else {
-    const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix");
-    const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot");
-
-    if (
-      !message.content.startsWith(Prefix) &&
-      ChatBot.toLowerCase() === "message"
-    ) {
-      return ActivateChatBot(message);
-    }
-
-    const args = message.content.slice(Prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-    const commandfile =
-      Bot.commands.get(command) ||
-      Bot.commands.find(
-        (command_) =>
-          command_.config.aliases && command_.config.aliases.includes(command)
-      );
-
-    HandleCommand(Bot, message, args, command, commandfile);
+  if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message") {
+    return ActivateChatBot(message);
   }
+
+  const args = message.content.slice(Prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+  const commandfile = Bot.commands.get(command) || Bot.commands.find((command_) => command_.config.aliases && command_.config.aliases.includes(command));
+
+  HandleCommand(Bot, message, args, command, commandfile);
 };
 
 async function HandleCommand(Bot, message, args, command, commandfile) {
@@ -156,9 +115,7 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   if (process.env.UserBlacklist.includes(message.author.id)) {
     try {
       return message.author
-        .send(
-          "❗ Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? You may appeal [here](appealformtodo)."
-        )
+        .send("❗ Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? You may appeal here.")
         .then(() => {
           message.react("❌");
         });
@@ -183,37 +140,21 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   if (commandfile.config.member_permissions) {
     const AuthorPermisions = message.channel.permissionsFor(message.author);
 
-    if (
-      !AuthorPermisions ||
-      !AuthorPermisions.has(commandfile.config.member_permissions)
-    ) {
-      return message.lineReplyNoMention(
-        `❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`
-      );
+    if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
+      return message.lineReplyNoMention(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`);
     }
   }
 
   if (!commandfile.config.enabled) {
-    return message.lineReply(
-      "This command is currently disabled! Please try again later."
-    );
+    return message.lineReply("This command is currently disabled! Please try again later.");
   }
 
-  const MusicEnabled = await Bot.dashboard.getVal(
-    message.guild.id,
-    "MusicEnabled"
-  );
+  const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, "MusicEnabled");
   const Leveling = await Bot.dashboard.getVal(message.guild.id, "Leveling");
 
-  if (
-    commandfile.config.category === "🎵music🎵" &&
-    MusicEnabled === "Disabled"
-  ) {
+  if (commandfile.config.category === "🎵music🎵" && MusicEnabled === "Disabled") {
     return message.lineReply("This command is disabled by the server owner.");
-  } else if (
-    commandfile.config.category === "💫leveling💫" &&
-    Leveling === "Disabled"
-  ) {
+  } else if (commandfile.config.category === "💫leveling💫" && Leveling === "Disabled") {
     return message.lineReply("This command is disabled by the server owner.");
   }
 
@@ -253,13 +194,10 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 
   try {
     await commandfile.run(Bot, message, args, command).then(async () => {
-      const DeleteUsage = await Bot.dashboard.getVal(
-        message.guild.id,
-        "deletecommandusage"
-      );
+      const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, "deletecommandusage");
 
       if (DeleteUsage === "Enabled") {
-        message.delete().catch(() => {});
+        message.delete().catch(() => { });
       }
     });
   } catch (err) {
@@ -275,20 +213,14 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
       scope.setTag("GuildType", message.channel.type);
     });
 
-    message.lineReplyNoMention(
-      "❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!"
-    );
+    message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!");
   }
 }
 
 async function ActivateChatBot(message) {
   message.channel.startTyping();
 
-  fetch(
-    `https://api.udit.gq/api/chatbot?message=${encodeURIComponent(
-      message.cleanContent
-    )}&gender=male&name=Ch1llBlox`
-  )
+  fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.cleanContent)}&gender=male&name=Ch1llBlox`)
     .then((res) => res.json())
     .then((body) => {
       if (message.deleted) {
@@ -297,9 +229,7 @@ async function ActivateChatBot(message) {
 
       const APIMessage = body.message.replace("CleverChat", "Ch1llBlox");
 
-      message.lineReplyNoMention(
-        `${APIMessage}\n\nNEVER send any personal details to Ch1llBlox.`
-      );
+      message.lineReplyNoMention(`${APIMessage}\n\nNEVER send any personal details to Ch1llBlox.`);
     })
     .catch((err) => {
       console.error(err);
