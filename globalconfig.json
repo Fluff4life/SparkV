@@ -44,5 +44,5 @@
         "ShardLifeTime": 518400
     },
 
-    "Debug": true
+    "Debug": false
 }
