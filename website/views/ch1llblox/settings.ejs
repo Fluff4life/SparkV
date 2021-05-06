@@ -32,6 +32,24 @@
     <path fill="var(--secondary-color)" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,117.3C1120,85,1280,75,1360,69.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
   </svg>
 
+  <div class="container-sm center" style="margin-top: 30px;">
+    <div class="d-grid gap-2 col-4 mx-auto">
+      <% if (alert) { %>
+        <div class="alert alert-success" role="alert">
+          <%= alert %>
+        </div>
+      <% } %>
+      <h1><%= guild.name %></h1>
+      <hr>
+      <form method="POST">
+        <p class="h5" style="margin-bottom: 0.5rem; margin-top: 10px;">Prefix</p>
+        <p style="font-style: italic;" class="disabled">err</p>
+        <input type="text" class="form-control" name="prefix" value="<%= settings.prefix %>" placeholder="Your prefix for the server.">
+        <br><button type="submit" class="btn btn-secondary text-white">Save Settings</button>
+      </form>
+    </div>
+  </div>
+
   <div style="background-color: var(--background-color);">
     <div style="height: 150px; overflow: hidden;">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
@@ -40,31 +58,6 @@
   </div>
   </div>
 
-  <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-    <% user.guilds.forEach((guild) => {
-      const GuildPerms = new perms(guild.permissions)
-
-      if (!GuildPerms.has("MANAGE_GUILD")){
-        return
-      }
-    %>
-    <div class="card" style="max-width: 18rem; margin: 2rem; min-width: 10em;">
-    <%- guild.icon ? `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}" class="card-img-top" style="max-width: 18rem;">` : "" %>
-      <div class="card-body">
-        <h5 class="card-title"><%= guild.name %></h5>
-        <% if (bot.guilds.cache.get(guild.id)) { %>
-          <p class="card-text">Edit <%= guild.name %>'s settings via the dashboard by clicking the button below.</p>
-          <a href="/dashboard/<%- guild.id %>" class="btn btn-success text-white">Edit Settings</a>
-        <% } else { %>
-          <p class="card-text">Invite the bot to <%= guild.name %> in order to their this server's settings via the dashboard by clicking the button below.</p>
-          <a href="<%= `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${bot.config.domain}${bot.config.port == 80 ? "" : `:${bot.config.port}`}/callback`)}`  %>" class="btn btn-primary text-white">Invite Bot</a>
-        <% } %>
-      </div>
-    </div>
-    <%
-        });
-    %>
-  </div>
   
   <div class="footer-dark" style="background: var(--secondary-color); padding-top: 0px; padding-bottom: 0px;">
   <div class="container">
