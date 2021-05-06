@@ -74,7 +74,7 @@ process.on("exit", (code) => {
 if (Config.Debug) {
     console.log(require("chalk").yellow("WARNING => DEBUG ONLINE! SHARDING DISABLED => Calling Ch1llBlox without sharding features & website on local-host."))
 
-    require("./ch1llblox")
+    // require("./ch1llblox")
     require("./website/website")
 } else {
     if (Config.sharding.ShardingEnabled === true) {

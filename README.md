@@ -69,3 +69,8 @@ If you aquire help, we ask that you join our [Support Server](https://discord.gg
 # Ch1ll Tech's License
 
 Distributed under the Apache-2.0 License. See, "LICENSE" for more information.
+    "distube": "^2.8.13",
+    "youtube-dl": "^3.5.0",
+    "canvacord": "^5.1.0",
+    "canvas": "^2.7.0",
+    "@discordjs/opus": "^0.4.0",

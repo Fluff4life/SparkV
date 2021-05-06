@@ -10,21 +10,34 @@
   <div id="top" style="height: 12px;">
     <div class="background"></div>
     
-    <%- include("Parts/navagation") -%>
+    <%- include("Parts/navagation", {
+      name: "Ch1llBlox",
+      domainname: "/bot",
+
+      linkname: "Home",
+      link: "/home",
+
+      linkname2: "",
+      link2: "",
+
+      linkname3: "",
+      link3: "",
+      
+      linkname4: "",
+      link4: ""
+    }) -%>
   </div>
 
   <header class="d-xl-flex flex-column justify-content-xl-center align-items-xl-center"
     style="height: 418px; text-align: center; margin: 55px;">
     <img class="rounded" src="/assets/images/botlogo.png" width="150" height="150" style="margin-top: 30px;">
     <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--bot-text-color);">Ch1llBlox</h1>
-    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--secondary-text-color);">Prenium commands for
-      free.</h1>
+    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--secondary-text-color);">Prenium commands for free.</h1>
 
     <div class="tada animated">
       <div role="group" class="btn-group">
         <a href="/invite" class="btn btn-primary shadow-none" type="button"
-          style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Invite
-          Ch1llBlox</a>
+          style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Invite</a>
       </div>
   </header>
 
@@ -35,7 +48,7 @@
   <div class="features-boxed" style="background: var(--secondary-color);">
     <div class="container" style="color: var(--main-color);">
       <div class="intro">
-        <h2 class="text-center" style="color: var(--text-color)">Ch1llBlox's Features</h2>
+        <h2 class="text-center" style="color: var(--text-color)">Features</h2>
       </div>
 
       <div class="row justify-content-center features">
@@ -44,12 +57,29 @@
             <i class="fa fa-bolt icon" style="color: var(--main-color);"></i>
 
             <h3 class="name">24/7 Uptime</h3>
-            <p class="description">Ch1llBlox is up 24/7!</p>
-            <div>
-            </div>
+            <p class="description">Ch1llBlox will stay up 24/7. You will never need a backup bot!</p>
           </div>
 
+          <div id="Features" class="box" style="border-radius: 34px;">
+            <i class="far fa-window-maximize" style="color: var(--main-color);"></i>
 
+            <h3 class="name">Easy Dashboard</h3>
+            <p class="description">Link your Roblox account to your discord server!</p>
+          </div>
+
+          <div id="Features" class="box" style="border-radius: 34px;">
+            <i class="fa fa-bolt icon" style="color: var(--main-color);"></i>
+
+            <h3 class="name">Roblox Intergrations</h3>
+            <p class="description">Link your Roblox account to your discord server!</p>
+          <div>
+
+          <div id="Features" class="box" style="border-radius: 34px;">
+            <i class="fa fa-bolt icon" style="color: var(--main-color);"></i>
+
+            <h3 class="name">24/7 Uptime</h3>
+            <p class="description">Ch1llBlox is up 24/7!</p>
+          </div>
         </div>
       </div>
     </div>
@@ -58,8 +88,7 @@
   <div style="background-color: var(--background-color);">
     <div style="height: 150px; overflow: hidden;">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-      <path d="M-41.53,-9.56 C167.83,173.98 302.14,-60.89 534.09,89.10 L500.00,0.00 L0.00,0.00 Z"
-        style="stroke: none; fill: var(--secondary-color);"></path>
+      <path d="M-41.53,-9.56 C167.83,173.98 302.14,-60.89 534.09,89.10 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: var(--secondary-color);"></path>
     </svg>
   </div>
   </div>
@@ -70,14 +99,14 @@
         <div class="row row-cols-3 justify-content-center" style="color: var(--secondary-text-color);">
           <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item love_counter">
             <h1 class="love_count" style="font-size: 70px;">
-              <strong>84</strong>
+              <strong>98</strong>
             </h1>
             <h4 style="color: var(--main-color); margin-top: -6px;">Total Servers</h4>
           </div>
 
-          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item love_counte">
+          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item love_counter">
             <h1 class="love_count" style="font-size: 70px;">
-              <strong>70K</strong>
+              <strong>70000</strong>
             </h1>
             <h4 style="color: var(--main-color); margin-top: -6px;">Total Users</h4>
           </div>
@@ -90,7 +119,7 @@
   <div class="container">
     <div class="row">
       <div class="col item social">
-        <a href="#top">
+        <a href="/bot/youtube">
           <i class="fab fa-youtube"></i>
         </a>
       </div>
