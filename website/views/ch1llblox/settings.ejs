@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home - Ch1llBlox</title>
+  <title>Dashboard | Ch1llBlox</title>
 
   <%- include("Parts/head") %>
 </head>
@@ -14,8 +14,8 @@
       name: "Ch1llBlox",
       domainname: "/bot",
 
-      linkname: "Commands",
-      link: "/bot/commands",
+      linkname: "Home",
+      link: "/home",
 
       linkname2: "",
       link2: "",
@@ -23,23 +23,10 @@
       linkname3: "",
       link3: "",
       
-      linkname4: "Home",
-      link4: "/home"
+      linkname4: "",
+      link4: ""
     }) -%>
   </div>
-
-  <header class="d-xl-flex flex-column justify-content-xl-center align-items-xl-center"
-    style="height: 418px; text-align: center; margin: 55px;">
-    <img class="rounded" src="/assets/images/botlogo.png" width="150" height="150" style="margin-top: 30px;">
-    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--bot-text-color);">Ch1llBlox</h1>
-    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--secondary-text-color);">Prenium commands for free.</h1>
-
-    <div class="tada animated">
-      <div role="group" class="btn-group">
-        <a href="/invite" class="btn btn-primary shadow-none" type="button"
-          style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Invite</a>
-      </div>
-  </header>
 
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
     <path fill="var(--secondary-color)" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,117.3C1120,85,1280,75,1360,69.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
@@ -53,26 +40,30 @@
   </div>
   </div>
 
-  <div id="commands">
-    <section>
-      <div class="container-fluid text-white">
-        <div class="row row-cols-3 justify-content-center" style="color: var(--secondary-text-color);">
-          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item love_counter">
-            <h1 class="love_count" style="font-size: 70px;">
-              <strong>98</strong>
-            </h1>
-            <h4 style="color: var(--main-color); margin-top: -6px;">Total Servers</h4>
-          </div>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <% user.guilds.forEach((guild) => {
+      const GuildPerms = new perms(guild.permissions)
 
-          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item love_counter">
-            <h1 class="love_count" style="font-size: 70px;">
-              <strong>70000</strong>
-            </h1>
-            <h4 style="color: var(--main-color); margin-top: -6px;">Total Users</h4>
-          </div>
-        </div>
+      if (!GuildPerms.has("MANAGE_GUILD")){
+        return
+      }
+    %>
+    <div class="card" style="max-width: 18rem; margin: 2rem; min-width: 10em;">
+    <%- guild.icon ? `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}" class="card-img-top" style="max-width: 18rem;">` : "" %>
+      <div class="card-body">
+        <h5 class="card-title"><%= guild.name %></h5>
+        <% if (bot.guilds.cache.get(guild.id)) { %>
+          <p class="card-text">Edit <%= guild.name %>'s settings via the dashboard by clicking the button below.</p>
+          <a href="/dashboard/<%- guild.id %>" class="btn btn-success text-white">Edit Settings</a>
+        <% } else { %>
+          <p class="card-text">Invite the bot to <%= guild.name %> in order to their this server's settings via the dashboard by clicking the button below.</p>
+          <a href="<%= `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${bot.config.domain}${bot.config.port == 80 ? "" : `:${bot.config.port}`}/callback`)}`  %>" class="btn btn-primary text-white">Invite Bot</a>
+        <% } %>
       </div>
-    </section>
+    </div>
+    <%
+        });
+    %>
   </div>
   
   <div class="footer-dark" style="background: var(--secondary-color); padding-top: 0px; padding-bottom: 0px;">

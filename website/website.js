@@ -86,10 +86,9 @@ const RenderTemplate = (response, request, view, data) => {
 
   const BaseData = {
     path: request.path,
+    bot: global.Bot,
     user: request.isAuthenticated() ? request.user : null,
   };
-
-  console.log(BaseData.user)
 
   response.render(view, Object.assign(BaseData, data));
 };
@@ -100,7 +99,7 @@ const CheckAuth = (request, response, next) => {
   }
 
   request.session.backURL = request.url;
-  response.redirect("/login");
+  response.redirect("/api/login");
 };
 
 global.RenderTemplate = RenderTemplate;
