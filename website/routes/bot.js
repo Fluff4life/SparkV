@@ -46,7 +46,7 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
     StoredSettings = await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
   }
 
-  global.RenderTemplate(response, request, "settings.ejs", { guild, settings: StoredSettings, alert: null })
+  global.RenderTemplate(response, request, "settings.ejs", { guild: guild, settings: StoredSettings, alert: null })
 })
 
 Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
