@@ -135,9 +135,10 @@ if (Config.Debug) {
             }, (Config.sharding.ShardLifeTime + 5) * 1000)
         }
     } else {
-        const Discord = require("discord.js");
+        const Bot = require("./ch1llblox")
+        global.Bot = Bot
+        Bot.Config = Config
 
         console.log(require("chalk").yellow("WARNING - SHARDING DISABLED"))
-        require("./ch1llblox")
     }
 }

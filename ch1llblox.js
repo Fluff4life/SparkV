@@ -40,7 +40,6 @@ const Bot = new Client({
     status: "dnd"
   }
 })
-global.Bot = Bot
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)
@@ -87,8 +86,6 @@ Bot.AntiSpam = new AntiSpam({
 })
 
 // Code //
-Bot.Config = Config
-
 console.log("---------- Loading Bot Functions ----------")
 functions(Bot)
 
@@ -148,3 +145,5 @@ console.log("---------- Logging into Bot ----------")
 Bot.login(process.env.token)
 
 console.log(Chalk.blue("SUCCESS - BOT LOADING COMPLETE"))
+
+return Bot
