@@ -65,24 +65,24 @@ Bot.events = new Collection()
 Bot.cooldowns = new Collection()
 
 Bot.AntiSpam = new AntiSpam({
-  warnThreshold: 3, // Amount of messages sent in a row that will cause a warning.
-  muteThreshold: 6, // Amount of messages sent in a row that will cause a mute
-  kickThreshold: 12, // Amount of messages sent in a row that will cause a kick.
-  banThreshold: 24, // Amount of messages sent in a row that will cause a ban.
-  maxInterval: 5500, // Amount of time (in milliseconds) in which messages are considered spam.
-  warnMessage: '{@user}, please stop spamming. If you continue to spam, you\'ll be muted!', // Message that will be sent in chat upon warning a user.
-  kickMessage: '**{user_tag}** has been kicked for spamming.', // Message that will be sent in chat upon kicking a user.
-  muteMessage: '**{user_tag}** has been muted for spamming.',// Message that will be sent in chat upon muting a user.
-  banMessage: '**{user_tag}** has been banned for spamming.', // Message that will be sent in chat upon banning a user.
-  maxDuplicatesWarning: 5, // Amount of duplicate messages that trigger a warning.
-  maxDuplicatesKick: 12, // Amount of duplicate messages that trigger a warning.
-  maxDuplicatesBan: 24, // Amount of duplicate messages that trigger a warning.
-  exemptPermissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"], // Bypass users with any of these permissions.
-  ignoreBots: true, // Ignore bot messages.
-  verbose: true, // Extended Logs from module.
-  ignoredUsers: [], // Array of User IDs that get ignored.
-  muteRoleName: "Muted", // Name of the role that will be given to muted users!
-  removeMessages: true // If the bot should remove all the spam messages when taking action on a user!
+  warnThreshold: 3,
+  muteThreshold: 6,
+  kickThreshold: 12,
+  banThreshold: 24,
+  maxInterval: 5500,
+  warnMessage: "{@user}, please stop spamming. If you continue to spam, you'll be muted.",
+  kickMessage: "**{user_tag}** has been kicked for spamming.",
+  muteMessage: "**{user_tag}** has been muted for spamming.",
+  banMessage: "**{user_tag}** has been banned for spamming.",
+  maxDuplicatesWarning: 5,
+  maxDuplicatesKick: 12,
+  maxDuplicatesBan: 24,
+  exemptPermissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"],
+  ignoreBots: true,
+  verbose: true, 
+  ignoredUsers: [],
+  muteRoleName: "Muted",
+  removeMessages: true
 })
 
 // Code //

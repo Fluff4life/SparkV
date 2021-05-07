@@ -5,14 +5,10 @@ const AntiSwearPackage = require("anti-swear-words-packages-discord");
 const { configureScope } = require("@sentry/node");
 
 exports.run = async (Bot, message) => {
-  if (message.author.bot) {
-    return;
+  if (message.channel.type === "dm" || !message.channel.viewable || message.author.bot){
+    return
   }
-
-  if (!message.guild) {
-    return;
-  }
-
+  
   const BotPermisions = message.channel.permissionsFor(Bot.user);
 
   if (!BotPermisions || !BotPermisions.has(["SEND_MESSAGES", "EMBED_LINKS"])) {

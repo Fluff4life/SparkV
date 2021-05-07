@@ -32,24 +32,21 @@ console.log("-------- Loading Website --------");
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 
-passport.use(
-  new Strategy(
-    {
-      clientID: "763126208149585961",
-      clientSecret: "rpwavciXHXS4YihyFbS2F6IqnXBuSq4h", //process.env.secretid,
-      callbackURL: `${Domain}/api/callback`,
-      scope: ["identify", "guilds"],
-    },
+passport.use(new Strategy({
+    clientID: "763126208149585961",
+    clientSecret: process.env.secretid,
+    callbackURL: `${Domain}/api/callback`,
+    scope: ["identify", "guilds"],
+  },
     (accessToken, refreshToken, profile, done) => {
       process.nextTick(() => done(null, profile));
     }
   )
 );
 
-app.use(
-  session({
+app.use(session({
     store: new memory({ checkPeriod: 86400 * 1000 }),
-    secret: "Debug", //process.env.secretid,
+    secret: process.env.secretid,
     resave: false,
     saveUninitialized: false,
   })
@@ -62,11 +59,7 @@ app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(
   favicon(

@@ -1,35 +1,41 @@
 const Discord = require("discord.js");
-const DiscordEasyPages = require("discordeasypages")
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
     return message.lineReplyNoMention("❌ Access denied.")
   }
 
-  if (Arguments.length == 0) {
+  if (!Arguments) {
     return message.lineReplyNoMention("❌︱Please input code.")
   }
 
-  function clean(text) {
-    if (typeof (text) === "string")
-      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-    else
-      return text;
-  }
+  const Input = Arguments.join(" ")
 
-  try {
-    const asyncify = code => `(async () => {\nawait ${clean(code.trim())}\n})`
-    let result = await eval(asyncify(Arguments.join(" ")))
+  if (!Input.toLowerCase().includes("token")){
+    const Embed = new Discord.MessageEmbed()
+      .setTitle("Eval Results")
+    
+    try {
+      let Output = eval(Input)
 
-    if (typeof result !== "string") {
-      result = require("util").inspect(result, false, 1)
+      if (typeof Output !== "string"){
+        Output = require("util").inspect(Output, { depth: 0 })
+      }
+
+      Embed
+        .addField("Input", `\`\`\`js\n${Input.length > 1024 ? "Input is too long to display." : Input}\`\`\``)
+        .addField("Output", `\`\`\`js\n${Output.length > 1024 ? "Output is too long to display." : Input}\`\`\``)
+        .setColor("GREEN")
+    } catch(err){
+      Embed
+        .addField("Input", `\`\`\`js\n${Input.length > 1024 ? "Input is too long to display." : Input}\`\`\``)
+        .addField("Output", `\`\`\`js\n${err.length > 1024 ? "Output is too long to display." : Input}\`\`\``)
+        .setColor("GREEN")
     }
 
-    message.lineReplyNoMention(`✅︱Code executed successfully. \`\`\`js\n${result}\`\`\``)
-  } catch (err) {
-    console.error(err)
-
-    return message.lineReplyNoMention(`❌︱Uh oh! There was an error executing that code.\n\`\`\`js\n${err}\`\`\``)
+    message.channel.send(Embed)
+  } else {
+    message.channel.send("Token was contained in input. Nice try noob.")
   }
 },
 
