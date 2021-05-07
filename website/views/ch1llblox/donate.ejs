@@ -12,7 +12,22 @@
   <div id="top" style="height: 12px;">
     <div class="background"></div>
     
-    <%- include("Parts/navagation") -%>
+    <%- include("Parts/navagation", {
+      name: "Ch1llBlox",
+      domainname: "/bot",
+
+      linkname: "Home",
+      link: "/home",
+
+      linkname2: "Dashboard",
+      link2: "/bot/dashboard",
+
+      linkname3: "",
+      link3: "",
+      
+      linkname4: "",
+      link4: ""
+    }) -%>
   </div>
 
   <header class="d-xl-flex flex-column justify-content-xl-center align-items-xl-center"
@@ -133,14 +148,6 @@
     </p>
   </div>
   </div>
-
-  <script>
-    window.onload = () => {
-        setTimeout(() => {
-            $("#lds-ellipsis").remove()
-        }, 5 * 1000)
-    }
-  </script>
 
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>

@@ -7,8 +7,6 @@
 </head>
 
 <body style="background-color: var(--background-color);">
-  <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-
   <div id="top" style="height: 12px;">
     <div class="background"></div>
     
@@ -16,17 +14,17 @@
       name: "Ch1llBlox",
       domainname: "/bot",
 
-      linkname: "Commands",
-      link: "/bot/commands",
+      linkname: "Home",
+      link: "/home",
 
-      linkname2: "",
-      link2: "",
+      linkname2: "Dashboard",
+      link2: "/bot/dashboard",
 
       linkname3: "",
       link3: "",
       
-      linkname4: "Home",
-      link4: "/home"
+      linkname4: "",
+      link4: ""
     }) -%>
   </div>
 
@@ -130,14 +128,6 @@
     <p class="copyright" style="color: var(--text-color);">© 2021 Ch1llBlox. All rights reserved. Ch1llBlox is NOT affiliated with <a href="https://discordapp.com/">Discord</a> nor <a href="https://roblox.com/home">Roblox</a>.</p>
   </div>
   </div>
-
-  <script>
-    window.onload = () => {
-        setTimeout(() => {
-            $("#lds-ellipsis").remove()
-        }, 5 * 1000)
-    }
-  </script>
 
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
