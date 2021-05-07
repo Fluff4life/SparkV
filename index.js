@@ -137,7 +137,6 @@ if (Config.Debug) {
     } else {
         const Bot = require("./ch1llblox")
         global.Bot = Bot
-        Bot.Config = Config
 
         console.log(require("chalk").yellow("WARNING - SHARDING DISABLED"))
     }

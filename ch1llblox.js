@@ -40,6 +40,7 @@ const Bot = new Client({
     status: "dnd"
   }
 })
+Bot.Config = Config
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)
