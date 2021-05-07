@@ -24,7 +24,9 @@ Router.get("/dashboard", global.CheckAuth, async (request, response) => {
 })
 
 Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
-  console.log(request.params.guildID, global.Bot.guilds.cache.has(request.params.guildID))
+  console.log(request.params.guildID)
+  console.log(global.Bot.guilds.cache.has(request.params.guildID))
+  console.log(global.Bot.guilds.cache.get(request.params.guildID))
   const guild = global.Bot.guilds.cache.get(request.params.guildID)
 
   if (!guild){
@@ -48,7 +50,7 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
     StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
   }
 
-  global.RenderTemplate(response, request, "settings.ejs", { guild: guild, settings: StoredSettings, alert: null })
+  global.RenderTemplate(response, request, "settings.ejs", {guild, settings: StoredSettings, alert: null })
 })
 
 Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
