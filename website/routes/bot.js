@@ -24,10 +24,8 @@ Router.get("/dashboard", global.CheckAuth, async (request, response) => {
 })
 
 Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
-  console.log(request.params.guildID)
-  console.log(global.Bot.guilds.cache.has(request.params.guildID))
-  console.log(global.Bot.guilds.cache.get(request.params.guildID))
-  const guild = global.Bot.guilds.cache.get(request.params.guildID)
+  console.log(await global.Bot)
+  const guild = await global.Bot.guilds.cache.get(request.params.guildID)
 
   if (!guild){
     return response.redirect("/bot/dashboard")
