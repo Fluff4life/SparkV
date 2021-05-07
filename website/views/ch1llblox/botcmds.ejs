@@ -49,7 +49,15 @@
     <p class="copyright" style="color: var(--text-color);">© 2021 Ch1llBlox. All rights reserved. Ch1llBlox is NOT affiliated with <a href="https://discordapp.com/">Discord</a> nor <a href="https://roblox.com/home">Roblox</a>.</p>
   </div>
   </div>
-
+  
+  <script>
+    window.onload = () => {
+        setTimeout(() => {
+            $("#lds-ellipsis").remove()
+        }, 5 * 1000)
+    }
+  </script>
+  
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

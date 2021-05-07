@@ -45,6 +45,15 @@
           style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Go Home</a>
       </div>
   </header>
+
+  <script>
+    window.onload = () => {
+        setTimeout(() => {
+            $("#lds-ellipsis").remove()
+        }, 5 * 1000)
+    }
+  </script>
+  
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
   </body>
