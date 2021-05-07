@@ -40,8 +40,7 @@
     <%- guild.icon ? `<img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}" class="card-img-top" style="max-width: 18rem;">` : `<img src="https://support.discord.com/hc/user_images/l12c7vKVRCd-XLIdDkLUDg.png" class="card-img-top" style="max-width: 18rem;">` %>
       <div class="card-body">
         <h5 class="card-title"><%= guild.name %></h5>
-        <p class="card-text">Edit <%= guild.name %>'s settings via the dashboard by clicking the button below.</p>
-        <a href="/bot/dashboard/<%- guild.id %>" class="btn btn-success text-white">Edit Settings</a>
+        <a href="/bot/dashboard/<%- guild.id %>" class="btn btn-success text-white">Edit Guild Settings</a>
       </div>
     </div>
     <%

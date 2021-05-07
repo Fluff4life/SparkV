@@ -24,6 +24,7 @@ Router.get("/dashboard", global.CheckAuth, async (request, response) => {
 })
 
 Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
+  console.log(request.params.guildID, global.Bot.guilds.cache.has(request.params.guildID))
   const guild = global.Bot.guilds.cache.get(request.params.guildID)
 
   if (!guild){
@@ -43,7 +44,8 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
   let StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
   if (!StoredSettings){
-    StoredSettings = await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
+    await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
+    StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
   }
 
   global.RenderTemplate(response, request, "settings.ejs", { guild: guild, settings: StoredSettings, alert: null })
@@ -69,7 +71,8 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
   let StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
   if (!StoredSettings){
-    StoredSettings = await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
+    await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
+    StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
   }
 
   await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}.${request.body.prefix}`, request.body.prefix)
