@@ -40,7 +40,6 @@ const Bot = new Client({
     status: "dnd"
   }
 })
-Bot.Config = Config
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)
@@ -87,6 +86,8 @@ Bot.AntiSpam = new AntiSpam({
 })
 
 // Code //
+Bot.Config = Config
+
 console.log("---------- Loading Bot Functions ----------")
 functions(Bot)
 
