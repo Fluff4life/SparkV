@@ -24,7 +24,7 @@ Router.get("/dashboard", global.CheckAuth, async (request, response) => {
 })
 
 Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
-  const guild = request.session.user.guilds.find(guild => guild.id === request.params.guildID)
+  const guild = request.user.guilds.find(guild => guild.id === request.params.guildID)
 
   if (!guild){
     return response.redirect("/bot/dashboard")
@@ -45,7 +45,7 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
 })
 
 Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
-  const guild = request.session.user.guilds.find(guild => guild.id === request.params.guildID)
+  const guild = request.user.guilds.find(guild => guild.id === request.params.guildID)
 
   if (!guild){
     return response.redirect("/bot/dashboard")
