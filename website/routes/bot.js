@@ -24,20 +24,13 @@ Router.get("/dashboard", global.CheckAuth, async (request, response) => {
 })
 
 Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
-  console.log(await global.Bot)
-  const guild = await global.Bot.guilds.cache.get(request.params.guildID)
+  const guild = request.session.user.guilds.find(guild => guild.id === request.params.guildID)
 
   if (!guild){
     return response.redirect("/bot/dashboard")
   }
 
-  const member = guild.members.cache.get(request.user.id)
-
-  if (!member){
-    return response.redirect("/bot/dashboard")
-  }
-
-  if (!member.permissions.has("MANAGE_GUILD")){
+  if (!Discord.Permissions(guild.permissions) || !Discord.Permissions(guild.permissions).has("MANAGE_GUILD")){
     return response.redirect("/bot/dashboard")
   }
 
@@ -52,19 +45,13 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
 })
 
 Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
-  const guild = global.Bot.guilds.cache.get(request.params.guildID)
+  const guild = request.session.user.guilds.find(guild => guild.id === request.params.guildID)
 
   if (!guild){
     return response.redirect("/bot/dashboard")
   }
 
-  const member = guild.members.cache.get(request.user.id)
-
-  if (!member){
-    return response.redirect("/bot/dashboard")
-  }
-
-  if (!member.permissions.has("MANAGE_GUILD")){
+  if (!Discord.Permissions(guild.permissions) || !Discord.Permissions(guild.permissions).has("MANAGE_GUILD")){
     return response.redirect("/bot/dashboard")
   }
 

@@ -2,9 +2,7 @@
 // Last Edited: 2/18/2021 //
 // website.js //
 
-console.log(
-  require("chalk").green("LOADING STARTED - WEBSITE => Now loading website.")
-);
+console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading website."));
 
 // Librarys //
 const express = require("express");
@@ -33,23 +31,23 @@ passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 
 passport.use(new Strategy({
-    clientID: "763126208149585961",
-    clientSecret: process.env.secretid,
-    callbackURL: `${Domain}/api/callback`,
-    scope: ["identify", "guilds"],
-  },
-    (accessToken, refreshToken, profile, done) => {
-      process.nextTick(() => done(null, profile));
-    }
-  )
+  clientID: "763126208149585961",
+  clientSecret: process.env.secretid,
+  callbackURL: `${Domain}/api/callback`,
+  scope: ["identify", "guilds"],
+},
+  (accessToken, refreshToken, profile, done) => {
+    process.nextTick(() => done(null, profile));
+  }
+)
 );
 
 app.use(session({
-    store: new memory({ checkPeriod: 86400 * 1000 }),
-    secret: process.env.secretid,
-    resave: false,
-    saveUninitialized: false,
-  })
+  store: new memory({ checkPeriod: 86400 * 1000 }),
+  secret: process.env.secretid,
+  resave: false,
+  saveUninitialized: false,
+})
 );
 
 app.use(passport.initialize());
@@ -59,7 +57,7 @@ app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   favicon(
@@ -109,30 +107,12 @@ app.use((request, response, next) => {
 });
 
 app.use((err, request, response, next) => {
-  if (err instanceof SyntaxError) {
-    response
-      .status(400)
-      .send({ error: { status: 400, message: "Syntax Error" } });
-  } else {
-    console.error("Website Error!", err.stack);
+  console.error("Website Error!", err.stack);
 
-    response.status(500)
-    RenderTemplate(response, request, "500.ejs", { error: err });
-  }
+  response.status(500)
+  RenderTemplate(response, request, "500.ejs", { error: err });
 });
 
-const listener = app.listen(
-  Config.Debug == true ? 3000 : process.env.PORT,
-  Config.Debug == true ? "localhost" : null,
-  () => {
-    console.log(
-      Chalk.blue(
-        `SUCCESS - WEBSITE => ${
-          Config.Debug == true
-            ? `Server running at http://localhost:3000`
-            : `Server running on port ${listener.address().port}`
-        }`
-      )
-    );
-  }
-);
+const listener = app.listen(Config.Debug == true ? 3000 : process.env.PORT, Config.Debug == true ? "localhost" : null, () => {
+  console.log(Chalk.blue(`SUCCESS - WEBSITE => ${Config.Debug == true ? `Server running at http://localhost:3000` : `Server running on port ${listener.address().port}`}`));
+});

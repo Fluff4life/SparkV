@@ -1,6 +1,6 @@
 {
   "name": "ch1llblox",
-  "version": "4.7.1",
+  "version": "4.7.2",
   "description": "...",
   "main": "index.js",
   "scripts": {
@@ -60,11 +60,12 @@
     "path": "^0.12.7",
     "quickmongo": "^3.0.2",
     "serve-favicon": "^2.5.0",
+    "socket.io-client": "^4.0.2",
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
     "yargs-parser": "^13.1.2",
     "youtube-dl": "^3.5.0",
-    "ytdl-core": "^4.5.0"
+    "ytdl-core": "^4.7.0"
   },
   "devDependencies": {
     "prettier": "2.2.1"

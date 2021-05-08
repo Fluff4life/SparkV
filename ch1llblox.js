@@ -40,6 +40,7 @@ const Bot = new Client({
     status: "dnd"
   }
 })
+global.Bot = Bot
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)
@@ -142,6 +143,16 @@ console.log("---------- Logging into Roblox ----------")
 if (Config.Debug === false) {
   Noblox(Bot)
 }
+
+console.log("---------- Connecting to Website ----------")
+Bot.SocketioClient = require("socket.io-client").connect(`https://${process.env.baseURL}/api/status`, {
+  reconnection: true,
+  reconnectionDelay: 2000,
+  reconnectionDelayMax: 5000,
+  reconnectionAttempts: Infinity
+})
+
+Bot.SocketioClient.on("connect", () => console.log("Website connected successfully."))
 
 console.log("---------- Logging into Bot ----------")
 Bot.login(process.env.token)

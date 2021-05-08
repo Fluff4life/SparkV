@@ -30,7 +30,7 @@ Router.get("/login", async (request, response, next) => {
 	next()
 }, passport.authenticate("discord"))
 
-Router.get("/callback", passport.authenticate("discord", { failureRedirect: "/" }), async (request, response) => {
+Router.get("/callback", passport.authenticate("discord", { failureRedirect: "/500?error=invalid_discord_code" }), async (request, response) => {
 	if (request.session.backURL){
 		const url = request.session.backURL
 
