@@ -114,7 +114,7 @@ app.use((err, request, response, next) => {
   RenderTemplate(response, request, "500.ejs", { error: err });
 });
 
-const io = require("socket.io").listen(server)
+const io = require("socket.io")(server)
 
 io.sockets.on("connection", (socket) => {
   console.log(socket)
