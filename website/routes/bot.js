@@ -54,15 +54,17 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
   if (!guild){
     return response.redirect("/bot/dashboard")
   }
-  
+
   const GuildPermisions = new Discord.Permissions(guild.permissions)
 
   if (!GuildPermisions || !GuildPermisions.has("MANAGE_GUILD")){
     return response.redirect("/bot/dashboard")
   }
 
+  let StoredSettings
+
   try {
-    let StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+    StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
     if (!StoredSettings){
       await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
