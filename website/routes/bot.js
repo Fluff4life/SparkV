@@ -54,8 +54,10 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
   if (!guild){
     return response.redirect("/bot/dashboard")
   }
+  
+  const GuildPermisions = new Discord.Permissions(guild.permissions)
 
-  if (!Discord.Permissions(guild.permissions) || !Discord.Permissions(guild.permissions).has("MANAGE_GUILD")){
+  if (!GuildPermisions || !GuildPermisions.has("MANAGE_GUILD")){
     return response.redirect("/bot/dashboard")
   }
 
