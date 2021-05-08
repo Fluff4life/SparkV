@@ -36,14 +36,16 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
     return response.redirect("/bot/dashboard")
   }
 
+  /*
   let StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
   if (!StoredSettings){
     await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
     StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
   }
+  */
 
-  global.RenderTemplate(response, request, "settings.ejs", {guild, settings: StoredSettings, alert: null })
+  global.RenderTemplate(response, request, "settings.ejs", {guild, settings: { prefix: "^" }, alert: null })
 })
 
 Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
@@ -57,14 +59,18 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
     return response.redirect("/bot/dashboard")
   }
 
-  let StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+  try {
+    let StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
-  if (!StoredSettings){
-    await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
-    StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+    if (!StoredSettings){
+      await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
+      StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+    }
+
+    await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}.${request.body.prefix}`, request.body.prefix)
+  } catch (err) {
+    global.RenderTemplate(response, request, "settings.ejs", { guild, settings: StoredSettings, alert: "Settings failed to save." })
   }
-
-  await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}.${request.body.prefix}`, request.body.prefix)
 
   global.RenderTemplate(response, request, "settings.ejs", { guild, settings: StoredSettings, alert: "Settings successfully saved!" })
 })
