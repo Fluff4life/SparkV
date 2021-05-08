@@ -2,20 +2,25 @@ const TopggAPI = require("dblapi.js")
 const botlistspaceapi = require("botlist.space")
 
 module.exports = async (Bot) => {
-    if (process.env.alpha === "true"){
-        return
-    }
-
     const topgg = new TopggAPI(process.env.dblkey, Bot)
     const botlistspace = new botlistspaceapi.Client({
-        id: Bot.Config.Bot.ClientID.toString(),
+        id: 763126208149585961,
         botToken: process.env.BotListToken
     });
    
     setInterval(async () => {
         const ServerCount = await Bot.GetServerCount()
 
-        topgg.postStats(ServerCount) // Other options: `shardId: Bot.shard.ids[0], shardCount: Bot.options.shardCount`
-        botlistspace.postServerCount(ServerCount) // Switch to a table of shards with members if shards are used.
-    }, 2000 * 1000)
+        try {
+            topgg.postStats(ServerCount) // Other options: `shardId: Bot.shard.ids[0], shardCount: Bot.options.shardCount`
+        } catch(err) {
+            console.log("Failed to publish stats to top.gg!", err)
+        }
+
+        try {
+            botlistspace.postServerCount(ServerCount) // Switch to a table of shards with members if shards are used.
+        } catch(err) {
+            console.log("Failed to publish stats to botlist.space!", err)
+        }
+    }, 600 * 1000)
 }

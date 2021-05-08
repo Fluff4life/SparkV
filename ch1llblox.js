@@ -145,7 +145,7 @@ if (Config.Debug === false) {
 }
 
 console.log("---------- Connecting to Website ----------")
-Bot.SocketioClient = require("socket.io-client").connect(`https://${process.env.baseURL}/api/status`, {
+Bot.SocketioClient = require("socket.io-client").connect(`https://${process.env.baseURL}/api/communication?token=8010405464675`, {
   reconnection: true,
   reconnectionDelay: 2000,
   reconnectionDelayMax: 5000,

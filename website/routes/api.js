@@ -16,6 +16,14 @@ Router.get("/ch1llblox/status", async (request, response) => {
     response.status(200).send({ status: 200, message: "OK" });
 })
 
+Router.get("/communication", async (request, response) => {
+	if (!request.query.token === "8010405464675"){
+		return response.redirect("/home")
+	}
+
+	// Set up comunication here.
+})
+
 Router.get("/login", async (request, response, next) => {
 	if (request.session.backURL){
 		request.session.backURL = request.session.backURL
