@@ -61,7 +61,9 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
     return response.redirect("/bot/dashboard")
   }
 
-  let StoredSettings
+  let StoredSettings = {
+    prefix: "^"
+  }
 
   try {
     StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
@@ -73,10 +75,10 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
 
     await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}.${request.body.prefix}`, request.body.prefix)
   } catch (err) {
-    global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings failed to save." })
+    global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: { status: "error", text: "Settings failed to save." } })
   }
 
-  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings successfully saved!" })
+  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: { status: "success", text: "Settings successfully saved!" } })
 })
 
 module.exports = Router
