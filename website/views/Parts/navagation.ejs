@@ -1,12 +1,32 @@
+<div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <h5 class="text-white h4">Menu</h5>
+    <span class="text-muted">
+      Select a destination you'd like to be redirected to.
+    </span>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<%- link %>" style="color: var(--text-color);"><%- linkname %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="<%- link2 %>" style="color: var(--text-color);"><%- linkname2 %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="<%- link3 %>" style="color: var(--text-color);"><%- linkname3 %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="<%- link4 %>" style="color: var(--text-color);"><%- linkname4 %></a>
+    </li>
+  </div>
+</div>
+
 <nav class="navbar navbar-expand-lg" style="color: var(--main-color); border-top-width: 6px; border-top-style: solid; background: var(--background-color);">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<%- domainname %>" style="color: var(--main-color); font-family: 'Slfa Slab One', cursive;"><%- name %></a>
+    <a class="navbar-brand" href="<%- domainname %>" style="color: var(--main-color); font-family: 'Slfa Slab One', cursive;">
+      <img src="/assets/images/kingch1ll.png" alt="" width="30" height="30" class="d-inline-block align-text-top"><%- name %>
+    </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
@@ -29,7 +49,7 @@
         <% if (user) { %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= user.username %>
+              <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="" width="30" height="30"><%= user.username %>
             </a>
             
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: var(--main-color); background: var(--background-color)">
