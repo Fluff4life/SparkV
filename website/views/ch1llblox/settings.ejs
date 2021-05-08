@@ -30,7 +30,8 @@
 
   <div class="container-sm center" style="margin-top: 30px;">
     <div class="d-grid gap-2 col-4 mx-auto">
-      <% if (alert && alert.status === "success") { %>
+      <% if (alert) { %> 
+      <% if (alert.status === "success") { %>
         <div class="alert alert-success" role="alert">
           <%= alert.text %>
         </div>
@@ -38,7 +39,8 @@
         <div class="alert alert-danger" role="alert">
           <%= alert.text %>
         </div>
-      <% } %> 
+      <% } %>
+      <% } %>
       <h1><%= guild.name %></h1>
       <hr>
       <form method="POST">
