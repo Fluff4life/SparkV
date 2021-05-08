@@ -48,8 +48,8 @@
       <ul class="navbar-nav">
         <% if (user) { %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="" style="border-radius: 50%; margin-inline-start: 10px" width="30" height="30"><%= user.username %>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-inline-start: 10px">
+              <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="" style="border-radius: 50%" width="30" height="30"><%= user.username %>
             </a>
             
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: var(--main-color); background: var(--background-color)">
