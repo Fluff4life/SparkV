@@ -23,6 +23,7 @@ const Domain = Config.Debug === true ? "http://localhost:3000" : `https://${proc
 
 // App //
 const app = express();
+const server = app.listen(Config.Debug == true ? 3000 : process.env.PORT);
 const memory = require("memorystore")(session);
 
 // Code //
@@ -113,6 +114,10 @@ app.use((err, request, response, next) => {
   RenderTemplate(response, request, "500.ejs", { error: err });
 });
 
-const listener = app.listen(Config.Debug == true ? 3000 : process.env.PORT, Config.Debug == true ? "localhost" : null, () => {
-  console.log(Chalk.blue(`SUCCESS - WEBSITE => ${Config.Debug == true ? `Server running at http://localhost:3000` : `Server running on port ${listener.address().port}`}`));
-});
+const io = require("socket.io").listen(server)
+
+io.sockets.on("connection", (socket) => {
+  console.log(socket)
+})
+
+console.log(`SUCCESS - WEBSITE => Website successfully deployed!`)
