@@ -62,12 +62,12 @@ process.on("unhandledRejection", async (err, promise) => {
 })
 
 process.on("warning", (warning) => {
-    LogError("Warning", err)
+    await LogError("Warning", err)
     console.log(require("chalk").yellow(`WARNING => ${warning.name} => ${warning.message}.`))
 })
 
 process.on("exit", (code) => {
-    LogError("Fatal", err)
+    await LogError("Fatal", err)
     console.log(require("chalk").red(`EXIT => Process exited with code ${code}.`))
 })
 

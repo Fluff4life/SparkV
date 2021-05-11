@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Dashboard | Ch1llBlox</title>
+  <title><%- guild.name %>'s Dashboard | Ch1llBlox</title>
 
   <%- include("Parts/head") %>
+  <script>
+    function SaveSetting(database, type, field){
+      if (type.toLowerCase() === "input"){
+        const http = new XMLHttpRequest()
+        const url = `${window.location.protocol}//${window.location.hostname}/api/updatedata?guildID=<%- guild.id %>&value=${encodeURIComponent(field.value)}`
+
+        http.open("GET", url)
+        http.send()
+
+        http.onreadystatechange = () => {
+          if (http.responseText === "200"){
+            // Create an alert
+            /*
+            if (alert.status === "success") {
+              <div class="alert alert-success" role="alert">
+                alert.text
+              </div>
+          else if (alert.status === "error") {
+        <div class="alert alert-danger" role="alert">
+          alert.text
+        </div>
+            */
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
 <body style="background-color: var(--background-color);">
@@ -30,17 +57,6 @@
 
   <div class="container-sm center" style="margin-top: 30px;">
     <div class="d-grid gap-2 col-4 mx-auto">
-      <% if (alert) { %> 
-      <% if (alert.status === "success") { %>
-        <div class="alert alert-success" role="alert">
-          <%= alert.text %>
-        </div>
-      <% } else if (alert.status === "error") { %>
-        <div class="alert alert-danger" role="alert">
-          <%= alert.text %>
-        </div>
-      <% } %>
-      <% } %>
       <h1><%= guild.name %></h1>
       <hr>
       <form method="POST">
