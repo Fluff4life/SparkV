@@ -51,23 +51,23 @@ global.LogError = LogError
 process.on("uncaughtException", async (err, promise) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 
-    await LogError("Fatal", err)
+    LogError("Fatal", err)
     console.log(require("chalk").red(`ERROR => Uncaught Exception error. ${ErrorMessage}.`))
     process.exit(1)
 })
 
 process.on("unhandledRejection", async (err, promise) => {
-    await LogError("Error", err)
+    LogError("Error", err)
     console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err}.`))
 })
 
 process.on("warning", (warning) => {
-    await LogError("Warning", err)
+    LogError("Warning", err)
     console.log(require("chalk").yellow(`WARNING => ${warning.name} => ${warning.message}.`))
 })
 
 process.on("exit", (code) => {
-    await LogError("Fatal", err)
+    LogError("Fatal", err)
     console.log(require("chalk").red(`EXIT => Process exited with code ${code}.`))
 })
 
