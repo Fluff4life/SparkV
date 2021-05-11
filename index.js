@@ -18,6 +18,7 @@ config({
 init({
     dsn: process.env.SentryToken,
     release: `${name}@${version}`,
+    tracesSampleRate: 1.0,
     integrations: [
         new Transaction()
     ]

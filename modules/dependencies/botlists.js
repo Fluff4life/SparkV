@@ -4,7 +4,7 @@ const botlistspaceapi = require("botlist.space")
 module.exports = async (Bot) => {
     const topgg = new TopggAPI(process.env.dblkey, Bot)
     const botlistspace = new botlistspaceapi.Client({
-        id: 763126208149585961,
+        id: "763126208149585961",
         botToken: process.env.BotListToken
     });
    

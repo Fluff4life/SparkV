@@ -46,6 +46,10 @@ exports.run = async (Bot, message, Arguments, command) => {
             }
 
             noblox.getIdFromUsername(msg.content).then(async (id) => {
+                if (!id){
+                    return message.lineReplyNoMention("Verification canceled. User doesn't exist.")
+                }
+
                 const VerificationID = CreateID()
 
                 const UsernameFound = new Discord.MessageEmbed()

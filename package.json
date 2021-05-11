@@ -1,6 +1,6 @@
 {
   "name": "ch1llblox",
-  "version": "4.7.2",
+  "version": "4.7.3",
   "description": "...",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
+    "@sentry/browser": "^6.3.6",
     "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
     "@sentry/tracing": "^6.3.1",

@@ -15,6 +15,7 @@ const ejs = require("ejs");
 const Chalk = require("chalk");
 const Config = require("../globalconfig.json");
 const bodyParser = require("body-parser");
+const { name, version } = require("./package.json");
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
@@ -115,9 +116,20 @@ app.use((err, request, response, next) => {
 });
 
 const io = require("socket.io")(server)
+const Sentry = require("@sentry/browser")
+const { Integrations } = require("@sentry/tracing")
 
 io.sockets.on("connection", (socket) => {
   console.log(socket)
 })
+
+Sentry.init({
+  dsn: process.env.SentryWebsiteToken,
+  release: `${name}@${version}`,
+  tracesSampleRate: 1.0,
+  integrations: [
+    new Integrations.BrowserTracing()
+  ]
+});
 
 console.log(`SUCCESS - WEBSITE => Website successfully deployed!`)
