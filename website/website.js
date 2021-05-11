@@ -15,7 +15,7 @@ const ejs = require("ejs");
 const Chalk = require("chalk");
 const Config = require("../globalconfig.json");
 const bodyParser = require("body-parser");
-const { name, version } = require("./package.json");
+const { name, version } = require("../package.json");
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
