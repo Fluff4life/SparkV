@@ -45,11 +45,11 @@ Sentry.init({
 const Database = new QuickMongo.Database(process.env.mongooseURL)
 
 Database.on("ready", async () => {
-  Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
+  console.log("SUCCESS => WEBSITE DATABASE SUCCESS - Successfully connected to database!")
 })
 
 Database.on("error", async (err) => {
-  Bot.Log("ERROR", "DATABASE ERROR", err)
+  console.log("ERROR => WEBSITE DATABASE ERROR", err)
 })
 
 global.Database = Database
