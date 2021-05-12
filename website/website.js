@@ -16,9 +16,9 @@ const Chalk = require("chalk");
 const Config = require("../globalconfig.json");
 const bodyParser = require("body-parser");
 const { name, version } = require("../package.json");
-const io = require("socket.io")(server)
 const Sentry = require("@sentry/browser")
 const { Integrations } = require("@sentry/tracing")
+const QuickMongo = require("quickmongo")
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
@@ -29,6 +29,7 @@ const Domain = Config.Debug === true ? "http://localhost:3000" : `https://${proc
 const app = express();
 const server = app.listen(Config.Debug == true ? 3000 : process.env.PORT);
 const memory = require("memorystore")(session);
+const io = require("socket.io")(server)
 
 // Code //
 console.log("-------- Loading Website --------");
@@ -40,6 +41,18 @@ Sentry.init({
     new Integrations.BrowserTracing()
   ]
 });
+
+const Database = new QuickMongo.Database(process.env.mongooseURL)
+
+Database.on("ready", async () => {
+  Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
+})
+
+Database.on("error", async (err) => {
+  Bot.Log("ERROR", "DATABASE ERROR", err)
+})
+
+global.Database = Database
 
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
@@ -134,18 +147,5 @@ io.sockets.on("connection", (socket) => {
 io.on("PrefixUpdated", async (prefix, id) => {
   // TODO
 })
-
-const QuickMongo = require("quickmongo")
-const Database = new QuickMongo.Database(process.env.mongooseURL)
-
-Database.on("ready", async () => {
-  Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
-})
-
-Database.on("error", async (err) => {
-  Bot.Log("ERROR", "DATABASE ERROR", err)
-})
-
-global.Database = Database
 
 console.log(`SUCCESS - WEBSITE => Website successfully deployed!`)
