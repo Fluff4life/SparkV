@@ -43,7 +43,9 @@ const LogError = (type, err, obj) => {
         }
     })
 
-    captureException(err)
+    try {
+        captureException(err)
+    } catch(err) {}
 }
 
 global.LogError = LogError

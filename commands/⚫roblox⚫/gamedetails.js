@@ -22,7 +22,7 @@ exports.run = async (Bot, message, Arguments) => {
         .setTimestamp()
 
       message.lineReplyNoMention(Embed)
-    });
+    }).catch((err) => message.lineReply("An error occured!"))
 },
 
   exports.config = {

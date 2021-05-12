@@ -20,7 +20,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.lineReplyNoMention("❌Uh oh... I can't unmute this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
-  const Role = message.guild.roles.cache.find(role => role.name === "Muted")
+  var Role = message.guild.roles.cache.find(role => role.name.toLowerCase().includes("muted"))
 
   if (!Role){
     return message.lineReplyNoMention("❌I couldn't find the muted role! Please make sure the role is called, \"Muted\".")

@@ -36,16 +36,46 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
     return response.redirect("/bot/dashboard")
   }
 
-  /*
-  let StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+  let StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
   if (!StoredSettings){
-    await global.Bot.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
-    StoredSettings = await global.Bot.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+    await global.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
+    StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
   }
-  */
 
-  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", {guild, settings: { prefix: "^" }, alert: null })
+  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", {guild, settings: { StoredSettings }, alert: null })
+})
+
+
+Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
+  const guild = request.user.guilds.find(guild => guild.id === request.params.guildID)
+
+  if (!guild){
+    return response.redirect("/bot/dashboard")
+  }
+
+  const GuildPermisions = new Discord.Permissions(guild.permissions)
+
+  if (!GuildPermisions || !GuildPermisions.has("MANAGE_GUILD")){
+    return response.redirect("/bot/dashboard")
+  }
+
+  let StoredSettings
+
+  try {
+    StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+
+    if (!StoredSettings){
+      await global.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
+      StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
+    }
+
+    await global.Database.set(`WebsiteData.GuildSettings.${guild.id}.${request.body.prefix}`, request.body.prefix)
+  } catch (err) {
+    global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings failed to save." })
+  }
+
+  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings successfully saved!" })
 })
 
 module.exports = Router

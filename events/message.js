@@ -165,6 +165,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   }
 
   const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, "MusicEnabled");
+  const Leveling = await Bot.dashboard.getVal(message.guild.id, "leveling");
 
   if (commandfile.config.category === "🎵music🎵" && MusicEnabled === "Disabled") {
     return message.lineReply("This command is disabled by the server owner.");
@@ -181,9 +182,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   const CooldownAmount = Math.round(commandfile.config.cooldown | (3 * 1000));
 
   if (Timestamps.has(message.author.id)) {
-    const ExpireTime = Math.round(
-      Timestamps.get(message.author.id) + CooldownAmount
-    );
+    const ExpireTime = Math.round(Timestamps.get(message.author.id) + CooldownAmount);
 
     if (Now < ExpireTime) {
       const TimeLeft = Math.round((ExpireTime - Now) / 1000);

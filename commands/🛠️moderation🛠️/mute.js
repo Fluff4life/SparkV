@@ -25,9 +25,13 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const Roles = User.roles.cache.filter(role => role.id !== message.guild.id).map(role => role.id)
-  var MutedRole = message.guild.roles.cache.find(role => role.name === "Muted")
+  var MutedRole = message.guild.roles.cache.find(role => role.name.toLowerCase().includes("muted"))
 
   if (!MutedRole) {
+    if (!message.guild || !message.guild.roles){
+      return message.lineReply("Uh oh! An error occured. Make sure I have the correct permisions.")
+    }
+
     MutedRole = await message.guild.roles.create({
       data: {
         name: "Muted",

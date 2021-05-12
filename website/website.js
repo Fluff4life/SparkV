@@ -16,6 +16,9 @@ const Chalk = require("chalk");
 const Config = require("../globalconfig.json");
 const bodyParser = require("body-parser");
 const { name, version } = require("../package.json");
+const io = require("socket.io")(server)
+const Sentry = require("@sentry/browser")
+const { Integrations } = require("@sentry/tracing")
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
@@ -29,6 +32,15 @@ const memory = require("memorystore")(session);
 
 // Code //
 console.log("-------- Loading Website --------");
+Sentry.init({
+  dsn: process.env.SentryWebsiteToken,
+  release: `${name}@${version}`,
+  tracesSampleRate: 1.0,
+  integrations: [
+    new Integrations.BrowserTracing()
+  ]
+});
+
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 
@@ -115,21 +127,25 @@ app.use((err, request, response, next) => {
   RenderTemplate(response, request, "500.ejs", { error: err });
 });
 
-const io = require("socket.io")(server)
-const Sentry = require("@sentry/browser")
-const { Integrations } = require("@sentry/tracing")
-
 io.sockets.on("connection", (socket) => {
-  console.log(socket)
+  // Idk do something lol
 })
 
-Sentry.init({
-  dsn: process.env.SentryWebsiteToken,
-  release: `${name}@${version}`,
-  tracesSampleRate: 1.0,
-  integrations: [
-    new Integrations.BrowserTracing()
-  ]
-});
+io.on("PrefixUpdated", async (prefix, id) => {
+  // TODO
+})
+
+const QuickMongo = require("quickmongo")
+const Database = new QuickMongo.Database(process.env.mongooseURL)
+
+Database.on("ready", async () => {
+  Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
+})
+
+Database.on("error", async (err) => {
+  Bot.Log("ERROR", "DATABASE ERROR", err)
+})
+
+global.Database = Database
 
 console.log(`SUCCESS - WEBSITE => Website successfully deployed!`)

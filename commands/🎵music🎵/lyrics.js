@@ -1,30 +1,58 @@
 const Discord = require("discord.js");
-const LyricsFilder = require("lyrics-finder")
+const fetch = require("node-fetch")
+const discordeasypages = require("discordeasypages")
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
-    return message.lineReplyNoMention("Please supply the title of the song and artist.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReplyNoMention("Please supply the title of a song to search for.").then(m => m.delete({ timeout: 5000 }))
   }
   
   Arguments = Arguments.join(" ")
-  
-  let lyrics = await LyricsFilder(Arguments, Arguments) || "Not found!"
 
-  if (lyrics.length > 2000){
-    return message.lineReplyNoMention("This song has too much lyrics for me to send!")
+  const data = await fetch(`https://same-random-api.ml/lyrics?title=${encodeURI(Arguments)}`).then(res => res.json()).catch(() => { })
+
+  if (!data || data.error){
+    return message.lineReply(`I couldn't find the lyrics for **${Arguments}**!`)
   }
-  
-  await message.author.send({
-    embed: {
-      title: `Lyrics for ${Arguments}`,
-      description: lyrics,
-      color: "#0099ff",
+
+  if (data.lyrics.length < 2000){
+    const SongEmbed = new Discord.MessageEmbed()
+      .setTitle(data.title)
+      .setDescription(data.lyrics)
+      .setThumbnail(data.thumbnail.genius)
+      .setFooter(Bot.Config.Embed.EmbedFooter)
+      .setAuthor(`Song by ${data.author}`, null, data.links.genius)
+      .setColor(Bot.Config.Embed.EmbedColor)
+      .setTimestamp()
+
+    return message.lineReplyNoMention(SongEmbed)
+  }
+
+  const LyricsArray = data.lyrics.split("\n")
+  const LyricsSubArray = [""]
+  const e = 0
+
+  for (const line of LyricsArray){
+    if (LyricsSubArray[e].length + line.length < 2000){
+      LyricsSubArray[e] = LyricsSubArray[e] + line + "\n"
+    } else {
+      e++
+      LyricsSubArray.push(line)
     }
-  }).then(() => {
-    message.lineReply("I sent the song's lyrics to your DMs.")
-  }).catch(() => {
-    message.lineReply("to prevent spam, please enable your DMs so I can DM you with the lyrics.")
-    })
+  }
+
+  discordeasypages(message, LyricsSubArray.map((x, i) => {
+    const SongEmbed = new Discord.MessageEmbed()
+      .setTitle(data.title)
+      .setDescription(x)
+      .setThumbnail(data.thumbnail.genius)
+      .setFooter(Bot.Config.Embed.EmbedFooter)
+      .setAuthor(`Song by ${data.author}`, null, data.links.genius)
+      .setColor(Bot.Config.Embed.EmbedColor)
+      .setTimestamp()
+
+    return message.lineReplyNoMention(SongEmbed)
+  }))
 },
 
 exports.config = {

@@ -24,7 +24,7 @@ exports.run = async (Bot, message, Arguments) => {
         const Location = result[0].location
 
         const WeatherInformation = new Discord.MessageEmbed()
-            .setTitle(`${Location}'s Weather Forecast`)
+            .setTitle(`${Current.observationpoint}'s Weather Forecast`)
             .setDescription(`Weather forecast for ${Current.observationpoint}`)
             .setThumbnail(Current.imageUrl)
             .addField(`**Tempature**`, `${Current.temperature}°F`, true)
