@@ -15,7 +15,7 @@ exports.run = async (Bot, message, args) => {
 
   urban(word).first(async json => {
     if (!json) {
-      return message.lineReplyNoMention("That word doesn't exist!").then(m => m.delete({ timeout: 5000 }))
+      return message.lineReply("That word doesn't exist!").then(m => m.delete({ timeout: 5000 }))
     }
 
     const UrbanEmbed = new Discord.MessageEmbed()

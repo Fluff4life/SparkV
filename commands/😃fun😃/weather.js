@@ -3,7 +3,7 @@ const Weather = require("weather-js")
 
 exports.run = async (Bot, message, Arguments) => {
     if (!Arguments){
-        return message.lineReplyNoMention("Please specify a location!")
+        return message.lineReply("Please specify a location!")
     }
 
     Arguments = Arguments.join(" ")
@@ -13,11 +13,11 @@ exports.run = async (Bot, message, Arguments) => {
         degreeType: "F"         
     }, (error, result) => {
         if (error){
-            return message.lineReplyNoMention(error)
+            return message.lineReply(error)
         }
 
         if (result === undefined || result.length === 0){
-            return message.lineReplyNoMention("Invalid location!")
+            return message.lineReply("Invalid location!")
         }
 
         const Current = result[0].current

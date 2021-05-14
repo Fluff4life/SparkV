@@ -2,11 +2,11 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReplyNoMention("❌ Access denied.")
+    return message.lineReply("❌ Access denied.")
   }
 
   if (!Arguments) {
-    return message.lineReplyNoMention("❌︱Please input code.")
+    return message.lineReply("❌︱Please input code.")
   }
 
   const Input = Arguments.join(" ")

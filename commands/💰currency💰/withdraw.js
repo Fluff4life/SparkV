@@ -13,12 +13,12 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Arguments) {
-    return message.lineReplyNoMention("You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.")
+    return message.lineReply("You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.")
   }
 
   if (Arguments[0].toLowerCase() === "all") {
     if (Bank === 0 || Bank === null) {
-      return message.lineReplyNoMention("You have no Ch1llBucks in your bank!")
+      return message.lineReply("You have no Ch1llBucks in your bank!")
     }
 
     await Bot.Database.subtract(`UserData.${message.author.id}.bank`, Bank)
@@ -27,19 +27,19 @@ exports.run = async (Bot, message, Arguments) => {
     message.lineReplyNoMention(`You just withdrawed ❄${await Bot.FormatNumber(Bank)} from your bank!`)
   } else {
     if (!Arguments[0]) {
-      return message.lineReplyNoMention("lol you can't withdraw nothing.")
+      return message.lineReply("lol you can't withdraw nothing.")
     }
 
     if (isNaN(Arguments[0])) {
-      return message.lineReplyNoMention("Bruh please say a number.")
+      return message.lineReply("Bruh please say a number.")
     }
 
     if (message.content.includes("-")) {
-      return message.lineReplyNoMention("You can't withdraw negitive Ch1llBucks lol.")
+      return message.lineReply("You can't withdraw negitive Ch1llBucks lol.")
     }
 
     if (Bank < Arguments[0]) {
-      return message.lineReplyNoMention("You don't have that much Ch1llBucks in your bank!")
+      return message.lineReply("You don't have that much Ch1llBucks in your bank!")
     }
 
     await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))

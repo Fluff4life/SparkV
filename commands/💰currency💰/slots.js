@@ -31,26 +31,26 @@ const SlotItems = [
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments) {
-    return message.lineReplyNoMention("lol you need to tell me how much to bet.")
+    return message.lineReply("lol you need to tell me how much to bet.")
   }
 
   var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
   var win = false
 
   if (Ch1llBucks === 0 || Ch1llBucks === null) {
-    return message.lineReplyNoMention("You have no Ch1llBucks!")
+    return message.lineReply("You have no Ch1llBucks!")
   }
 
   if (isNaN(Arguments[0])){
-    return message.lineReplyNoMention("That's not a number!")
+    return message.lineReply("That's not a number!")
   }
 
   if (message.content.includes("-")){
-    return message.lineReplyNoMention("You cannot bet negitive Ch1llBucks lol.")
+    return message.lineReply("You cannot bet negitive Ch1llBucks lol.")
   }
 
   if (Arguments[0] > Ch1llBucks){
-    return message.lineReplyNoMention("You don't have that much lol.")
+    return message.lineReply("You don't have that much lol.")
   }
 
   let number = []

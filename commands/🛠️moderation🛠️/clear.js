@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments) {
-    return message.lineReplyNoMention("Please provide ").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("Please provide ").then(m => m.delete({ timeout: 5000 }))
   }
 
   try {
@@ -44,11 +44,11 @@ exports.run = async (Bot, message, Arguments) => {
 
       if (User) {
         if (isNaN(Arguments[1])) {
-          return message.lineReplyNoMention("That's not a number.").then(m => m.delete({ timeout: 5000 }))
+          return message.lineReply("That's not a number.").then(m => m.delete({ timeout: 5000 }))
         }
       } else {
         if (isNaN(Arguments[0])) {
-          return message.lineReplyNoMention("That's not a number.").then(m => m.delete({ timeout: 5000 }))
+          return message.lineReply("That's not a number.").then(m => m.delete({ timeout: 5000 }))
         }
       }
 

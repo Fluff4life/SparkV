@@ -2,11 +2,11 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(" ") || User.user.username === Arguments[0])
 
   if (!Arguments[0]) {
-    return message.lineReplyNoMention("❌Please mention someone to view their warnings!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention someone to view their warnings!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   var warnings = Bot.Database.get(`ServerData.${message.guild.id}.${User.id}.warnings`)

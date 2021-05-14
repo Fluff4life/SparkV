@@ -148,7 +148,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const BotPermisions = message.channel.permissionsFor(message.guild.me);
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.lineReplyNoMention(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`);
+      return message.lineReply(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`);
     }
   }
 
@@ -156,7 +156,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const AuthorPermisions = message.channel.permissionsFor(message.author);
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.lineReplyNoMention(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`);
+      return message.lineReply(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`);
     }
   }
 
@@ -247,7 +247,7 @@ async function ActivateChatBot(message) {
     .catch((err) => {
       console.error(err);
 
-      return message.lineReplyNoMention("Wha- what? Something went wrong.");
+      return message.lineReply("Wha- what? Something went wrong.");
     });
 
   message.channel.stopTyping(true);

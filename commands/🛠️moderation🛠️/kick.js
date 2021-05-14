@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const ReasonForKick = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return message.lineReplyNoMention("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention someone to kick!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToKick) {
-    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (UserToKick.id === message.author.id) {
-    return message.lineReplyNoMention("❌You cannot kick yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌You cannot kick yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToKick.kickable) {
-    return message.lineReplyNoMention("❌Uh oh... I can't kick this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Uh oh... I can't kick this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()

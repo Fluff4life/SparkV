@@ -4,7 +4,7 @@ exports.run = async (Bot, message, Arguments) => {
   const queue = Bot.distube.getQueue(message)
 
   if (!queue){
-    return message.lineReplyNoMention("The queue is empty! Try adding some songs.")
+    return message.lineReply("The queue is empty! Try adding some songs.")
   }
 
   message.lineReplyNoMention({

@@ -4,23 +4,23 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first()
   
   if (!Arguments){
-    return message.lineReplyNoMention("You need to mention someone to pay and how much.")
+    return message.lineReply("You need to mention someone to pay and how much.")
   }
 
   if (!User){
-    return message.lineReplyNoMention("I cannot find the user.")
+    return message.lineReply("I cannot find the user.")
   }
 
   if (User.id === message.author.id){
-    return message.lineReplyNoMention("You can't give money to yourself lol.")
+    return message.lineReply("You can't give money to yourself lol.")
   }
 
   if (isNaN(Arguments[1])){
-    return message.lineReplyNoMention("That's not a number!")
+    return message.lineReply("That's not a number!")
   }
 
   if (message.content.includes("-")){
-    return message.lineReplyNoMention("You cannot give a user negitive Ch1llBucks lol.")
+    return message.lineReply("You cannot give a user negitive Ch1llBucks lol.")
   }
 
   var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
@@ -35,7 +35,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (Ch1llBucks < Arguments[1]){
-    return message.lineReplyNoMention("You don't have that much money!")
+    return message.lineReply("You don't have that much money!")
   }
 
   await Bot.Database.add(`UserData.${User.id}.ch1llbucks`, parseInt(Arguments[1]))

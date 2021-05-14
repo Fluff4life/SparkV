@@ -3,7 +3,7 @@ const Levels = require("discord-xp")
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReplyNoMention("❌Access denied.")
+    return message.lineReply("❌Access denied.")
   }
 
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
@@ -11,7 +11,7 @@ exports.run = async (Bot, message, Arguments) => {
   const FormattedNumber = await Bot.FormatNumber(Arguments[1])
 
   if (!Leveling === true) {
-    return message.lineReplyNoMention("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
+    return message.lineReply("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
   }
 
   try {

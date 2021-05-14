@@ -4,7 +4,7 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || message.author
 
   if (!User) {
-    return message.lineReplyNoMention("Please say a person to rob.")
+    return message.lineReply("Please say a person to rob.")
   }
 
   var Ch1llBucks = await Bot.Database.get(`UserData.${User.id}.ch1llbucks`)

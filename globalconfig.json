@@ -12,7 +12,7 @@
 
     "Embed": {
         "EmbedColor": "BLUE",
-        "EmbedFooter": "^Donate | ^Invite",
+        "EmbedFooter": "^Donate | ©2021 Ch1llBlox",
         "SuccessColor": "#0099ff",
         "ErrorColor": "RED"
     },

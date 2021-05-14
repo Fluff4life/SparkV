@@ -5,29 +5,29 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return message.lineReplyNoMention("❌Please mention someone to mute!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention someone to mute!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id) {
-    return message.lineReplyNoMention("❌You cannot unmute yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌You cannot unmute yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable) {
-    return message.lineReplyNoMention("❌Uh oh... I can't unmute this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Uh oh... I can't unmute this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   var Role = message.guild.roles.cache.find(role => role.name.toLowerCase().includes("muted"))
 
   if (!Role){
-    return message.lineReplyNoMention("❌I couldn't find the muted role! Please make sure the role is called, \"Muted\".")
+    return message.lineReply("❌I couldn't find the muted role! Please make sure the role is called, \"Muted\".")
   }
 
   if (User.roles.cache.has(Role)){
-    return message.lineReplyNoMention("❌This user isn't muted!")
+    return message.lineReply("❌This user isn't muted!")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()

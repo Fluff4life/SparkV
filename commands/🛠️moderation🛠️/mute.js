@@ -5,23 +5,23 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return message.lineReplyNoMention("❌Please mention someone to mute!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention someone to mute!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id) {
-    return message.lineReplyNoMention("❌You cannot mute yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌You cannot mute yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable) {
-    return message.lineReplyNoMention("❌Uh oh... I can't mute this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Uh oh... I can't mute this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.user.bot) {
-    return message.lineReplyNoMention("I cannot mute bots!")
+    return message.lineReply("I cannot mute bots!")
   }
 
   const Roles = User.roles.cache.filter(role => role.id !== message.guild.id).map(role => role.id)
@@ -51,7 +51,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (User.roles.cache.has(MutedRole.id)) {
-    return message.lineReplyNoMention("This user is already muted!")
+    return message.lineReply("This user is already muted!")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()

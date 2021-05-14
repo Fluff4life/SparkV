@@ -8,7 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
 
   if (!User) {
-    return message.lineReplyNoMention("This user hasn't earned any XP yet!")
+    return message.lineReply("This user hasn't earned any XP yet!")
   }
 
   const Rank = new canvacord.Rank()
@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
   Rank.build().then(data => {
     const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.png`)
 
-    return message.lineReplyNoMention(Attachment)
+    return message.lineReply(Attachment)
   })
 },
 
@@ -38,5 +38,5 @@ exports.run = async (Bot, message, Arguments) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     member_permissions: [],
     enabled: true,
-    cooldown: 2.5
+    cooldown: 5
   }

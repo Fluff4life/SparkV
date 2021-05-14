@@ -43,7 +43,7 @@ exports.run = async (Bot, message, Arguments, command) => {
       })
     })
   } else {
-    return message.lineReplyNoMention({
+    return message.lineReply({
       embed: {
         title: "🚫 Roblox Group ID Error 🚫",
         description: "Roblox Group ID has not been set for this server.",

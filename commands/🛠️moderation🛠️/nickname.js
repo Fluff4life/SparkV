@@ -5,23 +5,23 @@ exports.run = async (Bot, message, Arguments) => {
   const NewNickname = Arguments.join(" ").slice(22)
 
   if (!Arguments[0]) {
-    return message.lineReplyNoMention("❌Please mention someone to change their nickname!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention someone to change their nickname!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.roles){
-    return message.lineReplyNoMention("That's not a user! That's a role.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("That's not a user! That's a role.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!NewNickname) {
-    return message.lineReplyNoMention("❌Please mention their new nickname!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention their new nickname!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.roles.highest.comparePositionTo(message.guild.me.roles.highest) >= 0) {
-    return message.lineReplyNoMention("Uh oh! I cannot change their nickname. They're a higher role than me!")
+    return message.lineReply("Uh oh! I cannot change their nickname. They're a higher role than me!")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()

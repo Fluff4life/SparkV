@@ -6,7 +6,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Arguments || !Arguments[0]) {
-    return message.lineReplyNoMention("Please provide text.")
+    return message.lineReply("Please provide text.")
   }
 
   const canvacord = require("canvacord");

@@ -48,12 +48,12 @@ exports.run = async (Bot, message) => {
       .then(json => json.json())
       .then(json => {
         if (!json.code){
-          return message.lineReplyNoMention("Unknown error occured. Please try again!")
+          return message.lineReply("Unknown error occured. Please try again!")
         } else if (json.code === 400){
-          return message.lineReplyNoMention("Failed to get meme. Please try again!")
+          return message.lineReply("Failed to get meme. Please try again!")
         }
 
-          return message.lineReplyNoMention({
+          return message.lineReply({
             embed: {
               title: json.response.data.title,
               description: json.response.data.description,

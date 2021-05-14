@@ -58,15 +58,15 @@ exports.run = async (Bot, message, Arguments) => {
   const Opponent = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0])
 
   if (!Arguments) {
-    return message.lineReplyNoMention("This command doesn't support API yet. Please mention someone to challenge.")
+    return message.lineReply("This command doesn't support API yet. Please mention someone to challenge.")
   }
 
   if (Opponent.user.bot) {
-    return message.lineReplyNoMention("That user is a bot lol.")
+    return message.lineReply("That user is a bot lol.")
   }
 
   if (Opponent.user.id === message.author.id) {
-    return message.lineReplyNoMention("You cannot play against yourself lol.")
+    return message.lineReply("You cannot play against yourself lol.")
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -81,7 +81,7 @@ exports.run = async (Bot, message, Arguments) => {
   if (Emoji === "👎") {
     await VerificationMessage.delete()
 
-    return message.lineReplyNoMention(`${Opponent} doesn't want to play. What a noob!`)
+    return message.lineReply(`${Opponent} doesn't want to play. What a noob!`)
   } else if (Emoji === "👍") {
     await VerificationMessage.delete()
 

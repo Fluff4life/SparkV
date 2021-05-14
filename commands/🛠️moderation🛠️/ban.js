@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const ReasonForBan = Arguments.join(" ").slice(22) || "No reason provided."
 
   if (!Arguments[0]) {
-    return message.lineReplyNoMention("❌Please mention someone to ban!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention someone to ban!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToBan) {
-    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (UserToBan.id === message.author.id) {
-    return message.lineReplyNoMention("❌You cannot ban yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌You cannot ban yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToBan.bannable) {
-    return message.lineReplyNoMention("❌Uh oh... I can't ban this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Uh oh... I can't ban this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()

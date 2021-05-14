@@ -4,7 +4,7 @@ const discordeasypages = require("discordeasypages")
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
-    return message.lineReplyNoMention("Please supply the title of a song to search for.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("Please supply the title of a song to search for.").then(m => m.delete({ timeout: 5000 }))
   }
   
   Arguments = Arguments.join(" ")
@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp()
 
-    return message.lineReplyNoMention(SongEmbed)
+    return message.lineReply(SongEmbed)
   }
 
   const LyricsArray = data.lyrics.split("\n")
@@ -51,7 +51,7 @@ exports.run = async (Bot, message, Arguments) => {
       .setColor(Bot.Config.Embed.EmbedColor)
       .setTimestamp()
 
-    return message.lineReplyNoMention(SongEmbed)
+    return message.lineReply(SongEmbed)
   }))
 },
 

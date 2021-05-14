@@ -42,12 +42,12 @@ exports.run = async (Bot, message, Arguments, command) => {
 
         MessageColector.on("collect", async (msg) => {
             if (msg.content.toLowerCase() === "cancel") {
-                return message.lineReplyNoMention("Verification canceled.")
+                return message.lineReply("Verification canceled.")
             }
 
             noblox.getIdFromUsername(msg.content).then(async (id) => {
                 if (!id){
-                    return message.lineReplyNoMention("Verification canceled. User doesn't exist.")
+                    return message.lineReply("Verification canceled. User doesn't exist.")
                 }
 
                 const VerificationID = CreateID()
@@ -89,7 +89,7 @@ exports.run = async (Bot, message, Arguments, command) => {
                                             let VerifiedRole = message.guild.roles.cache.find((r) => r.name.toLowerCase() === "verified" || r.name.toLowerCase().startsWith("verified") || r.name.toLowerCase().endsWith("verified"))
 
                                             if (!VerifiedRole) {
-                                                return message.lineReplyNoMention("This server isn't set up right! Verified role not found. Make sure you've created a role that contains \"Verified\".")
+                                                return message.lineReply("This server isn't set up right! Verified role not found. Make sure you've created a role that contains \"Verified\".")
                                             }
 
                                             message.member.roles.add(VerifiedRole).catch(() => {
@@ -117,7 +117,7 @@ exports.run = async (Bot, message, Arguments, command) => {
                                             }
 
                                             message.member.setNickname(RocordNicknameTemplate).catch(() => {
-                                                return message.lineReplyNoMention("I cannot change your nickname! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.")
+                                                return message.lineReply("I cannot change your nickname! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.")
                                             })
                                         }
                                     } else {
@@ -127,13 +127,13 @@ exports.run = async (Bot, message, Arguments, command) => {
                             })
                         }, 5 * 1000)
                     } else if (msg_.content.includes("cancel") && msg_.author.id === message.author.id) {
-                        return message.lineReplyNoMention("Cancelled prompt.")
+                        return message.lineReply("Cancelled prompt.")
                     }
                 })
             })
         })
     } else {
-        return message.lineReplyNoMention("Rocord isn't enabled in the dashboard. Please enable it and run this command again!")
+        return message.lineReply("Rocord isn't enabled in the dashboard. Please enable it and run this command again!")
     }
 },
 

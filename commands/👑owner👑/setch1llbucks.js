@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReplyNoMention("❌Access denied.")
+    return message.lineReply("❌Access denied.")
   }
 
   const User = message.mentions.users.first()

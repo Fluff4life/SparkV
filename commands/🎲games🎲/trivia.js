@@ -92,7 +92,7 @@ exports.run = async (Bot, message, Arguments) => {
   } catch(err){
     console.error(err)
 
-    return message.lineReplyNoMention("Uh oh! Something went wrong. Please try again later or leave the VC.")
+    return message.lineReply("Uh oh! Something went wrong. Please try again later or leave the VC.")
   }
 
   const Question = await GenerateQuestion()
@@ -120,7 +120,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Answer = Question.answer.replace(/<\/?i>/gi, "*")
 
   if (!Messages.size){
-    return message.lineReplyNoMention(`**Times up! the answer was ${Answer}.**`)
+    return message.lineReply(`**Times up! the answer was ${Answer}.**`)
   }
 
   const Won = Messages
@@ -128,9 +128,9 @@ exports.run = async (Bot, message, Arguments) => {
     .toLowerCase() === Answer.toLocaleLowerCase()
 
   if (Won){
-    return message.lineReplyNoMention("🎉 Correct!")
+    return message.lineReply("🎉 Correct!")
   } else {
-    return message.lineReplyNoMention(`❌ Wrong! The answer was ${Answer}.`)
+    return message.lineReply(`❌ Wrong! The answer was ${Answer}.`)
   }
 },
 

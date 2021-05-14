@@ -3,7 +3,7 @@ const request = require("node-fetch");
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments) {
-    return message.lineReplyNoMention("Next time, respond with the ID of the game lmao.")
+    return message.lineReply("Next time, respond with the ID of the game lmao.")
   }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${Arguments}.json`)

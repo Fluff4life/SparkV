@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
 
   if (!User) {
-    return message.lineReplyNoMention("Please say a person to rob.")
+    return message.lineReply("Please say a person to rob.")
   }
 
   var RobberCh1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
@@ -20,23 +20,23 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (RobberCh1llBucks < 500) {
-    return message.lineReplyNoMention("Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.")
+    return message.lineReply("Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.")
   }
 
   if (UserCh1llBucks <= 0 || UserCh1llBucks === null) {
-    return message.lineReplyNoMention("Bruh they have no Ch1llBucks leave them alone you noob!")
+    return message.lineReply("Bruh they have no Ch1llBucks leave them alone you noob!")
   }
 
   if (message.author.id === User.id) {
-    return message.lineReplyNoMention("Why do you want to rob yourself lol.")
+    return message.lineReply("Why do you want to rob yourself lol.")
   }
 
   if (User.id === process.env.OwnerID) {
-    return message.lineReplyNoMention("This user is protected! You can buy a protection shield from being robbed in the shop.")
+    return message.lineReply("This user is protected! You can buy a protection shield from being robbed in the shop.")
   }
 
   if (UserCh1llBucks < 0) {
-    return message.lineReplyNoMention("You can't rob someone in debt lol.")
+    return message.lineReply("You can't rob someone in debt lol.")
   }
 
   const Result = results[Math.floor(Math.random() * results.length)]

@@ -8,19 +8,19 @@ exports.run = async (Bot, message, Arguments) => {
   const Prize = Arguments.slice(3).join(" ")
 
   if (!Channel){
-    return message.lineReplyNoMention("Please provide a valid channel.")
+    return message.lineReply("Please provide a valid channel.")
   }
 
   if (!Duration || isNaN(ms(Duration))){
-    return message.lineReplyNoMention("Please provide a valid duration.")
+    return message.lineReply("Please provide a valid duration.")
   }
 
   if (!Winners || isNaN(Winners) || (parseInt(Winners) <= 0)){
-    return message.lineReplyNoMention("Please provide a valid number of winners!")
+    return message.lineReply("Please provide a valid number of winners!")
   }
 
   if (!Prize){
-    return message.lineReplyNoMention("Why do you want to give away nothing lol.")
+    return message.lineReply("Why do you want to give away nothing lol.")
   }
 
   Bot.GiveawayManager.start(Channel, {

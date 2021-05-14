@@ -8,7 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
   const figlet = require("figlet")
 
   if (!Arguments || !Arguments[0]){
-    return message.lineReplyNoMention("Please provide text!")
+    return message.lineReply("Please provide text!")
   }
 
   Arguments = Arguments.join(" ")
@@ -22,7 +22,7 @@ exports.run = async (Bot, message, Arguments) => {
     }
 
     if (data.length > 2000){
-      return message.lineReplyNoMention("Please provide text shorter than 200 characters.")
+      return message.lineReply("Please provide text shorter than 200 characters.")
     }
 
     message.lineReplyNoMention("```" + data + "```")

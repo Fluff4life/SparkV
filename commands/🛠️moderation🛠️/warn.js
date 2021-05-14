@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(" ").slice(22) || "no reason provided."
 
   if (!Arguments[0]){
-    return message.lineReplyNoMention("❌Please mention someone to warn!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Please mention someone to warn!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User){
-    return message.lineReplyNoMention("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌I cannot find that member!").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id){
-    return message.lineReplyNoMention("❌You cannot warn yourself.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌You cannot warn yourself.").then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable){
-    return message.lineReplyNoMention("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply("❌Uh oh... I can't warn this user!").then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()
