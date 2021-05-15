@@ -5,7 +5,7 @@ const osutils = require("os-utils")
 exports.run = async (Bot, message) => {
   const BotMessage = await message.lineReplyNoMention("Fetching Stats...")
 
-  osutils.cpuUsage((cpu) => {
+  osutils.cpuUsage(async (cpu) => {
     var UsedMemory = os.totalmem() - os.freemem()
     var TotalMemory = os.totalmem()
     var MemoryPersentage = ((UsedMemory/TotalMemory) * 100).toFixed(2) + "%"
