@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <!-- Head -->
   <head>
-    <!-- Title -->
-    <title>Error 404 - KingCh1ll</title>
+    <%- include("Parts/head", {
+      SiteTitle: "404 - KingCh1ll",
+      SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
 
-    <%- include("Parts/head") %>
+      SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox"
+    }) -%>
   </head>
 
   <!-- Frames -->
-  <body style="background-color: var(--background-color);">
-    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-  
+  <body style="background-color: var(--main-color);">
     <div id="top" style="height: 12px;">
       <div class="background"></div>
       
@@ -25,11 +24,11 @@
         linkname2: "Ch1ll Studios",
         link2: "/ch1llstudios",
   
-        linkname3: "err",
-        link3: "err",
+        linkname3: "",
+        link3: "",
         
-        linkname4: "err",
-        link4: "err"
+        linkname4: "",
+        link4: ""
       }) -%>
     </div>
 
@@ -39,10 +38,8 @@
     <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--bot-text-color);">404 | Not Found</h1>
     <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--secondary-text-color);">Whatever page you were looking for wasn't found. Dang man!</h1>
 
-    <div class="tada animated">
       <div role="group" class="btn-group">
-        <a href="/home" class="btn btn-primary shadow-none" type="button"
-          style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Go Home</a>
+        <a href="/home" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Go Home</a>
       </div>
   </header>
 

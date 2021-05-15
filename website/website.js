@@ -28,7 +28,6 @@ const Domain = Config.Debug === true ? "http://localhost:3000" : `https://${proc
 // App //
 const app = express();
 const server = app.listen(Config.Debug == true ? 3000 : process.env.PORT);
-const memory = require("memorystore")(session);
 const io = require("socket.io")(server)
 
 // Code //
@@ -70,12 +69,10 @@ passport.use(new Strategy({
 );
 
 app.use(session({
-  store: new memory({ checkPeriod: 86400 * 1000 }),
   secret: process.env.secretid,
   resave: false,
-  saveUninitialized: false,
-})
-);
+  saveUninitialized: false
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -86,13 +83,7 @@ app.set("view engine", "html");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(
-  favicon(
-    path.resolve(
-      `${MainDir}${path.sep}assets${path.sep}images${path.sep}favicon.ico`
-    )
-  )
-);
+app.use(favicon(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}siteicons${path.sep}favicon.ico`)));
 
 app.use("/assets", express.static(path.resolve(`${MainDir}${path.sep}assets`)));
 app.set("views", Views)

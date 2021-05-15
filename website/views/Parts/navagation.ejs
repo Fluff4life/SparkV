@@ -1,71 +1,53 @@
-<div class="collapse" id="navbarToggleExternalContent">
-  <div class="bg-dark p-4">
-    <h5 class="text-white h4">Menu</h5>
-    <span class="text-muted">
-      Select a destination you'd like to be redirected to.
-    </span>
-
-    <li class="nav-item">
-      <a class="nav-link" href="<%- link %>" style="color: var(--text-color);"><%- linkname %></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="<%- link2 %>" style="color: var(--text-color);"><%- linkname2 %></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="<%- link3 %>" style="color: var(--text-color);"><%- linkname3 %></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="<%- link4 %>" style="color: var(--text-color);"><%- linkname4 %></a>
-    </li>
-  </div>
-</div>
-
-<nav class="navbar navbar-expand-lg" style="color: var(--main-color); border-top-width: 6px; border-top-style: solid; background: var(--background-color);">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="<%- domainname %>" style="color: var(--main-color); font-family: 'Arvo', serif;">
+<header>
+  <nav class="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light p-3 text-white" style="color: var(--main-color); background: var(--main-color); top: 0px">
+    <a class="navbar-brand py-0" href="<%- domainname %>" style="color: var(--text-color); font-family: 'Arvo', serif;" target="_blank">
       <img src="/assets/images/kingch1ll.png" alt="" width="30" height="30" class="d-inline-block align-text-top"><%- name %>
     </a>
 
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="<%- link %>" style="color: var(--text-color);"><%- linkname %></a>
+
+    <div class="navbar-collapse collapse" id="navbar-content">
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 text-small">
+        <li class="nav-item text-secondary">
+          <a class="nav-link text-white fw-bold" href="<%- link %>" style="color: var(--text-color);"><i class="<%- linkicon %> bi d-block mx-auto mb-1"></i><%- linkname %></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%- link2 %>" style="color: var(--text-color);"><%- linkname2 %></a>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-white fw-bold" href="<%- link2 %>" style="color: var(--text-color);"><i class="<%- linkicon2 %> bi d-block mx-auto mb-1"></i><%- linkname2 %></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%- link3 %>" style="color: var(--text-color);"><%- linkname3 %></a>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-white fw-bold" href="<%- link3 %>" style="color: var(--text-color);"><i class="<%- linkicon3 %> bi d-block mx-auto mb-1"></i><%- linkname3 %></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%- link4 %>" style="color: var(--text-color);"><%- linkname4 %></a>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-white fw-bold" href="<%- link4 %>" style="color: var(--text-color);"><i class="<%- linkicon4 %> bi d-block mx-auto mb-1"></i><%- linkname4 %></a>
+        </li>
+        <li class="nav-item mx-1">
+          <a class="nav-link text-white fw-bold" href="<%- link5 %>" style="color: var(--text-color);"><i class="<%- linkicon5 %> bi d-block mx-auto mb-1"></i><%- linkname5 %></a>
         </li>
       </ul>
-      <ul class="navbar-nav">
         <% if (user) { %>
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-inline-start: 10px">
-              <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="" style="border-radius: 50%" width="30" height="30"><%= user.username %>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-inline-start: 10px; color: var(--text-color); font-family: 'Arvo', serif">
+              <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon" style="display: inline-block; position: relative; width: 3rem; height: 3rem; text-align: center; border: #dee2e6; border-radius: 50%; background: #fff; box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%); line-height: 3rem"><%= user.username %>#<%= user.discriminator %> 
             </a>
-            
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: var(--main-color); background: var(--background-color)">
-              <a class="dropdown-item" href="/users/<%- user.id %>/profile">Profile</a></li>
+
+            <div class="dropdown-menu dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown" style="color: var(--main-color); background: var(--main-color); position: absolute; z-index: 1000; min-width: 10rem; padding: .5rem 0; margin: 0; font-size: .9rem; text-align: left; list-style: none; background-color: #fff;background-clip: padding-box;border: 1px solid rgba(0,0,0,0); border-radius: .25rem;">
+              <a class="dropdown-item" href="/users/<%- user.id %>/profile">Profile</a>
               <% if (domainname === "Ch1llBlox") { %>
-                <a class="dropdown-item" href="/bot/dashboard">Dashboard</a></li>
+                <a class="dropdown-item" href="/bot/dashboard">Dashboard</a>
               <% } %>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/api/logout" style="color: red">Logout</a></li>
-            </ul>
-          </div>
+              <a class="dropdown-item" href="/api/logout" style="color: red">Logout</a>
+            </div>
           </li>
-          <% } else { %>
-            <li class="nav-item"><a href="/api/login" class="nav-link" style="color: rgb(255, 255, 255)">Login</a></li>
-          <% } %>
+        </ul>
       </ul>
-    </div>
-  </div>
-</nav>
+      <% } else { %>
+      <div class="text-end">
+        <a href="/api/login" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Login</a>
+      </div>
+    <% } %>
+  </nav>
+</header>
