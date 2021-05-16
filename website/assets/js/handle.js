@@ -40,4 +40,15 @@ $(document).ready(function() {
             shuffle: true
         })
     }
+    
+    if (document.getElementById("ch1llbloxtyped")){
+        var typed = new Typed("#ch1llbloxtyped", {
+            strings: ["Ch1ll Bot!"],
+            typeSpeed: 20,
+            backSpeed: 20,
+            smartBackspace: true,
+            loop: true,
+            shuffle: true
+        })
+    }
 })

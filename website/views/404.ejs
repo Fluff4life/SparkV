@@ -9,27 +9,34 @@
     }) -%>
   </head>
 
-  <!-- Frames -->
-  <body style="background-color: var(--main-color);">
-    <div id="top" style="height: 12px;">
+  <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
+    <%- include("Parts/navagation", {
+      name: "KingCh1ll",
+      domainname: "/home",
+
+      linkname: "Home",
+      linkicon: "fas fa-home",
+      link: "/home",
+
+      linkname2: "Ch1llBlox",
+      linkicon2: "fas fa-robot",
+      link2: "/bot",
+
+      linkname3: "Ch1ll Studios",
+      linkicon3: "fas fa-snowflake",
+      link3: "/ch1llstudios",
+    
+      linkname4: "",
+      linkicon4: "",
+      link4: "",
+
+      linkname5: "",
+      linkicon5: "",
+      link5: ""
+    }) -%>
+
+    <div id="top">
       <div class="background"></div>
-      
-      <%- include("Parts/navagation", {
-        name: "KingCh1ll",
-        domainname: "/home",
-  
-        linkname: "Ch1llBlox",
-        link: "/bot",
-  
-        linkname2: "Ch1ll Studios",
-        link2: "/ch1llstudios",
-  
-        linkname3: "",
-        link3: "",
-        
-        linkname4: "",
-        link4: ""
-      }) -%>
     </div>
 
     <header class="d-xl-flex flex-column justify-content-xl-center align-items-xl-center"
@@ -43,7 +50,10 @@
       </div>
   </header>
 
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <%- include("Parts/footer", {
+    FooterDescription: "KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
+  }) %>
+
+  <%- include("Parts/scripts") %>
   </body>
 </html>

@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Dashboard | Ch1llBlox</title>
+  <%- include("Parts/head", {
+    SiteTitle: "Dashboard - Ch1llBlox",
+    SiteDescription: "Ch1llBlox is a Discord Bot",
 
-  <%- include("Parts/head") %>
+    SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox, Ch1llBlox, Ch1ll, Blox, chillblox, chill bot, top.gg"
+  }) -%>
 </head>
 
-<body style="background-color: var(--main-color);">
-  <div class="alert alert-danger" role="alert">I don't recommend using Ch1llBlox's dashboard at the momment. I recommend using our other one. https://ch1llblox.botdash.pro/</div>
+<body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
+  <%- include("Parts/navagation", {
+    name: "Ch1llBlox",
+    domainname: "#top",
 
-  <div id="top" style="height: 12px;">
+    linkname: "Ch1llBlox",
+    linkicon: "fas fa-robot",
+    link: "#top",
+
+    linkname2: "Home",
+    linkicon2: "fas fa-home",
+    link2: "/home",
+
+    linkname3: "Ch1ll Studios",
+    linkicon3: "fas fa-snowflake",
+    link3: "/ch1llstudios",
+  
+    linkname4: "",
+    linkicon4: "",
+    link4: "",
+
+    linkname5: "",
+    linkicon5: "",
+    link5: ""
+  }) -%>
+
+  <div id="top">
+    <div class="alert alert-danger" role="alert">I don't recommend using Ch1llBlox's dashboard at the momment. I recommend using our other one. <a href="https://ch1llblox.botdash.pro/">Click Here</a></div>
     <div class="background" style="background: url(/assets/images/RobloxGBanner.jpg);"></div>
-
-    <%- include("Parts/navagation", {
-      name: "Ch1llBlox",
-      domainname: "/bot",
-
-      linkname: "Home",
-      link: "/home",
-
-      linkname2: "Dashboard",
-      link2: "/bot/dashboard",
-
-      linkname3: "",
-      link3: "",
-      
-      linkname4: "",
-      link4: ""
-    }) -%>
   </div>
+
+  <% include("Parts/top", {
+    Logo: "/assets/images/RedesignCh1llBlox.png",
+    backgroundURL: "/assets/images/RobloxGBanner.jpg"
+
+    alert: {
+      text: "I don't recommend using Ch1llBlox's dashboard at the momment. I recommend using our other one. <a href=\"https://ch1llblox.botdash.pro/\">Click Here</a>"
+      type: "danger"
+    }
+  }) %>
 
   <div style="display: flex; flex-wrap: wrap; justify-content: center;">
     <% user.guilds.forEach((guild) => {
@@ -51,21 +71,10 @@
     %>
   </div>
   
-  <div class="footer-dark" style="background: var(--secondary-color); padding-top: 0px; padding-bottom: 0px;">
-  <div class="container">
-    <div class="row">
-      <div class="col item social">
-        <a href="/bot/youtube">
-          <i class="fab fa-youtube"></i>
-        </a>
-      </div>
-    </div>
-    <p class="copyright" style="color: var(--text-color);">© 2021 Ch1llBlox. All rights reserved. Ch1llBlox is NOT affiliated with <a href="https://discordapp.com/">Discord</a> nor <a href="https://roblox.com/home">Roblox</a>.</p>
-  </div>
-  
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/assets/js/counting.js"></script>
-  <script src="/assets/js/handle.js"></script>
+  <%- include("Parts/footer", {
+      FooterDescription: "Ch1llBlox is a free Discord bot created by KingCh1ll to make your server active without spending any money."
+    }) %> 
+
+    <%- include("Parts/scripts") %>
 </body>
 </html>

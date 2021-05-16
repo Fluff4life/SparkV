@@ -1,135 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Home - Ch1llBlox</title>
+<html>
+  <head>
+    <%- include("Parts/head", {
+      SiteTitle: "Home - Ch1llBlox",
+      SiteDescription: "Ch1llBlox is a Discord Bot",
 
-  <%- include("Parts/head") %>
-</head>
-
-<body style="background-color: var(--main-color);">
-  <div id="top" style="height: 12px;">
-    <div class="background" style="background: url(/assets/images/RobloxGBanner.jpg);"></div>
-    
-    <%- include("Parts/navagation", {
-      name: "Ch1llBlox",
-      domainname: "/bot",
-
-      linkname: "Home",
-      link: "/home",
-
-      linkname2: "Dashboard",
-      link2: "/bot/dashboard",
-
-      linkname3: "",
-      link3: "",
-      
-      linkname4: "",
-      link4: ""
+      SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox, Ch1llBlox, Ch1ll, Blox, chillblox, chill bot, top.gg"
     }) -%>
-  </div>
+  </head>
 
-  <header class="d-xl-flex flex-column justify-content-xl-center align-items-xl-center"
-    style="height: 418px; text-align: center; margin: 55px;">
-    <img class="rounded" src="/assets/images/botlogo.png" width="150" height="150" style="margin-top: 30px;">
-    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--bot-text-color);">Ch1llBlox</h1>
-    <h1 class="d-xl-flex justify-content-xl-start" style="color: var(--secondary-text-color);">Prenium commands for free.</h1>
+  <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
+    <% include("Parts/navagation", {
+      name: "Ch1llBlox",
+      domainname: "#top",
 
-    <div role="group" class="btn-group">
-      <a href="/invite" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--main-color); border-color: var(--main-color); border-color: var(--main-color); border-radius: 10px;">Invite</a>
+      linkname: "Ch1llBlox",
+      linkicon: "fas fa-robot",
+      link: "#top",
+
+      linkname2: "Home",
+      linkicon2: "fas fa-home",
+      link2: "/home",
+
+      linkname3: "Ch1ll Studios",
+      linkicon3: "fas fa-snowflake",
+      link3: "/ch1llstudios",
+    
+      linkname4: "",
+      linkicon4: "",
+      link4: "",
+
+      linkname5: "",
+      linkicon5: "",
+      link5: ""
+    }) %>
+
+<div id="top">
+  <%- if (backgroundURL) {
+      <div class="background" style="background: url(<%- backgroundURL %>);"></div>
+  } %>
+
+  <%- if (alert){
+      <div class="alert alert-<%- alert.type %>" role="alert">alert.text</div>
+  } %>
+
+  <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="<%- Logo %>" alt="Logo" width="150" height="150" style="margin-top: 30px;">
+    <h1 class="display-5 fw-bold" style="color: var(--text-color)"><%- name %></h1>
+    <div class="col-lg-6 mx-auto">
+      <h2 class="display" style="color: var(--text-color)"><span id="ch1llbloxtyped">Multipurpose Bot</span></h2>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="/bot/invite" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Invite</a>
+        <a href="/bot/donate" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Donate</a>
+      </div>
     </div>
-  </header>
+  </div>
+</div>
 
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="var(--secondary-color)" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,117.3C1120,85,1280,75,1360,69.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
-  </svg>
+    <div id="features">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="var(--secondary-color)" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,117.3C1120,85,1280,75,1360,69.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+      </svg>
 
-  <div class="features-boxed" style="background: var(--secondary-color);">
-    <div class="container" style="color: var(--main-color);">
-      <div class="intro">
-        <h2 class="text-center" style="color: var(--text-color)">Features</h2>
+      <div class="features-boxed" style="background: var(--secondary-color);">
+        <div class="container" style="color: var(--main-color);">
+          <div class="intro">
+            <h2 class="text-center aos-init aos-animate" style="color: var(--text-color)" data-aos="fade-up">Features</h2>
+          </div>
+  
+          <div class="row justify-content-center featurebox">
+            <div class="col-sm-col-md-5 col-lg-4 item">
+              <div id="featurebox aos-init aos-animate" class="box" style="border-radius: 34px;" data-aos="fade-up">
+                <i class="fab fa-bolt"></i>
+  
+                <h3 class="name">24/7 Uptime</h3>
+                <p class="description">No more downtimes! Keep your server active 24/7.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="row justify-content-center features">
-        <div class="col-sm-col-md-5 col-lg-4 item">
-          <div id="Features" class="box" style="border-radius: 34px;">
-            <i class="fa fa-bolt icon" style="color: var(--main-color);"></i>
+      <div style="background-color: var(--main-color);">
+        <div style="height: 320px; overflow: hidden;">
+          <svg viewBox="0 0 500 320" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+            <path d="M-41.53,-9.56 C167.83,173.98 302.14,-60.89 534.09,89.10 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: var(--secondary-color);"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
 
-            <h3 class="name">24/7 Uptime</h3>
-            <p class="description">Ch1llBlox will stay up 24/7. You will never need a backup bot!</p>
-          </div>
+    <div id="reviews" class="pb-7 pt-10" >
+      <div class="container aos-init aos-animate" data-aos="fade">
+        <div class="row">
+          <div class="col-lg-4 col-md-12 text-center mb-6">
+            <div class="mb-3 text-warning mx-auto">
+              <i class="fas fa-star mr-1"></i>
+              <i class="fas fa-star mr-1"></i>
+              <i class="fas fa-star mr-1"></i>
+              <i class="fas fa-star mr-1"></i>
+              <i class="fas fa-star mr-1"></i>
+            </div>
 
-          <div id="Features" class="box" style="border-radius: 34px;">
-            <i class="far fa-window-maximize" style="color: var(--main-color);"></i>
-
-            <h3 class="name">Easy Dashboard</h3>
-            <p class="description">Link your Roblox account to your discord server!</p>
-          </div>
-
-          <div id="Features" class="box" style="border-radius: 34px;">
-            <i class="fa fa-bolt icon" style="color: var(--main-color);"></i>
-
-            <h3 class="name">Roblox Intergrations</h3>
-            <p class="description">Link your Roblox account to your discord server!</p>
-          <div>
-
-          <div id="Features" class="box" style="border-radius: 34px;">
-            <i class="fa fa-bolt icon" style="color: var(--main-color);"></i>
-
-            <h3 class="name">24/7 Uptime</h3>
-            <p class="description">Ch1llBlox is up 24/7!</p>
+            <h5 class="mb-3 initialism">KingCh1ll</h5>
+            <p class="mb-0 text-muted lead">Reviews coming soon!</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-
-  <div style="background-color: var(--main-color);">
-    <div style="height: 150px; overflow: hidden;">
-    <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-      <path d="M-41.53,-9.56 C167.83,173.98 302.14,-60.89 534.09,89.10 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: var(--secondary-color);"></path>
-    </svg>
-  </div>
-  </div>
-
-  <div id="commands">
-    <section>
+    <div id="statistics">
       <div class="container-fluid text-white">
         <div class="row row-cols-3 justify-content-center" style="color: var(--secondary-text-color);">
-          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item love_counter">
-            <h1 class="love_count" style="font-size: 70px;">
-              <strong>98</strong>
-            </h1>
+          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item counter">
+            <h1 class="count" style="font-size: 70px;"><strong>98</strong></h1>
+
             <h4 style="color: var(--main-color); margin-top: -6px;">Total Servers</h4>
           </div>
-
-          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item love_counter">
-            <h1 class="love_count" style="font-size: 70px;">
+  
+          <div class="col-auto col-md-6 col-lg-4 text-center pb-5 pt-5 number-item counter">
+            <h1 class="count" style="font-size: 70px;">
               <strong>70000</strong>
             </h1>
+
             <h4 style="color: var(--main-color); margin-top: -6px;">Total Users</h4>
           </div>
         </div>
       </div>
-    </section>
-  </div>
-  
-  <div class="footer-dark" style="background: var(--secondary-color); padding-top: 0px; padding-bottom: 0px;">
-  <div class="container">
-    <div class="row">
-      <div class="col item social">
-        <a href="/bot/youtube">
-          <i class="fab fa-youtube"></i>
-        </a>
-      </div>
     </div>
-    <p class="copyright" style="color: var(--text-color);">© 2021 Ch1llBlox. All rights reserved. Ch1llBlox is NOT affiliated with <a href="https://discordapp.com/">Discord</a> nor <a href="https://roblox.com/home">Roblox</a>.</p>
-  </div>
-  </div>
 
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/assets/js/counting.js"></script>
-  <script src="/assets/js/handle.js"></script>
-</body>
+    <% include("Parts/footer", {
+      FooterDescription: "Ch1llBlox is a free Discord bot created by KingCh1ll to make your server active without spending any money."
+    }) %> 
+
+    <% include("Parts/scripts") %>
+  </body>
 </html>

@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Commands - Ch1llBlox</title>
+  <%- include("Parts/head", {
+    SiteTitle: "Commands - Ch1llBlox",
+    SiteDescription: "Ch1llBlox is a Discord Bot",
 
-  <%- include("Parts/head") %>
+    SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox, Ch1llBlox, Ch1ll, Blox, chillblox, chill bot, top.gg"
+  }) -%>
 </head>
 
-<body style="background-color: var(--main-color);">
-  <div id="top" style="height: 12px;">
-    <div class="background" style="background: url(/assets/images/RobloxGBanner.jpg);"></div>
+<body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
+  <%- include("Parts/navagation", {
+    name: "Ch1llBlox",
+    domainname: "#top",
 
-    <%- include("Parts/navagation", {
-      name: "Ch1llBlox",
-      domainname: "/bot",
+    linkname: "Ch1llBlox",
+    linkicon: "fas fa-robot",
+    link: "#top",
 
-      linkname: "Home",
-      link: "/home",
+    linkname2: "Home",
+    linkicon2: "fas fa-home",
+    link2: "/home",
 
-      linkname2: "Dashboard",
-      link2: "/bot/dashboard",
+    linkname3: "Ch1ll Studios",
+    linkicon3: "fas fa-snowflake",
+    link3: "/ch1llstudios",
+  
+    linkname4: "",
+    linkicon4: "",
+    link4: "",
 
-      linkname3: "",
-      link3: "",
-      
-      linkname4: "",
-      link4: ""
-    }) -%>
-  </div>
+    linkname5: "",
+    linkicon5: "",
+    link5: ""
+  }) -%>
+
+<% include("Parts/top", {
+  Logo: "/assets/images/RedesignCh1llBlox.png",
+  backgroundURL: "/assets/images/RobloxGBanner.jpg"
+}) %>
   
   <div class="container">
     <h2>All Commands</h2>
@@ -50,20 +62,10 @@
       </div>
   </div>
   
-  <div class="footer-dark" style="background: var(--secondary-color); padding-top: 0px; padding-bottom: 0px;">
-  <div class="container">
-    <div class="row">
-      <div class="col item social">
-        <a href="#top">
-          <i class="fab fa-youtube"></i>
-        </a>
-      </div>
-    </div>
-    <p class="copyright" style="color: var(--text-color);">© 2021 Ch1llBlox. All rights reserved. Ch1llBlox is NOT affiliated with <a href="https://discordapp.com/">Discord</a> nor <a href="https://roblox.com/home">Roblox</a>.</p>
-  </div>
-  </div>
-  
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <%- include("Parts/footer", {
+    FooterDescription: "Ch1llBlox is a free Discord bot created by KingCh1ll to make your server active without spending any money."
+  }) %> 
+
+  <%- include("Parts/scripts") %>
 </body>
 </html>

@@ -1,0 +1,23 @@
+
+
+<div id="top">
+    <%- if (backgroundURL) {
+        <div class="background" style="background: url(<%- backgroundURL %>);"></div>
+    } %>
+
+    <%- if (alert){
+        <div class="alert alert-<%- alert.type %>" role="alert">alert.text</div>
+    } %>
+
+    <div class="px-4 py-5 my-5 text-center">
+      <img class="d-block mx-auto mb-4" src="<%- Logo %>" alt="Logo" width="150" height="150" style="margin-top: 30px;">
+      <h1 class="display-5 fw-bold" style="color: var(--text-color)"><%- Name %></h1>
+      <div class="col-lg-6 mx-auto">
+        <h2 class="display" style="color: var(--text-color)"><span id="ch1llbloxtyped">Multipurpose Bot</span></h2>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a href="/bot/invite" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Invite</a>
+          <a href="/bot/donate" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Donate</a>
+        </div>
+      </div>
+    </div>
+  </div>
