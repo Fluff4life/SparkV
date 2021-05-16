@@ -32,6 +32,7 @@ const io = require("socket.io")(server)
 
 // Code //
 console.log("-------- Loading Website --------");
+require("newrelic")
 Sentry.init({
   dsn: process.env.SentryWebsiteToken,
   release: `${name}@${version}`,

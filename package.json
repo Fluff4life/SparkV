@@ -20,7 +20,6 @@
     "npm": "*"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
     "@sentry/browser": "^6.3.6",
     "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
@@ -30,8 +29,6 @@
     "body-parser": "^1.19.0",
     "botdash.pro": "^1.0.2",
     "botlist.space": "^3.3.1",
-    "canvacord": "^5.2.0",
-    "canvas": "^2.7.0",
     "chalk": "^4.1.0",
     "dbl-api": "^1.2.1",
     "dblapi.js": "^2.4.0",
@@ -51,10 +48,10 @@
     "fs": "0.0.1-security",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
+    "newrelic": "^7.4.0",
     "noblox.js": "^4.8.5",
     "node-fetch": "^2.6.1",
     "npm": "^7.10.0",
-    "os-util": "^1.0.2",
     "os-utils": "^0.0.14",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
@@ -66,7 +63,6 @@
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
     "yargs-parser": "^13.1.2",
-    "youtube-dl": "^3.5.0",
     "ytdl-core": "^4.7.0"
   },
   "devDependencies": {
