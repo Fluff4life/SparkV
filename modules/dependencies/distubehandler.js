@@ -13,7 +13,9 @@ module.exports = async (Bot) => {
     leaveOnStop: true,
     highWaterMark: 1<<25,
     youtubeDL: true,
-    updateYouTubeDL: true
+    updateYouTubeDL: true,
+    emitNewSongOnly: true,
+    youtubeCookie: process.env.YouTubeAPIKey
   })
 
   Bot.distube
