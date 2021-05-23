@@ -206,7 +206,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount);
 
   try {
-    if (!Bot.StatCord === false){
+    if (!Bot.StatClient === false){
       Bot.StatClient.postCommand(commandfile.config.name, message.author.id)
     }
  
@@ -252,7 +252,7 @@ async function ActivateChatBot(message) {
         .setColor(Bot.Config.Embed.EmbedColor)
         .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Embed.EmbedFooter}`,)
 
-      if (!Bot.StatCord === false){
+      if (!Bot.StatClient === false){
         Bot.StatClient.postCommand("ChatBot", message.author.id)
       }
 
