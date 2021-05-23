@@ -31,7 +31,6 @@ require("discord-reply") // Until discord.js releases 2021 replys, I have this m
 
 const Bot = new Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
-  retryLimit: 3,
 
   presence: {
     activity: {
@@ -42,16 +41,18 @@ const Bot = new Client({
   }
 })
 
-const StatClient = new Statcord.Client({
-  Bot,
-  key: process.env.StatCordAPIKey,
-  postCpuStatistics: true,
-  postMemStatistics: true,
-  postNetworkStatistics: true
-})
+if (process.env.StatCordEnabled === "true"){
+  const StatClient = new Statcord.Client({
+    Bot,
+    key: process.env.StatCordAPIKey,
+    postCpuStatistics: true,
+    postMemStatistics: true,
+    postNetworkStatistics: true
+  })
+}
 
 global.Bot = Bot
-Bot.StatClient = StatClient
+Bot.StatClient = StatClient || false
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)

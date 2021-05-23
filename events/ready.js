@@ -74,6 +74,10 @@ exports.run = async (Bot) => {
   })
 
   Bot.dashboard = new botdash.APIclient(process.env.dashapikey)
-  Bot.StatClient.autopost()
+
+  if (!Bot.StatCord === false){
+    Bot.StatClient.autopost()
+  }
+
   Bot.Log("SUCCESS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`)
 }
