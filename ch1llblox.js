@@ -6,7 +6,7 @@
 const { Client, Collection } = require("discord.js")
 const { readdir } = require("fs")
 const AntiSpam = require("discord-anti-spam")
-const Statcord = require("statcord")
+const Statcord = require("statcord.js")
 const Chalk = require("chalk")
 
 console.log(Chalk.green("  _                     _ _             "))
