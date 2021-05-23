@@ -252,7 +252,7 @@ async function ActivateChatBot(message) {
         .setColor(Bot.Config.Embed.EmbedColor)
         .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Embed.EmbedFooter}`,)
 
-      if (!Bot.StatClient === false){
+      if (!Bot.StatClient){
         Bot.StatClient.postCommand("ChatBot", message.author.id)
       }
 

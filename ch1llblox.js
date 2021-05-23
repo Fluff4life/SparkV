@@ -49,10 +49,11 @@ if (process.env.StatCordEnabled === "true"){
     postMemStatistics: true,
     postNetworkStatistics: true
   })
+
+  Bot.StatClient = StatClient
 }
 
 global.Bot = Bot
-Bot.StatClient = StatClient || false
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)
