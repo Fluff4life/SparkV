@@ -6,6 +6,7 @@
 const { Client, Collection } = require("discord.js")
 const { readdir } = require("fs")
 const AntiSpam = require("discord-anti-spam")
+const Statcord = request("statcord")
 const Chalk = require("chalk")
 
 console.log(Chalk.green("  _                     _ _             "))
@@ -40,7 +41,17 @@ const Bot = new Client({
     status: "dnd"
   }
 })
+
+const StatClient = new Statcord.Client({
+  Bot,
+  key: process.env.StatCordAPIKey,
+  postCpuStatistics: true,
+  postMemStatistics: true,
+  postNetworkStatistics: true
+})
+
 global.Bot = Bot
+Bot.StatClient = StatClient
 
 // Database //
 require("./modules/dependencies/database").StartUp(Bot)

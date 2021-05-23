@@ -206,6 +206,8 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount);
 
   try {
+    Bot.StatClient.postCommand(commandfile.config.name, message.author.id)
+ 
     await commandfile.run(Bot, message, args, command).then(async () => {
       const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, "deletecommandusage");
 
@@ -241,10 +243,16 @@ async function ActivateChatBot(message) {
       }
 
       const APIMessage = body.message.replace("CleverChat", "Ch1llBlox");
+      const APIEmbed = new Discord.MessageEmbed()
+        .setTitle("Ch1llBlox")
+        .setDescription(APIMessage)
+        .setFooter(`NEVER send any personal information to Ch1llBlox. • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setColor(Bot.Config.Embed.EmbedColor)
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Embed.EmbedFooter}`,)
 
-      message.lineReplyNoMention(`${APIMessage}\n\nNEVER send any personal details to Ch1llBlox.`);
-    })
-    .catch((err) => {
+      Bot.StatClient.postCommand("ChatBot", message.author.id)
+      message.lineReplyNoMention(APIEmbed)
+    }).catch((err) => {
       console.error(err);
 
       return message.lineReply("Wha- what? Something went wrong.");
