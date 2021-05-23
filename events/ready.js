@@ -75,7 +75,7 @@ exports.run = async (Bot) => {
 
   Bot.dashboard = new botdash.APIclient(process.env.dashapikey)
 
-  if (!Bot.StatClient){
+  if (Bot.StatClient){
     Bot.StatClient.autopost()
   }
 
