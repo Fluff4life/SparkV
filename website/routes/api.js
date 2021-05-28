@@ -16,14 +16,6 @@ Router.get("/ch1llblox/status", async (request, response) => {
     response.status(200).send({ status: 200, message: "OK" });
 })
 
-Router.get("/communication", async (request, response) => {
-	if (!request.query.token === "8010405464675"){
-		return response.redirect("/home")
-	}
-
-	// Set up comunication here.
-})
-
 Router.get("/login", async (request, response, next) => {
 	if (request.session.backURL){
 		request.session.backURL = request.session.backURL
@@ -45,14 +37,14 @@ Router.get("/callback", passport.authenticate("discord", { failureRedirect: "/50
 		request.session.backURL = null
 		response.redirect(url)
 	} else {
-		response.redirect("/")
+		response.redirect("/home")
 	}
 })
 
 Router.get("/logout", (request, response) => {
 	request.session.destroy(() => {
 		request.logout()
-		response.redirect("/")
+		response.redirect("/home")
 	})
 })
 

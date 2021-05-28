@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% if (head) { %>
+      <%- include("Parts/head", head) -%>
+    <% } %>
+  </head>
+
+  <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
+    <% if (navagation) { %>
+      <%- include("Parts/navagation", navagation) -%>
+    <% } %>
+
+    <% if (top) { %>
+      <%- include("Parts/top", top) -%>
+    <% } %>
+
+    <% if (features) { %>
+      <%- include("Parts/features", features) -%>
+    <% } %>
+
+    <% if (reviews) { %>
+      <%- include("Parts/reviews", reviews) -%>
+    <% } %>
+
+    <% if (footer) { %>
+      <%- include("Parts/footer", footer) -%>
+    <% } %>
+
+    <% if (scripts) { %>
+      <%- include("Parts/scripts", scripts) -%>
+    <% } %>
+  </body>
+</html>

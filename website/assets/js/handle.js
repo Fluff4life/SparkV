@@ -30,9 +30,9 @@ AOS.init({
 })
 
 $(document).ready(function() {
-    if (document.getElementById("typed")){
-        var typed = new Typed("#typed", {
-            strings: ["Professional Developer", "Roblox Developer", "Discord Bot Developer", "Website Developer", "Codes in JavaScript, HTML, CSS, Roblox Lua and more!", "Chill Guy!"],
+    if (document.getElementById("KingCh1llTyped")){
+        var typed = new Typed("#KingCh1llTyped", {
+            strings: ["Professional Developer", "Roblox Developer", "Discord Bot Developer", "Website Developer", "Codes in JavaScript", "Codes in HTML", "Codes in CSS", "Codes in Roblox Lua", "Chill Guy!"],
             typeSpeed: 20,
             backSpeed: 20,
             smartBackspace: true,
@@ -41,8 +41,8 @@ $(document).ready(function() {
         })
     }
     
-    if (document.getElementById("ch1llbloxtyped")){
-        var typed = new Typed("#ch1llbloxtyped", {
+    if (document.getElementById("Ch1llBloxTyped")){
+        var typed = new Typed("#Ch1llBloxTyped", {
             strings: ["Ch1ll Bot!"],
             typeSpeed: 20,
             backSpeed: 20,

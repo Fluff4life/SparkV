@@ -118,11 +118,78 @@ global.CheckAuth = CheckAuth;
 app.use("/", require("./routes/main"));
 app.use("/home", require("./routes/home"));
 app.use("/bot", require("./routes/bot"));
+app.use("/users", require("./routes/users"))
 app.use("/api", require("./routes/api"));
 
 app.use((request, response, next) => {
   response.status(404)
-  RenderTemplate(response, request, "404.ejs");
+
+  RenderTemplate(response, request, "site.ejs", {
+    head: {
+      SiteTitle: "404 - Not Found",
+      SiteDescription: "Uh oh! Looks like the page you where looking for wasn't found. Dang man. KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
+      SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
+    },
+
+    // Navigation //
+    navagation: {
+      BrandName: "KingCh1ll",
+      BrandLink: "#top",
+      BrandLogo: "/assets/images/kingch1ll.png",
+
+      linkname: "Home",
+      linkicon: "fas fa-home",
+      link: "#top",
+
+      linkname2: "Ch1llBlox",
+      linkicon2: "fas fa-robot",
+      link2: "/bot",
+
+      linkname3: "Ch1ll Studios",
+      linkicon3: "fas fa-snowflake",
+      link3: "/ch1llstudios",
+
+      linkname4: "",
+      linkicon4: "",
+      link4: "",
+
+      linkname5: "",
+      linkicon5: "",
+      link5: "",
+    },
+
+    // Top //
+    top: {
+      BrandName: "404 - Not Found",
+      BrandLogo: "/assets/images/404.png",
+
+      backgroundURL: null,
+      alert: null
+    },
+
+    // Features //
+    features: null,
+
+    // Reviews //
+    reviews: null,
+
+    // Footer //
+    footer: {
+      Description: "KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
+    },
+
+    // Scripts //
+    scripts: {
+        jquery: true,
+        popper: true,
+        bootstrap: true,
+        wow: true,
+        smoothscroll: true,
+        autohidingnavbar: true,
+        pace: true, 
+        typed: true
+    }
+  });
 });
 
 app.use((err, request, response, next) => {
