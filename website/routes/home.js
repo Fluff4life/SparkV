@@ -100,7 +100,7 @@ Router.get("/", async (request, response) => {
                 name: "Ch1llBlox",
                 description: "Premium bot with no $ involved!",
                 link: "/bot",
-                image: "/assets/images/ch1llblox.png",
+                image: "/assets/images/Ch1llBlox.png",
                 alt: "Ch1llBlox Icon"
               }
             }

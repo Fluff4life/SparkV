@@ -41,7 +41,7 @@ Router.get("/", async (request, response) => {
     // Top //
     top: {
       BrandName: "Ch1llBlox",
-      BrandLogo: "/assets/images/ch1llblox.png",
+      BrandLogo: "/assets/images/Ch1llBlox.png",
 
       backgroundURL: null,
       alert: null
