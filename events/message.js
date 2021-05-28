@@ -10,11 +10,6 @@ exports.run = async (Bot, message) => {
   }
   
   const BotPermisions = message.channel.permissionsFor(Bot.user);
-
-  if (!BotPermisions || !BotPermisions.has(["SEND_MESSAGES", "EMBED_LINKS"])) {
-    message.react("❌").catch((err) => { })
-  }
-
   const user = message.guild.members.cache.get(message.author.id);
   const AntiURL = await Bot.dashboard.getVal(message.guild.id, "removelinks");
 
