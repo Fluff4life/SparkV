@@ -15,31 +15,38 @@ Router.get("/", async (request, response) => {
       BrandLink: "#top",
       BrandLogo: "/assets/images/kingch1ll.png",
 
-      linkname: "Home",
-      linkicon: "fas fa-home",
-      link: "#top",
+      Links: {
+        link1: {
+          name: "Home",
+          icon: "fas fa-home",
+          link: "#top",
+        },
 
-      linkname2: "Ch1llBlox",
-      linkicon2: "fas fa-robot",
-      link2: "/bot",
+        link2: {
+          name: "Ch1llBlox",
+          icon: "fas fa-robot",
+          link: "/bot",
+        },
 
-      linkname3: "Ch1ll Studios",
-      linkicon3: "fas fa-snowflake",
-      link3: "/ch1llstudios",
-
-      linkname4: "",
-      linkicon4: "",
-      link4: "",
-
-      linkname5: "",
-      linkicon5: "",
-      link5: "",
+        link3: {
+          name: "Ch1ll Studios",
+          icon: "fas fa-snowflake",
+          link: "/ch1llstudios",   
+        }
+      },
     },
 
     // Top //
     top: {
       BrandName: "KingCh1ll",
       BrandLogo: "/assets/images/kingch1ll.png",
+
+      buttons: {
+        button1: {
+          name: "Donate",
+          link: "/donate"
+        }
+      },
 
       backgroundURL: null,
       alert: null

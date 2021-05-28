@@ -13,10 +13,13 @@
       <div class="col-lg-6 mx-auto">
         <h2 class="display" style="color: var(--text-color)"><span id="<%- BrandName %>Typed"></span></h2>
 
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a href="/bot/invite" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Invite</a>
-          <a href="/bot/donate" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Donate</a>
-        </div>
+        <% if (buttons) { %>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <% Object.entries(buttons).forEach(button => { %>
+              <a class="nav-link text-white fw-bold" class="btn btn-primary shadow-none" type="button" href="<%- button[1].link %>" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px"><%- button[1].name %></a>
+            <% }) %>
+          </div>
+        <% } %>
       </div>
     </div>
   </div>

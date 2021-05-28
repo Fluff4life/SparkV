@@ -68,14 +68,14 @@ exports.run = async (Bot, message) => {
     let MinXP = await Bot.dashboard.getVal(message.guild.id, "leveling_minxp");
 
     if (isNaN(MaxXP)) {
-      MaxXP = 15;
+      MaxXP = 25;
     }
 
     if (isNaN(MinXP)) {
-      MinXP = 10;
+      MinXP = 5;
     }
 
-    const RandomXP = Math.floor(Math.random() * MaxXP || 15) + MinXP || 10;
+    const RandomXP = Math.floor(Math.random() * MaxXP || 25) + MinXP || 5;
     const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP);
 
     if (HasLeveledUp) {

@@ -10,21 +10,11 @@
 
     <div class="navbar-collapse collapse" id="navbar-content">
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 text-small">
-        <li class="nav-item text-secondary">
-          <a class="nav-link text-white fw-bold" href="<%- link %>" style="color: var(--text-color);"><i class="<%- linkicon %> bi d-block mx-auto mb-1"></i><%- linkname %></a>
-        </li>
-        <li class="nav-item mx-1">
-          <a class="nav-link text-white fw-bold" href="<%- link2 %>" style="color: var(--text-color);"><i class="<%- linkicon2 %> bi d-block mx-auto mb-1"></i><%- linkname2 %></a>
-        </li>
-        <li class="nav-item mx-1">
-          <a class="nav-link text-white fw-bold" href="<%- link3 %>" style="color: var(--text-color);"><i class="<%- linkicon3 %> bi d-block mx-auto mb-1"></i><%- linkname3 %></a>
-        </li>
-        <li class="nav-item mx-1">
-          <a class="nav-link text-white fw-bold" href="<%- link4 %>" style="color: var(--text-color);"><i class="<%- linkicon4 %> bi d-block mx-auto mb-1"></i><%- linkname4 %></a>
-        </li>
-        <li class="nav-item mx-1">
-          <a class="nav-link text-white fw-bold" href="<%- link5 %>" style="color: var(--text-color);"><i class="<%- linkicon5 %> bi d-block mx-auto mb-1"></i><%- linkname5 %></a>
-        </li>
+        <% Object.entries(Links).forEach(link => { %>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bold" href="<%- link[1].link %>" style="color: var(--text-color);"><i class="<%- link[1].icon %> bi d-block mx-auto mb-1"></i><%- link[1].name %></a>
+          </li>
+        <% }) %>
       </ul>
         <% if (user) { %>
         <ul class="navbar-nav ml-auto">

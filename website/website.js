@@ -137,31 +137,48 @@ app.use((request, response, next) => {
       BrandLink: "#top",
       BrandLogo: "/assets/images/kingch1ll.png",
 
-      linkname: "Home",
-      linkicon: "fas fa-home",
-      link: "#top",
+      Links: {
+        link1: {
+          name: "Home",
+          icon: "fas fa-home",
+          link: "#top",
+        },
 
-      linkname2: "Ch1llBlox",
-      linkicon2: "fas fa-robot",
-      link2: "/bot",
+        link2: {
+          name: "Ch1llBlox",
+          icon: "fas fa-robot",
+          link: "/bot",
+        },
 
-      linkname3: "Ch1ll Studios",
-      linkicon3: "fas fa-snowflake",
-      link3: "/ch1llstudios",
-
-      linkname4: "",
-      linkicon4: "",
-      link4: "",
-
-      linkname5: "",
-      linkicon5: "",
-      link5: "",
+        link3: {
+          name: "Ch1ll Studios",
+          icon: "fas fa-snowflake",
+          link: "/ch1llstudios",   
+        }
+      },
     },
 
     // Top //
     top: {
       BrandName: "404 - Not Found",
       BrandLogo: "/assets/images/404.png",
+
+      buttons: {
+        button1: {
+          name: "Home",
+          link: "/home"
+        },
+
+        button2: {
+          name: "Ch1llBlox",
+          link: "/bot"
+        },
+
+        button3: {
+          name: "Ch1ll Studios",
+          link: "/ch1llstudios"
+        }
+      },
 
       backgroundURL: null,
       alert: null
@@ -196,12 +213,89 @@ app.use((err, request, response, next) => {
   console.error("Website Error!", err.stack);
 
   response.status(500)
-  RenderTemplate(response, request, "500.ejs", { error: err });
-});
+  RenderTemplate(response, request, "site.ejs", {
+    head: {
+      SiteTitle: "Home - KingCh1ll",
+      SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
+      SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
+    },
 
-io.sockets.on("connection", (socket) => {
-  // Idk do something lol
-})
+    // Navigation //
+    navagation: {
+      BrandName: "KingCh1ll",
+      BrandLink: "#top",
+      BrandLogo: "/assets/images/kingch1ll.png",
+
+      Links: {
+        link1: {
+          name: "Home",
+          icon: "fas fa-home",
+          link: "#top",
+        },
+
+        link2: {
+          name: "Ch1llBlox",
+          icon: "fas fa-robot",
+          link: "/bot",
+        },
+
+        link3: {
+          name: "Ch1ll Studios",
+          icon: "fas fa-snowflake",
+          link: "/ch1llstudios",   
+        }
+      },
+    },
+
+    // Top //
+    top: {
+      BrandName: "Error!",
+      BrandLogo: "/assets/images/500.png",
+
+      buttons: {
+        button1: {
+          name: "Home",
+          link: "/home"
+        },
+
+        button2: {
+          name: "Ch1llBlox",
+          link: "/bot"
+        },
+
+        button3: {
+          name: "Ch1ll Studios",
+          link: "/ch1llstudios"
+        }
+      },
+      
+      backgroundURL: null,
+      alert: null
+    },
+
+    // Features //
+    features: null,
+
+    // Reviews //
+    reviews: null,
+
+    // Footer //
+    footer: {
+      Description: "Uh oh! An error occured. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
+    },
+
+    // Scripts //
+    scripts: {
+        jquery: true,
+        popper: true,
+        bootstrap: true,
+        smoothscroll: true,
+        autohidingnavbar: true,
+        pace: true, 
+        typed: true
+    }
+  });
+});
 
 io.on("PrefixUpdated", async (prefix, id) => {
   // TODO

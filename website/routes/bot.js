@@ -17,25 +17,25 @@ Router.get("/", async (request, response) => {
       BrandLink: "#top",
       BrandLogo: "/assets/images/ch1llblox.png",
 
-      linkname: "Ch1llBlox",
-      linkicon: "fas fa-robot",
-      link: "#top",
+      Links: {
+        link1: {
+          name: "Ch1llBlox",
+          icon: "fas fa-robot",
+          link: "#top",
+        },
 
-      linkname2: "Home",
-      linkicon2: "fas fa-home",
-      link2: "/home",
+        link2: {
+          name: "Home",
+          icon: "fas fa-home",
+          link: "/home",
+        },
 
-      linkname3: "Ch1ll Studios",
-      linkicon3: "fas fa-snowflake",
-      link3: "/ch1llstudios",
-
-      linkname4: "",
-      linkicon4: "",
-      link4: "",
-
-      linkname5: "",
-      linkicon5: "",
-      link5: "",
+        link3: {
+          name: "Ch1ll Studios",
+          icon: "fas fa-snowflake",
+          link: "/ch1llstudios",   
+        }
+      },
     },
 
     // Top //
@@ -43,6 +43,18 @@ Router.get("/", async (request, response) => {
       BrandName: "Ch1llBlox",
       BrandLogo: "/assets/images/Ch1llBlox.png",
 
+      buttons: {
+        button1: {
+          name: "Invite",
+          link: "/invite"
+        },
+
+        button2: {
+          name: "Donate",
+          link: "/donate"
+        }
+      },
+      
       backgroundURL: null,
       alert: null
     },
@@ -51,20 +63,20 @@ Router.get("/", async (request, response) => {
     features: {
       features: {
         features1: {
-            name: "Features",
+          name: "Features",
 
-            boxes: {
-              box1: {
-                  name: "24/7 Uptime",
-                  description: "Don't worry about Ch1llBlox going offline! Ch1llBlox will always be online 24/7. If he is spotted offline, get support in our support server.",
-                  link: "#top",
-                  image: "/assets/images/lightningbolt.png",
-                  alt: "Lightning Bolt Icon"
-              }
+          boxes: {
+            box1: {
+              name: "24/7 Uptime",
+              description: "Don't worry about Ch1llBlox going offline! Ch1llBlox will always be online 24/7. If he is spotted offline, get support in our support server.",
+              link: "#top",
+              image: "/assets/images/lightningbolt.png",
+              alt: "Lightning Bolt Icon"
             }
+          }
         },
       }
-  },
+    },
 
     // Reviews //
     reviews: null,
@@ -76,68 +88,68 @@ Router.get("/", async (request, response) => {
 
     // Scripts //
     scripts: {
-        jquery: true,
-        popper: true,
-        bootstrap: true,
-        wow: true,
-        smoothscroll: true,
-        autohidingnavbar: true,
-        pace: true, 
-        typed: true
+      jquery: true,
+      popper: true,
+      bootstrap: true,
+      wow: true,
+      smoothscroll: true,
+      autohidingnavbar: true,
+      pace: true,
+      typed: true
     }
   });
 })
 
 Router.get("/commands", async (request, response) => {
-    global.RenderTemplate(response, request, "ch1llblox/botcmds.ejs")
+  global.RenderTemplate(response, request, "ch1llblox/botcmds.ejs")
 })
 
 Router.get("/donate", async (request, response) => {
-    global.RenderTemplate(response, request, "ch1llblox/donate.ejs")
+  global.RenderTemplate(response, request, "ch1llblox/donate.ejs")
 })
 
 Router.get("/faq", async (request, response) => {
-    global.RenderTemplate(response, request, "ch1llblox/faq.ejs")
+  global.RenderTemplate(response, request, "ch1llblox/faq.ejs")
 })
 
 Router.get("/dashboard", global.CheckAuth, async (request, response) => {
-    global.RenderTemplate(response, request, "ch1llblox/dashboard.ejs", { perms: Discord.Permissions })
+  global.RenderTemplate(response, request, "ch1llblox/dashboard.ejs", { perms: Discord.Permissions })
 })
 
 Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
   const guild = request.Bot.guilds.cache.get(request.params.guildID) || request.user.guilds.find(guild => guild.id === request.params.guildID)
 
-  if (!guild){
+  if (!guild) {
     return response.redirect("/bot/dashboard")
   }
 
   const GuildPermisions = new Discord.Permissions(guild.permissions)
 
-  if (!GuildPermisions || !GuildPermisions.has("MANAGE_GUILD")){
+  if (!GuildPermisions || !GuildPermisions.has("MANAGE_GUILD")) {
     return response.redirect("/bot/dashboard")
   }
 
   let StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
-  if (!StoredSettings){
+  if (!StoredSettings) {
     await global.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
     StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
   }
 
-  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", {guild, settings: { StoredSettings }, alert: null })
+  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: { StoredSettings }, alert: null })
 })
 
 
 Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
   const guild = request.user.guilds.find(guild => guild.id === request.params.guildID)
 
-  if (!guild){
+  if (!guild) {
     return response.redirect("/bot/dashboard")
   }
 
   const GuildPermisions = new Discord.Permissions(guild.permissions)
 
-  if (!GuildPermisions || !GuildPermisions.has("MANAGE_GUILD")){
+  if (!GuildPermisions || !GuildPermisions.has("MANAGE_GUILD")) {
     return response.redirect("/bot/dashboard")
   }
 
@@ -146,7 +158,7 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
   try {
     StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
 
-    if (!StoredSettings){
+    if (!StoredSettings) {
       await global.Database.set(`WebsiteData.GuildSettings.${guild.id}`, guild.id)
       StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
     }
