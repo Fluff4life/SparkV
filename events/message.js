@@ -240,9 +240,8 @@ async function ActivateChatBot(message) {
       const APIEmbed = new Discord.MessageEmbed()
         .setTitle("Ch1llBlox")
         .setDescription(APIMessage)
-        .setFooter(`NEVER send any personal information to Ch1llBlox. • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setFooter(`NEVER send any personal information to Ch1llBlox! • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Embed.EmbedFooter}`,)
 
       if (Bot.StatClient){
         Bot.StatClient.postCommand("ChatBot", message.author.id)
