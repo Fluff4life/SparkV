@@ -5,19 +5,19 @@
 console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading website."));
 
 // Librarys //
+const { name, version } = require("../package.json");
+const Config = require("../globalconfig.json");
+
 const express = require("express");
 const session = require("express-session");
-const favicon = require("serve-favicon");
-const path = require("path");
-const passport = require("passport");
-const Strategy = require("passport-discord").Strategy;
 const ejs = require("ejs");
+const passport = require("passport");
+const DiscordPass = require("passport-discord")
+
 const Chalk = require("chalk");
-const Config = require("../globalconfig.json");
-const bodyParser = require("body-parser");
-const { name, version } = require("../package.json");
-const Sentry = require("@sentry/browser")
-const { Integrations } = require("@sentry/tracing")
+const path = require("path");
+const parser = require("body-parser");
+
 const QuickMongo = require("quickmongo")
 
 // Files //
@@ -33,14 +33,6 @@ const io = require("socket.io")(server)
 // Code //
 console.log("-------- Loading Website --------");
 require("newrelic")
-Sentry.init({
-  dsn: process.env.SentryWebsiteToken,
-  release: `${name}@${version}`,
-  tracesSampleRate: 1.0,
-  integrations: [
-    new Integrations.BrowserTracing()
-  ]
-});
 
 const Database = new QuickMongo.Database(process.env.mongooseURL)
 
@@ -57,7 +49,7 @@ global.Database = Database
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 
-passport.use(new Strategy({
+passport.use(new DiscordPass.Strategy({
   clientID: "763126208149585961",
   clientSecret: process.env.secretid,
   callbackURL: `${Domain}/api/callback`,
@@ -81,10 +73,10 @@ app.use(passport.session());
 app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
 
-app.use(favicon(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}siteicons${path.sep}favicon.ico`)));
+app.use(require("serve-favicon")(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}siteicons${path.sep}favicon.ico`)));
 
 app.use("/assets", express.static(path.resolve(`${MainDir}${path.sep}assets`)));
 app.set("views", Views)

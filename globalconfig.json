@@ -44,5 +44,16 @@
         "ShardLifeTime": 518400
     },
 
+    "Responses": {
+        "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proppor arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
+        "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
+
+        "InvalidPermisions": {
+            "Bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
+            "User": "Uh oh! You don't have permission to do that. You need **{permission}**.",
+            "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
+        }
+    },
+
     "Debug": false
 }

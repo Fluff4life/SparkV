@@ -57,7 +57,7 @@ function DisplayBoard(board) {
 exports.run = async (Bot, message, Arguments) => {
   const Opponent = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0])
 
-  if (!Arguments) {
+  if (!Opponent) {
     return message.lineReply("This command doesn't support API yet. Please mention someone to challenge.")
   }
 

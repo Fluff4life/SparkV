@@ -9,7 +9,6 @@ exports.run = async (Bot, message) => {
     return
   }
   
-  const BotPermisions = message.channel.permissionsFor(Bot.user);
   const user = message.guild.members.cache.get(message.author.id);
   const AntiURL = await Bot.dashboard.getVal(message.guild.id, "removelinks");
 
@@ -20,9 +19,7 @@ exports.run = async (Bot, message) => {
           message.delete();
         } catch (err) {
           message
-            .lineReplyNoMention(
-              `${message.author} sent a url, but I cannot delete it. Please give me permision to delete messages.`
-            )
+            .lineReplyNoMention(Bot.Config.Responses.InvalidPermisions.URL.replace("{author}", message.author))
             .then((m) => m.delete({ timeout: 1000 }));
         }
       }
@@ -76,7 +73,7 @@ exports.run = async (Bot, message) => {
     if (HasLeveledUp) {
       const User = await Levels.fetch(message.author.id, message.guild.id);
 
-      message.lineReplyNoMention(`⚡ Congrats ${message.author}, you're now at level **${await Bot.FormatNumber(User.level)}**!`);
+      message.lineReplyNoMention(Bot.Config.Responses.LevelUpMessage.replace("{author}", message.author).replace("{level}"));
     }
   }
 
@@ -140,10 +137,10 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   }
 
   if (commandfile.config.bot_permissions) {
-    const BotPermisions = message.channel.permissionsFor(message.guild.me);
+    const BotPermisions = message.channel.permissionsFor(Bot.user);
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.lineReply(`❌I don't have permission to do that! Please select my role and allow ${commandfile.config.member_permissions}.`);
+      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace("{permission}", commandfile.config.member_permissions));
     }
   }
 
@@ -151,7 +148,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const AuthorPermisions = message.channel.permissionsFor(message.author);
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.lineReply(`❌You don't have permission to do that! You need ${commandfile.config.member_permissions}.`);
+      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace("{permission}", commandfile.config.member_permissions));
     }
   }
 
