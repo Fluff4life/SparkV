@@ -46,7 +46,17 @@ Database.on("error", async (err) => {
 
 global.Database = Database
 
-passport.serializeUser((user, done) => done(null, user));
+passport.serializeUser(async (user, done) => {
+  await global.Database.set(`WebsiteData.Users.${user.id}`, {
+		username: user.username,
+    tag: user.discriminator,
+    userid: user.id,
+    avatarid: user.avatar
+	})
+
+  done(null, user)
+});
+
 passport.deserializeUser((obj, done) => done(null, obj));
 
 passport.use(new DiscordPass.Strategy({
@@ -54,12 +64,8 @@ passport.use(new DiscordPass.Strategy({
   clientSecret: process.env.secretid,
   callbackURL: `${Domain}/api/callback`,
   scope: ["identify", "guilds"],
-},
-  (accessToken, refreshToken, profile, done) => {
-    process.nextTick(() => done(null, profile));
-  }
-)
-);
+}, (accessToken, refreshToken, profile, done) => process.nextTick(() => done(null, profile))
+));
 
 app.use(session({
   secret: process.env.secretid,

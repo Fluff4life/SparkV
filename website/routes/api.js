@@ -41,7 +41,11 @@ Router.get("/callback", passport.authenticate("discord", { failureRedirect: "/50
 	}
 })
 
-Router.get("/logout", (request, response) => {
+Router.get("/userdata", global.CheckAuth, (request, response) => {
+	response.send(Object.entries(request.user))
+})
+
+Router.get("/logout", global.CheckAuth, (request, response) => {
 	request.session.destroy(() => {
 		request.logout()
 		response.redirect("/home")

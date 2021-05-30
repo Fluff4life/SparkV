@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% if (head) { %>
+      <%- include("Parts/head", head) -%>
+    <% } %>
+  </head>
+
+  <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
+    <% if (navagation) { %>
+      <%- include("Parts/navagation", navagation) -%>
+    <% } %>
+
+    <div id="top">
+      <div class="px-4 py-5 my-5 text-center">
+        <%- console.log(userdata) %> 
+        <img class="d-block mx-auto mb-4" src="https://cdn.discordapp.com/avatars/<%- userdata.userid %>/<%- userdata.avatarid %>.png?size=1024" alt="Logo" width="150" height="150" style="margin-top: 30px;">
+        <h1 class="display-5 fw-bold" style="color: var(--text-color)"><%- userdata.username %></h1>
+        <h3 class="display-8 text-muted" style="color: var(--text-color)"><i>#<%- userdata.tag %></i></h3>
+        <h3 class="display-8 text-muted" style="color: var(--text-color)"><i><%- userdata.description %></i></h3>
+      </div>
+    </div>
+
+    <% if (footer) { %>
+      <%- include("Parts/footer", footer) -%>
+    <% } %>
+
+    <% if (scripts) { %>
+      <%- include("Parts/scripts", scripts) -%>
+    <% } %>
+  </body>
+</html>
