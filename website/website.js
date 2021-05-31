@@ -5,20 +5,19 @@
 console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading website."));
 
 // Librarys //
-const { name, version } = require("../package.json");
-const Config = require("../globalconfig.json");
-
 const express = require("express");
 const session = require("express-session");
 const ejs = require("ejs");
 const passport = require("passport");
 const DiscordPass = require("passport-discord")
+const QuickMongo = require("quickmongo")
 
-const Chalk = require("chalk");
 const path = require("path");
 const parser = require("body-parser");
 
-const QuickMongo = require("quickmongo")
+const { name, version } = require("../package.json");
+const Config = require("../globalconfig.json");
+const Render = require("../website/Render")
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
@@ -30,29 +29,35 @@ const app = express();
 const server = app.listen(Config.Debug == true ? 3000 : process.env.PORT);
 const io = require("socket.io")(server)
 
+// Functions //
+const ConnectDatabase = (mongooseURL) => {
+  const Database = new QuickMongo.Database(mongooseURL)
+
+  Database.on("ready", async () => {
+    console.log("WEBSITE - WEBSITE DATABASE -> ONLINE")
+  })
+
+  Database.on("error", async (err) => {
+    Bot.Log("ERROR", "DATABASE ERROR", err)
+  })
+
+  return Database
+}
+
 // Code //
 console.log("-------- Loading Website --------");
 require("newrelic")
 
-const Database = new QuickMongo.Database(process.env.mongooseURL)
-
-Database.on("ready", async () => {
-  console.log("SUCCESS => WEBSITE DATABASE SUCCESS - Successfully connected to database!")
-})
-
-Database.on("error", async (err) => {
-  console.log("ERROR => WEBSITE DATABASE ERROR", err)
-})
-
+const Database = ConnectDatabase(process.env.mongooseURL)
 global.Database = Database
 
 passport.serializeUser(async (user, done) => {
-  await global.Database.set(`WebsiteData.Users.${user.id}`, {
-		username: user.username,
+  await Database.set(`WebsiteData.Users.${user.id}`, {
+    username: user.username,
     tag: user.discriminator,
     userid: user.id,
     avatarid: user.avatar
-	})
+  })
 
   done(null, user)
 });
@@ -60,12 +65,14 @@ passport.serializeUser(async (user, done) => {
 passport.deserializeUser((obj, done) => done(null, obj));
 
 passport.use(new DiscordPass.Strategy({
-  clientID: "763126208149585961",
-  clientSecret: process.env.secretid,
+  clientID: "848685407189336075",
+  clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
   callbackURL: `${Domain}/api/callback`,
   scope: ["identify", "guilds"],
-}, (accessToken, refreshToken, profile, done) => process.nextTick(() => done(null, profile))
-));
+}, (accessToken, refreshToken, profile, done) => {
+  process.nextTick(() => done(null, profile))
+}
+))
 
 app.use(session({
   secret: process.env.secretid,
@@ -87,32 +94,6 @@ app.use(require("serve-favicon")(path.resolve(`${MainDir}${path.sep}assets${path
 app.use("/assets", express.static(path.resolve(`${MainDir}${path.sep}assets`)));
 app.set("views", Views)
 
-const RenderTemplate = (response, request, view, data) => {
-  if (!data) {
-    data = {};
-  }
-
-  const BaseData = {
-    path: request.path,
-    bot: global.Bot,
-    user: request.isAuthenticated() ? request.user : null,
-  };
-
-  response.render(view, Object.assign(BaseData, data));
-};
-
-const CheckAuth = (request, response, next) => {
-  if (request.isAuthenticated()) {
-    return next();
-  }
-
-  request.session.backURL = request.url;
-  response.redirect("/api/login");
-};
-
-global.RenderTemplate = RenderTemplate;
-global.CheckAuth = CheckAuth;
-
 app.use("/", require("./routes/main"));
 app.use("/home", require("./routes/home"));
 app.use("/bot", require("./routes/bot"));
@@ -122,7 +103,7 @@ app.use("/api", require("./routes/api"));
 app.use((request, response, next) => {
   response.status(404)
 
-  RenderTemplate(response, request, "site.ejs", {
+  Render(response, request, "site.ejs", {
     head: {
       SiteTitle: "404 - Not Found",
       SiteDescription: "Uh oh! Looks like the page you where looking for wasn't found. Dang man. KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
@@ -151,7 +132,7 @@ app.use((request, response, next) => {
         link3: {
           name: "Ch1ll Studios",
           icon: "fas fa-snowflake",
-          link: "/ch1llstudios",   
+          link: "/ch1llstudios",
         }
       },
     },
@@ -195,14 +176,14 @@ app.use((request, response, next) => {
 
     // Scripts //
     scripts: {
-        jquery: true,
-        popper: true,
-        bootstrap: true,
-        wow: true,
-        smoothscroll: true,
-        autohidingnavbar: true,
-        pace: true, 
-        typed: true
+      jquery: true,
+      popper: true,
+      bootstrap: true,
+      wow: true,
+      smoothscroll: true,
+      autohidingnavbar: true,
+      pace: true,
+      typed: true
     }
   });
 });
@@ -211,7 +192,7 @@ app.use((err, request, response, next) => {
   console.error("Website Error!", err.stack);
 
   response.status(500)
-  RenderTemplate(response, request, "site.ejs", {
+  Render(response, request, "site.ejs", {
     head: {
       SiteTitle: "Home - KingCh1ll",
       SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
@@ -240,7 +221,7 @@ app.use((err, request, response, next) => {
         link3: {
           name: "Ch1ll Studios",
           icon: "fas fa-snowflake",
-          link: "/ch1llstudios",   
+          link: "/ch1llstudios",
         }
       },
     },
@@ -266,7 +247,7 @@ app.use((err, request, response, next) => {
           link: "/ch1llstudios"
         }
       },
-      
+
       backgroundURL: null,
       alert: null
     },
@@ -284,13 +265,13 @@ app.use((err, request, response, next) => {
 
     // Scripts //
     scripts: {
-        jquery: true,
-        popper: true,
-        bootstrap: true,
-        smoothscroll: true,
-        autohidingnavbar: true,
-        pace: true, 
-        typed: true
+      jquery: true,
+      popper: true,
+      bootstrap: true,
+      smoothscroll: true,
+      autohidingnavbar: true,
+      pace: true,
+      typed: true
     }
   });
 });

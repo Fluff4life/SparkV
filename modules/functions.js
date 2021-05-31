@@ -85,20 +85,20 @@ module.exports = async (bot) => {
   }
 
   bot.Log = (Status, Type, Details) => {
-    const chalk = require("chalk")
+    const require("chalk") = require("require("chalk")")
 
     if (Status === "SUCCESS") {
-      console.log(chalk.blue(`${Status} - ${Type} => ${Details}`))
+      console.log(require("chalk").blue(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "ERROR") {
       global.LogError("Fatal", Details)
 
-      console.log(chalk.red(`${Status} - ${Type} => ${Details}`))
+      console.log(require("chalk").red(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "WARNING") {
       global.LogError("Fatal", Details)
 
-      console.log(chalk.yellow(`${Status} - ${Type} => ${Details}`))
+      console.log(require("chalk").yellow(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "DEBUG") {
-      console.log(chalk.green(`${Status} - ${Type} => ${Details}`))
+      console.log(require("chalk").green(`${Status} - ${Type} => ${Details}`))
     }
   }
 

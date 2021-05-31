@@ -2,6 +2,9 @@ const Express = require("express")
 
 const Router = Express.Router()
 
+const CheckAuth = require("../CheckAuth")
+const Render = require("../Render")
+
 Router.get("/", async (request, response) => {
     response.redirect("/404?error=user_not_found")
 })
@@ -24,7 +27,7 @@ Router.get("/:userID/profile", async (request, response) => {
   let User = await global.Database.get(`WebsiteData.Users.${request.params.userID}`)
 
   if (User) {
-    global.RenderTemplate(response, request, "profile.ejs", {
+    Render(response, request, "profile.ejs", {
       head: {
         SiteTitle: `Ch1ll | ${User.username} | Profile`,
         SiteDescription: `${User.username} is a user enjoying the benifits of using KingCh1ll's services. Including Ch1llBlox!`,

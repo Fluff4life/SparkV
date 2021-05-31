@@ -1,8 +1,11 @@
 const Express = require("express");
 const Router = Express.Router();
 
+const CheckAuth = require("../CheckAuth")
+const Render = require("../Render")
+
 Router.get("/", async (request, response) => {
-  global.RenderTemplate(response, request, "site.ejs", {
+  Render(response, request, "site.ejs", {
     head: {
       SiteTitle: "Home - KingCh1ll",
       SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",

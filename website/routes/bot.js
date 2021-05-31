@@ -3,8 +3,11 @@ const Express = require("express")
 
 const Router = Express.Router()
 
+const CheckAuth = require("../CheckAuth")
+const Render = require("../Render")
+
 Router.get("/", async (request, response) => {
-  global.RenderTemplate(response, request, "site.ejs", {
+  Render(response, request, "site.ejs", {
     head: {
       SiteTitle: "Home - Ch1llBlox",
       SiteDescription: "Ch1llBlox is a Discord Bot",
@@ -101,22 +104,22 @@ Router.get("/", async (request, response) => {
 })
 
 Router.get("/commands", async (request, response) => {
-  global.RenderTemplate(response, request, "ch1llblox/botcmds.ejs")
+  Render(response, request, "ch1llblox/botcmds.ejs")
 })
 
 Router.get("/donate", async (request, response) => {
-  global.RenderTemplate(response, request, "ch1llblox/donate.ejs")
+  Render(response, request, "ch1llblox/donate.ejs")
 })
 
 Router.get("/faq", async (request, response) => {
-  global.RenderTemplate(response, request, "ch1llblox/faq.ejs")
+  Render(response, request, "ch1llblox/faq.ejs")
 })
 
-Router.get("/dashboard", global.CheckAuth, async (request, response) => {
-  global.RenderTemplate(response, request, "ch1llblox/dashboard.ejs", { perms: Discord.Permissions })
+Router.get("/dashboard", CheckAuth, async (request, response) => {
+  Render(response, request, "ch1llblox/dashboard.ejs", { perms: Discord.Permissions })
 })
 
-Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
+Router.get("/dashboard/:guildID", CheckAuth, async (request, response) => {
   const guild = request.Bot.guilds.cache.get(request.params.guildID) || request.user.guilds.find(guild => guild.id === request.params.guildID)
 
   if (!guild) {
@@ -136,11 +139,11 @@ Router.get("/dashboard/:guildID", global.CheckAuth, async (request, response) =>
     StoredSettings = await global.Database.get(`WebsiteData.GuildSettings.${guild.id}`)
   }
 
-  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: { StoredSettings }, alert: null })
+  Render(response, request, "ch1llblox/settings.ejs", { guild, settings: { StoredSettings }, alert: null })
 })
 
 
-Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) => {
+Router.post("/dashboard/:guildID", CheckAuth, async (request, response) => {
   const guild = request.user.guilds.find(guild => guild.id === request.params.guildID)
 
   if (!guild) {
@@ -165,10 +168,10 @@ Router.post("/dashboard/:guildID", global.CheckAuth, async (request, response) =
 
     await global.Database.set(`WebsiteData.GuildSettings.${guild.id}.${request.body.prefix}`, request.body.prefix)
   } catch (err) {
-    global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings failed to save." })
+    Render(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings failed to save." })
   }
 
-  global.RenderTemplate(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings successfully saved!" })
+  Render(response, request, "ch1llblox/settings.ejs", { guild, settings: StoredSettings, alert: "Settings successfully saved!" })
 })
 
 module.exports = Router

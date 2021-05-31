@@ -229,7 +229,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
 async function ActivateChatBot(message) {
   message.channel.startTyping();
 
-  fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.cleanContent)}&gender=male&name=Ch1llBlox`)
+  fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.cleanContent)}&name=Ch1llBlox&user=${message.author.username}&gender=male`)
     .then((res) => res.json())
     .then((body) => {
       if (message.deleted) {

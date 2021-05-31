@@ -7,24 +7,23 @@ const { Client, Collection } = require("discord.js")
 const { readdir } = require("fs")
 const AntiSpam = require("discord-anti-spam")
 const Statcord = require("statcord.js")
-const Chalk = require("chalk")
 
-console.log(Chalk.green("  _                     _ _             "))
-console.log(Chalk.green(" | |                   | (_)            "))
-console.log(Chalk.green(" | |     ___   __ _  __| |_ _ __   __ _ "))
-console.log(Chalk.green(" | |    / _ \\ / _` |/ _` | | '_ \\ / _` |"))
-console.log(Chalk.green(" | |___| (_) | (_| | (_| | | | | | (_| |"))
-console.log(Chalk.green(" |______\\___/ \\__,_|\\__,_|_|_| |_|\\__, |"))
-console.log(Chalk.green("                                   __/ |"))
-console.log(Chalk.green("                                  |___/"))
+console.log(require("chalk").green("  _                     _ _             "))
+console.log(require("chalk").green(" | |                   | (_)            "))
+console.log(require("chalk").green(" | |     ___   __ _  __| |_ _ __   __ _ "))
+console.log(require("chalk").green(" | |    / _ \\ / _` |/ _` | | '_ \\ / _` |"))
+console.log(require("chalk").green(" | |___| (_) | (_| | (_| | | | | | (_| |"))
+console.log(require("chalk").green(" |______\\___/ \\__,_|\\__,_|_|_| |_|\\__, |"))
+console.log(require("chalk").green("                                   __/ |"))
+console.log(require("chalk").green("                                  |___/"))
 
-console.log(Chalk.grey("----------------------------------------"))
+console.log(require("chalk").grey("----------------------------------------"))
 
-console.log(Chalk.blue("   ____ _     _ _ _ ____  _           "))
-console.log(Chalk.blue("  / ___| |__ / | | | __ )| | _____  __"))
-console.log(Chalk.blue(" | |   | '_ \| | | |  _ \| |/ _ \ \/ /"))
-console.log(Chalk.blue(" | |___| | | | | | | |_) | | (_) >  < "))
-console.log(Chalk.blue("  \____|_| |_|_|_|_|____/|_|\___/_/\_\ "))                                 
+console.log(require("chalk").blue("   ____ _     _ _ _ ____  _           "))
+console.log(require("chalk").blue("  / ___| |__ / | | | __ )| | _____  __"))
+console.log(require("chalk").blue(" | |   | '_ \| | | |  _ \| |/ _ \ \/ /"))
+console.log(require("chalk").blue(" | |___| | | | | | | |_) | | (_) >  < "))
+console.log(require("chalk").blue("  \____|_| |_|_|_|_|____/|_|\___/_/\_\ "))                                 
 
 // Create Bot //
 require("discord-reply") // Until discord.js releases 2021 replys, I have this module to do it for me. Will be removed in the future!
@@ -170,6 +169,6 @@ Bot.SocketioClient.on("connect", () => console.log("Website connected successful
 console.log("---------- Logging into Bot ----------")
 Bot.login(process.env.token)
 
-console.log(Chalk.blue("SUCCESS - BOT LOADING COMPLETE"))
+console.log(require("chalk").blue("SUCCESS - BOT LOADING COMPLETE"))
 
 return Bot

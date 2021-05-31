@@ -4,6 +4,9 @@ const passport = require("passport");
 
 const Router = Express.Router()
 
+const CheckAuth = require("../CheckAuth")
+const Render = require("../Render")
+
 Router.get("/status", async (request, response) => {
     response.status(200).send({ status: 200, message: "OK" });
 })
@@ -41,11 +44,11 @@ Router.get("/callback", passport.authenticate("discord", { failureRedirect: "/50
 	}
 })
 
-Router.get("/userdata", global.CheckAuth, (request, response) => {
+Router.get("/userdata", CheckAuth, (request, response) => {
 	response.send(Object.entries(request.user))
 })
 
-Router.get("/logout", global.CheckAuth, (request, response) => {
+Router.get("/logout", CheckAuth, (request, response) => {
 	request.session.destroy(() => {
 		request.logout()
 		response.redirect("/home")

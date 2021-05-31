@@ -12,7 +12,7 @@
 
     "Embed": {
         "EmbedColor": "BLUE",
-        "EmbedFooter": "^Donate | ©2021 Ch1llBlox",
+        "EmbedFooter": "^Donate | ^Invite",
         "SuccessColor": "#0099ff",
         "ErrorColor": "RED"
     },
@@ -29,9 +29,7 @@
     },
 
     "website": {
-        "BotOnline": false,
-        "baseURL": "https://ch2ll.herokuapp.com",
-        "failureURL": "https://ch2ll.herokuapp.com/505"
+        "BotOnline": false
     },
 
     "links": {
