@@ -4,13 +4,13 @@ exports.run = async (Bot, message, Arguments) => {
   const ID = Arguments[0]
 
   if (!ID || isNaN(ID)){
-    return message.lineReply(`Please provide a valid message ID.")
+    return message.lineReply(`Please provide a valid message ID.`)
   }
 
   const Giveaway = Bot.GiveawayManager.giveaways.find((giveaway) => giveaway.messageID === Arguments[0])
 
   if (!Giveaway){
-    return message.lineReply(`I couldn't find a giveaway with that message ID.")
+    return message.lineReply(`I couldn\'t find a giveaway with that message ID.`)
   }
 
   Bot.GiveawayManager.reroll(Giveaway.messageID).then(() => {
