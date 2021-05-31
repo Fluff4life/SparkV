@@ -85,8 +85,6 @@ module.exports = async (bot) => {
   }
 
   bot.Log = (Status, Type, Details) => {
-    const require("chalk") = require("require("chalk")")
-
     if (Status === "SUCCESS") {
       console.log(require("chalk").blue(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "ERROR") {

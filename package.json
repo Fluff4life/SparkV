@@ -20,7 +20,7 @@
     "npm": "*"
   },
   "dependencies": {
-    "@sentry/browser": "^6.3.6",
+    "@sentry/browser": "^6.5.0",
     "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
     "@sentry/tracing": "^6.3.1",
