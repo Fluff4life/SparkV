@@ -10,7 +10,7 @@ const Emotes = [
 exports.run = async (Bot, message, Arguments) => {
   const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10)
   const Leaderboard = await Levels.computeLeaderboard(Bot, RawLeaderboard, true)
-  const Leader = Leaderboard.map(data => `${Emotes[data.position - 1] || `${"🔹"}`} **Level ${data.level}** - ${data.username}#${data.discriminator}`)
+  const Leader = Leaderboard.map(data => `${Emotes[data.position - 1] || `${"🏅"}`} **Level ${data.level}** - ${data.username}#${data.discriminator}`)
 
   const LeaderboardEmbed = new Discord.MessageEmbed()
     .setTitle(`${message.guild.name}'s Level Leaderboard`)

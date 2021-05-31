@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message) => {
-  message.lineReplyNoMention("[Click here to view my website!](https://ch1ll.herokuapp.com/Ch1llBlox)")
+  message.lineReplyNoMention(`${Bot.Config.Emojis.success} | Here's my website! https://${process.env.baseURL}/bot)`)
 },
 
 

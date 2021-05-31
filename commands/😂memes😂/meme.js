@@ -41,48 +41,6 @@ exports.run = async (Bot, message) => {
         message.lineReplyNoMention(DankMemeEmbed)
       }
     })
-
-  /* 
-  async function Get(Subreddit) {
-    request(`https://ch1ll.herokuapp.com/api/meme?subreddit=${Subreddit}`)
-      .then(json => json.json())
-      .then(json => {
-        if (!json.code){
-          return message.lineReply("Unknown error occured. Please try again!")
-        } else if (json.code === 400){
-          return message.lineReply("Failed to get meme. Please try again!")
-        }
-
-          return message.lineReply({
-            embed: {
-              title: json.response.data.title,
-              description: json.response.data.description,
-              color: "#0099ff",
-
-              url: `https://reddit.com${json.response.data.permalink}`,
-
-              image: {
-                url: json.response.data.url,
-              },
-
-              footer: {
-                text: `👍${json.response.data.data.ups} | 💬${json.response.data.num_comments} | 😃u/${json.response.data.author} | r/${Subreddit}`,
-                icon_url: Bot.user.displayAvatarURL()
-              },
-            }
-          })
-      })
-  }
-
-const RandomSubreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
-
-message.channel.startTyping()
-
-await Get(RandomSubreddit)
-
-message.channel.stopTyping()
-
-*/
 },
 
 

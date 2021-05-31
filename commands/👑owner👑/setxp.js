@@ -1,37 +1,37 @@
-const Discord = require("discord.js");
-const Levels = require("discord-xp")
+const Discord = require(`discord.js`);
+const Levels = require(`discord-xp`)
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReply("❌Access denied.")
+    return message.lineReply(`${Bot.Config.Emojis.error} | Access denied.`)
   }
 
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
-  const Leveling = await Bot.dashboard.getVal("Leveling")
+  const Leveling = await Bot.dashboard.getVal(`Leveling`)
   const FormattedNumber = await Bot.FormatNumber(Arguments[1])
 
   if (!Leveling === true) {
-    return message.lineReply("Leveling is not enabled for this server. Please enable it by doing `(prefix)Leveling on`!")
+    return message.lineReply(`${Bot.Config.Emojis.error} | Leveling is not enabled for this server. Please enable it by doing \`(prefix)Leveling on\`!`)
   }
 
   try {
     await Levels.setXp(User.id, message.guild.id, Arguments[1]).then(() => {
-      message.lineReplyNoMention(`Successfully set ${User}'s XP to ${FormattedNumber}!`)
+      message.lineReplyNoMention(`${Bot.Config.Emojis.success} | Successfully set ${User}'s XP to ${FormattedNumber}!`)
     })
   } catch (err) {
     console.error(err)
 
-    message.lineReplyNoMention(`Error setting ${User}'s XP to ${FormattedNumber}.`)
+    message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Error setting ${User}'s XP to ${FormattedNumber}.`)
   }
 },
 
 exports.config = {
-  name: "SetXP",
-  description: "Set XP.",
+  name: `SetXP`,
+  description: `Set XP.`,
   aliases: [],
-  usage: "<Ammount>",
-  category: "👑owner👑",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+  usage: `<Ammount>`,
+  category: `👑owner👑`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
   member_permissions: [],
   enabled: true,
   cooldown: 2.5

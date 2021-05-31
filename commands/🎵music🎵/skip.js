@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.voice.channel){
-    return message.lineReply("You must be in a __**voice channel**__ to use this command!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   } 
   
   let queue = await Bot.distube.getQueue(message)
@@ -12,9 +12,9 @@ exports.run = async (Bot, message, Arguments) => {
     
     message.lineReplyNoMention({
       embed: {
-        title: `Skipped Song`,
+        title: `${Bot.Config.Emojis.music} | Skipped Song`,
         description: `Skipped currently playing song.`,
-        color: "#0099ff",
+        color: `#0099ff`,
 
         fields: [
           {
@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
         ],
 
         thumbnail: {
-          url: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/YouTube.jpg"
+          url: `https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/YouTube.jpg`
         },
         
         footer: {
@@ -38,12 +38,12 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  name: "Skip",
-  description: "Skip to the next song in the queue.",
+  name: `Skip`,
+  description: `Skip to the next song in the queue.`,
   aliases: [],
-  usage: "",
-  category: "🎵music🎵",
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  usage: ``,
+  category: `🎵music🎵`,
+  bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`, `VIEW_CHANNEL`, `CONNECT`, `SPEAK`],
   member_permissions: [],
   enabled: true,
   cooldown: 5

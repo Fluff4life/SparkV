@@ -1,9 +1,9 @@
-const Discord = require("discord.js");
-const request = require("node-fetch");
+const Discord = require(`discord.js`);
+const request = require(`node-fetch`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments) {
-    return message.lineReply("Next time, respond with the ID of the game lmao.")
+    return message.lineReply(`${Bot.Config.Emojis.error} | Next time, respond with the ID of the game lmao.`)
   }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${Arguments}.json`)
@@ -22,16 +22,16 @@ exports.run = async (Bot, message, Arguments) => {
         .setTimestamp()
 
       message.lineReplyNoMention(Embed)
-    }).catch((err) => message.lineReply("An error occured!"))
+    }).catch((err) => message.lineReply(`${Bot.Config.Emojis.error} | An error occured!`))
 },
 
   exports.config = {
-    name: "GameDetails",
-    description: "I'll grab the details of any game for you.",
-    aliases: ["gd"],
-    usage: "<Game ID>",
-    category: "⚫roblox⚫",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    name: `GameDetails`,
+    description: `I'll grab the details of any game for you.`,
+    aliases: [`gd`],
+    usage: `<Game ID>`,
+    category: `⚫roblox⚫`,
+    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
     cooldown: 10

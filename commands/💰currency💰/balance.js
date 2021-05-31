@@ -1,10 +1,10 @@
-const Discord = require("discord.js");
+const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || message.author
 
   if (!User) {
-    return message.lineReply("Please say a person to rob.")
+    return message.lineReply(`${Bot.Config.Emojis.error} | Please say a person to rob.`)
   }
 
   var Ch1llBucks = await Bot.Database.get(`UserData.${User.id}.ch1llbucks`)
@@ -35,12 +35,12 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
   exports.config = {
-    name: "Balance",
-    description: "View your balance.",
-    aliases: ["bal"],
-    usage: "<optional user>",
-    category: "💰currency💰",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    name: `Balance`,
+    description: `View your balance.`,
+    aliases: [`bal`],
+    usage: `<optional user>`,
+    category: `💰currency💰`,
+    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
     cooldown: 2

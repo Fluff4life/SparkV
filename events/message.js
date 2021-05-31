@@ -1,25 +1,25 @@
-const Discord = require("discord.js");
-const Levels = require("discord-xp");
-const fetch = require("node-fetch");
-const AntiSwearPackage = require("anti-swear-words-packages-discord");
-const { configureScope } = require("@sentry/node");
+const Discord = require(`discord.js`);
+const Levels = require(`discord-xp`);
+const fetch = require(`node-fetch`);
+const AntiSwearPackage = require(`anti-swear-words-packages-discord`);
+const { configureScope } = require(`@sentry/node`);
 
 exports.run = async (Bot, message) => {
-  if (message.channel.type === "dm" || !message.channel.viewable || message.author.bot){
+  if (message.channel.type === `dm` || !message.channel.viewable || message.author.bot){
     return
   }
   
   const user = message.guild.members.cache.get(message.author.id);
-  const AntiURL = await Bot.dashboard.getVal(message.guild.id, "removelinks");
+  const AntiURL = await Bot.dashboard.getVal(message.guild.id, `removelinks`);
 
-  if (!AntiURL === "Disabled") {
-    if (!user.hasPermission("MANAGE_MESSAGES") && Bot.isURL(message.content)) {
-      if (AntiURL === "Enabled") {
+  if (!AntiURL === `Disabled`) {
+    if (!user.hasPermission(`MANAGE_MESSAGES`) && Bot.isURL(message.content)) {
+      if (AntiURL === `Enabled`) {
         try {
           message.delete();
         } catch (err) {
           message
-            .lineReplyNoMention(Bot.Config.Responses.InvalidPermisions.URL.replace("{author}", message.author))
+            .lineReplyNoMention(Bot.Config.Responses.InvalidPermisions.URL.replace(`{author}`, message.author))
             .then((m) => m.delete({ timeout: 1000 }));
         }
       }
@@ -30,14 +30,14 @@ exports.run = async (Bot, message) => {
       .then((m) => m.delete({ timeout: 1000 }));
   }
 
-  const AntiSwear = await Bot.dashboard.getVal(message.guild.id, "removebadwords");
+  const AntiSwear = await Bot.dashboard.getVal(message.guild.id, `removebadwords`);
 
-  if (AntiSwear === "Enabled") {
-    if (!user.hasPermission("MANAGE_MESSAGES")) {
+  if (AntiSwear === `Enabled`) {
+    if (!user.hasPermission(`MANAGE_MESSAGES`)) {
       AntiSwearPackage(Bot, message, {
         warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
-        muteRole: "Muted",
-        ignoreWord: ["hello"],
+        muteRole: `Muted`,
+        ignoreWord: [`hello`],
         muteCount: 3,
         kickCount: 6,
         banCount: 12,
@@ -45,19 +45,19 @@ exports.run = async (Bot, message) => {
     }
   }
 
-  const AntiSpam = await Bot.dashboard.getVal(message.guild.id, "removerepeatedtext");
+  const AntiSpam = await Bot.dashboard.getVal(message.guild.id, `removerepeatedtext`);
 
-  if (AntiSpam === "Enabled") {
-    if (!message.channel.name.startsWith("spam") && !message.channel.name.endsWith("spam")) {
+  if (AntiSpam === `Enabled`) {
+    if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
       Bot.AntiSpam.message(message);
     }
   }
 
-  const Leveling = await Bot.dashboard.getVal(message.guild.id, "leveling");
+  const Leveling = await Bot.dashboard.getVal(message.guild.id, `leveling`);
 
-  if (Leveling === "Enabled") {
-    let MaxXP = await Bot.dashboard.getVal(message.guild.id, "leveling_maxxp");
-    let MinXP = await Bot.dashboard.getVal(message.guild.id, "leveling_minxp");
+  if (Leveling === `Enabled`) {
+    let MaxXP = await Bot.dashboard.getVal(message.guild.id, `leveling_maxxp`);
+    let MinXP = await Bot.dashboard.getVal(message.guild.id, `leveling_minxp`);
 
     if (isNaN(MaxXP)) {
       MaxXP = 25;
@@ -71,17 +71,18 @@ exports.run = async (Bot, message) => {
     const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP);
 
     if (HasLeveledUp) {
-      const User = await Levels.fetch(message.author.id, message.guild.id);
+      const User = await Levels.fetch(message.author.id, message.guild.id)
+      const Level = await Bot.FormatNumber(User.level)
 
-      message.lineReplyNoMention(Bot.Config.Responses.LevelUpMessage.replace("{author}", message.author).replace("{level}"));
+      message.lineReplyNoMention(Bot.Config.Responses.LevelUpMessage.replace(`{author}`, message.author).replace(`{level}`, Level));
     }
   }
 
-  const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix");
-  const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot");
+  const Prefix = await Bot.dashboard.getVal(message.guild.id, `Prefix`);
+  const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`);
 
   if (!message.content.startsWith(Prefix)) {
-    if (ChatBot.toLowerCase() === "message") {
+    if (ChatBot.toLowerCase() === `message`) {
       return ActivateChatBot(message);
     }
   }
@@ -93,17 +94,17 @@ exports.run = async (Bot, message) => {
     if (commandfile) {
       return HandleCommand(Bot, message, args, command, commandfile)
     } else {
-      const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
+      const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
 
-      if (ChatBot.toLowerCase() === "mention") {
+      if (ChatBot.toLowerCase() === `mention`) {
         return ActivateChatBot(message)
       }
     }
   } else {
-    const Prefix = await Bot.dashboard.getVal(message.guild.id, "Prefix")
-    const ChatBot = await Bot.dashboard.getVal(message.guild.id, "ChatBot")
+    const Prefix = await Bot.dashboard.getVal(message.guild.id, `Prefix`)
+    const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
 
-    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === "message") {
+    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === `message`) {
       return ActivateChatBot(message)
     }
 
@@ -127,12 +128,12 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   if (process.env.UserBlacklist.includes(message.author.id)) {
     try {
       return message.author
-        .send("❗ Uh oh! Looks like you're banned from using Ch1llBlox. Think this is a mistake? You may appeal here.")
+        .send(`${Bot.Config.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
         .then(() => {
-          message.react("❌");
+          message.react(Bot.Config.Emojis.Error);
         });
     } catch {
-      message.react("❌");
+      message.react(Bot.Config.Emojis.Error);
     }
   }
 
@@ -140,7 +141,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const BotPermisions = message.channel.permissionsFor(Bot.user);
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace("{permission}", commandfile.config.member_permissions));
+      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace(`{permission}`, commandfile.config.member_permissions));
     }
   }
 
@@ -148,21 +149,21 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const AuthorPermisions = message.channel.permissionsFor(message.author);
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace("{permission}", commandfile.config.member_permissions));
+      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace(`{permission}`, commandfile.config.member_permissions));
     }
   }
 
   if (!commandfile.config.enabled) {
-    return message.lineReply("This command is currently disabled! Please try again later.");
+    return message.lineReply(`${Bot.Config.Emojis.error} | This command is currently disabled! Please try again later.`);
   }
 
-  const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, "MusicEnabled");
-  const Leveling = await Bot.dashboard.getVal(message.guild.id, "leveling");
+  const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, `MusicEnabled`);
+  const Leveling = await Bot.dashboard.getVal(message.guild.id, `leveling`);
 
-  if (commandfile.config.category === "🎵music🎵" && MusicEnabled === "Disabled") {
-    return message.lineReply("This command is disabled by the server owner.");
-  } else if (commandfile.config.category === "💫leveling💫" && Leveling === "Disabled") {
-    return message.lineReply("This command is disabled by the server owner.");
+  if (commandfile.config.category === `🎵music🎵` && MusicEnabled === `Disabled`) {
+    return message.lineReply(`${Bot.Config.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`);
+  } else if (commandfile.config.category === `💫leveling💫` && Leveling === `Disabled`) {
+    return message.lineReply(`${Bot.Config.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`);
   }
 
   if (!Bot.cooldowns.has(commandfile.config.name)) {
@@ -181,10 +182,10 @@ async function HandleCommand(Bot, message, args, command, commandfile){
 
       return message.lineReply({
         embed: {
-          title: `Whoa there ${message.author.username}!`,
+          title: `${Bot.Config.Emojis.error} | Whoa there ${message.author.username}!`,
           description: `Please wait ${TimeLeft} more seconds to use that command again.`,
           thumbnail: message.author.avatarURL,
-          color: "#0099ff",
+          color: `#0099ff`,
           footer: {
             text: Bot.Config.Embed.EmbedFooter,
             icon_url: Bot.user.displayAvatarURL(),
@@ -203,26 +204,26 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     }
  
     await commandfile.run(Bot, message, args, command).then(async () => {
-      const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, "deletecommandusage");
+      const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
 
-      if (DeleteUsage === "Enabled") {
+      if (DeleteUsage === `Enabled`) {
         message.delete().catch(() => { });
       }
     });
   } catch (err) {
-    const AnnonymousUser = "Annonymous";
+    const AnnonymousUser = `Annonymous`;
 
     configureScope((scope) => {
       scope.setUser({
         AnnonymousUser,
       });
 
-      scope.setTag("Command", commandfile.config.name);
-      scope.setTag("CurrentPing", Bot.ws.ping);
-      scope.setTag("GuildType", message.channel.type);
+      scope.setTag(`Command`, commandfile.config.name);
+      scope.setTag(`CurrentPing`, Bot.ws.ping);
+      scope.setTag(`GuildType`, message.channel.type);
     });
 
-    message.lineReplyNoMention("❌ Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!");
+    message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`);
   }
 }
 
@@ -236,22 +237,22 @@ async function ActivateChatBot(message) {
         return;
       }
 
-      const APIMessage = body.message.replace("CleverChat", "Ch1llBlox");
+      const APIMessage = body.message.replace(`CleverChat`, `Ch1llBlox`);
       const APIEmbed = new Discord.MessageEmbed()
-        .setTitle("Ch1llBlox")
+        .setTitle(`Ch1llBlox`)
         .setDescription(APIMessage)
         .setFooter(`NEVER send any personal information to Ch1llBlox! • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
         .setColor(Bot.Config.Embed.EmbedColor)
 
       if (Bot.StatClient){
-        Bot.StatClient.postCommand("ChatBot", message.author.id)
+        Bot.StatClient.postCommand(`ChatBot`, message.author.id)
       }
 
       message.lineReplyNoMention(APIEmbed)
     }).catch((err) => {
       console.error(err);
 
-      return message.lineReply("Wha- what? Something went wrong.");
+      return message.lineReply(`${Bot.Config.Emojis.error} | Wha- what? Something went wrong.`);
     });
 
   message.channel.stopTyping(true);

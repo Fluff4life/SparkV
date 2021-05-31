@@ -1,10 +1,10 @@
-const Discord = require("discord.js");
-const fetch = require("node-fetch")
-const path = require("path")
-const Canvas = require("canvas");
+const Discord = require(`discord.js`);
+const fetch = require(`node-fetch`)
+const path = require(`path`)
+const Canvas = require(`canvas`);
 
 const GenerateQuestion = async () => {
-  fetch("https://jservice.io/api/random")
+  fetch(`https://jservice.io/api/random`)
     .then(response => response.json())
     .then(body => {
       return body.body
@@ -52,15 +52,15 @@ const WrapText = async (ctx, text, maxWidth) => {
 
 const GenerateClueCard = async (Question) => {
   const canva = Canvas.createCanvas(1280, 720)
-  const ctx = canva.getContext("2d")
+  const ctx = canva.getContext(`2d`)
 
-  ctx.fillStyle = "#4169e1"
+  ctx.fillStyle = `#4169e1`
   ctx.fillRect(0, 0, canva.width, canva.height)
-  ctx.textAlign = "center"
-  ctx.textBaseline = "top"
-  ctx.fillStyle = "top"
-  ctx.fillStyle = "white"
-  ctx.font = "900px"
+  ctx.textAlign = `center`
+  ctx.textBaseline = `top`
+  ctx.fillStyle = `top`
+  ctx.fillStyle = `white`
+  ctx.font = `900px`
 
   const Lines = WrapText(ctx, Question.toUpperCase(), 813)
   const TopMost = (canva.height / 2) - (((Lines.length * 52) /2) + ((20 * (Lines.length - 1)) / 2))
@@ -68,9 +68,9 @@ const GenerateClueCard = async (Question) => {
   for (let i = 0; i < Lines.length; i++){
     const Height = TopMost + ((52 + 20) * i)
 
-    ctx.fillStyle = "black"
+    ctx.fillStyle = `black`
     ctx.fillText(Lines[i], (canva.width / 2) + 6, Height + 6)
-    ctx.fillStyle = "white"
+    ctx.fillStyle = `white`
     ctx.fillText(Lines[i], canva.width / 2, Height)
   }
 
@@ -86,17 +86,17 @@ exports.run = async (Bot, message, Arguments) => {
       Connection = message.guild ? await Channel.join() : null
 
       if (Connection){
-        Connection.play(path.join(__dirname, "..", "..", "assets", "sounds", "thinking.mp3"))
+        Connection.play(path.join(__dirname, `..`, `..`, `assets`, `sounds`, `thinking.mp3`))
       }
     }
   } catch(err){
     console.error(err)
 
-    return message.lineReply("Uh oh! Something went wrong. Please try again later or leave the VC.")
+    return message.lineReply(`Uh oh! Something went wrong. Please try again later or leave the VC.`)
   }
 
   const Question = await GenerateQuestion()
-  const ClueCard = await GenerateClueCard(Question.question.replace(/<\/?i>/gi, ""))
+  const ClueCard = await GenerateClueCard(Question.question.replace(/<\/?i>/gi, ``))
 
   const Category = new Discord.MessageEmbed()
     .setTitle(Question.category.title.toUpperCase())
@@ -117,7 +117,7 @@ exports.run = async (Bot, message, Arguments) => {
     Channel.leave()
   }
 
-  const Answer = Question.answer.replace(/<\/?i>/gi, "*")
+  const Answer = Question.answer.replace(/<\/?i>/gi, `*`)
 
   if (!Messages.size){
     return message.lineReply(`**Times up! the answer was ${Answer}.**`)
@@ -128,19 +128,19 @@ exports.run = async (Bot, message, Arguments) => {
     .toLowerCase() === Answer.toLocaleLowerCase()
 
   if (Won){
-    return message.lineReply("🎉 Correct!")
+    return message.lineReply(`🎉 Correct!`)
   } else {
     return message.lineReply(`❌ Wrong! The answer was ${Answer}.`)
   }
 },
 
   exports.config = {
-    name: "Trivia",
-    description: "Play a game of trivia! For the maximum amount of enjoyment, join a VC with your friends.",
-    aliases: ["questions"],
-    usage: "",
-    category: "🎲games🎲",
-    bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL"],
+    name: `Trivia`,
+    description: `Play a game of trivia! For the maximum amount of enjoyment, join a VC with your friends.`,
+    aliases: [`questions`],
+    usage: ``,
+    category: `🎲games🎲`,
+    bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
     cooldown: 60

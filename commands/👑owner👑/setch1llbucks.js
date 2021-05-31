@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReply("❌Access denied.")
+    return message.lineReply(`${Bot.Config.Emojis.error} | Access denied.`)
   }
 
   const User = message.mentions.users.first()
@@ -14,16 +14,16 @@ exports.run = async (Bot, message, Arguments) => {
 
   await Bot.Database.set(`${User.id}.ch1llbucks`, parseInt(Arguments[1]))
 
-  message.lineReplyNoMention(`Success.`)
+  message.lineReplyNoMention(`${Bot.Config.Emojis.success} | Success!`)
 },
 
 exports.config = {
-  name: "SetCh1llBucks",
-  description: "Set someone's Ch1llBucks!",
+  name: `SetCh1llBucks`,
+  description: `Set someone's Ch1llBucks!`,
   aliases: [],
-  usage: "<user> <ammount>",
-  category: "👑owner👑",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  usage: `<user> <ammount>`,
+  category: `👑owner👑`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
   member_permissions: [],
   enabled: true,
   cooldown: 15

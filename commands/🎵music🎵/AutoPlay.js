@@ -2,15 +2,15 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments, Command) => {
   if (!message.member.voice.channel){
-    return message.lineReply("You must be in a __**voice channel**__ to use this command!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
   if (!Bot.distube.isPlaying(message)){
-    return message.lineReply("A song must be playing to use this command!").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
   let Mode = Bot.distube.toggleAutoplay(message)
-  message.lineReplyNoMention("Okay, I just set AutoPlay " + (Mode ? "On" : "Off") + ".").then(m => m.delete({ timeout: 5000 }))
+  message.lineReplyNoMention(`${Bot.Config.Emojis.music} | Okay, I just set AutoPlay ` + (Mode ? "On" : "Off") + ".").then(m => m.delete({ timeout: 5000 }))
 },
 
 exports.config = {

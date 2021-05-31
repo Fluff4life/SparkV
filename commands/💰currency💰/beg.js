@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Ammount = RandomAmmount * Multiplier
 
   await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Ammount)
-  message.lineReplyNoMention(`You begged and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
+  message.lineReplyNoMention(`${Bot.Config.Emojis.success} | You begged and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
 },
 
 exports.config = {

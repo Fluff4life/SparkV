@@ -1,18 +1,19 @@
-const Discord = require("discord.js");
-const fetch = require("node-fetch")
-const discordeasypages = require("discordeasypages")
+const Discord = require(`discord.js`);
+const fetch = require(`node-fetch`)
+const discordeasypages = require(`discordeasypages`);
+const LyrcisFinder = require(`lyrics-finder`)
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
-    return message.lineReply("Please supply the title of a song to search for.").then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Emojis.error} | Please supply the title of a song to search for.`).then(m => m.delete({ timeout: 5000 }))
   }
   
   Arguments = Arguments.join(" ")
 
-  const data = await fetch(`https://same-random-api.ml/lyrics?title=${encodeURI(Arguments)}`).then(res => res.json()).catch(() => { })
+  const data = LyrcisFinder(Arguments)
 
-  if (!data || data.error){
-    return message.lineReply(`I couldn't find the lyrics for **${Arguments}**!`)
+  if (!data){
+    return message.lineReply(`${Bot.Config.Emojis.error} | I couldn't find the lyrics for **${Arguments}**!`)
   }
 
   if (data.lyrics.length < 2000){
@@ -28,13 +29,13 @@ exports.run = async (Bot, message, Arguments) => {
     return message.lineReply(SongEmbed)
   }
 
-  const LyricsArray = data.lyrics.split("\n")
+  const LyricsArray = data.lyrics.split(`\n`)
   const LyricsSubArray = [""]
   const e = 0
 
   for (const line of LyricsArray){
     if (LyricsSubArray[e].length + line.length < 2000){
-      LyricsSubArray[e] = LyricsSubArray[e] + line + "\n"
+      LyricsSubArray[e] = LyricsSubArray[e] + line + `\n`
     } else {
       e++
       LyricsSubArray.push(line)
@@ -56,12 +57,12 @@ exports.run = async (Bot, message, Arguments) => {
 },
 
 exports.config = {
-  name: "Lyrics",
-  description: "Get any song's lyrics!",
-  aliases: ["song", "verse"],
-  usage: "<song title or URL>",
-  category: "🎵music🎵",
-  bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+  name: `Lyrics`,
+  description: `Get any song's lyrics!`,
+  aliases: [`song`, `verse`],
+  usage: `<song title or URL>`,
+  category: `🎵music🎵`,
+  bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`, `VIEW_CHANNEL`, `CONNECT`, `SPEAK`],
   member_permissions: [],
   enabled: true,
   cooldown: 5

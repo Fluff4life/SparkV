@@ -18,8 +18,9 @@
     },
 
     "Emojis": {
-        "success": "☑️",
-        "error": "❌"
+        "success": "<a:Check:819934065025220668>",
+        "error": "<a:Cross:819934065314234418>",
+        "music": "<a:PepeMusic:819933524525449256>"
     },
 
     "SystemsEnabled": {

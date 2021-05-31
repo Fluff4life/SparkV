@@ -6,7 +6,7 @@ exports.run = async (Bot, message) => {
     .then(res => res.json())
     .then(json => {
       const FunFactEmbed = new Discord.MessageEmbed()
-        .setTitle("Did you know?")
+        .setTitle(`${Bot.Config.Emojis.success} | Did you know?`)
         .setDescription(json.text)
         .setFooter(`Fun facts powered by https://uselessfacts.jsph.pl! • ${Bot.Config.Embed.EmbedFooter}`)
         .setColor(Bot.Config.Embed.EmbedColor)
