@@ -44,7 +44,7 @@
     },
 
     "Responses": {
-        "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proppor arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
+        "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proper arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
         "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
 
         "InvalidPermisions": {
