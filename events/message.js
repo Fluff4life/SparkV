@@ -96,7 +96,7 @@ exports.run = async (Bot, message) => {
     } else {
       const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
 
-      if (ChatBot.toLowerCase() === `mention`) {
+      if (ChatBot.toLowerCase() === `mention` && message.channel.type === "text") {
         return ActivateChatBot(message)
       }
     }
