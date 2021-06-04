@@ -9,7 +9,7 @@ Router.get("/", async (request, response) => {
 })
 
 Router.get("/jake", async (request, response) => {
-    Render(response, request, "site.ejs", {
+    Render(response, request, "showoff.ejs", {
         head: {
           SiteTitle: "Home - Jake",
           SiteDescription: "Jake is a self-taught coder. He knows html, css, javascript, lua and more!",

@@ -7,7 +7,7 @@ const CheckAuth = require("../CheckAuth")
 const Render = require("../Render")
 
 Router.get("/", async (request, response) => {
-  Render(response, request, "site.ejs", {
+  Render(response, request, "showoff.ejs", {
     head: {
       SiteTitle: "Home - Ch1llBlox",
       SiteDescription: "Ch1llBlox is a Discord Bot",
@@ -22,15 +22,15 @@ Router.get("/", async (request, response) => {
 
       Links: {
         link1: {
-          name: "Ch1llBlox",
-          icon: "fas fa-robot",
-          link: "#top",
-        },
-
-        link2: {
           name: "Home",
           icon: "fas fa-home",
           link: "/home",
+        },
+
+        link2: {
+          name: "Ch1llBlox",
+          icon: "fas fa-robot",
+          link: "#top",
         },
 
         link3: {

@@ -21,14 +21,14 @@ a {
 
 /* Top */
 .top#background {
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    z-index: -1;
-    top: 0px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /* Features Section */
@@ -110,59 +110,52 @@ div#featurebox:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-/* Pricing */
-.ribbon {
-  width: 150px;
-  height: 150px;
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  overflow: hidden;
+/* User Components */
+.avatar {
+  height: 48px;
+  width: 48px;
+  color: #fff;
+  background-color: #adb5bd;
+  display: inline-flex;
+  font-size: 1rem;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center
 }
 
-.ribbon::before, .ribbon::after {
-  position: absolute;
-  content: "";
-  z-index: -1;
-  display: block;
-  border: 7px solid #4606ac;
-  border-top-color: transparent;
-  border-left-color: transparent;
+.avatar img {
+  width: 100%;
+  border-radius: 50%;
 }
 
-.ribbon::before {
-  top: 0px;
-  right: 15px;
+.avatar .avatar-content {
+  display: inline-block;
+  margin-left: .75rem;
 }
 
-.ribbon::after {
-  bottom: 15px;
-  left: 0px;
+.avatar-lg {
+  height: 68px;
+  width: 68px;
+  font-size: .775rem;
 }
 
-.ribbon span {
-  position: absolute;
-  top: 30px;
-  right: 0;
-  transform: rotate(-45deg);
-  width: 200px;
-  background: skyblue;
-  padding: 10px 0;
-  color: white;
-  text-align: center;
-  font-size: 17px;
-  text-transform: uppercase;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+.avatar-sm {
+  height: 46px;
+  width: 46px;
+  font-size: .775rem;
 }
 
 /* Arvo Font */
 @font-face {
-  font-family: 'Arvo';
+  font-family: "Arvo";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v14/tDbM2oWUg0MKoZw1-LPK8w.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(https://fonts.gstatic.com/s/arvo/v14/tDbM2oWUg0MKoZw1-LPK8w.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
 }
 
 @media (max-width: 767px) {
@@ -172,4 +165,3 @@ div#featurebox:hover {
     font-size: 24px;
   }
 }
-  

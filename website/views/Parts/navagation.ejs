@@ -17,25 +17,48 @@
         <% }) %>
       </ul>
         <% if (user) { %>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--text-color); font-family: 'Arvo', serif">
-              <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon" style="margin-right: 0; display: inline-block; position: relative; width: 3rem; height: 3rem; text-align: center; border: #dee2e6; border-radius: 50%; background: #fff; line-height: 3rem; position: relative"> 
+            <a class="nav-link pr-0" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--text-color); font-family: 'Arvo', serif">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon"> 
+                </span>
+              </div>
             </a>
 
-            <div class="dropdown-menu dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown" style="background-color: white; position: absolute; font-size: .9rem; text-align: left; list-style: none; border: 1px solid rgba(0,0,0,0); border-radius: .25rem;">
-              <h3>KingCh1ll</h3>
+            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right aos-init aos-animate" aria-labelledby="userdropdown" style="top: 0px;left: 0px;position: absolute;z-index: 400;transform: translate3d(-125px, 75px, 0px);background: var(--secondary-color);border: transparent;" data-aos="fade-down">
+              <span class="avatar avatar-sm rounded-circle mx-auto d-block">
+                <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon"> 
+              </span>
+              
+              <div class="dropdown-header"><h5 class="text-center text-overflow text-white"><%- user.username %></h5></div>
 
-              <a class="dropdown-item" href="/users/571811686617710592/profile"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
-              <% if (BrandName === "Ch1llBlox") { %>
-                <a class="dropdown-item" href="/bot/dashboard">Dashboard</a>
-              <% } %>
+              <a href="/users/<%- user.id %>/profile" class="dropdown-item text-white text-center text-wrap">
+                <i class="fas fa-id-card"></i>
+                <span>Profile</span>
+              </a>
+
+              <a href="/settings" class="dropdown-item text-white text-center text-wrap">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+              </a>
+
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/api/logout" style="color: red"><a class="dropdown-item" href="/api/logout" style="color: red"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Sign Out</a>
+
+              <% if (BrandName === "Ch1llBlox") { %>
+                <a href="/bot/dashboard" class="dropdown-item text-white text-center text-wrap">
+                  <i class="far fa-user"></i>
+                  <span>Dashboard</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+              <% } %>
+
+              <a class="dropdown-item text-center text-wrap" href="/api/logout" style="color: red">Log Out</a>
             </div>
           </li>
         </ul>
-      </ul>
       <% } else { %>
       <div class="text-end">
         <a href="/api/login" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Login</a>

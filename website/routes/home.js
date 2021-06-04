@@ -5,7 +5,7 @@ const CheckAuth = require("../CheckAuth")
 const Render = require("../Render")
 
 Router.get("/", async (request, response) => {
-  Render(response, request, "site.ejs", {
+  Render(response, request, "showoff.ejs", {
     head: {
       SiteTitle: "Home - KingCh1ll",
       SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",

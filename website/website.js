@@ -52,12 +52,14 @@ const Database = ConnectDatabase(process.env.mongooseURL)
 global.Database = Database
 
 passport.serializeUser(async (user, done) => {
-  await Database.set(`WebsiteData.Users.${user.id}`, {
-    username: user.username,
-    tag: user.discriminator,
-    userid: user.id,
-    avatarid: user.avatar
-  })
+  if (user.provider === "discord") {
+    await Database.set(`WebsiteData.Users.${user.id}`, {
+      username: user.username,
+      tag: user.discriminator,
+      userid: user.id,
+      avatarid: user.avatar
+    })
+  }
 
   done(null, user)
 });
@@ -103,7 +105,7 @@ app.use("/api", require("./routes/api"));
 app.use((request, response, next) => {
   response.status(404)
 
-  Render(response, request, "site.ejs", {
+  Render(response, request, "error.ejs", {
     head: {
       SiteTitle: "404 - Not Found",
       SiteDescription: "Uh oh! Looks like the page you where looking for wasn't found. Dang man. KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
@@ -192,7 +194,7 @@ app.use((err, request, response, next) => {
   console.error("Website Error!", err.stack);
 
   response.status(500)
-  Render(response, request, "site.ejs", {
+  Render(response, request, "error.ejs", {
     head: {
       SiteTitle: "Home - KingCh1ll",
       SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",

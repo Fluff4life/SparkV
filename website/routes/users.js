@@ -6,22 +6,22 @@ const CheckAuth = require("../CheckAuth")
 const Render = require("../Render")
 
 Router.get("/", async (request, response) => {
-    response.redirect("/404?error=user_not_found")
+    response.redirect("/404?reason=user_not_found")
 })
 
 Router.get("/:userID", async (request, response) => {
   if (!request.params.userID){
-    response.redirect("404?error=user_not_found")
+    response.redirect("404?reason=user_not_found")
   }
 
   const userID = request.params.userID
 
-  response.redirect(`/${userID}/profile`)
+  response.redirect(`/users/${userID}/profile`)
 })
 
 Router.get("/:userID/profile", async (request, response) => {
   if (!request.params.userID){
-    response.redirect("404?error=invalid_arguments")
+    response.redirect("404?reason=invalid_arguments")
   }
 
   let User = await global.Database.get(`WebsiteData.Users.${request.params.userID}`)
@@ -38,18 +38,18 @@ Router.get("/:userID/profile", async (request, response) => {
       navagation: {
         BrandName: "Ch1ll",
         BrandLink: "#top",
-        BrandLogo: "/assets/images/ch1llblox.png",
+        BrandLogo: "/assets/images/kingch1ll.png",
   
         Links: {
           link1: {
-            name: "Ch1llBlox",
-            icon: "fas fa-robot",
+            name: "Home",
+            icon: "fas fa-home",
             link: "#top",
           },
   
           link2: {
-            name: "Home",
-            icon: "fas fa-home",
+            name: "Ch1llBlox",
+            icon: "fas fa-robot",
             link: "/home",
           },
   
@@ -81,7 +81,7 @@ Router.get("/:userID/profile", async (request, response) => {
       }
     });
   } else {
-    response.redirect("404?error=404_not_found")
+    response.redirect("404?reason=404_not_found")
   }
 })
 

@@ -35,11 +35,15 @@
     <div class="d-grid gap-2 col-4 mx-auto">
       <h1><%= guild.name %></h1>
       <hr>
+
       <form method="POST">
         <p class="h5" style="margin-bottom: 0.5rem; margin-top: 10px;">Prefix</p>
         <p style="font-style: italic;" class="disabled">err</p>
         <input type="text" class="form-control" name="prefix" value="<%= settings.prefix || "^" %>" placeholder="Your prefix for the server." autocomplete="off">
-        <br><button type="submit" class="btn btn-secondary text-white">Save Settings</button>
+        
+        <br>
+
+        <button type="submit" class="btn btn-secondary text-white">Save Settings</button>
       </form>
     </div>
   </div>
