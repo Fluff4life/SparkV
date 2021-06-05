@@ -14,9 +14,7 @@ Router.get("/:userID", async (request, response) => {
     response.redirect("404?reason=user_not_found")
   }
 
-  const userID = request.params.userID
-
-  response.redirect(`/users/${userID}/profile`)
+  response.redirect(`/users/${request.params.userID}/profile`)
 })
 
 Router.get("/:userID/profile", async (request, response) => {
@@ -44,13 +42,13 @@ Router.get("/:userID/profile", async (request, response) => {
           link1: {
             name: "Home",
             icon: "fas fa-home",
-            link: "#top",
+            link: "/home",
           },
   
           link2: {
             name: "Ch1llBlox",
             icon: "fas fa-robot",
-            link: "/home",
+            link: "/bot",
           },
   
           link3: {

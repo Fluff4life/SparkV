@@ -20,6 +20,24 @@
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--text-color); font-family: 'Arvo', serif">
+              <svg width="36" height="36" viewBox="0 0 24 24">
+                <path fill="currentColor" fill-rule="evenodd" d="M4 5.01C4 4.451 4.443 4 5.01 4h1.98C7.549 4 8 4.443 8 5.01v1.98C8 7.549 7.557 8 6.99 8H5.01C4.451 8 4 7.557 4 6.99V5.01zm0 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C8 13.549 7.557 14 6.99 14H5.01C4.451 14 4 13.557 4 12.99v-1.98zm6-6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C14 7.549 13.557 8 12.99 8h-1.98C10.451 8 10 7.557 10 6.99V5.01zm0 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98zm6-6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C20 7.549 19.557 8 18.99 8h-1.98C16.451 8 16 7.557 16 6.99V5.01zm0 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98zm-12 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C8 19.549 7.557 20 6.99 20H5.01C4.451 20 4 19.557 4 18.99v-1.98zm6 0c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98zm6 0c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98z"></path>
+              </svg>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right aos-init aos-animate" aria-labelledby="servicesdropdown" style="top: 0px;left: 0px;position: absolute;z-index: 400;transform: translate3d(-125px, 75px, 0px);background: var(--secondary-color);border: transparent;" data-aos="fade-down">
+              <div class="dropdown-header">
+                <h5 class="text-center text-overflow text-white">Services</h5>
+              </div>
+
+              <a href="/bot" class="dropdown-item text-white text-center text-wrap">
+                <i class="fas fa-robot"></i>
+                <span>Ch1llBlox</span>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link pr-0" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--text-color); font-family: 'Arvo', serif">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
                   <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon"> 
@@ -45,15 +63,6 @@
               </a>
 
               <div class="dropdown-divider"></div>
-
-              <% if (BrandName === "Ch1llBlox") { %>
-                <a href="/bot/dashboard" class="dropdown-item text-white text-center text-wrap">
-                  <i class="far fa-user"></i>
-                  <span>Dashboard</span>
-                </a>
-
-                <div class="dropdown-divider"></div>
-              <% } %>
 
               <a class="dropdown-item text-center text-wrap" href="/api/logout" style="color: red">Log Out</a>
             </div>

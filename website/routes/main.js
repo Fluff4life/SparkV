@@ -148,6 +148,8 @@ Router.get("/status", async (request, response) => {
     response.redirect("https://stats.uptimerobot.com/x84NBTJEkN")
 })
 
+Router.get("")
+
 /* Fix for wrong redirects */
 Router.get("/dashboard", async (request, response) => {
     response.redirect("/bot/dashboard")

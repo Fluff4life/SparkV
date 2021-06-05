@@ -7,17 +7,22 @@ console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading web
 // Librarys //
 const express = require("express");
 const session = require("express-session");
+const QuickMongo = require("QuickMongo")
 const ejs = require("ejs");
+
 const passport = require("passport");
-const DiscordPass = require("passport-discord")
-const QuickMongo = require("quickmongo")
+const DiscordStrategy = require("passport-discord")
+const FacebookStrategy = require("passport-facebook")
+const GoogleStrategy = require("passport-google-oauth")
+const InstagramStrategy = require("passport-instagram")
+const LocalStrategy = require("passport-local")
+const TwitterStrategy = require("passport-twitter")
 
 const path = require("path");
 const parser = require("body-parser");
 
-const { name, version } = require("../package.json");
 const Config = require("../globalconfig.json");
-const Render = require("../website/Render")
+const Render = require("../website/Render");
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
@@ -30,8 +35,8 @@ const server = app.listen(Config.Debug == true ? 3000 : process.env.PORT);
 const io = require("socket.io")(server)
 
 // Functions //
-const ConnectDatabase = (mongooseURL) => {
-  const Database = new QuickMongo.Database(mongooseURL)
+const InitDatabase = () => {
+  const Database = new QuickMongo.Database(process.env.mongooseURL)
 
   Database.on("ready", async () => {
     console.log("WEBSITE - WEBSITE DATABASE -> ONLINE")
@@ -44,37 +49,67 @@ const ConnectDatabase = (mongooseURL) => {
   return Database
 }
 
-// Code //
-console.log("-------- Loading Website --------");
-require("newrelic")
-
-const Database = ConnectDatabase(process.env.mongooseURL)
-global.Database = Database
-
-passport.serializeUser(async (user, done) => {
-  if (user.provider === "discord") {
-    await Database.set(`WebsiteData.Users.${user.id}`, {
-      username: user.username,
-      tag: user.discriminator,
-      userid: user.id,
-      avatarid: user.avatar
+const Auth = (type, token, tokenSecret, profile, done) => {
+  if (type === "discord") {
+    process.nextTick(async () => {
+      done(null, profile)
     })
+  } else if (type === "twitter") {
+    // Coming soon!
+  }
+}
+
+const InitStrategys = () => {
+  const DiscordStrat = {
+    clientID: "848685407189336075",
+    clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
+    callbackURL: `${Domain}/api/auth/discord/callback`,
+    scope: ["identify", "guilds"],
   }
 
+  const GoogleStat = {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: `${Domain}/api/auth/google/callback`
+  }
+
+  const TwitterStrat = {
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: `${Domain}/api/auth/twitter/callback`
+  }
+
+  try {
+    passport.use(new DiscordStrategy.Strategy(DiscordStrat, (token, tokenSecret, profile, done) => Auth("discord", token, tokenSecret, profile, done)))
+    // passport.use("twitter-authz", new TwitterStrategy(TwitterStrat, (token, tokenSecret, profile, done) => Auth("twitter", token, tokenSecret, profile, done)))
+  } catch (err) {
+    console.log(`Uh oh! An error occured. ${err}`)
+  }
+}
+
+// Code //
+console.log("-------- Loading Website --------");
+if (Config.Debug === false) {
+  require("newrelic")
+}
+
+const Database = InitDatabase()
+passport.serializeUser(async (user, done) => {
+  await Database.set(`WebsiteData.Users.${user.id}`, {
+    username: user.username,
+    tag: user.discriminator,
+    userid: user.id,
+    avatarid: user.avatar,
+    provider: user.provider
+  })
+
   done(null, user)
-});
+})
 
 passport.deserializeUser((obj, done) => done(null, obj));
 
-passport.use(new DiscordPass.Strategy({
-  clientID: "848685407189336075",
-  clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
-  callbackURL: `${Domain}/api/callback`,
-  scope: ["identify", "guilds"],
-}, (accessToken, refreshToken, profile, done) => {
-  process.nextTick(() => done(null, profile))
-}
-))
+InitStrategys()
+global.Database = Database
 
 app.use(session({
   secret: process.env.secretid,
@@ -141,7 +176,7 @@ app.use((request, response, next) => {
 
     // Top //
     top: {
-      BrandName: "404 - Not Found",
+      BrandName: `404 - Not Found`,
       BrandLogo: "/assets/images/404.png",
 
       buttons: {

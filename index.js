@@ -65,12 +65,12 @@ process.on("unhandledRejection", async (err, promise) => {
 })
 
 process.on("warning", (warning) => {
-    LogError("Warning", err)
+    LogError("Warning", warning)
     console.log(require("chalk").yellow(`WARNING => ${warning.name} => ${warning.message}.`))
 })
 
 process.on("exit", (code) => {
-    LogError("Fatal", err)
+    LogError("Fatal", code)
     console.log(require("chalk").red(`EXIT => Process exited with code ${code}.`))
 })
 
@@ -138,7 +138,7 @@ if (Config.Debug) {
             }, (Config.sharding.ShardLifeTime + 5) * 1000)
         }
     } else {
-        const Bot = require("./ch1llblox")
+        require("./ch1llblox")
 
         console.log(require("chalk").yellow("WARNING - SHARDING DISABLED"))
     }

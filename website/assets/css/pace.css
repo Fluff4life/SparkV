@@ -1,11 +1,9 @@
 .pace {
 	-webkit-pointer-events: none;
-	pointer-events: none;
-
 	-webkit-user-select: none;
 	-moz-user-select: none;
+	pointer-events: none;
 	user-select: none;
-
 	overflow: hidden;
 	position: fixed;
 	top: 0;
