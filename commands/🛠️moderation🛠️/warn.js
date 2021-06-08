@@ -2,7 +2,7 @@ const { MessageEmbed  } = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(` `) || User.user.username === Arguments[0])
-  const Reason = Arguments.join(` `).slice(22) || `no reason provided.`
+  const Reason = Arguments.join(` `).slice(22) || `No reason provided.`
 
   if (!Arguments[0]){
     return message.lineReply(`${Bot.Config.Emojis.error} | Please mention someone to warn!`).then(m => m.delete({ timeout: 5000 }))
@@ -21,7 +21,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const VerificationEmbed = new MessageEmbed()
-  .setTitle(`Convermination Prompt`)
+  .setTitle(`Confirmation Prompt`)
   .setDescription(`Are you sure you want to do this?`)
   .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Embed.EmbedFooter}`)
   .setColor(Bot.Config.Embed.EmbedColor)
