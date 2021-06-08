@@ -14,7 +14,13 @@ exports.run = async (Bot, message, args) => {
       Title: "Command Spamming",
       Description: "Spamming commands is forbidden. Spamming Ch1llBlox's commands will result with a warning. If continued, a complete wipe of your data and a ban from Ch1llBlox"
     })
-
+    
+     Bot.Rules.set(3, {
+      Title: "Alternate Accounts",
+      Description: "Using alternate accounts to earn yourself money is forbidden. If continued (with found proof), your data will be wiped and you will be banned from Ch1llBlox."
+    })
+   
+    
     SetRules = true
   }
 
