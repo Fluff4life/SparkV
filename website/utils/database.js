@@ -1,4 +1,4 @@
-const QuickMongo = require("QuickMongo")
+const QuickMongo = require("quickmongo")
 let Database
 
 const StartDatabase = (mongooseURL) => {
