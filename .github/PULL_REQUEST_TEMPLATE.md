@@ -1,14 +1,11 @@
-**Changes & Why it Should be Merged**
-*Write Here!*
-
-**Status**
-
-- [ ] Code changes have been tested
-- [ ] Code changes work without errors
+**Changes**
+*Breif description here*
 
 **Content of Pull Request**
+- [] This pull request makes changes
+  - [] This pull request adds more functionality
+    *To do list here if not comeplete*
+- [] Production Ready
 
-- [ ] This pull request makes changes
-  - [ ] This pull request adds more functinaliy
-- [ ] This pull request adds a dashboard to Ch1llBlox
-- [ ] This pull request **only** includes non-code changes. (Ex: README.md)
+**Does this pull request **only** includes non-code changes. (Ex: README.md)?**
+*Yes or no*

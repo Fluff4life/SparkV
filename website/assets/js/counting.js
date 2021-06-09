@@ -1,8 +1,8 @@
-var hT = jQuery('.love_counter').offset().top,
-    hH = jQuery('.love_counter').outerHeight(),
+var hT = jQuery('.counter').offset().top,
+    hH = jQuery('.counter').outerHeight(),
     wH = jQuery(window).height();
 if (jQuery(window).scrollTop() > hT + hH - wH) {
-    jQuery('.love_count').each(function () {
+    jQuery('.counter').each(function () {
         var $this = jQuery(this);
         jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
             duration: 2000,

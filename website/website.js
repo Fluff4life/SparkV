@@ -8,73 +8,34 @@ console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading web
 const express = require("express");
 const session = require("express-session");
 const ejs = require("ejs");
+
 const passport = require("passport");
-const DiscordPass = require("passport-discord")
-const QuickMongo = require("quickmongo")
 
 const path = require("path");
 const parser = require("body-parser");
 
-const { name, version } = require("../package.json");
 const Config = require("../globalconfig.json");
-const Render = require("../website/Render")
+const Render = require("./utils/Render");
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
 const Views = path.resolve(`${MainDir}${path.sep}views`);
-const Domain = Config.Debug === true ? "http://localhost:3000" : `https://${process.env.baseURL}`;
 
 // App //
 const app = express();
 const server = app.listen(Config.Debug == true ? 3000 : process.env.PORT);
 const io = require("socket.io")(server)
 
-// Functions //
-const ConnectDatabase = (mongooseURL) => {
-  const Database = new QuickMongo.Database(mongooseURL)
-
-  Database.on("ready", async () => {
-    console.log("WEBSITE - WEBSITE DATABASE -> ONLINE")
-  })
-
-  Database.on("error", async (err) => {
-    Bot.Log("ERROR", "DATABASE ERROR", err)
-  })
-
-  return Database
-}
-
 // Code //
 console.log("-------- Loading Website --------");
-require("newrelic")
+if (Config.Debug === false) {
+  require("newrelic")
+}
 
-const Database = ConnectDatabase(process.env.mongooseURL)
+const Database = require("./utils/database")(process.env.mongooseURL)
 global.Database = Database
 
-passport.serializeUser(async (user, done) => {
-  if (user.provider === "discord") {
-    await Database.set(`WebsiteData.Users.${user.id}`, {
-      username: user.username,
-      tag: user.discriminator,
-      userid: user.id,
-      avatarid: user.avatar
-    })
-  }
-
-  done(null, user)
-});
-
-passport.deserializeUser((obj, done) => done(null, obj));
-
-passport.use(new DiscordPass.Strategy({
-  clientID: "848685407189336075",
-  clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
-  callbackURL: `${Domain}/api/callback`,
-  scope: ["identify", "guilds"],
-}, (accessToken, refreshToken, profile, done) => {
-  process.nextTick(() => done(null, profile))
-}
-))
+require("./utils/passport")
 
 app.use(session({
   secret: process.env.secretid,
@@ -114,15 +75,15 @@ app.use((request, response, next) => {
 
     // Navigation //
     navagation: {
-      BrandName: "KingCh1ll",
-      BrandLink: "#top",
+      BrandName: "Ch1ll",
+      BrandLink: "/home",
       BrandLogo: "/assets/images/kingch1ll.png",
 
       Links: {
         link1: {
           name: "Home",
           icon: "fas fa-home",
-          link: "#top",
+          link: "/home",
         },
 
         link2: {
@@ -141,7 +102,7 @@ app.use((request, response, next) => {
 
     // Top //
     top: {
-      BrandName: "404 - Not Found",
+      BrandName: `404 - Not Found`,
       BrandLogo: "/assets/images/404.png",
 
       buttons: {

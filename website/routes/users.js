@@ -2,8 +2,8 @@ const Express = require("express")
 
 const Router = Express.Router()
 
-const CheckAuth = require("../CheckAuth")
-const Render = require("../Render")
+const CheckAuth = require("../utils/CheckAuth")
+const Render = require("../utils/Render")
 
 Router.get("/", async (request, response) => {
     response.redirect("/404?reason=user_not_found")
@@ -14,9 +14,7 @@ Router.get("/:userID", async (request, response) => {
     response.redirect("404?reason=user_not_found")
   }
 
-  const userID = request.params.userID
-
-  response.redirect(`/users/${userID}/profile`)
+  response.redirect(`/users/${request.params.userID}/profile`)
 })
 
 Router.get("/:userID/profile", async (request, response) => {
@@ -41,23 +39,59 @@ Router.get("/:userID/profile", async (request, response) => {
         BrandLogo: "/assets/images/kingch1ll.png",
   
         Links: {
-          link1: {
-            name: "Home",
-            icon: "fas fa-home",
-            link: "#top",
+          learn: {
+            name: "Learn",
+            icon: "fas fa-book",
+            type: "dropdown",
+  
+            links: {
+              hyperlink1: {
+                name: "About Us",
+                icon: "fas fa-openbook",
+                link: "/about",
+              },
+            }
           },
   
-          link2: {
-            name: "Ch1llBlox",
-            icon: "fas fa-robot",
-            link: "/home",
+          products: {
+            name: "Products",
+            icon: "fas fa-award",
+            type: "dropdown",
+  
+            links: {
+              hyperlink1: {
+                name: "Home",
+                icon: "fas fa-home",
+                link: "/home",
+              },
+  
+              hyperlink2: {
+                name: "Ch1llBlox",
+                icon: "fas fa-robot",
+                link: "/bot",
+              },
+  
+              hyperlink3: {
+                name: "Ch1ll Studios",
+                icon: "fas fa-snowflake",
+                link: "/ch1llstudios",
+              }
+            }
           },
   
-          link3: {
-            name: "Ch1ll Studios",
-            icon: "fas fa-snowflake",
-            link: "/ch1llstudios",   
-          }
+          support: {
+            name: "Support",
+            icon: "far fa-question-circle",
+            type: "dropdown",
+  
+            links: {
+              hyperlink1: {
+                name: "err",
+                icon: "fas fa-home",
+                link: "#top",
+              },
+            }
+          },
         },
       },
   

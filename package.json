@@ -1,6 +1,6 @@
 {
   "name": "ch1llblox",
-  "version": "5",
+  "version": "5.1",
   "description": "...",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "author": "KingCh1ll#3616",
   "license": "MIT",
   "engines": {
-    "node": "14.x",
+    "node": "16.x",
     "npm": "*"
   },
   "dependencies": {
@@ -29,7 +29,6 @@
     "anti-swear-words-packages-discord": "^1.1.43",
     "body-parser": "^1.19.0",
     "botdash.pro": "^1.0.2",
-    "bufferutil": "^4.0.3",
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "chalk": "^4.1.1",
@@ -43,6 +42,7 @@
     "distube": "^2.8.13",
     "dotenv": "^8.6.0",
     "ejs": "^3.1.6",
+    "ejs-lint": "^1.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "ffmpeg-static": "^4.2.7",
@@ -51,12 +51,12 @@
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
-    "newrelic": "^7.4.0",
     "noblox.js": "^4.8.5",
     "node-fetch": "^2.6.1",
     "npm": "^7.10.0",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "quickmongo": "^3.0.2",
     "serve-favicon": "^2.5.0",
