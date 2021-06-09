@@ -1,31 +1,66 @@
+<!-- Navagation -->
 <header>
-  <nav class="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light p-3 text-white" style="color: var(--main-color); background: var(--main-color); top: 0px">
-    <a class="navbar-brand py-0" href="<%- BrandLink %>" style="color: var(--text-color); font-family: 'Arvo', serif;" target="_blank">
-      <img src="<%- BrandLogo %>" alt="" width="30" height="30" class="d-inline-block align-text-top"><%- BrandName %>
-    </a>
+  <nav class="navbar navbar-expand-lg fixed-top text-white auto-hiding-navbar" style="color: var(--main-color); background: var(--main-color); top: 0px">
+    <div class="container">
+      <a class="navbar-brand mt-2 mt-lg-0" href="<%- BrandLink %>" style="color: var(--text-color); font-family: 'Arvo', serif;" target="_blank">
+        <img src="<%- BrandLogo %>" alt="<%- BrandName %> Logo" width="36" height="36" class="d-inline-block align-text-top" loading="lazy"><%- BrandName %>
+      </a>
 
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <!-- Navbar Toggler for Mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarToggler" aria-controls="NavbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
     </button>
 
-    <div class="navbar-collapse collapse" id="navbar-content">
+    <div class="navbar-collapse collapse" id="NavbarToggler">
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 text-small">
-        <% Object.entries(Links).forEach(link => { %>
-          <li class="nav-item">
-            <a class="nav-link text-white fw-bold" href="<%- link[1].link %>" style="color: var(--text-color);"><i class="<%- link[1].icon %> bi d-block mx-auto mb-1"></i><%- link[1].name %></a>
+      
+      <% Object.entries(Links).forEach(link => { %>
+       <% if (link[1].type === "dropdown") { %>
+        <li class="nav-item dropdown me-3 me-lg-1">
+            <div class="dropdown">
+              <div class="dropdown-toggle px-2" type="button" id="dropdown_<%- link[1].name %>" data-bs-toggle="dropdown" aria-expanded="false">
+                <span><i class="<%- link[1].icon %> bi d-block mx-auto mb-1 fa-lg text-center text-wrap"></i><%- link[1].name %></span>
+              </div>
+  
+              <ul class="dropdown-menu" aria-labelledby="dropdown_<%- link[1].name %>" style="background-color: var(--secondary-color);">
+                <% Object.entries(link[1].links).forEach(dropdownElements => { %>
+                  <a href="<%- dropdownElements[1].link %>" class="dropdown-item text-white text-center text-wrap">
+                    <span><i class="<%- dropdownElements[1].icon %> bi d-block mx-auto mb-1 fa-lg"></i><%- dropdownElements[1].name %></span>
+                  </a>
+                <% }) %>
+              </ul>
+            </div>
           </li>
-        <% }) %>
+        <% } else if (link[1].type === "link") { %>
+        <li class="nav-item me-3 me-lg-1 active">
+          <a class="nav-link fw-bold text-center text-wrap" href="<%- link[1].link %>" style="color: var(--text-color);">
+            <span><i class="<%- link[1].icon %> bi d-block mx-auto mb-1 fa-lg"></i><%- link[1].name %></span>
+          </a>
+        </li>
+      <% } %>
+      <% }) %>
       </ul>
-        <% if (user) { %>
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--text-color); font-family: 'Arvo', serif">
+      
+      <% if (user) { %>
+        <ul class="nav justify-content-center">
+          <div class="dropdown">
+            <div class="dropdown-toggle px-2" type="button" id="dropdown_bell" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-bell fa-lg"></i>
+            </div>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdown_bell" style="background-color: var(--secondary-color);">
+              <li><a class="dropdown-item text-white" href="#">Ui updated!</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <div class="dropdown-toggle px-2" type="button" id="dropdown_services" data-bs-toggle="dropdown" aria-expanded="false">
               <svg width="36" height="36" viewBox="0 0 24 24">
                 <path fill="currentColor" fill-rule="evenodd" d="M4 5.01C4 4.451 4.443 4 5.01 4h1.98C7.549 4 8 4.443 8 5.01v1.98C8 7.549 7.557 8 6.99 8H5.01C4.451 8 4 7.557 4 6.99V5.01zm0 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C8 13.549 7.557 14 6.99 14H5.01C4.451 14 4 13.557 4 12.99v-1.98zm6-6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C14 7.549 13.557 8 12.99 8h-1.98C10.451 8 10 7.557 10 6.99V5.01zm0 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98zm6-6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C20 7.549 19.557 8 18.99 8h-1.98C16.451 8 16 7.557 16 6.99V5.01zm0 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98zm-12 6c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98C8 19.549 7.557 20 6.99 20H5.01C4.451 20 4 19.557 4 18.99v-1.98zm6 0c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98zm6 0c0-.558.443-1.01 1.01-1.01h1.98c.558 0 1.01.443 1.01 1.01v1.98c0 .558-.443 1.01-1.01 1.01h-1.98c-.558 0-1.01-.443-1.01-1.01v-1.98z"></path>
               </svg>
-            </a>
+            </div>
 
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right aos-init aos-animate" aria-labelledby="servicesdropdown" style="top: 0px;left: 0px;position: absolute;z-index: 400;transform: translate3d(-125px, 75px, 0px);background: var(--secondary-color);border: transparent;" data-aos="fade-down">
+            <ul class="dropdown-menu" aria-labelledby="dropdown_services" style="background-color: var(--secondary-color);">
               <div class="dropdown-header">
                 <h5 class="text-center text-overflow text-white">Services</h5>
               </div>
@@ -34,18 +69,17 @@
                 <i class="fas fa-robot"></i>
                 <span>Ch1llBlox</span>
               </a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--text-color); font-family: 'Arvo', serif">
-              <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon"> 
-                </span>
-              </div>
-            </a>
+            </ul>
+          </div>
 
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right aos-init aos-animate" aria-labelledby="userdropdown" style="top: 0px;left: 0px;position: absolute;z-index: 400;transform: translate3d(-125px, 75px, 0px);background: var(--secondary-color);border: transparent;" data-aos="fade-down">
+          <div class="dropdown">
+            <div class="dropdown-toggle px-2" type="button" id="dropdown_user" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="avatar avatar-sm rounded-circle mx-auto d-block">
+                <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon"> 
+              </span>
+            </div>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdown_user" style="background-color: var(--secondary-color)">
               <span class="avatar avatar-sm rounded-circle mx-auto d-block">
                 <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024" alt="<%- user.username %>'s Profile Icon"> 
               </span>
@@ -65,13 +99,20 @@
               <div class="dropdown-divider"></div>
 
               <a class="dropdown-item text-center text-wrap" href="/api/logout" style="color: red">Log Out</a>
+            </ul>
+          </div>
+
+          <a class="nav-link pr-0" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--text-color); font-family: 'Arvo', serif">
+            <div class="media align-items-center">
+              
             </div>
-          </li>
+          </a>
         </ul>
       <% } else { %>
-      <div class="text-end">
+      <div class="d-flex ms-auto">
         <a href="/api/login" type="button" class="btn btn-primary shadow-none" type="button" style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Login</a>
       </div>
-    <% } %>
+      <% } %>
+    </div>
   </nav>
 </header>
