@@ -9,7 +9,7 @@
 
 # Dependancy Directories
 node_modules
-websitemodules
+badmodules
 
 # Environmental Variables
 .env
