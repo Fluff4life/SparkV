@@ -51,6 +51,7 @@
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
+    "newrelic": "^7.5.0",
     "noblox.js": "^4.8.5",
     "node-fetch": "^2.6.1",
     "npm": "^7.10.0",
