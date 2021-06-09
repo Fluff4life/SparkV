@@ -2,7 +2,7 @@ const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Access denied.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Access denied.`)
   }
   
   const RestartStatus = await message.lineReplyNoMention(`⚡ Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`)

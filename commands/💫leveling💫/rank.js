@@ -8,7 +8,7 @@ exports.run = async (Bot, message, Arguments) => {
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
 
   if (!User) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | This user hasn't earned any XP yet!`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This user hasn't earned any XP yet!`)
   }
 
   const Rank = new canvacord.Rank()

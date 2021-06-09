@@ -2,7 +2,7 @@ const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Access denied.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Access denied.`)
   }
 
   const User = message.mentions.users.first()
@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   await Bot.Database.set(`${User.id}.ch1llbucks`, parseInt(Arguments[1]))
 
-  message.lineReplyNoMention(`${Bot.Config.Emojis.success} | Success!`)
+  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Success!`)
 },
 
 exports.config = {

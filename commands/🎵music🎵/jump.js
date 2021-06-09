@@ -2,14 +2,14 @@ const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.voice.channel){
-    return message.lineReply(`${Bot.Config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
   if (!Bot.distube.isPlaying(message)){
-    return message.lineReply(`${Bot.Config.Emojis.error} | A song must be __**playing**__ to use this command!`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | A song must be __**playing**__ to use this command!`)
   }
   
-  Bot.distube.jump(message, parseInt(Arguments[0])).then(() => message.lineReply(`${Bot.Config.Emojis.music} | Okay, I successfully jumped to song number ${Arguments[0]} in queue!`)).catch(() => message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Invalid song number!`).then(m => m.delete({ timeout: 5000 })))
+  Bot.distube.jump(message, parseInt(Arguments[0])).then(() => message.lineReply(`${Bot.Config.Bot.Emojis.music} | Okay, I successfully jumped to song number ${Arguments[0]} in queue!`)).catch(() => message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Invalid song number!`).then(m => m.delete({ timeout: 5000 })))
 },
 
 exports.config = {

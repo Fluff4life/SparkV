@@ -115,7 +115,7 @@ module.exports = async (bot) => {
   }
 
   bot.GetServerCount = async () => {
-    if (bot.Config.sharding.ShardingEnabled === false) {
+    if (bot.Config.Bot.Sharding.ShardingEnabled === false) {
       return bot.guilds.cache.size
     }
 
@@ -127,7 +127,7 @@ module.exports = async (bot) => {
   }
 
   bot.GetUserCount = async () => {
-    if (bot.Config.sharding.ShardingEnabled === false) {
+    if (bot.Config.Bot.Sharding.ShardingEnabled === false) {
       var CollectedUsers = 0
 
       bot.guilds.cache

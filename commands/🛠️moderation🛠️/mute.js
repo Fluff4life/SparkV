@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(` `).slice(22) || `No reason provided.`
 
   if (!Arguments[0]) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please mention someone to mute!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please mention someone to mute!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | You cannot mute yourself.`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You cannot mute yourself.`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Uh oh... I can't mute this user!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Uh oh... I can't mute this user!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.user.bot) {
@@ -57,10 +57,10 @@ exports.run = async (Bot, message, Arguments) => {
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle(`Convermination Prompt`)
     .setDescription(`Are you sure you want to do this?`)
-    .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Embed.EmbedFooter}`)
+    .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Bot.Embed.Footer}`)
 
   const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
-  const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [`✅`, `${Bot.Config.Emojis.error} | `], 60)
+  const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [`✅`, `${Bot.Config.Bot.Emojis.error} | `], 60)
 
   if (Emoji === `✅`) {
     // Yes
@@ -71,19 +71,19 @@ exports.run = async (Bot, message, Arguments) => {
 
     const MuteEmbend = new Discord.MessageEmbed()
       .setTitle(`Mute Command`)
-      .setDescription(`${Bot.Config.Emojis.success} | Successfully Muted <@${User.id}>(${User.id})!`)
+      .setDescription(`${Bot.Config.Bot.Emojis.success} | Successfully Muted <@${User.id}>(${User.id})!`)
       .setThumbnail(User.avatar)
       .addField(`Moderator/Admin: `, `${message.author.tag}`)
       .addField(`Reason: `, Reason)
-      .setFooter(`${Bot.Config.Bot.prefix}Unmute to unmute a user. • ${Bot.Config.Embed.EmbedFooter}`)
-      .setColor(Bot.Config.Embed.EmbedColor)
+      .setFooter(`${Bot.Config.Bot.prefix}Unmute to unmute a user. • ${Bot.Config.Bot.Embed.Footer}`)
+      .setColor(Bot.Config.Bot.Embed.Color)
       .setTimestamp();
 
     message.lineReplyNoMention(MuteEmbend);
-  } else if (emoji === `${Bot.Config.Emojis.error} | `) {
+  } else if (emoji === `${Bot.Config.Bot.Emojis.error} | `) {
     message.delete()
 
-    message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }))
+    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }))
   }
 },
 

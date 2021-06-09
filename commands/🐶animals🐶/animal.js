@@ -21,8 +21,8 @@ exports.run = async (Bot, message) => {
           .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
-          .setColor(Bot.Config.Embed.EmbedColor);
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+          .setColor(Bot.Config.Bot.Embed.Color);
 
         message.lineReplyNoMention(AnimalEmbed)
       } else {
@@ -30,8 +30,8 @@ exports.run = async (Bot, message) => {
           .setTitle(post.title)
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
-          .setColor(Bot.Config.Embed.EmbedColor);
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+          .setColor(Bot.Config.Bot.Embed.Color);
 
         const AnimalMessage = await message.lineReplyNoMention(AnimalEmbed)
         AnimalMessage.react("😍");

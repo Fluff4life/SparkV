@@ -15,7 +15,7 @@ exports.run = async (Bot, message, Arguments, command) => {
     noblox.shout((RobloxGroupID), Arguments).then(() => {
       message.lineReplyNoMention({
         embed: {
-          title: `${Bot.Config.Emojis.success} | Successfully Shouted`,
+          title: `${Bot.Config.Bot.Emojis.success} | Successfully Shouted`,
           description: "Successfully shouted " + Arguments,
           color: "#0099ff",
           url: `https://www.roblox.com/groups/${RobloxGroupID}/`,

@@ -58,22 +58,22 @@ exports.run = async (Bot, message, Arguments) => {
   const Opponent = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0])
 
   if (!Opponent) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`)
   }
 
   if (Opponent.user.bot) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | That user is a bot lol.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That user is a bot lol.`)
   }
 
   if (Opponent.user.id === message.author.id) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | You cannot play against yourself lol.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You cannot play against yourself lol.`)
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle(`⚔ Connect Four Duel`)
     .setDescription(`${Opponent}, ${message.author} challenged you to a duel! React to this message to accpet or decline.`)
-    .setFooter(`Canceling in 60 seconds. • ${Bot.Config.Embed.EmbedFooter}`)
-    .setColor(Bot.Config.Embed.EmbedColor)
+    .setFooter(`Canceling in 60 seconds. • ${Bot.Config.Bot.Embed.Footer}`)
+    .setColor(Bot.Config.Bot.Embed.Color)
 
   const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
   const Emoji = await Bot.PromptMessage(VerificationMessage, Opponent.user, [`👍`, `👎`], 250)
@@ -101,7 +101,7 @@ exports.run = async (Bot, message, Arguments) => {
     var GameEmbed = new Discord.MessageEmbed()
       .setTitle(`**${message.author} V.S ${Opponent}**`)
       .setDescription(`${DisplayBoard(Board)}`)
-      .setColor(Bot.Config.Embed.EmbedColor)
+      .setColor(Bot.Config.Bot.Embed.Color)
       .setTimestamp()
 
     const GameMessage = await message.lineReplyNoMention(GameEmbed)
@@ -115,8 +115,8 @@ exports.run = async (Bot, message, Arguments) => {
       await GameMessage.edit(GameEmbed
         .setTitle(`**${message.author.username} V.S ${Opponent.user.username}**`)
         .setDescription(`${DisplayBoard(Board)}\n${User}, which column do you pick?`)
-        .setFooter(`Type \`end\` to forfeit. • ${Bot.Config.Embed.EmbedFooter}`)
-        .setColor(Bot.Config.Embed.EmbedColor)
+        .setFooter(`Type \`end\` to forfeit. • ${Bot.Config.Bot.Embed.Footer}`)
+        .setColor(Bot.Config.Bot.Embed.Color)
         .setTimestamp()
       )
       const Filter = async (response) => {
@@ -165,7 +165,7 @@ exports.run = async (Bot, message, Arguments) => {
       ColLevels[Spot] -= 1
 
       if (Winner === `time`) {
-        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity. • ${Bot.Config.Embed.EmbedFooter}`))
+        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity. • ${Bot.Config.Bot.Embed.Footer}`))
 
         return
       }
@@ -180,7 +180,7 @@ exports.run = async (Bot, message, Arguments) => {
 
       UserTurn = !UserTurn
     }
-    GameMessage.edit(GameEmbed.setTitle(Winner ? `${Winner} won!` : `It's a draw!`).setDescription(DisplayBoard(Board)).setFooter(`${message.author} V.S. ${Opponent} • ${Bot.Config.Embed.EmbedFooter}`))
+    GameMessage.edit(GameEmbed.setTitle(Winner ? `${Winner} won!` : `It's a draw!`).setDescription(DisplayBoard(Board)).setFooter(`${message.author} V.S. ${Opponent} • ${Bot.Config.Bot.Embed.Footer}`))
   }
 },
 

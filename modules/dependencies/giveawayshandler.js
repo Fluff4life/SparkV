@@ -37,7 +37,7 @@ class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
         default: {
             botsCanWin: false,
             exemptPermissions: [],
-            embedColor: Bot.Config.Embed.EmbedColor,
+            embedColor: Bot.Config.Bot.Embed.Color,
             embedColorEnd: "#FF0000",
             reaction: "🎉"
         }

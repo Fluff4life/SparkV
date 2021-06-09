@@ -5,31 +5,31 @@ exports.run = async (Bot, message, Arguments) => {
   const Reason = Arguments.join(` `).slice(22) || `No reason provided.`
 
   if (!Arguments[0]){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please mention someone to warn!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please mention someone to warn!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User){
-    return message.lineReply(`${Bot.Config.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.id === message.author.id){
-    return message.lineReply(`${Bot.Config.Emojis.error} | You cannot warn yourself.`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You cannot warn yourself.`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.kickable){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Uh oh... I can\`t warn this user!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Uh oh... I can\`t warn this user!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()
   .setTitle(`Confirmation Prompt`)
   .setDescription(`Are you sure you want to do this?`)
-  .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Embed.EmbedFooter}`)
-  .setColor(Bot.Config.Embed.EmbedColor)
+  .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Bot.Embed.Footer}`)
+  .setColor(Bot.Config.Bot.Embed.Color)
 
   const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
-    const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [Bot.Config.Emojis.success, Bot.Config.Emojis.error], 60)
+    const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [Bot.Config.Bot.Emojis.success, Bot.Config.Bot.Emojis.error], 60)
 
-    if (Emoji === Bot.Config.Emojis.success){
+    if (Emoji === Bot.Config.Bot.Emojis.success){
       // Yes
       const warningdata = Bot.Database.get(`ServerData.${message.guild.id}.warnings.${User.id}`)
       VerificationMessage.delete()
@@ -51,7 +51,7 @@ exports.run = async (Bot, message, Arguments) => {
 
         message.lineReplyNoMention({
           embed: {
-            title: `${Bot.Config.Emojis.success} | Successfully warned user.`,
+            title: `${Bot.Config.Bot.Emojis.success} | Successfully warned user.`,
             description: `Successfully warned ${User} for ${Reason}`,
             color: `#0099ff`,
             
@@ -70,7 +70,7 @@ exports.run = async (Bot, message, Arguments) => {
         })
 
         try {
-          User.send(`${Bot.Config.Emojis.error} | You\`ve been warned in **${message.guild.name}** for ${Reason}`)
+          User.send(`${Bot.Config.Bot.Emojis.error} | You\`ve been warned in **${message.guild.name}** for ${Reason}`)
         } catch(err) {
           
         }
@@ -88,10 +88,10 @@ exports.run = async (Bot, message, Arguments) => {
           }
         })
       }
-    } else if (emoji === Bot.Config.Emojis.error){
+    } else if (emoji === Bot.Config.Bot.Emojis.error){
       VerificationMessage.delete()
 
-      message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Warn canceled.`).then(m => m.delete({ timeout: 10000 }))
+      message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Warn canceled.`).then(m => m.delete({ timeout: 10000 }))
     }
 },
 

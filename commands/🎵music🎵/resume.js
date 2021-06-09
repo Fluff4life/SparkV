@@ -2,19 +2,19 @@ const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.voice.channel){
-    return message.lineReply(`${Bot.Config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   } 
   
   let queue = await Bot.distube.getQueue(message)
   
   if (!queue){
-    return message.lineReply(`${Bot.Config.Emojis.error} | No songs was ever/still is paused.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | No songs was ever/still is paused.`)
   }
 
   Bot.distube.resume(message).then(() => {
     message.lineReplyNoMention({
       embed: {
-        title: `${Bot.Config.Emojis.music} | Resumed`,
+        title: `${Bot.Config.Bot.Emojis.music} | Resumed`,
         description: `Resumed song`,
         color: `#0099ff`,
       }

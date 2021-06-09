@@ -4,9 +4,9 @@ const urban = require(`urban`);
 exports.run = async (Bot, message, args) => {
   if (args.length < 1) {
     const ErrorEmbed = new Discord.MessageEmbed()
-      .setTitle(`${Bot.Config.Emojis.error} | Invalid command usage!`)
+      .setTitle(`${Bot.Config.Bot.Emojis.error} | Invalid command usage!`)
       .setDescription(`Please provide a word to urban!`)
-      .setFooter(`Try ^Urban [Word] • ${Bot.Config.Embed.EmbedFooter}`);
+      .setFooter(`Try ^Urban [Word] • ${Bot.Config.Bot.Embed.Footer}`);
 
     return await message.lineReplyNoMention(ErrorEmbed).then(m => m.delete({ timeout: 5000 }))
   }
@@ -19,13 +19,13 @@ exports.run = async (Bot, message, args) => {
     }
 
     const UrbanEmbed = new Discord.MessageEmbed()
-      .setTitle(`${Bot.Config.Emojis.success} | Definition of ${json.word}`)
+      .setTitle(`${Bot.Config.Bot.Emojis.success} | Definition of ${json.word}`)
       .setDescription(json.definition)
       .setThumbnail(`https://i.imgur.com/VFXr0ID.jpg`)
       .addField(`Example`, json.example)
       .setURL(json.permalink)
-      .setFooter(`👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
-      .setColor(Bot.Config.Embed.EmbedColor);
+      .setFooter(`👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+      .setColor(Bot.Config.Bot.Embed.Color);
 
     return await message.lineReplyNoMention(UrbanEmbed);
   });

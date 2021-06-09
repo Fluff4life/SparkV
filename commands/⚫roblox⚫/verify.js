@@ -35,7 +35,7 @@ exports.run = async (Bot, message, Arguments, command) => {
             .setTitle(`Verification Prompt`)
             .setDescription(`What's your Roblox username?`)
             .setFooter(`This verification prompt will cancel after 200 seconds.`)
-            .setColor(Bot.Config.Embed.EmbedColor)
+            .setColor(Bot.Config.Bot.Embed.Color)
             .setTimestamp()
 
         message.lineReplyNoMention(PromptEmbed)
@@ -55,8 +55,8 @@ exports.run = async (Bot, message, Arguments, command) => {
                 const UsernameFound = new Discord.MessageEmbed()
                     .setTitle(`Verification Prompt`)
                     .setDescription(`Hi, **${msg.content}**! To verify that you are indeed, ${msg.content}, please put \`${VerificationID}\` anywhere in your about section.\n\nSay **Done** when comeplete.\nSay **Cancel** to cancel.`)
-                    .setFooter(`ID: ${id} • ${Bot.Config.Embed.EmbedFooter}`)
-                    .setColor(Bot.Config.Embed.EmbedColor)
+                    .setFooter(`ID: ${id} • ${Bot.Config.Bot.Embed.Footer}`)
+                    .setColor(Bot.Config.Bot.Embed.Color)
                     .setTimestamp()
 
                 message.lineReplyNoMention(UsernameFound)
@@ -79,7 +79,7 @@ exports.run = async (Bot, message, Arguments, command) => {
                                             .setTitle(`Verification Prompt`)
                                             .setDescription(`You're verified!`)
                                             .setColor(`GREEN`)
-                                            .setFooter(Bot.Config.Embed.EmbedFooter)
+                                            .setFooter(Bot.Config.Bot.Embed.Footer)
 
                                         message.lineReplyNoMention(Verified)
 

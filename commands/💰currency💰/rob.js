@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
 
   if (!User) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please say a person to rob.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please say a person to rob.`)
   }
 
   var RobberCh1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
@@ -20,23 +20,23 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (RobberCh1llBucks < 500) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`)
   }
 
   if (UserCh1llBucks <= 0 || UserCh1llBucks === null) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`)
   }
 
   if (message.author.id === User.id) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Why do you want to rob yourself lol.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Why do you want to rob yourself lol.`)
   }
 
   if (User.id === process.env.OwnerID) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | This user is protected! You can buy a protection shield from being robbed in the shop.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This user is protected! You can buy a protection shield from being robbed in the shop.`)
   }
 
   if (UserCh1llBucks < 0) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | This user is in **DEBT**! LOL!!`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This user is in **DEBT**! LOL!!`)
   }
 
   const Result = results[Math.floor(Math.random() * results.length)]
@@ -47,13 +47,13 @@ exports.run = async (Bot, message, Arguments) => {
     await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Ammount)
     await Bot.Database.subtract(`UserData.${User.id}.ch1llbucks`, Ammount)
 
-    message.lineReplyNoMention(`${Bot.Config.Emojis.success} | You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
+    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | You robbed ${User} and recieved ${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
   } else {
 
     await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, 250)
     await Bot.Database.add(`UserData.${User.id}.ch1llbucks`, 250)
 
-    message.lineReplyNoMention(`${Bot.Config.Emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`)
+    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`)
   }
 },
 

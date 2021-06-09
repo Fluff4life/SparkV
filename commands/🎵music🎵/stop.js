@@ -2,11 +2,11 @@ const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.voice.channel) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!Bot.distube.isPlaying(message)) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
 
     
@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
     
     message.lineReplyNoMention({
       embed: {
-        title: `${Bot.Config.Emojis.error} | Stopped Song`,
+        title: `${Bot.Config.Bot.Emojis.error} | Stopped Song`,
         description: `Stopped currently playing song.`,
         color: `#0099ff`,
 

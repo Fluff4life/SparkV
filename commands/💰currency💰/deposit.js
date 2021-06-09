@@ -18,54 +18,54 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | You need to tell me how much you want me to deposit. You can say all if you want all of your Ch1ll Bucks in your bank.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You need to tell me how much you want me to deposit. You can say all if you want all of your Ch1ll Bucks in your bank.`)
   }
 
   if (Arguments[0].toLowerCase() === `all`) {
     if (Ch1llBucks === 0 || Ch1llBucks === null) {
-      return message.lineReply(`${Bot.Config.Emojis.error} | You have no Ch1llBucks!`)
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You have no Ch1llBucks!`)
     }
 
     if (Bank === BankMax){
-      return message.lineReply(`${Bot.Config.Emojis.error} | Your bank is full!`)
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Your bank is full!`)
     }
 
     if (Ch1llBucks > BankMax) {
       await Bot.Database.add(`UserData.${message.author.id}.bank`, BankMax)
       await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, BankMax)
 
-      message.lineReplyNoMention(`${Bot.Config.Emojis.success} | You just deposited ❄${await Bot.FormatNumber(BankMax)} into your bank!`)
+      message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | You just deposited ❄${await Bot.FormatNumber(BankMax)} into your bank!`)
     } else {
       await Bot.Database.add(`UserData.${message.author.id}.bank`, Ch1llBucks)
       await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, Ch1llBucks)
 
-      message.lineReplyNoMention(`${Bot.Config.Emojis.success} | You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
+      message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | You just deposited ❄${await Bot.FormatNumber(Ch1llBucks)} into your bank!`)
     }
   } else {
     if (!Arguments[0]) {
-      return message.lineReply(`${Bot.Config.Emojis.error} | lol you can't deposit nothing.`)
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | lol you can't deposit nothing.`)
     }
 
     if (isNaN(Arguments[0])) {
-      return message.lineReply(`${Bot.Config.Emojis.error} | Bruh please say a number.`)
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Bruh please say a number.`)
     }
 
     if (message.content.includes(`-`)) {
-      return message.lineReply(`${Bot.Config.Emojis.error} | You can't deposit negitive Ch1llBucks lol.`)
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You can't deposit negitive Ch1llBucks lol.`)
     }
 
     if (Ch1llBucks < Arguments[0]) {
-      return message.lineReply(`${Bot.Config.Emojis.error} | You don't have that much Ch1llBucks.`)
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You don't have that much Ch1llBucks.`)
     }
 
     if (BankMax < Arguments[0]) {
-      return message.lineReply(`${Bot.Config.Emojis.error} | You don't have enough bank space to hold ❄${Arguments[0]}!`)
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You don't have enough bank space to hold ❄${Arguments[0]}!`)
     }
 
     await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
     await Bot.Database.add(`UserData.${message.author.id}.bank`, parseInt(Arguments[0]))
 
-    message.lineReplyNoMention(`${Bot.Config.Emojis.success} | Deposited ❄${await Bot.FormatNumber(Arguments[0])} into bank!`)
+    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Deposited ❄${await Bot.FormatNumber(Arguments[0])} into bank!`)
   }
 },
 

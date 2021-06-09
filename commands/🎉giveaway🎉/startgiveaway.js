@@ -8,19 +8,19 @@ exports.run = async (Bot, message, Arguments) => {
   const Prize = Arguments.slice(3).join(` `)
 
   if (!Channel){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please provide a valid channel.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid channel.`)
   }
 
   if (!Duration || isNaN(ms(Duration))){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please provide a valid duration.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid duration.`)
   }
 
   if (!Winners || isNaN(Winners) || (parseInt(Winners) <= 0)){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please provide a valid number of winners!`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid number of winners!`)
   }
 
   if (!Prize){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Why do you want to give away nothing lol.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Why do you want to give away nothing lol.`)
   }
 
   Bot.GiveawayManager.start(Channel, {
@@ -35,7 +35,7 @@ exports.run = async (Bot, message, Arguments) => {
       timeRemaining: `⏳ Time remaining: **{duration}**! ⏳`,
       inviteToParticipate: `🎉 React to enter! 🎉`,
       winMessage: `⚡ Congrats, {winners}! You won just **{prize}**! ⚡`,
-      noWinner: `${Bot.Config.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
+      noWinner: `${Bot.Config.Bot.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
       hostedBy: `❔ Giveaway hosted by {user}!`,
       embedFooter: `Thanks for using Ch1llBlox!`,
       winners: `winner(s)`,
@@ -50,7 +50,7 @@ exports.run = async (Bot, message, Arguments) => {
     }
   })
 
-  message.lineReplyNoMention(`${Bot.Config.Emojis.success} | Giveaway starting in ${Channel}!`)
+  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Giveaway starting in ${Channel}!`)
 },
 
 exports.config = {

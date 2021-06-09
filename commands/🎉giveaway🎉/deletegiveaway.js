@@ -4,7 +4,7 @@ exports.run = async (Bot, message, Arguments) => {
   const ID = Arguments[0]
 
   if (!ID || isNaN(ID)) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please provide a valid message ID.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid message ID.`)
   }
 
   const Giveaway = Bot.GiveawayManager.giveaways.find((giveaway) => giveaway.messageID === Arguments[0])

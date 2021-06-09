@@ -4,7 +4,7 @@ exports.run = async (Bot, message, Arguments) => {
   const User = message.mentions.users.first() || message.author
 
   if (!User) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please say a person to rob.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please say a person to rob.`)
   }
 
   var Ch1llBucks = await Bot.Database.get(`UserData.${User.id}.ch1llbucks`)
@@ -28,7 +28,7 @@ exports.run = async (Bot, message, Arguments) => {
   const BalanceEmbed = new Discord.MessageEmbed()
     .setTitle(`**${User.tag}'s Balance**`)
     .setDescription(`Wallet: ❄${await Bot.FormatNumber(Ch1llBucks)}\nBank: ❄${await Bot.FormatNumber(Bank)}/${await Bot.FormatNumber(BankMax)}\nNet Worth: ${await Bot.FormatNumber(NetWorth)}`)
-    .setColor(Bot.Config.Embed.EmbedColor)
+    .setColor(Bot.Config.Bot.Embed.Color)
     .setTimestamp()
 
   message.lineReplyNoMention(BalanceEmbed)

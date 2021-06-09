@@ -5,19 +5,19 @@ exports.run = async (Bot, message, Arguments) => {
   const NewNickname = Arguments.join(` `).slice(22)
 
   if (!Arguments[0]) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please mention someone to change their nickname!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please mention someone to change their nickname!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!User.roles){
-    return message.lineReply(`${Bot.Config.Emojis.error} | That\`s not a user! That\`s a role.`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That\`s not a user! That\`s a role.`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!NewNickname) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please mention their new nickname!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please mention their new nickname!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (User.roles.highest.comparePositionTo(message.guild.me.roles.highest) >= 0) {
@@ -27,27 +27,27 @@ exports.run = async (Bot, message, Arguments) => {
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle(`Convermination Prompt`)
     .setDescription(`Are you sure you want to do this?`)
-    .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Embed.EmbedFooter}`)
+    .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Bot.Embed.Footer}`)
 
   const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
-  const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [Bot.Config.Emojis.success, Bot.Config.Emojis.error], 60)
+  const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [Bot.Config.Bot.Emojis.success, Bot.Config.Bot.Emojis.error], 60)
 
-  if (Emoji === Bot.Config.Emojis.success) {
+  if (Emoji === Bot.Config.Bot.Emojis.success) {
     // Yes
     message.delete()
     VerificationMessage.delete()
 
     User.setNickname(NewNickname).then(() => {
-      message.lineReply(`${Bot.Config.Emojis.success} | I successfully changed ${User}\`s nickname to ${NewNickname}!`)
+      message.lineReply(`${Bot.Config.Bot.Emojis.success} | I successfully changed ${User}\`s nickname to ${NewNickname}!`)
     }).catch((err) => {
-      message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Uh oh! I cannot change their nickname.`).then(() => {
+      message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Uh oh! I cannot change their nickname.`).then(() => {
         console.error(err)
       })
     })
-  } else if (emoji === Bot.Config.Emojis.error) {
+  } else if (emoji === Bot.Config.Bot.Emojis.error) {
     message.delete()
 
-    message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Nickname change canceled.`).then(m => m.delete({ timeout: 10000 }))
+    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Nickname change canceled.`).then(m => m.delete({ timeout: 10000 }))
   }
 },
 

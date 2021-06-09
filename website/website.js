@@ -16,6 +16,7 @@ const parser = require("body-parser");
 
 const Config = require("../globalconfig.json");
 const Render = require("./utils/Render");
+const Discord = require("discord.js");
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
@@ -152,6 +153,22 @@ app.use((request, response, next) => {
 });
 
 app.use((err, request, response, next) => {
+  const user = request.user
+  const MainEmbed = new Discord.MessageEmbed()
+    .setTitle("Error Occured!")
+    .setDescription(`Uh oh! Looks like an error occured for ${user ? user.username : "unknown"}${user ? "#" + user.descriminator : ""}.`)
+    .addField("**ERROR**", err, true)
+    .setFooter(`Ch1ll Notifier | Error Code 500 | ${user ? user.username : "unknown"}#${user ? "#" + user.descriminator : ""}`)
+    .setColor("RED")
+
+  global.MainWebhook.send({
+    username: "Ch1ll Notifier",
+    avatarURL: user ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024` : "https://support.discord.com/hc/user_images/l12c7vKVRCd-XLIdDkLUDg.png",
+    embeds: [
+      MainEmbed
+    ]
+  })
+
   console.error("Website Error!", err.stack);
 
   response.status(500)

@@ -5,7 +5,7 @@ const LyrcisFinder = require(`lyrics-finder`)
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please supply the title of a song to search for.`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please supply the title of a song to search for.`).then(m => m.delete({ timeout: 5000 }))
   }
   
   Arguments = Arguments.join(" ")
@@ -13,7 +13,7 @@ exports.run = async (Bot, message, Arguments) => {
   const data = LyrcisFinder(Arguments)
 
   if (!data){
-    return message.lineReply(`${Bot.Config.Emojis.error} | I couldn't find the lyrics for **${Arguments}**!`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | I couldn't find the lyrics for **${Arguments}**!`)
   }
 
   if (data.lyrics.length < 2000){
@@ -21,9 +21,9 @@ exports.run = async (Bot, message, Arguments) => {
       .setTitle(data.title)
       .setDescription(data.lyrics)
       .setThumbnail(data.thumbnail.genius)
-      .setFooter(Bot.Config.Embed.EmbedFooter)
+      .setFooter(Bot.Config.Bot.Embed.Footer)
       .setAuthor(`Song by ${data.author}`, null, data.links.genius)
-      .setColor(Bot.Config.Embed.EmbedColor)
+      .setColor(Bot.Config.Bot.Embed.Color)
       .setTimestamp()
 
     return message.lineReply(SongEmbed)
@@ -47,9 +47,9 @@ exports.run = async (Bot, message, Arguments) => {
       .setTitle(data.title)
       .setDescription(x)
       .setThumbnail(data.thumbnail.genius)
-      .setFooter(Bot.Config.Embed.EmbedFooter)
+      .setFooter(Bot.Config.Bot.Embed.Footer)
       .setAuthor(`Song by ${data.author}`, null, data.links.genius)
-      .setColor(Bot.Config.Embed.EmbedColor)
+      .setColor(Bot.Config.Bot.Embed.Color)
       .setTimestamp()
 
     return message.lineReply(SongEmbed)

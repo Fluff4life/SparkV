@@ -81,7 +81,7 @@ if (Config.Debug) {
     // require("./ch1llblox")
     require("./website/website")
 } else {
-    if (Config.sharding.ShardingEnabled === true) {
+    if (Config.Bot.Sharding.ShardingEnabled === true) {
         const { GlobalCache } = require("./modules/globalcache")
 
         const Discord = require("discord.js");
@@ -128,15 +128,15 @@ if (Config.Debug) {
         ShardManager.spawn(Number(process.env.TotalShards) || "auto", 8000, -1);
         global.GlobalCache = new GlobalCache(ShardManager)
 
-        if (Config.sharding.ShardingEnabled) {
+        if (Config.Bot.Sharding.ShardingEnabled) {
             setTimeout(() => {
                 ShardManager.respawn = false
                 ShardManager.broadcastEval("process.exit()")
-            }, Config.sharding.ShardLifeTime * 1000)
+            }, Config.Bot.Sharding.ShardLifeTime * 1000)
 
             setTimeout(() => {
                 process.exit()
-            }, (Config.sharding.ShardLifeTime + 5) * 1000)
+            }, (Config.Bot.Sharding.ShardLifeTime + 5) * 1000)
         }
     } else {
         require("./ch1llblox")

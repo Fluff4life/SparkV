@@ -2,13 +2,13 @@ const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
   if (!message.member.voice.channel) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   Arguments = Arguments.join(" ")
 
   if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Please enter a song URL or query to search!`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please enter a song URL or query to search!`)
   }
 
   try {
@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
   } catch (err) {
     console.error(err)
 
-    message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Uh oh! An error occured.`)
+    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Uh oh! An error occured.`)
   }
 },
 

@@ -22,7 +22,7 @@ exports.run = async (Bot, message, args) => {
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(Bot, Category))
-      .setColor(Bot.Config.Embed.EmbedColor)
+      .setColor(Bot.Config.Bot.Embed.Color)
       .setThumbnail(Message.author.displayAvatarURL({ dynamic: true }))
   
     pages.push(NewEmbed)
@@ -37,7 +37,7 @@ exports.run = async (Bot, message, args) => {
     const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-      return message.lineReply(`${Bot.Config.Emojis.error} | That command doesn't exist or no longer exists!`);
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That command doesn't exist or no longer exists!`);
     }
 
     const CommandHelpEmbed = new Discord.MessageEmbed()
@@ -47,8 +47,8 @@ exports.run = async (Bot, message, args) => {
       .addField(`**ALIASES**`, `\`\`\`${command.config.aliases.join(`,\n`)}\`\`\``, true)
       .addField(`**CATEGORY**`, `\`\`\`${command.config.category}\`\`\``, true)
       .addField(`**COOLDOWN**`, `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
-      .setFooter(`${prefix}Help to get a list of all commands • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
-      .setColor(Bot.Config.Embed.EmbedColor);
+      .setFooter(`${prefix}Help to get a list of all commands • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+      .setColor(Bot.Config.Bot.Embed.Color);
 
     return message.lineReplyNoMention(CommandHelpEmbed)
   }

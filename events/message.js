@@ -19,7 +19,7 @@ exports.run = async (Bot, message) => {
           message.delete();
         } catch (err) {
           message
-            .lineReplyNoMention(Bot.Config.Responses.InvalidPermisions.URL.replace(`{author}`, message.author))
+            .lineReplyNoMention(Bot.Config.Bot.Responses.InvalidPermisions.Bot.replace(`{author}`, message.author))
             .then((m) => m.delete({ timeout: 1000 }));
         }
       }
@@ -74,7 +74,7 @@ exports.run = async (Bot, message) => {
       const User = await Levels.fetch(message.author.id, message.guild.id)
       const Level = await Bot.FormatNumber(User.level)
 
-      message.lineReplyNoMention(Bot.Config.Responses.LevelUpMessage.replace(`{author}`, message.author).replace(`{level}`, Level));
+      message.lineReplyNoMention(Bot.Config.Bot.Responses.LevelUpMessage.replace(`{author}`, message.author).replace(`{level}`, Level));
     }
   }
 
@@ -128,12 +128,12 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   if (process.env.UserBlacklist.includes(message.author.id)) {
     try {
       return message.author
-        .send(`${Bot.Config.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
+        .send(`${Bot.Config.Bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
         .then(() => {
-          message.react(Bot.Config.Emojis.Error);
+          message.react(Bot.Config.Bot.Emojis.Error);
         });
     } catch {
-      message.react(Bot.Config.Emojis.Error);
+      message.react(Bot.Config.Bot.Emojis.Error);
     }
   }
 
@@ -141,7 +141,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const BotPermisions = message.channel.permissionsFor(Bot.user);
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace(`{permission}`, commandfile.config.member_permissions));
+      return message.lineReply(Bot.Config.Bot.Responses.Bot.replace(`{permission}`, commandfile.config.member_permissions));
     }
   }
 
@@ -149,21 +149,21 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const AuthorPermisions = message.channel.permissionsFor(message.author);
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.lineReply(Bot.Config.Responses.InvalidPermisions.Bot.replace(`{permission}`, commandfile.config.member_permissions));
+      return message.lineReply(Bot.Config.Bot.Responses.Bot.replace(`{permission}`, commandfile.config.member_permissions));
     }
   }
 
   if (!commandfile.config.enabled) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | This command is currently disabled! Please try again later.`);
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command is currently disabled! Please try again later.`);
   }
 
   const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, `MusicEnabled`);
   const Leveling = await Bot.dashboard.getVal(message.guild.id, `leveling`);
 
   if (commandfile.config.category === `🎵music🎵` && MusicEnabled === `Disabled`) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`);
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`);
   } else if (commandfile.config.category === `💫leveling💫` && Leveling === `Disabled`) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`);
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`);
   }
 
   if (!Bot.cooldowns.has(commandfile.config.name)) {
@@ -182,12 +182,12 @@ async function HandleCommand(Bot, message, args, command, commandfile){
 
       return message.lineReply({
         embed: {
-          title: `${Bot.Config.Emojis.error} | Whoa there ${message.author.username}!`,
+          title: `${Bot.Config.Bot.Emojis.error} | Whoa there ${message.author.username}!`,
           description: `Please wait ${TimeLeft} more seconds to use that command again.`,
           thumbnail: message.author.avatarURL,
           color: `#0099ff`,
           footer: {
-            text: Bot.Config.Embed.EmbedFooter,
+            text: Bot.Config.Bot.Embed.Footer,
             icon_url: Bot.user.displayAvatarURL(),
           },
         },
@@ -223,7 +223,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
       scope.setTag(`GuildType`, message.channel.type);
     });
 
-    message.lineReplyNoMention(`${Bot.Config.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`);
+    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`);
   }
 }
 
@@ -241,8 +241,8 @@ async function ActivateChatBot(message) {
       const APIEmbed = new Discord.MessageEmbed()
         .setTitle(`Ch1llBlox`)
         .setDescription(APIMessage)
-        .setFooter(`NEVER send any personal information to Ch1llBlox! • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
-        .setColor(Bot.Config.Embed.EmbedColor)
+        .setFooter(`NEVER send any personal information to Ch1llBlox! • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+        .setColor(Bot.Config.Bot.Embed.Color)
 
       if (Bot.StatClient){
         Bot.StatClient.postCommand(`ChatBot`, message.author.id)
@@ -252,7 +252,7 @@ async function ActivateChatBot(message) {
     }).catch((err) => {
       console.error(err);
 
-      return message.lineReply(`${Bot.Config.Emojis.error} | Wha- what? Something went wrong.`);
+      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Wha- what? Something went wrong.`);
     });
 
   message.channel.stopTyping(true);

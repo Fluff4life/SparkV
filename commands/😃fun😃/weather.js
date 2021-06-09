@@ -3,7 +3,7 @@ const Weather = require(`weather-js`)
 
 exports.run = async (Bot, message, Arguments) => {
     if (!Arguments){
-        return message.lineReply(`${Bot.Config.Emojis.error} | Please specify a location!`)
+        return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please specify a location!`)
     }
 
     Arguments = Arguments.join(` `)
@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
         }
 
         if (result === undefined || result.length === 0){
-            return message.lineReply(`${Bot.Config.Emojis.error} | Invalid location!`)
+            return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Invalid location!`)
         }
 
         const Current = result[0].current
@@ -32,8 +32,8 @@ exports.run = async (Bot, message, Arguments) => {
             .addField(`**Feels Like**`, `${Current.temperature}°F`, true)
             .addField(`**Humidity**`, `${Current.humidity}%`, true)
             .addField(`**Timezone**`, `${Location.timezone} UTC`, true)
-            .setFooter(`Weather forecast for ${Current.observationpoint} • ${Bot.Config.Embed.EmbedFooter}`)
-            .setColor(Bot.Config.Embed.EmbedColor)
+            .setFooter(`Weather forecast for ${Current.observationpoint} • ${Bot.Config.Bot.Embed.Footer}`)
+            .setColor(Bot.Config.Bot.Embed.Color)
             .setTimestamp()
 
         message.lineReplyNoMention(WeatherInformation)

@@ -3,7 +3,7 @@ const request = require(`node-fetch`);
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Emojis.error} | Next time, respond with the ID of the game lmao.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Next time, respond with the ID of the game lmao.`)
   }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${Arguments}.json`)
@@ -22,7 +22,7 @@ exports.run = async (Bot, message, Arguments) => {
         .setTimestamp()
 
       message.lineReplyNoMention(Embed)
-    }).catch((err) => message.lineReply(`${Bot.Config.Emojis.error} | An error occured!`))
+    }).catch((err) => message.lineReply(`${Bot.Config.Bot.Emojis.error} | An error occured!`))
 },
 
   exports.config = {

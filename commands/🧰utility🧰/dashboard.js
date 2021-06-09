@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message) => {
-  message.lineReplyNoMention(`${Bot.Config.Emojis.success} | Click the following link to view my dashboard! Link: https://ch1llblox.botdash.pro/`)
+  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Click the following link to view my dashboard! Link: https://ch1llblox.botdash.pro/`)
 },
 
   exports.config = {

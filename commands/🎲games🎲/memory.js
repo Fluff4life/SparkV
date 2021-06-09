@@ -30,11 +30,11 @@ const GenerateArray = (level) => {
 
 exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
-    return message.lineReply(`${Bot.Config.Emojis.error} | Next time, say how many directions you want to challenge yourself with.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Next time, say how many directions you want to challenge yourself with.`)
   }
 
   if (Arguments[0] < 1 || Arguments[0] > 20){
-    return message.lineReply(`${Bot.Config.Emojis.error} | You can only select between 1-20.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You can only select between 1-20.`)
   }
 
   try {

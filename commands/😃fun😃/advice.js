@@ -8,8 +8,8 @@ exports.run = async (Bot, message) => {
       const AdviceEmbed = new Discord.MessageEmbed()
         .setTitle("Here's an advice")
         .setDescription(json.slip.advice)
-        .setFooter(`You got advice #${json.slip.id} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
-        .setColor(Bot.Config.Embed.EmbedColor)
+        .setFooter(`You got advice #${json.slip.id} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+        .setColor(Bot.Config.Bot.Embed.Color)
         .setTimestamp();
 
       const Message = await message.lineReplyNoMention(AdviceEmbed);

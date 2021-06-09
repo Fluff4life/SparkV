@@ -5,10 +5,10 @@ exports.run = async (Bot, message) => {
     .setTitle("Invites")
     .setDescription(`The following are links for Ch1llBlox!`)
     .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
-    .addField("**Support Server**", `[Click Here](${Bot.Config.Support.invite})`, true)
+    .addField("**Support Server**", `[Click Here](${Bot.Config.Bot.SupportInvite})`, true)
     .addField("Bot Invite: ", `[Click Here](https://top.gg/bot/763126208149585961/invite)`, true)
-    .setFooter(`Invites for Ch1llBlox • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
-    .setColor(Bot.Config.Embed.EmbedColor);
+    .setFooter(`Invites for Ch1llBlox • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+    .setColor(Bot.Config.Bot.Embed.Color);
     
   await message.lineReplyNoMention(InvitesEmbend);
 },

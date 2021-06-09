@@ -13,8 +13,8 @@ exports.run = async (Bot, message) => {
     .addField("**LATENCY**", `\`\`\`Ch1llBlox: ${Bot.ws.ping}ms\nAPI: ${BotMessage.createdAt - message.createdAt}ms\`\`\``, true)
     .addField("**STORAGE**", `\`\`\`Memory: ${(UsedMemory / Math.pow(1024, 3)).toFixed(2)}/${(TotalMemory / Math.pow(1024, 3)).toFixed(2)} (${MemoryPersentage}) MB\nRAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
     .addField("**DATA**", `\`\`\`Uptime: ${Bot.MSToTime(Bot.uptime)}\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}\`\`\``, true)
-    .setFooter(`Ch1llBlox's Stats • ${Bot.Config.Embed.EmbedFooter}`)
-    .setColor(Bot.Config.Embed.EmbedColor)
+    .setFooter(`Ch1llBlox's Stats • ${Bot.Config.Bot.Embed.Footer}`)
+    .setColor(Bot.Config.Bot.Embed.Color)
     .setTimestamp()
 
   BotMessage.edit("Loading complete!")

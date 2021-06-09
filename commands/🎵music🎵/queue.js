@@ -4,12 +4,12 @@ exports.run = async (Bot, message, Arguments) => {
   const queue = Bot.distube.getQueue(message)
 
   if (!queue){
-    return message.lineReply(`${Bot.Config.Emojis.error} | The queue is empty! Try adding some songs.`)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | The queue is empty! Try adding some songs.`)
   }
 
   message.lineReplyNoMention({
     embed: {
-      title: `${Bot.Config.Emojis.music} | Queue for ${message.guild.name}`,
+      title: `${Bot.Config.Bot.Emojis.music} | Queue for ${message.guild.name}`,
       description: queue.songs.map((song, id) => `**${id + 1}**. ${song.name} - ${song.formattedDuration}`).slice(0, 10).join(`\n`),
       color: `#0099ff`,
     

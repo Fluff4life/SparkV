@@ -18,8 +18,8 @@ exports.run = async (Bot, message, Arguments, command) => {
         .addField(`**Description**`, PlayerInfo.blurb || "N/A")
         .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${UserID}&width=420&height=420&format=png`)
         .setURL(`https://www.roblox.com/users/${UserID}/profile`)
-        .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${Bot.Config.Embed.EmbedFooter}`)
-        .setColor(Bot.Config.Embed.EmbedColor)
+        .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${Bot.Config.Bot.Embed.Footer}`)
+        .setColor(Bot.Config.Bot.Embed.Color)
 
         message.lineReplyNoMention(InfoEmbed)
     })
@@ -27,9 +27,9 @@ exports.run = async (Bot, message, Arguments, command) => {
     const ErrorEmbed = new Discord.MessageEmbed()
       .setTitle(`404 | User Not Found`)
       .setDescription("Uh oh! Looks like this user doesn't exist or roblox is down. Check [Roblox Status](https://status.roblox.com/).")
-      .setFooter(`User not found • ${Bot.Config.Embed.EmbedFooter}`)
+      .setFooter(`User not found • ${Bot.Config.Bot.Embed.Footer}`)
       .setThumbnail("https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png")
-      .setColor(Bot.Config.Embed.EmbedColor)
+      .setColor(Bot.Config.Bot.Embed.Color)
       .setTimestamp()
 
       message.lineReplyNoMention(ErrorEmbed)
