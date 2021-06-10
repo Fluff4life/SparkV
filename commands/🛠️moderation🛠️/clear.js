@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
     if (Arguments[0].toLowerCase() === `all`) {
       const VerificationEmbed = new Discord.MessageEmbed()
         .setTitle(`Confirmtion Prompt`)
-        .setDescription(`Are you sure you want to do this?\nYou will be deleting all the messages in this channel.`)
+        .setDescription(`Are you sure you want to do this?\nYou will be deleting ***ALL*** the messages in this channel.`)
         .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Bot.Embed.Footer}`)
 
       const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
