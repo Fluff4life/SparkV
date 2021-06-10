@@ -32,7 +32,7 @@ exports.run = async (Bot, message, Arguments) => {
         messages = messages.filter((msg) => !msg.pinned)
         ++Arguments[0]
 
-        message.channel.bulkDelete(messages, true)
+        message.channel.bulkDelete(messages+1, true)
         message.lineReplyNoMention(`Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }))
       } else if (emoji === Bot.Config.Bot.Emojis.error) {
         message.delete()
