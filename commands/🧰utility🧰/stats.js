@@ -3,6 +3,10 @@ const os = require("os")
 
 exports.run = async (Bot, message) => {
   const BotMessage = await message.lineReplyNoMention("Fetching Stats...")
+  let footerMessage = (`Ch1llBlox's Stats • ${Bot.Config.Bot.Embed.Footer}`)
+  if (Bot.MSToTime(Bot.uptime) == "5 Minutes" {
+      footerMessage = "pog you found me gj on timing it on exactly 5 minutes"
+      }
 
   var UsedMemory = os.totalmem() - os.freemem()
   var TotalMemory = os.totalmem()
@@ -13,7 +17,7 @@ exports.run = async (Bot, message) => {
     .addField("**LATENCY**", `\`\`\`Ch1llBlox: ${Bot.ws.ping}ms\nAPI: ${BotMessage.createdAt - message.createdAt}ms\`\`\``, true)
     .addField("**STORAGE**", `\`\`\`Memory: ${(UsedMemory / Math.pow(1024, 3)).toFixed(2)}/${(TotalMemory / Math.pow(1024, 3)).toFixed(2)} (${MemoryPersentage}) MB\nRAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
     .addField("**DATA**", `\`\`\`Uptime: ${Bot.MSToTime(Bot.uptime)}\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}\`\`\``, true)
-    .setFooter(`Ch1llBlox's Stats • ${Bot.Config.Bot.Embed.Footer}`)
+    .setFooter(footerMessage)
     .setColor(Bot.Config.Bot.Embed.Color)
     .setTimestamp()
 
