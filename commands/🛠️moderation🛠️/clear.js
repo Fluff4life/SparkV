@@ -31,8 +31,9 @@ exports.run = async (Bot, message, Arguments) => {
 
         messages = messages.filter((msg) => !msg.pinned)
         ++Arguments[0]
-
-        message.channel.bulkDelete(messages+1, true)
+        
+        message.delete();
+        message.channel.bulkDelete(messages, true)
         message.lineReplyNoMention(`Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }))
       } else if (emoji === Bot.Config.Bot.Emojis.error) {
         message.delete()
@@ -68,8 +69,8 @@ exports.run = async (Bot, message, Arguments) => {
 
       messages = messages.filter((msg) => !msg.pinned)
       ++Arguments[1]
-
-      message.channel.bulkDelete(messages+1, true)
+      message.delete();
+      message.channel.bulkDelete(messages, true)
 
       if (User) {
         message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Successfully cleared ${messages.length} messages from ${User.tag}!`).then(m => m.delete({ timeout: 5000 }))
