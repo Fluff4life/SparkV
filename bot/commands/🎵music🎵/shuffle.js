@@ -10,7 +10,6 @@ exports.run = async (Bot, message, Arguments) => {
   }
   
   Bot.distube.shuffle(message).then(() => message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.music} | Okay, I'll shuffle the queue.`)).catch((err) => message.lineReply(`${Bot.Config.Bot.Emojis.error} | Uh oh! An error occured.`))
-
 },
 
 exports.config = {
