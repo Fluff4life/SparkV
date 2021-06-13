@@ -1,3 +1,5 @@
+const SentryLog = require("../modules/Log")
+
 exports.run = async (err, promise) => {
     const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
 

@@ -1,3 +1,5 @@
+const SentryLog = require("../modules/Log")
+
 exports.run = async (warning) => {
     await SentryLog("Warning", warning)
     
