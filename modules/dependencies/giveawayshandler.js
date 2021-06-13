@@ -3,11 +3,11 @@ const { GiveawaysManager } = require("discord-giveaways")
 module.exports = async (Bot) => {
 class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
         async getAllGiveaways(){
-            return await Bot.giveaways
+            return await Bot.GiveawaysSchema
         }
 
         async saveGiveaway(MessageID, GiveawayData){
-            await Bot.Database.push("giveaways", GiveawayData)
+            await Bot.GiveawaysSchema.push(GiveawayData)
 
             return true
         }

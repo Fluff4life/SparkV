@@ -115,7 +115,7 @@ console.log("---------- Loading GiveawaysHandler ----------")
 giveawayshandler(Bot)
 
 console.log("---------- Loading Events ----------")
-readdir("../bot/events", (err, files) => {
+readdir("./events", (err, files) => {
   if (err) {
     return Bot.Log("ERROR", "EVENT LOADING ERROR", err)
   }
@@ -129,7 +129,7 @@ readdir("../bot/events", (err, files) => {
 })
 
 console.log("---------- Loading Commands ----------")
-readdir("../bot/commands", (err, cats) => {
+readdir("./commands", (err, cats) => {
   if (err) {
     return Bot.Log("ERROR", "COMMANDS LOADING ERROR", err)
   }
