@@ -1,58 +1,39 @@
 {
     "Bot": {
-        "ClientID": 763126208149585961,
-        "Permissions": 0,
-        "prefix": "^"
-    },
-
-    "Support": {
-        "invite": "https://discord.gg/PPtzT8Mu3h",
-        "id": 763803059876397056
-    },
-
-    "Embed": {
-        "EmbedColor": "BLUE",
-        "EmbedFooter": "^Donate | ^Invite",
-        "SuccessColor": "#0099ff",
-        "ErrorColor": "RED"
-    },
-
-    "Emojis": {
-        "success": "<a:Check:819934065025220668>",
-        "error": "<a:Cross:819934065314234418>",
-        "music": "<a:PepeMusic:819933524525449256>"
-    },
-
-    "SystemsEnabled": {
-        "WebsiteEnabled": true,
-        "Down": false,
-        "BotEnabled": false
-    },
-
-    "website": {
-        "BotOnline": false
-    },
-
-    "links": {
-        "GitHub": "https://github.com/KingCh1ll",
-        "donate": "https://roblox.com/"
-    },
-
-    "sharding": {
-        "ShardingEnabled": false,
-        "ShardLifeTime": 518400
-    },
-
-    "Responses": {
-        "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proper arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
-        "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
-
-        "InvalidPermisions": {
-            "Bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
-            "User": "Uh oh! You don't have permission to do that. You need **{permission}**.",
-            "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
+        "ID": 763126208149585961,
+        "prefix": "^",
+        "SupportInvite": "https://discord.gg/PPtzT8Mu3h",
+        "Sharding": {
+            "ShardingEnabled": false,
+            "ShardLifeTime": 518400
+        },
+        "Embed": {
+            "Color": "BLUE",
+            "Footer": "^Donate | ^Invite",
+            "StatusColors": {
+                "SuccessColor": "#0099ff",
+                "ErrorColor": "RED"
+            }
+        },
+        "Emojis": {
+            "success": "<a:Check:819934065025220668>",
+            "error": "<a:Cross:819934065314234418>",
+            "music": "<a:PepeMusic:819933524525449256>"
+        },
+        "Responses": {
+            "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proper arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
+            "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
+            "InvalidPermisions": {
+                "Bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
+                "User": "Uh oh! You don't have permission to do that. You need **{permission}**.",
+                "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
+            }
         }
     },
-
-    "Debug": false
+    "Website": {},
+    "Debug": {
+        "Enabled": true,
+        "BotEnabled": false,
+        "WebsiteEnabled": true
+    }
 }

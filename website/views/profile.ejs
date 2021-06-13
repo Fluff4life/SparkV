@@ -7,6 +7,14 @@
   </head>
 
   <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
+    <div id="loading">
+      <div id="loading-center">
+        <div id="loading-center-absolute">
+          <div class="loader"></div>
+        </div>
+      </div>
+    </div>
+
     <% if (navagation) { %>
       <%- include("Parts/navagation", navagation) -%>
     <% } %>
@@ -24,8 +32,6 @@
       <%- include("Parts/footer", footer) -%>
     <% } %>
 
-    <% if (scripts) { %>
-      <%- include("Parts/scripts", scripts) -%>
-    <% } %>
+    <%- include("Parts/scripts") %>
   </body>
 </html>

@@ -1,12 +1,16 @@
+const Discord = require("discord.js")
+
 const passport = require("passport")
 const DiscordPassport = require("passport-discord")
 
 const Config = require("../../globalconfig.json")
+const MainWebhook = new Discord.WebhookClient("852259324994388039", "FKlZ-IkTZ-e2L-kv3_PwHBKMPzAoAdspQAdAJfeMlbktIarPblgQR3MclamGfK3FT_j9")
+global.MainWebhook = MainWebhook
 
 const DiscordStrat = {
     clientID: "848685407189336075",
     clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
-    callbackURL: `${Config.Debug === true ? "http://localhost:3000" : `https://${process.env.baseURL}`}/api/auth/discord/callback`,
+    callbackURL: `${Config.Debug.Enabled === true ? "http://localhost:3000" : `https://${process.env.baseURL}`}/api/auth/discord/callback`,
     scope: ["identify", "guilds"],
 }
 
@@ -25,22 +29,21 @@ try {
 }
 
 passport.serializeUser(async (user, done) => {
-    try {
-        if (await global.Database.get(`WebsiteData.Users.${user.id}`)) {
-            console.log(user.id)
-        } else {
-            await global.Database.set(`WebsiteData.Users.${user.id}`, {
-                username: user.username,
-                tag: user.discriminator,
-                userid: user.id,
-                avatarid: user.avatar
-            })
-        }
+    const MainEmbed = new Discord.MessageEmbed()
+        .setTitle("User Logged In")
+        .setDescription(`**${user.username}${"#" + user.discriminator}** just logged in!`)
+        .setFooter(`Ch1ll Notifier | ${user.username}${"#" + user.discriminator}`)
+        .setColor("GREEN")
 
-        done(null, user)
-    } catch (err) {
-        done(err, user)
-    }
+    MainWebhook.send({
+      username: "Ch1ll Notifier",
+      avatarURL: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`,
+      embeds: [
+        MainEmbed
+      ]
+    })
+
+    done(null, user)
 })
 
-passport.deserializeUser((obj, done) => done(null, obj));
+passport.deserializeUser((user, done) => done(null, user))

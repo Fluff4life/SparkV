@@ -38,8 +38,8 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setColor(Bot.Config.Bot.Embed.Color)
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.lineReplyNoMention(NowPlayingEmbed)
@@ -63,8 +63,8 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setColor(Bot.Config.Bot.Embed.Color)
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.lineReplyNoMention(NowPlayingEmbed)
@@ -88,8 +88,8 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 Added by ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setColor(Bot.Config.Bot.Embed.Color)
+        .setFooter(`📼 Added by ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.lineReplyNoMention(SongAddedQueue)
@@ -113,8 +113,8 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Embed.EmbedColor)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Embed.EmbedFooter}`, Bot.user.displayAvatarURL())
+        .setColor(Bot.Config.Bot.Embed.Color)
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
         .setTimestamp()
 
       message.lineReplyNoMention(SongAddedQueue)
@@ -126,7 +126,7 @@ module.exports = async (Bot) => {
         const CreatePage = (Song) => {
           const NewEmbed = new MessageEmbed()
             .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-            .setColor(Bot.Config.Embed.EmbedColor)
+            .setColor(Bot.Config.Bot.Embed.Color)
             .setURL(Song.url)
             .setImage(Song.thumbnail)
   
