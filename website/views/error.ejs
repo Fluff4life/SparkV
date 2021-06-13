@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <% if (head) { %>
-      <%- include("parts/head", head) -%>
+      <%- include("Parts/head", head) -%>
     <% } %>
   </head>
 
@@ -16,17 +16,17 @@
     </div>
 
     <% if (navagation) { %>
-      <%- include("parts/navagation", navagation) -%>
+      <%- include("Parts/navagation", navagation) -%>
     <% } %>
 
     <% if (top) { %>
-      <%- include("parts/top", top) -%>
+      <%- include("Parts/top", top) -%>
     <% } %>
 
     <% if (footer) { %>
-      <%- include("parts/footer", footer) -%>
+      <%- include("Parts/footer", footer) -%>
     <% } %>
     
-    <%- include("parts/scripts") %>
+    <%- include("Parts/scripts") %>
   </body>
 </html>
