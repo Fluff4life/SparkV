@@ -122,7 +122,7 @@ readdir("./events", (err, files) => {
 
   files.forEach(file => {
     let EventName = file.split(".")[0]
-    let FileEvent = require(`../bot/events/${EventName}`)
+    let FileEvent = require(`./events/${EventName}`)
 
     Bot.on(EventName, (...args) => FileEvent.run(Bot, ...args))
   })
@@ -137,7 +137,7 @@ readdir("./commands", (err, cats) => {
   cats.forEach(cat => {
     Bot.categories.set(cat, cat)
 
-    readdir(`../bot/commands/${cat}`, (err, files) => {
+    readdir(`./commands/${cat}`, (err, files) => {
       files.forEach(file => {
         if (!file.endsWith(".js")) {
           return
