@@ -1,180 +1,199 @@
 <!-- Header -->
-<title>
-    <%- SiteTitle %>
-</title>
-<meta name="description" content="<%- SiteDescription %>">
+<head>
+    <title>
+        <%- SiteTitle %>
+    </title>
+    <meta name="description" content="<%- SiteDescription %>">
 
-<!-- Site Settings -->
-<meta name="theme-color" content="#3bd8ff">
-<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta charset="utf-8">
+    <!-- Site Settings -->
+    <meta name="theme-color" content="#3bd8ff">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta charset="utf-8">
 
-<!-- Tags -->
-<meta name="keywords" content="<%- SiteKeywords %>">
+    <!-- Tags -->
+    <meta name="keywords" content="<%- SiteKeywords %>">
 
-<!-- Twitter -->
-<meta name="twitter:site" content="/home">
-<meta name="twitter:title" content="<%- SiteTitle %>">
-<meta name="twitter:description" content="<%- SiteDescription %>">
-<meta name="twitter:creator" content="KingCh1ll">
-<meta name="twitter:image" content="/assets/images/siteicons/favicon.ico">
+    <!-- Twitter -->
+    <meta name="twitter:site" content="/home">
+    <meta name="twitter:title" content="<%- SiteTitle %>">
+    <meta name="twitter:description" content="<%- SiteDescription %>">
+    <meta name="twitter:creator" content="KingCh1ll">
+    <meta name="twitter:image" content="/assets/images/siteicons/favicon.ico">
 
-<!-- OG Data -->
-<meta property="og:title" content="<%- SiteTitle %>">
-<meta property="og:description" content="<%- SiteDescription %>">
-<meta property="og:image" content="/assets/images/siteicons/favicon.ico">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Ch1ll">
+    <!-- OG Data -->
+    <meta property="og:title" content="<%- SiteTitle %>">
+    <meta property="og:description" content="<%- SiteDescription %>">
+    <meta property="og:image" content="/assets/images/siteicons/favicon.ico">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ch1ll">
 
-<!-- Icons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/siteicons/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/siteicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/fav/favicon-16x16.png">
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/siteicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/siteicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/fav/favicon-16x16.png">
 
-<!-- Stylesheets -->
-<link href="/assets/css/theme.css" rel="stylesheet" rel="noopener" type="text/css">
-<link href="/assets/plugins/css/aos.css" rel="stylesheet" rel="noopener">
-<link href="/assets/plugins/css/pace.css" rel="stylesheet" rel="noopener">
-<link href="/assets/plugins/css/mdb.min.css" rel="stylesheet" rel="noopener">
-<link href="/assets/plugins/css/sa2.css" rel="stylesheet" rel="noopener">
-<link href="/assets/plugins/css/bootstrap.min.css" rel="stylesheet" rel="noopener" type="text/css">
-<link href="//use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet" rel="noopener" type="text/css">
+    <!-- Stylesheets -->
+    <link href="/assets/css/theme.css" rel="stylesheet" rel="noopener" type="text/css">
+    <link href="/assets/plugins/css/aos.css" rel="stylesheet" rel="noopener">
+    <link href="/assets/plugins/css/pace.css" rel="stylesheet" rel="noopener">
+    <link href="/assets/plugins/css/mdb.min.css" rel="stylesheet" rel="noopener">
+    <link href="/assets/plugins/css/sa2.css" rel="stylesheet" rel="noopener">
+    <link href="/assets/plugins/css/bootstrap.min.css" rel="stylesheet" rel="noopener" type="text/css">
+    <link href="//use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet" rel="noopener" type="text/css">
 
-<style>
-    body {
-        display: flex;
-        flex-direction: column;
-    }
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
 
-    #loading {
-        margin: 0;
-        padding: 0;
-        background-color: #2f3136;
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        z-index: 9999;
-        margin-top: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
+        #loading {
+            margin: 0;
+            padding: 0;
+            background-color: #2f3136;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 9999;
+            margin-top: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
 
-    #loading-center {
-        width: 100%;
-        height: 100%;
-        position: relative
-    }
+        #loading-center {
+            width: 100%;
+            height: 100%;
+            position: relative
+        }
 
-    #loading-center-absolute {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        height: 200px;
-        width: 200px;
-        margin-top: -100px;
-        margin-left: -100px
-    }
+        #loading-center-absolute {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 200px;
+            width: 200px;
+            margin-top: -100px;
+            margin-left: -100px
+        }
 
-    .loading {
-        position: fixed;
-        text-align: center;
-        padding: 10px;
-        background-color: #2f3136
-    }
+        .loading {
+            position: fixed;
+            text-align: center;
+            padding: 10px;
+            background-color: #2f3136
+        }
 
-    #text1 {
-        color: #fff;
-        font-family: Roboto, sans-serif;
-        font-size: 25px;
-        z-index: 100;
-        top: 50%;
-        width: 100%
-    }
+        #text1 {
+            color: #fff;
+            font-family: Roboto, sans-serif;
+            font-size: 25px;
+            z-index: 100;
+            top: 50%;
+            width: 100%
+        }
 
-    #object {
-        top: 25%;
-        left: 42%
-    }
-    .loader {
-  color: #ffffff;
-  font-size: 90px;
-  text-indent: -9999em;
-  overflow: hidden;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  margin: 72px auto;
-  position: relative;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-  animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-}
-@-webkit-keyframes load6 {
-  0% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  5%,
-  95% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  10%,
-  59% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-  }
-  20% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-  }
-  38% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-  }
-  100% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-}
-@keyframes load6 {
-  0% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  5%,
-  95% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  10%,
-  59% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-  }
-  20% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-  }
-  38% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-  }
-  100% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-}
-@-webkit-keyframes round {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes round {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-</style>
+        #object {
+            top: 25%;
+            left: 42%
+        }
+
+        .loader {
+            color: #ffffff;
+            font-size: 90px;
+            text-indent: -9999em;
+            overflow: hidden;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            margin: 72px auto;
+            position: relative;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+            animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+        }
+
+        @-webkit-keyframes load6 {
+            0% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            5%,
+            95% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            10%,
+            59% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+            }
+
+            20% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+            }
+
+            38% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+            }
+
+            100% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+        }
+
+        @keyframes load6 {
+            0% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            5%,
+            95% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+
+            10%,
+            59% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+            }
+
+            20% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+            }
+
+            38% {
+                box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+            }
+
+            100% {
+                box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+            }
+        }
+
+        @-webkit-keyframes round {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes round {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>

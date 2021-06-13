@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <% if (head) { %>
-      <%- include("parts/head", head) -%>
-    <% } %>
-  </head>
+  <% if (head) { %>
+    <% include("parts/head", head) %> 
+  <% } %>
 
   <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
     <noscript>
@@ -20,25 +18,25 @@
     </div>
 
     <% if (navagation) { %>
-      <%- include("parts/navagation", navagation) -%>
+     <% include("parts/navagation", navagation) %> 
     <% } %>
 
     <% if (top) { %>
-      <%- include("parts/top", top) -%>
+     <% include("parts/top", top) %> 
     <% } %>
 
     <% if (features) { %>
-      <%- include("parts/features", features) -%>
+      <% include("parts/features", features) %> 
     <% } %>
 
     <% if (reviews) { %>
-      <%- include("parts/reviews", reviews) -%>
+      <% include("parts/reviews", reviews) %> 
     <% } %>
 
     <% if (footer) { %>
-      <%- include("parts/footer", footer) -%>
+      <% include("parts/footer", footer) %> 
     <% } %>
-
-    <%- include("parts/scripts") %>
+    
+    <% include("parts/scripts") %>
   </body>
 </html>
