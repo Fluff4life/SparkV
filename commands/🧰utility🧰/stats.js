@@ -4,9 +4,9 @@ const os = require("os")
 exports.run = async (Bot, message) => {
   const BotMessage = await message.lineReplyNoMention("Fetching Stats...")
   let footerMessage = (`Ch1llBlox's Stats • ${Bot.Config.Bot.Embed.Footer}`)
-  if (Bot.MSToTime(Bot.uptime) == "5 Minutes" {
-      footerMessage = "pog you found me gj on timing it on exactly 5 minutes"
-      }
+  if (Bot.MSToTime(Bot.uptime) == "5 Minutes") {
+    footerMessage = "pog you found me gj on timing it on exactly 5 minutes"
+  }
 
   var UsedMemory = os.totalmem() - os.freemem()
   var TotalMemory = os.totalmem()
