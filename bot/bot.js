@@ -68,7 +68,7 @@ if (Config.Debug.Enabled === false) {
 }
 
 // Schemas
-Bot.UserShema = require("../modules/models/users")
+Bot.UserShema = require("../modules/models/UserData")
 
 // Collections //
 Bot.Rules = new Collection()

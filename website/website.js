@@ -73,9 +73,8 @@ async function StartWebsite(Bot){
     require("newrelic")
   }
   
-  const Database = require("./utils/database")(process.env.mongooseURL)
-  global.Database = Database
-  
+  global.UserShema = require("../modules/models/UserData")
+
   require("./utils/passport")
   
   app.use(session({
@@ -304,4 +303,4 @@ async function StartWebsite(Bot){
   console.log(`SUCCESS - WEBSITE => Website successfully deployed!`)
 }
 
-module.exports = StartWebsite
+StartWebsite(null)

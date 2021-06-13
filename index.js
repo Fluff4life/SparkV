@@ -10,7 +10,7 @@ const fs = require("fs")
 // Varibles //
 const PackageInfo = require("./package.json");
 const Config = require("./globalconfig.json")
-const SentryLog = require("./modules/Log")
+const SentryLog = require("./modules/Log");
 
 // Start Env //--
 DotEnv.config({
@@ -54,9 +54,10 @@ async function Start() {
         useFindAndModify: false
     })
 
-    if (Config.Debug.Enabled === true) {
+    mongoose.connection.on("error", console.error.bind(console, "Database connection error! "))
+    mongoose.connection.on("open", function () {
         console.log(require("chalk").green("DATABASE - ONLINE"))
-    }
+    })
 
     if (Config.Debug.Enabled === true) {
         let Client

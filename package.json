@@ -21,10 +21,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
-    "@sentry/browser": "^6.5.0",
-    "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
-    "@sentry/tracing": "^6.3.1",
     "@top-gg/sdk": "^3.0.9",
     "anti-swear-words-packages-discord": "^1.1.43",
     "body-parser": "^1.19.0",
@@ -42,8 +39,6 @@
     "discordeasypages": "^0.2.2",
     "distube": "^2.8.13",
     "dotenv": "^8.6.0",
-    "ejs": "^3.1.6",
-    "ejs-lint": "^1.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "ffmpeg-static": "^4.2.7",
@@ -55,12 +50,10 @@
     "newrelic": "^7.4.0",
     "noblox.js": "^4.8.5",
     "node-fetch": "^2.6.1",
-    "npm": "^7.10.0",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "quickmongo": "^3.0.2",
     "serve-favicon": "^2.5.0",
     "socket.io": "^4.0.2",
     "socket.io-client": "^4.0.2",
@@ -76,6 +69,9 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
+    "ejs": "^3.1.6",
+    "ejs-lint": "^1.2.0",
+    "npm": "^7.10.0",
     "prettier": "2.2.1"
   }
 }

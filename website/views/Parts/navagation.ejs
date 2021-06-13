@@ -22,7 +22,7 @@
             <% if (link[1].type==="dropdown" ) { %>
               <li class="nav-item dropdown me-3 me-lg-1">
                 <div class="dropdown">
-                  <div class="btn dropdown-toggle px-2" type="button" id="dropdown_<%- link[1].name %>"
+                  <div class="btn dropdown-toggle px-2 text-white" type="button" id="dropdown_<%- link[1].name %>"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <span><i class="<%- link[1].icon %> bi d-block mx-auto mb-1 fa-lg text-center text-wrap"></i>
                       <%- link[1].name %>
@@ -57,7 +57,7 @@
         <% if (user) { %>
           <ul class="nav justify-content-center">
             <div class="dropdown">
-              <div class="btn dropdown-toggle px-2" type="button" id="dropdown_bell" data-bs-toggle="dropdown"
+              <div class="btn dropdown-toggle px-2 text-white" type="button" id="dropdown_bell" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <i class="fas fa-bell fa-lg"></i>
               </div>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="dropdown">
-              <div class="btn dropdown-toggle px-2" type="button" id="dropdown_services" data-bs-toggle="dropdown"
+              <div class="btn dropdown-toggle px-2 text-white" type="button" id="dropdown_services" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
               </div>
@@ -88,7 +88,7 @@
             </div>
 
             <div class="dropdown">
-              <div class="btn dropdown-toggle px-2" type="button" id="dropdown_user" data-bs-toggle="dropdown"
+              <div class="btn dropdown-toggle px-2 text-white" type="button" id="dropdown_user" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <span class="avatar avatar-sm rounded-circle mx-auto d-block">
                   <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024"

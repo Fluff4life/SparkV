@@ -6,7 +6,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const User = message.mentions.users.first()
-  var Ch1llBucks = await Bot.UserShema.findOne({
+  var Ch1llBucks = await Bot.UserShema.find({
     id: User.id
   })
 
