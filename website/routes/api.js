@@ -13,14 +13,6 @@ Router.get("/status", async (request, response) => {
 	response.status(200).send({ status: 200, message: "OK" });
 })
 
-Router.get("/website/status", async (request, response) => {
-	response.status(200).send({ status: 200, message: "OK" });
-})
-
-Router.get("/ch1llblox/status", async (request, response) => {
-	response.status(200).send({ status: 200, message: "OK" });
-})
-
 Router.get("/auth/discord", passport.authenticate("discord"), async (request, response, next) => {
 	if (request.session.backURL) {
 		request.session.backURL = request.session.backURL

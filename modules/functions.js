@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
 
+const SentryLog = require("../modules/Log")
+
 module.exports = async (bot) => {
   bot.MSToTime = (ms) => {
     let RoundNumber = ms > 0 ? Math.floor : Math.ceil;
@@ -88,11 +90,11 @@ module.exports = async (bot) => {
     if (Status === "SUCCESS") {
       console.log(require("chalk").blue(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "ERROR") {
-      global.LogError("Fatal", Details)
+      SentryLog("Fatal", Details)
 
       console.log(require("chalk").red(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "WARNING") {
-      global.LogError("Fatal", Details)
+      SentryLog("Fatal", Details)
 
       console.log(require("chalk").yellow(`${Status} - ${Type} => ${Details}`))
     } else if (Status === "DEBUG") {

@@ -31,5 +31,9 @@
         }
     },
     "Website": {},
-    "Debug": false
+    "Debug": {
+        "Enabled": true,
+        "BotEnabled": false,
+        "WebsiteEnabled": true
+    }
 }

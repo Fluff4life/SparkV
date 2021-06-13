@@ -4,9 +4,9 @@
   "description": "...",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "startbot": "node index.js",
-    "startweb": "node website/website.js",
+    "start": "node index.js --max_old_space_size=8192",
+    "startbot": "node index.js --max_old_space_size=8192",
+    "startweb": "node website/website.js --max_old_space_size=8192",
     "download": "npm install --package-lock-only"
   },
   "repository": {
@@ -20,7 +20,6 @@
     "npm": "*"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
     "@sentry/browser": "^6.5.0",
     "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
@@ -29,9 +28,8 @@
     "anti-swear-words-packages-discord": "^1.1.43",
     "body-parser": "^1.19.0",
     "botdash.pro": "^1.0.2",
-    "canvacord": "^5.2.0",
-    "canvas": "^2.7.0",
     "chalk": "^4.1.1",
+    "cookie-parser": "^1.4.5",
     "discord-anti-spam": "^2.5.0",
     "discord-giveaways": "^4.4.3",
     "discord-reply": "^0.1.2",
@@ -39,20 +37,15 @@
     "discord-xp": "^1.1.8",
     "discord.js": "^12.5.1",
     "discordeasypages": "^0.2.2",
-    "distube": "^2.8.13",
     "dotenv": "^8.6.0",
     "ejs": "^3.1.6",
     "ejs-lint": "^1.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "ffmpeg-static": "^4.2.7",
     "fs": "0.0.1-security",
-    "libsodium-wrappers": "^0.7.9",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
-    "newrelic": "^7.5.0",
-    "noblox.js": "^4.8.5",
     "node-fetch": "^2.6.1",
     "npm": "^7.10.0",
     "passport": "^0.4.1",
@@ -63,16 +56,11 @@
     "serve-favicon": "^2.5.0",
     "socket.io": "^4.0.2",
     "socket.io-client": "^4.0.2",
-    "sodium": "^3.0.2",
     "statcord.js": "^3.2.0",
     "topgg-autoposter": "^2.0.0",
     "urban": "^0.3.2",
-    "utf-8-validate": "^5.0.5",
     "weather-js": "^2.0.0",
-    "yargs-parser": "^13.1.2",
-    "youtube-dl": "^3.5.0",
-    "ytdl-core": "^4.8.0",
-    "zlib-sync": "^0.1.7"
+    "yargs-parser": "^13.1.2"
   },
   "devDependencies": {
     "prettier": "2.2.1"
