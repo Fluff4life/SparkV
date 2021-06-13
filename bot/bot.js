@@ -3,8 +3,9 @@
 // Index.js //
 
 // Librarys //
-const { Client, Collection } = require("discord.js")
-const { readdir } = require("fs")
+const Discord = require("discord.js")
+const fs = require("fs")
+const path = require("path")
 const AntiSpam = require("discord-anti-spam")
 const Statcord = require("statcord.js")
 
@@ -26,10 +27,9 @@ console.log(require("chalk").blue(" | |___| | | | | | | |_) | | (_) >  < "))
 console.log(require("chalk").blue("  \____|_| |_|_|_|_|____/|_|\___/_/\_\ "))                                 
 
 // Create Bot //
-module.exports
-require("discord-reply") // Until discord.js releases 2021 replys, I have this module to do it for me. Will be removed in the future!
+require("discord-reply") // Until Discord.js releases 2021 replys, I have this module to do it for me. Will be removed in the future!
 
-const Bot = new Client({
+const Bot = new Discord.Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
 
   presence: {
@@ -71,12 +71,12 @@ if (Config.Debug.Enabled === false) {
 Bot.UserShema = require("../modules/models/UserData")
 
 // Collections //
-Bot.Rules = new Collection()
-Bot.categories = new Collection()
-Bot.commands = new Collection()
-Bot.aliases = new Collection()
-Bot.events = new Collection()
-Bot.cooldowns = new Collection()
+Bot.Rules = new Discord.Collection()
+Bot.categories = new Discord.Collection()
+Bot.commands = new Discord.Collection()
+Bot.aliases = new Discord.Collection()
+Bot.events = new Discord.Collection()
+Bot.cooldowns = new Discord.Collection()
 
 Bot.AntiSpam = new AntiSpam({
   warnThreshold: 3,
@@ -115,7 +115,7 @@ console.log("---------- Loading GiveawaysHandler ----------")
 giveawayshandler(Bot)
 
 console.log("---------- Loading Events ----------")
-readdir("./events", (err, files) => {
+fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
   if (err) {
     return Bot.Log("ERROR", "EVENT LOADING ERROR", err)
   }
@@ -129,7 +129,7 @@ readdir("./events", (err, files) => {
 })
 
 console.log("---------- Loading Commands ----------")
-readdir("./commands", (err, cats) => {
+fs.readdir(path.join(`${__dirname}/commands`), (err, cats) => {
   if (err) {
     return Bot.Log("ERROR", "COMMANDS LOADING ERROR", err)
   }
@@ -137,7 +137,7 @@ readdir("./commands", (err, cats) => {
   cats.forEach(cat => {
     Bot.categories.set(cat, cat)
 
-    readdir(`./commands/${cat}`, (err, files) => {
+    fs.readdir(`./commands/${cat}`, (err, files) => {
       files.forEach(file => {
         if (!file.endsWith(".js")) {
           return
