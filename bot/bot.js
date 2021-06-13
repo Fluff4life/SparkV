@@ -115,21 +115,21 @@ console.log("---------- Loading GiveawaysHandler ----------")
 giveawayshandler(Bot)
 
 console.log("---------- Loading Events ----------")
-readdir("./events", (err, files) => {
+readdir("../bot/events", (err, files) => {
   if (err) {
     return Bot.Log("ERROR", "EVENT LOADING ERROR", err)
   }
 
   files.forEach(file => {
     let EventName = file.split(".")[0]
-    let FileEvent = require(`./events/${EventName}`)
+    let FileEvent = require(`../bot/events/${EventName}`)
 
     Bot.on(EventName, (...args) => FileEvent.run(Bot, ...args))
   })
 })
 
 console.log("---------- Loading Commands ----------")
-readdir("./commands", (err, cats) => {
+readdir("../bot/commands", (err, cats) => {
   if (err) {
     return Bot.Log("ERROR", "COMMANDS LOADING ERROR", err)
   }
@@ -137,14 +137,14 @@ readdir("./commands", (err, cats) => {
   cats.forEach(cat => {
     Bot.categories.set(cat, cat)
 
-    readdir(`./commands/${cat}`, (err, files) => {
+    readdir(`../bot/commands/${cat}`, (err, files) => {
       files.forEach(file => {
         if (!file.endsWith(".js")) {
           return
         }
 
         let commandname = file.split(".")[0]
-        let FileJs = require(`./commands/${cat}/${commandname}`)
+        let FileJs = require(`../bot/commands/${cat}/${commandname}`)
 
         Bot.commands.set(commandname, FileJs)
       })
