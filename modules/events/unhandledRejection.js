@@ -1,4 +1,4 @@
-const SentryLog = require("../modules/Log")
+const SentryLog = require("../../modules/Log")
 
 exports.run = async (err, promise) => {
     await SentryLog("Error", err)
