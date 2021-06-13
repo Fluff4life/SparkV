@@ -26,7 +26,7 @@ Sentry.init({
 
 // Functions //
 async function Start() {
-    if (Config.Debug.Enabled) {
+    if (Config.Debug.Enabled === true) {
         console.log(require("chalk").green("MAIN HANDLER - STARTING"))
     }
 
@@ -43,7 +43,7 @@ async function Start() {
         })
     })
 
-    if (Config.Debug.Enabled) {
+    if (Config.Debug.Enabled === true) {
         console.log(require("chalk").green("ERROR HANDLERS - ONLINE"))
     }
 
@@ -54,22 +54,22 @@ async function Start() {
         useFindAndModify: false
     })
 
-    if (Config.Debug.Enabled) {
+    if (Config.Debug.Enabled === true) {
         console.log(require("chalk").green("DATABASE - ONLINE"))
     }
 
-    if (Config.Debug.Enabled) {
+    if (Config.Debug.Enabled === true) {
         let Client
 
         console.log(require("chalk").yellow("WARNING - DEBUG ENABLED! Some features may not work on this mode."))
 
-        if (Config.Debug.BotEnabled) {
+        if (Config.Debug.BotEnabled === true) {
             const Bot = require("./bot/bot")
             
             Client = await Bot.init(process.env.token)
         }
 
-        if (Config.Debug.WebsiteEnabled) {
+        if (Config.Debug.WebsiteEnabled === true) {
             await require("./website/website")(Client)
         }
     } else {
