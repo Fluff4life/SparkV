@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <% if (head) { %>
-    <% include("Parts/head", head) %> 
+    <%- include("Parts/head", head) %> 
   <% } %>
 
   <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
@@ -18,25 +18,25 @@
     </div>
 
     <% if (navagation) { %>
-     <% include("Parts/navagation", navagation) %> 
+     <%- include("Parts/navagation", navagation) %> 
     <% } %>
 
     <% if (top) { %>
-     <% include("Parts/top", top) %> 
+     <%- include("Parts/top", top) %> 
     <% } %>
 
     <% if (features) { %>
-      <% include("Parts/features", features) %> 
+      <%- include("Parts/features", features) %> 
     <% } %>
 
     <% if (reviews) { %>
-      <% include("Parts/reviews", reviews) %> 
+      <%- include("Parts/reviews", reviews) %> 
     <% } %>
 
     <% if (footer) { %>
-      <% include("Parts/footer", footer) %> 
+      <%- include("Parts/footer", footer) %> 
     <% } %>
     
-    <% include("Parts/scripts") %>
+    <%- include("Parts/scripts") %>
   </body>
 </html>
