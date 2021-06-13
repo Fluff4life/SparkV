@@ -1,18 +1,38 @@
 const { GiveawaysManager } = require("discord-giveaways")
+const QuickMongo = require("quickmongo")
+const Levels = require("discord-xp");
+const Database = new QuickMongo.Database(process.env.mongooseURL)
 
 module.exports = async (Bot) => {
-class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
-        async getAllGiveaways(){
-            return await Bot.GiveawaysSchema
+    Database.on("ready", async () => {
+        Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
+
+        if ((await Database.get("giveaways")) === null) {
+            await Database.set("giveaways", [])
+        }
+    })
+
+    Database.on("error", async (err) => {
+        Bot.Log("ERROR", "DATABASE ERROR", err)
+    })
+
+    Levels.setURL(process.env.mongooseURL)
+
+    bot.Database = Database
+    global.Database = Database
+
+    class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
+        async getAllGiveaways() {
+            return await Bot.Database.get("giveaways")
         }
 
-        async saveGiveaway(MessageID, GiveawayData){
-            await Bot.GiveawaysSchema.push(GiveawayData)
+        async saveGiveaway(MessageID, GiveawayData) {
+            await Bot.Database.push("giveaways", GiveawayData)
 
             return true
         }
 
-        async editGiveaway(MessageID, NewGiveawayData){
+        async editGiveaway(MessageID, NewGiveawayData) {
             const Giveaways = await Bot.Database.get("giveaways")
             const NewGiveawaysArray = Giveaways.filter((giveaway) => giveaway.messageID !== MessageID)
 
@@ -22,12 +42,12 @@ class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
             return true
         }
 
-        async deleteGiveaway(MessageID){
+        async deleteGiveaway(MessageID) {
             const Data = await Bot.Database.get("giveaways")
             const NewGiveawaysArray = Data.filter((giveaway) => giveaway.messageID !== MessageID)
-    
+
             await Bot.Database.set("giveaways", NewGiveawaysArray)
-    
+
             return true
         }
     }

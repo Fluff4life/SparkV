@@ -55,6 +55,7 @@
     "passport-discord": "^0.1.4",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "quickmongo": "^3.0.2",
     "serve-favicon": "^2.5.0",
     "socket.io": "^4.0.2",
     "socket.io-client": "^4.0.2",
