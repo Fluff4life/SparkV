@@ -1,17 +1,17 @@
 {
   "name": "ch1llblox",
-  "version": "5.1",
+  "version": "5.1.5",
   "description": "...",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "startbot": "node index.js",
-    "startweb": "node website/website.js",
+    "start": "node index.js --max_old_space_size=8192",
+    "startbot": "node index.js --max_old_space_size=8192",
+    "startweb": "node website/website.js --max_old_space_size=8192",
     "download": "npm install --package-lock-only"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KingCh1ll/Ch1llTech"
+    "url": "https://github.com/KingCh1ll/Ch1llBlox"
   },
   "author": "KingCh1ll#3616",
   "license": "MIT",
@@ -21,10 +21,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
-    "@sentry/browser": "^6.5.0",
-    "@sentry/integrations": "^6.3.0",
     "@sentry/node": "^6.3.0",
-    "@sentry/tracing": "^6.3.1",
     "@top-gg/sdk": "^3.0.9",
     "anti-swear-words-packages-discord": "^1.1.43",
     "body-parser": "^1.19.0",
@@ -32,6 +29,7 @@
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "chalk": "^4.1.1",
+    "cookie-parser": "^1.4.5",
     "discord-anti-spam": "^2.5.0",
     "discord-giveaways": "^4.4.3",
     "discord-reply": "^0.1.2",
@@ -42,7 +40,6 @@
     "distube": "^2.8.13",
     "dotenv": "^8.6.0",
     "ejs": "^3.1.6",
-    "ejs-lint": "^1.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "ffmpeg-static": "^4.2.7",
@@ -51,10 +48,9 @@
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.11.15",
     "ms": "^2.0.0",
-    "newrelic": "^7.5.0",
+    "newrelic": "^7.4.0",
     "noblox.js": "^4.8.5",
     "node-fetch": "^2.6.1",
-    "npm": "^7.10.0",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
     "passport-local": "^1.0.0",
@@ -75,6 +71,8 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
+    "ejs-lint": "^1.2.0",
+    "npm": "^7.10.0",
     "prettier": "2.2.1"
   }
 }

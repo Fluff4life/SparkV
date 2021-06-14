@@ -6,11 +6,11 @@ const CheckAuth = require("../utils/CheckAuth")
 const Render = require("../utils/Render")
 
 Router.get("/", async (request, response) => {
-    response.redirect("/404?reason=user_not_found")
+  response.redirect("/404?reason=user_not_found")
 })
 
 Router.get("/:userID", async (request, response) => {
-  if (!request.params.userID){
+  if (!request.params.userID) {
     response.redirect("404?reason=user_not_found")
   }
 
@@ -18,7 +18,7 @@ Router.get("/:userID", async (request, response) => {
 })
 
 Router.get("/:userID/profile", async (request, response) => {
-  if (!request.params.userID){
+  if (!request.params.userID) {
     response.redirect("404?reason=invalid_arguments")
   }
 
@@ -31,19 +31,19 @@ Router.get("/:userID/profile", async (request, response) => {
         SiteDescription: `${User.username} is a user enjoying the benifits of using KingCh1ll's services. Including Ch1llBlox!`,
         SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
       },
-  
+
       // Navigation //
       navagation: {
         BrandName: "Ch1ll",
         BrandLink: "#top",
         BrandLogo: "/assets/images/kingch1ll.png",
-  
+
         Links: {
           learn: {
             name: "Learn",
             icon: "fas fa-book",
             type: "dropdown",
-  
+
             links: {
               hyperlink1: {
                 name: "About Us",
@@ -52,25 +52,25 @@ Router.get("/:userID/profile", async (request, response) => {
               },
             }
           },
-  
+
           products: {
             name: "Products",
             icon: "fas fa-award",
             type: "dropdown",
-  
+
             links: {
               hyperlink1: {
                 name: "Home",
                 icon: "fas fa-home",
                 link: "/home",
               },
-  
+
               hyperlink2: {
                 name: "Ch1llBlox",
                 icon: "fas fa-robot",
                 link: "/bot",
               },
-  
+
               hyperlink3: {
                 name: "Ch1ll Studios",
                 icon: "fas fa-snowflake",
@@ -78,12 +78,12 @@ Router.get("/:userID/profile", async (request, response) => {
               }
             }
           },
-  
+
           support: {
             name: "Support",
             icon: "far fa-question-circle",
             type: "dropdown",
-  
+
             links: {
               hyperlink1: {
                 name: "err",
@@ -94,25 +94,13 @@ Router.get("/:userID/profile", async (request, response) => {
           },
         },
       },
-  
+
       userdata: User,
-  
+
       // Footer //
       footer: {
         Description: "Ch1llBlox is a multipurpose free Discord Bot created by KingCh1ll. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
       },
-  
-      // Scripts //
-      scripts: {
-        jquery: true,
-        popper: true,
-        bootstrap: true,
-        wow: true,
-        smoothscroll: true,
-        autohidingnavbar: true,
-        pace: true,
-        typed: true
-      }
     });
   } else {
     response.redirect("404?reason=404_not_found")

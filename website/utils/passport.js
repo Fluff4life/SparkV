@@ -10,7 +10,7 @@ global.MainWebhook = MainWebhook
 const DiscordStrat = {
     clientID: "848685407189336075",
     clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
-    callbackURL: `${Config.Debug === true ? "http://localhost:3000" : `https://${process.env.baseURL}`}/api/auth/discord/callback`,
+    callbackURL: `${Config.Debug.Enabled === true ? "http://localhost:3000" : `https://${process.env.baseURL}`}/api/auth/discord/callback`,
     scope: ["identify", "guilds"],
 }
 
