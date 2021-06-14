@@ -137,7 +137,7 @@ fs.readdir(path.join(`${__dirname}/commands`), (err, cats) => {
   cats.forEach(cat => {
     Bot.categories.set(cat, cat)
 
-    fs.readdir(`./commands/${cat}`, (err, files) => {
+    fs.readdir(path.join(`${__dirname}/commands/${cat}`), (err, files) => {
       files.forEach(file => {
         if (!file.endsWith(".js")) {
           return
