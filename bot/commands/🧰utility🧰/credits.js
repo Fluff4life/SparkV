@@ -9,7 +9,7 @@ exports.run = async (Bot, message) => {
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
       .addFields(
 		    { name: '**Developers**', value: 'The people that have done the coding' },
-        { name: `${HeadDeveloper}`, value: 'Head Developer\n', inline: true }, //KingCh1ll
+        { name: HeadDeveloper, value: 'Head Developer\n', inline: true }, //KingCh1ll
         { name: '@Qu1ckly_Frost#7454', value: 'Developer\n', inline: true }, //Qu1ckly_Frost
 		    { name: '\u200B', value: '\u200B' },
         { name: '**Contributors**', value: 'People that have contributed other ways\n' },
