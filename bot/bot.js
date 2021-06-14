@@ -122,7 +122,7 @@ fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
 
   files.forEach(file => {
     let EventName = file.split(".")[0]
-    let FileEvent = require(`./events/${EventName}`)
+    let FileEvent = require(`../events/${EventName}`)
 
     Bot.on(EventName, (...args) => FileEvent.run(Bot, ...args))
   })
@@ -144,7 +144,7 @@ fs.readdir(path.join(`${__dirname}/commands`), (err, cats) => {
         }
 
         let commandname = file.split(".")[0]
-        let FileJs = require(`../bot/commands/${cat}/${commandname}`)
+        let FileJs = require(`../commands/${cat}/${commandname}`)
 
         Bot.commands.set(commandname, FileJs)
       })
