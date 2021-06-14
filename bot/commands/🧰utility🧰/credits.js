@@ -8,11 +8,11 @@ exports.run = async (Bot, message) => {
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
       .addFields(
 		    { name: '**Developers**', value: 'The people that have done the coding' },
-        { name: '<@571811686617710592>', value: 'Head Developer', inline: true }, //KingCh1ll
-        { name: '<@506567917220003850>', value: 'Developer', inline: true }, //Qu1ckly_Frost
+        { name: '@KingCh1ll#3616', value: 'Head Developer', inline: true }, //KingCh1ll
+        { name: '@Qu1ckly_Frost#7454', value: 'Developer', inline: true }, //Qu1ckly_Frost
 		    { name: '\u200B', value: '\u200B' },
         { name: '**Contributors**', value: 'People that have contributed other ways' },
-        { name: '<@590423866434650113>', value: 'Getting the bot verified!', inline: true }, //2Lost4Discord
+        { name: '@2Lost4Discord#0001', value: 'Getting the bot verified!', inline: true }, //2Lost4Discord
 		    //{ name: 'name', value: 'value', inline: true },
     	)
     
