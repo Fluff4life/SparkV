@@ -18,7 +18,7 @@ module.exports = async (Bot) => {
 
     Levels.setURL(process.env.mongooseURL)
 
-    bot.Database = Database
+    Bot.Database = Database
     global.Database = Database
 
     class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
