@@ -1,6 +1,7 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message) => {
+	const HeadDeveloper = Bot.users.cache.get('571811686617710592')
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle("Credits")
       .setDescription(`A list of people who have helped make Ch1llBlox the way it is now!`)
@@ -8,11 +9,11 @@ exports.run = async (Bot, message) => {
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
       .addFields(
 		    { name: '**Developers**', value: 'The people that have done the coding' },
-        { name: '@KingCh1ll#3616', value: 'Head Developer', inline: true }, //KingCh1ll
-        { name: '@Qu1ckly_Frost#7454', value: 'Developer', inline: true }, //Qu1ckly_Frost
+        { name: `${HeadDeveloper}`, value: 'Head Developer\n', inline: true }, //KingCh1ll
+        { name: '@Qu1ckly_Frost#7454', value: 'Developer\n', inline: true }, //Qu1ckly_Frost
 		    { name: '\u200B', value: '\u200B' },
-        { name: '**Contributors**', value: 'People that have contributed other ways' },
-        { name: '@2Lost4Discord#0001', value: 'Getting the bot verified!', inline: true }, //2Lost4Discord
+        { name: '**Contributors**', value: 'People that have contributed other ways\n' },
+        { name: '@2Lost4Discord#0001', value: 'Getting the bot verified!\n', inline: true }, //2Lost4Discord
 		    //{ name: 'name', value: 'value', inline: true },
     	)
     
