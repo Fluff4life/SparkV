@@ -10,6 +10,10 @@ exports.run = async (Bot, message, Arguments, command) => {
   try {
     const UserID = await noblox.getIdFromUsername(Arguments[0])
 
+    if (!UserID) {
+      return message.lineReply(`User lookup canceled. User doesn't exist.`)
+    }
+
     await noblox.getPlayerInfo(UserID).then((PlayerInfo) => {
       const InfoEmbed = new Discord.MessageEmbed()
         .setTitle(`${PlayerInfo.username}'s Profile`)
@@ -21,9 +25,9 @@ exports.run = async (Bot, message, Arguments, command) => {
         .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${Bot.Config.Bot.Embed.Footer}`)
         .setColor(Bot.Config.Bot.Embed.Color)
 
-        message.lineReplyNoMention(InfoEmbed)
+      message.lineReplyNoMention(InfoEmbed)
     })
-  } catch (err){
+  } catch (err) {
     const ErrorEmbed = new Discord.MessageEmbed()
       .setTitle(`404 | User Not Found`)
       .setDescription("Uh oh! Looks like this user doesn't exist or roblox is down. Check [Roblox Status](https://status.roblox.com/).")
@@ -32,7 +36,7 @@ exports.run = async (Bot, message, Arguments, command) => {
       .setColor(Bot.Config.Bot.Embed.Color)
       .setTimestamp()
 
-      message.lineReplyNoMention(ErrorEmbed)
+    message.lineReplyNoMention(ErrorEmbed)
   }
 },
 
