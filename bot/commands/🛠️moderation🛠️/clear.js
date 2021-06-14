@@ -8,8 +8,8 @@ exports.run = async (Bot, message, Arguments) => {
   try {
     if (Arguments[0].toLowerCase() === `all`) {
       const VerificationEmbed = new Discord.MessageEmbed()
-        .setTitle(`Convermination Prompt`)
-        .setDescription(`Are you sure you want to do this?`)
+        .setTitle(`Confirmation Prompt`)
+        .setDescription(`Are you sure you want to do this?\nYou will be deleting ***ALL*** the messages in this channel.`)
         .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Bot.Embed.Footer}`)
 
       const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
@@ -31,7 +31,8 @@ exports.run = async (Bot, message, Arguments) => {
 
         messages = messages.filter((msg) => !msg.pinned)
         ++Arguments[0]
-
+        
+        message.delete();
         message.channel.bulkDelete(messages, true)
         message.lineReplyNoMention(`Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }))
       } else if (emoji === Bot.Config.Bot.Emojis.error) {
@@ -68,7 +69,7 @@ exports.run = async (Bot, message, Arguments) => {
 
       messages = messages.filter((msg) => !msg.pinned)
       ++Arguments[1]
-
+      message.delete();
       message.channel.bulkDelete(messages, true)
 
       if (User) {
