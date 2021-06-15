@@ -1,7 +1,6 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message) => {
-	const HeadDeveloper = Bot.users.cache.get('571811686617710592')
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle("Credits")
       .setDescription(`A list of people who have helped make Ch1llBlox the way it is now!`)
@@ -9,7 +8,7 @@ exports.run = async (Bot, message) => {
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
       .addFields(
 		    { name: '**Developers**', value: 'The people that have done the coding' },
-        { name: HeadDeveloper, value: 'Head Developer\n', inline: true }, //KingCh1ll
+        { name: KingCh1ll#3616, value: 'Head Developer\n', inline: true }, //KingCh1ll
         { name: '@Qu1ckly_Frost#7454', value: 'Developer\n', inline: true }, //Qu1ckly_Frost
 		    { name: '\u200B', value: '\u200B' },
         { name: '**Contributors**', value: 'People that have contributed other ways\n' },
