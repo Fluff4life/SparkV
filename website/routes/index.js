@@ -4,9 +4,7 @@ const Router = Express.Router()
 const CheckAuth = require("../utils/CheckAuth")
 const Render = require("../utils/Render")
 
-Router.get("/", async (request, response) => {
-  response.redirect("/home")
-})
+Router.get("/", async (request, response) => response.redirect("/home"))
 
 Router.get("/jake", async (request, response) => {
   Render(response, request, "showoff.ejs", {
@@ -172,9 +170,6 @@ Router.get("/status", async (request, response) => {
   response.redirect("https://stats.uptimerobot.com/x84NBTJEkN")
 })
 
-/* Fix for wrong redirects */
-Router.get("/dashboard", async (request, response) => {
-  response.redirect("/bot/dashboard")
-})
+Router.use("/api", require("./api/index"))
 
 module.exports = Router

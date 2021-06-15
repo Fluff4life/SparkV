@@ -29,7 +29,6 @@
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "chalk": "^4.1.1",
-    "cookie-parser": "^1.4.5",
     "discord-anti-spam": "^2.5.0",
     "discord-giveaways": "^4.4.3",
     "discord-reply": "^0.1.2",

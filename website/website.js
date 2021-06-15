@@ -13,7 +13,6 @@ const passport = require("passport");
 
 const path = require("path");
 const fs = require("fs")
-const cookieParser = require("cookie-parser")
 const parser = require("body-parser");
 
 const Config = require("../globalconfig.json");
@@ -31,18 +30,18 @@ const io = require("socket.io")(server)
 
 // Functions //
 async function LoadRoutes(){
-  const GetFiles = (FilePath) => {
+  function GetFiles(FilePath) {
     if (!FilePath) {
-      return console.error("You didn't provide a valid path!")
+      return console.error("You didn't provide a valid file path!")
     }
 
     if (!fs.existsSync(FilePath)) {
       fs.mkdirSync(FilePath)
     }
 
-    const Files = fs.readdirSync(FilePath, {
-      withFileTypes: true
-    }).filter((entry) => !entry.isDirectory()).map((entry) => entry.name)
+    const Files = fs.readdirSync(FilePath, { withFileTypes: true })
+      .filter((entry) => !entry.isDirectory())
+      .map((entry) => entry.name)
 
     return Files
   }
@@ -88,9 +87,7 @@ async function StartWebsite(Bot){
   
   app.engine("html", ejs.renderFile);
   app.set("view engine", "html");
-  
-  app.use(cookieParser())
-  
+
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));
   
