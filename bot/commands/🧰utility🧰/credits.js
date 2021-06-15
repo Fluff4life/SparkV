@@ -1,21 +1,26 @@
 const Discord = require(`discord.js`);
 
+const Credits = [
+  {
+    name: "**🛠 | Developers**",
+    value: "The people who made Ch1llBlox!\n**KingCh1ll** - Head Developer\n**Qu1ckly_Frost** - Developer",
+    inline: true
+  },
+  {
+    name: "**✨ | Contributors**",
+    value: "People that have contributed to Ch1llBlox.\n**2Lost4Discord** - Getting the bot verified.",
+    inline: true
+  }
+]
+
 exports.run = async (Bot, message) => {
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle("Credits")
-      .setDescription(`A list of people who have helped make Ch1llBlox the way it is now!`)
+      .setDescription(`Here's the list of people who've helped Ch1llBlox on his path to success!`)
       .setColor(Bot.Config.Bot.Embed.Color)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
-      .addFields(
-		    { name: '**Developers**', value: 'The people that have done the coding' },
-        { name: "KingCh1ll#3616", value: 'Head Developer\n', inline: true }, //KingCh1ll
-        { name: '@Qu1ckly_Frost#7454', value: 'Developer\n', inline: true }, //Qu1ckly_Frost
-		    { name: '\u200B', value: '\u200B' },
-        { name: '**Contributors**', value: 'People that have contributed other ways\n' },
-        { name: '@2Lost4Discord#0001', value: 'Getting the bot verified!\n', inline: true }, //2Lost4Discord
-		    //{ name: 'name', value: 'value', inline: true },
-    	)
-    
+      .addFields(Credits)
+
     return message.lineReplyNoMention(NewEmbed)
 },
 
