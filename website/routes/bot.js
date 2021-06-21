@@ -35,8 +35,8 @@ Router.get("/", async (request, response) => {
           }
         },
 
-        products: {
-          name: "Products",
+        services: {
+          name: "Services",
           icon: "fas fa-award",
           type: "dropdown",
 

@@ -11,16 +11,16 @@ exports.run = async (Bot, message) => {
 
   const Avatar = message.author.displayAvatarURL({
     dynamic: false,
-    format: "png"
+    format: "gif"
   })
 
   const UserAvatar = User.displayAvatarURL({
     dynamic: false,
-    format: "png"
+    format: "gif"
   })
 
   const Image = await canvacord.Canvas.slap(Avatar, UserAvatar)
-  const Slap = new Discord.MessageAttachment(Image, "slap.png")
+  const Slap = new Discord.MessageAttachment(Image, "slap.gif")
 
   message.lineReplyNoMention(Slap)
 },

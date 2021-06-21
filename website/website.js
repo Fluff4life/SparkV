@@ -112,7 +112,7 @@ async function StartWebsite(Bot){
       navagation: {
         BrandName: "Ch1ll",
         BrandLink: "/home",
-        BrandLogo: "/assets/images/kingch1ll.png",
+        BrandLogo: "/assets/images/TransparentKingCh1ll.png",
   
         Links: {
           learn: {
@@ -129,8 +129,8 @@ async function StartWebsite(Bot){
             }
           },
   
-          products: {
-            name: "Products",
+          services: {
+            name: "services",
             icon: "fas fa-award",
             type: "dropdown",
   
@@ -236,7 +236,7 @@ async function StartWebsite(Bot){
       navagation: {
         BrandName: "KingCh1ll",
         BrandLink: "#top",
-        BrandLogo: "/assets/images/kingch1ll.png",
+        BrandLogo: "/assets/images/TransparentKingCh1ll.png",
   
         Links: {
           link1: {

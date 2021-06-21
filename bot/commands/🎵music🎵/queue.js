@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
       color: `#0099ff`,
     
       thumbnail: {
-        url: message.author.displayAvatarURL({ dynamic: true })
+        url: message.author.displayAvatarURL({ dynamic: true, format: "gif" })
       },
       
       footer: {

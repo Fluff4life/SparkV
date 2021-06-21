@@ -6,7 +6,6 @@ const Router = Express.Router()
 const CheckAuth = require("../utils/CheckAuth")
 const Render = require("../utils/Render");
 
-
 Router.get("/logout", CheckAuth, (request, response) => {
 	const MainEmbed = new Discord.MessageEmbed()
 		.setTitle("User Logged Out")

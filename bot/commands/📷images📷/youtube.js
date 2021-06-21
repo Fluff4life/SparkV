@@ -19,7 +19,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
-    format: `png`
+    format: `gif`
   })
 
   const Image = await canvacord.Canvas.youtube({
@@ -28,7 +28,7 @@ exports.run = async (Bot, message, Arguments) => {
     content: Arguments
   })
 
-  const YouTube = new Discord.MessageAttachment(Image, `youtube.png`)
+  const YouTube = new Discord.MessageAttachment(Image, `youtube.gif`)
 
   message.lineReplyNoMention(YouTube)
 },

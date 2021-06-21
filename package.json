@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/KingCh1ll/Ch1llBlox"
   },
-  "author": "KingCh1ll#3616",
+  "author": "KingCh1ll",
   "license": "MIT",
   "engines": {
     "node": "16.x",
@@ -26,6 +26,7 @@
     "anti-swear-words-packages-discord": "^1.1.43",
     "body-parser": "^1.19.0",
     "botdash.pro": "^1.0.2",
+    "bufferutil": "^4.0.3",
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "chalk": "^4.1.1",
@@ -35,7 +36,7 @@
     "discord-tictactoe": "^2.1.0",
     "discord-xp": "^1.1.8",
     "discord.js": "^12.5.1",
-    "discordeasypages": "^0.2.2",
+    "discordeasypages": "^0.2.4",
     "distube": "^2.8.13",
     "dotenv": "^8.6.0",
     "ejs": "^3.1.6",

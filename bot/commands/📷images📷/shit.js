@@ -11,11 +11,11 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
-    format: "png"
+    format: "gif"
   })
 
   const Image = await canvacord.Canvas.shit(Avatar)
-  const Shit = new Discord.MessageAttachment(Image, "shit.png")
+  const Shit = new Discord.MessageAttachment(Image, "shit.gif")
 
   message.lineReplyNoMention(Shit)
 },

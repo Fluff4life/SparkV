@@ -8,10 +8,9 @@ Root Varibles
 */
 
 :root {
-  --main-color: lightskyblue;
-  --secondary-color: cornflowerblue;
+  --main-color: #222428;
+  --secondary-color: royalblue;
   --text-color: white;
-  --secondary-text-color: cornflowerblue;
 }
 
 /* Basic */

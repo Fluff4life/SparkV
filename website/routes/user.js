@@ -26,7 +26,7 @@ Router.get("/:id", async (request, response) => {
             navagation: {
                 BrandName: "Ch1ll",
                 BrandLink: "#top",
-                BrandLogo: "/assets/images/kingch1ll.png",
+                BrandLogo: "/assets/images/TransparentKingCh1ll.png",
 
                 Links: {
                     learn: {
@@ -43,29 +43,17 @@ Router.get("/:id", async (request, response) => {
                         }
                     },
 
-                    products: {
-                        name: "Products",
+                    services: {
+                        name: "Services",
                         icon: "fas fa-award",
                         type: "dropdown",
 
                         links: {
-                            hyperlink1: {
-                                name: "Home",
-                                icon: "fas fa-home",
-                                link: "/home",
-                            },
-
                             hyperlink2: {
                                 name: "Ch1llBlox",
                                 icon: "fas fa-robot",
                                 link: "/bot",
                             },
-
-                            hyperlink3: {
-                                name: "Ch1ll Studios",
-                                icon: "fas fa-snowflake",
-                                link: "/ch1llstudios",
-                            }
                         }
                     },
 
