@@ -7,7 +7,13 @@
     "start": "node index.js --max_old_space_size=8192",
     "startbot": "node index.js --max_old_space_size=8192",
     "startweb": "node website/website.js --max_old_space_size=8192",
-    "download": "npm install --package-lock-only"
+    "download": "npm install --package-lock-only",
+    "docs": "docgen --source src --custom docs/index.yml --output docs/docs.json",
+    "docs:test": "docgen --source src --custom docs/index.yml",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "lint:typings": "tslint typings/index.d.ts",
+    "prettier": "prettier --write src/**/*.js typings/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -71,7 +77,12 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
+    "@types/node": "^15.12.4",
+    "@types/ws": "^7.4.5",
+    "eslint": "^7.29.0",
     "ejs-lint": "^1.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
     "npm": "^7.10.0",
     "prettier": "2.2.1"
   }

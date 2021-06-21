@@ -1,18 +1,15 @@
-# NPM
+# Packages
+node_modules/
+badmodules
 .npm
 
-# Visual Studio
-.vscode
-.eslintrc.json
-.prettierrc
-.editorconfig
+# Log files
+logs/
+*.log
+newrelic_agent.log
 
-# Dependancy Directories
-node_modules
-badmodules
-
-# Environmental Variables
+# Auth
 .env
 
-# New Relic
-newrelic_agent.log
+# Miscellaneous
+.vscode/
