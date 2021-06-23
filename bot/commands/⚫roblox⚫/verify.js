@@ -101,19 +101,19 @@ exports.run = async (Bot, message, Arguments, command) => {
 
                                         if (RocordNicknameTemplate) {
                                             if (RocordNicknameTemplate.toString().includes(`{discord-name}`)) {
-                                                RocordNicknameTemplate.replace(`{discord-name}`, message.author.name)
+                                                RocordNicknameTemplate.toString().replaceAll(`{discord-name}`, message.author.name)
                                             }
 
                                             if (RocordNicknameTemplate.toString().includes(`{discord-id}`)) {
-                                                RocordNicknameTemplate.replace(`{discord-id}`, message.author.id)
+                                                RocordNicknameTemplate.toString().replaceAll(`{discord-id}`, message.author.id)
                                             }
 
                                             if (RocordNicknameTemplate.toString().includes(`{roblox-username}`)) {
-                                                RocordNicknameTemplate.replace(`{roblox-username}`, m.content)
+                                                RocordNicknameTemplate.toString().replaceAll(`{roblox-username}`, m.content)
                                             }
 
                                             if (RocordNicknameTemplate.toString().includes(`{roblox-id}`)) {
-                                                RocordNicknameTemplate.replace(`{roblox-id}`, id)
+                                                RocordNicknameTemplate.toString().replaceAll(`{roblox-id}`, id)
                                             }
 
                                             message.member.setNickname(RocordNicknameTemplate).catch(() => {

@@ -13,6 +13,19 @@ Root Varibles
   --text-color: white;
 }
 
+/*
+Google Fonts
+*/
+@font-face {
+  font-family: "Arvo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/arvo/v14/tDbM2oWUg0MKoZw1-LPK8w.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* Basic */
 a {
   transition: all 0.3s;
@@ -30,85 +43,6 @@ a {
   right: 0;
 }
 
-/* Features Section */
-.features-boxed {
-  color: #313437;
-  background-color: #eef4f7;
-}
-
-.features-boxed p {
-  color: #7d8285;
-}
-
-.features-boxed h2 {
-  font-weight: bold;
-  margin-bottom: 40px;
-  padding-top: 40px;
-  color: inherit;
-}
-
-.features-boxed .intro {
-  font-size: 16px;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.features-boxed .intro p {
-  margin-bottom: 0;
-}
-
-.features-boxed .featurebox {
-  padding: 50px 0;
-}
-
-.features-boxed .item {
-  text-align: center;
-}
-
-.features-boxed .item .box {
-  text-align: center;
-  padding: 30px;
-  background-color: #fff;
-  margin-bottom: 30px;
-}
-
-.features-boxed .item .icon {
-  font-size: 60px;
-  color: #1485ee;
-  margin-top: 20px;
-  margin-bottom: 35px;
-}
-
-.features-boxed .item .name {
-  font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 8px;
-  margin-top: 0;
-  color: inherit;
-}
-
-.features-boxed .item .description {
-  font-size: 15px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-}
-
-.shadow-lg.box:hover {
-  background: rgb(244, 241, 241);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-div#featurebox {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 25px;
-  background: var(--main-color);
-}
-
-div#featurebox:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
 /* User Components */
 .avatar {
   height: 38px;
@@ -119,7 +53,7 @@ div#featurebox:hover {
   font-size: 1rem;
   border-radius: 50%;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 
 .avatar img {
@@ -129,38 +63,17 @@ div#featurebox:hover {
 
 .avatar .avatar-content {
   display: inline-block;
-  margin-left: .75rem;
+  margin-left: 0.75rem;
 }
 
 .avatar-lg {
   height: 68px;
   width: 68px;
-  font-size: .775rem;
+  font-size: 0.775rem;
 }
 
 .avatar-sm {
   height: 24px;
   width: 24px;
-  font-size: .775rem;
-}
-
-/* Arvo Font */
-@font-face {
-  font-family: "Arvo";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v14/tDbM2oWUg0MKoZw1-LPK8w.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-
-@media (max-width: 767px) {
-  .features-boxed h2 {
-    margin-bottom: 25px;
-    padding-top: 25px;
-    font-size: 24px;
-  }
+  font-size: 0.775rem;
 }

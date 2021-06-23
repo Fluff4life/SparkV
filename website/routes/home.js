@@ -5,18 +5,18 @@ const CheckAuth = require("../utils/CheckAuth")
 const Render = require("../utils/Render")
 
 Router.get("/", async (request, response) => {
-  Render(response, request, "showoff.ejs", {
+  Render(response, request, "company.ejs", {
     head: {
-      SiteTitle: "Home - KingCh1ll",
-      SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
+      SiteTitle: "Ch1ll Studios",
+      SiteDescription: "Ch1ll Studios is a self-taught coder. He knows html, css, javascript, lua and more!",
       SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
     },
 
     // Navigation //
     navagation: {
-      BrandName: "KingCh1ll",
+      BrandName: "Ch1ll Studios",
       BrandLink: "#top",
-      BrandLogo: "/assets/images/TransparentKingCh1ll.png",
+      BrandLogo: "/assets/images/TransparentCh1llStudios.png",
 
       Links: {
         learn: {
@@ -77,8 +77,9 @@ Router.get("/", async (request, response) => {
 
     // Top //
     top: {
-      BrandName: "KingCh1ll",
-      BrandLogo: "/assets/images/TransparentKingCh1ll.png",
+      BrandName: "Ch1ll Studios",
+      BrandLogo: "/assets/images/TransparentCh1llStudios.png",
+      TypeText: false,
 
       buttons: {
         button1: {

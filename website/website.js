@@ -91,7 +91,7 @@ async function StartWebsite(Bot){
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));
   
-  app.use(require("serve-favicon")(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}siteicons${path.sep}favicon.ico`)));
+  app.use(require("serve-favicon")(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}site${path.sep}favicon.ico`)));
   
   app.use("/assets", express.static(path.resolve(`${MainDir}${path.sep}assets`)));
   app.set("views", Views)
@@ -209,9 +209,9 @@ async function StartWebsite(Bot){
     const user = request.user
     const MainEmbed = new Discord.MessageEmbed()
       .setTitle("Error Occured!")
-      .setDescription(`Uh oh! Looks like an error occured for ${user ? user.username : "unknown"}${user ? "#" + user.descriminator : ""}.`)
-      .addField("**ERROR**", err, true)
-      .setFooter(`Ch1ll Notifier | Error Code 500 | ${user ? user.username : "unknown"}#${user ? "#" + user.descriminator : ""}`)
+      .setDescription(`Uh oh! Looks like an error occured.`)
+      .addField("**ERROR**", err.toString().replaceAll("Jake&amp;Ryan", "USER"), true)
+      .setFooter(`Ch1ll Notifier | Error Code 500`)
       .setColor("RED")
   
     global.MainWebhook.send({

@@ -1,7 +1,7 @@
 const SentryLog = require("../../modules/Log")
 
 exports.run = async (err, promise) => {
-    const ErrorMessage = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./")
+    const ErrorMessage = err.stack.toString().replaceAll(new RegExp(`${__dirname}/`, "g"), "./")
 
     await SentryLog("Fatal", err)
     

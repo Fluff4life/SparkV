@@ -96,7 +96,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const Question = await GenerateQuestion()
-  const ClueCard = await GenerateClueCard(Question.question.replace(/<\/?i>/gi, ``))
+  const ClueCard = await GenerateClueCard(Question.question.toString().replaceAll(/<\/?i>/gi, ``))
 
   const Category = new Discord.MessageEmbed()
     .setTitle(Question.category.title.toUpperCase())
@@ -117,7 +117,7 @@ exports.run = async (Bot, message, Arguments) => {
     Channel.leave()
   }
 
-  const Answer = Question.answer.replace(/<\/?i>/gi, `*`)
+  const Answer = Question.answer.toString().replaceAll(/<\/?i>/gi, `*`)
 
   if (!Messages.size){
     return message.lineReply(`**Times up! the answer was ${Answer}.**`)
