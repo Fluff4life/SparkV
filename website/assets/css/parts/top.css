@@ -1,0 +1,10 @@
+.top#background {
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

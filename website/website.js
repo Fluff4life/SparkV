@@ -175,6 +175,7 @@ async function StartWebsite(Bot){
       top: {
         BrandName: `404 - Not Found`,
         BrandLogo: "/assets/images/404.png",
+        TypeText: false,
   
         buttons: {
           button1: {
@@ -263,6 +264,7 @@ async function StartWebsite(Bot){
       top: {
         BrandName: "Error!",
         BrandLogo: "/assets/images/500.png",
+        TypeText: false,
   
         buttons: {
           button1: {

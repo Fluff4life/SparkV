@@ -25,5 +25,6 @@ router.use("/status", require("./status"))
 router.use("/avatar", require("./avatar"))
 router.use("/auth", require("./auth"))
 router.use("/userdata", require("./userdata"))
+router.use("/logout", require("./logout"))
 
 module.exports = router

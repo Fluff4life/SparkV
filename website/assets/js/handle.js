@@ -1,4 +1,11 @@
-// Thank you, discord.rovelstars.com! I learned some stuff used here from their code on GitHub.
+/*
+KingCh1ll
+Handle.css
+
+// NOTE //
+Thank you, discord.rovelstars.com! I learned some stuff used here from their code on GitHub.
+*/
+
 var scroll = new SmoothScroll('a[href*="#"]')
 var online = true
 var Popup
