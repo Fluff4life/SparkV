@@ -13,3 +13,8 @@ newrelic_agent.log
 
 # Miscellaneous
 .vscode/
+
+# VS Code Extention Files
+.editorconfig
+.eslintrc.json
+.prettierrc.json
