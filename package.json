@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/KingCh1ll/Ch1llBlox"
   },
-  "author": "KingCh1ll#3616",
+  "author": "KingCh1ll",
   "license": "MIT",
   "engines": {
     "node": "16.x",
@@ -30,7 +30,6 @@
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "chalk": "^4.1.1",
-    "cookie-parser": "^1.4.5",
     "discord-anti-spam": "^2.5.0",
     "discord-button-pages": "^1.1.8",
     "discord-buttons": "^4.0.0",
@@ -73,6 +72,8 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
+    "@types/node": "^15.12.4",
+    "@types/ws": "^7.4.5",
     "ejs-lint": "^1.2.0",
     "npm": "^7.10.0",
     "prettier": "2.2.1"

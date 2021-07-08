@@ -19,7 +19,7 @@ exports.run = async (Bot, message) => {
           message.delete();
         } catch (err) {
           message
-            .lineReplyNoMention(Bot.Config.Bot.Responses.InvalidPermisions.Bot.replace(`{author}`, message.author))
+            .lineReplyNoMention(Bot.Config.Bot.Responses.InvalidPermisions.Bot.toString().replaceAll(`{author}`, message.author))
             .then((m) => m.delete({ timeout: 1000 }));
         }
       }
@@ -74,7 +74,7 @@ exports.run = async (Bot, message) => {
       const User = await Levels.fetch(message.author.id, message.guild.id)
       const Level = await Bot.FormatNumber(User.level)
 
-      message.lineReplyNoMention(Bot.Config.Bot.Responses.LevelUpMessage.replace(`{author}`, message.author).replace(`{level}`, Level));
+      message.lineReplyNoMention(Bot.Config.Bot.Responses.LevelUpMessage.toString().replaceAll(`{author}`, message.author).toString().replaceAll(`{level}`, Level));
     }
   }
 
@@ -141,7 +141,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const BotPermisions = message.channel.permissionsFor(Bot.user);
 
     if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.lineReply(Bot.Config.Bot.Responses.Bot.replace(`{permission}`, commandfile.config.member_permissions));
+      return message.lineReply(Bot.Config.Bot.Responses.Bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions));
     }
   }
 
@@ -149,7 +149,7 @@ async function HandleCommand(Bot, message, args, command, commandfile){
     const AuthorPermisions = message.channel.permissionsFor(message.author);
 
     if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.lineReply(Bot.Config.Bot.Responses.Bot.replace(`{permission}`, commandfile.config.member_permissions));
+      return message.lineReply(Bot.Config.Bot.Responses.Bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions));
     }
   }
 
@@ -237,7 +237,7 @@ async function ActivateChatBot(message) {
         return;
       }
 
-      const APIMessage = body.message.replace(`CleverChat`, `Ch1llBlox`);
+      const APIMessage = body.message.toString().replaceAll(`CleverChat`, `Ch1llBlox`);
       const APIEmbed = new Discord.MessageEmbed()
         .setTitle(`Ch1llBlox`)
         .setDescription(APIMessage)

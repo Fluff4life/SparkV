@@ -11,11 +11,11 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
-    format: "png"
+    format: "gif"
   })
 
   const Image = await canvacord.Canvas.jail(Avatar, true)
-  const Jail = new Discord.MessageAttachment(Image, "jail.png")
+  const Jail = new Discord.MessageAttachment(Image, "jail.gif")
 
   message.lineReplyNoMention(Jail)
 },

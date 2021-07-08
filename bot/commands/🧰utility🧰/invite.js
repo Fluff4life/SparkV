@@ -4,7 +4,7 @@ exports.run = async (Bot, message) => {
   const InvitesEmbend = new Discord.MessageEmbed()
     .setTitle("Invites")
     .setDescription(`The following are links for Ch1llBlox!`)
-    .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+    .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
     .addField("**Support Server**", `[Click Here](${Bot.Config.Bot.SupportInvite})`, true)
     .addField("Bot Invite: ", `[Click Here](https://top.gg/bot/763126208149585961/invite)`, true)
     .setFooter(`Invites for Ch1llBlox • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())

@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <% if (head) { %>
-      <%- include("Parts/head", head) %>
-    <% } %>
-  </head>
+  <% if (head) { %>
+    <%- include("components/head", head) %>
+  <% } %>
 
   <body style="background-color: var(--main-color);" data-aos-easing="ease" data-aos-duration="400">
     <div id="loading">
@@ -16,7 +14,7 @@
     </div>
 
     <% if (navagation) { %>
-      <%- include("Parts/navagation", navagation) %>
+      <%- include("components/navagation", navagation) %>
     <% } %>
 
     <div id="top">
@@ -29,9 +27,9 @@
     </div>
 
     <% if (footer) { %>
-      <%- include("Parts/footer", footer) %>
+      <%- include("components/footer", footer) %>
     <% } %>
 
-    <%- include("Parts/scripts") %>
+    <%- include("components/scripts") %>
   </body>
 </html>

@@ -11,7 +11,7 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
-    format: "png"
+    format: "gif"
   })
 
   const Image = await canvacord.Canvas.trigger(Avatar)

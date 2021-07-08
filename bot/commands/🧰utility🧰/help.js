@@ -10,8 +10,8 @@ exports.run = async (Bot, message, args) => {
   const Commands = (Bot, category) => {
     return Bot.commands.filter(command => command.config.enabled && command.config.category === category).map(command =>`\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`).join(`\n\n`)
   }
-
-  const CreatePage = async (Bot, Message, Category) => {
+  
+  const CreatePage = async (Bot, message, Category) => {
     if (Category === `👑owner👑` && message.author.id !== process.env.OwnerID){
       return
     }
@@ -20,7 +20,7 @@ exports.run = async (Bot, message, args) => {
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(Bot, Category))
       .setColor(Bot.Config.Bot.Embed.Color)
-      .setThumbnail(Message.author.displayAvatarURL({ dynamic: true }))
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
   
     pages.push(NewEmbed)
 }
@@ -40,7 +40,7 @@ exports.run = async (Bot, message, args) => {
     const CommandHelpEmbed = new Discord.MessageEmbed()
       .setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)
       .setDescription(command.config.description)
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addField(`**ALIASES**`, `\`\`\`${command.config.aliases.join(`,\n`)}\`\`\``, true)
       .addField(`**CATEGORY**`, `\`\`\`${command.config.category}\`\`\``, true)
       .addField(`**COOLDOWN**`, `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)

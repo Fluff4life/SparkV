@@ -31,7 +31,7 @@ exports.run = async (Bot, message, args) => {
       .setTitle(`Rule #${RuleNumber} - ${RuleTitle}`)
       .setDescription(`\`\`\`${RuleDescription}\`\`\``)
       .setColor(Bot.Config.Bot.Embed.Color)
-      .setThumbnail(Message.author.displayAvatarURL({ dynamic: true }))
+      .setThumbnail(Message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
 
     pages.push(NewEmbed)
   }

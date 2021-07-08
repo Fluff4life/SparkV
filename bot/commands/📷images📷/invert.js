@@ -11,11 +11,11 @@ exports.run = async (Bot, message, Arguments) => {
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
-    format: "png"
+    format: "gif"
   })
 
   const Image = await canvacord.Canvas.invert(Avatar)
-  const Invert = new Discord.MessageAttachment(Image, "invert.png")
+  const Invert = new Discord.MessageAttachment(Image, "invert.gif")
 
   message.lineReplyNoMention(Invert)
 },
