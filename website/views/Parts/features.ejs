@@ -14,14 +14,14 @@
               <div class="row justify-content-center featurebox">
                 <div class="col-sm-col-md-5 col-lg-4 item">
                     <% Object.entries(feature[1].boxes).forEach((box) => { %>
-                        <div id="featurebox aos-init aos-animate" class="box" style="border-radius: 34px;" data-aos="fade-up">
-                            <a href="<%- box[1].link %>">
-                              <img src="<%- box[1].image %>" style="color: var(--main-color);" width="125" height="125" alt="<%- box[1].alt %>"></img>
-                              <h3 class="name"><%- box[1].name %></h3>
-                            </a>
+                      <div id="featurebox aos-init aos-animate" class="box" style="border-radius: 34px;" data-aos="fade-up">
+                        <a href="<%- box[1].link %>">
+                          <img src="<%- box[1].image %>" style="color: var(--main-color);" width="125" height="125" alt="<%- box[1].alt %>"></img>
+                            <h3 class="name"><%- box[1].name %></h3>
+                          </a>
               
-                            <p class="description"><%- box[1].description %></p>
-                          </div>
+                          <p class="description"><%- box[1].description %></p>
+                      </div>
                     <% }) %>
                 </div>
               </div>
