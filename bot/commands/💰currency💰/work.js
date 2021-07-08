@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  message.lineReplyNoMention("${Bot.Config.Bot.Emojis.error} | You don't have a job noob. You have to go get one to work lol.")
+  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | You don't have a job noob. You have to go get one to work lol.`)
 },
 
   exports.config = {
