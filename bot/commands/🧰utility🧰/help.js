@@ -1,19 +1,16 @@
 const Discord = require(`discord.js`);
 const fs = require(`fs`)
-const discordeasypages = require(`discordeasypages`)
+const ButtonPages = require("discord-button-pages")
 var prefix = `^`
 
 exports.run = async (Bot, message, args) => {
   prefix = await Bot.dashboard.getVal(message.guild.id, `Prefix`)
 
   const pages = []
-
   const Commands = (Bot, category) => {
-    return Bot.commands
-      .filter(command => command.config.enabled && command.config.category === category)
-      .map(command =>`\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`)
-      .join(`\n\n`)
+    return Bot.commands.filter(command => command.config.enabled && command.config.category === category).map(command =>`\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`).join(`\n\n`)
   }
+
   const CreatePage = async (Bot, Message, Category) => {
     if (Category === `👑owner👑` && message.author.id !== process.env.OwnerID){
       return
@@ -31,7 +28,7 @@ exports.run = async (Bot, message, args) => {
   if (!args.length) {
     Bot.categories.map((cat) => CreatePage(Bot, message, cat))
     
-    discordeasypages(message, pages, [`⏪`, `⏩`, `🗑`])
+    ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blue", "⏩", "⏪", "❌")
   } else {
     const name = args[0].toLowerCase();
     const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));

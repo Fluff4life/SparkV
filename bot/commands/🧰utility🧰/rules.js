@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const discordeasypages = require("discordeasypages")
+const ButtonPages = require("discord-button-pages")
 
 var SetRules = false
 
@@ -37,7 +37,7 @@ exports.run = async (Bot, message, args) => {
   }
 
   Bot.Rules.map((RuleDetails, RuleNumber) => CreatePage(Bot, message, RuleNumber, RuleDetails.Title, RuleDetails.Description))  
-  discordeasypages(message, pages, ["⏪", "⏩", "🗑"])
+  ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blue", "⏩", "⏪", "❌")
 },
 
 exports.config = {

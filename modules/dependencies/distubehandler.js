@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const discordeasypages = require("discordeasypages")
+const ButtonPages = require("discord-button-pages")
 
 module.exports = async (Bot) => {
   const DisTube = require("distube")
@@ -129,12 +129,13 @@ module.exports = async (Bot) => {
             .setColor(Bot.Config.Bot.Embed.Color)
             .setURL(Song.url)
             .setImage(Song.thumbnail)
+            .setFooter(`To select this song, send the page number! For example, 1.`)
   
           Pages.push(NewEmbed)
         }
   
         result.map(song => CreatePage(song))
-        discordeasypages(message, Pages, ["⏪", "⏩", "🗑"], `To select this song, send the page number! For example, 1.`)
+        ButtonPages.createPages(Bot.interaction, message, Pages, 600 * 1000, "blue", "⏩", "⏪", "❌")
       } catch(err) {
         console.error(err)
       }

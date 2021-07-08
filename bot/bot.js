@@ -40,6 +40,7 @@ const Bot = new Discord.Client({
     status: "dnd"
   }
 })
+Bot.interaction = {}
 
 const BotButtons = require("discord-buttons")
 BotButtons(Bot)

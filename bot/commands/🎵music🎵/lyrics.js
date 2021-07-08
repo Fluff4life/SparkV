@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
+const ButtonPages = require("discord-button-pages");
 const fetch = require(`node-fetch`)
-const discordeasypages = require(`discordeasypages`);
 const LyrcisFinder = require(`lyrics-finder`)
 
 exports.run = async (Bot, message, Arguments) => {
@@ -16,7 +16,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.lineReply(`${Bot.Config.Bot.Emojis.error} | I couldn't find the lyrics for **${Arguments}**!`)
   }
 
-  if (data.lyrics.length < 2000){
+  if (data.lyrics.length <= 2000){
     const SongEmbed = new Discord.MessageEmbed()
       .setTitle(data.title)
       .setDescription(data.lyrics)
@@ -30,7 +30,8 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   const LyricsArray = data.lyrics.split(`\n`)
-  const LyricsSubArray = [""]
+  const LyricsSubArray = []
+  const pages = []
   const e = 0
 
   for (const line of LyricsArray){
@@ -42,18 +43,21 @@ exports.run = async (Bot, message, Arguments) => {
     }
   }
 
-  discordeasypages(message, LyricsSubArray.map((x, i) => {
+  const CreatePage = (Bot, Message, x) => {
     const SongEmbed = new Discord.MessageEmbed()
-      .setTitle(data.title)
-      .setDescription(x)
-      .setThumbnail(data.thumbnail.genius)
-      .setFooter(Bot.Config.Bot.Embed.Footer)
-      .setAuthor(`Song by ${data.author}`, null, data.links.genius)
-      .setColor(Bot.Config.Bot.Embed.Color)
-      .setTimestamp()
+    .setTitle(data.title)
+    .setDescription(x)
+    .setThumbnail(data.thumbnail.genius)
+    .setFooter(Bot.Config.Bot.Embed.Footer)
+    .setAuthor(`Song by ${data.author}`, null, data.links.genius)
+    .setColor(Bot.Config.Bot.Embed.Color)
+    .setTimestamp()
 
-    return message.lineReply(SongEmbed)
-  }))
+    pages.push(SongEmbed)
+  }
+
+  LyricsSubArray.map((x, i) => CreatePage(Bot, message, x))
+  ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blue", "⏩", "⏪", "❌")
 },
 
 exports.config = {
