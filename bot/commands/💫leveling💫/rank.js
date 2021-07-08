@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Rank = new canvacord.Rank()
     .setUsername(Target.username)
     .setDiscriminator(Target.discriminator)
-    .setAvatar(Target.displayAvatarURL({ dynamic: false, format: `png` }))
+    .setAvatar(Target.displayAvatarURL({ dynamic: false, format: `gif` }))
     .setStatus(Target.presence.status)
     .setRank(User.position)
     .setLevel(User.level || 0)
@@ -23,7 +23,7 @@ exports.run = async (Bot, message, Arguments) => {
     .setProgressBar(`#0099ff`, `COLOR`)
 
   Rank.build().then(data => {
-    const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.png`)
+    const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.gif`)
 
     return message.lineReply(Attachment)
   })

@@ -36,7 +36,7 @@ Router.get("/:userID/profile", async (request, response) => {
       navagation: {
         BrandName: "Ch1ll",
         BrandLink: "#top",
-        BrandLogo: "/assets/images/kingch1ll.png",
+        BrandLogo: "/assets/images/TransparentKingCh1ll.png",
 
         Links: {
           learn: {
@@ -53,8 +53,8 @@ Router.get("/:userID/profile", async (request, response) => {
             }
           },
 
-          products: {
-            name: "Products",
+          services: {
+            name: "Services",
             icon: "fas fa-award",
             type: "dropdown",
 

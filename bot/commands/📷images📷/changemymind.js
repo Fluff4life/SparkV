@@ -14,7 +14,7 @@ exports.run = async (Bot, message, Arguments) => {
   Arguments = Arguments.join(` `)
 
   const Image = await canvacord.Canvas.changemymind(Arguments)
-  const ChangeMyMind = new Discord.MessageAttachment(Image, `changemymind.png`)
+  const ChangeMyMind = new Discord.MessageAttachment(Image, `changemymind.gif`)
 
   message.lineReplyNoMention(ChangeMyMind)
 },

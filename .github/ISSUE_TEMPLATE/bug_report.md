@@ -1,19 +1,22 @@
 ---
-name: Bug Report
-about: Report incorrect behavior
-title: Bug
-lables: ""
-assignees: ""
+
+name: Bug report
+about: Report incorrect or unexpected behavior of discord.js
+title: ''
+labels: 's: unverified, type: bug'
+assignees: ''
 ---
+## The Problem
 
-**Problem**
-*Describe the problem and provide as much information as possible*
+*describe the bug in as much detail as possible*
 
-**Reproduce**
-*Steps to reproduce the bug*
+## How to Preproduce
 
-**Screenshots**
-*Please include screenshots if possible*
+*If you can, Include a reproducible code sample below*
 
-**Additional Information**
-*Add any other information here*
+```js
+// *Code goes here*
+```
+
+**Details:**
+*Put any details that may help us here*

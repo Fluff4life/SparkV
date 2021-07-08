@@ -13,7 +13,6 @@ const passport = require("passport");
 
 const path = require("path");
 const fs = require("fs")
-const cookieParser = require("cookie-parser")
 const parser = require("body-parser");
 
 const Config = require("../globalconfig.json");
@@ -31,18 +30,18 @@ const io = require("socket.io")(server)
 
 // Functions //
 async function LoadRoutes(){
-  const GetFiles = (FilePath) => {
+  function GetFiles(FilePath) {
     if (!FilePath) {
-      return console.error("You didn't provide a valid path!")
+      return console.error("You didn't provide a valid file path!")
     }
 
     if (!fs.existsSync(FilePath)) {
       fs.mkdirSync(FilePath)
     }
 
-    const Files = fs.readdirSync(FilePath, {
-      withFileTypes: true
-    }).filter((entry) => !entry.isDirectory()).map((entry) => entry.name)
+    const Files = fs.readdirSync(FilePath, { withFileTypes: true })
+      .filter((entry) => !entry.isDirectory())
+      .map((entry) => entry.name)
 
     return Files
   }
@@ -88,13 +87,11 @@ async function StartWebsite(Bot){
   
   app.engine("html", ejs.renderFile);
   app.set("view engine", "html");
-  
-  app.use(cookieParser())
-  
+
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));
   
-  app.use(require("serve-favicon")(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}siteicons${path.sep}favicon.ico`)));
+  app.use(require("serve-favicon")(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}site${path.sep}favicon.ico`)));
   
   app.use("/assets", express.static(path.resolve(`${MainDir}${path.sep}assets`)));
   app.set("views", Views)
@@ -115,7 +112,7 @@ async function StartWebsite(Bot){
       navagation: {
         BrandName: "Ch1ll",
         BrandLink: "/home",
-        BrandLogo: "/assets/images/kingch1ll.png",
+        BrandLogo: "/assets/images/TransparentKingCh1ll.png",
   
         Links: {
           learn: {
@@ -132,8 +129,8 @@ async function StartWebsite(Bot){
             }
           },
   
-          products: {
-            name: "Products",
+          services: {
+            name: "services",
             icon: "fas fa-award",
             type: "dropdown",
   
@@ -178,6 +175,7 @@ async function StartWebsite(Bot){
       top: {
         BrandName: `404 - Not Found`,
         BrandLogo: "/assets/images/404.png",
+        TypeText: false,
   
         buttons: {
           button1: {
@@ -212,9 +210,9 @@ async function StartWebsite(Bot){
     const user = request.user
     const MainEmbed = new Discord.MessageEmbed()
       .setTitle("Error Occured!")
-      .setDescription(`Uh oh! Looks like an error occured for ${user ? user.username : "unknown"}${user ? "#" + user.descriminator : ""}.`)
-      .addField("**ERROR**", err, true)
-      .setFooter(`Ch1ll Notifier | Error Code 500 | ${user ? user.username : "unknown"}#${user ? "#" + user.descriminator : ""}`)
+      .setDescription(`Uh oh! Looks like an error occured.`)
+      .addField("**ERROR**", err.toString().replaceAll("Jake&amp;Ryan", "USER"), true)
+      .setFooter(`Ch1ll Notifier | Error Code 500`)
       .setColor("RED")
   
     global.MainWebhook.send({
@@ -239,7 +237,7 @@ async function StartWebsite(Bot){
       navagation: {
         BrandName: "KingCh1ll",
         BrandLink: "#top",
-        BrandLogo: "/assets/images/kingch1ll.png",
+        BrandLogo: "/assets/images/TransparentKingCh1ll.png",
   
         Links: {
           link1: {
@@ -266,6 +264,7 @@ async function StartWebsite(Bot){
       top: {
         BrandName: "Error!",
         BrandLogo: "/assets/images/500.png",
+        TypeText: false,
   
         buttons: {
           button1: {

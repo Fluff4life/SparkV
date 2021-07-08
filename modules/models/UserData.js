@@ -1,7 +1,10 @@
 const mongoose = require("mongoose")
 
 const UserSchema = new mongoose.Schema({
-    id: Array
+    userid: {
+      username: String,
+      tag: String
+    }
 })
 
 module.exports = mongoose.model("UserData", UserSchema)
