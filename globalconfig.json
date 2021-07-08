@@ -32,8 +32,8 @@
     },
     "Website": {},
     "Debug": {
-        "Enabled": true,
-        "BotEnabled": false,
+        "Enabled": false,
+        "BotEnabled": true,
         "WebsiteEnabled": true
     }
 }
