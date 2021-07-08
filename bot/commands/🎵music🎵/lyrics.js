@@ -7,7 +7,7 @@ exports.run = async (Bot, message, Arguments) => {
   if (!Arguments){
     return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please supply the title of a song to search for.`).then(m => m.delete({ timeout: 5000 }))
   }
-  
+
   Arguments = Arguments.join(" ")
 
   const data = LyrcisFinder(Arguments)
@@ -57,7 +57,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   LyricsSubArray.map((x, i) => CreatePage(Bot, message, x))
-  ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blue", "⏩", "⏪", "❌")
+  ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blurple", "⏩", "⏪", "❌")
 },
 
 exports.config = {
