@@ -32,6 +32,7 @@
     "chalk": "^4.1.1",
     "cookie-parser": "^1.4.5",
     "discord-anti-spam": "^2.5.0",
+    "discord-buttons": "^4.0.0",
     "discord-giveaways": "^4.4.3",
     "discord-reply": "^0.1.2",
     "discord-tictactoe": "^2.1.0",

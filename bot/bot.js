@@ -41,6 +41,9 @@ const Bot = new Discord.Client({
   }
 })
 
+const BotButtons = require("discord-buttons")
+BotButtons(Bot)
+
 if (process.env.StatCordEnabled === "true"){
   const StatClient = new Statcord.Client({
     Bot,
