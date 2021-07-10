@@ -72,8 +72,6 @@ async function StartWebsite(Bot){
     require("newrelic")
   }
   
-  global.UserShema = require("../modules/models/UserData")
-
   require("./utils/passport")
   
   app.use(session({

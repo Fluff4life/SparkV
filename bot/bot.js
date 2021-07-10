@@ -69,9 +69,6 @@ if (Config.Debug.Enabled === false) {
   Noblox = require("../modules/dependencies/noblox")
 }
 
-// Schemas
-Bot.UserShema = require("../modules/models/UserData")
-
 // Collections //
 Bot.Rules = new Discord.Collection()
 Bot.categories = new Discord.Collection()
