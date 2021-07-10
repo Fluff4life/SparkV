@@ -258,7 +258,7 @@ async function ActivateChatBot(message) {
   message.channel.startTyping()
 
   try {
-    await fetch(`http://api.brainshop.ai/get?bid=${process.env.chat_bid}&key=${process.env.chat_key}&uid=${message.author.id}&msg=${message.cleanContent}`).then((res) => {
+    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(message.cleanContent)}`).then((res) => {
       const data = res.data
       const botmsg = data.cnt
 
