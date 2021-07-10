@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js")
-const ButtonPages = require("discord-button-pages")
+const Buttons = require("discord-buttons")
+const ButtonPages = require("discord-embeds-pages-buttons")
 
 module.exports = async (Bot) => {
   const DisTube = require("distube")
@@ -135,7 +136,7 @@ module.exports = async (Bot) => {
         }
   
         result.map(song => CreatePage(song))
-        ButtonPages.createPages(Bot.interaction, message, Pages, 60 * 1000, "blurple", "⏩", "⏪", "❌")
+        ButtonPages.pages(Bot, message, Pages, 60 * 1000, Buttons, "blurple", "⏩", "⏪", "❌")
       } catch(err) {
         console.error(err)
       }

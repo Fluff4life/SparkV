@@ -40,7 +40,6 @@ const Bot = new Discord.Client({
     status: "dnd"
   }
 })
-Bot.interaction = {}
 require("discord-buttons")(Bot)
 
 if (process.env.StatCordEnabled === "true"){

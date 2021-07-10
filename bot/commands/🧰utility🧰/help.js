@@ -1,6 +1,7 @@
 const Discord = require(`discord.js`);
 const fs = require(`fs`)
-const ButtonPages = require("discord-button-pages")
+const Buttons = require("discord-buttons")
+const ButtonPages = require("discord-embeds-pages-buttons")
 var prefix = `^`
 
 exports.run = async (Bot, message, args) => {
@@ -28,7 +29,7 @@ exports.run = async (Bot, message, args) => {
   if (!args.length) {
     Bot.categories.map((cat) => CreatePage(Bot, message, cat))
     
-    ButtonPages.createPages(Bot.interaction, message, pages, 60 * 1000, "blurple", "⏩", "⏪", "❌")
+    ButtonPages.pages(Bot, message, pages, 60 * 1000, Buttons, "blurple", "⏩", "⏪", "❌")
   } else {
     const name = args[0].toLowerCase();
     const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));
