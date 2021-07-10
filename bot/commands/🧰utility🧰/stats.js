@@ -3,7 +3,8 @@ const os = require("os")
 
 exports.run = async (Bot, message) => {
   const BotMessage = await message.lineReplyNoMention("Fetching Stats...")
-  let footerMessage = (`Ch1llBlox's Stats • ${Bot.Config.Bot.Embed.Footer}`)
+  let footerMessage = `Ch1llBlox's Stats • ${Bot.Config.Bot.Embed.Footer}`
+
   if (Bot.MSToTime(Bot.uptime) == "5 Minutes") {
     footerMessage = "pog you found me lol great job on timing it on exactly 5 minutes"
   }
