@@ -33,7 +33,7 @@ exports.run = async (Bot, message) => {
     })
 
     if (data){
-      message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).toString().replaceAll(`{reason}`, data.Reason))
+      message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, data.Reason))
     }
   }
   
@@ -101,7 +101,7 @@ exports.run = async (Bot, message) => {
       const User = await Levels.fetch(message.author.id, message.guild.id)
       const Level = await Bot.FormatNumber(User.level)
 
-      message.lineReplyNoMention(Bot.Config.Bot.Responses.LevelUpMessage.toString().replaceAll(`{author}`, message.author).toString().replaceAll(`{level}`, Level))
+      message.lineReplyNoMention(Bot.Config.Bot.Responses.LevelUpMessage.toString().replaceAll(`{author}`, message.author).replaceAll(`{level}`, Level))
     }
   }
 
