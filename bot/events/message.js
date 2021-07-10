@@ -20,7 +20,7 @@ exports.run = async (Bot, message) => {
   })
 
   if (Authordata){
-    message.lineReply(`Hey bud, welcome back! I removed your AFK status.`)
+    message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
 
     Authordata.deleteOne({
       UserID: message.author.id
@@ -33,7 +33,7 @@ exports.run = async (Bot, message) => {
     })
 
     if (data){
-      message.lineReply(`Hey dude, **${UserMentioned.user.username}** is currently AFK. His reason: ${data.Reason}.`)
+      message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).toString().replaceAll(`{reason}`, data.Reason))
     }
   }
   
