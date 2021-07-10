@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const afk = require("../../models/afk")
+const afk = require("../../../models/afk")
 
 exports.run = async (Bot, message, Arguments) => {
   if (message.mentions.roles.first()) {
