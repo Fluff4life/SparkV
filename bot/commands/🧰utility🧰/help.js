@@ -28,7 +28,7 @@ exports.run = async (Bot, message, args) => {
   if (!args.length) {
     Bot.categories.map((cat) => CreatePage(Bot, message, cat))
     
-    ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blurple", "⏩", "⏪", "❌")
+    ButtonPages.createPages(Bot.interaction, message, pages, 60 * 1000, "blurple", "⏩", "⏪", "❌")
   } else {
     const name = args[0].toLowerCase();
     const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));

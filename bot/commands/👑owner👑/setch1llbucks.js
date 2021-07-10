@@ -5,7 +5,7 @@ exports.run = async (Bot, message, Arguments) => {
     return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Access denied.`)
   }
 
-  const User = message.mentions.users.first()
+  const User = Bot.GetMember(message, Arguments)
   var Ch1llBucks = await Bot.UserShema.find({
     id: User.id
   })

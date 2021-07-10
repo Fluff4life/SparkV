@@ -135,7 +135,7 @@ module.exports = async (Bot) => {
         }
   
         result.map(song => CreatePage(song))
-        ButtonPages.createPages(Bot.interaction, message, Pages, 600 * 1000, "blurple", "⏩", "⏪", "❌")
+        ButtonPages.createPages(Bot.interaction, message, Pages, 60 * 1000, "blurple", "⏩", "⏪", "❌")
       } catch(err) {
         console.error(err)
       }

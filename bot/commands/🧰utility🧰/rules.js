@@ -37,7 +37,7 @@ exports.run = async (Bot, message, args) => {
   }
 
   Bot.Rules.map((RuleDetails, RuleNumber) => CreatePage(Bot, message, RuleNumber, RuleDetails.Title, RuleDetails.Description))  
-  ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blurple", "⏩", "⏪", "❌")
+  ButtonPages.createPages(Bot.interaction, message, pages, 60 * 1000, "blurple", "⏩", "⏪", "❌")
 },
 
 exports.config = {

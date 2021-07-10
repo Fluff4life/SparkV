@@ -72,6 +72,12 @@ module.exports = async (bot) => {
       .then(collected => collected.first() && collected.first().emoji.name)
   }
 
+  bot.GetMember = async (message, args) => {
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(member => member.user.username === args.slice(0).join(" ") || member.user.username === args[0]) || message.member
+    
+    return member
+  }
+
   bot.isURL = (string) => {
     if (string.startsWith("discord.gg/") || string.endsWith("discord.gg/")) {
       return true

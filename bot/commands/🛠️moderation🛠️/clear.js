@@ -41,7 +41,7 @@ exports.run = async (Bot, message, Arguments) => {
         message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Clear canceled.`).then(m => m.delete({ timeout: 10000 }))
       }
     } else {
-      const User = message.mentions.users.first()
+      const User = Bot.GetMember(message, Arguments)
 
       if (User) {
         if (isNaN(Arguments[1])) {

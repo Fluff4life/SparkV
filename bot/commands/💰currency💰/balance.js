@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (Bot, message, Arguments) => {
-  const User = message.mentions.users.first() || message.author
+  const User = Bot.GetMember(message, Arguments) || message.author
 
   if (!User) {
     return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please say a person to rob.`)

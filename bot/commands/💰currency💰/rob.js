@@ -6,7 +6,7 @@ const results = [
 ]
 
 exports.run = async (Bot, message, Arguments) => {
-  const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0])
+  const User = Bot.GetMember(message, Arguments) || Bot.users.cache.get(Arguments[0])
 
   if (!User) {
     return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please say a person to rob.`)

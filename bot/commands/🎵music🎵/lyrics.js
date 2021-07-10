@@ -57,7 +57,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   LyricsSubArray.map((x, i) => CreatePage(Bot, message, x))
-  ButtonPages.createPages(Bot.interaction, message, pages, 600 * 1000, "blurple", "⏩", "⏪", "❌")
+  ButtonPages.createPages(Bot.interaction, message, pages, 60 * 1000, "blurple", "⏩", "⏪", "❌")
 },
 
 exports.config = {

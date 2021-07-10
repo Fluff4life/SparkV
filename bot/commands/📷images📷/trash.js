@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (Bot, message, Arguments) => {
-  const User = message.mentions.users.first() || Bot.users.cache.get(Arguments[0]) || message.author
+  const User = Bot.GetMember(message, Arguments) || Bot.users.cache.get(Arguments[0]) || message.author
 
   if (Bot.Config.Debug.Enabled === true) {
     return
