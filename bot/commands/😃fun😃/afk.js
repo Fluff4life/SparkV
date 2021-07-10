@@ -21,6 +21,8 @@ exports.run = async (Bot, message, Arguments) => {
       })
 
       newAfk.save()
+
+      message.lineReply(`You're now AFK. Reason: ${reason}`)
     } catch (err) {
       message.lineReply("Failed to save AFK status.")
     }
