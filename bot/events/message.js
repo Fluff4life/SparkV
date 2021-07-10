@@ -6,7 +6,7 @@ const { configureScope } = require(`@sentry/node`)
 const afk = require("../../models/afk")
 
 exports.run = async (Bot, message) => {
-  if (message.channel.type === `dm` || !message.channel.viewable || message.author.bot){
+  if (message.channel.type === `dm` || !message.channel.viewable || message.author.bot) {
     return
   }
 
@@ -19,7 +19,7 @@ exports.run = async (Bot, message) => {
     UserID: message.author.id
   })
 
-  if (Authordata){
+  if (Authordata) {
     message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
 
     Authordata.deleteOne({
@@ -27,16 +27,16 @@ exports.run = async (Bot, message) => {
     })
   }
 
-  if (UserMentioned){
+  if (UserMentioned) {
     const data = await afk.findOne({
       UserID: UserMentioned.id
     })
 
-    if (data){
+    if (data) {
       message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, data.Reason))
     }
   }
-  
+
   const AntiURL = await Bot.dashboard.getVal(message.guild.id, `removelinks`)
 
   if (!AntiURL === `Disabled`) {
@@ -147,7 +147,7 @@ exports.run = async (Bot, message) => {
   }
 }
 
-async function HandleCommand(Bot, message, args, command, commandfile){
+async function HandleCommand(Bot, message, args, command, commandfile) {
   if (!commandfile) {
     return
   }
@@ -226,10 +226,10 @@ async function HandleCommand(Bot, message, args, command, commandfile){
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount)
 
   try {
-    if (Bot.StatClient){
+    if (Bot.StatClient) {
       Bot.StatClient.postCommand(commandfile.config.name, message.author.id)
     }
- 
+
     await commandfile.run(Bot, message, args, command).then(async () => {
       const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, `deletecommandusage`)
 
@@ -257,30 +257,38 @@ async function HandleCommand(Bot, message, args, command, commandfile){
 async function ActivateChatBot(message) {
   message.channel.startTyping()
 
-  fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(message.cleanContent)}&name=Ch1llBlox&user=${message.author.username}&gender=male`)
-    .then((res) => res.json())
-    .then((body) => {
-      if (message.deleted) {
-        return
+  try {
+    await fetch(`http://api.brainshop.ai/get?bid=${process.env.chat_bid}&key=${process.env.chat_key}&uid=${message.author.id}&msg=${message.cleanContent}`).then((res) => {
+      const data = res.data
+      const botmsg = data.cnt
+
+      if (botmsg) {
+        if (message.deleted) {
+          return
+        }
+
+        const APIEmbed = new Discord.MessageEmbed()
+          .setTitle(`Ch1llBlox`)
+          .setDescription(botmsg)
+          .setFooter(`Never send personal information to Ch1llBlox. • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+          .setColor(Bot.Config.Bot.Embed.Color)
+
+        if (Bot.StatClient) {
+          Bot.StatClient.postCommand(`ChatBot`, message.author.id)
+        }
+
+        message.lineReplyNoMention(APIEmbed)
+      } else {
+        console.error(err)
+
+        return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Wha- what? Something went wrong.`)
       }
-
-      const APIMessage = body.message.toString().replaceAll(`CleverChat`, `Ch1llBlox`)
-      const APIEmbed = new Discord.MessageEmbed()
-        .setTitle(`Ch1llBlox`)
-        .setDescription(APIMessage)
-        .setFooter(`NEVER send any personal information to Ch1llBlox! • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-        .setColor(Bot.Config.Bot.Embed.Color)
-
-      if (Bot.StatClient){
-        Bot.StatClient.postCommand(`ChatBot`, message.author.id)
-      }
-
-      message.lineReplyNoMention(APIEmbed)
-    }).catch((err) => {
-      console.error(err)
-
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Wha- what? Something went wrong.`)
     })
+  } catch (err) {
+    console.error(err)
 
-  message.channel.stopTyping(true)
+    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Wha- what? Something went wrong.`)
+  }
+
+  message.channel.stopTyping()
 }
