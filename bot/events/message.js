@@ -258,9 +258,8 @@ async function ActivateChatBot(message) {
   message.channel.startTyping()
 
   try {
-    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(message.cleanContent)}`).then((res) => {
-      const data = res.data
-      const botmsg = data.cnt
+    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(message.cleanContent)}`).then((res) => res.json()).then((body) => {
+      const botmsg = body.cnt
 
       if (botmsg) {
         if (message.deleted) {
