@@ -278,7 +278,7 @@ async function ActivateChatBot(message, wasMentioned) {
 
         message.lineReplyNoMention(APIEmbed)
       } else {
-        console.error(err)
+        console.error(`Failed to get message from Chat Bot. Response: ${body}`)
 
         return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Wha- what? Something went wrong.`)
       }
