@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 const Buttons = require("discord-buttons")
-const ButtonPages = require("discord-embeds-pages-buttons")
+// const ButtonPages = require("discord-embeds-pages-buttons")
+const EasyPages = require("discordeasypages")
+
 const fetch = require(`node-fetch`)
 const LyrcisFinder = require(`lyrics-finder`)
 
@@ -58,7 +60,7 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   LyricsSubArray.map((x, i) => CreatePage(Bot, message, x))
-  ButtonPages.pages(Bot, message, pages, 60 * 1000, Buttons, "blurple", "⏩", "⏪", "❌")
+  EasyPages(message, Pages, ["⬅", "➡"])
 },
 
 exports.config = {

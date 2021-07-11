@@ -38,6 +38,7 @@
     "discord-tictactoe": "^2.1.0",
     "discord-xp": "^1.1.8",
     "discord.js": "^12.5.1",
+    "discordeasypages": "^0.2.4",
     "distube": "^2.8.13",
     "dotenv": "^8.6.0",
     "ejs": "^3.1.6",

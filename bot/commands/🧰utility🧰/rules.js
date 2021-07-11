@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const Buttons = require("discord-buttons")
-const ButtonPages = require("discord-embeds-pages-buttons")
+// const ButtonPages = require("discord-embeds-pages-buttons")
+const EasyPages = require("discordeasypages")
 
 var SetRules = false
 
@@ -38,7 +39,7 @@ exports.run = async (Bot, message, args) => {
   }
 
   Bot.Rules.map((RuleDetails, RuleNumber) => CreatePage(Bot, message, RuleNumber, RuleDetails.Title, RuleDetails.Description))  
-  ButtonPages.pages(Bot, message, pages, 60 * 1000, Buttons, "blurple", "⏩", "⏪", "❌")
+  EasyPages(message, pages, ["⬅", "➡"])
 },
 
 exports.config = {
