@@ -110,7 +110,7 @@ exports.run = async (Bot, message) => {
 
   if (!message.content.startsWith(Prefix)) {
     if (ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(message)
+      return ActivateChatBot(message, false)
     }
   }
 
@@ -124,7 +124,7 @@ exports.run = async (Bot, message) => {
       const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
 
       if (ChatBot.toLowerCase() === `mention` && message.channel.type === "text") {
-        return ActivateChatBot(message)
+        return ActivateChatBot(message, true)
       }
     }
   } else {
@@ -132,7 +132,7 @@ exports.run = async (Bot, message) => {
     const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
 
     if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(message)
+      return ActivateChatBot(message, false)
     }
 
     if (!message.content.startsWith(Prefix)) {
@@ -254,11 +254,11 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   }
 }
 
-async function ActivateChatBot(message) {
+async function ActivateChatBot(message, wasMentioned) {
   message.channel.startTyping()
 
   try {
-    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(message.cleanContent)}`).then((res) => res.json()).then((body) => {
+    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(wasMentioned === true ? message.slice(21) : message)}`).then((res) => res.json()).then((body) => {
       const botmsg = body.cnt
 
       if (botmsg) {
