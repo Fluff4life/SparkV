@@ -13,6 +13,7 @@ const Schema = new mongoose.Schema({
     afk: {
         type: Object,
         default: {
+            enabled: false,
             reason: "No reason supplied."
         }
     }

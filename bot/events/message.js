@@ -34,7 +34,7 @@ exports.run = async (Bot, message) => {
     id: message.author.id
   })
 
-  if (UserData && UserData.afk.enabled === false) {
+  if (UserData && UserData.afk.enabled === true) {
     try {
       const newAfk = new userS({
         id: message.author.id,
