@@ -7,41 +7,49 @@ exports.run = async (Bot, message, Arguments) => {
     id: message.author.id,
   })
 
-  if (!data.afk.enabled) {
-    const reason = Arguments.slice(0).join(" ") || "No reason supplied."
+  if (!data) {
+    if (!data.afk) {
+      if (!data.afk.enabled) {
+        const reason = Arguments.slice(0).join(" ") || "No reason supplied."
 
-    try {
-      const newAfk = new afk({
-        id: message.author.id,
-        afk: {
-          enabled: true,
-          reason: reason
+        try {
+          const newAfk = new afk({
+            id: message.author.id,
+            afk: {
+              enabled: true,
+              reason: reason
+            }
+          })
+
+          newAfk.save()
+
+          message.lineReply(`You're now AFK. Reason: ${reason}`)
+        } catch (err) {
+          console.error(err)
+
+          message.lineReply("Failed to save AFK status.")
         }
-      })
-
-      newAfk.save()
-
-      message.lineReply(`You're now AFK. Reason: ${reason}`)
-    } catch (err) {
-      console.error(err)
-
-      message.lineReply("Failed to save AFK status.")
+      }
     }
-  } else if (data.afk.enabled){
-    try {
-      const newAfk = new user({
-        id: message.author.id,
-        afk: {
-          enabled: false,
-          reason: "AFK Disabled"
+  } else if (data) {
+    if (data.afk) {
+      if (data.afk.enabled) {
+        try {
+          const newAfk = new user({
+            id: message.author.id,
+            afk: {
+              enabled: false,
+              reason: "AFK Disabled"
+            }
+          })
+
+          newAfk.save()
+        } catch (err) {
+          console.error(err)
+
+          message.lineReply("Failed to delete AFK status.")
         }
-      })
-
-      newAfk.save()
-    } catch (err) {
-      console.error(err)
-
-      message.lineReply("Failed to delete AFK status.")
+      }
     }
 
     message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
