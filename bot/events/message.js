@@ -31,13 +31,10 @@ exports.run = async (Bot, message) => {
 
   // AFK //
   const UserData = await userS.find({
-    id: message.author.id,
-    afk: {
-      enabled: true
-    }
+    id: message.author.id
   })
 
-  if (UserData) {
+  if (UserData && UserData.afk.enabled === false) {
     try {
       const newAfk = new afk({
         id: message.author.id,
@@ -56,13 +53,10 @@ exports.run = async (Bot, message) => {
 
   if (UserMentioned) {
     const UserMentionedData = await userS.find({
-      id: UserMentioned.id,
-      afk: {
-        enabled: true
-      }
+      id: UserMentioned.id
     })
 
-    if (UserMentionedData) {
+    if (UserMentionedData && UserMentionedData.afk.enabled === true) {
       message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
     }
   }
