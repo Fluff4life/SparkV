@@ -59,7 +59,7 @@ exports.run = async (Bot, message, Arguments) => {
 
 exports.config = {
   name: `Ban`,
-  description: `Is a user bothering you and keep coming back after you kick them? Using this command, they won\`t come back unless they are unbanned.`,
+  description: `Is a user bothering you and keep coming back after you kick them? Using this command, they won\'t come back unless they are unbanned.`,
   aliases: [`pban`],
   usage: `<user> <optional reason>`,
   category: `🛠️moderation🛠️`,
