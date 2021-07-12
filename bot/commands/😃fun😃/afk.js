@@ -3,14 +3,11 @@ const Discord = require(`discord.js`);
 const user = require("../../../database/schemas/user")
 
 exports.run = async (Bot, message, Arguments) => {
-  const data = await user.find({
+  const data = await user.findOne({
     id: message.author.id,
-    afk: {
-      enabled: true
-    }
   })
 
-  if (!data) {
+  if (!data.afk.enabled) {
     const reason = Arguments.slice(0).join(" ") || "No reason supplied."
 
     try {
@@ -30,7 +27,7 @@ exports.run = async (Bot, message, Arguments) => {
 
       message.lineReply("Failed to save AFK status.")
     }
-  } else {
+  } else if (data.afk.enabled){
     try {
       const newAfk = new user({
         id: message.author.id,
