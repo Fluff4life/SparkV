@@ -6,11 +6,11 @@ const { configureScope } = require('@sentry/node');
 const userS = require("../../database/schemas/user")
 
 exports.run = async (Bot, message) => {
-  if (message.author.bot){
+  if (message.author.bot) {
     return
   }
 
-  if (!message.guild){
+  if (!message.guild) {
     return
   }
 
@@ -34,20 +34,22 @@ exports.run = async (Bot, message) => {
     id: message.author.id
   })
 
-  if (UserData && UserData.afk.enabled === true) {
-    try {
-      const newAfk = new userS({
-        id: message.author.id,
-        afk: {
-          enabled: false
-        }
-      })
+  if (UserData) {
+    if (UserData.afk.enabled === true) {
+      try {
+        const newAfk = new userS({
+          id: message.author.id,
+          afk: {
+            enabled: false
+          }
+        })
 
-      newAfk.save()
+        newAfk.save()
 
-      message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
-    } catch (err) {
-      console.error(err)
+        message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
 
@@ -56,8 +58,10 @@ exports.run = async (Bot, message) => {
       id: UserMentioned.id
     })
 
-    if (UserMentionedData && UserMentionedData.afk.enabled === true) {
-      message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
+    if (UserMentionedData) {
+      if (UserMentionedData.afk.enabled === true) {
+        message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
+      }
     }
   }
 
