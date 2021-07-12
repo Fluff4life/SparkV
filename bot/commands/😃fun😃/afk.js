@@ -54,7 +54,7 @@ exports.run = async (Bot, message, Arguments) => {
     aliases: [],
     usage: `<optional reason>`,
     category: `😃fun😃`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
+    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
     cooldown: 3
