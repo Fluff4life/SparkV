@@ -1,34 +1,28 @@
 const Discord = require(`discord.js`);
 
-const afk = require("../../../models/afk")
+const user = require("../../../database/schemas/user")
 
 exports.run = async (Bot, message, Arguments) => {
-  console.log("AFK COMMAND WORKING")
-
-  const data = await afk.findOne({
-    UserID: message.author.id
+  const data = await user.find({
+    id: message.author.id,
+    afk: {
+      enabled: true
+    }
   })
 
-  console.log("AFK COMMAND WORKING 2")
-
   if (!data) {
-    console.log("AFK COMMAND NO DATA")
+    const reason = Arguments.slice(0).join(" ") || "No reason supplied."
 
-    const reason = args.slice(0).join(" ") || "No reason supplied."
-
-
-    console.log(reason)
     try {
       const newAfk = new afk({
-        UserID: message.author.id,
-        Reason: reason
+        id: message.author.id,
+        afk: {
+          enabled: true,
+          reason: reason
+        }
       })
 
-      console.log("New AFK")
-
       newAfk.save()
-
-      console.log("Saved")
 
       message.lineReply(`You're now AFK. Reason: ${reason}`)
     } catch (err) {
@@ -38,9 +32,15 @@ exports.run = async (Bot, message, Arguments) => {
     }
   } else {
     try {
-      await afk.deleteOne({
-        UserID: message.author.id
+      const newAfk = new user({
+        id: message.author.id,
+        afk: {
+          enabled: false,
+          reason: "AFK Disabled"
+        }
       })
+
+      newAfk.save()
     } catch (err) {
       console.error(err)
 
@@ -55,7 +55,7 @@ exports.run = async (Bot, message, Arguments) => {
     name: `Afk`,
     description: `This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason.`,
     aliases: [],
-    usage: `<>`,
+    usage: `<optional reason>`,
     category: `😃fun😃`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
     member_permissions: [],

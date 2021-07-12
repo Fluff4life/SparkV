@@ -1,39 +1,69 @@
-const Discord = require(`discord.js`)
-const Levels = require(`discord-xp`)
-const fetch = require(`node-fetch`)
-const AntiSwearPackage = require(`anti-swear-words-packages-discord`)
-const { configureScope } = require(`@sentry/node`)
-const afk = require("../../models/afk")
+const Discord = require('discord.js');
+const Levels = require('discord-xp');
+const fetch = require('node-fetch');
+const AntiSwearPackage = require('anti-swear-words-packages-discord');
+const { configureScope } = require('@sentry/node');
+const userS = require("../../database/schemas/user")
 
 exports.run = async (Bot, message) => {
-  if (message.channel.type === `dm` || !message.channel.viewable || message.author.bot) {
+  if (message.author.bot){
     return
   }
+
+  if (!message.guild){
+    return
+  }
+
+  let guildData
+
+  /*
+  if (!message.guild.guildData){
+    // guildData = await Bot.Database.fetchGuild(message.guild.id)
+    message.guild.guildData.prefix = guildData.prefix.toLowerCase()
+  }
+
+  let prefix = message.guild.prefix
+  */
 
   // User //
   const UserMentioned = message.mentions.members.first()
   const user = message.guild.members.cache.get(message.author.id)
 
   // AFK //
-  const Authordata = await afk.findOne({
-    UserID: message.author.id
+  const UserData = await userS.find({
+    id: message.author.id,
+    afk: {
+      enabled: true
+    }
   })
 
-  if (Authordata) {
-    message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
+  if (UserData) {
+    try {
+      const newAfk = new afk({
+        id: message.author.id,
+        afk: {
+          enabled: false
+        }
+      })
 
-    Authordata.deleteOne({
-      UserID: message.author.id
-    })
+      newAfk.save()
+
+      message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   if (UserMentioned) {
-    const data = await afk.findOne({
-      UserID: UserMentioned.id
+    const UserMentionedData = await userS.find({
+      id: UserMentioned.id,
+      afk: {
+        enabled: true
+      }
     })
 
-    if (data) {
-      message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, data.Reason))
+    if (UserMentionedData) {
+      message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
     }
   }
 

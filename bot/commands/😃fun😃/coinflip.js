@@ -8,7 +8,7 @@ const Replies = [
 exports.run = async (Bot, message, Arguments) => {
   const ReplyText = Math.floor(Math.random() * Replies.length)
 
-  return message.lineReply(`Wow, my coin flipped ${Replies[ReplyText]}!`)
+  return message.lineReply(`My coin flipped ${Replies[ReplyText]}!`)
 },
   
   exports.config = {
