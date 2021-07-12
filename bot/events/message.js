@@ -35,20 +35,22 @@ exports.run = async (Bot, message) => {
   })
 
   if (UserData) {
-    if (UserData.afk.enabled === true) {
-      try {
-        const newAfk = new userS({
-          id: message.author.id,
-          afk: {
-            enabled: false
-          }
-        })
+    if (UserData.afk) {
+      if (UserData.afk.enabled === true) {
+        try {
+          const newAfk = new userS({
+            id: message.author.id,
+            afk: {
+              enabled: false
+            }
+          })
 
-        newAfk.save()
+          newAfk.save()
 
-        message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
-      } catch (err) {
-        console.error(err)
+          message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
+        } catch (err) {
+          console.error(err)
+        }
       }
     }
   }
@@ -59,8 +61,10 @@ exports.run = async (Bot, message) => {
     })
 
     if (UserMentionedData) {
-      if (UserMentionedData.afk.enabled === true) {
-        message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
+      if (UserMentionedData.afk) {
+        if (UserData.afk.enabled === true) {
+          message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
+        }
       }
     }
   }
