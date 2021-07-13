@@ -14,7 +14,9 @@ exports.run = async (Bot, message) => {
     return
   }
 
+  // Data
   let GuildData = await Bot.database.fetchGuild(message.guild.id)
+  let UserData = await Bot.database.fetchUser(message.author.id)
 
   /*
   if (!message.guild.guildData){
@@ -30,8 +32,6 @@ exports.run = async (Bot, message) => {
   const user = message.guild.members.cache.get(message.author.id)
 
   // AFK //
-  const UserData = await Bot.database.fetchUser(message.author.id)
-
   if (UserData) {
     if (UserData.afk) {
       if (UserData.afk.enabled === true) {
@@ -253,11 +253,6 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   Timestamps.set(message.author.id, Now)
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount)
 
-  let data = {}
-  data.user = UserData
-  data.guild = GuildData
-  data.command = commandfile.config.name
-
   try {
     await commandfile.run(Bot, message, args, command, data).then(async () => {
       const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, `deletecommandusage`)
@@ -285,6 +280,11 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 
     message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`)
   }
+
+  let data = {}
+  data.user = UserData
+  data.guild = GuildData
+  data.command = commandfile.config.name
 
   Bot.database.createLog(message, data)
 }
