@@ -35,7 +35,7 @@ module.exports = async (Bot) => {
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: ${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
           }
         )
