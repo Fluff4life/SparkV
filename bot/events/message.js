@@ -14,10 +14,6 @@ exports.run = async (Bot, message) => {
     return
   }
 
-  // Data
-  let GuildData = await Bot.database.fetchGuild(message.guild.id)
-  let UserData = await Bot.database.fetchUser(message.author.id)
-
   /*
   if (!message.guild.guildData){
     // guildData = await Bot.Database.fetchGuild(message.guild.id)
@@ -30,6 +26,11 @@ exports.run = async (Bot, message) => {
   // User //
   const UserMentioned = message.mentions.members.first()
   const user = message.guild.members.cache.get(message.author.id)
+
+  // Data
+  let GuildData = await Bot.database.fetchGuild(message.guild.id)
+  let UserData = await Bot.database.fetchUser(message.author.id)
+  let MemberData = await Bot.database.fetchMember(message.author.id, message.guild.id)
 
   // AFK //
   if (UserData) {
@@ -282,8 +283,8 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   }
 
   let data = {}
-  data.user = UserData
-  data.guild = GuildData
+  data.user = await Bot.database.fetchUser(message.author.id)
+  data.guild = await Bot.database.fetchGuild(message.guild.id)
   data.command = commandfile.config.name
 
   Bot.database.createLog(message, data)
@@ -294,7 +295,7 @@ async function ActivateChatBot(message, wasMentioned) {
 
   var SlicedMessage
 
-  if (message.content.slice(21) === ""){
+  if (message.content.slice(21) === "") {
     // If case the user replys to Ch1llBlox instead of mentioning him, or for some other silly reason.
 
     SlicedMessage = message.content
