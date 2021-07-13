@@ -16,6 +16,14 @@ const Schema = new mongoose.Schema({
             enabled: false,
             reason: "No reason supplied."
         }
+    },
+    money: {
+        type: Object,
+        default: {
+            balance: 0,
+            bank: 0,
+            bankSpace: 1000
+        }
     }
 })
 

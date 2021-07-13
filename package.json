@@ -17,7 +17,7 @@
   "license": "MIT",
   "engines": {
     "node": "16.x",
-    "npm": "*"
+    "npm": "7.x"
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
