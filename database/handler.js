@@ -14,8 +14,7 @@ async function fetchUser(key){
         return user
     } else {
         user = new UserS({
-            id: key,
-            registrationDate: Date.now()
+            id: key
         })
 
         await user.save().catch((err) => console.log(err))
@@ -33,8 +32,7 @@ async function fetchGuild(key){
         return guild
     } else {
         guild = new GuildS({
-            id: key,
-            registrationDate: Date.now()
+            id: key
         })
 
         await guild.save().catch((err) => console.log(err))
@@ -54,8 +52,7 @@ async function fetchMember(userID, guildID){
     } else {
         member = new MemberS({
             id: userID,
-            guildID: guildID,
-            registrationDate: Date.now()
+            guildID: guildID
         })
 
         await member.save().catch((err) => console.log(err))
@@ -70,14 +67,14 @@ async function createLog(message, command){
         user: {
             username: message.author.username,
             discriminator: message.author.discriminator,
-            id: message.author.id
+            id: message.author.id,
         },
         guild: {
             name: message.guild ? message.guild.name : "dm",
             id: message.guild ? message.guild.id : "dm",
-            channel: message.channel ? message.channel.id : "unknown",
-            date: Date.now()
-        }
+            channel: message.channel ? message.channel.id : "unknown"
+        },
+        date: Date.now()
     })
 
     
