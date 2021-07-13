@@ -131,13 +131,13 @@ module.exports = async (Bot) => {
             .setColor(Bot.Config.Bot.Embed.Color)
             .setURL(Song.url)
             .setImage(Song.thumbnail)
-            .setFooter(`To select this song, send the page number! For example, 1.`)
   
           Pages.push(NewEmbed)
         }
   
         result.map(song => CreatePage(song))
-        EasyPages(message, Pages, ["⬅", "➡"])
+        EasyPages(message, Pages, ["⬅", "➡"], "⚡ - To select this song, send the current page number. To select page 1, send 1.")
+        
       } catch(err) {
         console.error(err)
       }
