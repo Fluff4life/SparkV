@@ -1,7 +1,7 @@
 const chalk = require("chalk")
 const { withScope, captureException, Severity } = require("@sentry/node");
 
-module.exports = (content, type = "log") => {
+module.exports = async (content, type = "log") => {
     if (type === "log") {
         return console.log(`📋 | ${content}`)
     } else if (type === "warn") {
