@@ -67,7 +67,7 @@ async function fetchMember(userID, guildID){
 async function createLog(message, command){
     let newLog = new LogS({
         commandName: command.name,
-        author: {
+        user: {
             username: message.author.username,
             discriminator: message.author.discriminator,
             id: message.author.id

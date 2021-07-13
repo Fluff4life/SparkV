@@ -1,10 +1,8 @@
-const SentryLog = require("../../modules/Log")
+const logger = require("../../modules/logger")
 
 exports.run = async (err, promise) => {
     const ErrorMessage = err.stack.toString().replaceAll(new RegExp(`${__dirname}/`, "g"), "./")
 
-    await SentryLog("Fatal", err)
-    
-    console.log(require("chalk").red(`ERROR => Uncaught Exception error. ${ErrorMessage}.`))
+    await logger(`ERROR => Unhandled exception error. ${ErrorMessage}.`, "error")
     process.exit(1)
 }

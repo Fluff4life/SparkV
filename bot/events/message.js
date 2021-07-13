@@ -14,7 +14,7 @@ exports.run = async (Bot, message) => {
     return
   }
 
-  let guildData
+  let GuildData = await Bot.database.fetchGuild(message.guild.id)
 
   /*
   if (!message.guild.guildData){
@@ -30,9 +30,7 @@ exports.run = async (Bot, message) => {
   const user = message.guild.members.cache.get(message.author.id)
 
   // AFK //
-  const UserData = await userS.find({
-    id: message.author.id
-  })
+  const UserData = await Bot.database.fetchUser(message.author.id)
 
   if (UserData) {
     if (UserData.afk) {
@@ -56,9 +54,7 @@ exports.run = async (Bot, message) => {
   }
 
   if (UserMentioned) {
-    const UserMentionedData = await userS.find({
-      id: UserMentioned.id
-    })
+    const UserMentionedData = await Bot.database.fetchUser(UserMentioned.id)
 
     if (UserMentionedData) {
       if (UserMentionedData.afk) {
@@ -257,18 +253,23 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   Timestamps.set(message.author.id, Now)
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount)
 
-  try {
-    if (Bot.StatClient) {
-      Bot.StatClient.postCommand(commandfile.config.name, message.author.id)
-    }
+  let data = {}
+  data.user = UserData
+  data.guild = GuildData
+  data.command = commandfile.config.name
 
-    await commandfile.run(Bot, message, args, command).then(async () => {
+  try {
+    await commandfile.run(Bot, message, args, command, data).then(async () => {
       const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, `deletecommandusage`)
 
       if (DeleteUsage === `Enabled`) {
         message.delete().catch(() => { })
       }
     })
+
+    if (Bot.StatClient) {
+      Bot.StatClient.postCommand(commandfile.config.name, message.author.id)
+    }
   } catch (err) {
     const AnnonymousUser = `Annonymous`
 
@@ -284,13 +285,25 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 
     message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`)
   }
+
+  Bot.database.createLog(message, data)
 }
 
 async function ActivateChatBot(message, wasMentioned) {
   message.channel.startTyping()
 
+  var SlicedMessage
+
+  if (message.content.slice(21) === ""){
+    // If case the user replys to Ch1llBlox instead of mentioning him, or for some other silly reason.
+
+    SlicedMessage = message.content
+  } else {
+    SlicedMessage = message.content.slice(21)
+  }
+
   try {
-    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(wasMentioned === true ? message.content.slice(21) : message)}`).then((res) => res.json()).then((body) => {
+    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(wasMentioned === true ? SlicedMessage : message)}`).then((res) => res.json()).then((body) => {
       const botmsg = body.cnt
 
       if (botmsg) {

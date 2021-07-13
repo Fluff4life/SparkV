@@ -68,6 +68,9 @@ if (Config.Debug.Enabled === false) {
   Noblox = require("../modules/dependencies/noblox")
 }
 
+// Modules //
+Bot.logger = require("../modules/logger")
+
 // Collections //
 Bot.Rules = new Discord.Collection()
 Bot.categories = new Discord.Collection()
@@ -76,6 +79,15 @@ Bot.aliases = new Discord.Collection()
 Bot.events = new Discord.Collection()
 Bot.cooldowns = new Discord.Collection()
 
+// Database //
+Bot.database = require("../database/handler")
+
+Bot.GuildSchema = require("./schemas/guild")
+Bot.LogSchema = require("./schemas/log")
+Bot.MemberSchema = require("./schemas/member")
+Bot.UserSchema = require("./schemas/user")
+
+// Plugins //
 Bot.AntiSpam = new AntiSpam({
   warnThreshold: 3,
   muteThreshold: 6,
@@ -115,7 +127,7 @@ giveawayshandler(Bot)
 console.log("---------- Loading Events ----------")
 fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
   if (err) {
-    return Bot.Log("ERROR", "EVENT LOADING ERROR", err)
+    return Bot.logger(`EVENT LOADING ERROR - ${err}`, "error")
   }
 
   files.forEach(file => {
@@ -129,7 +141,7 @@ fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
 console.log("---------- Loading Commands ----------")
 fs.readdir(path.join(`${__dirname}/commands`), (err, cats) => {
   if (err) {
-    return Bot.Log("ERROR", "COMMANDS LOADING ERROR", err)
+    return Bot.logger(`Commands failed to load! ${err}`, "error")
   }
 
   cats.forEach(cat => {

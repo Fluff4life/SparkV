@@ -1,19 +1,23 @@
 const { GiveawaysManager } = require("discord-giveaways")
 const QuickMongo = require("quickmongo")
 const Levels = require("discord-xp");
+
+const logger = require("../../modules/logger")
+
 const Database = new QuickMongo.Database(process.env.mongooseURL)
 
 module.exports = async (Bot) => {
     Database.on("ready", async () => {
-        Bot.Log("SUCCESS", "DATABASE SUCCESS", `Successfully connected to database!`)
-
         if ((await Database.get("giveaways")) === null) {
             await Database.set("giveaways", [])
         }
     })
 
     Database.on("error", async (err) => {
-        Bot.Log("ERROR", "DATABASE ERROR", err)
+        exports.run = async (err, promise) => {
+            await logger(`Database error! ${err.stack}`, "error")
+        }
+        
     })
 
     Levels.setURL(process.env.mongooseURL)

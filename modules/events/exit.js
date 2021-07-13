@@ -1,7 +1,5 @@
-const SentryLog = require("../../modules/Log")
+const logger = require("../../modules/logger")
 
 exports.run = async (code) => {
-    await SentryLog("Fatal", code)
-    
-    console.log(require("chalk").red(`EXIT => Process exited with code ${code}.`))
+    await logger(`EXIT => Process exited with code ${code}.`, "error")
 }

@@ -1,7 +1,5 @@
-const SentryLog = require("../../modules/Log")
+const logger = require("../../modules/logger")
 
 exports.run = async (err, promise) => {
-    await SentryLog("Error", err)
-
-    console.log(require("chalk").red(`ERROR => Unhandled rejection error. ${err.stack}.`))
+    await logger(`ERROR => Unhandled rejection error. ${err.stack}.`, "error")
 }

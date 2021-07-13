@@ -79,5 +79,5 @@ exports.run = async (Bot) => {
     Bot.StatClient.autopost()
   }
 
-  Bot.Log("SUCCESS", Bot.user.tag, `Bot is now up and running!\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`)
+  Bot.logger(`Logged into Discord as ${bot.user.tag}(${bot.user.id})!\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`, "bot")
 }

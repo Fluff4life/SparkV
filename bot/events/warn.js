@@ -1,5 +1,7 @@
 const Discord = require("discord.js")
 
+const logger = require("../../modules/logger")
+
 exports.run = async (Bot, event) => {
-  Bot.Log("WARNING", "BOT WARNING", event)
+  await logger(`Bot Warning! - ${event}`, "warning")
 }

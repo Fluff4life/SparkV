@@ -5,17 +5,13 @@ const Schema = new mongoose.Schema({
         type: String,
         default: "unknown"
     },
-    author: {
+    user: {
         type: Object,
         default: {
             username: "unknown",
             discrminator: "#0000",
             id: null
         }
-    },
-    date: {
-        type: Number,
-        default: Date.now()
     },
     guild: {
         type: Object,
@@ -24,6 +20,10 @@ const Schema = new mongoose.Schema({
             channel: null,
             id: null
         }
+    },
+    date: {
+        type: Number,
+        default: Date.now()
     }
 })
 

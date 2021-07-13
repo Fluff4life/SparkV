@@ -92,22 +92,6 @@ module.exports = async (bot) => {
     }
   }
 
-  bot.Log = (Status, Type, Details) => {
-    if (Status === "SUCCESS") {
-      console.log(require("chalk").blue(`${Status} - ${Type} => ${Details}`))
-    } else if (Status === "ERROR") {
-      SentryLog("Fatal", Details)
-
-      console.log(require("chalk").red(`${Status} - ${Type} => ${Details}`))
-    } else if (Status === "WARNING") {
-      SentryLog("Fatal", Details)
-
-      console.log(require("chalk").yellow(`${Status} - ${Type} => ${Details}`))
-    } else if (Status === "DEBUG") {
-      console.log(require("chalk").green(`${Status} - ${Type} => ${Details}`))
-    }
-  }
-
   bot.GetUserFromMention = (mention) => {
     if (!mention) return;
 

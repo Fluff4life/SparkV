@@ -1,7 +1,5 @@
-const SentryLog = require("../../modules/Log")
+const logger = require("../../modules/logger")
 
 exports.run = async (warning) => {
-    await SentryLog("Warning", warning)
-    
-    console.log(require("chalk").yellow(`WARNING => ${warning.name} => ${warning.message}.`))
+    await logger(`${warning.name} - ${warning.message}`, "warning")
 }

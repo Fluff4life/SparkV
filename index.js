@@ -10,7 +10,7 @@ const fs = require("fs")
 // Varibles //
 const PackageInfo = require("./package.json");
 const Config = require("./globalconfig.json")
-const SentryLog = require("./modules/Log");
+const Logger = require("./modules/logger");
 
 // Start Env //--
 DotEnv.config({
@@ -27,12 +27,12 @@ Sentry.init({
 // Functions //
 async function Start() {
     if (Config.Debug.Enabled === true) {
-        console.log(require("chalk").green("MAIN HANDLER - STARTING"))
+        Logger("Systems Starting")
     }
 
     fs.readdir("./modules/events", (err, files) => {
         if (err) {
-            return console.Log("ERROR - EVENT LOADING ERROR! ", err)
+            return Logger(err, "error")
         }
 
         files.forEach(file => {
@@ -44,7 +44,7 @@ async function Start() {
     })
 
     if (Config.Debug.Enabled === true) {
-        console.log(require("chalk").green("ERROR HANDLERS - ONLINE"))
+        Logger("Error Handlers - Online")
     }
 
     await mongoose.connect(process.env.mongooseURL, {
@@ -62,7 +62,7 @@ async function Start() {
     if (Config.Debug.Enabled === true) {
         let Client
 
-        console.log(require("chalk").yellow("WARNING - DEBUG ENABLED! Some features may not work on this mode."))
+        Logger("DEBUG - ENABLED -> Some features may not work on this mode.")
 
         if (Config.Debug.BotEnabled === true) {
             const Bot = require("./bot/bot")
@@ -71,7 +71,7 @@ async function Start() {
         }
 
         if (Config.Debug.WebsiteEnabled === true) {
-            await require("./website/website")
+            require("./website/website")
         }
     } else {
         if (Config.Bot.Sharding.ShardingEnabled === true) {
@@ -94,7 +94,7 @@ async function Start() {
                 })
 
                 Shard.on("disconnect", (event) => {
-                    SentryLog("Fatal", err, {
+                    Logger("Fatal", err, {
                         shard: Shard.id
                     })
 
@@ -106,7 +106,7 @@ async function Start() {
                 })
 
                 Shard.on("death", (event) => {
-                    SentryLog("Fatal", err, {
+                    Logger("Fatal", err, {
                         shard: Shard.id
                     })
 
