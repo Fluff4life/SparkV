@@ -58,7 +58,7 @@ exports.run = async (Bot, message) => {
 
     if (UserMentionedData) {
       if (UserMentionedData.afk) {
-        if (UserData.afk.enabled === true) {
+        if (UserMentionedData.afk.enabled === true) {
           message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
         }
       }

@@ -19,13 +19,7 @@ exports.run = async (Bot) => {
       text: `${Bot.FormatNumber(await Bot.GetUserCount())} users | ^Invite!`,
       type: "WATCHING",
       status: "online"
-    },
-
-    {
-      text: `Ch1ll'n! | ^Invite`,
-      type: "WATCHING",
-      status: "online"
-    },
+    }
   ]
 
   setInterval(async () => {
@@ -79,5 +73,5 @@ exports.run = async (Bot) => {
     Bot.StatClient.autopost()
   }
 
-  Bot.logger(`Logged into Discord as ${Bot.user.tag} (${Bot.user.id})\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}`, "bot")
+  Bot.logger(`Logged into Discord as ${Bot.user.tag} (${Bot.user.id})\n🏢 | Servers: ${Bot.FormatNumber(await Bot.GetServerCount())}\n👥 | Users: ${Bot.FormatNumber(await Bot.GetUserCount())}`, "bot")
 }

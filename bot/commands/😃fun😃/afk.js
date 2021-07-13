@@ -2,18 +2,14 @@ const Discord = require(`discord.js`);
 
 const user = require("../../../database/schemas/user")
 
-exports.run = async (Bot, message, Arguments) => {
-  const data = await user.findOne({
-    id: message.author.id,
-  })
-
+exports.run = async (Bot, message, Arguments, command, data) => {
   if (!data) {
     if (!data.afk) {
       if (!data.afk.enabled) {
         const reason = Arguments.slice(0).join(" ") || "No reason supplied."
 
         try {
-          const newAfk = new afk({
+          const newAfk = new user({
             id: message.author.id,
             afk: {
               enabled: true,
