@@ -254,6 +254,11 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   Timestamps.set(message.author.id, Now)
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount)
 
+  let data = {}
+  data.user = await Bot.database.fetchUser(message.author.id) || null
+  data.guild = await Bot.database.fetchGuild(message.guild.id) || null
+  data.command = commandfile.config.name
+
   try {
     await commandfile.run(Bot, message, args, command, data).then(async () => {
       const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, `deletecommandusage`)
@@ -281,11 +286,6 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 
     message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`)
   }
-
-  let data = {}
-  data.user = await Bot.database.fetchUser(message.author.id)
-  data.guild = await Bot.database.fetchGuild(message.guild.id)
-  data.command = commandfile.config.name
 
   Bot.database.createLog(message, data)
 }
