@@ -136,7 +136,7 @@ module.exports = async (Bot) => {
         }
   
         result.map(song => CreatePage(song))
-        EasyPages(message, Pages, ["⬅", "➡"], "⚡ - To select this song, send the current page number. To select page 1, send 1.")
+        EasyPages(message, Pages, ["⬅", "➡"], "⚡ - To select this song, send the current page number. For example, to select page 1 send 1.")
         
       } catch(err) {
         console.error(err)
