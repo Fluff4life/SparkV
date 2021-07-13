@@ -257,7 +257,7 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
   let data = {}
   data.user = await Bot.database.fetchUser(message.author.id) || null
   data.guild = await Bot.database.fetchGuild(message.guild.id) || null
-  data.command = commandfile.config.name
+  data.commandName = commandfile.config.name
 
   try {
     await commandfile.run(Bot, message, args, command, data).then(async () => {
