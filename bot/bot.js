@@ -82,10 +82,10 @@ Bot.cooldowns = new Discord.Collection()
 // Database //
 Bot.database = require("../database/handler")
 
-Bot.GuildSchema = require("./schemas/guild")
-Bot.LogSchema = require("./schemas/log")
-Bot.MemberSchema = require("./schemas/member")
-Bot.UserSchema = require("./schemas/user")
+Bot.GuildSchema = require("../database/schemas/guild")
+Bot.LogSchema = require("../database/schemas/log")
+Bot.MemberSchema = require("../database/schemas/member")
+Bot.UserSchema = require("../database/schemas/user")
 
 // Plugins //
 Bot.AntiSpam = new AntiSpam({
