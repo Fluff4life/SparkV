@@ -1,22 +1,22 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  if (Bot.Config.Debug.Enabled === true) {
+exports.run = async (bot, message, args, command, data) => {
+  if (bot.config.Debug.Enabled === true) {
     return
   }
 
-  if (!Arguments || !Arguments[0]) {
-    return message.lineReply(`Please provide text.`)
+  if (!args || !args[0]) {
+    return message.reply(`Please provide text.`)
   }
 
   const canvacord = require(`canvacord`);
 
-  Arguments = Arguments.join(` `)
+  args = args.join(` `)
 
-  const Image = await canvacord.Canvas.changemymind(Arguments)
+  const Image = await canvacord.Canvas.changemymind(args)
   const ChangeMyMind = new Discord.MessageAttachment(Image, `changemymind.gif`)
 
-  message.lineReplyNoMention(ChangeMyMind)
+  message.reply(ChangeMyMind)
 },
 
   exports.config = {

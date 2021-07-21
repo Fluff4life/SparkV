@@ -22,14 +22,14 @@ const Replies = [
   `very doubtful`
 ]
 
-exports.run = async (Bot, message, Arguments) => {
-  if (!Arguments || !Arguments[0]){
-    return message.lineReply(`Please provide a question to ask 8ball.`)
+exports.run = async (bot, message, args, command, data) => {
+  if (!args || !args[0]){
+    return message.reply(`Please provide a question to ask 8ball.`)
   }
 
   const ReplyText = Math.floor((Math.random() * Replies.length) + 0)
 
-  return message.lineReply(Replies[ReplyText])
+  return message.reply(Replies[ReplyText])
 },
   
   exports.config = {

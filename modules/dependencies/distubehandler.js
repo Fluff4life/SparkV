@@ -3,11 +3,11 @@ const Buttons = require("discord-buttons")
 // const ButtonPages = require("discord-embeds-pages-buttons")
 const EasyPages = require("discordeasypages")
 
-module.exports = async (Bot) => {
+module.exports = async (bot) => {
   const DisTube = require("distube")
   const Discord = require("discord.js")
 
-  Bot.distube = new DisTube(Bot, {
+  bot.distube = new DisTube(bot, {
     searchSongs: true,
     emitNewSongOnly: true,
     leaveOnFinish: true,
@@ -20,7 +20,7 @@ module.exports = async (Bot) => {
     youtubeCookie: process.env.YouTubeAPIKey
   })
 
-  Bot.distube
+  bot.distube
     .on("playSong", async (message, queue, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
         .setTitle(`🎵 Now Playing a Song 🎵`)
@@ -29,7 +29,7 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
             inline: true
           },
 
@@ -40,11 +40,11 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.lineReplyNoMention(NowPlayingEmbed)
+      message.reply(NowPlayingEmbed)
     })
     .on("playList", async (message, queue, playlist, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
@@ -54,7 +54,7 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
             inline: true
           },
 
@@ -65,11 +65,11 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.lineReplyNoMention(NowPlayingEmbed)
+      message.reply(NowPlayingEmbed)
     })
     .on("addSong", async (message, queue, song) => {
       const SongAddedQueue = new Discord.MessageEmbed()
@@ -79,7 +79,7 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
             inline: true
           },
 
@@ -90,11 +90,11 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 Added by ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(`📼 Added by ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.lineReplyNoMention(SongAddedQueue)
+      message.reply(SongAddedQueue)
     })
     .on("addList", async (message, queue, playlist) => {
       const SongAddedQueue = new Discord.MessageEmbed()
@@ -104,7 +104,7 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
             inline: true
           },
 
@@ -115,11 +115,11 @@ module.exports = async (Bot) => {
           }
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
         .setTimestamp()
 
-      message.lineReplyNoMention(SongAddedQueue)
+      message.reply(SongAddedQueue)
     })
     .on("searchResult", (message, result) => {
       try {
@@ -128,7 +128,7 @@ module.exports = async (Bot) => {
         const CreatePage = (Song) => {
           const NewEmbed = new MessageEmbed()
             .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-            .setColor(Bot.Config.Bot.Embed.Color)
+            .setColor(bot.config.bot.Embed.Color)
             .setURL(Song.url)
             .setImage(Song.thumbnail)
   
@@ -143,20 +143,20 @@ module.exports = async (Bot) => {
       }
     })
     .on("finish", (message) => {
-      message.lineReplyNoMention("No songs left in queue. Add more songs!")
+      message.reply("No songs left in queue. Add more songs!")
     })
     .on("noRelated", (message) => {
-      message.lineReplyNoMention("I cannot find a related video to play. I am stopping the music.")
+      message.reply("I cannot find a related video to play. I am stopping the music.")
     })
     .on("searchCancel", (message) => {
-      message.lineReplyNoMention(`Searching canceled.`)
+      message.reply(`Searching canceled.`)
     })
     .on("empty", (message) => {
-      message.lineReplyNoMention("Voice chat is empty. Leaving the VC.")
+      message.reply("Voice chat is empty. Leaving the VC.")
     })
     .on("error", (message, err) => {
       console.error(err)
 
-      message.lineReplyNoMention(`❎︱Uh oh! An error occured. Please try again later.`)
+      message.reply(`❎︱Uh oh! An error occured. Please try again later.`)
     })
 }

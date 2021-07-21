@@ -1,21 +1,21 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide arguments.`).then(m => m.delete({ timeout: 5000 }))
+exports.run = async (bot, message, args, command, data) => {
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide args.`).then(m => m.delete({ timeout: 5000 }))
   }
 
   try {
-    if (Arguments[0].toLowerCase() === `all`) {
+    if (args[0].toLowerCase() === `all`) {
       const VerificationEmbed = new Discord.MessageEmbed()
         .setTitle(`Confirmation Prompt`)
         .setDescription(`Are you sure you want to do this?\nYou will be deleting ***ALL*** the messages in this channel.`)
-        .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Bot.Embed.Footer}`)
+        .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.bot.Embed.Footer}`)
 
-      const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
-      const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [Bot.Config.Bot.Emojis.success, Bot.Config.Bot.Emojis.error], 60)
+      const VerificationMessage = await message.reply(VerificationEmbed)
+      const Emoji = await bot.PromptMessage(VerificationMessage, message.author, [bot.config.bot.Emojis.success, bot.config.bot.Emojis.error], 60)
 
-      if (Emoji === Bot.Config.Bot.Emojis.success) {
+      if (Emoji === bot.config.bot.Emojis.success) {
         // Yes
         message.delete()
 
@@ -25,36 +25,36 @@ exports.run = async (Bot, message, Arguments) => {
 
         messages = messages.array()
 
-        if (messages.length > Arguments[0]) {
-          messages.length = parseInt(Arguments[0], 10)
+        if (messages.length > args[0]) {
+          messages.length = parseInt(args[0], 10)
         }
 
         messages = messages.filter((msg) => !msg.pinned)
-        ++Arguments[0]
+        ++args[0]
         
         message.delete();
         message.channel.bulkDelete(messages, true)
-        message.lineReplyNoMention(`Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }))
-      } else if (emoji === Bot.Config.Bot.Emojis.error) {
+        message.reply(`Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }))
+      } else if (emoji === bot.config.bot.Emojis.error) {
         message.delete()
 
-        message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Clear canceled.`).then(m => m.delete({ timeout: 10000 }))
+        message.reply(`${bot.config.bot.Emojis.error} | Clear canceled.`).then(m => m.delete({ timeout: 10000 }))
       }
     } else {
-      const User = Bot.GetMember(message, Arguments)
+      const User = bot.GetMember(message, args)
 
       if (User) {
-        if (isNaN(Arguments[1])) {
-          return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That's not a number.`).then(m => m.delete({ timeout: 5000 }))
+        if (isNaN(args[1])) {
+          return message.reply(`${bot.config.bot.Emojis.error} | That's not a number.`).then(m => m.delete({ timeout: 5000 }))
         }
       } else {
-        if (isNaN(Arguments[0])) {
-          return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That's not a number.`).then(m => m.delete({ timeout: 5000 }))
+        if (isNaN(args[0])) {
+          return message.reply(`${bot.config.bot.Emojis.error} | That's not a number.`).then(m => m.delete({ timeout: 5000 }))
         }
       }
 
       var messages = await message.channel.messages.fetch({
-        limit: Arguments[1] || Arguments[0]
+        limit: args[1] || args[0]
       })
 
       messages = messages.array()
@@ -63,19 +63,19 @@ exports.run = async (Bot, message, Arguments) => {
         messages = messages.filter((msg) => msg.author.id === User.id)
       }
 
-      if (messages.length > Arguments[1]) {
-        messages.length = parseInt(Arguments[1], 10)
+      if (messages.length > args[1]) {
+        messages.length = parseInt(args[1], 10)
       }
 
       messages = messages.filter((msg) => !msg.pinned)
-      ++Arguments[1]
+      ++args[1]
       message.delete();
       message.channel.bulkDelete(messages, true)
 
       if (User) {
-        message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Successfully cleared ${messages.length} messages from ${User.tag}!`).then(m => m.delete({ timeout: 5000 }))
+        message.reply(`${bot.config.bot.Emojis.success} | Successfully cleared ${messages.length} messages from ${User.tag}!`).then(m => m.delete({ timeout: 5000 }))
       } else {
-        message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }))
+        message.reply(`${bot.config.bot.Emojis.success} | Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }))
       }
     }
   } catch { } // Once in awhile we'll get a Unknown Message error. We prevent this by not logging that error.

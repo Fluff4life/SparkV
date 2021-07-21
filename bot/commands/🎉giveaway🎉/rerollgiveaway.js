@@ -1,26 +1,26 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  const ID = Arguments[0]
+exports.run = async (bot, message, args, command, data) => {
+  const ID = args[0]
 
   if (!ID || isNaN(ID)){
-    return message.lineReply(`Please provide a valid message ID.`)
+    return message.reply(`Please provide a valid message ID.`)
   }
 
-  const Giveaway = Bot.GiveawayManager.giveaways.find((giveaway) => giveaway.messageID === Arguments[0])
+  const Giveaway = bot.GiveawayManager.giveaways.find((giveaway) => giveaway.messageID === args[0])
 
   if (!Giveaway){
-    return message.lineReply(`I couldn\'t find a giveaway with that message ID.`)
+    return message.reply(`I couldn\'t find a giveaway with that message ID.`)
   }
 
-  Bot.GiveawayManager.reroll(Giveaway.messageID).then(() => {
-    message.lineReplyNoMention("Giveaway successfully rerolled!")
+  bot.GiveawayManager.reroll(Giveaway.messageID).then(() => {
+    message.reply("Giveaway successfully rerolled!")
   }).catch((err) => {
     if (err.startsWith(`Giveaway with ID ${Giveaway.messageID} is not ended`)){
-      message.lineReplyNoMention("This giveaway hasn't ended yet!")
+      message.reply("This giveaway hasn't ended yet!")
     } else {
       console.error(err).then(() => {
-        message.lineReplyNoMention("An error occured with Ch1llBlox! Please try this command again.")
+        message.reply("An error occured with Ch1llBlox! Please try this command again.")
       })
     }
   })

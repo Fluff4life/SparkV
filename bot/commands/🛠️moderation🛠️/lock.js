@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   try {
     message.guild.roles.cache.forEach(role => {
       message.channel.createOverwrite(role, {
@@ -9,7 +9,7 @@ exports.run = async (Bot, message, Arguments) => {
     })
   } catch(err){}
 
-  message.lineReplyNoMention("Channel is now locked.")
+  message.reply("Channel is now locked.")
 },
  
   exports.config = {

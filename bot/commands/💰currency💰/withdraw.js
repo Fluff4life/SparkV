@@ -1,51 +1,47 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
-  var Bank = await Bot.Database.get(`UserData.${message.author.id}.bank`)
+exports.run = async (bot, message, args, command, data) => {
+  var Ch1llBucks = data.user.money.balance
+  var Bank = data.user.money.bank
 
-  if (!Ch1llBucks){
-    Ch1llBucks = 0
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.`)
   }
 
-  if (!Bank) {
-    Bank = 0
-  }
-
-  if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.`)
-  }
-
-  if (Arguments[0].toLowerCase() === `all`) {
+  if (args[0].toLowerCase() === `all`) {
     if (Bank === 0 || Bank === null) {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You have no Ch1llBucks in your bank!`)
+      return message.reply(`${bot.config.bot.Emojis.error} | You have no Ch1llBucks in your bank!`)
     }
 
-    await Bot.Database.subtract(`UserData.${message.author.id}.bank`, Bank)
-    await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Bank)
+    data.user.money.balance = Ch1llBucks + Bank
+    data.user.money.bank = 0
 
-    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | You just withdrawed ❄${await Bot.FormatNumber(Bank)} from your bank!`)
+    await data.user.save()
+
+    message.reply(`${bot.config.bot.Emojis.success} | You just withdrawed ❄${await bot.FormatNumber(Bank)} from your bank!`)
   } else {
-    if (!Arguments[0]) {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | lol you can't withdraw nothing.`)
+    if (!args[0]) {
+      return message.reply(`${bot.config.bot.Emojis.error} | lol you can't withdraw nothing.`)
     }
 
-    if (isNaN(Arguments[0])) {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Bruh please say a number.`)
+    if (isNaN(args[0])) {
+      return message.reply(`${bot.config.bot.Emojis.error} | Bruh please say a number.`)
     }
 
     if (message.content.includes(`-`)) {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You can't withdraw negitive Ch1llBucks lol.`)
+      return message.reply(`${bot.config.bot.Emojis.error} | You can't withdraw negitive Ch1llBucks lol.`)
     }
 
-    if (Bank < Arguments[0]) {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You don't have that much Ch1llBucks in your bank!`)
+    if (Bank < args[0]) {
+      return message.reply(`${bot.config.bot.Emojis.error} | You don't have that much Ch1llBucks in your bank!`)
     }
 
-    await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, parseInt(Arguments[0]))
-    await Bot.Database.subtract(`UserData.${message.author.id}.bank`, parseInt(Arguments[0]))
+    data.user.money.balance = Ch1llBucks + args[0]
+    data.user.money.bank = Bank - args[0]
 
-    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Withdrawed ❄${await Bot.FormatNumber(Arguments[0])} from your bank!`)
+    await data.user.save()
+
+    message.reply(`${bot.config.bot.Emojis.success} | Withdrawed ❄${await bot.FormatNumber(args[0])} from your bank!`)
   }
 },
 

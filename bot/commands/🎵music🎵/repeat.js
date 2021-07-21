@@ -1,22 +1,22 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   if (!message.member.voice.channel){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
-  if (!Bot.distube.isPlaying(message)){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
+  if (!bot.distube.isPlaying(message)){
+    return message.reply(`${bot.config.bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
 
-  const Queue = Bot.distube.getQueue(message)
+  const Queue = bot.distube.getQueue(message)
   var mode
   
-  if (Arguments[0].toLowerCase() === `song`){
+  if (args[0].toLowerCase() === `song`){
     mode = 1
-  } else if (Arguments[0].toLowerCase() === `queue`){
+  } else if (args[0].toLowerCase() === `queue`){
     if (!Queue){
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | There must be more than 2 songs in the queue to use this command!`).then(m => m.delete({ timeout: 5000 }))
+      return message.reply(`${bot.config.bot.Emojis.error} | There must be more than 2 songs in the queue to use this command!`).then(m => m.delete({ timeout: 5000 }))
     }
 
     mode = 2
@@ -24,10 +24,10 @@ exports.run = async (Bot, message, Arguments) => {
     mode = 0
   }
 
-  mode = Bot.distube.setRepeatMode(message, mode)
+  mode = bot.distube.setRepeatMode(message, mode)
   mode = mode ? mode === 2 ? `repeat the Queue` : `repeat the currently playing song` : `turn repeat mode off`
    
-  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.music} | Okay, I'll ${mode}.`)
+  message.reply(`${bot.config.bot.Emojis.music} | Okay, I'll ${mode}.`)
 },
 
 exports.config = {

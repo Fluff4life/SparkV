@@ -105,7 +105,7 @@ module.exports = async (bot) => {
   }
 
   bot.GetServerCount = async () => {
-    if (bot.Config.Bot.Sharding.ShardingEnabled === false) {
+    if (bot.config.bot.Sharding.ShardingEnabled === false) {
       return bot.guilds.cache.size
     }
 
@@ -117,7 +117,7 @@ module.exports = async (bot) => {
   }
 
   bot.GetUserCount = async () => {
-    if (bot.Config.Bot.Sharding.ShardingEnabled === false) {
+    if (bot.config.bot.Sharding.ShardingEnabled === false) {
       var CollectedUsers = 0
 
       bot.guilds.cache
@@ -137,7 +137,7 @@ module.exports = async (bot) => {
     var timeout
 
     return function () {
-      var context = this, args = arguments
+      var context = this, args = args
       var later = function () {
         timeout = null
         if (!immediate) callback.apply(context, args)
@@ -150,7 +150,7 @@ module.exports = async (bot) => {
   }
 
   bot.IsAdmin = (message) => {
-    if (message.author.id == Bot.Config.Owner.ID) {
+    if (message.author.id == bot.config.Owner.ID) {
       return true
     } else {
       if (process.env.Admins.includes(message.author.id)) {

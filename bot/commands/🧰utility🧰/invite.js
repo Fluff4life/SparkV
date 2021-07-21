@@ -1,16 +1,16 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
   const InvitesEmbend = new Discord.MessageEmbed()
     .setTitle("Invites")
     .setDescription(`The following are links for Ch1llBlox!`)
     .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
-    .addField("**Support Server**", `[Click Here](${Bot.Config.Bot.SupportInvite})`, true)
-    .addField("Bot Invite: ", `[Click Here](https://top.gg/bot/763126208149585961/invite)`, true)
-    .setFooter(`Invites for Ch1llBlox • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-    .setColor(Bot.Config.Bot.Embed.Color);
+    .addField("**Support Server**", `[Click Here](${bot.config.bot.support.invite})`, true)
+    .addField("bot Invite: ", `[Click Here](https://top.gg/bot/763126208149585961/invite)`, true)
+    .setFooter(`Invites for Ch1llBlox • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+    .setColor(bot.config.bot.Embed.Color);
     
-  await message.lineReplyNoMention(InvitesEmbend);
+  await message.reply(InvitesEmbend);
 },
 
 exports.config = {

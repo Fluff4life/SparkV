@@ -22,7 +22,7 @@ const Auth = (type, token, tokenSecret, profile, done) => {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bot ${process.env.token}`
+                    "Authorization": `bot ${process.env.token}`
                 },
                 body: JSON.stringify({ access_token: token })
             }).then(res => res.json()).then(json => console.log(json));

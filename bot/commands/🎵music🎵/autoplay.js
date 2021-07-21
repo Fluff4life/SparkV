@@ -1,16 +1,16 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments, Command) => {
+exports.run = async (bot, message, args, command, data) => {
   if (!message.member.voice.channel){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
-  if (!Bot.distube.isPlaying(message)){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
+  if (!bot.distube.isPlaying(message)){
+    return message.reply(`${bot.config.bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
-  let Mode = Bot.distube.toggleAutoplay(message)
-  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.music} | Okay, I just set AutoPlay ` + (Mode ? "On" : "Off") + ".").then(m => m.delete({ timeout: 5000 }))
+  let Mode = bot.distube.toggleAutoplay(message)
+  message.reply(`${bot.config.bot.Emojis.music} | Okay, I just set AutoPlay ` + (Mode ? "On" : "Off") + ".").then(m => m.delete({ timeout: 5000 }))
 },
 
 exports.config = {

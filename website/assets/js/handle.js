@@ -12,7 +12,7 @@ var Popup
 
 const TypedSettings = {
     KingCh1ll: {
-        strings: ["Professional Developer", "Roblox Developer", "Discord Bot Developer", "Website Developer", "Codes in JavaScript", "Codes in HTML", "Codes in CSS", "Codes in Roblox Lua", "Chill Guy!"],
+        strings: ["Professional Developer", "Roblox Developer", "Discord bot Developer", "Website Developer", "Codes in JavaScript", "Codes in HTML", "Codes in CSS", "Codes in Roblox Lua", "Chill Guy!"],
         typeSpeed: 20,
         backSpeed: 20,
         smartBackspace: true,
@@ -21,7 +21,7 @@ const TypedSettings = {
     },
 
     Ch1llBlox: {
-        strings: ["Ch1ll Bot!"],
+        strings: ["Ch1ll bot!"],
         typeSpeed: 20,
         backSpeed: 20,
         smartBackspace: true,

@@ -1,49 +1,49 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments, command) => {
-  if (Bot.Config.Debug.Enabled === true) {
+exports.run = async (bot, message, args, command, data) => {
+  if (bot.config.Debug.Enabled === true) {
     return
   }
 
   const noblox = require("noblox.js");
 
-  Arguments = Arguments.join(" ")
+  args = args.join(" ")
 
-  const RobloxGroupID = await Bot.dashboard.getVal("GroupID")
+  const RobloxGroupID = await bot.dashboard.getVal("GroupID")
 
   if (RobloxGroupID) {
-    noblox.shout((RobloxGroupID), Arguments).then(() => {
-      message.lineReplyNoMention({
+    noblox.shout((RobloxGroupID), args).then(() => {
+      message.reply({
         embed: {
-          title: `${Bot.Config.Bot.Emojis.success} | Successfully Shouted`,
-          description: "Successfully shouted " + Arguments,
+          title: `${bot.config.bot.Emojis.success} | Successfully Shouted`,
+          description: "Successfully shouted " + args,
           color: "#0099ff",
           url: `https://www.roblox.com/groups/${RobloxGroupID}/`,
 
           footer: {
             text: "Shout Command Successful",
-            icon_url: Bot.user.displayAvatarURL()
+            icon_url: bot.user.displayAvatarURL()
           },
         }
       })
 
     }).catch((err) => {
-      message.lineReplyNoMention({
+      message.reply({
         embed: {
           title: "⚠️Failed to Shout⚠️",
-          description: "Failed to shout " + Arguments,
+          description: "Failed to shout " + args,
           color: "#0099ff",
           url: `https://www.roblox.com/groups/${RobloxGroupID}/`,
 
           footer: {
             text: "⚠️Shout Command Failed⚠️",
-            icon_url: Bot.user.displayAvatarURL()
+            icon_url: bot.user.displayAvatarURL()
           },
         }
       })
     })
   } else {
-    return message.lineReply({
+    return message.reply({
       embed: {
         title: "🚫 Roblox Group ID Error 🚫",
         description: "Roblox Group ID has not been set for this server.",
@@ -51,7 +51,7 @@ exports.run = async (Bot, message, Arguments, command) => {
 
         footer: {
           text: "⚠️Shout Command Failed⚠️",
-          icon_url: Bot.user.displayAvatarURL()
+          icon_url: bot.user.displayAvatarURL()
         },
       }
     });

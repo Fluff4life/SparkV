@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
   request("https://randomfox.ca/floof/")
     .then(res => res.json())
     .then(async json => {
-      const MemeMessage = await message.lineReplyNoMention({
+      const MemeMessage = await message.reply({
         embed: {
           title: "What does the fox say!?",
           description: "Awee :D",
@@ -18,7 +18,7 @@ exports.run = async (Bot, message) => {
           
           footer: {
             text: json.message,
-            image: Bot.user.displayAvatarURL()
+            image: bot.user.displayAvatarURL()
           },
         }
       });

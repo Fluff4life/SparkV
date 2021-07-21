@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  const User = Bot.GetMember(message, Arguments) || Bot.users.cache.get(Arguments[0]) || message.author
+exports.run = async (bot, message, args, command, data) => {
+  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author
 
-  if (Bot.Config.Debug.Enabled === true) {
+  if (bot.config.Debug.Enabled === true) {
     return
   }
 
@@ -17,7 +17,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.wasted(Avatar)
   const Wasted = new Discord.MessageAttachment(Image, "wasted.gif")
 
-  message.lineReplyNoMention(Wasted)
+  message.reply(Wasted)
 },
 
   exports.config = {

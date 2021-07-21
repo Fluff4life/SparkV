@@ -1,26 +1,26 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments, Command) => {
+exports.run = async (bot, message, args, command, data) => {
   if (!message.member.voice.channel){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
-  if (!Bot.distube.isPlaying(message)){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
+  if (!bot.distube.isPlaying(message)){
+    return message.reply(`${bot.config.bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
 
-  const Queue = Bot.distube.getQueue(message)
+  const Queue = bot.distube.getQueue(message)
 
-  if (Arguments[0].toLowerCase() === "off" && Queue.filter){
-    Bot.distube.setFilter(message, Queue.filter).then(() => {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Okay, I turned off the filter.`)
+  if (args[0].toLowerCase() === "off" && Queue.filter){
+    bot.distube.setFilter(message, Queue.filter).then(() => {
+      return message.reply(`${bot.config.bot.Emojis.error} | Okay, I turned off the filter.`)
     })
-  } else if (Object.keys(Bot.distube.filters).includes(Arguments[0])){
-    Bot.distube.setFilter(message, Arguments[0]).then(() => {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.music} | Okay, I turned on filter ${Arguments[0]}.`)
+  } else if (Object.keys(bot.distube.filters).includes(args[0])){
+    bot.distube.setFilter(message, args[0]).then(() => {
+      return message.reply(`${bot.config.bot.Emojis.music} | Okay, I turned on filter ${args[0]}.`)
     })
   } else {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That's not a valid filter!`)
+    return message.reply(`${bot.config.bot.Emojis.error} | That's not a valid filter!`)
   }
 },
 

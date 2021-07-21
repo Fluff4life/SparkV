@@ -1,19 +1,19 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  const User = Bot.GetMember(message, Arguments) || Bot.users.cache.get(Arguments[0]) || message.author
+exports.run = async (bot, message, args, command, data) => {
+  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author
 
-  if (Bot.Config.Debug.Enabled === true) {
+  if (bot.config.Debug.Enabled === true) {
     return
   }
 
-  if (!Arguments || !Arguments[0]) {
-    return message.lineReply(`Please provide text.`)
+  if (!args || !args[0]) {
+    return message.reply(`Please provide text.`)
   }
 
   const canvacord = require(`canvacord`);
 
-  Arguments = Arguments
+  args = args
     .join(` `)
     .slice(22)
 
@@ -25,12 +25,12 @@ exports.run = async (Bot, message, Arguments) => {
   const Image = await canvacord.Canvas.youtube({
     username: User.username,
     avatar: Avatar,
-    content: Arguments
+    content: args
   })
 
   const YouTube = new Discord.MessageAttachment(Image, `youtube.gif`)
 
-  message.lineReplyNoMention(YouTube)
+  message.reply(YouTube)
 },
 
   exports.config = {

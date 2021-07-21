@@ -1,23 +1,17 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   const RandomAmmount = Math.floor(Math.random() * 3500) + 1
 
-  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
-  var Multiplier = await Bot.Database.get(`UserData.${message.author.id}.multiplier`)
-
-  if (!Multiplier){
-    Multiplier = 1
-  }
-
-  if (!Ch1llBucks){
-    Ch1llBucks = 0
-  }
+  var Ch1llBucks = data.user.money.balance
+  var Multiplier = data.user.money.multiplier
 
   const Ammount = RandomAmmount * Multiplier
 
-  await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Ammount)
-  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | You've just earned ❄${await Bot.FormatNumber(Ammount)} Ch1llBucks!`)
+  data.user.money.balance = Ch1llBucks + Ammount;
+  await data.user.save()
+
+  message.reply(`${bot.config.bot.Emojis.success} | You've just earned ❄${await bot.FormatNumber(Ammount)} Ch1llBucks!`)
 },
 
   exports.config = {

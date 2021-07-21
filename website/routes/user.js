@@ -77,7 +77,7 @@ Router.get("/:id", async (request, response) => {
 
             // Footer //
             footer: {
-                Description: "Ch1llBlox is a multipurpose free Discord Bot created by KingCh1ll. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
+                Description: "Ch1llBlox is a multipurpose free Discord bot created by KingCh1ll. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
             },
         });
     }

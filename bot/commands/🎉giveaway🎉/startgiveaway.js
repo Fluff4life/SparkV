@@ -1,29 +1,29 @@
 const Discord = require(`discord.js`);
 const ms = require(`ms`)
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   const Channel = message.mentions.channels.first()
-  const Duration = Arguments[1]
-  const Winners = Arguments[2]
-  const Prize = Arguments.slice(3).join(` `)
+  const Duration = args[1]
+  const Winners = args[2]
+  const Prize = args.slice(3).join(` `)
 
   if (!Channel){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid channel.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid channel.`)
   }
 
   if (!Duration || isNaN(ms(Duration))){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid duration.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid duration.`)
   }
 
   if (!Winners || isNaN(Winners) || (parseInt(Winners) <= 0)){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid number of winners!`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid number of winners!`)
   }
 
   if (!Prize){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Why do you want to give away nothing lol.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Why do you want to give away nothing lol.`)
   }
 
-  Bot.GiveawayManager.start(Channel, {
+  bot.GiveawayManager.start(Channel, {
     time: ms(Duration),
     prize: Prize,
     winnerCount: Winners,
@@ -35,7 +35,7 @@ exports.run = async (Bot, message, Arguments) => {
       timeRemaining: `⏳ Time remaining: **{duration}**! ⏳`,
       inviteToParticipate: `🎉 React to enter! 🎉`,
       winMessage: `⚡ Congrats, {winners}! You won just **{prize}**! ⚡`,
-      noWinner: `${Bot.Config.Bot.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
+      noWinner: `${bot.config.bot.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
       hostedBy: `❔ Giveaway hosted by {user}!`,
       embedFooter: `Thanks for using Ch1llBlox!`,
       winners: `winner(s)`,
@@ -50,7 +50,7 @@ exports.run = async (Bot, message, Arguments) => {
     }
   })
 
-  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Giveaway starting in ${Channel}!`)
+  message.reply(`${bot.config.bot.Emojis.success} | Giveaway starting in ${Channel}!`)
 },
 
 exports.config = {

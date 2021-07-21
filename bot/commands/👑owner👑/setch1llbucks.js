@@ -1,26 +1,20 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Access denied.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`)
   }
 
-  const User = Bot.GetMember(message, Arguments)
-  var Ch1llBucks = await Bot.UserShema.find({
-    id: User.id
-  })
+  const User = bot.GetMember(message, args)
 
-  if (!Ch1llBucks){
-    Ch1llBucks = 0
+  if (!User){
+    return message.reply
   }
 
-  var Ch1llBucks = await Bot.UserShema.updateOne({
-    id: User.id
-  })
+  data.user.money.balance = args[1];
+  await data.user.save()
 
-  await Bot.Database.set(`${User.id}.ch1llbucks`, parseInt(Arguments[1]))
-
-  message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.success} | Success!`)
+  message.reply(`${bot.config.bot.Emojis.success} | Success!`)
 },
 
 exports.config = {

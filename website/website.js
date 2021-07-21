@@ -2,11 +2,14 @@
 // Last Edited: 2/18/2021 //
 // website.js //
 
-console.log(require("chalk").green("LOADING STARTED - WEBSITE => Now loading website."));
+console.log(require("chalk").green("WEBSITE => Now loading website."));
 
 // Librarys //
 const express = require("express");
 const session = require("express-session");
+const Discord = require("discord.js");
+const SocketIo = require("socket.io")
+const http = require("http")
 const ejs = require("ejs");
 
 const passport = require("passport");
@@ -17,7 +20,6 @@ const parser = require("body-parser");
 
 const Config = require("../globalconfig.json");
 const Render = require("./utils/Render");
-const Discord = require("discord.js");
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
@@ -25,8 +27,7 @@ const Views = path.resolve(`${MainDir}${path.sep}views`);
 
 // App //
 const app = express();
-const server = app.listen(Config.Debug.Enabled == true ? 3000 : process.env.PORT);
-const io = require("socket.io")(server)
+const server = http.createServer(app)
 
 // Functions //
 async function LoadRoutes(){
@@ -67,7 +68,7 @@ async function LoadRoutes(){
 
 // Code //
 console.log("-------- Loading Website --------");
-async function StartWebsite(Bot){
+async function StartWebsite(){
   if (Config.Debug.Enabled === false) {
     require("newrelic")
   }
@@ -292,12 +293,12 @@ async function StartWebsite(Bot){
       },
     });
   });
-  
-  io.on("PrefixUpdated", async (prefix, id) => {
-    // TODO
-  })
+
+  server.listen(3000, () => {
+    console.log("Server listening to port 3000.");
+  });
   
   console.log(`SUCCESS - WEBSITE => Website successfully deployed!`)
 }
 
-StartWebsite(null)
+StartWebsite()

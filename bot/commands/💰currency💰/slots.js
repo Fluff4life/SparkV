@@ -29,28 +29,28 @@ const SlotItems = [
   `💰`
 ]
 
-exports.run = async (Bot, message, Arguments) => {
-  if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | lol you need to tell me how much to bet.`)
+exports.run = async (bot, message, args, command, data) => {
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | lol you need to tell me how much to bet.`)
   }
 
-  var Ch1llBucks = await Bot.Database.get(`UserData.${message.author.id}.ch1llbucks`)
+  var Ch1llBucks = data.user.money.balance
   var win = false
 
   if (Ch1llBucks === 0 || Ch1llBucks === null) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You have no Ch1llBucks!`)
+    return message.reply(`${bot.config.bot.Emojis.error} | You have no Ch1llBucks!`)
   }
 
-  if (isNaN(Arguments[0])){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That's not a number!`)
+  if (isNaN(args[0])){
+    return message.reply(`${bot.config.bot.Emojis.error} | That's not a number!`)
   }
 
   if (message.content.includes(`-`)){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You cannot bet negitive Ch1llBucks lol.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | You cannot bet negitive Ch1llBucks lol.`)
   }
 
-  if (Arguments[0] > Ch1llBucks){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You don't have that much lol.`)
+  if (args[0] > Ch1llBucks){
+    return message.reply(`${bot.config.bot.Emojis.error} | You don't have that much lol.`)
   }
 
   let number = []
@@ -60,21 +60,24 @@ exports.run = async (Bot, message, Arguments) => {
   }
 
   if (number[0] == number[1] && number[1] == number[2]){
-    Arguments[0] *= 9
+    args[0] *= 9
     win = true
   } else if (number[0] == number[1] || number[0] == number[2] || number[1] == number[2]){
-    Arguments[0] *= 2
+    args[0] *= 2
     win = true
   }
 
   if (win){
-    message.lineReplyNoMention(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${Bot.Config.Bot.Emojis.success} | You won ❄${await Bot.FormatNumber(parseInt(Arguments[0]) * 4)} Ch1llBucks!`)
+    message.reply(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${bot.config.bot.Emojis.success} | You won ❄${await bot.FormatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`)
     
-    await Bot.Database.add(`UserData.${message.author.id}.ch1llbucks`, Arguments[0] * SlotItems.length)
+    data.user.money.balance = Ch1llBucks + (args[0] * SlotItems.length)
+    await data.user.save()
+
   } else {
-    message.lineReplyNoMention(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${Bot.Config.Bot.Emojis.error} | You lost ❄${await Bot.FormatNumber(parseInt(Arguments[0]))} Ch1llBucks.`)
+    message.reply(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${bot.config.bot.Emojis.error} | You lost ❄${await bot.FormatNumber(parseInt(args[0]))} Ch1llBucks.`)
     
-    await Bot.Database.subtract(`UserData.${message.author.id}.ch1llbucks`, Arguments[0])
+    data.user.money.balance = Ch1llBucks - args[0]
+    await data.user.save()
   }
 },
 

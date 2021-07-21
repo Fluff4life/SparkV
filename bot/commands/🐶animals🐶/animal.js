@@ -8,7 +8,7 @@ const SubReddits = [
   "foxes"
 ]
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
   const Subreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)]
 
   request(`https://www.reddit.com/r/${Subreddit}/top/.json`)
@@ -21,19 +21,19 @@ exports.run = async (Bot, message) => {
           .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-          .setColor(Bot.Config.Bot.Embed.Color);
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+          .setColor(bot.config.bot.Embed.Color);
 
-        message.lineReplyNoMention(AnimalEmbed)
+        message.reply(AnimalEmbed)
       } else {
         const AnimalEmbed = new Discord.MessageEmbed()
           .setTitle(post.title)
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-          .setColor(Bot.Config.Bot.Embed.Color);
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} | ⚙r/${Subreddit} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+          .setColor(bot.config.bot.Embed.Color);
 
-        const AnimalMessage = await message.lineReplyNoMention(AnimalEmbed)
+        const AnimalMessage = await message.reply(AnimalEmbed)
         AnimalMessage.react("😍");
       }
     })

@@ -572,8 +572,8 @@
 
             // checks that the requested public method exists
         } else if (typeof options === 'string') {
-            var methodName = arguments[0],
-                args = Array.prototype.slice.call(arguments, 1),
+            var methodName = args[0],
+                args = Array.prototype.slice.call(args, 1),
                 returnVal;
 
             this.each(function () {
@@ -583,7 +583,7 @@
                 // the requested public method exists.
                 if ($.data(this, dataPlugin) && typeof $.data(this, dataPlugin)[methodName] === 'function') {
                     // Call the method of the Plugin instance, and Pass it
-                    // the supplied arguments.
+                    // the supplied args.
                     returnVal = $.data(this, dataPlugin)[methodName].apply(instance, args);
                 } else {
                     console.info('Method ' + options + ' does not exist on jQuery.' + Name);

@@ -1,23 +1,23 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   if (!message.member.voice.channel) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (!Bot.distube.isPlaying(message)) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
+  if (!bot.distube.isPlaying(message)) {
+    return message.reply(`${bot.config.bot.Emojis.error} | A song must be playing to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
 
     
-  let queue = await Bot.distube.getQueue(message)
+  let queue = await bot.distube.getQueue(message)
   
   if (queue){
-    Bot.distube.stop(message)
+    bot.distube.stop(message)
     
-    message.lineReplyNoMention({
+    message.reply({
       embed: {
-        title: `${Bot.Config.Bot.Emojis.error} | Stopped Song`,
+        title: `${bot.config.bot.Emojis.error} | Stopped Song`,
         description: `Stopped currently playing song.`,
         color: `#0099ff`,
 
@@ -27,7 +27,7 @@ exports.run = async (Bot, message, Arguments) => {
         
         footer: {
           text: `Stopped song`,
-          icon_url: Bot.user.displayAvatarURL()
+          icon_url: bot.user.displayAvatarURL()
         }
       }
     })

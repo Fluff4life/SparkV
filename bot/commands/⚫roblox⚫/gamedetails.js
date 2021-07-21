@@ -1,12 +1,12 @@
 const Discord = require(`discord.js`);
 const request = require(`node-fetch`);
 
-exports.run = async (Bot, message, Arguments) => {
-  if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Next time, respond with the ID of the game lmao.`)
+exports.run = async (bot, message, args, command, data) => {
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Next time, respond with the ID of the game lmao.`)
   }
 
-  request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${Arguments}.json`)
+  request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${args}.json`)
     .then(res => res.json())
     .then(async json => {
       const Embed = new Discord.MessageEmbed()
@@ -21,8 +21,8 @@ exports.run = async (Bot, message, Arguments) => {
         .setColor(json.color)
         .setTimestamp()
 
-      message.lineReplyNoMention(Embed)
-    }).catch((err) => message.lineReply(`${Bot.Config.Bot.Emojis.error} | An error occured!`))
+      message.reply(Embed)
+    }).catch((err) => message.reply(`${bot.config.bot.Emojis.error} | An error occured!`))
 },
 
   exports.config = {

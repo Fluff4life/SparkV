@@ -1,19 +1,19 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Access denied.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`)
   }
 
-  if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please input code.`)
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please input code.`)
   }
 
-  const Input = Arguments.join(` `)
+  const Input = args.join(` `)
 
   if (!Input.toLowerCase().includes(`token`)){
     const Embed = new Discord.MessageEmbed()
-      .setTitle(`${Bot.Config.Bot.Emojis.success} | Eval Results`)
+      .setTitle(`${bot.config.bot.Emojis.success} | Eval Results`)
     
     try {
       let Output = eval(Input)

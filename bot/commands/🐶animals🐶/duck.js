@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
   request("https://random-d.uk/api/random?format=json")
     .then(res => res.json())
     .then(async json => {
-      const MemeMessage = await message.lineReplyNoMention({
+      const MemeMessage = await message.reply({
         embed: {
           title: "Quack!",
           description: "Aweeeeee :D",
@@ -18,7 +18,7 @@ exports.run = async (Bot, message) => {
           
           footer: {
             text: json.message,
-            image: Bot.user.displayAvatarURL()
+            image: bot.user.displayAvatarURL()
           },
         }
       });

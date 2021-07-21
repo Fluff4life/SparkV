@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message) => {
-  const User = Bot.GetMember(message, Arguments) || Bot.users.cache.get(Arguments[0]) || message.author
+exports.run = async (bot, message) => {
+  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author
 
-  if (Bot.Config.Debug.Enabled === true) {
+  if (bot.config.Debug.Enabled === true) {
     return
   }
 
@@ -17,7 +17,7 @@ exports.run = async (Bot, message) => {
   const Image = await canvacord.Canvas.opinion(Avatar)
   const Rainbow = new Discord.MessageAttachment(Image, "raindow.gif")
 
-  message.lineReplyNoMention(Rainbow)
+  message.reply(Rainbow)
 },
 
   exports.config = {

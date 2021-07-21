@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 const TicTacToe = require("discord-tictactoe");
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   const Game = new TicTacToe({
     language: "en"
-  }, Bot)
+  }, bot)
 
   Game.handleMessage(message)
 },

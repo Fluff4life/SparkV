@@ -54,34 +54,34 @@ function DisplayBoard(board) {
   return Map
 }
 
-exports.run = async (Bot, message, Arguments) => {
-  const Opponent = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0])
+exports.run = async (bot, message, args, command, data) => {
+  const Opponent = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
   if (!Opponent) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`)
   }
 
   if (Opponent.user.bot) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That user is a bot lol.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | That user is a bot lol.`)
   }
 
   if (Opponent.user.id === message.author.id) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You cannot play against yourself lol.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | You cannot play against yourself lol.`)
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle(`⚔ Connect Four Duel`)
     .setDescription(`${Opponent}, ${message.author} challenged you to a duel! React to this message to accpet or decline.`)
-    .setFooter(`Canceling in 60 seconds. • ${Bot.Config.Bot.Embed.Footer}`)
-    .setColor(Bot.Config.Bot.Embed.Color)
+    .setFooter(`Canceling in 60 seconds. • ${bot.config.bot.Embed.Footer}`)
+    .setColor(bot.config.bot.Embed.Color)
 
-  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
-  const Emoji = await Bot.PromptMessage(VerificationMessage, Opponent.user, [`👍`, `👎`], 250)
+  const VerificationMessage = await message.reply(VerificationEmbed)
+  const Emoji = await bot.PromptMessage(VerificationMessage, Opponent.user, [`👍`, `👎`], 250)
 
   if (Emoji === `👎`) {
     await VerificationMessage.delete()
 
-    return message.lineReply(`${Opponent} doesn't want to play. What a noob!`)
+    return message.reply(`${Opponent} doesn't want to play. What a noob!`)
   } else if (Emoji === `👍`) {
     await VerificationMessage.delete()
 
@@ -101,10 +101,10 @@ exports.run = async (Bot, message, Arguments) => {
     var GameEmbed = new Discord.MessageEmbed()
       .setTitle(`**${message.author} V.S ${Opponent}**`)
       .setDescription(`${DisplayBoard(Board)}`)
-      .setColor(Bot.Config.Bot.Embed.Color)
+      .setColor(bot.config.bot.Embed.Color)
       .setTimestamp()
 
-    const GameMessage = await message.lineReplyNoMention(GameEmbed)
+    const GameMessage = await message.reply(GameEmbed)
 
     while (!Winner && Board.some(row => row.includes(null))) {
       const User = UserTurn ? message.author : Opponent
@@ -115,8 +115,8 @@ exports.run = async (Bot, message, Arguments) => {
       await GameMessage.edit(GameEmbed
         .setTitle(`**${message.author.username} V.S ${Opponent.user.username}**`)
         .setDescription(`${DisplayBoard(Board)}\n${User}, which column do you pick?`)
-        .setFooter(`Type \`end\` to forfeit. • ${Bot.Config.Bot.Embed.Footer}`)
-        .setColor(Bot.Config.Bot.Embed.Color)
+        .setFooter(`Type \`end\` to forfeit. • ${bot.config.bot.Embed.Footer}`)
+        .setColor(bot.config.bot.Embed.Color)
         .setTimestamp()
       )
       const Filter = async (response) => {
@@ -165,7 +165,7 @@ exports.run = async (Bot, message, Arguments) => {
       ColLevels[Spot] -= 1
 
       if (Winner === `time`) {
-        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity. • ${Bot.Config.Bot.Embed.Footer}`))
+        GameMessage.edit(GameEmbed.setTitle(`❔ Game expired`).setDescription(DisplayBoard(Board)).setFooter(`Game expired due to inactivity. • ${bot.config.bot.Embed.Footer}`))
 
         return
       }
@@ -180,7 +180,7 @@ exports.run = async (Bot, message, Arguments) => {
 
       UserTurn = !UserTurn
     }
-    GameMessage.edit(GameEmbed.setTitle(Winner ? `${Winner} won!` : `It's a draw!`).setDescription(DisplayBoard(Board)).setFooter(`${message.author} V.S. ${Opponent} • ${Bot.Config.Bot.Embed.Footer}`))
+    GameMessage.edit(GameEmbed.setTitle(Winner ? `${Winner} won!` : `It's a draw!`).setDescription(DisplayBoard(Board)).setFooter(`${message.author} V.S. ${Opponent} • ${bot.config.bot.Embed.Footer}`))
   }
 },
 

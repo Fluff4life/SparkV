@@ -1,15 +1,15 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   if (!message.member.voice.channel){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   }
   
-  if (!Bot.distube.isPlaying(message)){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | A song must be __**playing**__ to use this command!`)
+  if (!bot.distube.isPlaying(message)){
+    return message.reply(`${bot.config.bot.Emojis.error} | A song must be __**playing**__ to use this command!`)
   }
   
-  Bot.distube.jump(message, parseInt(Arguments[0])).then(() => message.lineReply(`${Bot.Config.Bot.Emojis.music} | Okay, I successfully jumped to song number ${Arguments[0]} in queue!`)).catch(() => message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Invalid song number!`).then(m => m.delete({ timeout: 5000 })))
+  bot.distube.jump(message, parseInt(args[0])).then(() => message.reply(`${bot.config.bot.Emojis.music} | Okay, I successfully jumped to song number ${args[0]} in queue!`)).catch(() => message.reply(`${bot.config.bot.Emojis.error} | Invalid song number!`).then(m => m.delete({ timeout: 5000 })))
 },
 
 exports.config = {

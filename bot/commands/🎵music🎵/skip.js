@@ -1,18 +1,18 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   if (!message.member.voice.channel){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`).then(m => m.delete({ timeout: 5000 }))
   } 
   
-  let queue = await Bot.distube.getQueue(message)
+  let queue = await bot.distube.getQueue(message)
   
   if (queue){
-    Bot.distube.skip(message)
+    bot.distube.skip(message)
     
-    message.lineReplyNoMention({
+    message.reply({
       embed: {
-        title: `${Bot.Config.Bot.Emojis.music} | Skipped Song`,
+        title: `${bot.config.bot.Emojis.music} | Skipped Song`,
         description: `Skipped currently playing song.`,
         color: `#0099ff`,
 
@@ -30,7 +30,7 @@ exports.run = async (Bot, message, Arguments) => {
         
         footer: {
           text: `Skipped song`,
-          icon_url: Bot.user.displayAvatarURL()
+          icon_url: bot.user.displayAvatarURL()
         }
       }
     })

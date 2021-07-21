@@ -1,10 +1,15 @@
 {
-    "Bot": {
+    "ownerID": 571811686617710592,
+    "bot": {
         "ID": 763126208149585961,
         "prefix": "^",
-        "SupportInvite": "https://discord.gg/PPtzT8Mu3h",
+        "support": {
+            "id": 763803059876397056,
+            "invite": "https://discord.gg/PPtzT8Mu3h"
+        },
         "Sharding": {
             "ShardingEnabled": false,
+            "TotalShards": "auto",
             "ShardLifeTime": 518400
         },
         "Embed": {
@@ -26,7 +31,7 @@
             "AFKMessage": "Hey dude, **{userMentioned}** is currently AFK. His reason: {reason}",
             "AFKWelcomeMessage": "Hey bud, welcome back! I removed your AFK status.",
             "InvalidPermisions": {
-                "Bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
+                "bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
                 "User": "Uh oh! You don't have permission to do that. You need **{permission}**.",
                 "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
             }

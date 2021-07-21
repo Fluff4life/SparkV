@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 const os = require("os")
 
-exports.run = async (Bot, message) => {
-  const BotMessage = await message.lineReplyNoMention("Fetching Stats...")
-  let footerMessage = `Ch1llBlox's Stats • ${Bot.Config.Bot.Embed.Footer}`
+exports.run = async (bot, message) => {
+  const BotMessage = await message.reply("Fetching Stats...")
+  let footerMessage = `Ch1llBlox's Stats • ${bot.config.bot.Embed.Footer}`
 
-  if (Bot.MSToTime(Bot.uptime) == "5 Minutes") {
+  if (bot.MSToTime(bot.uptime) == "5 Minutes") {
     footerMessage = "pog you found me lol great job on timing it on exactly 5 minutes"
   }
 
@@ -14,15 +14,15 @@ exports.run = async (Bot, message) => {
   var MemoryPersentage = ((UsedMemory / TotalMemory) * 100).toFixed(2) + "%"
 
   var LocalPing = new Date().getTime() - message.createdTimestamp
-  var APIPing = Bot.ws.ping
+  var APIPing = bot.ws.ping
 
   const StatsEmbed = new Discord.MessageEmbed()
     .setTitle("📊 Stats 📊")
     .addField("**LATENCY**", `\`\`\`Ch1llBlox: ${LocalPing}ms\nAPI: ${APIPing}ms\`\`\``, true)
     .addField("**STORAGE**", `\`\`\`Memory: ${(UsedMemory / Math.pow(1024, 3)).toFixed(2)}/${(TotalMemory / Math.pow(1024, 3)).toFixed(2)} (${MemoryPersentage}) MB\nRAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/${(process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
-    .addField("**DATA**", `\`\`\`Uptime: ${Bot.MSToTime(Bot.uptime)}\nServers: ${Bot.FormatNumber(await Bot.GetServerCount())}\nUsers: ${Bot.FormatNumber(await Bot.GetUserCount())}\`\`\``, true)
+    .addField("**DATA**", `\`\`\`Uptime: ${bot.MSToTime(bot.uptime)}\nServers: ${bot.FormatNumber(await bot.GetServerCount())}\nUsers: ${bot.FormatNumber(await bot.GetUserCount())}\`\`\``, true)
     .setFooter(footerMessage)
-    .setColor(Bot.Config.Bot.Embed.Color)
+    .setColor(bot.config.bot.Embed.Color)
     .setTimestamp()
 
   BotMessage.edit("Loading complete!")

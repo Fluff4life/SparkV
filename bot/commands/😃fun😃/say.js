@@ -1,13 +1,13 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  Arguments = Arguments.join(" ")
+exports.run = async (bot, message, args, command, data) => {
+  args = args.join(" ")
 
   message
     .delete()
     .catch(_ => {});
   
-  message.lineReplyNoMention(Arguments + "\n*-" + message.author.username + "*")
+  message.reply(args + "\n*-" + message.author.username + "*")
 },
   
   exports.config = {

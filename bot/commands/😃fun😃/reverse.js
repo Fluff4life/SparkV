@@ -1,11 +1,11 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  if (!Arguments){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Bruh I cannot reverse no text lol.`)
+exports.run = async (bot, message, args, command, data) => {
+  if (!args){
+    return message.reply(`${bot.config.bot.Emojis.error} | Bruh I cannot reverse no text lol.`)
   }
 
-  message.lineReply(Arguments.join(` `).split(``).reverse().join(``))
+  message.reply(args.join(` `).split(``).reverse().join(``))
 },
   
   exports.config = {

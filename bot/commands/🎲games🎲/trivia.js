@@ -77,7 +77,7 @@ const GenerateClueCard = async (Question) => {
   return canva.toBuffer()
 }
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   const Channel = message.member.voice.channel
   var Connection
 
@@ -92,7 +92,7 @@ exports.run = async (Bot, message, Arguments) => {
   } catch(err){
     console.error(err)
 
-    return message.lineReply(`Uh oh! Something went wrong. Please try again later or leave the VC.`)
+    return message.reply(`Uh oh! Something went wrong. Please try again later or leave the VC.`)
   }
 
   const Question = await GenerateQuestion()
@@ -101,11 +101,11 @@ exports.run = async (Bot, message, Arguments) => {
   const Category = new Discord.MessageEmbed()
     .setTitle(Question.category.title.toUpperCase())
     .setDescription(`The category is ${Question.category.title.toUpperCase()}!`)
-    .setFooter(`You have 120 seconds to anwser. • ${Bot.Config.Bot.Embed.Footer}`)
+    .setFooter(`You have 120 seconds to anwser. • ${bot.config.bot.Embed.Footer}`)
     .setImage(ClueCard)
-    .setColor(Bot.Config.Bot.Embed.Color)
+    .setColor(bot.config.bot.Embed.Color)
 
-  await message.lineReplyNoMention(Category)
+  await message.reply(Category)
 
   const Messages = await message.channel.awaitMessages(response => response.author.id === message.author.id, {
     max: 1,
@@ -120,7 +120,7 @@ exports.run = async (Bot, message, Arguments) => {
   const Answer = Question.answer.toString().replaceAll(/<\/?i>/gi, `*`)
 
   if (!Messages.size){
-    return message.lineReply(`**Times up! the answer was ${Answer}.**`)
+    return message.reply(`**Times up! the answer was ${Answer}.**`)
   }
 
   const Won = Messages
@@ -128,9 +128,9 @@ exports.run = async (Bot, message, Arguments) => {
     .toLowerCase() === Answer.toLocaleLowerCase()
 
   if (Won){
-    return message.lineReply(`🎉 Correct!`)
+    return message.reply(`🎉 Correct!`)
   } else {
-    return message.lineReply(`❌ Wrong! The answer was ${Answer}.`)
+    return message.reply(`❌ Wrong! The answer was ${Answer}.`)
   }
 },
 

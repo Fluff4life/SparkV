@@ -1,18 +1,18 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
   request("https://api.adviceslip.com/advice")
     .then(res => res.json())
     .then(async json => {
       const AdviceEmbed = new Discord.MessageEmbed()
         .setTitle("Here's an advice")
         .setDescription(json.slip.advice)
-        .setFooter(`You got advice #${json.slip.id} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-        .setColor(Bot.Config.Bot.Embed.Color)
+        .setFooter(`You got advice #${json.slip.id} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+        .setColor(bot.config.bot.Embed.Color)
         .setTimestamp();
 
-      const Message = await message.lineReplyNoMention(AdviceEmbed);
+      const Message = await message.reply(AdviceEmbed);
 
       Message.react("👍");
       Message.react("👎");

@@ -28,20 +28,20 @@ const GenerateArray = (level) => {
   return Array
 }
 
-exports.run = async (Bot, message, Arguments) => {
-  if (!Arguments){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Next time, say how many directions you want to challenge yourself with.`)
+exports.run = async (bot, message, args, command, data) => {
+  if (!args){
+    return message.reply(`${bot.config.bot.Emojis.error} | Next time, say how many directions you want to challenge yourself with.`)
   }
 
-  if (Arguments[0] < 1 || Arguments[0] > 20){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You can only select between 1-20.`)
+  if (args[0] < 1 || args[0] > 20){
+    return message.reply(`${bot.config.bot.Emojis.error} | You can only select between 1-20.`)
   }
 
   try {
-    const Memorize = GenerateArray(Arguments[0])
-    const MemorizeMessage = await message.lineReplyNoMention(Memorize.map(emoji => `${emoji}`).join(` `))
+    const Memorize = GenerateArray(args[0])
+    const MemorizeMessage = await message.reply(Memorize.map(emoji => `${emoji}`).join(` `))
 
-    await Bot.wait(25 * 1000)
+    await bot.wait(25 * 1000)
     MemorizeMessage.edit(`⚡ Now, type what you saw.`)
 
     const MemorizeType = Memorize.join(` `)

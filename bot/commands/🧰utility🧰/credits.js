@@ -13,15 +13,15 @@ const Credits = [
   }
 ]
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle("Credits")
       .setDescription(`Here's the list of people who've helped Ch1llBlox on his path to success!`)
-      .setColor(Bot.Config.Bot.Embed.Color)
+      .setColor(bot.config.bot.Embed.Color)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addFields(Credits)
 
-    return message.lineReplyNoMention(NewEmbed)
+    return message.reply(NewEmbed)
 },
 
   exports.config = {

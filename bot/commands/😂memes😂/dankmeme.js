@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
   request("https://www.reddit.com/r/dankmemes/top/.json")
     .then(res => res.json())
     .then(json => {
@@ -12,19 +12,19 @@ exports.run = async (Bot, message) => {
           .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-          .setColor(Bot.Config.Bot.Embed.Color);
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+          .setColor(bot.config.bot.Embed.Color);
 
-        message.lineReplyNoMention(DankMemeEmbed)
+        message.reply(DankMemeEmbed)
       } else {
         const DankMemeEmbed = new Discord.MessageEmbed()
           .setTitle(post.title)
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
-          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-          .setColor(Bot.Config.Bot.Embed.Color);
+          .setFooter(`👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+          .setColor(bot.config.bot.Embed.Color);
 
-        message.lineReplyNoMention(DankMemeEmbed)
+        message.reply(DankMemeEmbed)
       }
     })
 },

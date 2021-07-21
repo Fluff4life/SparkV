@@ -2,13 +2,13 @@ const Discord = require(`discord.js`);
 const Levels = require(`discord-xp`);
 const canvacord = require(`canvacord`);
 
-exports.run = async (Bot, message, Arguments) => {
-  const Target = Bot.GetMember(message, Arguments) || message.author
+exports.run = async (bot, message, args, command, data) => {
+  const Target = bot.GetMember(message, args) || message.author
   const User = await Levels.fetch(Target.id, message.guild.id, true)
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
 
   if (!User) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This user hasn't earned any XP yet!`)
+    return message.reply(`${bot.config.bot.Emojis.error} | This user hasn't earned any XP yet!`)
   }
 
   const Rank = new canvacord.Rank()
@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
   Rank.build().then(data => {
     const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.gif`)
 
-    return message.lineReply(Attachment)
+    return message.reply(Attachment)
   })
 },
 

@@ -9,19 +9,19 @@ function CreateID() {
     return text
 }
 
-exports.run = async (Bot, message, Arguments, command) => {
-    if (Bot.Config.Debug.Enabled === true) {
+exports.run = async (bot, message, args, command, data) => {
+    if (bot.config.Debug.Enabled === true) {
         return
     }
 
     const noblox = require(`noblox.js`);
-    const RocordEnabled = await Bot.dashboard.getVal(message.guild.id, `RocordEnabled`)
+    const RocordEnabled = await bot.dashboard.getVal(message.guild.id, `RocordEnabled`)
 
     if (RocordEnabled === `Enabled`) {
-        const GroupID = await Bot.dashboard.getVal(message.guild.id, `GroupID`)
+        const GroupID = await bot.dashboard.getVal(message.guild.id, `GroupID`)
 
         if (isNaN(GroupID)) {
-            message.lineReplyNoMention(`This server isn't set up right! The GroupID setting is not a number.`)
+            message.reply(`This server isn't set up right! The GroupID setting is not a number.`)
         }
 
         const Filter = (msg) => msg.author.id === message.author.id
@@ -35,19 +35,19 @@ exports.run = async (Bot, message, Arguments, command) => {
             .setTitle(`Verification Prompt`)
             .setDescription(`What's your Roblox username?`)
             .setFooter(`This verification prompt will cancel after 200 seconds.`)
-            .setColor(Bot.Config.Bot.Embed.Color)
+            .setColor(bot.config.bot.Embed.Color)
             .setTimestamp()
 
-        message.lineReplyNoMention(PromptEmbed)
+        message.reply(PromptEmbed)
 
         MessageColector.on(`collect`, async (msg) => {
             if (msg.content.toLowerCase() === `cancel`) {
-                return message.lineReply(`Verification canceled.`)
+                return message.reply(`Verification canceled.`)
             }
 
             noblox.getIdFromUsername(msg.content).then(async (id) => {
                 if (!id){
-                    return message.lineReply(`Verification canceled. User doesn't exist.`)
+                    return message.reply(`Verification canceled. User doesn't exist.`)
                 }
 
                 const VerificationID = CreateID()
@@ -55,11 +55,11 @@ exports.run = async (Bot, message, Arguments, command) => {
                 const UsernameFound = new Discord.MessageEmbed()
                     .setTitle(`Verification Prompt`)
                     .setDescription(`Hi, **${msg.content}**! To verify that you are indeed, ${msg.content}, please put \`${VerificationID}\` anywhere in your about section.\n\nSay **Done** when comeplete.\nSay **Cancel** to cancel.`)
-                    .setFooter(`ID: ${id} • ${Bot.Config.Bot.Embed.Footer}`)
-                    .setColor(Bot.Config.Bot.Embed.Color)
+                    .setFooter(`ID: ${id} • ${bot.config.bot.Embed.Footer}`)
+                    .setColor(bot.config.bot.Embed.Color)
                     .setTimestamp()
 
-                message.lineReplyNoMention(UsernameFound)
+                message.reply(UsernameFound)
 
                 const VerifyMessageColector = message.channel.createMessageCollector(Filter, {
                     max: 1,
@@ -69,7 +69,7 @@ exports.run = async (Bot, message, Arguments, command) => {
 
                 VerifyMessageColector.on(`collect`, async (msg_) => {
                     if (msg_.content.includes(`done`) && msg_.author.id == message.author.id) {
-                        message.lineReplyNoMention(`Fetching about status. Please wait...`)
+                        message.reply(`Fetching about status. Please wait...`)
 
                         setTimeout(async () => {
                             noblox.getStatus(id).then(async (status) => {
@@ -79,25 +79,25 @@ exports.run = async (Bot, message, Arguments, command) => {
                                             .setTitle(`Verification Prompt`)
                                             .setDescription(`You're verified!`)
                                             .setColor(`GREEN`)
-                                            .setFooter(Bot.Config.Bot.Embed.Footer)
+                                            .setFooter(bot.config.bot.Embed.Footer)
 
-                                        message.lineReplyNoMention(Verified)
+                                        message.reply(Verified)
 
-                                        const RocordRoleEnabled = await Bot.dashboard.getVal(message.guild.id, `RocordVerifyRoleEnabled`)
+                                        const RocordRoleEnabled = await bot.dashboard.getVal(message.guild.id, `RocordVerifyRoleEnabled`)
 
                                         if (RocordRoleEnabled === `Enabled`) {
                                             let VerifiedRole = message.guild.roles.cache.find((r) => r.name.toLowerCase() === `verified` || r.name.toLowerCase().startsWith(`verified`) || r.name.toLowerCase().endsWith(`verified`))
 
                                             if (!VerifiedRole) {
-                                                return message.lineReply(`This server isn't set up right! Verified role not found. Make sure you've created a role that contains \`Verified\`.`)
+                                                return message.reply(`This server isn't set up right! Verified role not found. Make sure you've created a role that contains \`Verified\`.`)
                                             }
 
                                             message.member.roles.add(VerifiedRole).catch(() => {
-                                                message.lineReplyNoMention(`I cannot give you this role! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.`)
+                                                message.reply(`I cannot give you this role! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.`)
                                             })
                                         }
 
-                                        const RocordNicknameTemplate = await Bot.dashboard.getVal(message.guild.id, `RocordNicknameTemplate`)
+                                        const RocordNicknameTemplate = await bot.dashboard.getVal(message.guild.id, `RocordNicknameTemplate`)
 
                                         if (RocordNicknameTemplate) {
                                             if (RocordNicknameTemplate.toString().includes(`{discord-name}`)) {
@@ -117,23 +117,23 @@ exports.run = async (Bot, message, Arguments, command) => {
                                             }
 
                                             message.member.setNickname(RocordNicknameTemplate).catch(() => {
-                                                return message.lineReply(`I cannot change your nickname! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.`)
+                                                return message.reply(`I cannot change your nickname! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.`)
                                             })
                                         }
                                     } else {
-                                        message.lineReplyNoMention(`Failed to find Verification ID on your status/about page.`)
+                                        message.reply(`Failed to find Verification ID on your status/about page.`)
                                     }
                                 })
                             })
                         }, 5 * 1000)
                     } else if (msg_.content.includes(`cancel`) && msg_.author.id === message.author.id) {
-                        return message.lineReply(`Cancelled prompt.`)
+                        return message.reply(`Cancelled prompt.`)
                     }
                 })
             })
         })
     } else {
-        return message.lineReply(`Rocord isn't enabled in the dashboard. Please enable it and run this command again!`)
+        return message.reply(`Rocord isn't enabled in the dashboard. Please enable it and run this command again!`)
     }
 },
 

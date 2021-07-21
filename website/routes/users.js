@@ -19,7 +19,7 @@ Router.get("/:userID", async (request, response) => {
 
 Router.get("/:userID/profile", async (request, response) => {
   if (!request.params.userID) {
-    response.redirect("404?reason=invalid_arguments")
+    response.redirect("404?reason=invalid_args")
   }
 
   let User = await global.Database.get(`WebsiteData.Users.${request.params.userID}`)
@@ -99,7 +99,7 @@ Router.get("/:userID/profile", async (request, response) => {
 
       // Footer //
       footer: {
-        Description: "Ch1llBlox is a multipurpose free Discord Bot created by KingCh1ll. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
+        Description: "Ch1llBlox is a multipurpose free Discord bot created by KingCh1ll. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
       },
     });
   } else {

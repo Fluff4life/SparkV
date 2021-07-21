@@ -1,18 +1,18 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  if (!Arguments || !Arguments[0]){
-    return message.lineReply(`Please provide a valid HEX color code. Example: #ff0000.`)
+exports.run = async (bot, message, args, command, data) => {
+  if (!args || !args[0]){
+    return message.reply(`Please provide a valid HEX color code. Example: #ff0000.`)
   }
 
   const canvacord = require(`canvacord`);
 
-  Arguments = Arguments.join(` `)
+  args = args.join(` `)
 
-  const Image = await canvacord.Canvas.color(`#${Arguments}`)
+  const Image = await canvacord.Canvas.color(`#${args}`)
   const Color = new Discord.MessageAttachment(Image, `color.png`)
 
-  message.lineReplyNoMention(Color)
+  message.reply(Color)
 },
 
 exports.config = {

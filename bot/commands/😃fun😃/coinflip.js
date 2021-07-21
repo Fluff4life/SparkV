@@ -5,10 +5,10 @@ const Replies = [
   "Tails"
 ]
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   const ReplyText = Math.floor(Math.random() * Replies.length)
 
-  return message.lineReply(`My coin flipped ${Replies[ReplyText]}!`)
+  return message.reply(`My coin flipped ${Replies[ReplyText]}!`)
 },
   
   exports.config = {

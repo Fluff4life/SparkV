@@ -1,59 +1,59 @@
 const { MessageEmbed } = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  const UserToBan = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(` `) || User.user.username === Arguments[0])
-  const ReasonForBan = Arguments.join(` `).slice(22) || `No reason provided.`
+exports.run = async (bot, message, args, command, data) => {
+  const UserToBan = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === args.slice(0).join(` `) || User.user.username === args[0])
+  const ReasonForBan = args.join(` `).slice(22) || `No reason provided.`
 
-  if (!Arguments[0]) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please mention someone to ban!`).then(m => m.delete({ timeout: 5000 }))
+  if (!args[0]) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please mention someone to ban!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToBan) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (UserToBan.id === message.author.id) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You cannot ban yourself.`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | You cannot ban yourself.`).then(m => m.delete({ timeout: 5000 }))
   }
 
   if (!UserToBan.bannable) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Uh oh... I can\`t ban this user!`).then(m => m.delete({ timeout: 5000 }))
+    return message.reply(`${bot.config.bot.Emojis.error} | Uh oh... I can\`t ban this user!`).then(m => m.delete({ timeout: 5000 }))
   }
 
   const VerificationEmbed = new MessageEmbed()
     .setTitle(`Convermination Prompt`)
     .setDescription(`Are you sure you want to do this?`)
-    .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${Bot.Config.Bot.Embed.Footer}`)
+    .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.bot.Embed.Footer}`)
 
-  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
-  const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [Bot.Config.Bot.Emojis.success, Bot.Config.Bot.Emojis.error], 60)
+  const VerificationMessage = await message.reply(VerificationEmbed)
+  const Emoji = await bot.PromptMessage(VerificationMessage, message.author, [bot.config.bot.Emojis.success, bot.config.bot.Emojis.error], 60)
 
-  if (Emoji === Bot.Config.Bot.Emojis.error) {
+  if (Emoji === bot.config.bot.Emojis.error) {
     // Yes
     message.delete()
-    UserToBan.send(`${Bot.Config.Bot.Emojis.error} | You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`).catch((err) => { })
+    UserToBan.send(`${bot.config.bot.Emojis.error} | You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`).catch((err) => { })
 
     UserToBan.ban({
       reason: ReasonForBan
     }).catch((err) => {
-      message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Failed to ban. Error: ${err}`)
+      message.reply(`${bot.config.bot.Emojis.error} | Failed to ban. Error: ${err}`)
     })
 
     const BanEmbed = new MessageEmbed()
-      .setTitle(`${Bot.Config.Bot.Emojis.success} | Ban Command`)
-      .setDescription(`${Bot.Config.Bot.Emojis.success} | Successfully Banned <@${UserToBan.id}>(${UserToBan.id})!`)
+      .setTitle(`${bot.config.bot.Emojis.success} | Ban Command`)
+      .setDescription(`${bot.config.bot.Emojis.success} | Successfully Banned <@${UserToBan.id}>(${UserToBan.id})!`)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addField(`Moderator/Admin: `, `${message.author.tag}`)
       .addField(`Reason: `, ReasonForBan)
-      .setFooter(`${Bot.Config.Bot.prefix}Kick to kick a user. • ${Bot.Config.Bot.Embed.Footer}`)
-      .setColor(Bot.Config.Bot.Embed.Color)
+      .setFooter(`${bot.config.bot.prefix}Kick to kick a user. • ${bot.config.bot.Embed.Footer}`)
+      .setColor(bot.config.bot.Embed.Color)
       .setTimestamp()
 
-    message.lineReplyNoMention(BanEmbed);
-  } else if (emoji === Bot.Config.Bot.Emojis.error) {
+    message.reply(BanEmbed);
+  } else if (emoji === bot.config.bot.Emojis.error) {
     message.delete()
 
-    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Ban canceled.`).then(m => m.delete({ timeout: 10000 }))
+    message.reply(`${bot.config.bot.Emojis.error} | Ban canceled.`).then(m => m.delete({ timeout: 10000 }))
   } 
 },
 

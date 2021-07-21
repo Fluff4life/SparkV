@@ -1,98 +1,82 @@
-const { MessageEmbed  } = require(`discord.js`);
+const { MessageEmbed } = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  const User = message.mentions.members.first() || message.guild.members.cache.get(Arguments[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === Arguments.slice(0).join(` `) || User.user.username === Arguments[0])
-  const Reason = Arguments.join(` `).slice(22) || `No reason provided.`
+exports.run = async (bot, message, args, command, data) => {
+  const User = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(User => User.user.username.toLowerCase() === args.slice(0).join(` `) || User.user.username === args[0])
+  const Reason = args.join(` `).slice(22) || `No reason provided.`
 
-  if (!Arguments[0]){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please mention someone to warn!`).then(m => m.delete({ timeout: 5000 }))
+  if (!args[0]) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please mention someone to warn!`).then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (!User){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
+  if (!User) {
+    return message.reply(`${bot.config.bot.Emojis.error} | I cannot find that member!`).then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (User.id === message.author.id){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | You cannot warn yourself.`).then(m => m.delete({ timeout: 5000 }))
+  if (User.id === message.author.id) {
+    return message.reply(`${bot.config.bot.Emojis.error} | You cannot warn yourself.`).then(m => m.delete({ timeout: 5000 }))
   }
 
-  if (!User.kickable){
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Uh oh... I can\`t warn this user!`).then(m => m.delete({ timeout: 5000 }))
+  const MemberData = await bot.fetchMember(User.id, guild.id)
+  const MemberPosition = member.roles.highest.position
+  const ModerationPosition = message.member.roles.highest.position
+
+  if (message.member.ownerID !== message.author.id && !ModerationPosition > MemberPosition) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Uh oh... I can\`t warn this user!`).then(m => m.delete({ timeout: 5000 }))
   }
 
-  const VerificationEmbed = new MessageEmbed()
-  .setTitle(`Confirmation Prompt`)
-  .setDescription(`Are you sure you want to do this?`)
-  .setFooter(`Canceling in 60 seconds if no emoji reacted • ${Bot.Config.Bot.Embed.Footer}`)
-  .setColor(Bot.Config.Bot.Embed.Color)
+  const Infractions = MemberData.infractions.filter((infraction) => infraction.type === "warn").length
+  const BanCount = data.guild.settings.warnsInfractions.ban
+  const KickCount = data.guild.settings.warnsInfractions.kick
 
-  const VerificationMessage = await message.lineReplyNoMention(VerificationEmbed)
-    const Emoji = await Bot.PromptMessage(VerificationMessage, message.author, [Bot.Config.Bot.Emojis.success, Bot.Config.Bot.Emojis.error], 60)
+  data.guild.casesCount++
+  data.guild.save()
 
-    if (Emoji === Bot.Config.Bot.Emojis.success){
-      // Yes
-      const warningdata = Bot.Database.get(`ServerData.${message.guild.id}.warnings.${User.id}`)
-      VerificationMessage.delete()
+  const CaseInformation = {
+    channel: message.channel.id,
+    moderator: message.author.id,
+    date: Date.now(),
+    type: "warn",
+    case: data.guild.casesCount,
+    reason: Reason
+  }
 
-      if (!warningdata){
-        Bot.Database.set(`ServerData.${message.guild.id}.${User.id}.warnings.count`, 1)
-        Bot.Database.set(`ServerData.${message.guild.id}.${User.id}.warnings`, {
-          username: User.user.username,
-          modname: message.author.user,
-          reason: Reason,
-          warnings: 1,
-        })
-
-        try {
-          User.send(`You\`ve been warned in **${message.guild.name}** for ${Reason}`)
-        } catch(err) {
-          
-        }
-
-        message.lineReplyNoMention({
-          embed: {
-            title: `${Bot.Config.Bot.Emojis.success} | Successfully warned user.`,
-            description: `Successfully warned ${User} for ${Reason}`,
-            color: `#0099ff`,
-            
-            footer: {
-              text: `Warn command successful.`,
-              icon_url: Bot.user.displayAvatarURL()
-            }
-          }
-        })
-      } else if (warnings){
-        Bot.Database.add(`ServerData.${message.guild.id}.${User.id}.warnings.count`, 1)
-        Bot.Database.add(`ServerData.${message.guild.id}.${User.id}.warnings`, {
-          username: User.user.username,
-          modname: message.author.user,
-          reason: Reason,
-        })
-
-        try {
-          User.send(`${Bot.Config.Bot.Emojis.error} | You\`ve been warned in **${message.guild.name}** for ${Reason}`)
-        } catch(err) {
-          
-        }
-
-        message.lineReplyNoMention({
-          embed: {
-            title: `Successfully warned user.`,
-            description: `Successfully warned ${User} for ${Reason}`,
-            color: `#0099ff`,
-            
-            footer: {
-              text: `Warn command successful.`,
-              icon_url: Bot.user.displayAvatarURL()
-            }
-          }
-        })
-      }
-    } else if (emoji === Bot.Config.Bot.Emojis.error){
-      VerificationMessage.delete()
-
-      message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Warn canceled.`).then(m => m.delete({ timeout: 10000 }))
+  if (BanCount) {
+    if (Infractions >= BanCount) {
+      // Ban the user for going past the Ban Count.
     }
+  }
+
+  if (KickCount) {
+    if (Infractions >= KickCount) {
+      // Kick the user for going past the Kick Count.
+    }
+  }
+
+  const CaseEmbed = new Discord.MessageEmbed()
+    .setTitle(`${Bot.Config.Bot.Emojis.success} | Warn Successful`)
+    .setDiscription(`Successfully warned ${User} for ${Reason}`)
+    .setThumbnail(User.avatar)
+    .addField(`**User**`, `${message.user.tag} (${member.user.toString()})`)
+    .addField(`**Moderator**`, `${message.author.tag} (${message.author.toString()})`)
+    .addField(`**Reason**`, Reason, true)
+    .setFooter(`Case #${data.guild.casesCount} • ${bot.config.bot.Embed.Footer}`)
+    .setColor(bot.config.bot.Embed.Color)
+    .setTimestamp()
+
+  message.reply(CaseEmbed)
+
+  MemberData.infractions.push(CaseInformation)
+  MemberData.save()
+
+  if (data.guild.plugins.modlogs) {
+    const channel = message.guild.channels.cache.get(data.guild.plugins.modlogs)
+
+    if (!channel) {
+      return
+    }
+
+    channel.send(CaseEmbed)
+  }
 },
 
   exports.config = {
