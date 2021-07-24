@@ -1,7 +1,7 @@
 <!-- Project Logo -->
 <p align="center">
  <a href="https://github.com/KingCh1ll/Ch1llBlox">
-   <img src="/assets/images/Ch1llBlox" alt="Logo" width="80" height="80">
+   <img src="/bot/assets/images/Ch1llBlox" alt="Logo" width="80" height="80">
   </a>
    
   <h3 align="center">Ch1llBlox</h3>
