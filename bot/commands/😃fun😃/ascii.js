@@ -25,7 +25,7 @@ exports.run = async (Bot, message, Arguments) => {
       return message.lineReply(`Please provide text shorter than 200 characters.`)
     }
 
-    message.lineReplyNoMention(data)
+    message.lineReplyNoMention(`\`\`\`${data}\`\`\``)
   })
 },
   
