@@ -70,7 +70,7 @@ exports.run = async (bot, message, args, command, data) => {
 };
   exports.config = {
     name: `Nickname`,
-    description: `I'll change a user's nickname to your choice.`,
+    description: `I\'ll change a user\'s nickname to your choice.`,
     aliases: [`setnick`],
     usage: `<user> <reason>`,
     category: `🛠️moderation🛠️`,
