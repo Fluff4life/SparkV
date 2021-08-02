@@ -1,13 +1,14 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
-  if (!args){
-    return message.reply(`${bot.config.bot.Emojis.error} | Bruh I cannot reverse no text lol.`)
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Bruh I cannot reverse no text lol.`);
   }
 
-  message.reply(args.join(` `).split(``).reverse().join(``))
-},
-  
+  message.reply(args.join(` `).split(``).reverse()
+.join(``));
+};
+
   exports.config = {
     name: `Reverse`,
     description: `I will reverse any text you give me lol.`,
@@ -18,4 +19,4 @@ exports.run = async (bot, message, args, command, data) => {
     member_permissions: [],
     enabled: true,
     cooldown: 5
-  }
+};

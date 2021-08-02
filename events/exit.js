@@ -1,5 +1,5 @@
-const logger = require("../../modules/logger")
+const logger = require('../modules/logger');
 
-exports.run = async (code) => {
-    await logger(`EXIT => Process exited with code ${code}.`, "error")
-}
+exports.run = async code => {
+  await logger(`Process exited with code ${code}.`, 'error');
+};

@@ -8,14 +8,14 @@ exports.run = async (bot, message, args, command, data) => {
       .setDescription(`Please provide a word to urban!`)
       .setFooter(`Try ^Urban [Word] • ${bot.config.bot.Embed.Footer}`);
 
-    return await message.reply(ErrorEmbed).then(m => m.delete({ timeout: 5000 }))
+    return await message.reply(ErrorEmbed).then(m => m.delete({ timeout: 5000 }));
   }
 
   let word = args.join(` `);
 
   urban(word).first(async json => {
     if (!json) {
-      return message.reply(`That word doesn't exist!`).then(m => m.delete({ timeout: 5000 }))
+      return message.reply(`That word doesn't exist!`).then(m => m.delete({ timeout: 5000 }));
     }
 
     const UrbanEmbed = new Discord.MessageEmbed()
@@ -24,7 +24,10 @@ exports.run = async (bot, message, args, command, data) => {
       .setThumbnail(`https://i.imgur.com/VFXr0ID.jpg`)
       .addField(`Example`, json.example)
       .setURL(json.permalink)
-      .setFooter(`👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+      .setFooter(
+        `👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${bot.config.bot.Embed.Footer}`,
+        bot.user.displayAvatarURL()
+      )
       .setColor(bot.config.bot.Embed.Color);
 
     return await message.reply(UrbanEmbed);
@@ -41,4 +44,4 @@ exports.run = async (bot, message, args, command, data) => {
     member_permissions: [],
     enabled: true,
     cooldown: 3
-  }
+};

@@ -1,33 +1,32 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 
-const config = require("../../globalconfig.json")
+const config = require('../../globalconfig.json');
 
 const Schema = new mongoose.Schema({
-    // User Information //
-    id: { type: String },
-    guildID: { type: String },
+  // User Information //
+  id: { type: String },
+  guildID: { type: String },
 
-    // Information //
-    bio: { type: String },
-    birthday: { type: Number },
+  // Information //
+  bio: { type: String },
+  birthday: { type: Number },
 
-    // Stats //
-    registrationDate: { type: Number, default: Date.now() },
+  // Stats //
+  registrationDate: { type: Number, default: Date.now() },
 
-    // Data //
-    cooldowns: { type: String, default: null },
-    afk: { type: Object, default: { enabled: false, reason: "No reason supplied." } },
+  // Data //
+  cooldowns: { type: String, default: [] },
+  afk: { type: Object, default: { enabled: false, reason: 'No reason supplied.' } },
 
-    money: { type: Number, default: 0 },
-    bank: { type: Number, default: 0 },
-    bankSpace: { type: Number, default: 1000 },
+  money: { type: Number, default: 0 },
+  bank: { type: Number, default: 0 },
+  bankSpace: { type: Number, default: 1000 },
 
-    xp: { type: Number, default: 0 },
-    level: { type: Number, default: 0 },
+  xp: { type: Number, default: 0 },
+  level: { type: Number, default: 0 },
 
-    cooldowns: { type: Object, default: [] },
-    infractions: { type: Array, default: [] },
-    mute: { type: Object, default: { muted: false, case: null, endDate: null }}
-})
+  infractions: { type: Array, default: [] },
+  mute: { type: Object, default: { muted: false, case: null, endDate: null } },
+});
 
-module.exports = mongoose.model("Member", Schema)
+module.exports = mongoose.model('Member', Schema);

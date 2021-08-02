@@ -1,26 +1,26 @@
 const Discord = require(`discord.js`);
-const ms = require(`ms`)
+const ms = require(`ms`);
 
 exports.run = async (bot, message, args, command, data) => {
-  const Channel = message.mentions.channels.first()
-  const Duration = args[1]
-  const Winners = args[2]
-  const Prize = args.slice(3).join(` `)
+  const Channel = message.mentions.channels.first();
+  const Duration = args[1];
+  const Winners = args[2];
+  const Prize = args.slice(3).join(` `);
 
-  if (!Channel){
-    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid channel.`)
+  if (!Channel) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid channel.`);
   }
 
-  if (!Duration || isNaN(ms(Duration))){
-    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid duration.`)
+  if (!Duration || isNaN(ms(Duration))) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid duration.`);
   }
 
-  if (!Winners || isNaN(Winners) || (parseInt(Winners) <= 0)){
-    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid number of winners!`)
+  if (!Winners || isNaN(Winners) || parseInt(Winners) <= 0) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid number of winners!`);
   }
 
-  if (!Prize){
-    return message.reply(`${bot.config.bot.Emojis.error} | Why do you want to give away nothing lol.`)
+  if (!Prize) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Why do you want to give away nothing lol.`);
   }
 
   bot.GiveawayManager.start(Channel, {
@@ -41,26 +41,26 @@ exports.run = async (bot, message, args, command, data) => {
       winners: `winner(s)`,
       endedAt: `Ends at`,
       units: {
-          seconds: `seconds`,
-          minutes: `minutes`,
-          hours: `hours`,
-          days: `days`,
-          pluralS: false
-      }
+        seconds: `seconds`,
+        minutes: `minutes`,
+        hours: `hours`,
+        days: `days`,
+        pluralS: false,
+      },
     }
-  })
+  });
 
-  message.reply(`${bot.config.bot.Emojis.success} | Giveaway starting in ${Channel}!`)
+  message.reply(`${bot.config.bot.Emojis.success} | Giveaway starting in ${Channel}!`);
 },
 
-exports.config = {
-  name: `StartGiveaway`,
-  description: `Starts a giveaway. Requires the permision MANAGE_MESSAGES.`,
-  aliases: [`startg`],
-  usage: `<channel> <duration> <winners> <prize>`,
-  category: `🎉giveaway🎉`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [`MANAGE_MESSAGES`],
-  enabled: true,
-  cooldown: 10
-}
+  exports.config = {
+    name: `StartGiveaway`,
+    description: `Starts a giveaway. Requires the permision MANAGE_MESSAGES.`,
+    aliases: [`startg`],
+    usage: `<channel> <duration> <winners> <prize>`,
+    category: `🎉giveaway🎉`,
+    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+    member_permissions: [`MANAGE_MESSAGES`],
+    enabled: true,
+    cooldown: 10
+};

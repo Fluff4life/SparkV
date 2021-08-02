@@ -2,33 +2,33 @@ const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
   if (bot.config.Debug.Enabled === true) {
-    return
+    return;
   }
 
-  const figlet = require(`figlet`)
+  const figlet = require(`figlet`);
 
-  if (!args || !args[0]){
-    return message.reply(`Please provide text!`)
+  if (!args || !args[0]) {
+    return message.reply(`Please provide text!`);
   }
 
-  args = args.join(` `)
+  args = args.join(` `);
 
-  figlet.text(args, function(err, data){
-    if (err){
-      message.reply(`Uh oh! Something went wrong.`)
-      console.log(`Failed to figlet text: ` + err)
+  figlet.text(args, (err, data) => {
+    if (err) {
+      message.reply(`Uh oh! Something went wrong.`);
+      console.log(`Failed to figlet text: ${err}`);
 
-      return
+      return;
     }
 
-    if (data.length > 2000){
-      return message.reply(`Please provide text shorter than 200 characters.`)
+    if (data.length > 2000) {
+      return message.reply(`Please provide text shorter than 200 characters.`);
     }
 
-    message.reply(data)
-  })
-},
-  
+    message.reply(data);
+  });
+};
+
   exports.config = {
     name: `Ascii`,
     description: `I will change any text to ascii!`,
@@ -39,4 +39,4 @@ exports.run = async (bot, message, args, command, data) => {
     member_permissions: [],
     enabled: true,
     cooldown: 5
-  }
+};

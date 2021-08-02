@@ -1,7 +1,9 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message) => {
-  message.reply(`${bot.config.bot.Emojis.success} | Click the following link to view my dashboard! Link: https://ch1llblox.botdash.pro/`)
+  message.reply(
+    `${bot.config.bot.Emojis.success} | Click the following link to view my dashboard! Link: https://ch1llblox.botdash.pro/`,
+  );
 },
 
   exports.config = {
@@ -14,4 +16,4 @@ exports.run = async (bot, message) => {
     member_permissions: [],
     enabled: true,
     cooldown: 1.5
-  }
+};

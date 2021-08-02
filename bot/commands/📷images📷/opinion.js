@@ -1,31 +1,30 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
-  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author
+  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author;
 
   if (bot.config.Debug.Enabled === true) {
-    return
+    return;
   }
 
   if (!args || !args[0]) {
-    return message.reply(`Please provide text.`)
+    return message.reply(`Please provide text.`);
   }
 
   const canvacord = require(`canvacord`);
 
-  args = args.join(` `)
+  args = args.join(` `);
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
     format: `png`
-  })
+});
 
-  const Image = await canvacord.Canvas.opinion(Avatar, args)
-  const Opinion = new Discord.MessageAttachment(Image, `opinion.png`)
+  const Image = await canvacord.Canvas.opinion(Avatar, args);
+  const Opinion = new Discord.MessageAttachment(Image, `opinion.png`);
 
-  message.reply(Opinion)
-},
-
+  message.reply(Opinion);
+};
   exports.config = {
     name: `Opinion`,
     description: `lol`,
@@ -36,4 +35,4 @@ exports.run = async (bot, message, args, command, data) => {
     member_permissions: [],
     enabled: true,
     cooldown: 2
-  }
+};

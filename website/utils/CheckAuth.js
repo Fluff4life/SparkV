@@ -4,7 +4,7 @@ const CheckAuth = (request, response, next) => {
   }
 
   request.session.backURL = request.url;
-  response.redirect("/api/login");
+  response.redirect('/api/login');
 };
 
 module.exports = CheckAuth;

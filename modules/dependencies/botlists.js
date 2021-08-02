@@ -1,10 +1,10 @@
-const Topgg = require("@top-gg/sdk")
-const { AutoPoster } = require("topgg-autoposter")
+const Topgg = require('@top-gg/sdk');
+const { AutoPoster } = require('topgg-autoposter');
 
-module.exports = async (bot) => {
-    /*
-    const api = new Topgg.Api(process.env.dblkey)
-   
+module.exports = async bot => {
+  /*
+    Const api = new Topgg.Api(process.env.dblkey)
+
     setInterval(async () => {
         const ServerCount = await bot.GetServerCount()
 
@@ -18,9 +18,9 @@ module.exports = async (bot) => {
     }, 1800 * 1000)
     */
 
-    const poster = AutoPoster(process.env.dblkey, bot)
+  const poster = AutoPoster(process.env.dblkey, bot);
 
-    poster.on("error", (err) => {
-        console.log(`TOP.GG POSTING ERROR! => ${err}`)
-    })
-}
+  poster.on('error', err => {
+    console.log(`TOP.GG POSTING ERROR! => ${err}`);
+  });
+};
