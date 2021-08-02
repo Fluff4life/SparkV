@@ -25,10 +25,10 @@ exports.run = async (bot, message, args, command, data) => {
       return message.reply(`Please provide text shorter than 200 characters.`);
     }
 
-    message.lineReplyNoMention(`\`\`\`${data}\`\`\``)'
+    message.lineReplyNoMention(`\`\`\`${data}\`\`\``);
   });
 };
- 
+
   exports.config = {
     name: `Ascii`,
     description: `I will change any text to ascii!`,
