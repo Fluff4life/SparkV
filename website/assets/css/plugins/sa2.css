@@ -432,7 +432,7 @@
     border-width: 0.25em;
     border-style: solid;
     border-radius: 100%;
-    border-color: #7289da transparent #7289da transparent;
+    border-color: #7289da transparent;
   }
   
   .swal2-styled {
