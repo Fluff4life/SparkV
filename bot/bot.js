@@ -19,6 +19,8 @@ console.log(require("chalk").blue("  ____|_| |_|_|_|_|____/|_|___/_/_ "));
 const Client = require("./structures/client");
 const Ch1llBlox = new Client({
   bot: {
+    /*
+    Discord.js v13
     intents: [
       Intents.FLAGS.GUILD_WEBHOOKS,
       Intents.FLAGS.GUILD_VOICE_STATES,
@@ -36,6 +38,7 @@ const Ch1llBlox = new Client({
       Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
       Intents.FLAGS.DIRECT_MESSAGES,
     ],
+    */
     partials: ["REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER"],
     allowedMentions: {
       parse: ["users", "roles", "everyone"],
