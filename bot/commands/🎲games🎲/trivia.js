@@ -15,13 +15,13 @@ const WrapText = async (ctx, text, maxWidth) =>
       return resolve([text]);
     }
 
-    if (ctx.measureText('W').width > maxWidth) {
+    if (ctx.measureText("W").width > maxWidth) {
       return resolve(null);
     }
 
-    const words = text.split(' ');
+    const words = text.split(" ");
     const lines = [];
-    let line = '';
+    let line = "";
     while (words.length > 0) {
       let split = false;
       while (ctx.measureText(words[0]).width >= maxWidth) {
@@ -39,7 +39,7 @@ const WrapText = async (ctx, text, maxWidth) =>
         line += `${words.shift()} `;
       } else {
         lines.push(line.trim());
-        line = '';
+        line = "";
       }
       if (words.length === 0) lines.push(line.trim());
     }

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
   try {
@@ -13,13 +13,13 @@ exports.run = async (bot, message, args, command, data) => {
 };
 
   exports.config = {
-    name: 'Unlock',
+    name: "Unlock",
     description: "I'll unlock the current channel.",
     aliases: [],
-    usage: '',
-    category: '🛠️moderation🛠️',
-    bot_permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL', 'MANAGE_CHANNELS'],
-    member_permissions: ['MANAGE_CHANNELS'],
+    usage: "",
+    category: "🛠️moderation🛠️",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_CHANNELS"],
+    member_permissions: ["MANAGE_CHANNELS"],
     enabled: true,
     cooldown: 5
 };

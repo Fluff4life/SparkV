@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const request = require('node-fetch');
+const Discord = require("discord.js");
+const request = require("node-fetch");
 
-const SubReddits = ['cats', 'dogs', 'ducc', 'foxes'];
+const SubReddits = ["cats", "dogs", "ducc", "foxes"];
 
 exports.run = async (bot, message) => {
   const Subreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)];
@@ -13,7 +13,7 @@ exports.run = async (bot, message) => {
 
       if (post.title.length > 256) {
         const AnimalEmbed = new Discord.MessageEmbed()
-          .setTitle('Title too long')
+          .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(
@@ -35,18 +35,18 @@ exports.run = async (bot, message) => {
           .setColor(bot.config.bot.Embed.Color);
 
         const AnimalMessage = await message.reply(AnimalEmbed);
-        AnimalMessage.react('😍');
+        AnimalMessage.react("😍");
       }
     });
 },
 
   exports.config = {
-    name: 'Animal',
-    description: 'I will send a animal pic from multible subreddits.',
-    aliases: ['cuteanimal'],
-    usage: '',
-    category: '🐶animals🐶',
-    bot_permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL'],
+    name: "Animal",
+    description: "I will send a animal pic from multible subreddits.",
+    aliases: ["cuteanimal"],
+    usage: "",
+    category: "🐶animals🐶",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
     cooldown: 3

@@ -1,17 +1,17 @@
-const { GiveawaysManager } = require('discord-giveaways');
-const Levels = require('discord-xp');
+const { GiveawaysManager } = require("discord-giveaways");
+const Levels = require("discord-xp");
 
-const GiveawaysSchema = require('../../database/schemas/giveaways');
-const logger = require('../../modules/logger');
+const GiveawaysSchema = require("../../database/schemas/giveaways");
+const logger = require("../../modules/logger");
 
 module.exports = async bot => {
   var giveaways = await GiveawaysSchema.findOne({
-    ID: 'giveaways',
+    ID: "giveaways",
   });
 
   if (!giveaways) {
     giveaways = new GiveawaysSchema({
-      ID: 'giveaways',
+      ID: "giveaways",
       data: [],
     });
   }
@@ -20,7 +20,7 @@ module.exports = async bot => {
   class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
     async getAllGiveaways() {
       giveaways = await GiveawaysSchema.findOne({
-        ID: 'giveaways',
+        ID: "giveaways",
       });
 
       return Allgiveaways || [];
@@ -28,7 +28,7 @@ module.exports = async bot => {
 
     async saveGiveaway(MessageID, GiveawayData) {
       giveaways = await GiveawaysSchema.findOne({
-        ID: 'giveaways',
+        ID: "giveaways",
       });
 
       giveaways.data.push(GiveawayData);
@@ -42,7 +42,7 @@ module.exports = async bot => {
 
     async editGiveaway(MessageID, NewGiveawayData) {
       giveaways = await GiveawaysSchema.findOne({
-        ID: 'giveaways',
+        ID: "giveaways",
       });
 
       const NewGiveawaysArray = giveaways.data.filter(giveaway => giveaway.messageID !== MessageID);
@@ -59,7 +59,7 @@ module.exports = async bot => {
 
     async deleteGiveaway(MessageID) {
       giveaways = await GiveawaysSchema.findOne({
-        ID: 'giveaways',
+        ID: "giveaways",
       });
 
       const NewGiveawaysArray = giveaways.data.filter(giveaway => giveaway.messageID !== MessageID);
@@ -79,8 +79,8 @@ module.exports = async bot => {
       botsCanWin: false,
       exemptPermissions: [],
       embedColor: bot.config.bot.Embed.Color,
-      embedColorEnd: '#FF0000',
-      reaction: '🎉',
+      embedColorEnd: "#FF0000",
+      reaction: "🎉",
     },
   });
 

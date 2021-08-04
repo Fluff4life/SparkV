@@ -1,9 +1,9 @@
 const Discord = require(`discord.js`);
 
-const user = require('../../../database/schemas/user');
+const user = require("../../../database/schemas/user");
 
 exports.run = async (bot, message, args, command, data) => {
-  const reason = args.slice(0).join(' ') || 'No reason supplied.';
+  const reason = args.slice(0).join(" ") || "No reason supplied.";
 
   if (data.user.afk) {
     data.user.afk = null;

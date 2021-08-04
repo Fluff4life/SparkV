@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
-const showerthoughts = ['showerthoughts'];
+const showerthoughts = ["showerthoughts"];
 
 exports.run = async (bot, message) => {
   const random_showerthought = showerthoughts[Math.floor(Math.random() * showerthoughts.length)];
@@ -19,12 +19,12 @@ exports.run = async (bot, message) => {
 };
 
 exports.config = {
-    name: 'ShowerThought',
-    description: 'I will say whatever you want me to say.',
-    aliases: ['thought'],
-    usage: '',
-    category: '😃fun😃',
-    bot_permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL', 'MANAGE_MESSAGES'],
+    name: "ShowerThought",
+    description: "I will say whatever you want me to say.",
+    aliases: ["thought"],
+    usage: "",
+    category: "😃fun😃",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
     member_permissions: [],
     enabled: true,
     cooldown: 5

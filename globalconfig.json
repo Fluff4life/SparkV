@@ -39,7 +39,7 @@
     },
     "Website": {},
     "Debug": {
-        "Enabled": true,
+        "Enabled": false,
         "BotEnabled": true,
         "WebsiteEnabled": true
     }

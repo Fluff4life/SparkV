@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 exports.run = async (bot, guild) => {
   console.log(`Ch1llBlox has been removed from ${guild.name} (Id: ${guild.id}).`);
@@ -7,9 +7,9 @@ exports.run = async (bot, guild) => {
 
   if (Logger) {
     const ServerAddedEmbed = Discord.MessageEmbed()
-      .setTitle('🔼︱Guild Removed')
+      .setTitle("🔼︱Guild Removed")
       .setDescription(`Ch1llBlox left ${guild.name} (${guild.id}).`)
-      .setColor('RED');
+      .setColor("RED");
 
     Logger.send(ServerAddedEmbed);
   }

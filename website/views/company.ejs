@@ -2,250 +2,11 @@
 <html lang="en">
 
 <head>
-  <!-- Header -->
-  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
-  <meta charset="utf-8" />
-
-  <title>Ch1ll Studios</title>
-  <meta name="description" content="Cut your dollars! Our products are totally premium and free!" />
-  <meta name="og:title" content="Ch1ll Studios" />
-  <meta name="og:description" content="Cut your dollars! Our products are totally premium and free!" />
-  <meta name="og:image" content="/assets/images/site/favicon.ico" />
-  <meta name="og:type" content="website" />
-  <meta name="og:site_name" content="Ch1ll Studios" />
-
-  <!-- Meta Settings -->
-  <meta name="theme-color" content="#3bd8ff" />
-
-  <!-- Google -->
-  <meta name="google-site-verification" content="E1T5R9cCGlUEwKnKS7vq4EzC2Q5Qw_V9eM06gPhlxL4" />
-  <script async src="//www.googletagmanager.com/gtag/js?id=US-181021133-2"></script>
-
-  <!-- Twitter Data -->
-  <meta name="twitter:title" content="Ch1ll Studios" />
-  <meta name="twitter:description" content="Cut your dollars! Our products are totally premium and free!" />
-  <meta name="twitter:creator" content="KingCh1ll" />
-  <meta name="twitter:image" content="/assets/images/site/favicon.ico" />
-
-  <!-- Tags -->
-  <meta name="keywords"
-    content="KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox" />
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/site/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/site/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="194x194" href="/assets/images/site/favicon-194x194.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/site/android-chrome-192x192.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/site/favicon-16x16.png" />
-  <link rel="manifest" href="/assets/images/site/site.webmanifest" />
-  <link rel="mask-icon" href="/assets/images/site/safari-pinned-tab.svg" color="#5bbad5" />
-  <meta name="msapplication-TileColor" content="#ffffff" />
-  <meta name="msapplication-TileImage" content="/assets/images/site/mstile-144x144.png" />
-
-  <!-- Plugins -->
-  <link href="//cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="//cdn.jsdelivr.net/npm/pace-js/pace-theme-default.min.css" rel="stylesheet" />
-  <link href="//unpkg.com/aos/dist/aos.css" rel="stylesheet" />
-  <link href="//cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
-
-  <!-- Stylesheets -->
-  <link href="/assets/css/theme.css" rel="stylesheet" crossorigin="anonymous" type="text/css" />
-  <link href="//use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet" crossorigin="anonymous"
-    type="text/css" />
-
-  <!-- Loading Stylesheet -->
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #loading {
-      margin: 0;
-      padding: 0;
-      background-color: #2f3136;
-      height: 100%;
-      width: 100%;
-      position: fixed;
-      z-index: 9998;
-      margin-top: 0;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-
-    #loading-center {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    #loading-center-absolute {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      height: 200px;
-      width: 200px;
-      margin-top: -100px;
-      margin-left: -100px;
-    }
-
-    .loading {
-      position: fixed;
-      text-align: center;
-      padding: 10px;
-      background-color: #2f3136;
-    }
-
-    #text1 {
-      color: #fff;
-      font-family: Roboto, sans-serif;
-      font-size: 25px;
-      z-index: 100;
-      top: 50%;
-      width: 100%;
-    }
-
-    .pace.pace-inactive {
-      display: none;
-    }
-
-    .pace {
-      -webkit-pointer-events: none;
-      pointer-events: none;
-
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-
-      z-index: 9999;
-      position: fixed;
-      height: 60px;
-      width: 100px;
-      margin: auto;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-
-    .pace .pace-activity {
-      font-size: 15px;
-      line-height: 1;
-      z-index: 2000;
-      position: absolute;
-      height: 60px;
-      width: 100px;
-
-      display: block;
-      -webkit-animation: pace-theme-center-atom-spin 2s linear infinite;
-      -moz-animation: pace-theme-center-atom-spin 2s linear infinite;
-      -o-animation: pace-theme-center-atom-spin 2s linear infinite;
-      animation: pace-theme-center-atom-spin 2s linear infinite;
-    }
-
-    .pace .pace-activity {
-      border-radius: 50%;
-      border: 5px solid #29d;
-      content: ' ';
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 60px;
-      width: 100px;
-    }
-
-    .pace .pace-activity:after {
-      border-radius: 50%;
-      border: 5px solid #29d;
-      content: ' ';
-      display: block;
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      height: 60px;
-      width: 100px;
-
-      -webkit-transform: rotate(60deg);
-      -moz-transform: rotate(60deg);
-      -o-transform: rotate(60deg);
-      transform: rotate(60deg);
-    }
-
-    .pace .pace-activity:before {
-      border-radius: 50%;
-      border: 5px solid #29d;
-      content: ' ';
-      display: block;
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      height: 60px;
-      width: 100px;
-
-      -webkit-transform: rotate(120deg);
-      -moz-transform: rotate(120deg);
-      -o-transform: rotate(120deg);
-      transform: rotate(120deg);
-    }
-
-    @-webkit-keyframes pace-theme-center-atom-spin {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-
-      100% {
-        -webkit-transform: rotate(359deg);
-      }
-    }
-
-    @-moz-keyframes pace-theme-center-atom-spin {
-      0% {
-        -moz-transform: rotate(0deg);
-      }
-
-      100% {
-        -moz-transform: rotate(359deg);
-      }
-    }
-
-    @-o-keyframes pace-theme-center-atom-spin {
-      0% {
-        -o-transform: rotate(0deg);
-      }
-
-      100% {
-        -o-transform: rotate(359deg);
-      }
-    }
-
-    @keyframes pace-theme-center-atom-spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(359deg);
-      }
-    }
-  </style>
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-T23QSW6');
-  </script>
+  <%- include("components/head", {
+    SiteTitle: "Ch1ll Studios",
+    SiteDescription: "Uh oh! Looks like the page you where looking for wasn't found. Dang man. KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
+    SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
+  }) %>
 </head>
 
 <body id="page-top" style="background-color: var(--main-color)" data-aos-easing="ease">
@@ -455,18 +216,17 @@
   <main>
     <!-- Hero (Top) -->
     <section class="hero">
+      <!-- Alert
+        <div class="alert alert-primary" role="alert"></div>
+      -->
       <!--
       <div class="background" style="background: url(backgroundURL)"></div>
-
-      <div class="alert alert-danger" role="alert">
-        DANGER: TEST ALERT. PLEASE STAND BY!
-      </div>
       -->
-
-      <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/assets/images/TransparentCh1llStudios.png" alt="Logo" width="150"
+<header>
+      <div class="px-4 py-5 my-5 text-center container">
+          <img class="d-block mx-auto mb-4" src="/assets/images/TransparentCh1llStudios.png" alt="Logo" width="150"
           height="150" style="margin-top: 30px;">
-        <h1 class="display-5 fw-bold" style="color: var(--text-color)">Ch1ll Studios</h1>
+        <h1 class="display-5 fw-bold" style="color: var(--text-color)">Ch1ll Studio</h1>
         <div class="col-lg-6 mx-auto">
           <!--
           <h2 class="display" style="color: var(--text-color)">
@@ -479,13 +239,15 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="50px"
-      viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="M0,0 C16.6666667,66 33.3333333,99 50,99 C66.6666667,99 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z"
-        style="stroke: none; fill: var(--secondary-color);"></path>
-    </svg>
+      <div class="svg-border-rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="50px" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,0 C16.6666667,66 33.3333333,99 50,99 C66.6666667,99 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z" style="stroke: none; fill: var(--secondary-color);"></path>
+        </svg>
+      </div>
+    </header>
+
+    </section>
 
     <!-- Services -->
     <section class="page-section text-white" id="services" style="background-color: var(--secondary-color);">
@@ -532,8 +294,6 @@
       <br>
       <br>
     </section>
-
-
 
     <!-- Products -->
     <section class="page-section bg-light" id="portfolio">
@@ -679,9 +439,12 @@
       </div>
     </section>
 
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor">
-      <path _ngcontent-pej-c41="" d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path>
-    </svg>
+    <div class="svg-border-rounded">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor">
+        <path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path>
+      </svg>  
+    </div>
+
     <footer class="footer pt-10 pb-5 mt-auto bg-dark footer-dark">
       <div class="container px-5">
         <div class="row gx-5 white-text">

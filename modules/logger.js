@@ -1,10 +1,10 @@
-const { withScope, captureException, Severity } = require('@sentry/node');
-const chalk = require('chalk');
+const { withScope, captureException, Severity } = require("@sentry/node");
+const chalk = require("chalk");
 
-module.exports = async (content, type = 'log') => {
-  if (type === 'log') {
+module.exports = async (content, type = "log") => {
+  if (type === "log") {
     return console.log(`📋 | ${content}`);
-  } else if (type === 'warn') {
+  } else if (type === "warn") {
     await withScope(scope => {
       scope.setLevel(Severity.Warning);
     });
@@ -16,7 +16,7 @@ module.exports = async (content, type = 'log') => {
     }
 
     return console.log(`⚠ | ${chalk.yellow(content)}`);
-  } else if (type === 'error') {
+  } else if (type === "error") {
     await withScope(scope => {
       scope.setLevel(Severity.Error);
     });
@@ -28,9 +28,9 @@ module.exports = async (content, type = 'log') => {
     }
 
     return console.log(`⛔ | ${chalk.red(content)}`);
-  } else if (type === 'bot') {
+  } else if (type === "bot") {
     return console.log(`🤖 | ${content}`);
-  } else if (type === 'web') {
+  } else if (type === "web") {
     return console.log(`🖼 | ${content}`);
   } else {
     return console.log(`⚠ | Wrong type of logger. Expected: log, warn, error, bot, or web. Instead, got ${type}.`);

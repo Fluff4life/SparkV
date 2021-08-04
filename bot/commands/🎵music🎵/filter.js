@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
   if (!message.member.voice.channel) {
@@ -15,7 +15,7 @@ exports.run = async (bot, message, args, command, data) => {
 
   const Queue = bot.distube.getQueue(message);
 
-  if (args[0].toLowerCase() === 'off' && Queue.filter) {
+  if (args[0].toLowerCase() === "off" && Queue.filter) {
     bot.distube
       .setFilter(message, Queue.filter)
       .then(() => message.reply(`${bot.config.bot.Emojis.error} | Okay, I turned off the filter.`));
@@ -29,14 +29,14 @@ exports.run = async (bot, message, args, command, data) => {
 },
 
   exports.config = {
-    name: 'Filter',
+    name: "Filter",
     description:
-      'Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse.',
-    aliases: ['setfilter'],
-    usage: '<Filter>',
-    category: '🎵music🎵',
-    bot_permissions: ['SEND_MESSAGES', 'READ_MESSAGE_HISTORY', 'EMBED_LINKS', 'VIEW_CHANNEL', 'CONNECT', 'SPEAK'],
-    member_permissions: ['ADMINISTRATOR'],
+      "Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse.",
+    aliases: ["setfilter"],
+    usage: "<Filter>",
+    category: "🎵music🎵",
+    bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
+    member_permissions: ["ADMINISTRATOR"],
     enabled: true,
     cooldown: 5
 };

@@ -1,9 +1,9 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
-const GuildS = require('./schemas/guild');
-const LogS = require('./schemas/log');
-const MemberS = require('./schemas/member');
-const UserS = require('./schemas/user');
+const GuildS = require("./schemas/guild");
+const LogS = require("./schemas/log");
+const MemberS = require("./schemas/member");
+const UserS = require("./schemas/user");
 
 async function fetchUser(key) {
   let user = await UserS.findOne({
@@ -70,9 +70,9 @@ async function createLog(message, command) {
       id: message.author.id,
     },
     guild: {
-      name: message.guild ? message.guild.name : 'dm',
-      id: message.guild ? message.guild.id : 'dm',
-      channel: message.channel ? message.channel.id : 'unknown',
+      name: message.guild ? message.guild.name : "dm",
+      id: message.guild ? message.guild.id : "dm",
+      channel: message.channel ? message.channel.id : "unknown",
     },
     date: Date.now(),
   });

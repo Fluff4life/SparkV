@@ -2,7 +2,7 @@ const Discord = require(`discord.js`);
 const fs = require(`fs`);
 // Const Buttons = require("discord-buttons")
 // const ButtonPages = require("discord-embeds-pages-buttons")
-const EasyPages = require('discordeasypages');
+const EasyPages = require("discordeasypages");
 
 var prefix = `^`;
 
@@ -25,7 +25,7 @@ exports.run = async (bot, message, args, command, data) => {
       .setTitle(Category.toUpperCase())
       .setDescription(Commands(bot, Category))
       .setColor(bot.config.bot.Embed.Color)
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: 'gif' }));
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }));
 
     pages.push(NewEmbed);
   };
@@ -33,7 +33,7 @@ exports.run = async (bot, message, args, command, data) => {
   if (!args.length) {
     bot.categories.map(cat => CreatePage(bot, message, cat));
 
-    EasyPages(message, pages, ['⬅', '➡']);
+    EasyPages(message, pages, ["⬅", "➡"]);
   } else {
     const name = args[0].toLowerCase();
     const command = bot.commands.get(name) || bot.commands.find(c => c.aliases && c.aliases.includes(name));
@@ -45,7 +45,7 @@ exports.run = async (bot, message, args, command, data) => {
     const CommandHelpEmbed = new Discord.MessageEmbed()
       .setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)
       .setDescription(command.config.description)
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: 'gif' }))
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addField(`**ALIASES**`, `\`\`\`${command.config.aliases.join(`,\n`)}\`\`\``, true)
       .addField(`**CATEGORY**`, `\`\`\`${command.config.category}\`\`\``, true)
       .addField(`**COOLDOWN**`, `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)

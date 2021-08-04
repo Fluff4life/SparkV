@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const config = require('../../globalconfig.json');
+const config = require("../../globalconfig.json");
 
 const Schema = new mongoose.Schema({
   id: { type: String },
@@ -13,19 +13,12 @@ const Schema = new mongoose.Schema({
   customCommands: { type: Array, default: [] },
   commands: { type: Array, default: [] },
   autoRemoveCommands: { type: Boolean, default: false },
-  slowmode: {
-    type: Object,
-    default: {
-      users: [],
-      channels: [],
-    },
-  },
 
   // Guild Settings //
   settings: {
     type: Object,
     default: {
-      prefix: '^',
+      prefix: "^",
       welcome: {
         enabled: false,
         channel: null,
@@ -40,7 +33,7 @@ const Schema = new mongoose.Schema({
         image: null,
         embed: false,
       },
-      language: 'US-en',
+      language: "US-en",
       autorole: {
         enabled: false,
         role: null,
@@ -64,4 +57,4 @@ const Schema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Guild', Schema);
+module.exports = mongoose.model("Guild", Schema);

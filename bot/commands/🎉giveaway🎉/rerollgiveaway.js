@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
   const ID = args[0];
@@ -15,27 +15,27 @@ exports.run = async (bot, message, args, command, data) => {
 
   bot.GiveawayManager.reroll(Giveaway.messageID)
     .then(() => {
-      message.reply('Giveaway successfully rerolled!');
+      message.reply("Giveaway successfully rerolled!");
     })
     .catch(err => {
       if (err.startsWith(`Giveaway with ID ${Giveaway.messageID} is not ended`)) {
         message.reply("This giveaway hasn't ended yet!");
       } else {
         console.error(err).then(() => {
-          message.reply('An error occured with Ch1llBlox! Please try this command again.');
+          message.reply("An error occured with Ch1llBlox! Please try this command again.");
         });
       }
     });
 },
 
   exports.config = {
-    name: 'RerollGiveaway',
-    description: 'Rerolls a giveaway. Requires the permision MANAGE_MESSAGES.',
-    aliases: ['rerollg'],
-    usage: '<MessageID>',
-    category: '🎉giveaway🎉',
-    bot_permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL'],
-    member_permissions: ['MANAGE_MESSAGES'],
+    name: "RerollGiveaway",
+    description: "Rerolls a giveaway. Requires the permision MANAGE_MESSAGES.",
+    aliases: ["rerollg"],
+    usage: "<MessageID>",
+    category: "🎉giveaway🎉",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: ["MANAGE_MESSAGES"],
     enabled: true,
     cooldown: 10
 };

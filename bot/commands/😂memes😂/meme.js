@@ -1,16 +1,16 @@
-const Discord = require('discord.js');
-const request = require('node-fetch');
+const Discord = require("discord.js");
+const request = require("node-fetch");
 
 const SubReddits = [
-  'PewdiepieSubmissions',
-  'ComedyCemetery',
-  'AdviceAnimals',
-  'PrequelMemes',
-  'MemeEconomy',
-  'DankMemes',
-  'me_irl',
-  'Memes',
-  'Funny',
+  "PewdiepieSubmissions",
+  "ComedyCemetery",
+  "AdviceAnimals",
+  "PrequelMemes",
+  "MemeEconomy",
+  "DankMemes",
+  "me_irl",
+  "Memes",
+  "Funny",
 ];
 
 exports.run = async (bot, message) => {
@@ -23,7 +23,7 @@ exports.run = async (bot, message) => {
 
       if (post.title.length > 256) {
         const DankMemeEmbed = new Discord.MessageEmbed()
-          .setTitle('Title too long')
+          .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(
@@ -49,12 +49,12 @@ exports.run = async (bot, message) => {
     });
 };
   exports.config = {
-    name: 'Meme',
-    description: 'LOL',
-    aliases: ['memey'],
-    usage: '',
-    category: '😂memes😂',
-    bot_permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL', 'ADD_REACTIONS'],
+    name: "Meme",
+    description: "LOL",
+    aliases: ["memey"],
+    usage: "",
+    category: "😂memes😂",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
     member_permissions: [],
     enabled: true,
     cooldown: 3

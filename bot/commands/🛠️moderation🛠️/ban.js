@@ -62,7 +62,7 @@ exports.run = async (bot, message, args, command, data) => {
     const BanEmbed = new MessageEmbed()
       .setTitle(`${bot.config.bot.Emojis.success} | Ban Command`)
       .setDescription(`${bot.config.bot.Emojis.success} | Successfully Banned <@${UserToBan.id}>(${UserToBan.id})!`)
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: 'gif' }))
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addField(`Moderator/Admin: `, `${message.author.tag}`)
       .addField(`Reason: `, ReasonForBan)
       .setFooter(`${bot.config.bot.prefix}Kick to kick a user. • ${bot.config.bot.Embed.Footer}`)

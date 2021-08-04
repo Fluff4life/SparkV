@@ -1,24 +1,24 @@
-const botdash = require('botdash.pro');
-const Discord = require('discord.js');
+const botdash = require("botdash.pro");
+const Discord = require("discord.js");
 
 exports.run = async bot => {
   const Activities = [
     {
       text: `${bot.config.bot.prefix}Help | ^Invite`,
-      type: 'WATCHING',
-      status: 'online',
+      type: "WATCHING",
+      status: "online",
     },
 
     {
       text: `${bot.FormatNumber(await bot.GetServerCount())} servers! | ^Invite`,
-      type: 'WATCHING',
-      status: 'online',
+      type: "WATCHING",
+      status: "online",
     },
 
     {
       text: `${bot.FormatNumber(await bot.GetUserCount())} users | ^Invite!`,
-      type: 'WATCHING',
-      status: 'online',
+      type: "WATCHING",
+      status: "online",
     },
   ];
 
@@ -59,11 +59,11 @@ exports.run = async bot => {
   }, 60 * 1000);
 
   bot.user.setPresence({
-    status: 'dnd',
+    status: "dnd",
 
     activity: {
-      name: 'Loading Ch1llBlox (100%)',
-      type: 'CUSTOM_STATUS',
+      name: "Loading Ch1llBlox (100%)",
+      type: "CUSTOM_STATUS",
     },
   });
 
@@ -73,10 +73,11 @@ exports.run = async bot => {
     bot.StatClient.autopost();
   }
 
+  console.log("-------- Ch1llBlox --------");
   bot.logger(
     `Logged into Discord as ${bot.user.tag} (${bot.user.id})\n🏢 | Servers: ${bot.FormatNumber(
       await bot.GetServerCount(),
     )}\n👥 | Users: ${bot.FormatNumber(await bot.GetUserCount())}`,
-    'bot',
+    "bot",
   );
 };

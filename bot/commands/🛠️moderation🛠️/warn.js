@@ -37,7 +37,7 @@ exports.run = async (bot, message, args, command, data) => {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-  const Infractions = MemberData.infractions.filter(infraction => infraction.type === 'warn').length;
+  const Infractions = MemberData.infractions.filter(infraction => infraction.type === "warn").length;
   const BanCount = data.guild.settings.warnsInfractions.ban;
   const KickCount = data.guild.settings.warnsInfractions.kick;
 
@@ -48,7 +48,7 @@ exports.run = async (bot, message, args, command, data) => {
     channel: message.channel.id,
     moderator: message.author.id,
     date: Date.now(),
-    type: 'warn',
+    type: "warn",
     case: data.guild.casesCount,
     reason: Reason,
   };

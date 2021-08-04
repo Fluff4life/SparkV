@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const config = require('../../globalconfig.json');
+const config = require("../../globalconfig.json");
 
 const Schema = new mongoose.Schema({
   // User Information //
@@ -15,8 +15,8 @@ const Schema = new mongoose.Schema({
   registrationDate: { type: Number, default: Date.now() },
 
   // Data //
-  cooldowns: { type: String, default: [] },
-  afk: { type: Object, default: { enabled: false, reason: 'No reason supplied.' } },
+  cooldown: { type: Number, default: null },
+  afk: { type: Object, default: { enabled: false, reason: "No reason supplied." } },
 
   money: { type: Number, default: 0 },
   bank: { type: Number, default: 0 },
@@ -29,4 +29,11 @@ const Schema = new mongoose.Schema({
   mute: { type: Object, default: { muted: false, case: null, endDate: null } },
 });
 
-module.exports = mongoose.model('Member', Schema);
+Schema.method("GenerateAPIToken", async () => {
+  this.APIToken = GenerateToken();
+
+  await this.save();
+  return this.APIToken;
+});
+
+module.exports = mongoose.model("Member", Schema);

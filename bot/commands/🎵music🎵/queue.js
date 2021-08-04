@@ -13,7 +13,7 @@ exports.run = async (bot, message, args, command, data) => {
       description: queue.songs.map((song, id) => `**${id + 1}**. ${song.name} - ${song.formattedDuration}`).slice(0, 10).join(`\n`),
       color: `#0099ff`,
       thumbnail: {
-        url: message.author.displayAvatarURL({ dynamic: true, format: 'gif' })
+        url: message.author.displayAvatarURL({ dynamic: true, format: "gif" })
       },
       footer: {
         text: `Displaying music queue.`,

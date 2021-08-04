@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 module.exports = async bot => {
   bot.MSToTime = ms => {
@@ -8,21 +8,21 @@ module.exports = async bot => {
     let Mins = RoundNumber(ms / 60000) % 60;
     let Secs = RoundNumber(ms / 1000) % 60;
 
-    var time = Days > 0 ? `${Days} Day${Days === 1 ? '' : 's'}, ` : '';
-    time += Hours > 0 ? `${Hours} Hour${Hours === 1 ? '' : 's'}, ` : '';
-    time += Mins > 0 ? `${Mins} Minute${Mins === 1 ? '' : 's'} & ` : '';
-    time += Secs > 0 ? `${Secs} Second${Secs === 1 ? '' : 's'}.` : '0 Seconds.';
+    var time = Days > 0 ? `${Days} Day${Days === 1 ? "" : "s"}, ` : "";
+    time += Hours > 0 ? `${Hours} Hour${Hours === 1 ? "" : "s"}, ` : "";
+    time += Mins > 0 ? `${Mins} Minute${Mins === 1 ? "" : "s"} & ` : "";
+    time += Secs > 0 ? `${Secs} Second${Secs === 1 ? "" : "s"}.` : "0 Seconds.";
 
     return time;
   };
 
   bot.FormatNumber = Number => {
-    if (typeof Number === 'string') {
+    if (typeof Number === "string") {
       Number = parseInt(Number);
     }
 
     const DecPlaces = Math.pow(10, 1);
-    var Abbrev = ['k', 'm', 'g', 't', 'p', 'e'];
+    var Abbrev = ["k", "m", "g", "t", "p", "e"];
 
     for (var i = Abbrev.length - 1; i >= 0; i--) {
       var Size = Math.pow(10, (i + 1) * 3);
@@ -75,7 +75,7 @@ module.exports = async bot => {
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]) ||
       message.guild.members.cache.find(
-        member => member.user.username === args.slice(0).join(' ') || member.user.username === args[0],
+        member => member.user.username === args.slice(0).join(" ") || member.user.username === args[0],
       ) ||
       message.member;
 
@@ -83,7 +83,7 @@ module.exports = async bot => {
   };
 
   bot.isURL = string => {
-    if (string.startsWith('discord.gg/') || string.endsWith('discord.gg/')) {
+    if (string.startsWith("discord.gg/") || string.endsWith("discord.gg/")) {
       return true;
     }
 
@@ -99,10 +99,10 @@ module.exports = async bot => {
   bot.GetUserFromMention = mention => {
     if (!mention) return;
 
-    if (mention.startsWith('<@') && mention.endsWith('>')) {
+    if (mention.startsWith("<@") && mention.endsWith(">")) {
       mention = mention.slice(2, -1);
 
-      if (mention.startsWith('!')) {
+      if (mention.startsWith("!")) {
         mention = mention.slice(1);
       }
 
@@ -115,7 +115,7 @@ module.exports = async bot => {
       return bot.guilds.cache.size;
     }
 
-    const promises = [bot.shard.fetchClientValues('guilds.cache.size')];
+    const promises = [bot.shard.fetchClientValues("guilds.cache.size")];
 
     return Promise.all(promises).then(results => results.flat().reduce((acc, ServerCount) => acc + ServerCount, 0));
   };
@@ -129,7 +129,7 @@ module.exports = async bot => {
       return CollectedUsers;
     }
 
-    const promises = [bot.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)')];
+    const promises = [bot.shard.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")];
 
     return Promise.all(promises).then(results => results.flat().reduce((acc, MemberCount) => acc + MemberCount, 0));
   };
@@ -165,5 +165,5 @@ module.exports = async bot => {
 
   bot.wait = ms => new Promise(r => setTimeout(r, ms));
 
-  bot.FormatDate = date => new Intl.DateTimeFormat('en-US').format(date);
+  bot.FormatDate = date => new Intl.DateTimeFormat("en-US").format(date);
 };

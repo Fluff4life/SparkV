@@ -1,9 +1,9 @@
-const { configureScope } = require('@sentry/node');
-const AntiSwearPackage = require('anti-swear-words-packages-discord');
-const Levels = require('discord-xp');
-const Discord = require('discord.js');
-const fetch = require('node-fetch');
-const userS = require('../../database/schemas/user');
+const { configureScope } = require("@sentry/node");
+const AntiSwearPackage = require("anti-swear-words-packages-discord");
+const Levels = require("discord-xp");
+const Discord = require("discord.js");
+const fetch = require("node-fetch");
+const userS = require("../../database/schemas/user");
 
 exports.run = async (bot, message) => {
   const data = {};
@@ -50,7 +50,7 @@ exports.run = async (bot, message) => {
         message.reply(
           bot.config.bot.Responses.AFKMessage.toString()
             .replaceAll(`{userMentioned}`, MentionedUser.user.username)
-            .replaceAll(`{reason}`, MentionedUserData.afk || 'Reason data not found!'),
+            .replaceAll(`{reason}`, MentionedUserData.afk || "Reason data not found!"),
         );
       }
     });
@@ -59,7 +59,7 @@ exports.run = async (bot, message) => {
   const AntiURL = await bot.dashboard.getVal(message.guild.id, `removelinks`);
 
   if (!AntiURL === `Disabled`) {
-    if (!user.hasPermission(`MANAGE_MESSAGES`) && bot.isURL(message.content)) {
+    if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
       if (AntiURL === `Enabled`) {
         try {
           message.delete();
@@ -79,7 +79,7 @@ exports.run = async (bot, message) => {
   const AntiSwear = await bot.dashboard.getVal(message.guild.id, `removebadwords`);
 
   if (AntiSwear === `Enabled`) {
-    if (!user.hasPermission(`MANAGE_MESSAGES`)) {
+    if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
       AntiSwearPackage(bot, message, {
         warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
         muteRole: `Muted`,
@@ -128,7 +128,7 @@ exports.run = async (bot, message) => {
     }
   }
 
-  const Prefix = await bot.dashboard.getVal(message.guild.id, `Prefix`);
+  const Prefix = bot.config.Debug.Enabled === true ? "?" : await bot.dashboard.getVal(message.guild.id, "Prefix");
   const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
 
   if (!message.content.startsWith(Prefix)) {
@@ -151,7 +151,7 @@ exports.run = async (bot, message) => {
     } else {
       const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
 
-      if (ChatBot.toLowerCase() === `mention` && message.channel.type === 'text') {
+      if (ChatBot.toLowerCase() === `mention` && message.channel.type === "text") {
         return ActivateChatBot(message, true);
       }
     }
@@ -197,7 +197,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
   if (commandfile.config.bot_permissions) {
     const BotPermisions = message.channel.permissionsFor(bot.user);
 
-    if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
+    if (!BotPermisions || !BotPermisions.has(Discord.Permissions.FLAGS[commandfile.config.bot_permissions])) {
       return message.reply(
         bot.config.bot.Responses.bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions),
       );
@@ -207,7 +207,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
   if (commandfile.config.member_permissions) {
     const AuthorPermisions = message.channel.permissionsFor(message.author);
 
-    if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
+    if (!AuthorPermisions || !AuthorPermisions.has(Discord.Permissions.FLAGS[commandfile.config.member_permissions])) {
       return message.reply(
         bot.config.bot.Responses.bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions),
       );
@@ -233,12 +233,12 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
     );
   }
 
-  if (!message.channel.permissionsFor(message.member).has('MANAGE_MESSAGES')) {
-    const UserSlowmode = data.guild.slowmode.users.find(u => u.id === message.author.id);
+  if (!message.channel.permissionsFor(message.member).has("MANAGE_MESSAGES")) {
+    const UserSlowmode = data.member.cooldown;
 
     if (UserSlowmode) {
       if (UserSlowmode.time > Date.now()) {
-        const delay = message.convertTime(UserSlowmode.time, 'to', true);
+        const delay = message.convertTime(UserSlowmode.time, "to", true);
 
         return message.reply({
           embed: {
@@ -335,7 +335,7 @@ async function ActivateChatBot(message, wasMentioned) {
 
   var SlicedMessage;
 
-  if (message.content.slice(21) === '') {
+  if (message.content.slice(21) === "") {
     // If case the user replys to Ch1llBlox instead of mentioning him, or for some other silly reason.
 
     SlicedMessage = message.content;

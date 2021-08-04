@@ -3,20 +3,20 @@
 // Index.js //
 
 // Librarys //
-const fs = require('fs');
-const path = require('path');
-const AntiSpam = require('discord-anti-spam');
-const { Intents } = require('discord.js');
-const Statcord = require('statcord.js');
+const fs = require("fs");
+const path = require("path");
+const AntiSpam = require("discord-anti-spam");
+const { Intents } = require("discord.js");
+const Statcord = require("statcord.js");
 
 // Create Bot //
-console.log(require('chalk').blue('   ____ _     _ _ _ ____  _           '));
-console.log(require('chalk').blue('  / ___| |__ / | | | __ )| | _____  __'));
-console.log(require('chalk').blue(" | |   | '_ | | | |  _ | |/ _  / /"));
-console.log(require('chalk').blue(' | |___| | | | | | | |_) | | (_) >  < '));
-console.log(require('chalk').blue('  ____|_| |_|_|_|_|____/|_|___/_/_ '));
+console.log(require("chalk").blue("   ____ _     _ _ _ ____  _           "));
+console.log(require("chalk").blue("  / ___| |__ / | | | __ )| | _____  __"));
+console.log(require("chalk").blue(" | |   | '_ | | | |  _ | |/ _  / /"));
+console.log(require("chalk").blue(" | |___| | | | | | | |_) | | (_) >  < "));
+console.log(require("chalk").blue("  ____|_| |_|_|_|_|____/|_|___/_/_ "));
 
-const Client = require('./structures/client');
+const Client = require("./structures/client");
 const Ch1llBlox = new Client({
   bot: {
     intents: [
@@ -36,17 +36,17 @@ const Ch1llBlox = new Client({
       Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
       Intents.FLAGS.DIRECT_MESSAGES,
     ],
-    partials: ['REACTION', 'MESSAGE', 'CHANNEL', 'GUILD_MEMBER'],
+    partials: ["REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER"],
     allowedMentions: {
-      parse: ['users', 'roles', 'everyone'],
+      parse: ["users", "roles", "everyone"],
       repliedUser: true,
     },
     presence: {
       activity: {
         name: `Loading Ch1llBlox (99%)`,
-        type: 'PLAYING',
+        type: "PLAYING",
       },
-      status: 'dnd',
+      status: "dnd",
     },
   },
 });
@@ -56,10 +56,10 @@ async function Start() {
   await Ch1llBlox.LoadCommands(__dirname);
 
   await Ch1llBlox.LoadModules({
-    sharding: false,
+    sharding: false
   });
 
-  Ch1llBlox.SocketioClient = require('socket.io-client').connect(
+  Ch1llBlox.SocketioClient = require("socket.io-client").connect(
     `https://${process.env.baseURL}/api/communication?token=8010405464675`,
     {
       reconnection: true,
@@ -69,9 +69,8 @@ async function Start() {
     },
   );
 
-  Ch1llBlox.SocketioClient.on('connect', () => console.log('Website connected successfully.'));
+  Ch1llBlox.SocketioClient.on("connect", () => console.log("Website connected successfully."));
 }
 
 Start();
-
 Ch1llBlox.login(process.env.token);

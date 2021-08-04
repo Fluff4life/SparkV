@@ -1,17 +1,17 @@
-self.addEventListener('install', event => {
+self.addEventListener("install", event => {
   event.waitUntil((async () => {
-      const cache = await caches.open('offline');
+      const cache = await caches.open("offline");
 
-      await cache.add(new Request('/assets/offline.html', { cache: 'reload' }));
+      await cache.add(new Request("/assets/offline.html", { cache: "reload" }));
     })(),
   );
 
   self.skipWaiting();
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener("activate", event => {
   event.waitUntil((async () => {
-      if ('navigationPreload' in self.registration) await self.registration.navigationPreload.enable();
+      if ("navigationPreload" in self.registration) await self.registration.navigationPreload.enable();
     })(),
   );
 
@@ -19,8 +19,8 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-self.addEventListener('fetch', event => {
-  if (event.request.mode === 'navigate') {
+self.addEventListener("fetch", event => {
+  if (event.request.mode === "navigate") {
     event.respondWith((async () => {
         try {
           const PreloadResponse = await event.preloadResponse;
@@ -33,9 +33,9 @@ self.addEventListener('fetch', event => {
 
           return NetworkResponse;
         } catch (err) {
-          const cache = await caches.open('offline');
+          const cache = await caches.open("offline");
 
-          return await cache.match('/assets/offline.html');
+          return await cache.match("/assets/offline.html");
         }
       })(),
     );

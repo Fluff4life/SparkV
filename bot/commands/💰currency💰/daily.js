@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
   const RandomAmmount = Math.floor(Math.random() * 3500) + 1;
@@ -16,12 +16,12 @@ exports.run = async (bot, message, args, command, data) => {
   );
 };
   exports.config = {
-    name: 'Daily',
-    description: 'Collect your daily ammount of Ch1llBucks!',
+    name: "Daily",
+    description: "Collect your daily ammount of Ch1llBucks!",
     aliases: [],
-    usage: '',
-    category: '💰currency💰',
-    bot_permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL'],
+    usage: "",
+    category: "💰currency💰",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
     cooldown: 86400

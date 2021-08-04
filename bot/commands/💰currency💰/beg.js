@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
   var Ch1llBucks = data.user.money.balance;
@@ -22,12 +22,12 @@ exports.run = async (bot, message, args, command, data) => {
   );
 };
   exports.config = {
-    name: 'Balance',
-    description: 'Beg for coins.',
-    aliases: ['ask'],
-    usage: '<optional user>',
-    category: '💰currency💰',
-    bot_permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'VIEW_CHANNEL'],
+    name: "Balance",
+    description: "Beg for coins.",
+    aliases: ["ask"],
+    usage: "<optional user>",
+    category: "💰currency💰",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
     cooldown: 15

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 exports.run = async (bot, guild) => {
   console.log(`Ch1llBlox has been added to ${guild.name} (Id: ${guild.id}).`);
@@ -7,33 +7,33 @@ exports.run = async (bot, guild) => {
 
   if (Logger) {
     const ServerAddedEmbed = Discord.MessageEmbed()
-      .setTitle('🔼︱Guild Added')
+      .setTitle("🔼︱Guild Added")
       .setDescription(`Ch1llBlox has joined ${guild.name} (${guild.id})!`)
-      .setColor('GREEN');
+      .setColor("GREEN");
 
     Logger.send(ServerAddedEmbed);
   }
 
-  let MutedRole = guild.roles.cache.find(r => r.name.toLowerCase().includes('muted'));
+  let MutedRole = guild.roles.cache.find(r => r.name.toLowerCase().includes("muted"));
 
   if (!MutedRole) {
     try {
       MutedRole = await guild.roles.create({
         data: {
-          name: 'Muted',
+          name: "Muted",
           permissions: [],
         },
       });
 
       for (const channel of guild.channels.cache.values()) {
         try {
-          if (channel.viewable && channel.permissionsFor(guild.me).has('MANAGE_ROLES')) {
-            if (channel.type === 'text') {
+          if (channel.viewable && channel.permissionsFor(guild.me).has("MANAGE_ROLES")) {
+            if (channel.type === "text") {
               await channel.updateOverwrite(MutedRole, {
                 SEND_MESSAGES: false,
                 ADD_REACTIONS: false,
               });
-            } else if (channel.type === 'voice' && channel.editable) {
+            } else if (channel.type === "voice" && channel.editable) {
               await channel.updateOverwrite(MutedRole, {
                 SPEAK: false,
                 STREAM: false,
@@ -46,17 +46,17 @@ exports.run = async (bot, guild) => {
   }
 
   try {
-    const SelfRole = guild.roles.cache.find(role => role.name === 'Ch1llBlox');
+    const SelfRole = guild.roles.cache.find(role => role.name === "Ch1llBlox");
 
     if (SelfRole) {
-      SelfRole.setColor('BLUE');
+      SelfRole.setColor("BLUE");
     }
   } catch (err) {}
 
   if (
     guild.systemChannel &&
-    guild.systemChannel.permissionsFor(bot.user).has('SEND_MESSAGES') &&
-    guild.systemChannel.permissionsFor(bot.user).has('VIEW_CHANNEL')
+    guild.systemChannel.permissionsFor(bot.user).has("SEND_MESSAGES") &&
+    guild.systemChannel.permissionsFor(bot.user).has("VIEW_CHANNEL")
   ) {
     try {
       await guild.systemChannel.send(

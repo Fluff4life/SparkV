@@ -1,8 +1,8 @@
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
     const isLocalhost = Boolean(
-      window.location.hostname === 'localhost' ||
-        window.location.hostname === '[::1]' ||
+      window.location.hostname === "localhost" ||
+        window.location.hostname === "[::1]" ||
         window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[01]?)){3}$/),
     );
     const swUrl = `/service-worker.js`;
@@ -29,14 +29,14 @@ function registerValidSW(swUrl) {
         }
 
         installingWorker.onstatechange = () => {
-          if (installingWorker.state === 'installed') {
+          if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
               console.log(
-                '⚙ | Service Worker: New content is avalible and will be used when all tabs for this page are closed.',
+                "⚙ | Service Worker: New content is avalible and will be used when all tabs for this page are closed.",
               );
             }
           } else {
-            console.log('⚙ | Service Worker: Content is ready for offline usage.');
+            console.log("⚙ | Service Worker: Content is ready for offline usage.");
           }
         };
       };
@@ -47,13 +47,13 @@ function registerValidSW(swUrl) {
 function checkValidServiceWorker(swUrl) {
   fetch(swUrl, {
     headers: {
-      'Service-Worker': 'script',
+      "Service-Worker": "script",
     },
   })
     .then(response => {
-      const contentType = response.headers.get('content-type');
+      const contentType = response.headers.get("content-type");
 
-      if (response.status === 404 || (contentType !== null && contentType.indexOf('javascript') === -1)) {
+      if (response.status === 404 || (contentType !== null && contentType.indexOf("javascript") === -1)) {
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
             window.location.reload();
