@@ -9,8 +9,7 @@
         },
         "Sharding": {
             "ShardingEnabled": false,
-            "TotalShards": "auto",
-            "ShardLifeTime": 518400
+            "TotalShards": "auto"
         },
         "Embed": {
             "Color": "BLUE",

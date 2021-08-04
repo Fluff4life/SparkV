@@ -7,7 +7,7 @@
     "update": "git pull && npm install",
     "checkDeps": "npx npm-check-updates",
     "CheckDeps:update": "npx npm-check-updates -u && npm install",
-    "start": "npm install --save --force youtube-dl && node index.js",
+    "start": "node index.js",
     "startweb": "node website/website.js",
     "test": "eslint . --ignore-path .gitignore",
     "test:fix": "eslint . --ignore-path .gitignore --fix",

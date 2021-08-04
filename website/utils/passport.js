@@ -5,8 +5,6 @@ const passport = require("passport");
 const DiscordPassport = require("passport-discord");
 
 const Config = require("../../globalconfig.json");
-const MainWebhook = new Discord.WebhookClient("852259324994388039", "FKlZ-IkTZ-e2L-kv3_PwHBKMPzAoAdspQAdAJfeMlbktIarPblgQR3MclamGfK3FT_j9");
-global.MainWebhook = MainWebhook;
 
 const DiscordStrat = {
   clientID: "848685407189336075",
@@ -45,18 +43,6 @@ try {
 }
 
 passport.serializeUser(async (user, done) => {
-  const MainEmbed = new Discord.MessageEmbed()
-    .setTitle("User Logged In")
-    .setDescription(`**${user.username}${`#${user.discriminator}`}** just logged in!`)
-    .setFooter(`Ch1ll Notifier | ${user.username}${`#${user.discriminator}`}`)
-    .setColor("GREEN");
-
-  MainWebhook.send({
-    username: "Ch1ll Notifier",
-    avatarURL: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`,
-    embeds: [MainEmbed],
-  });
-
   done(null, user);
 });
 

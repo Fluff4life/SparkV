@@ -113,23 +113,6 @@ async function StartWebsite() {
   app.use((err, request, response, next) => {
     const user = request.user;
 
-    if (!Config.Debug.Enabled) {
-      const MainEmbed = new Discord.MessageEmbed()
-        .setTitle("⛔ | Error Occured!")
-        .setDescription(`Uh oh! Looks like an error occured.`)
-        .addField("**ERROR**", err.toString(), true)
-        .setFooter(`Ch1ll Notifier | Error Code 500`)
-        .setColor("RED");
-
-      global.MainWebhook.send({
-        username: "Ch1ll Notifier",
-        avatarURL: user
-          ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`
-          : "https://support.discord.com/hc/user_images/l12c7vKVRCd-XLIdDkLUDg.png",
-        embeds: [MainEmbed],
-      });
-    }
-
     console.error("Website Error!", err.stack);
 
     response.status(500);
