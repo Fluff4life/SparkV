@@ -1,15 +1,13 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  Arguments = Arguments.join(" ")
+exports.run = async (bot, message, args, command, data) => {
+  args = args.join(" ");
 
-  message
-    .delete()
-    .catch(_ => {});
-  
-  message.lineReplyNoMention(Arguments + "\n*-" + message.author.username + "*")
-},
-  
+  message.delete().catch(_ => {});
+
+  message.reply(`${args}\n*-${message.author.username}*`);
+};
+
   exports.config = {
     name: "Say",
     description: "I will say whatever you want me to say.",
@@ -20,4 +18,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 5
-  }
+};

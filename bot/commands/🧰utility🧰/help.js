@@ -1,43 +1,45 @@
 const Discord = require(`discord.js`);
-const fs = require(`fs`)
-const Buttons = require("discord-buttons")
+const fs = require(`fs`);
+// Const Buttons = require("discord-buttons")
 // const ButtonPages = require("discord-embeds-pages-buttons")
-const EasyPages = require("discordeasypages")
+const EasyPages = require("discordeasypages");
 
-var prefix = `^`
+var prefix = `^`;
 
-exports.run = async (Bot, message, args) => {
-  prefix = await Bot.dashboard.getVal(message.guild.id, `Prefix`)
+exports.run = async (bot, message, args, command, data) => {
+  prefix = await bot.dashboard.getVal(message.guild.id, `Prefix`);
 
-  const pages = []
-  const Commands = (Bot, category) => {
-    return Bot.commands.filter(command => command.config.enabled && command.config.category === category).map(command =>`\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`).join(`\n\n`)
-  }
+  const pages = [];
+  const Commands = (bot, category) =>
+    bot.commands
+      .filter(command => command.config.enabled && command.config.category === category)
+      .map(command => `\`${prefix}${command.config.name} ${command.config.usage}\`\n${command.config.description}`)
+      .join(`\n\n`);
 
-  const CreatePage = async (Bot, message, Category) => {
-    if (Category === `👑owner👑` && message.author.id !== process.env.OwnerID){
-      return
+  const CreatePage = async (bot, message, Category) => {
+    if (Category === `👑owner👑` && message.author.id !== process.env.OwnerID) {
+      return;
     }
 
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle(Category.toUpperCase())
-      .setDescription(Commands(Bot, Category))
-      .setColor(Bot.Config.Bot.Embed.Color)
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
-  
-    pages.push(NewEmbed)
-}
+      .setDescription(Commands(bot, Category))
+      .setColor(bot.config.bot.Embed.Color)
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }));
+
+    pages.push(NewEmbed);
+  };
 
   if (!args.length) {
-    Bot.categories.map((cat) => CreatePage(Bot, message, cat))
-    
-    EasyPages(message, pages, ["⬅", "➡"])
+    bot.categories.map(cat => CreatePage(bot, message, cat));
+
+    EasyPages(message, pages, ["⬅", "➡"]);
   } else {
     const name = args[0].toLowerCase();
-    const command = Bot.commands.get(name) || Bot.commands.find(c => c.aliases && c.aliases.includes(name));
+    const command = bot.commands.get(name) || bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-      return message.lineReply(`${Bot.Config.Bot.Emojis.error} | That command doesn't exist or no longer exists!`);
+      return message.reply(`${bot.config.bot.Emojis.error} | That command doesn't exist or no longer exists!`);
     }
 
     const CommandHelpEmbed = new Discord.MessageEmbed()
@@ -47,10 +49,13 @@ exports.run = async (Bot, message, args) => {
       .addField(`**ALIASES**`, `\`\`\`${command.config.aliases.join(`,\n`)}\`\`\``, true)
       .addField(`**CATEGORY**`, `\`\`\`${command.config.category}\`\`\``, true)
       .addField(`**COOLDOWN**`, `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
-      .setFooter(`${prefix}Help to get a list of all commands • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-      .setColor(Bot.Config.Bot.Embed.Color);
+      .setFooter(
+        `${prefix}Help to get a list of all commands • ${bot.config.bot.Embed.Footer}`,
+        bot.user.displayAvatarURL()
+      )
+      .setColor(bot.config.bot.Embed.Color);
 
-    return message.lineReplyNoMention(CommandHelpEmbed)
+    return message.reply(CommandHelpEmbed);
   }
 },
 
@@ -64,4 +69,4 @@ exports.run = async (Bot, message, args) => {
     member_permissions: [],
     enabled: true,
     cooldown: 5
-  }
+};

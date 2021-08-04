@@ -1,20 +1,19 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  if (Bot.Config.Debug.Enabled === true) {
-    return
+exports.run = async (bot, message, args, command, data) => {
+  if (bot.config.Debug.Enabled === true) {
+    return;
   }
 
   const canvacord = require("canvacord");
 
-  Arguments = Arguments.join(" ")
+  args = args.join(" ");
 
-  const Image = await canvacord.Canvas.ohno(Arguments)
-  const OhNo = new Discord.MessageAttachment(Image, "ohno.png")
+  const Image = await canvacord.Canvas.ohno(args);
+  const OhNo = new Discord.MessageAttachment(Image, "ohno.png");
 
-  message.lineReplyNoMention(OhNo)
-},
-
+  message.reply(OhNo);
+};
   exports.config = {
     name: "OhNo",
     description: "OH NO HE'S STUPID!",
@@ -25,4 +24,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 2
-  }
+};

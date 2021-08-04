@@ -1,174 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Header -->
-  <head>
-    <%- include("components/head", {
-      SiteTitle: "Ch1ll Studios",
-      SiteDescription: "Cut your dollars! Our products are totally premium and free!",
-      SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
-    }) %>
-  </head>
 
-  <body style="background-color: var(--main-color);" data-aos-easing="ease">
-    <noscript>
-      To use this website, you need JavaScript enabled.
-    </noscript>
+<head>
+  <%- include("components/head", {
+    SiteTitle: "Ch1ll Studios",
+    SiteDescription: "Uh oh! Looks like the page you where looking for wasn't found. Dang man. KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
+    SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
+  }) %>
+</head>
 
-    <div id="loading">
-      <div id="loading-center">
-        <div id="loading-center-absolute">
-          <div class="loader"></div>
-        </div>
+<body id="page-top" style="background-color: var(--main-color)" data-aos-easing="ease">
+  <noscript> To use this website, you need JavaScript enabled. </noscript>
+
+  <div id="loading">
+    <div id="loading-center">
+      <div id="loading-center-absolute">
+        <div class="loader"></div>
       </div>
     </div>
+  </div>
 
-     <%- include("components/navagation", {
-      BrandName: "Ch1ll Studios",
-      BrandLink: "#top",
-      BrandLogo: "/assets/images/TransparentCh1llStudios.png",
+  <!-- Navagation -->
+  <nav id="navShrink" class="navbar navbar-expand-lg navbar-dark fixed-top text-white mx-auto"
+    style="color: var(--main-color); background: var(--main-color); top: 0px" data-mdb-hidden="false">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#top" style="color: var(--text-color); font-family: 'Arvo', serif"
+        target="_blank">
+        <img src="/assets/images/TransparentCh1llStudios.png" alt="Ch1ll Studios Logo" width="36" height="36"
+          class="d-inline-block align-text-top" />
+        <span>Ch1ll Studio <small
+            style="color: grey; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Inc.</small></span>
+      </a>
 
-      Links: {
-        learn: {
-          name: "Learn",
-          icon: "fas fa-book",
-          type: "dropdown",
+      <!-- Navbar Toggler for Mobile -->
+      <button class="btn navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#NavbarToggler"
+        aria-controls="NavbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <svg class="svg-inl ine--fa fa-bars fa-w-14 ms-1" aria-hidden="true" focusable="false" data-prefix="fas"
+          data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor"
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
+          </path>
+        </svg>
+      </button>
 
-          links: {
-            hyperlink1: {
-              name: "About Us",
-              icon: "fas fa-openbook",
-              link: "/about",
-            },
-          }
-        },
+      <div class="collapse navbar-collapse justify-content-end" id="NavbarToggler">
+        <div class="py-2 py-lg-0">
+          <ul class="nav justify-content-center navbar-nav ms-auto mb-md-0 text-small">
+            <!-- 
+              DROPDOWN
 
-        services: {
-          name: "Services",
-          icon: "fas fa-award",
-          type: "dropdown",
+                <div class="dropdown me-3 me-lg-1">
+                  <button class="btn btn-primary dropdown-toggle px-2 text-white fw-bold" type="button" id="dropdown_LINK NAME" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <span>LINK NAME</span>
+                  </button>
 
-          links: {
-            hyperlink1: {
-              name: "Home",
-              icon: "fas fa-home",
-              link: "/home",
-            },
+                  <ul class="dropdown-menu" aria-labelledby="dropdown_1" style="background-color: var(--secondary-color);">
+                      <a href="link" class="dropdown-item text-wrap text-white text-center text-wrap fw-bold">
+                        <span><i class="fab fa-buffer bi d-block mx-auto mb-1 fa-lg"></i>
+                          Products
+                        </span>
+                      </a>
+                  </ul>
+                </div>
 
-            hyperlink2: {
-              name: "Ch1llBlox",
-              icon: "fas fa-robot",
-              link: "/bot",
-            },
+                LINK       
+                <li class="nav-item me-3 me-lg-1">
+                  <a class="nav-link fw-bold text-center text-wrap fw-bold" href="LINK" style="color: var(--text-color);">
+                    <span>LINK NAME</span>
+                  </a>
+                </li>
+            -->
+            <div class="dropdown me-3 me-lg-1">
+              <button class="btn btn-primary dropdown-toggle px-2 text-white fw-bold" type="button"
+                id="dropdown_Products" data-mdb-toggle="dropdown" aria-expanded="false">
+                <span><i class="fab fa-buffer bi d-block mx-auto mb-1 fa-lg"></i>
+                  Products
+                </span>
+              </button>
 
-            hyperlink3: {
-              name: "Ch1ll Studios",
-              icon: "fas fa-snowflake",
-              link: "/ch1llstudios",
-            }
-          }
-        },
+              <ul class="dropdown-menu" aria-labelledby="dropdown_Products"
+                style="background-color: var(--secondary-color)">
+                <a href="link" class="dropdown-item text-wrap text-white text-center text-wrap fw-bold">
+                  <span><i class="fab fa-buffer bi d-block mx-auto mb-1 fa-lg"></i>
+                    Products
+                  </span>
+                </a>
+              </ul>
+            </div>
 
-        support: {
-          name: "Support",
-          icon: "far fa-question-circle",
-          type: "dropdown",
+            <div class="dropdown me-3 me-lg-1">
+              <button class="btn btn-primary dropdown-toggle px-2 text-white fw-bold" type="button"
+                id="dropdown_Support>" data-mdb-toggle="dropdown" aria-expanded="false">
+                <span><i class="far fa-question-circle bi d-block mx-auto mb-1 fa-lg"></i>
+                  Support
+                </span>
+              </button>
 
-          links: {
-            hyperlink1: {
-              name: "err",
-              icon: "fas fa-home",
-              link: "#top",
-            },
-          }
-        },
-      },
-    }) %> 
+              <ul class="dropdown-menu" aria-labelledby="dropdown_Support"
+                style="background-color: var(--secondary-color)">
+                <a href="link" class="dropdown-item text-wrap text-white text-center text-wrap fw-bold">
+                  <span><i class="fab fa-member bi d-block mx-auto mb-1 fa-lg"></i>
+                    Support
+                  </span>
+                </a>
+              </ul>
+            </div>
+
+            <% if (user) { %>
+            <div class="dropdown">
+              <div class="btn dropdown-toggle px-2 text-white" type="button" id="dropdown_bell"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-bell fa-lg"></i>
+              </div>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdown_bell"
+                style="left: -80px; top: 50px; background-color: var(--secondary-color)" data-popper-placement="null"
+                data-mdb-popper="none">
+                <li>
+                  <a class="dropdown-item text-wrap disabled" data-notification-date="8/1/2021 at 7:43 AM">
+                    <p class="small text-uppercase mb-2">August 1st, 2021</p>
+                    <p class="text-white mb-0">
+                      <strong>Website Improvements</strong>
+
+                      Say hello to the new Ch1ll Studio website! Now, it looks fresh and new.
+
+                      Enjoy,
+                      KingCh1ll
+                    </p>
+                  </a>
+                  <a class="dropdown-item text-wrap disabled" data-notification-date="6/21/2021 at 5:44 PM">
+                    <p class="small text-uppercase mb-2">June 21, 2021</p>
+                    <p class="text-white mb-0">Modern Ui Update!</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="dropdown">
+              <div class="btn dropdown-toggle px-2 text-white" type="button" id="dropdown_services"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdown_services"
+                style="left: -80px; top: 50px; background-color: var(--secondary-color)">
+                <div class="dropdown-header">
+                  <h5 class="text-center text-overflow text-white">Services</h5>
+                </div>
+
+                <a href="/bot" class="dropdown-item text-wrap text-white text-center text-wrap fw-bold">
+                  <i class="fas fa-robot"></i>
+                  <span>Ch1llBlox</span>
+                </a>
+              </ul>
+            </div>
+
+            <div class="dropdown">
+              <div class="btn dropdown-toggle px-2 text-white" type="button" id="dropdown_user"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="avatar avatar-sm rounded-circle mx-auto d-block">
+                  <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024"
+                    alt="<%- user.username %>'s Profile Icon" />
+                </span>
+              </div>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdown_user"
+                style="left: -80px; top: 50px; background-color: var(--secondary-color)">
+                <span class="avatar avatar-lg rounded-circle mx-auto d-block">
+                  <img src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.png?size=1024"
+                    alt="<%- user.username %>'s Profile Icon" />
+                </span>
+
+                <div class="dropdown-header">
+                  <h5 class="text-center text-overflow text-white"><%- user.username %></h5>
+                </div>
+
+                <a href="/users/<%- user.id %>/profile"
+                  class="dropdown-item text-wrap text-white text-center text-wrap fw-bold">
+                  <i class="fas fa-id-card"></i>
+                  <span>Profile</span>
+                </a>
+
+                <a href="/settings" class="dropdown-item text-wrap text-center text-wrap fw-bold disabled" tabindex="-1"
+                  aria-disabled="true">
+                  <i class="fas fa-cog"></i>
+                  <span>Settings</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item text-wrap text-center text-wrap fw-bold" href="/api/logout" style="color: red">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Log Out</span>
+                </a>
+              </ul>
+            </div>
+            <% } else { %> <% } %>
+          </ul>
+        </div>
+
+        <% if (!user) { %>
+        <a href="/api/login" class="btn nav-link text-white fw-bold" type="button"
+          style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+        <% } %>
+        </ul>
+      </div>
+  </nav>
 
   <!-- Main Content -->
-      <main>
-        <%- include("components/top", {
-          BrandName: "Ch1ll Studios",
-          BrandLogo: "/assets/images/TransparentCh1llStudios.png",
-          TypeText: false,
+  <main>
+    <!-- Hero (Top) -->
+    <section class="hero">
+      <!-- Alert
+        <div class="alert alert-primary" role="alert"></div>
+      -->
+      <!--
+      <div class="background" style="background: url(backgroundURL)"></div>
+      -->
+<header>
+      <div class="px-4 py-5 my-5 text-center container">
+          <img class="d-block mx-auto mb-4" src="/assets/images/TransparentCh1llStudios.png" alt="Logo" width="150"
+          height="150" style="margin-top: 30px;">
+        <h1 class="display-5 fw-bold" style="color: var(--text-color)">Ch1ll Studio</h1>
+        <div class="col-lg-6 mx-auto">
+          <!--
+          <h2 class="display" style="color: var(--text-color)">
+            <span id="TypedText" name="Ch1ll Studios"></span>
+          </h2>
+-->
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a class="btn nav-link text-white fw-bold" type="button" href="/donate"
+              style="margin: 5px; background-color: var(--secondary-color); border-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--text-color); border-radius: 10px">Donate</a>
+          </div>
+        </div>
+      </div>
 
-          buttons: {
-            button1: {
-              name: "Donate",
-              link: "/donate"
-            }
-          },
+      <div class="svg-border-rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="50px" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,0 C16.6666667,66 33.3333333,99 50,99 C66.6666667,99 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z" style="stroke: none; fill: var(--secondary-color);"></path>
+        </svg>
+      </div>
+    </header>
 
-          backgroundURL: null,
-          alert: null
-        }) %>
+    </section>
 
-      <%- include("components/features", {
-        features: {
-          features1: {
-            name: "Games",
-  
-            boxes: {
-              box1: {
-                name: "ROBLOX Videos Theater",
-                description: "Powering Roblox cartoons with a modern YouTube-like interface.",
-                link: "//www.roblox.com/games/5748202585/ROBLOX-Videos-Theater",
-                image: "/assets/images/RVT.png",
-                alt: "ROBLOX Videos Theater Icon"
-              },
-  
-              box2: {
-                name: "Team Create",
-                description: "Work together to dominate over others. The rules are simple! One builds, one shoots. Easy, right?",
-                link: "//www.roblox.com/games/5451436770/Team-Create",
-                image: "/assets/images/TC.png",
-                alt: "Team Create Icon"
-              },
-  
-              box3: {
-                name: "Message Me",
-                description: "Want to message me on Roblox with feedback? Do so in my game, Message Me!",
-                link: "//www.roblox.com/games/5196974140/Message-Me",
-                image: "/assets/images/ME.png",
-                alt: "Message Me Icon"
-              }
-            }
-          },
-  
-          features2: {
-            name: "Roblox Plugins",
-  
-            boxes: {
-              box1: {
-                name: "Studio Plus",
-                description: "Power Roblox Studio like never before. The ultimate features to improve your workflow!",
-                link: "//www.roblox.com/library/5699907726/Studio-Plus",
-                image: "/assets/images/studioplus.png",
-                alt: "Studio Plus Icon"
-              }
-            }
-          },
-  
-          features3: {
-            name: "Discord Bots",
-  
-            boxes: {
-              box1: {
-                name: "Ch1llBlox",
-                description: "Premium bot with no $ involved!",
-                link: "/bot",
-                image: "/assets/images/Ch1llBlox.png",
-                alt: "Ch1llBlox Icon"
-              }
-            }
-          }
-        }
-      }) %>
+    <!-- Services -->
+    <section class="page-section text-white" id="services" style="background-color: var(--secondary-color);">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-heading text-uppercase">Services</h2>
+          <h3 class="section-subheading">Prepare to be amazed! Both by our products, and low prices.</h3>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-4 card" style="width: 18rem;background: var(--main-color);">
+            <svg class="card-img-top" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="robot"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="200px">
+              <defs class="">
+                <clipPath id="clip-ieRdOJSHJ7Wj" class="">
+                  <path fill="currentColor"
+                    d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"
+                    class=""></path>
+                </clipPath>
+                <mask x="0" y="0" width="100%" height="100%" id="mask-4RutDTf5E5e2" maskUnits="userSpaceOnUse"
+                  maskContentUnits="userSpaceOnUse" class="">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" class=""></rect>
+                  <g transform="translate(224 256)" class="">
+                    <g transform="translate(0, 0)  scale(0.5625, 0.5625)  rotate(0 0 0)" class="">
+                      <path fill="black"
+                        d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z"
+                        transform="translate(-320 -256)"></path>
+                    </g>
+                  </g>
+                </mask>
+              </defs>
+              <rect fill="currentColor" clip-path="url(#clip-ieRdOJSHJ7Wj)" mask="url(#mask-4RutDTf5E5e2)" x="0" y="0"
+                width="100%" height="100%" class=""></rect>
+            </svg>
 
-    <%- include("components/footer", {
-      Description: "KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
-    }) %>
-    </main>
+            <div class="card-body">
+              <h5 class="card-title">testtt</h5>
+              <p class="card-text text-muted">test lololol</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+    </section>
 
-    <%- include("components/scripts") %>
-  </body>
+    <!-- Products -->
+    <section class="page-section bg-light" id="portfolio">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-heading text-uppercase">Portfolio</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- Portfolio item 1-->
+            <div class="portfolio-item">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                <div class="portfolio-hover">
+                  <div class="portfolio-hover-content"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x"
+                      aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                      </path>
+                    </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com -->
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="...">
+              </a>
+              <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">Threads</div>
+                <div class="portfolio-caption-subheading text-muted">Illustration</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- Portfolio item 2-->
+            <div class="portfolio-item">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                <div class="portfolio-hover">
+                  <div class="portfolio-hover-content"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x"
+                      aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                      </path>
+                    </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com -->
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="...">
+              </a>
+              <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">Explore</div>
+                <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- Portfolio item 3-->
+            <div class="portfolio-item">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                <div class="portfolio-hover">
+                  <div class="portfolio-hover-content"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x"
+                      aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                      </path>
+                    </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com -->
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="...">
+              </a>
+              <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">Finish</div>
+                <div class="portfolio-caption-subheading text-muted">Identity</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+            <!-- Portfolio item 4-->
+            <div class="portfolio-item">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+                <div class="portfolio-hover">
+                  <div class="portfolio-hover-content"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x"
+                      aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                      </path>
+                    </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com -->
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="...">
+              </a>
+              <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">Lines</div>
+                <div class="portfolio-caption-subheading text-muted">Branding</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+            <!-- Portfolio item 5-->
+            <div class="portfolio-item">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+                <div class="portfolio-hover">
+                  <div class="portfolio-hover-content"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x"
+                      aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                      </path>
+                    </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com -->
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="...">
+              </a>
+              <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">Southwest</div>
+                <div class="portfolio-caption-subheading text-muted">Website Design</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <!-- Portfolio item 6-->
+            <div class="portfolio-item">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+                <div class="portfolio-hover">
+                  <div class="portfolio-hover-content"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x"
+                      aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+                      </path>
+                    </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com -->
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="...">
+              </a>
+              <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">Window</div>
+                <div class="portfolio-caption-subheading text-muted">Photography</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svg-border-rounded">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor">
+        <path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path>
+      </svg>  
+    </div>
+
+    <footer class="footer pt-10 pb-5 mt-auto bg-dark footer-dark">
+      <div class="container px-5">
+        <div class="row gx-5 white-text">
+          <div class="col-lg-3">
+            <span class="footer-brand" style="color: var(--text-color)">Ch1ll Studio <small
+                style="color: grey; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Inc.</small></span>
+            <div class="mb-3">Prepare to be amazed! Both by our products, and low prices!</div>
+            <div class="icon-list-social mb-5">
+              <a href="javascript:void(0);" class="icon-list-social-link">
+                <i class="fab fa-instagram"></i>
+              </a><a href="javascript:void(0);" class="icon-list-social-link">
+                <i class="fab fa-facebook"></i>
+              </a><a href="javascript:void(0);" class="icon-list-social-link">
+                <i class="fab fa-github"></i>
+              </a><a href="javascript:void(0);" class="icon-list-social-link">
+                <i class="fab fa-twitter"></i>
+              </a></div>
+          </div>
+          <div class="col-lg-9">
+            <div class="row gx-5">
+              <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                <div class="text-uppercase-expanded text-xs mb-4">Product</div>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="javascript:void(0);">Landing</a>
+                  </li>
+                  <li class="mb-2"><a href="javascript:void(0);">Pages</a>
+                  </li>
+                  <li class="mb-2"><a href="javascript:void(0);">Sections</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Documentation</a></li>
+                  <li><a href="javascript:void(0);">Changelog</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                <div class="text-uppercase-expanded text-xs mb-4">Technical</div>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="javascript:void(0);">Documentation</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Changelog</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Theme
+                      Customizer</a></li>
+                  <li><a href="javascript:void(0);">UI Kit</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                <div class="text-uppercase-expanded text-xs mb-4">Includes</div>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="javascript:void(0);">Utilities</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Components</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Layouts</a>
+                  </li>
+                  <li class="mb-2"><a href="javascript:void(0);">Code
+                      Samples</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Products</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Affiliates</a></li>
+                  <li><a href="javascript:void(0);">Updates</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="text-uppercase-expanded text-xs mb-4">Legal</div>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="javascript:void(0);">Privacy
+                      Policy</a></li>
+                  <li class="mb-2"><a href="javascript:void(0);">Terms and
+                      Conditions</a></li>
+                  <li><a href="javascript:void(0);">License</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-5">
+        <div class="row gx-5 align-items-center">
+          <div class="col-md-6 small">Copyright © Ch1ll Studios 2021</div>
+          <div class="col-md-6 text-md-end small"><a href="javascript:void(0);">Privacy Policy</a> · <a
+              href="javascript:void(0);">Terms
+              and Conditions</a></div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="/assets/js/sw.js"></script>
+
+  <!-- Scripts -->
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/typed.js"></script>
+  <script src="//unpkg.com/aos/dist/aos.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2"></script>
+
+  <!-- Handler -->
+  <script src="/assets/js/handle.js"></script>
+
+  <script async src="//k040055fpjgg.statuspage.io/embed/script.js"></script>
+</body>
+
 </html>

@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  const User = Bot.GetMember(message, Arguments) || Bot.users.cache.get(Arguments[0]) || message.author
+exports.run = async (bot, message, args, command, data) => {
+  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author;
 
-  if (Bot.Config.Debug.Enabled === true) {
-    return
+  if (bot.config.Debug.Enabled === true) {
+    return;
   }
 
   const canvacord = require("canvacord");
@@ -12,14 +12,13 @@ exports.run = async (Bot, message, Arguments) => {
   const Avatar = User.displayAvatarURL({
     dynamic: false,
     format: "gif"
-  })
+});
 
-  const Image = await canvacord.Canvas.shit(Avatar)
-  const Shit = new Discord.MessageAttachment(Image, "shit.gif")
+  const Image = await canvacord.Canvas.shit(Avatar);
+  const Shit = new Discord.MessageAttachment(Image, "shit.gif");
 
-  message.lineReplyNoMention(Shit)
-},
-
+  message.reply(Shit);
+};
   exports.config = {
     name: "Shit",
     description: "Ewwwwww!",
@@ -30,4 +29,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 2
-  }
+};

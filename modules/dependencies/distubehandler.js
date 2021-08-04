@@ -1,26 +1,25 @@
-const { MessageEmbed } = require("discord.js")
-const Buttons = require("discord-buttons")
+const { MessageEmbed } = require("discord.js");
+// Const Buttons = require("discord-buttons")
 // const ButtonPages = require("discord-embeds-pages-buttons")
-const EasyPages = require("discordeasypages")
+const EasyPages = require("discordeasypages");
 
-module.exports = async (Bot) => {
-  const DisTube = require("distube")
-  const Discord = require("discord.js")
+module.exports = async bot => {
+  const DisTube = require("distube");
+  const Discord = require("discord.js");
 
-  Bot.distube = new DisTube(Bot, {
+  bot.distube = new DisTube(bot, {
     searchSongs: true,
     emitNewSongOnly: true,
     leaveOnFinish: true,
     leaveOnEmpty: true,
     leaveOnStop: true,
-    highWaterMark: 1<<25,
+    highWaterMark: 1 << 25,
     youtubeDL: true,
     updateYouTubeDL: true,
-    emitNewSongOnly: true,
-    youtubeCookie: process.env.YouTubeAPIKey
-  })
+    youtubeCookie: process.env.YouTubeAPIKey,
+  });
 
-  Bot.distube
+  bot.distube
     .on("playSong", async (message, queue, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
         .setTitle(`🎵 Now Playing a Song 🎵`)
@@ -29,22 +28,29 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
-            inline: true
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(
+              song.dislikes,
+            )}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true,
           },
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: ${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: ${
+              queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+            }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
-          }
+          },
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-        .setTimestamp()
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(
+          `📼 ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`,
+          bot.user.displayAvatarURL(),
+        )
+        .setTimestamp();
 
-      message.lineReplyNoMention(NowPlayingEmbed)
+      message.reply(NowPlayingEmbed);
     })
     .on("playList", async (message, queue, playlist, song) => {
       const NowPlayingEmbed = new Discord.MessageEmbed()
@@ -54,22 +60,29 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
-            inline: true
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(
+              song.dislikes,
+            )}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true,
           },
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
+              queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+            }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
-          }
+          },
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-        .setTimestamp()
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(
+          `📼 ${song.user.username} (${song.user.tag}) • (${playlist.songs.length} songs) - Now Playing ${song.name} • ${bot.config.bot.Embed.Footer}`,
+          bot.user.displayAvatarURL(),
+        )
+        .setTimestamp();
 
-      message.lineReplyNoMention(NowPlayingEmbed)
+      message.reply(NowPlayingEmbed);
     })
     .on("addSong", async (message, queue, song) => {
       const SongAddedQueue = new Discord.MessageEmbed()
@@ -79,22 +92,29 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
-            inline: true
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(
+              song.dislikes,
+            )}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true,
           },
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
+              queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+            }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
-          }
+          },
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 Added by ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-        .setTimestamp()
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(
+          `📼 Added by ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`,
+          bot.user.displayAvatarURL(),
+        )
+        .setTimestamp();
 
-      message.lineReplyNoMention(SongAddedQueue)
+      message.reply(SongAddedQueue);
     })
     .on("addList", async (message, queue, playlist) => {
       const SongAddedQueue = new Discord.MessageEmbed()
@@ -104,59 +124,65 @@ module.exports = async (Bot) => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await Bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await Bot.FormatNumber(song.dislikes)}\n▶︱Views: ${await Bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
-            inline: true
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(
+              song.dislikes,
+            )}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true,
           },
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "Current Song" : "❎"}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
+              queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+            }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
-          }
+          },
         )
         .setURL(song.url)
-        .setColor(Bot.Config.Bot.Embed.Color)
-        .setFooter(`📼 ${song.user.username} (${song.user.tag}) • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-        .setTimestamp()
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(
+          `📼 ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`,
+          bot.user.displayAvatarURL(),
+        )
+        .setTimestamp();
 
-      message.lineReplyNoMention(SongAddedQueue)
+      message.reply(SongAddedQueue);
     })
     .on("searchResult", (message, result) => {
       try {
-        var Pages = []
+        var Pages = [];
 
-        const CreatePage = (Song) => {
+        const CreatePage = Song => {
           const NewEmbed = new MessageEmbed()
             .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-            .setColor(Bot.Config.Bot.Embed.Color)
+            .setColor(bot.config.bot.Embed.Color)
             .setURL(Song.url)
-            .setImage(Song.thumbnail)
-  
-          Pages.push(NewEmbed)
-        }
-  
-        result.map(song => CreatePage(song))
-        EasyPages(message, Pages, ["⬅", "➡"], "⚡ - To select this song, send the current page number. For example, to select page 1 send 1.")
-        
-      } catch(err) {
-        console.error(err)
+            .setImage(Song.thumbnail);
+
+          Pages.push(NewEmbed);
+        };
+
+        result.map(song => CreatePage(song));
+        EasyPages(message, Pages, ["⬅", "➡"], "⚡ - To select this song, send the current page number. For example, to select page 1 send 1.",);
+      } catch (err) {
+        console.error(err);
       }
     })
-    .on("finish", (message) => {
-      message.lineReplyNoMention("No songs left in queue. Add more songs!")
+    .on("finish", message => {
+      message.reply("No songs left in queue. Add more songs!");
     })
-    .on("noRelated", (message) => {
-      message.lineReplyNoMention("I cannot find a related video to play. I am stopping the music.")
+    .on("noRelated", message => {
+      message.reply("I cannot find a related video to play. I am stopping the music.");
     })
-    .on("searchCancel", (message) => {
-      message.lineReplyNoMention(`Searching canceled.`)
+    .on("searchCancel", message => {
+      message.reply(`Searching canceled.`);
     })
-    .on("empty", (message) => {
-      message.lineReplyNoMention("Voice chat is empty. Leaving the VC.")
+    .on("empty", message => {
+      message.reply("Voice chat is empty. Leaving the VC.");
     })
     .on("error", (message, err) => {
-      console.error(err)
+      console.error(err);
 
-      message.lineReplyNoMention(`❎︱Uh oh! An error occured. Please try again later.`)
-    })
-}
+      message.reply(`❎︱Uh oh! An error occured. Please try again later.`);
+    });
+};

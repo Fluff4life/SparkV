@@ -1,7 +1,7 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 
-exports.run = async (Bot, event) => {
-  LogError("Fatal", event)
+exports.run = async (bot, event) => {
+  LogError("Fatal", event);
 
-  console.log(`ERROR! => ${event}`)
-}
+  console.log(`ERROR! => ${event}`);
+};

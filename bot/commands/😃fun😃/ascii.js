@@ -1,34 +1,34 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  if (Bot.Config.Debug.Enabled === true) {
-    return
+exports.run = async (bot, message, args, command, data) => {
+  if (bot.config.Debug.Enabled === true) {
+    return;
   }
 
-  const figlet = require(`figlet`)
+  const figlet = require(`figlet`);
 
-  if (!Arguments || !Arguments[0]){
-    return message.lineReply(`Please provide text!`)
+  if (!args || !args[0]) {
+    return message.reply(`Please provide text!`);
   }
 
-  Arguments = Arguments.join(` `)
+  args = args.join(` `);
 
-  figlet.text(Arguments, function(err, data){
-    if (err){
-      message.lineReplyNoMention(`Uh oh! Something went wrong.`)
-      console.log(`Failed to figlet text: ` + err)
+  figlet.text(args, (err, data) => {
+    if (err) {
+      message.reply(`Uh oh! Something went wrong.`);
+      console.log(`Failed to figlet text: ${err}`);
 
-      return
+      return;
     }
 
-    if (data.length > 2000){
-      return message.lineReply(`Please provide text shorter than 200 characters.`)
+    if (data.length > 2000) {
+      return message.reply(`Please provide text shorter than 200 characters.`);
     }
 
-    message.lineReplyNoMention(data)
-  })
-},
-  
+    message.lineReplyNoMention(`\`\`\`${data}\`\`\``);
+  });
+};
+
   exports.config = {
     name: `Ascii`,
     description: `I will change any text to ascii!`,
@@ -39,4 +39,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 5
-  }
+};

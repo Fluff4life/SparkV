@@ -1,16 +1,13 @@
 const Discord = require("discord.js");
 
-const Replies = [
-  "Heads",
-  "Tails"
-]
+const Replies = ["Heads", "Tails"];
 
-exports.run = async (Bot, message, Arguments) => {
-  const ReplyText = Math.floor(Math.random() * Replies.length)
+exports.run = async (bot, message, args, command, data) => {
+  const ReplyText = Math.floor(Math.random() * Replies.length);
 
-  return message.lineReply(`My coin flipped ${Replies[ReplyText]}!`)
-},
-  
+  return message.reply(`My coin flipped ${Replies[ReplyText]}!`);
+};
+
   exports.config = {
     name: "CoinFlip",
     description: "I have no bias! I swear noob!1!",
@@ -21,4 +18,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 3
-  }
+};

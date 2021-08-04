@@ -1,233 +1,275 @@
-const Discord = require('discord.js');
-const Levels = require('discord-xp');
-const fetch = require('node-fetch');
-const AntiSwearPackage = require('anti-swear-words-packages-discord');
-const { configureScope } = require('@sentry/node');
-const userS = require("../../database/schemas/user")
+const { configureScope } = require("@sentry/node");
+const AntiSwearPackage = require("anti-swear-words-packages-discord");
+const Levels = require("discord-xp");
+const Discord = require("discord.js");
+const fetch = require("node-fetch");
+const userS = require("../../database/schemas/user");
 
-exports.run = async (Bot, message) => {
+exports.run = async (bot, message) => {
+  const data = {};
+
   if (message.author.bot) {
-    return
+    return;
   }
 
   if (!message.guild) {
-    return
+    return;
   }
 
-  /*
-  if (!message.guild.guildData){
-    // guildData = await Bot.Database.fetchGuild(message.guild.id)
-    message.guild.guildData.prefix = guildData.prefix.toLowerCase()
+  if (message.guild && !message.member) {
+    await message.guild.members.fetch(message.author.id);
   }
 
-  let prefix = message.guild.prefix
-  */
+  data.config = bot.config;
 
-  // User //
-  const UserMentioned = message.mentions.members.first()
-  const user = message.guild.members.cache.get(message.author.id)
+  if (message.guild) {
+    data.guild = await bot.database.fetchGuild(message.guild.id);
+  }
 
-  // Data
-  let GuildData = await Bot.database.fetchGuild(message.guild.id)
-  let UserData = await Bot.database.fetchUser(message.author.id)
-  let MemberData = await Bot.database.fetchMember(message.author.id, message.guild.id)
+  if (message.guild) {
+    data.member = await bot.database.fetchMember(message.author.id, message.guild.id);
+  }
+
+  data.user = await bot.database.fetchUser(message.author.id);
 
   // AFK //
-  if (UserData) {
-    if (UserData.afk) {
-      if (UserData.afk.enabled === true) {
-        try {
-          const newAfk = new userS({
-            id: message.author.id,
-            afk: {
-              enabled: false
-            }
-          })
+  if (message.guild) {
+    const AFKReason = data.user.afk;
 
-          newAfk.save()
+    if (AFKReason) {
+      data.user.afk = null;
 
-          message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
-        } catch (err) {
-          console.error(err)
-        }
-      }
+      await data.user.save();
+      message.reply(bot.config.bot.Responses.AFKWelcomeMessage);
     }
+
+    message.mentions.users.forEach(async MentionedUser => {
+      const MentionedUserData = await bot.database.fetchUser(MentionedUser.id);
+
+      if (MentionedUserData.afk) {
+        message.reply(
+          bot.config.bot.Responses.AFKMessage.toString()
+            .replaceAll(`{userMentioned}`, MentionedUser.user.username)
+            .replaceAll(`{reason}`, MentionedUserData.afk || "Reason data not found!"),
+        );
+      }
+    });
   }
 
-  if (UserMentioned) {
-    const UserMentionedData = await Bot.database.fetchUser(UserMentioned.id)
-
-    if (UserMentionedData) {
-      if (UserMentionedData.afk) {
-        if (UserMentionedData.afk.enabled === true) {
-          message.lineReply(Bot.Config.Bot.Responses.AFKMessage.toString().replaceAll(`{userMentioned}`, UserMentioned.user.username).replaceAll(`{reason}`, UserMentionedData.Reason || "Reason data not found!"))
-        }
-      }
-    }
-  }
-
-  const AntiURL = await Bot.dashboard.getVal(message.guild.id, `removelinks`)
+  const AntiURL = await bot.dashboard.getVal(message.guild.id, `removelinks`);
 
   if (!AntiURL === `Disabled`) {
-    if (!user.hasPermission(`MANAGE_MESSAGES`) && Bot.isURL(message.content)) {
+    if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
       if (AntiURL === `Enabled`) {
         try {
-          message.delete()
+          message.delete();
         } catch (err) {
           message
-            .lineReplyNoMention(Bot.Config.Bot.Responses.InvalidPermisions.Bot.toString().replaceAll(`{author}`, message.author))
-            .then((m) => m.delete({ timeout: 1000 }))
+            .reply(bot.config.bot.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
+            .then(m => m.delete({ timeout: 1000 }));
         }
       }
     }
 
     return message.channel
       .send(`🔨 ${message.author}, you cannot send links here!`)
-      .then((m) => m.delete({ timeout: 1000 }))
+      .then(m => m.delete({ timeout: 1000 }));
   }
 
-  const AntiSwear = await Bot.dashboard.getVal(message.guild.id, `removebadwords`)
+  const AntiSwear = await bot.dashboard.getVal(message.guild.id, `removebadwords`);
 
   if (AntiSwear === `Enabled`) {
-    if (!user.hasPermission(`MANAGE_MESSAGES`)) {
-      AntiSwearPackage(Bot, message, {
+    if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
+      AntiSwearPackage(bot, message, {
         warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
         muteRole: `Muted`,
         ignoreWord: [`hello`],
         muteCount: 3,
         kickCount: 6,
         banCount: 12,
-      })
+      });
     }
   }
 
-  const AntiSpam = await Bot.dashboard.getVal(message.guild.id, `removerepeatedtext`)
+  const AntiSpam = await bot.dashboard.getVal(message.guild.id, `removerepeatedtext`);
 
   if (AntiSpam === `Enabled`) {
     if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
-      Bot.AntiSpam.message(message)
+      bot.AntiSpam.message(message);
     }
   }
 
-  const Leveling = await Bot.dashboard.getVal(message.guild.id, `leveling`)
+  const Leveling = await bot.dashboard.getVal(message.guild.id, `leveling`);
 
   if (Leveling === `Enabled`) {
-    let MaxXP = await Bot.dashboard.getVal(message.guild.id, `leveling_maxxp`)
-    let MinXP = await Bot.dashboard.getVal(message.guild.id, `leveling_minxp`)
+    let MaxXP = await bot.dashboard.getVal(message.guild.id, `leveling_maxxp`);
+    let MinXP = await bot.dashboard.getVal(message.guild.id, `leveling_minxp`);
 
     if (isNaN(MaxXP)) {
-      MaxXP = 25
+      MaxXP = 25;
     }
 
     if (isNaN(MinXP)) {
-      MinXP = 5
+      MinXP = 5;
     }
 
-    const RandomXP = Math.floor(Math.random() * MaxXP || 25) + MinXP || 5
-    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP)
+    const RandomXP = Math.floor(Math.random() * MaxXP || 25) + MinXP || 5;
+    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP);
 
     if (HasLeveledUp) {
-      const User = await Levels.fetch(message.author.id, message.guild.id)
-      const Level = await Bot.FormatNumber(User.level)
+      const User = await Levels.fetch(message.author.id, message.guild.id);
+      const Level = await bot.FormatNumber(User.level);
 
-      message.lineReplyNoMention(Bot.Config.Bot.Responses.LevelUpMessage.toString().replaceAll(`{author}`, message.author).replaceAll(`{level}`, Level))
+      message.reply(
+        bot.config.bot.Responses.LevelUpMessage.toString()
+          .replaceAll(`{author}`, message.author)
+          .replaceAll(`{level}`, Level),
+      );
     }
   }
 
-  const Prefix = await Bot.dashboard.getVal(message.guild.id, `Prefix`)
-  const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
+  const Prefix = bot.config.Debug.Enabled === true ? "?" : await bot.dashboard.getVal(message.guild.id, "Prefix");
+  const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
 
   if (!message.content.startsWith(Prefix)) {
     if (ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(message, false)
+      return ActivateChatBot(message, false);
     }
   }
 
-  if (message.mentions.has(Bot.user)) {
-    const args = message.content.slice(Bot.user.id.length + 4).trim().split(/ +/)
-    const command = args.shift().toLowerCase()
-    const commandfile = Bot.commands.get(command) || Bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command))
+  if (message.mentions.has(bot.user)) {
+    const args = message.content
+      .slice(bot.user.id.length + 4)
+      .trim()
+      .split(/ +/);
+    const command = args.shift().toLowerCase();
+    const commandfile =
+      bot.commands.get(command) ||
+      bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
     if (commandfile) {
-      return HandleCommand(Bot, message, args, command, commandfile)
+      return HandleCommand(bot, message, args, command, data, commandfile);
     } else {
-      const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
+      const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
 
       if (ChatBot.toLowerCase() === `mention` && message.channel.type === "text") {
-        return ActivateChatBot(message, true)
+        return ActivateChatBot(message, true);
       }
     }
   } else {
-    const Prefix = await Bot.dashboard.getVal(message.guild.id, `Prefix`)
-    const ChatBot = await Bot.dashboard.getVal(message.guild.id, `ChatBot`)
+    const Prefix = await bot.dashboard.getVal(message.guild.id, `Prefix`);
+    const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
 
     if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(message, false)
+      return ActivateChatBot(message, false);
     }
 
     if (!message.content.startsWith(Prefix)) {
-      return
+      return;
     }
 
-    const args = message.content.slice(Prefix.length).trim().split(/ +/)
-    const command = args.shift().toLowerCase()
-    const commandfile = Bot.commands.get(command) || Bot.commands.find((command_) => command_.config.aliases && command_.config.aliases.includes(command))
+    const args = message.content.slice(Prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+    const commandfile =
+      bot.commands.get(command) ||
+      bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
 
-    return HandleCommand(Bot, message, args, command, commandfile)
+    return HandleCommand(bot, message, args, command, data, commandfile);
   }
-}
+};
 
-async function HandleCommand(Bot, message, args, command, commandfile) {
+async function HandleCommand(bot, message, args, command, data, commandfile) {
   if (!commandfile) {
-    return
+    return;
   }
 
   if (process.env.UserBlacklist.includes(message.author.id)) {
     try {
       return message.author
-        .send(`${Bot.Config.Bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
+        .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
         .then(() => {
-          message.react(Bot.Config.Bot.Emojis.Error)
-        })
+          message.react(bot.config.bot.Emojis.Error);
+        });
     } catch {
-      message.react(Bot.Config.Bot.Emojis.Error)
+      message.react(bot.config.bot.Emojis.Error);
     }
   }
 
   if (commandfile.config.bot_permissions) {
-    const BotPermisions = message.channel.permissionsFor(Bot.user)
+    const BotPermisions = message.channel.permissionsFor(bot.user);
 
-    if (!BotPermisions || !BotPermisions.has(commandfile.config.bot_permissions)) {
-      return message.lineReply(Bot.Config.Bot.Responses.Bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions))
+    if (!BotPermisions || !BotPermisions.has(Discord.Permissions.FLAGS[commandfile.config.bot_permissions])) {
+      return message.reply(
+        bot.config.bot.Responses.bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions),
+      );
     }
   }
 
   if (commandfile.config.member_permissions) {
-    const AuthorPermisions = message.channel.permissionsFor(message.author)
+    const AuthorPermisions = message.channel.permissionsFor(message.author);
 
-    if (!AuthorPermisions || !AuthorPermisions.has(commandfile.config.member_permissions)) {
-      return message.lineReply(Bot.Config.Bot.Responses.Bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions))
+    if (!AuthorPermisions || !AuthorPermisions.has(Discord.Permissions.FLAGS[commandfile.config.member_permissions])) {
+      return message.reply(
+        bot.config.bot.Responses.bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions),
+      );
     }
   }
 
   if (!commandfile.config.enabled) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command is currently disabled! Please try again later.`)
+    return message.reply(
+      `${bot.config.bot.Emojis.error} | This command is currently disabled! Please try again later.`,
+    );
   }
 
-  const MusicEnabled = await Bot.dashboard.getVal(message.guild.id, `MusicEnabled`)
-  const Leveling = await Bot.dashboard.getVal(message.guild.id, `leveling`)
+  const MusicEnabled = await bot.dashboard.getVal(message.guild.id, `MusicEnabled`);
+  const Leveling = await bot.dashboard.getVal(message.guild.id, `leveling`);
 
   if (commandfile.config.category === `🎵music🎵` && MusicEnabled === `Disabled`) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`)
+    return message.reply(
+      `${bot.config.bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`,
+    );
   } else if (commandfile.config.category === `💫leveling💫` && Leveling === `Disabled`) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`)
+    return message.reply(
+      `${bot.config.bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`,
+    );
   }
 
-  if (!Bot.cooldowns.has(commandfile.config.name)) {
-    Bot.cooldowns.set(commandfile.config.name, new Discord.Collection())
+  if (!message.channel.permissionsFor(message.member).has("MANAGE_MESSAGES")) {
+    const UserSlowmode = data.member.cooldown;
+
+    if (UserSlowmode) {
+      if (UserSlowmode.time > Date.now()) {
+        const delay = message.convertTime(UserSlowmode.time, "to", true);
+
+        return message.reply({
+          embed: {
+            title: `${bot.config.bot.Emojis.error} | Whoa there ${message.author.username}!`,
+            description: `Please wait ${delay} more seconds to use that command again.`,
+            thumbnail: message.author.avatarURL,
+            color: `#0099ff`,
+            footer: {
+              text: bot.config.bot.Embed.Footer,
+              icon_url: bot.user.displayAvatarURL(),
+            },
+          },
+        });
+      } else {
+        UserSlowmode.time = commandfile.config.cooldown * 1000 || 3000 + Date.now();
+      }
+    } else {
+      data.guild.slowmode.users.push({
+        id: message.author.id + message.channel.id,
+        time: commandfile.config.cooldown * 1000 || 3000 + Date.now(),
+      });
+    }
+  }
+
+  /*
+  If (!bot.cooldowns.has(commandfile.config.name)) {
+    bot.cooldowns.set(commandfile.config.name, new Discord.Collection())
   }
 
   const Now = Date.now()
-  const Timestamps = Bot.cooldowns.get(commandfile.config.name)
+  const Timestamps = bot.cooldowns.get(commandfile.config.name)
   const CooldownAmount = Math.round(commandfile.config.cooldown | (3 * 1000))
 
   if (Timestamps.has(message.author.id)) {
@@ -236,15 +278,15 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
     if (Now < ExpireTime) {
       const TimeLeft = Math.round((ExpireTime - Now) / 1000)
 
-      return message.lineReply({
+      return message.reply({
         embed: {
-          title: `${Bot.Config.Bot.Emojis.error} | Whoa there ${message.author.username}!`,
+          title: `${bot.config.bot.Emojis.error} | Whoa there ${message.author.username}!`,
           description: `Please wait ${TimeLeft} more seconds to use that command again.`,
           thumbnail: message.author.avatarURL,
           color: `#0099ff`,
           footer: {
-            text: Bot.Config.Bot.Embed.Footer,
-            icon_url: Bot.user.displayAvatarURL(),
+            text: bot.config.bot.Embed.Footer,
+            icon_url: bot.user.displayAvatarURL(),
           },
         },
       })
@@ -253,87 +295,96 @@ async function HandleCommand(Bot, message, args, command, commandfile) {
 
   Timestamps.set(message.author.id, Now)
   setTimeout(() => Timestamps.delete(message.author.id), CooldownAmount)
-
-  let data = {}
-  data.user = await Bot.database.fetchUser(message.author.id) || null
-  data.guild = await Bot.database.fetchGuild(message.guild.id) || null
-  data.commandName = commandfile.config.name
+  */
 
   try {
-    await commandfile.run(Bot, message, args, command, data).then(async () => {
-      const DeleteUsage = await Bot.dashboard.getVal(message.guild.id, `deletecommandusage`)
+    await commandfile.run(bot, message, args, command, data, data).then(async () => {
+      const DeleteUsage = await bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
 
       if (DeleteUsage === `Enabled`) {
-        message.delete().catch(() => { })
+        message.delete().catch(() => {});
       }
-    })
+    });
 
-    if (Bot.StatClient) {
-      Bot.StatClient.postCommand(commandfile.config.name, message.author.id)
+    if (bot.StatClient) {
+      bot.StatClient.postCommand(commandfile.config.name, message.author.id);
     }
   } catch (err) {
-    const AnnonymousUser = `Annonymous`
+    const AnnonymousUser = `Annonymous`;
 
-    configureScope((scope) => {
+    configureScope(scope => {
       scope.setUser({
         AnnonymousUser,
-      })
+      });
 
-      scope.setTag(`Command`, commandfile.config.name)
-      scope.setTag(`CurrentPing`, Bot.ws.ping)
-      scope.setTag(`GuildType`, message.channel.type)
-    })
+      scope.setTag(`Command`, commandfile.config.name);
+      scope.setTag(`CurrentPing`, bot.ws.ping);
+      scope.setTag(`GuildType`, message.channel.type);
+    });
 
-    message.lineReplyNoMention(`${Bot.Config.Bot.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`)
+    message.reply(
+      `${bot.config.bot.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`,
+    );
   }
 
-  Bot.database.createLog(message, data)
+  bot.database.createLog(message, data);
 }
 
 async function ActivateChatBot(message, wasMentioned) {
-  message.channel.startTyping()
+  message.channel.startTyping();
 
-  var SlicedMessage
+  var SlicedMessage;
 
   if (message.content.slice(21) === "") {
     // If case the user replys to Ch1llBlox instead of mentioning him, or for some other silly reason.
 
-    SlicedMessage = message.content
+    SlicedMessage = message.content;
   } else {
-    SlicedMessage = message.content.slice(21)
+    SlicedMessage = message.content.slice(21);
   }
 
   try {
-    await fetch(`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(process.env.chat_key)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(wasMentioned === true ? SlicedMessage : message)}`).then((res) => res.json()).then((body) => {
-      const botmsg = body.cnt
+    await fetch(
+      `http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(
+        process.env.chat_key,
+      )}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(
+        wasMentioned === true ? SlicedMessage : message,
+      )}`,
+    )
+      .then(res => res.json())
+      .then(body => {
+        const botmsg = body.cnt;
 
-      if (botmsg) {
-        if (message.deleted) {
-          return
+        if (botmsg) {
+          if (message.deleted) {
+            return;
+          }
+
+          const APIEmbed = new Discord.MessageEmbed()
+            .setTitle(`Ch1llBlox`)
+            .setDescription(botmsg)
+            .setFooter(
+              `Never send personal information to Ch1llBlox. • ${bot.config.bot.Embed.Footer}`,
+              bot.user.displayAvatarURL(),
+            )
+            .setColor(bot.config.bot.Embed.Color);
+
+          if (bot.StatClient) {
+            bot.StatClient.postCommand(`ChatBot`, message.author.id);
+          }
+
+          message.reply(APIEmbed);
+        } else {
+          console.error(`Failed to get message from Chat bot. Response: ${body}`);
+
+          return message.reply(`${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`);
         }
-
-        const APIEmbed = new Discord.MessageEmbed()
-          .setTitle(`Ch1llBlox`)
-          .setDescription(botmsg)
-          .setFooter(`Never send personal information to Ch1llBlox. • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-          .setColor(Bot.Config.Bot.Embed.Color)
-
-        if (Bot.StatClient) {
-          Bot.StatClient.postCommand(`ChatBot`, message.author.id)
-        }
-
-        message.lineReplyNoMention(APIEmbed)
-      } else {
-        console.error(`Failed to get message from Chat Bot. Response: ${body}`)
-
-        return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Wha- what? Something went wrong.`)
-      }
-    })
+      });
   } catch (err) {
-    console.error(err)
+    console.error(err);
 
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Wha- what? Something went wrong.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`);
   }
 
-  message.channel.stopTyping()
+  message.channel.stopTyping();
 }

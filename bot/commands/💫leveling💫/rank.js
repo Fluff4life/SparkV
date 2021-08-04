@@ -2,13 +2,13 @@ const Discord = require(`discord.js`);
 const Levels = require(`discord-xp`);
 const canvacord = require(`canvacord`);
 
-exports.run = async (Bot, message, Arguments) => {
-  const Target = Bot.GetMember(message, Arguments) || message.author
-  const User = await Levels.fetch(Target.id, message.guild.id, true)
-  const NeededXP = Levels.xpFor(parseInt(User.level) + 1)
+exports.run = async (bot, message, args, command, data) => {
+  const Target = bot.GetMember(message, args) || message.author;
+  const User = await Levels.fetch(Target.id, message.guild.id, true);
+  const NeededXP = Levels.xpFor(parseInt(User.level) + 1);
 
   if (!User) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | This user hasn't earned any XP yet!`)
+    return message.reply(`${bot.config.bot.Emojis.error} | This user hasn't earned any XP yet!`);
   }
 
   const Rank = new canvacord.Rank()
@@ -20,15 +20,14 @@ exports.run = async (Bot, message, Arguments) => {
     .setLevel(User.level || 0)
     .setCurrentXP(User.xp || 0)
     .setRequiredXP(NeededXP || 100)
-    .setProgressBar(`#0099ff`, `COLOR`)
+    .setProgressBar(`#0099ff`, `COLOR`);
 
   Rank.build().then(data => {
-    const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.gif`)
+    const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.gif`);
 
-    return message.lineReply(Attachment)
-  })
-},
-
+    return message.reply(Attachment);
+  });
+};
   exports.config = {
     name: `Rank`,
     description: `View a users rank!`,
@@ -39,4 +38,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 5
-  }
+};

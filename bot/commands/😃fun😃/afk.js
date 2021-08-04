@@ -1,57 +1,22 @@
 const Discord = require(`discord.js`);
 
-const user = require("../../../database/schemas/user")
+const user = require("../../../database/schemas/user");
 
-exports.run = async (Bot, message, Arguments, command, data) => {
-  if (!data) {
-    if (!data.afk) {
-      if (!data.afk.enabled) {
-        const reason = Arguments.slice(0).join(" ") || "No reason supplied."
+exports.run = async (bot, message, args, command, data) => {
+  const reason = args.slice(0).join(" ") || "No reason supplied.";
 
-        try {
-          const newAfk = new user({
-            id: message.author.id,
-            afk: {
-              enabled: true,
-              reason: reason
-            }
-          })
+  if (data.user.afk) {
+    data.user.afk = null;
+    await data.user.save();
 
-          newAfk.save()
+    message.reply(bot.config.bot.Responses.AFKWelcomeMessage);
+  } else {
+    data.user.afk = reason;
+    await data.user.save();
 
-          message.lineReply(`You're now AFK. Reason: ${reason}`)
-        } catch (err) {
-          console.error(err)
-
-          message.lineReply("Failed to save AFK status.")
-        }
-      }
-    }
-  } else if (data) {
-    if (data.afk) {
-      if (data.afk.enabled) {
-        try {
-          const newAfk = new user({
-            id: message.author.id,
-            afk: {
-              enabled: false,
-              reason: "AFK Disabled"
-            }
-          })
-
-          newAfk.save()
-        } catch (err) {
-          console.error(err)
-
-          message.lineReply("Failed to delete AFK status.")
-        }
-      }
-    }
-
-    message.lineReply(Bot.Config.Bot.Responses.AFKWelcomeMessage)
+    message.reply(`You're now AFK. Reason: ${reason}`);
   }
-},
-
+};
   exports.config = {
     name: `Afk`,
     description: `This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason.`,
@@ -62,4 +27,4 @@ exports.run = async (Bot, message, Arguments, command, data) => {
     member_permissions: [],
     enabled: true,
     cooldown: 3
-  }
+};

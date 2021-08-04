@@ -1,41 +1,38 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
+exports.run = async (bot, message, args, command, data) => {
   if (message.author.id !== process.env.OwnerID) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Access denied.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
 
-  if (!Arguments) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please input code.`)
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please input code.`);
   }
 
-  const Input = Arguments.join(` `)
+  const Input = args.join(` `);
 
-  if (!Input.toLowerCase().includes(`token`)){
-    const Embed = new Discord.MessageEmbed()
-      .setTitle(`${Bot.Config.Bot.Emojis.success} | Eval Results`)
-    
+  if (!Input.toLowerCase().includes(`token`)) {
+    const Embed = new Discord.MessageEmbed().setTitle(`${bot.config.bot.Emojis.success} | Eval Results`);
+
     try {
-      let Output = eval(Input)
+      let Output = eval(Input);
 
-      if (typeof Output !== `string`){
-        Output = require(`util`).inspect(Output, { depth: 0 })
+      if (typeof Output !== `string`) {
+        Output = require(`util`).inspect(Output, { depth: 0 });
       }
 
-      Embed
-        .addField(`Input`, `\`\`\`js\n${Input.length > 1024 ? `Input is too long to display.` : Input}\`\`\``)
+      Embed.addField(`Input`, `\`\`\`js\n${Input.length > 1024 ? `Input is too long to display.` : Input}\`\`\``)
         .addField(`Output`, `\`\`\`js\n${Output.length > 1024 ? `Output is too long to display.` : Input}\`\`\``)
-        .setColor(`GREEN`)
-    } catch(err){
-      Embed
-        .addField(`Input`, `\`\`\`js\n${Input.length > 1024 ? `Input is too long to display.` : Input}\`\`\``)
+        .setColor(`GREEN`);
+    } catch (err) {
+      Embed.addField(`Input`, `\`\`\`js\n${Input.length > 1024 ? `Input is too long to display.` : Input}\`\`\``)
         .addField(`Output`, `\`\`\`js\n${err.length > 1024 ? `Output is too long to display.` : Input}\`\`\``)
-        .setColor(`GREEN`)
+        .setColor(`GREEN`);
     }
 
-    message.channel.send(Embed)
+    message.channel.send(Embed);
   } else {
-    message.channel.send(`Token was contained in input. Nice try noob.`)
+    message.channel.send(`Token was contained in input. Nice try noob.`);
   }
 },
 
@@ -49,4 +46,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 1.5
-  }
+};

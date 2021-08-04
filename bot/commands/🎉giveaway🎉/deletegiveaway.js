@@ -1,25 +1,27 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (Bot, message, Arguments) => {
-  const ID = Arguments[0]
+exports.run = async (bot, message, args, command, data) => {
+  const ID = args[0];
 
   if (!ID || isNaN(ID)) {
-    return message.lineReply(`${Bot.Config.Bot.Emojis.error} | Please provide a valid message ID.`)
+    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid message ID.`);
   }
 
-  const Giveaway = Bot.GiveawayManager.giveaways.find((giveaway) => giveaway.messageID === Arguments[0])
+  const Giveaway = bot.GiveawayManager.giveaways.find(giveaway => giveaway.messageID === args[0]);
 
   if (!Giveaway) {
-    return message.lineReply(`I couldn't find a giveaway with that message ID.`)
+    return message.reply(`I couldn't find a giveaway with that message ID.`);
   }
 
-  Bot.GiveawayManager.delete(Giveaway.messageID).then(() => {
-    message.lineReplyNoMention(`Giveaway successfully deleted!`)
-  }).catch((err) => {
-    console.error(err).then(() => {
-      message.lineReplyNoMention(`An error occured with Ch1llBlox! Please try this command again.`)
+  bot.GiveawayManager.delete(Giveaway.messageID)
+    .then(() => {
+      message.reply(`Giveaway successfully deleted!`);
     })
-  })
+    .catch(err => {
+      console.error(err).then(() => {
+        message.reply(`An error occured with Ch1llBlox! Please try this command again.`);
+      });
+    });
 },
 
   exports.config = {
@@ -32,4 +34,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [`MANAGE_MESSAGES`],
     enabled: true,
     cooldown: 10
-  }
+};

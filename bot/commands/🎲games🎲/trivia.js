@@ -1,29 +1,27 @@
 const Discord = require(`discord.js`);
-const fetch = require(`node-fetch`)
-const path = require(`path`)
+const fetch = require(`node-fetch`);
+const path = require(`path`);
 const Canvas = require(`canvas`);
 
 const GenerateQuestion = async () => {
   fetch(`https://jservice.io/api/random`)
     .then(response => response.json())
-    .then(body => {
-      return body.body
-    })
-}
+    .then(body => body.body);
+};
 
-const WrapText = async (ctx, text, maxWidth) => {
-  return new Promise(resolve => {
-    if (ctx.measureText(text).width < maxWidth){
+const WrapText = async (ctx, text, maxWidth) =>
+  new Promise(resolve => {
+    if (ctx.measureText(text).width < maxWidth) {
       return resolve([text]);
     }
 
-    if (ctx.measureText('W').width > maxWidth){
+    if (ctx.measureText("W").width > maxWidth) {
       return resolve(null);
     }
 
-    const words = text.split(' ');
+    const words = text.split(" ");
     const lines = [];
-    let line = '';
+    let line = "";
     while (words.length > 0) {
       let split = false;
       while (ctx.measureText(words[0]).width >= maxWidth) {
@@ -41,96 +39,95 @@ const WrapText = async (ctx, text, maxWidth) => {
         line += `${words.shift()} `;
       } else {
         lines.push(line.trim());
-        line = '';
+        line = "";
       }
       if (words.length === 0) lines.push(line.trim());
     }
 
     return resolve(lines);
   });
-}
 
-const GenerateClueCard = async (Question) => {
-  const canva = Canvas.createCanvas(1280, 720)
-  const ctx = canva.getContext(`2d`)
+const GenerateClueCard = async Question => {
+  const canva = Canvas.createCanvas(1280, 720);
+  const ctx = canva.getContext(`2d`);
 
-  ctx.fillStyle = `#4169e1`
-  ctx.fillRect(0, 0, canva.width, canva.height)
-  ctx.textAlign = `center`
-  ctx.textBaseline = `top`
-  ctx.fillStyle = `top`
-  ctx.fillStyle = `white`
-  ctx.font = `900px`
+  ctx.fillStyle = `#4169e1`;
+  ctx.fillRect(0, 0, canva.width, canva.height);
+  ctx.textAlign = `center`;
+  ctx.textBaseline = `top`;
+  ctx.fillStyle = `top`;
+  ctx.fillStyle = `white`;
+  ctx.font = `900px`;
 
-  const Lines = WrapText(ctx, Question.toUpperCase(), 813)
-  const TopMost = (canva.height / 2) - (((Lines.length * 52) /2) + ((20 * (Lines.length - 1)) / 2))
+  const Lines = WrapText(ctx, Question.toUpperCase(),
 
-  for (let i = 0; i < Lines.length; i++){
-    const Height = TopMost + ((52 + 20) * i)
+   813);
+  const TopMost = canva.height / 2 - ((Lines.length * 52) / 2 + (20 * (Lines.length - 1)) / 2);
 
-    ctx.fillStyle = `black`
-    ctx.fillText(Lines[i], (canva.width / 2) + 6, Height + 6)
-    ctx.fillStyle = `white`
-    ctx.fillText(Lines[i], canva.width / 2, Height)
+  for (let i = 0; i < Lines.length; i++) {
+    const Height = TopMost + (52 + 20) * i;
+
+    ctx.fillStyle = `black`;
+    ctx.fillText(Lines[i], canva.width / 2 + 6, Height + 6);
+    ctx.fillStyle = `white`;
+    ctx.fillText(Lines[i], canva.width / 2, Height);
   }
 
-  return canva.toBuffer()
-}
+  return canva.toBuffer();
+};
 
-exports.run = async (Bot, message, Arguments) => {
-  const Channel = message.member.voice.channel
-  var Connection
+exports.run = async (bot, message, args, command, data) => {
+  const Channel = message.member.voice.channel;
+  var Connection;
 
   try {
-    if (Channel){
-      Connection = message.guild ? await Channel.join() : null
+    if (Channel) {
+      Connection = message.guild ? await Channel.join() : null;
 
-      if (Connection){
-        Connection.play(path.join(__dirname, `..`, `..`, `assets`, `sounds`, `thinking.mp3`))
+      if (Connection) {
+        Connection.play(path.join(__dirname, `..`, `..`, `assets`, `sounds`, `thinking.mp3`));
       }
     }
-  } catch(err){
-    console.error(err)
+  } catch (err) {
+    console.error(err);
 
-    return message.lineReply(`Uh oh! Something went wrong. Please try again later or leave the VC.`)
+    return message.reply(`Uh oh! Something went wrong. Please try again later or leave the VC.`);
   }
 
-  const Question = await GenerateQuestion()
-  const ClueCard = await GenerateClueCard(Question.question.toString().replaceAll(/<\/?i>/gi, ``))
+  const Question = await GenerateQuestion();
+  const ClueCard = await GenerateClueCard(Question.question.toString().replaceAll(/<\/?i>/gi, ``));
 
   const Category = new Discord.MessageEmbed()
     .setTitle(Question.category.title.toUpperCase())
     .setDescription(`The category is ${Question.category.title.toUpperCase()}!`)
-    .setFooter(`You have 120 seconds to anwser. • ${Bot.Config.Bot.Embed.Footer}`)
+    .setFooter(`You have 120 seconds to anwser. • ${bot.config.bot.Embed.Footer}`)
     .setImage(ClueCard)
-    .setColor(Bot.Config.Bot.Embed.Color)
+    .setColor(bot.config.bot.Embed.Color);
 
-  await message.lineReplyNoMention(Category)
+  await message.reply(Category);
 
   const Messages = await message.channel.awaitMessages(response => response.author.id === message.author.id, {
     max: 1,
     time: 120 * 1000
-  })
+});
 
-  if (Connection){
-    Connection.dispatcher.end()
-    Channel.leave()
+  if (Connection) {
+    Connection.dispatcher.end();
+    Channel.leave();
   }
 
-  const Answer = Question.answer.toString().replaceAll(/<\/?i>/gi, `*`)
+  const Answer = Question.answer.toString().replaceAll(/<\/?i>/gi, `*`);
 
-  if (!Messages.size){
-    return message.lineReply(`**Times up! the answer was ${Answer}.**`)
+  if (!Messages.size) {
+    return message.reply(`**Times up! the answer was ${Answer}.**`);
   }
 
-  const Won = Messages
-    .first().content
-    .toLowerCase() === Answer.toLocaleLowerCase()
+  const Won = Messages.first().content.toLowerCase() === Answer.toLocaleLowerCase();
 
-  if (Won){
-    return message.lineReply(`🎉 Correct!`)
+  if (Won) {
+    return message.reply(`🎉 Correct!`);
   } else {
-    return message.lineReply(`❌ Wrong! The answer was ${Answer}.`)
+    return message.reply(`❌ Wrong! The answer was ${Answer}.`);
   }
 },
 
@@ -144,4 +141,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: [],
     enabled: true,
     cooldown: 60
-  }
+};

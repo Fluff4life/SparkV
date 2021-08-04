@@ -1,35 +1,36 @@
-const Express = require("express")
+const Express = require("express");
 
-const Router = Express.Router()
+const Router = Express.Router();
 
-const CheckAuth = require("../utils/CheckAuth")
-const Render = require("../utils/Render")
+const CheckAuth = require("../utils/CheckAuth");
+const Render = require("../utils/Render");
 
 Router.get("/", async (request, response) => {
-  response.redirect("/404?reason=user_not_found")
-})
+  response.redirect("/404?reason=user_not_found");
+});
 
 Router.get("/:userID", async (request, response) => {
   if (!request.params.userID) {
-    response.redirect("404?reason=user_not_found")
+    response.redirect("404?reason=user_not_found");
   }
 
-  response.redirect(`/users/${request.params.userID}/profile`)
-})
+  response.redirect(`/users/${request.params.userID}/profile`);
+});
 
 Router.get("/:userID/profile", async (request, response) => {
   if (!request.params.userID) {
-    response.redirect("404?reason=invalid_arguments")
+    response.redirect("404?reason=invalid_args");
   }
 
-  let User = await global.Database.get(`WebsiteData.Users.${request.params.userID}`)
+  let User = await global.Database.get(`WebsiteData.Users.${request.params.userID}`);
 
   if (User) {
     Render(response, request, "profile.ejs", {
       head: {
         SiteTitle: `Ch1ll | ${User.username} | Profile`,
         SiteDescription: `${User.username} is a user enjoying the benifits of using KingCh1ll's services. Including Ch1llBlox!`,
-        SiteKeywords: "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
+        SiteKeywords:
+          "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
       },
 
       // Navigation //
@@ -50,7 +51,7 @@ Router.get("/:userID/profile", async (request, response) => {
                 icon: "fas fa-openbook",
                 link: "/about",
               },
-            }
+            },
           },
 
           services: {
@@ -62,7 +63,7 @@ Router.get("/:userID/profile", async (request, response) => {
               hyperlink1: {
                 name: "Home",
                 icon: "fas fa-home",
-                link: "/home",
+                link: "/",
               },
 
               hyperlink2: {
@@ -75,8 +76,8 @@ Router.get("/:userID/profile", async (request, response) => {
                 name: "Ch1ll Studios",
                 icon: "fas fa-snowflake",
                 link: "/ch1llstudios",
-              }
-            }
+              },
+            },
           },
 
           support: {
@@ -90,7 +91,7 @@ Router.get("/:userID/profile", async (request, response) => {
                 icon: "fas fa-home",
                 link: "#top",
               },
-            }
+            },
           },
         },
       },
@@ -99,12 +100,13 @@ Router.get("/:userID/profile", async (request, response) => {
 
       // Footer //
       footer: {
-        Description: "Ch1llBlox is a multipurpose free Discord Bot created by KingCh1ll. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages."
+        Description:
+          "Ch1llBlox is a multipurpose free Discord bot created by KingCh1ll. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages.",
       },
     });
   } else {
-    response.redirect("404?reason=404_not_found")
+    response.redirect("404?reason=404_not_found");
   }
-})
+});
 
-module.exports = Router
+module.exports = Router;

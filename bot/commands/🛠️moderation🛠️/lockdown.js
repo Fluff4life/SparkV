@@ -1,27 +1,27 @@
 const Discord = require("discord.js");
 
-exports.run = async (Bot, message, Arguments) => {
-  const Channels = message.guild.channels.cache.filter(channel => channel.type !== "category")
+exports.run = async (bot, message, args, command, data) => {
+  const Channels = message.guild.channels.cache.filter(channel => channel.type !== "category");
 
-  if (Arguments[0].toLowerCase() === "on"){
+  if (args[0].toLowerCase() === "on") {
     Channels.forEach(Channel => {
       Channel.updateOverwrite(message.guild.roles.everyone, {
-        SEND_MESSAGES: false
-      })
-    })
+        SEND_MESSAGES: false,
+      });
+    });
 
-    message.lineReplyNoMention("🔒 Server is now locked. Users can no longer chat.")
-  } else if (Arguments[0].toLowerCase() === "off"){
+    message.reply("🔒 Server is now locked. Users can no longer chat.");
+  } else if (args[0].toLowerCase() === "off") {
     Channels.forEach(Channel => {
       Channel.updateOverwrite(message.guild.roles.everyone, {
-        SEND_MESSAGES: true
-      })
-    })
+        SEND_MESSAGES: true,
+      });
+    });
 
-    message.lineReplyNoMention("🔒 Server is now unlocked. Users can now chat.")
+    message.reply("🔒 Server is now unlocked. Users can now chat.");
   }
-},
- 
+};
+
   exports.config = {
     name: "Lockdown",
     description: "I'll lock the server.",
@@ -32,4 +32,4 @@ exports.run = async (Bot, message, Arguments) => {
     member_permissions: ["MANAGE_CHANNELS"],
     enabled: true,
     cooldown: 5
-  }
+};

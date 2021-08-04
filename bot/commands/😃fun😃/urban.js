@@ -1,33 +1,36 @@
 const Discord = require(`discord.js`);
 const urban = require(`urban`);
 
-exports.run = async (Bot, message, args) => {
+exports.run = async (bot, message, args, command, data) => {
   if (args.length < 1) {
     const ErrorEmbed = new Discord.MessageEmbed()
-      .setTitle(`${Bot.Config.Bot.Emojis.error} | Invalid command usage!`)
+      .setTitle(`${bot.config.bot.Emojis.error} | Invalid command usage!`)
       .setDescription(`Please provide a word to urban!`)
-      .setFooter(`Try ^Urban [Word] • ${Bot.Config.Bot.Embed.Footer}`);
+      .setFooter(`Try ^Urban [Word] • ${bot.config.bot.Embed.Footer}`);
 
-    return await message.lineReplyNoMention(ErrorEmbed).then(m => m.delete({ timeout: 5000 }))
+    return await message.reply(ErrorEmbed).then(m => m.delete({ timeout: 5000 }));
   }
 
   let word = args.join(` `);
 
   urban(word).first(async json => {
     if (!json) {
-      return message.lineReply(`That word doesn't exist!`).then(m => m.delete({ timeout: 5000 }))
+      return message.reply(`That word doesn't exist!`).then(m => m.delete({ timeout: 5000 }));
     }
 
     const UrbanEmbed = new Discord.MessageEmbed()
-      .setTitle(`${Bot.Config.Bot.Emojis.success} | Definition of ${json.word}`)
+      .setTitle(`${bot.config.bot.Emojis.success} | Definition of ${json.word}`)
       .setDescription(json.definition)
       .setThumbnail(`https://i.imgur.com/VFXr0ID.jpg`)
       .addField(`Example`, json.example)
       .setURL(json.permalink)
-      .setFooter(`👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${Bot.Config.Bot.Embed.Footer}`, Bot.user.displayAvatarURL())
-      .setColor(Bot.Config.Bot.Embed.Color);
+      .setFooter(
+        `👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${bot.config.bot.Embed.Footer}`,
+        bot.user.displayAvatarURL()
+      )
+      .setColor(bot.config.bot.Embed.Color);
 
-    return await message.lineReplyNoMention(UrbanEmbed);
+    return await message.reply(UrbanEmbed);
   });
 },
 
@@ -41,4 +44,4 @@ exports.run = async (Bot, message, args) => {
     member_permissions: [],
     enabled: true,
     cooldown: 3
-  }
+};

@@ -9,7 +9,7 @@
   <% } %>
 
   <div class="px-4 py-5 my-5 text-center">
-      <img class="d-block mx-auto mb-4" src="<%- BrandLogo %>" alt="Logo" width="150" height="150" style="margin-top: 30px;">
+      <img class="d-block mx-auto mb-4" src="<%- BrandLogo %>" alt="Logo" width="<%- BrandLogoWidth || "36" %>" height="<%- BrandLogoHeight || "36" %>" style="margin-top: 30px;">
       <h1 class="display-5 fw-bold" style="color: var(--text-color)"><%- BrandName %></h1>
       <div class="col-lg-6 mx-auto">
         <% if (TypeText) { %>
