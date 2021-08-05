@@ -74,7 +74,7 @@
     "weather-js": "^2.0.0",
     "ws": "^8.0.0",
     "yargs-parser": "^20.2.9",
-    "ytdl-core": "^4.9.0",
+    "ytdl-core": "^4.9.1",
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
