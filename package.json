@@ -86,7 +86,7 @@
     "ejs-lint": "^1.2.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-import": "^2.24.0",
     "eslint-plugin-prettier": "^3.4.0",
     "npm": "^7.20.5",
     "prettier": "2.3.2"
