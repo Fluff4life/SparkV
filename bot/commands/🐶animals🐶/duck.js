@@ -31,7 +31,7 @@ exports.run = async (bot, message) => {
     description: "Quack :D",
     aliases: ["ducc", "cuteduck"],
     usage: "",
-    category: "🐶animals🐶",
+    category: "🐶Animals🐶",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

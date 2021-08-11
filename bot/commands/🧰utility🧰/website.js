@@ -9,7 +9,7 @@ exports.run = async (bot, message) => {
     description: "I'll send my website!",
     aliases: ["web"],
     usage: "",
-    category: "🧰utility🧰",
+    category: "🧰Utility🧰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

@@ -56,18 +56,17 @@ exports.run = async (bot, message) => {
     });
   }
 
-  const AntiURL = await bot.dashboard.getVal(message.guild.id, `removelinks`);
+  const AntiURL = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeLinks;
+  // Await bot.dashboard.getVal(message.guild.id, `removelinks`);
 
-  if (!AntiURL === `Disabled`) {
+  if (AntiURL === true) {
     if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
-      if (AntiURL === `Enabled`) {
-        try {
-          message.delete();
-        } catch (err) {
-          message
-            .reply(bot.config.bot.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
-            .then(m => m.delete({ timeout: 1000 }));
-        }
+      try {
+        message.delete();
+      } catch (err) {
+        message
+          .reply(bot.config.bot.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
+          .then(m => m.delete({ timeout: 1000 }));
       }
     }
 
@@ -76,9 +75,9 @@ exports.run = async (bot, message) => {
       .then(m => m.delete({ timeout: 1000 }));
   }
 
-  const AntiSwear = await bot.dashboard.getVal(message.guild.id, `removebadwords`);
+  const AntiSwear = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeProfanity;
 
-  if (AntiSwear === `Enabled`) {
+  if (AntiSwear === true) {
     if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
       AntiSwearPackage(bot, message, {
         warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
@@ -86,24 +85,24 @@ exports.run = async (bot, message) => {
         ignoreWord: [`hello`],
         muteCount: 3,
         kickCount: 6,
-        banCount: 12,
+        banCount: 12
       });
     }
   }
 
-  const AntiSpam = await bot.dashboard.getVal(message.guild.id, `removerepeatedtext`);
+  const AntiSpam = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeDuplicateText;
 
-  if (AntiSpam === `Enabled`) {
+  if (AntiSpam === true) {
     if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
       bot.AntiSpam.message(message);
     }
   }
 
-  const Leveling = await bot.dashboard.getVal(message.guild.id, `leveling`);
+  const Leveling = bot.config.Debug.Enabled === true ? false : data.guild.settings.leveling.enabled;
 
-  if (Leveling === `Enabled`) {
-    let MaxXP = await bot.dashboard.getVal(message.guild.id, `leveling_maxxp`);
-    let MinXP = await bot.dashboard.getVal(message.guild.id, `leveling_minxp`);
+  if (Leveling === true) {
+    let MaxXP = data.guild.settings.automod.leveling.max;
+    let MinXP = data.guild.settings.automod.leveling.min;
 
     if (isNaN(MaxXP)) {
       MaxXP = 25;
@@ -128,12 +127,16 @@ exports.run = async (bot, message) => {
     }
   }
 
-  const Prefix = bot.config.Debug.Enabled === true ? "?" : await bot.dashboard.getVal(message.guild.id, "Prefix");
-  const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
+  const Prefix = bot.config.Debug.Enabled === true ? "^^" : data.guild.settings.prefix;
+  const ChatBot = bot.config.Debug.Enabled === true ? null : data.guild.settings.chatbot;
 
   if (!message.content.startsWith(Prefix)) {
+    if (!ChatBot) {
+      return;
+    }
+
     if (ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(message, false);
+      return ActivateChatBot(bot, message, false);
     }
   }
 
@@ -149,18 +152,18 @@ exports.run = async (bot, message) => {
     if (commandfile) {
       return HandleCommand(bot, message, args, command, data, commandfile);
     } else {
-      const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
+      const ChatBot = bot.config.Debug.Enabled === true ? true : data.guild.settings.chatbot;
 
       if (ChatBot.toLowerCase() === `mention` && message.channel.type === "text") {
-        return ActivateChatBot(message, true);
+        return ActivateChatBot(bot, message, true);
       }
     }
   } else {
-    const Prefix = await bot.dashboard.getVal(message.guild.id, `Prefix`);
-    const ChatBot = await bot.dashboard.getVal(message.guild.id, `ChatBot`);
+    const Prefix = bot.config.Debug.Enabled === true ? "^^" : data.guild.settings.prefix;
+    const ChatBot = bot.config.Debug.Enabled === true ? true : data.guild.settings.chatbot;
 
     if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(message, false);
+      return ActivateChatBot(bot, message, false);
     }
 
     if (!message.content.startsWith(Prefix)) {
@@ -220,10 +223,10 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
     );
   }
 
-  const MusicEnabled = await bot.dashboard.getVal(message.guild.id, `MusicEnabled`);
-  const Leveling = await bot.dashboard.getVal(message.guild.id, `leveling`);
+  const MusicEnabled = bot.config.Debug.Enabled === true ? "Enabled" : await bot.dashboard.getVal(message.guild.id, `MusicEnabled`);
+  const Leveling = bot.config.Debug.Enabled === true ? "Enabled" : await bot.dashboard.getVal(message.guild.id, `leveling`);
 
-  if (commandfile.config.category === `🎵music🎵` && MusicEnabled === `Disabled`) {
+  if (commandfile.config.category === `🎵Music🎵` && MusicEnabled === `Disabled`) {
     return message.reply(
       `${bot.config.bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`,
     );
@@ -299,10 +302,10 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
 
   try {
     await commandfile.run(bot, message, args, command, data, data).then(async () => {
-      const DeleteUsage = await bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
+      const DeleteUsage = bot.config.Debug.Enabled === true ? "Disabled" : await bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
 
       if (DeleteUsage === `Enabled`) {
-        message.delete().catch(() => {});
+        message.delete().catch(() => { });
       }
     });
 
@@ -310,6 +313,8 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
       bot.StatClient.postCommand(commandfile.config.name, message.author.id);
     }
   } catch (err) {
+    console.error(err);
+
     const AnnonymousUser = `Annonymous`;
 
     configureScope(scope => {
@@ -330,7 +335,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
   bot.database.createLog(message, data);
 }
 
-async function ActivateChatBot(message, wasMentioned) {
+async function ActivateChatBot(bot, message, wasMentioned) {
   message.channel.startTyping();
 
   var SlicedMessage;

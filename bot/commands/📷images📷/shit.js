@@ -24,7 +24,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Ewwwwww!",
     aliases: ["crap"],
     usage: "<user or self>",
-    category: "📷images📷",
+    category: "📷Images📷",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

@@ -14,7 +14,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I will reverse any text you give me lol.`,
     aliases: [`talk`],
     usage: `<message>`,
-    category: `😃fun😃`,
+    category: `😃Fun😃`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
     member_permissions: [],
     enabled: true,

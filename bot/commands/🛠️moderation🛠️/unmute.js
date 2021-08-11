@@ -86,7 +86,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I'll unmute someone who was muted previously.`,
     aliases: [],
     usage: `<user> <reason>`,
-    category: `🛠️moderation🛠️`,
+    category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_CHANNELS`],
     member_permissions: [`MANAGE_ROLES`],
     enabled: true,

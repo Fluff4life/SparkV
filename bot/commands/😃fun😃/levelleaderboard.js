@@ -25,7 +25,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "View the server's Level leaderboard.",
     aliases: ["levelboard", "llb"],
     usage: "",
-    category: "💫leveling💫",
+    category: "😃Fun😃",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     member_permissions: [],
     enabled: true,

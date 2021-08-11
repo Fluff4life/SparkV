@@ -34,7 +34,7 @@ exports.run = async (bot, message, args, command, data) => {
       "Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse.",
     aliases: ["setfilter"],
     usage: "<Filter>",
-    category: "🎵music🎵",
+    category: "🎵Music🎵",
     bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
     member_permissions: ["ADMINISTRATOR"],
     enabled: true,

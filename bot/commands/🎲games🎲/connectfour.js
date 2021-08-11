@@ -203,7 +203,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Play a game of ConnectFour with me or mention someone to play with!`,
     aliases: [`cf`],
     usage: `<optional user>`,
-    category: `🎲games🎲`,
+    category: `🎲Games🎲`,
     bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

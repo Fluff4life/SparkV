@@ -29,7 +29,7 @@ exports.run = async (bot, message) => {
     description: `Look at everyone who helped make Ch1llBlox!`,
     aliases: [],
     usage: ``,
-    category: `🧰utility🧰`,
+    category: `🧰Utility🧰`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

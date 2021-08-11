@@ -44,7 +44,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Skip to the next song in the queue.`,
     aliases: [],
     usage: ``,
-    category: `🎵music🎵`,
+    category: `🎵Music🎵`,
     bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`, `VIEW_CHANNEL`, `CONNECT`, `SPEAK`],
     member_permissions: [],
     enabled: true,

@@ -29,15 +29,6 @@ console.log(require("chalk").grey("----------------------------------------"));
 
 // Functions //
 async function Start() {
-  config({
-    path: `${__dirname}/.env`,
-  });
-
-  init({
-    dsn: process.env.SentryToken,
-    release: `${PackageInfo.name}@${PackageInfo.version}`,
-  });
-
   fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
     if (err) return Logger(err, "error");
 
@@ -47,6 +38,15 @@ async function Start() {
 
       process.on(EventName, (...args) => FileEvent.run(...args));
     });
+  });
+
+  config({
+    path: `${__dirname}/.env`,
+  });
+
+  init({
+    dsn: process.env.SentryToken,
+    release: `${PackageInfo.name}@${PackageInfo.version}`,
   });
 
   await mongoose.connect(process.env.mongooseURL, {

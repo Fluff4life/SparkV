@@ -9,22 +9,6 @@ exports.run = async (bot, message, args, command, data) => {
 
   try {
     if (args[0].toLowerCase() === `all`) {
-      const VerificationEmbed = new Discord.MessageEmbed()
-        .setTitle(`Confirmation Prompt`)
-        .setDescription(
-          `Are you sure you want to do this?\nYou will be deleting ***ALL*** the messages in this channel.`,
-        )
-        .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.bot.Embed.Footer}`);
-
-      const VerificationMessage = await message.reply(VerificationEmbed);
-      const Emoji = await bot.PromptMessage(
-        VerificationMessage,
-        message.author,
-        [bot.config.bot.Emojis.success, bot.config.bot.Emojis.error],
-        60,
-      );
-
-      if (Emoji === bot.config.bot.Emojis.success) {
         // Yes
         message.delete();
 
@@ -44,13 +28,8 @@ exports.run = async (bot, message, args, command, data) => {
         message.delete();
         message.channel.bulkDelete(messages, true);
         message.reply(`Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }));
-      } else if (emoji === bot.config.bot.Emojis.error) {
-        message.delete();
-
-        message.reply(`${bot.config.bot.Emojis.error} | Clear canceled.`).then(m => m.delete({ timeout: 10000 }));
-      }
     } else {
-      const User = bot.GetMember(message, args);
+      const User = message.mentions.members.first();
 
       if (User) {
         if (isNaN(args[1])) {
@@ -58,7 +37,9 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(`${bot.config.bot.Emojis.error} | That's not a number.`)
             .then(m => m.delete({ timeout: 5000 }));
         }
-      } else if (isNaN(args[0])) {
+      }
+
+      if (isNaN(parseInt(args[0])) === true) {
         return message
           .reply(`${bot.config.bot.Emojis.error} | That's not a number.`)
           .then(m => m.delete({ timeout: 5000 }));
@@ -104,7 +85,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I'll delete messages for you!`,
     aliases: [`purge`, `clr`],
     usage: `<all or number or user> <if user then number>`,
-    category: `🛠️moderation🛠️`,
+    category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
     member_permissions: [`MANAGE_MESSAGES`],
     enabled: true,

@@ -23,7 +23,7 @@ exports.config = {
     description: "I will say whatever you want me to say.",
     aliases: ["thought"],
     usage: "",
-    category: "😃fun😃",
+    category: "😃Fun😃",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
     member_permissions: [],
     enabled: true,

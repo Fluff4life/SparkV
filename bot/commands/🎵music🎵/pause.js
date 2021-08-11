@@ -30,7 +30,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Pauses the current song playing.`,
     aliases: [`softstop`],
     usage: ``,
-    category: `🎵music🎵`,
+    category: `🎵Music🎵`,
     bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`, `VIEW_CHANNEL`, `CONNECT`, `SPEAK`],
     member_permissions: [],
     enabled: true,

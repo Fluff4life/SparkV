@@ -1,4 +1,4 @@
-const { Client, Collection, Intents } = require("discord.js");
+const { Client, Collection, Intents, Structures } = require("discord.js");
 const Statcord = require("statcord.js");
 
 const fs = require("fs");
@@ -6,14 +6,6 @@ const path = require("path");
 const util = require("util");
 
 const AntiSpam = require("discord-anti-spam");
-const moment = require("moment");
-
-moment.relativeTimeThreshold("s", 60);
-moment.relativeTimeThreshold("ss", 5);
-moment.relativeTimeThreshold("m", 60);
-moment.relativeTimeThreshold("h", 60);
-moment.relativeTimeThreshold("d", 24);
-moment.relativeTimeThreshold("M", 12);
 
 const botlists = require("../../modules/dependencies/botlists");
 const Distube = require("../../modules/dependencies/distubehandler");
@@ -41,7 +33,7 @@ class bot extends Client {
     this.MemberSchema = require("../../database/schemas/member");
     this.UserSchema = require("../../database/schemas/user");
 
-    // Commands
+    // Collections
     this.categories = new Collection();
     this.commands = new Collection();
     this.aliases = new Collection();

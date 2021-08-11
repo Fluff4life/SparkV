@@ -26,7 +26,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Beg for coins.",
     aliases: ["ask"],
     usage: "<optional user>",
-    category: "💰currency💰",
+    category: "💰Currency💰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

@@ -31,7 +31,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I'll grab the details of any game for you.`,
     aliases: [`gd`],
     usage: `<Game ID>`,
-    category: `⚫roblox⚫`,
+    category: `⚫Roblox⚫`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

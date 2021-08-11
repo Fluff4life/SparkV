@@ -20,7 +20,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Collect your daily ammount of Ch1llBucks!",
     aliases: [],
     usage: "",
-    category: "💰currency💰",
+    category: "💰Currency💰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

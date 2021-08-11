@@ -58,7 +58,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Starts a giveaway. Requires the permision MANAGE_MESSAGES.`,
     aliases: [`startg`],
     usage: `<channel> <duration> <winners> <prize>`,
-    category: `🎉giveaway🎉`,
+    category: `🤵Administration🤵`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [`MANAGE_MESSAGES`],
     enabled: true,

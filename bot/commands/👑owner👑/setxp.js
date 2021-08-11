@@ -31,7 +31,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Set XP.`,
     aliases: [],
     usage: `<Ammount>`,
-    category: `👑owner👑`,
+    category: `👑Owner👑`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
     member_permissions: [],
     enabled: true,

@@ -24,7 +24,7 @@ exports.run = async (bot, message) => {
     description: "I will get a useless fact! You're better off with the advice command...",
     aliases: ["uf"],
     usage: "",
-    category: "😃fun😃",
+    category: "😃Fun😃",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
     member_permissions: [],
     enabled: true,

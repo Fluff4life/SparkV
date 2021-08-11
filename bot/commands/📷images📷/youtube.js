@@ -35,7 +35,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `YouTube comment lol.`,
     aliases: [],
     usage: `<optional user> <text>`,
-    category: `📷images📷`,
+    category: `📷Images📷`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

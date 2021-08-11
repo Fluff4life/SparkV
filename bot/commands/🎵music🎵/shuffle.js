@@ -24,7 +24,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Shuffles the queue. Requires administartor to prevent abuse.`,
     aliases: [],
     usage: ``,
-    category: `🎵music🎵`,
+    category: `🎵Music🎵`,
     bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`, `VIEW_CHANNEL`, `CONNECT`, `SPEAK`],
     member_permissions: [`ADMINISTRATOR`],
     enabled: true,

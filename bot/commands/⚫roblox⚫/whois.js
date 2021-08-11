@@ -51,7 +51,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Ch1llBlox will look up any user and return information on that user.",
     aliases: ["who"],
     usage: "<username>",
-    category: "⚫roblox⚫",
+    category: "⚫Roblox⚫",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

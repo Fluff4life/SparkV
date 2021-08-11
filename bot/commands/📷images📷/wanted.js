@@ -23,7 +23,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Wanted sign.",
     aliases: ["colorful"],
     usage: "<optional user>",
-    category: "📷images📷",
+    category: "📷Images📷",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

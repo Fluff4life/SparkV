@@ -53,7 +53,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Withdraw your Ch1llBucks in your bank into your wallet.`,
     aliases: [`with`],
     usage: ``,
-    category: `💰currency💰`,
+    category: `💰Currency💰`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

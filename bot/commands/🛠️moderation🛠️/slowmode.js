@@ -30,7 +30,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I will set the channel's slowmode to anything you want.`,
     aliases: [`slow`],
     usage: `<ammount>`,
-    category: `🛠️moderation🛠️`,
+    category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`, `MANAGE_CHANNELS`],
     member_permissions: [`MANAGE_MESSAGES`],
     enabled: true,

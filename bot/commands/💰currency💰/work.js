@@ -8,7 +8,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Work for your job and earn some Ch1llBucks.",
     aliases: ["job"],
     usage: "",
-    category: "💰currency💰",
+    category: "💰Currency💰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

@@ -82,7 +82,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Is a user bothering you and keep coming back after you kick them? Using this command, they won\'t come back unless they are unbanned.`,
     aliases: [`pban`],
     usage: `<user> <optional reason>`,
-    category: `🛠️moderation🛠️`,
+    category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`, `BAN_MEMBERS`],
     member_permissions: [`BAN_MEMBERS`],
     enabled: true,

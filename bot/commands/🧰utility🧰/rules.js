@@ -51,7 +51,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Follow them lol.",
     aliases: ["TOS"],
     usage: "",
-    category: "🧰utility🧰",
+    category: "🧰Utility🧰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

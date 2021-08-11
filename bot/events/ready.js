@@ -1,4 +1,3 @@
-const botdash = require("botdash.pro");
 const Discord = require("discord.js");
 
 exports.run = async bot => {
@@ -66,8 +65,6 @@ exports.run = async bot => {
       type: "CUSTOM_STATUS",
     },
   });
-
-  bot.dashboard = new botdash.APIclient(process.env.dashapikey);
 
   if (bot.StatClient) {
     bot.StatClient.autopost();

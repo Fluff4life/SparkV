@@ -22,7 +22,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason.`,
     aliases: [],
     usage: `<optional reason>`,
-    category: `😃fun😃`,
+    category: `😃Fun😃`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

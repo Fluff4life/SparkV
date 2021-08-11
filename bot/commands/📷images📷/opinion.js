@@ -30,7 +30,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `lol`,
     aliases: [`nofact`],
     usage: `<text>`,
-    category: `📷images📷`,
+    category: `📷Images📷`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

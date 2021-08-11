@@ -39,16 +39,20 @@ const Schema = new mongoose.Schema({
         role: null,
       },
       automod: {
-        enabled: false,
+        removeLinks: false,
+        removeProfanity: false,
+        removeDuplicateText: false,
         ignored: [],
       },
+      leveling: {
+        enabled: false,
+        max: 25,
+        min: 5
+      },
+      chatbot: null,
       warnsInfractions: {
         kick: false,
         ban: false,
-      },
-      tickets: {
-        enabled: false,
-        category: null,
       },
       suggestions: false,
       modlogs: false,

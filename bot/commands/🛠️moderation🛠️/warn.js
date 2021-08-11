@@ -97,7 +97,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I will warn a user`,
     aliases: [`w`],
     usage: `<user> <optional reason>`,
-    category: `🛠️moderation🛠️`,
+    category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`, `ADD_REACTIONS`],
     member_permissions: [`MANAGE_MESSAGES`],
     enabled: true,

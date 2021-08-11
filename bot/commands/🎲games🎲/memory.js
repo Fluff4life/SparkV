@@ -56,7 +56,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Pratice your memory!`,
     aliases: [`memo`],
     usage: ``,
-    category: `🎲games🎲`,
+    category: `🎲Games🎲`,
     bot_permissions: [`SEND_MESSAGES`, `READ_MESSAGE_HISTORY`, `EMBED_LINKS`],
     member_permissions: [],
     enabled: true,

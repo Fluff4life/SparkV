@@ -33,7 +33,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Rerolls a giveaway. Requires the permision MANAGE_MESSAGES.",
     aliases: ["rerollg"],
     usage: "<MessageID>",
-    category: "🎉giveaway🎉",
+    category: "🤵Administration🤵",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: ["MANAGE_MESSAGES"],
     enabled: true,

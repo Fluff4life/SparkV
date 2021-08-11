@@ -24,7 +24,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Haha get in jail noob",
     aliases: ["lockup"],
     usage: "<optional user>",
-    category: "📷images📷",
+    category: "📷Images📷",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

@@ -1,14 +1,13 @@
 const Discord = require(`discord.js`);
+const fetch = require("node-fetch");
 
 function CreateID() {
   let text = `haha yes`;
   let codes = [`🥶`, `😰`, `😅`, `😓`, `⛄`, `💧`, `🧊`];
 
-  text = `${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${
-    codes[Math.floor(Math.random() * codes.length)]
-  } ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${
-    codes[Math.floor(Math.random() * codes.length)]
-  } ${codes[Math.floor(Math.random() * codes.length)]}`;
+  text = `${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]
+    } ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]} ${codes[Math.floor(Math.random() * codes.length)]
+    } ${codes[Math.floor(Math.random() * codes.length)]}`;
 
   return text;
 }
@@ -33,6 +32,45 @@ exports.run = async (bot, message, args, command, data) => {
       max: 1,
       maxMatches: 1,
       time: 200 * 1000,
+    });
+
+    fetch(`https://verify.eryn.io/api/user/${message.author.id}`).then(response => response.json()).then(body => {
+      if (body.status === "ok") {
+        const DiscordEmbed = new Discord.MessageEmbed()
+          .setTitle(`Ch1llBlox Verification`)
+          .setDescription(`You've been successfully verified as **${body.robloxUsername}**!`)
+          .setColor(`GREEN`)
+          .setFooter(bot.config.bot.Embed.Footer);
+      } else {
+        const DiscordEmbed = new Discord.MessageEmbed()
+        .setTitle(`Verification Prompt`)
+        .setDescription(`You've been successfully verified as **${body.robloxUsername}**!`)
+        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(bot.config.bot.Embed.Footer);
+      }
+    });
+
+
+    fetch(`https://verify.eryn.io/api/user/${message.author.id}`).then(response => response.json()).then(response => {
+      // Fetching the API and transforming the response into JSON if not already.
+      if (response.status === "ok") {
+        // Checking if the request's status is okay
+        const embed = new discord.MessageEmbed()
+          .setTitle("SeaLink Verification")
+          .setDescription(`You have been verified sucessfully under user: **${response.robloxUsername}**.`)
+
+          .setColor("#1f75ff")
+          .setFooter("SeaLink V2 | Dizzy Tech");
+        message.channel.send(embed);
+      } else {
+        const embed = new discord.MessageEmbed()
+          .setTitle("SeaLink Verification")
+          .setDescription("Your not linked with our API! please visit [this](https://discord.com/oauth2/authorize?client_id=240413107850182656&scope=identify+guilds&response_type=code&redirect_uri=https%3A%2F%2Fverify.eryn.io) website to link yourself and then try again.")
+
+          .setColor("#1f75ff")
+          .setFooter("SeaLink V2 | Dizzy Tech");
+        message.channel.send(embed);
+      }
     });
 
     let PromptEmbed = new Discord.MessageEmbed()
@@ -81,12 +119,6 @@ exports.run = async (bot, message, args, command, data) => {
               noblox.getStatus(id).then(async status => {
                 noblox.getBlurb(id).then(async about => {
                   if (about.includes(VerificationID) || status.includes(VerificationID)) {
-                    const Verified = new Discord.MessageEmbed()
-                      .setTitle(`Verification Prompt`)
-                      .setDescription(`You're verified!`)
-                      .setColor(`GREEN`)
-                      .setFooter(bot.config.bot.Embed.Footer);
-
                     message.reply(Verified);
 
                     const RocordRoleEnabled = await bot.dashboard.getVal(message.guild.id, `RocordVerifyRoleEnabled`);
@@ -164,9 +196,9 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Verify yourself! Only works when enabled on the dashboard.`,
     aliases: [`v`, `vir`],
     usage: `<username>`,
-    category: `⚫roblox⚫`,
+    category: `⚫Roblox⚫`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
     cooldown: 60
-};
+  };

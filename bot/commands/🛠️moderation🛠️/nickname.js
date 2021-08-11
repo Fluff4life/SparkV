@@ -73,7 +73,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I\'ll change a user\'s nickname to your choice.`,
     aliases: [`setnick`],
     usage: `<user> <reason>`,
-    category: `🛠️moderation🛠️`,
+    category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `CHANGE_NICKNAME`],
     member_permissions: [`CHANGE_NICKNAME`, `MANAGE_GUILD`],
     enabled: true,

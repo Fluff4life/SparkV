@@ -30,7 +30,7 @@ exports.run = async (bot, message) => {
     description: "I will send a cute cat! Cute, but dogs are cuter.",
     aliases: ["cutecat"],
     usage: "",
-    category: "🐶animals🐶",
+    category: "🐶Animals🐶",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

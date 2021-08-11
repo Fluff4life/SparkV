@@ -11,7 +11,7 @@ exports.run = async (bot, message) => {
     description: `Donate in the form of robux to help Ch1llBlox's developement. Every donation is really appreciated!`,
     aliases: [],
     usage: ``,
-    category: `🧰utility🧰`,
+    category: `🧰Utility🧰`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

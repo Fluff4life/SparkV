@@ -31,10 +31,10 @@ exports.run = async (bot, message) => {
 
   exports.config = {
     name: "Stats",
-    description: "Stats for nerds.",
+    description: "Ch1llBlox's stats.",
     aliases: ["ping", "pong", "up", "ram", "memory", "uptime", "latency", "data", "storage"],
     usage: "",
-    category: "🧰utility🧰",
+    category: "🧰Utility🧰",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

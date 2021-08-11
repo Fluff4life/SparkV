@@ -48,7 +48,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Checks for todays weather forcast in the location specified.`,
     aliases: [],
     usage: `<contry>`,
-    category: `😃fun😃`,
+    category: `😃Fun😃`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
     member_permissions: [],
     enabled: true,

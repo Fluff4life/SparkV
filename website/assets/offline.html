@@ -66,7 +66,7 @@
         }
 
         try {
-          const response = await fetch('.');
+          const response = await fetch("/");
 
           if (response.status >= 200 && response.status < 500) {
             return window.location.reload();

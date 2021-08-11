@@ -45,7 +45,7 @@ exports.run = async (bot, message) => {
     description: "I will send a animal pic from multible subreddits.",
     aliases: ["cuteanimal"],
     usage: "",
-    category: "🐶animals🐶",
+    category: "🐶Animals🐶",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,

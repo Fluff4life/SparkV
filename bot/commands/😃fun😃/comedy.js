@@ -2,13 +2,13 @@ const Discord = require("discord.js");
 const request = require("node-fetch");
 
 exports.run = async (bot, message) => {
-  request("https://www.reddit.com/r/dankmemes/top/.json")
+  request("https://www.reddit.com/r/ComedyCemetery/top/.json")
     .then(res => res.json())
     .then(json => {
       const post = json.data.children[Math.floor(Math.random() * json.data.children.length)].data;
 
       if (post.title.length > 256) {
-        const DankMemeEmbed = new Discord.MessageEmbed()
+        const ComedyCemeteryEmbed = new Discord.MessageEmbed()
           .setTitle("Title too long")
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
@@ -18,9 +18,9 @@ exports.run = async (bot, message) => {
           )
           .setColor(bot.config.bot.Embed.Color);
 
-        message.reply(DankMemeEmbed);
+        message.reply(ComedyCemeteryEmbed);
       } else {
-        const DankMemeEmbed = new Discord.MessageEmbed()
+        const ComedyCemeteryEmbed = new Discord.MessageEmbed()
           .setTitle(post.title)
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
@@ -30,17 +30,17 @@ exports.run = async (bot, message) => {
           )
           .setColor(bot.config.bot.Embed.Color);
 
-        message.reply(DankMemeEmbed);
+        message.reply(ComedyCemeteryEmbed);
       }
     });
 },
 
   exports.config = {
-    name: "DankMeme",
-    description: "Meme but SUPER dank. Only the funnyiest memes.",
-    aliases: ["dank"],
+    name: "Comedy",
+    description: "The place for comedy memes from r/ComedyCemetery!",
+    aliases: ["comedymeme"],
     usage: "",
-    category: "😂memes😂",
+    category: "😃Fun😃",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
     member_permissions: [],
     enabled: true,

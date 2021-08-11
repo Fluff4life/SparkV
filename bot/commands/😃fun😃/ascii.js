@@ -25,7 +25,7 @@ exports.run = async (bot, message, args, command, data) => {
       return message.reply(`Please provide text shorter than 200 characters.`);
     }
 
-    message.lineReplyNoMention(`\`\`\`${data}\`\`\``);
+    message.replyNoMention(`\`\`\`${data}\`\`\``);
   });
 };
 
@@ -34,7 +34,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `I will change any text to ascii!`,
     aliases: [],
     usage: `<text>`,
-    category: `😃fun😃`,
+    category: `😃Fun😃`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
     member_permissions: [],
     enabled: true,

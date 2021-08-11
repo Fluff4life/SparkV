@@ -39,7 +39,7 @@ exports.run = async (bot, message) => {
     description: "me_irl memes lol.",
     aliases: ["meirlmeme", "meirl"],
     usage: "",
-    category: "😂memes😂",
+    category: "😃Fun😃",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
     member_permissions: [],
     enabled: true,

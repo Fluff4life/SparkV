@@ -17,7 +17,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "I'll unlock the current channel.",
     aliases: [],
     usage: "",
-    category: "🛠️moderation🛠️",
+    category: "🛠️Moderation🛠️",
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_CHANNELS"],
     member_permissions: ["MANAGE_CHANNELS"],
     enabled: true,

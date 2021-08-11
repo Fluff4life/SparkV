@@ -78,7 +78,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Is a user bothering you? Using this command, you can kick them from the server!`,
     aliases: [],
     usage: `<user> <optional user>`,
-    category: `🛠️moderation🛠️`,
+    category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`, `KICK_MEMBERS`],
     member_permissions: [`KICK_MEMBERS`],
     enabled: true,

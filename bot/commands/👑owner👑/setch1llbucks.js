@@ -21,7 +21,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: `Set someone's Ch1llBucks!`,
     aliases: [],
     usage: `<user> <ammount>`,
-    category: `👑owner👑`,
+    category: `👑Owner👑`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,

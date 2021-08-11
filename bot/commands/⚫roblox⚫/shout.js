@@ -9,7 +9,7 @@ exports.run = async (bot, message, args, command, data) => {
 
   args = args.join(" ");
 
-  const RobloxGroupID = await bot.dashboard.getVal("GroupID");
+  const RobloxGroupID = 0;
 
   if (RobloxGroupID) {
     noblox

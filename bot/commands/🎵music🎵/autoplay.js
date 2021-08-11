@@ -24,7 +24,7 @@ exports.run = async (bot, message, args, command, data) => {
     description: "Sets AutoPlay. Requires Administrator.",
     aliases: ["autoplay"],
     usage: "<Toggle>",
-    category: "🎵music🎵",
+    category: "🎵Music🎵",
     bot_permissions: ["SEND_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS", "VIEW_CHANNEL", "CONNECT", "SPEAK"],
     member_permissions: ["ADMINISTRATOR"],
     enabled: true,
