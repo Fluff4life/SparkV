@@ -71,13 +71,21 @@ module.exports = async bot => {
   };
 
   bot.GetMember = async (message, args) => {
-    const member =
-      message.mentions.members.first() ||
-      message.guild.members.cache.get(args[0]) ||
-      message.guild.members.cache.find(
-        member => member.user.username === args.slice(0).join(" ") || member.user.username === args[0],
-      ) ||
-      message.member;
+    var member = message.mentions.members.first();
+    var checkCache = bot.users.cache.get(args.slice(0).join(" "));
+    var checkCache2 = bot.users.cache.get(args[0]);
+
+    if (message.mentions.members.first()) {
+      member = message.mentions.members.first();
+    } else if (message.guild.members.cache.get(args[0])) {
+      member = message.guild.members.cache.get(args[0]);
+    } else if (checkCache) {
+      member = checkCache;
+    } else if (checkCache2) {
+      member = checkCache2;
+    } else {
+      member = null;
+    }
 
     return member;
   };

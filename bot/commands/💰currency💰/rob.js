@@ -3,7 +3,7 @@ const Discord = require(`discord.js`);
 const results = [`WIN`, `LOST`];
 
 exports.run = async (bot, message, args, command, data) => {
-  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]);
+  const User = await bot.GetMember(message, args) || bot.users.cache.get(args[0]);
 
   if (!User) {
     return message.reply(`${bot.config.bot.Emojis.error} | Please say a person to rob.`);

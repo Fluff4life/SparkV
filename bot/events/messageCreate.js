@@ -127,7 +127,7 @@ exports.run = async (bot, message) => {
     }
   }
 
-  const Prefix = bot.config.Debug.Enabled === true ? "^^" : data.guild.settings.prefix;
+  const Prefix = bot.config.Debug.Enabled === true ? "_" : data.guild.settings.prefix;
   const ChatBot = bot.config.Debug.Enabled === true ? null : data.guild.settings.chatbot;
 
   if (!message.content.startsWith(Prefix)) {
@@ -159,11 +159,14 @@ exports.run = async (bot, message) => {
       }
     }
   } else {
-    const Prefix = bot.config.Debug.Enabled === true ? "^^" : data.guild.settings.prefix;
+    const Prefix = bot.config.Debug.Enabled === true ? "_" : data.guild.settings.prefix;
     const ChatBot = bot.config.Debug.Enabled === true ? true : data.guild.settings.chatbot;
 
-    if (!message.content.startsWith(Prefix) && ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(bot, message, false);
+    console.log(Prefix);
+    if (!message.content.startsWith(Prefix)) {
+      if (ChatBot.toLowerCase() === `message`) {
+        return ActivateChatBot(bot, message, false);
+      }
     }
 
     if (!message.content.startsWith(Prefix)) {
@@ -327,9 +330,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
       scope.setTag(`GuildType`, message.channel.type);
     });
 
-    message.reply(
-      `${bot.config.bot.Emojis.error} | Uh oh! Something went wrong with handling that command. If this happends again, please join my Support Server (^Invite) and report this error. Sorry!`,
-    );
+    message.reply(`${bot.config.bot.Emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,);
   }
 
   bot.database.createLog(message, data);

@@ -12,7 +12,6 @@ const mongoose = require("mongoose");
 // Varibles //
 const Config = require("./globalconfig.json");
 const Logger = require("./modules/logger");
-const logger = require("./modules/logger");
 const PackageInfo = require("./package.json");
 
 // Loading //
@@ -55,7 +54,7 @@ async function Start() {
   });
 
   mongoose.connection.on("error", console.error.bind(console, "Database connection error!"));
-  mongoose.connection.on("open", () => logger("DATABASE - ONLINE"));
+  mongoose.connection.on("open", () => Logger("DATABASE - ONLINE"));
 
   if (Config.Debug.Enabled === true) {
     Logger("DEBUG - ENABLED -> Some features may not work on this mode.");

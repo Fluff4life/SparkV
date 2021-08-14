@@ -70,6 +70,8 @@ async function StartWebsite() {
     require("newrelic");
   }
 
+  app.use(require("compression"));
+
   require("./utils/passport");
 
   app.use(session({

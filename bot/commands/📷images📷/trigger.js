@@ -1,11 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
-  const User = bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author;
-
-  if (bot.config.Debug.Enabled === true) {
-    return;
-  }
+  const User = await bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author;
 
   const canvacord = require("canvacord");
 

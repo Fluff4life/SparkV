@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
-  const User = bot.GetMember(message, args);
+  const User = await bot.GetMember(message, args);
 
   if (!args) {
     return message.reply(`${bot.config.bot.Emojis.error} | You need to mention someone to pay and how much.`);

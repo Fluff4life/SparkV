@@ -25,7 +25,6 @@ exports.run = async (bot, message) => {
     .setColor(bot.config.bot.Embed.Color)
     .setTimestamp();
 
-  BotMessage.edit("Loading complete!");
   BotMessage.edit(StatsEmbed);
 },
 

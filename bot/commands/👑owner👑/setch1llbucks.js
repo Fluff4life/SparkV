@@ -5,7 +5,7 @@ exports.run = async (bot, message, args, command, data) => {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
 
-  const User = bot.GetMember(message, args);
+  const User = await bot.GetMember(message, args);
 
   if (!User) {
     return message.reply;
