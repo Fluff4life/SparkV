@@ -23,7 +23,7 @@
   "author": "KingCh1ll",
   "license": "MIT",
   "engines": {
-    "node": "16.6",
+    "node": "16.6.x",
     "npm": "7.x"
   },
   "dependencies": {
