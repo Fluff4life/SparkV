@@ -1,12 +1,7 @@
-const { MessageEmbed } = require(`discord.js`);
+const { MessageEmbed, Permissions } = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
-  const UserToBan =
-    message.mentions.members.first() ||
-    message.guild.members.cache.get(args[0]) ||
-    message.guild.members.cache.find(
-      User => User.user.username.toLowerCase() === args.slice(0).join(` `) || User.user.username === args[0],
-    );
+  const UserToBan = bot.GetMember(message, args);
   const ReasonForBan = args.join(` `).slice(22) || `No reason provided.`;
 
   if (!args[0]) {
@@ -33,48 +28,28 @@ exports.run = async (bot, message, args, command, data) => {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-  const VerificationEmbed = new MessageEmbed()
-    .setTitle(`Convermination Prompt`)
-    .setDescription(`Are you sure you want to do this?`)
-    .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.bot.Embed.Footer}`);
+  message.delete();
+  UserToBan.send(
+    `${bot.config.bot.Emojis.error} | You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`,
+  ).catch(err => { });
 
-  const VerificationMessage = await message.reply(VerificationEmbed);
-  const Emoji = await bot.PromptMessage(
-    VerificationMessage,
-    message.author,
-    [bot.config.bot.Emojis.success, bot.config.bot.Emojis.error],
-    60,
-  );
+  UserToBan.ban({
+    reason: ReasonForBan,
+  }).catch(err => {
+    message.reply(`${bot.config.bot.Emojis.error} | Failed to ban. Error: ${err}`);
+  });
 
-  if (Emoji === bot.config.bot.Emojis.error) {
-    // Yes
-    message.delete();
-    UserToBan.send(
-      `${bot.config.bot.Emojis.error} | You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`,
-    ).catch(err => {});
+  const BanEmbed = new MessageEmbed()
+    .setTitle(`${bot.config.bot.Emojis.success} | Ban Command`)
+    .setDescription(`${bot.config.bot.Emojis.success} | Successfully Banned <@${UserToBan.id}>(${UserToBan.id})!`)
+    .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
+    .addField(`Moderator/Admin: `, `${message.author.tag}`)
+    .addField(`Reason: `, ReasonForBan)
+    .setFooter(`${bot.config.bot.prefix}Kick to kick a user. • ${bot.config.bot.Embed.Footer}`)
+    .setColor(bot.config.bot.Embed.Color)
+    .setTimestamp();
 
-    UserToBan.ban({
-      reason: ReasonForBan,
-    }).catch(err => {
-      message.reply(`${bot.config.bot.Emojis.error} | Failed to ban. Error: ${err}`);
-    });
-
-    const BanEmbed = new MessageEmbed()
-      .setTitle(`${bot.config.bot.Emojis.success} | Ban Command`)
-      .setDescription(`${bot.config.bot.Emojis.success} | Successfully Banned <@${UserToBan.id}>(${UserToBan.id})!`)
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
-      .addField(`Moderator/Admin: `, `${message.author.tag}`)
-      .addField(`Reason: `, ReasonForBan)
-      .setFooter(`${bot.config.bot.prefix}Kick to kick a user. • ${bot.config.bot.Embed.Footer}`)
-      .setColor(bot.config.bot.Embed.Color)
-      .setTimestamp();
-
-    message.reply(BanEmbed);
-  } else if (emoji === bot.config.bot.Emojis.error) {
-    message.delete();
-
-    message.reply(`${bot.config.bot.Emojis.error} | Ban canceled.`).then(m => m.delete({ timeout: 10000 }));
-  }
+  message.reply(BanEmbed);
 },
 
   exports.config = {
@@ -83,8 +58,8 @@ exports.run = async (bot, message, args, command, data) => {
     aliases: [`pban`],
     usage: `<user> <optional reason>`,
     category: `🛠️Moderation🛠️`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`, `BAN_MEMBERS`],
-    member_permissions: [`BAN_MEMBERS`],
+    bot_permissions: [Permissions.FLAGS.BAN_MEMBERS],
+    member_permissions: [Permissions.FLAGS.BAN_MEMBERS],
     enabled: true,
     cooldown: 5
-};
+  };

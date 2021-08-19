@@ -1,90 +1,78 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
-  if (!args) {
-    return message
-      .reply(`${bot.config.bot.Emojis.error} | Please provide args.`)
-      .then(m => m.delete({ timeout: 5000 }));
+  let messages;
+
+  if (args[0]) {
+    if (args[0] === "all") {
+      console.log(args[0]);
+      args[0] = 99;
+    } else if (args[0] === "bots") {
+
+    } else if (args[0] === "users") {
+      messages = await message.channel.messages.fetch({
+        limit: 99
+      }).then(msgs => msgs.filter(msg => !msg.author.bot));
+    }
   }
 
-  try {
-    if (args[0].toLowerCase() === `all`) {
-        // Yes
-        message.delete();
+  if (!isNaN(parseInt(args[0]))) {
+    console.log("1");
+    const msgCount = parseInt(args[0]) + 1;
 
-        var messages = await message.channel.messages.fetch({
-          limit: 100,
-        });
-
-        messages = messages.array();
-
-        if (messages.length > args[0]) {
-          messages.length = parseInt(args[0], 10);
-        }
-
-        messages = messages.filter(msg => !msg.pinned);
-        ++args[0];
-
-        message.delete();
-        message.channel.bulkDelete(messages, true);
-        message.reply(`Successfully cleared ${messages.length} messages!`).then(m => m.delete({ timeout: 5000 }));
-    } else {
-      const User = message.mentions.members.first();
-
-      if (User) {
-        if (isNaN(args[1])) {
-          return message
-            .reply(`${bot.config.bot.Emojis.error} | That's not a number.`)
-            .then(m => m.delete({ timeout: 5000 }));
-        }
-      }
-
-      if (isNaN(parseInt(args[0])) === true) {
-        return message
-          .reply(`${bot.config.bot.Emojis.error} | That's not a number.`)
-          .then(m => m.delete({ timeout: 5000 }));
-      }
-
-      var messages = await message.channel.messages.fetch({
-        limit: args[1] || args[0],
-      });
-
-      messages = messages.array();
-
-      if (User) {
-        messages = messages.filter(msg => msg.author.id === User.id);
-      }
-
-      if (messages.length > args[1]) {
-        messages.length = parseInt(args[1], 10);
-      }
-
-      messages = messages.filter(msg => !msg.pinned);
-      ++args[1];
-      message.delete();
-      message.channel.bulkDelete(messages, true);
-
-      if (User) {
-        message
-          .reply(
-            `${bot.config.bot.Emojis.success} | Successfully cleared ${messages.length} messages from ${User.tag}!`,
-          )
-          .then(m => m.delete({ timeout: 5000 }));
-      } else {
-        message
-          .reply(`${bot.config.bot.Emojis.success} | Successfully cleared ${messages.length} messages!`)
-          .then(m => m.delete({ timeout: 5000 }));
-      }
+    if (isNaN(msgCount)) {
+      return message.reply("The provided number of messages to delete isn't a valid number.");
+    } else if (msgCount < 1 || msgCount > 100) {
+      return message.reply("The provided number of messages to delete is either under 1 or above 99.");
     }
-  } catch {}
-  // Normally, it will catch an Unknown Message error. We prevent this by not logging that error because I am too lazy to find a better solution.
+
+    messages = await message.channel.messages.fetch({
+      limit: 99
+    }).then(msgs => {
+      // Filters
+      if (args[1] === "ignorePinned") {
+        return msgs.filter(msg => !msg.pinned);
+      } else if (args[1] === "usersOnly") {
+        return msgs.filter(msg => !msg.author.bot);
+      } else if (args[1] === "botsOnly") {
+        return msgs.filter(msg => msg.author.bot);
+      }
+
+      return msgs;
+    });
+
+    message.channel.bulkDelete(messages).catch(err => {
+      console.error(err, "1");
+
+      return message.channel.send("Uh oh! An error occured while trying to delete messages in this channel. Please check my permissions and try again.");
+    });
+  } else if (messages) {
+    console.log("2");
+    message.delete();
+
+    if (args[1] && !args[1] === "ignorePinned") {
+      messages = messages.filter(msg => !msg.pinned);
+    }
+
+    message.channel.bulkDelete(messages).catch(err => {
+      console.error(err, "2");
+
+      return message.channel.send("Uh oh! An error occured while trying to delete messages in this channel. Please check my permissions and try again.");
+    });
+  } else {
+    return message.channel.send("Uh oh! An error occured while trying to delete messages in this channel. Please check my permissions and try again.");
+  }
+
+  message.channel.send(`Successfully cleared **${messages.length}** messages!`).then(msg => {
+    setTimeout(() => msg.delete(), 5 * 1000);
+  });
 },
 
   exports.config = {
     name: `Clear`,
     description: `I'll delete messages for you!`,
     aliases: [`purge`, `clr`],
-    usage: `<all or number or user> <if user then number>`,
+    usage: `<all | users | bots> <filter (ignorePinned)>`,
     category: `🛠️Moderation🛠️`,
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
     member_permissions: [`MANAGE_MESSAGES`],

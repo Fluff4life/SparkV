@@ -1,21 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports = async bot => {
-  bot.MSToTime = ms => {
-    let RoundNumber = ms > 0 ? Math.floor : Math.ceil;
-    let Days = RoundNumber(ms / 86400000);
-    let Hours = RoundNumber(ms / 3600000) % 24;
-    let Mins = RoundNumber(ms / 60000) % 60;
-    let Secs = RoundNumber(ms / 1000) % 60;
-
-    var time = Days > 0 ? `${Days} Day${Days === 1 ? "" : "s"}, ` : "";
-    time += Hours > 0 ? `${Hours} Hour${Hours === 1 ? "" : "s"}, ` : "";
-    time += Mins > 0 ? `${Mins} Minute${Mins === 1 ? "" : "s"} & ` : "";
-    time += Secs > 0 ? `${Secs} Second${Secs === 1 ? "" : "s"}.` : "0 Seconds.";
-
-    return time;
-  };
-
+  // String Functions
   bot.FormatNumber = Number => {
     if (typeof Number === "string") {
       Number = parseInt(Number);
@@ -41,6 +27,22 @@ module.exports = async bot => {
     }
 
     return Number;
+  };
+
+  // Converters
+  bot.MSToTime = ms => {
+    let RoundNumber = ms > 0 ? Math.floor : Math.ceil;
+    let Days = RoundNumber(ms / 86400000);
+    let Hours = RoundNumber(ms / 3600000) % 24;
+    let Mins = RoundNumber(ms / 60000) % 60;
+    let Secs = RoundNumber(ms / 1000) % 60;
+
+    var time = Days > 0 ? `${Days} Day${Days === 1 ? "" : "s"}, ` : "";
+    time += Hours > 0 ? `${Hours} Hour${Hours === 1 ? "" : "s"}, ` : "";
+    time += Mins > 0 ? `${Mins} Minute${Mins === 1 ? "" : "s"} & ` : "";
+    time += Secs > 0 ? `${Secs} Second${Secs === 1 ? "" : "s"}.` : "0 Seconds.";
+
+    return time;
   };
 
   bot.PromptMessage = async (message, author, reactions, seconds) => {
@@ -74,6 +76,7 @@ module.exports = async bot => {
     var member = message.mentions.members.first();
     var checkCache = bot.users.cache.get(args.slice(0).join(" "));
     var checkCache2 = bot.users.cache.get(args[0]);
+    var checkGuildCache = message.guild.members.cache.find(u => u.user.username.toLowerCase() === args.slice(0).join(" ") || u.user.username === args[0]);
 
     if (message.mentions.members.first()) {
       member = message.mentions.members.first();
@@ -81,6 +84,8 @@ module.exports = async bot => {
       member = message.guild.members.cache.get(args[0]);
     } else if (checkCache) {
       member = checkCache;
+    } else if (checkGuildCache) {
+      member = checkGuildCache;
     } else if (checkCache2) {
       member = checkCache2;
     } else {
@@ -91,17 +96,15 @@ module.exports = async bot => {
   };
 
   bot.isURL = string => {
-    if (string.startsWith("discord.gg/") || string.endsWith("discord.gg/")) {
+    if (/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite|discord.com\/invite)\/+[a-zA-Z0-9]{6,16}/g.test(string)) {
       return true;
     }
 
-    let regexp = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
-
-    if (regexp.test(string)) {
+    if (/(https?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g.test(string)) {
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   };
 
   bot.GetUserFromMention = mention => {
@@ -137,7 +140,9 @@ module.exports = async bot => {
       return CollectedUsers;
     }
 
-    const promises = [bot.shard.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")];
+    const promises = [
+      bot.shard.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")
+    ];
 
     return Promise.all(promises).then(results => results.flat().reduce((acc, MemberCount) => acc + MemberCount, 0));
   };
@@ -172,6 +177,5 @@ module.exports = async bot => {
   };
 
   bot.wait = ms => new Promise(r => setTimeout(r, ms));
-
   bot.FormatDate = date => new Intl.DateTimeFormat("en-US").format(date);
 };

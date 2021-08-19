@@ -32,14 +32,7 @@ async function LoadRoutes() {
       return console.error("⛔ | You didn't provide a valid file path!");
     }
 
-    if (!fs.existsSync(FilePath)) {
-      fs.mkdirSync(FilePath);
-    }
-
-    const Files = fs
-      .readdirSync(FilePath, { withFileTypes: true })
-      .filter(entry => !entry.isDirectory())
-      .map(entry => entry.name);
+    const Files = fs.readdirSync(path.join(__dirname, "./routes"));
 
     return Files;
   }
@@ -51,16 +44,15 @@ async function LoadRoutes() {
     return;
   }
 
-  routes.forEach(FileName => {
-    const Route = require(path.join(RoutesPath, FileName));
-    const RoutePath = FileName === "index.js" ? "/" : `/${FileName.slice(0, -3)}`;
+  for (const file of routes) {
+    const name = file.split(".")[0].indexOf("index") > -1 ? "/" : `/${file.split(".")[0]}`;
 
     try {
-      app.use(RoutePath, Route);
+      app.use(name, require(`${RoutesPath}/${name}`));
     } catch (err) {
       console.error(`⛔ | Uh oh! Looks like an error occured with loading route: ${FileName}. \n\n${err}`);
     }
-  });
+  }
 }
 
 // Code //
@@ -89,9 +81,9 @@ async function StartWebsite() {
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));
 
-  app.use(require("serve-favicon")(path.resolve(`${MainDir}${path.sep}assets${path.sep}images${path.sep}site${path.sep}favicon.ico`)));
+  app.use(require("serve-favicon")(path.resolve(`${process.cwd()}${path.sep}assets${path.sep}images${path.sep}site${path.sep}favicon.ico`)));
 
-  app.use("/assets", express.static(path.resolve(`${MainDir}${path.sep}assets`)));
+  app.use("/assets", express.static(path.resolve(`${process.cwd()}${path.sep}assets`)));
   app.set("views", Views);
 
   app.get("/service-worker.js", (request, response) => response.sendFile(path.resolve(__dirname, "utils", "service_worker.js")));

@@ -1,25 +1,42 @@
 const Discord = require(`discord.js`);
+let restarting = false;
 
 exports.run = async (bot, message, args, command, data) => {
   if (message.author.id !== process.env.OwnerID) {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
 
-  const RestartStatus = await message.reply(`⚡ Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`);
-  var Timer = 15;
+  if (restarting === true) {
+    return;
+  }
+
+  const RestartStatus = await message.reply(`⚡ | Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`);
+  var Timer = 5;
 
   setInterval(() => {
     --Timer;
 
     if (Timer > 0) {
-      RestartStatus.edit(`⚡ Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`);
+      if (restarting === true) {
+        return;
+      }
+
+      RestartStatus.edit(`⚡ | Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`);
     } else {
-      RestartStatus.edit(
-        `⚡ Ch1llBlox is now restarting. If sharding is disabled, he will shutdown and won't come back on again until you restart him yourself.`,
-      );
-      process.exit();
+      if (restarting === true) {
+        return;
+      }
+
+      RestartStatus.edit(`⚡ | Ch1llBlox is now restarting.`).then(msg => {
+        restarting = true;
+
+        bot.destroy();
+      }).then(async () => {
+        bot.login(process.env.token);
+        RestartStatus.edit("⚡ | Restart comeplete!");
+      });
     }
-  }, 1000);
+  }, 1 * 1000);
 };
   exports.config = {
     name: `Restart`,
