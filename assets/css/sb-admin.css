@@ -5767,14 +5767,14 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: 1rem;
     border-bottom: 1px solid #e3e6f0;
     border-top-left-radius: calc(0.3rem - 1px);
     border-top-right-radius: calc(0.3rem - 1px);
   }
   
   .modal-header .close {
-    padding: 1rem 1rem;
+    padding: 1rem;
     margin: -1rem -1rem -1rem auto;
   }
   
@@ -6059,13 +6059,13 @@
   
   .bs-popover-bottom > .arrow::before, .bs-popover-auto[x-placement^="bottom"] > .arrow::before {
     top: 0;
-    border-width: 0 0.5rem 0.5rem 0.5rem;
+    border-width: 0 0.5rem 0.5rem;
     border-bottom-color: rgba(0, 0, 0, 0.25);
   }
   
   .bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^="bottom"] > .arrow::after {
     top: 1px;
-    border-width: 0 0.5rem 0.5rem 0.5rem;
+    border-width: 0 0.5rem 0.5rem;
     border-bottom-color: #fff;
   }
   
@@ -10369,7 +10369,7 @@
     padding: .5rem 0;
     min-width: 10rem;
     font-size: 0.85rem;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
   }
   
   .sidebar .nav-item .collapse .collapse-inner .collapse-header,
