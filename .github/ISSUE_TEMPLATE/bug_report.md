@@ -1,21 +1,21 @@
 ---
 
 name: Bug report
-about: Report incorrect or unexpected behavior of discord.js
+about: Report incorrect behavior.
 title: ''
 labels: 's: unverified, type: bug'
 assignees: ''
 ---
 ## The Problem
 
-*describe the bug in as much detail as possible*
+describe the bug in as much detail as possible
 
 ## How to Preproduce
 
-*If you can, Include a reproducible code sample below*
+If you can, Include a reproducible code sample below
 
 ```js
-// *Code goes here*
+// code here
 ```
 
 **Details:**

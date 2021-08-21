@@ -4,7 +4,6 @@
 
 // Librarys //
 const fs = require("fs");
-const http = require("http");
 const path = require("path");
 const parser = require("body-parser");
 const Discord = require("discord.js");
@@ -23,7 +22,6 @@ const Views = path.resolve(`${MainDir}${path.sep}views`);
 
 // App //
 const app = express();
-const server = http.createServer(app);
 
 // Functions //
 async function LoadRoutes() {
@@ -112,7 +110,7 @@ async function StartWebsite() {
     Render(response, request, "500.ejs");
   });
 
-  server.listen(process.env.PORT, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log("💻 | Server listening to port 3000.");
   });
 }

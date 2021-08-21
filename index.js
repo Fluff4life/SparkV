@@ -14,17 +14,14 @@ const Config = require("./globalconfig.json");
 const Logger = require("./modules/logger");
 const PackageInfo = require("./package.json");
 
-// Loading //
-console.log(require("chalk").green("  _                     _ _             "));
-console.log(require("chalk").green(" | |                   | (_)            "));
-console.log(require("chalk").green(" | |     ___   __ _  __| |_ _ __   __ _ "));
-console.log(require("chalk").green(" | |    / _ \\ / _` |/ _` | | '_ \\ / _` |"));
-console.log(require("chalk").green(" | |___| (_) | (_| | (_| | | | | | (_| |"));
-console.log(require("chalk").green(" |______\\___/ \\__,_|\\__,_|_|_| |_|\\__, |"));
-console.log(require("chalk").green("                                   __/ |"));
-console.log(require("chalk").green("                                  |___/"));
+// Loading Splash Screen
+console.log(require("asciiart-logo")(require("./package.json")).render());
 
-console.log(require("chalk").grey("----------------------------------------"));
+if (require("./globalconfig.json").Debug.Enabled === true) {
+  console.log(require("chalk").grey("----------------------------------------"));
+  require("./modules/logger")("DEBUG - ENABLED -> Some features may not work on this mode.");
+  console.log(require("chalk").grey("----------------------------------------"));
+}
 
 // Functions //
 async function Start() {
@@ -57,9 +54,6 @@ async function Start() {
   mongoose.connection.on("open", () => Logger("DATABASE - ONLINE"));
 
   if (Config.Debug.Enabled === true) {
-    Logger("DEBUG - ENABLED -> Some features may not work on this mode.");
-    console.log(require("chalk").grey("----------------------------------------"));
-
     if (Config.Debug.BotEnabled === true) {
       await require("./bot/bot");
     }
