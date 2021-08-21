@@ -53,7 +53,6 @@
     "distube": "^3.0.0-beta.36",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
-    "erlpack": "github:discord/erlpack",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "ffmpeg-static": "^4.4.0",

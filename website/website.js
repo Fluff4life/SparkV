@@ -99,85 +99,17 @@ async function StartWebsite() {
   });
 
   app.use((request, response, next) => {
-    response.status(404);
+    // Page not found
 
+    response.status(404);
     Render(response, request, "404.ejs");
   });
 
   app.use((err, request, response, next) => {
-    const user = request.user;
-
     console.error("Website Error!", err.stack);
 
     response.status(500);
-    Render(response, request, "500.ejs", {
-      head: {
-        SiteTitle: "Home - KingCh1ll",
-        SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
-        SiteKeywords:
-          "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
-      },
-
-      // Navigation //
-      navagation: {
-        BrandName: "KingCh1ll",
-        BrandLink: "#top",
-        BrandLogo: "/assets/images/TransparentKingCh1ll.png",
-
-        Links: {
-          link1: {
-            name: "Home",
-            icon: "fas fa-home",
-            link: "#top",
-          },
-
-          link2: {
-            name: "Ch1llBlox",
-            icon: "fas fa-robot",
-            link: "/bot",
-          },
-
-          link3: {
-            name: "Ch1ll Studios",
-            icon: "fas fa-snowflake",
-            link: "/ch1llstudios",
-          },
-        },
-      },
-
-      // Top //
-      top: {
-        BrandName: "Error!",
-        BrandLogo: "/assets/images/500.png",
-        TypeText: false,
-
-        buttons: {
-          button1: {
-            name: "Back",
-            link: "javascript:history.back()",
-          },
-
-          button2: {
-            name: "Home",
-            link: "/",
-          },
-        },
-
-        backgroundURL: null,
-        alert: null,
-      },
-
-      // Features //
-      features: null,
-
-      // Reviews //
-      reviews: null,
-
-      // Footer //
-      footer: {
-        Description: "Uh oh! An error occured. KingCh1ll is a self taught developer that enjoys coding. He knows many coding languages.",
-      },
-    });
+    Render(response, request, "500.ejs");
   });
 
   server.listen(3000, () => {
