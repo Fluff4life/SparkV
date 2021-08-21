@@ -112,7 +112,7 @@ async function StartWebsite() {
     Render(response, request, "500.ejs");
   });
 
-  server.listen(3000, () => {
+  server.listen(process.env.PORT, () => {
     console.log("💻 | Server listening to port 3000.");
   });
 }
