@@ -32,7 +32,7 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "@discordjs/voice": "github:discordjs/voice",
     "@distube/soundcloud": "^0.2.2",
-    "@distube/spotify": "^0.6.2",
+    "@distube/spotify": "^0.6.3",
     "@sentry/node": "^6.11.0",
     "@top-gg/sdk": "^3.1.2",
     "anti-swear-words-packages-discord": "^1.1.43",
