@@ -50,9 +50,13 @@ module.exports = async bot => {
           )
           .setTimestamp();
 
-        queue.textChannel.reply(NowPlayingEmbed);
+        queue.textChannel.reply({
+          embeds: [
+            NowPlayingEmbed
+          ]
+        });
       } else {
-        const NowPlayingEmbed = new Discord.MessagEmbed()
+        const NowPlayingEmbed = new Discord.MessageEmbed()
           .setTitle(`🎵 Now Playing a Song 🎵`)
           .setDescription(song.name)
           .setThumbnail(song.thumbnail)
@@ -80,7 +84,9 @@ module.exports = async bot => {
           )
           .setTimestamp();
 
-        queue.textChannel.reply(NowPlayingEmbed);
+        queue.textChannel.reply({
+          embeds: [NowPlayingEmbed]
+        });
       }
     })
     .on("addSong", async (queue, song) => {

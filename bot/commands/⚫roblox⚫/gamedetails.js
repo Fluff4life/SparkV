@@ -21,9 +21,11 @@ exports.run = async (bot, message, args, command, data) => {
         .setColor(json.color)
         .setTimestamp();
 
-      message.reply(Embed);
+      message.reply({
+        embeds: [Embed]
+      });
     })
-    .catch(err => message.reply(`${bot.config.bot.Emojis.error} | An error occured!`));
+.catch(err => message.reply(`${bot.config.bot.Emojis.error} | An error occured!`));
 },
 
   exports.config = {

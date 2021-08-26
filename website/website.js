@@ -18,7 +18,6 @@ const Config = require("../globalconfig.json");
 
 // Files //
 const MainDir = path.resolve(`${process.cwd()}${path.sep}website`);
-const Views = path.resolve(`${MainDir}${path.sep}views`);
 
 // App //
 const app = express();
@@ -60,14 +59,18 @@ async function StartWebsite() {
     require("newrelic");
   }
 
+  app.set("trust proxy", 1);
   app.use(require("compression"));
 
   require("./utils/passport");
 
   app.use(session({
-    secret: process.env.secretid,
+    secret: process.env.secret || "SuperSecret",
     resave: false,
     saveUninitialized: false,
+    store: require("connect-mongo").create({
+      mongoUrl: process.env.mongooseURL
+    })
   }));
 
   app.use(passport.initialize());
@@ -81,8 +84,8 @@ async function StartWebsite() {
 
   app.use(require("serve-favicon")(path.resolve(`${process.cwd()}${path.sep}assets${path.sep}images${path.sep}site${path.sep}favicon.ico`)));
 
-  app.use("/assets", express.static(path.resolve(`${process.cwd()}${path.sep}assets`)));
-  app.set("views", Views);
+  app.use("/assets", express.static(path.join(`${process.cwd()}${path.sep}assets`)));
+  app.set("views", path.resolve(`${MainDir}${path.sep}views`));
 
   app.get("/service-worker.js", (request, response) => response.sendFile(path.resolve(__dirname, "utils", "service_worker.js")));
 
@@ -110,7 +113,7 @@ async function StartWebsite() {
     Render(response, request, "500.ejs");
   });
 
-  app.listen(process.env.PORT || 3000, () => {
+  app.listen(process.env.PORT || 3000, process.env.host, () => {
     console.log("💻 | Server listening to port 3000.");
   });
 }

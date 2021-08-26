@@ -21,19 +21,6 @@ exports.run = async (bot, message, args, command, data) => {
   const RocordEnabled = await bot.dashboard.getVal(message.guild.id, `RocordEnabled`);
 
   if (RocordEnabled === `Enabled`) {
-    const GroupID = await bot.dashboard.getVal(message.guild.id, `GroupID`);
-
-    if (isNaN(GroupID)) {
-      message.reply(`This server isn't set up right! The GroupID setting is not a number.`);
-    }
-
-    const Filter = msg => msg.author.id === message.author.id;
-    const MessageColector = message.channel.createMessageCollector(Filter, {
-      max: 1,
-      maxMatches: 1,
-      time: 200 * 1000,
-    });
-
     fetch(`https://verify.eryn.io/api/user/${message.author.id}`).then(response => response.json()).then(body => {
       if (body.status === "ok") {
         const DiscordEmbed = new Discord.MessageEmbed()
@@ -44,32 +31,9 @@ exports.run = async (bot, message, args, command, data) => {
       } else {
         const DiscordEmbed = new Discord.MessageEmbed()
         .setTitle(`Verification Prompt`)
-        .setDescription(`You've been successfully verified as **${body.robloxUsername}**!`)
+        .setDescription(`You don't have any verified accounts! Please [click here](https://discord.com/oauth2/authorize?client_id=240413107850182656&scope=identify+guilds&response_type=code&redirect_uri=https%3A%2F%2Fverify.eryn.io) to link yourself with the API and then try again."`)
         .setColor(bot.config.bot.Embed.Color)
         .setFooter(bot.config.bot.Embed.Footer);
-      }
-    });
-
-
-    fetch(`https://verify.eryn.io/api/user/${message.author.id}`).then(response => response.json()).then(response => {
-      // Fetching the API and transforming the response into JSON if not already.
-      if (response.status === "ok") {
-        // Checking if the request's status is okay
-        const embed = new discord.MessageEmbed()
-          .setTitle("SeaLink Verification")
-          .setDescription(`You have been verified sucessfully under user: **${response.robloxUsername}**.`)
-
-          .setColor("#1f75ff")
-          .setFooter("SeaLink V2 | Dizzy Tech");
-        message.channel.send(embed);
-      } else {
-        const embed = new discord.MessageEmbed()
-          .setTitle("SeaLink Verification")
-          .setDescription("Your not linked with our API! please visit [this](https://discord.com/oauth2/authorize?client_id=240413107850182656&scope=identify+guilds&response_type=code&redirect_uri=https%3A%2F%2Fverify.eryn.io) website to link yourself and then try again.")
-
-          .setColor("#1f75ff")
-          .setFooter("SeaLink V2 | Dizzy Tech");
-        message.channel.send(embed);
       }
     });
 

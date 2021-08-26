@@ -31,7 +31,7 @@ exports.run = async (bot, message, args, command, data) => {
   message.reply(YouTube);
 };
   exports.config = {
-    name: `YouTube`,
+    name: `YouTubeComment`,
     description: `YouTube comment lol.`,
     aliases: [],
     usage: `<optional user> <text>`,

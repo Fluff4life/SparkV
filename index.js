@@ -6,7 +6,6 @@ const fs = require("fs");
 const path = require("path");
 const { init } = require("@sentry/node");
 const { ShardingManager } = require("discord.js");
-const { config } = require("dotenv");
 const mongoose = require("mongoose");
 
 // Varibles //
@@ -34,10 +33,6 @@ async function Start() {
 
       process.on(EventName, (...args) => FileEvent.run(...args));
     });
-  });
-
-  config({
-    path: `${__dirname}/.env`,
   });
 
   init({

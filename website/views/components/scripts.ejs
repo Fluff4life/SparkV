@@ -4,15 +4,35 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
-<script src="//code.jquery.com/jquery.js"></script>
 <script src="//cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/typed.js"></script>
 <script src="//unpkg.com/aos/dist/aos.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script src="//unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 
 <!-- Handler -->
 <script src="/assets/js/handle.js"></script>
 
 <script async src="//k040055fpjgg.statuspage.io/embed/script.js"></script>
+
+<!-- Firebase -->
+<script src="//www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="//www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+<script src="//www.gstatic.com/firebasejs/8.10.0/firebase-performance.js"></script>
+
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyC9MFiPWjOMD4isKyNml8OTe2bybIPJVGE",
+        authDomain: "ch1ll-studios.firebaseapp.com",
+        projectId: "ch1ll-studios",
+        storageBucket: "ch1ll-studios.appspot.com",
+        messagingSenderId: "962788403662",
+        appId: "1:962788403662:web:cabb4d00fa18126648239f",
+        measurementId: "G-51TG087Q97"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    firebase.performance();
+</script>

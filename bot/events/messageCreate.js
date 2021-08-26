@@ -193,7 +193,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
       return message.author
         .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
         .then(() => {
-          message.react(bot.config.bot.Emojis.Error);
+          message.react("❌");
         });
     } catch {
       message.react(bot.config.bot.Emojis.Error);

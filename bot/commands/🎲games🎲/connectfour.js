@@ -79,16 +79,6 @@ exports.run = async (bot, message, args, command, data) => {
       .setFooter(`Canceling in 60 seconds. • ${bot.config.bot.Embed.Footer}`)
       .setColor(bot.config.bot.Embed.Color);
 
-    const VerificationMessage = await message.reply(VerificationEmbed);
-    const Emoji = await bot.PromptMessage(VerificationMessage, Opponent.user, [`👍`, `👎`], 250);
-
-    if (Emoji === `👎`) {
-      await VerificationMessage.delete();
-
-      return message.reply(`${Opponent} doesn't want to play. What a noob!`);
-    } else if (Emoji === `👍`) {
-      await VerificationMessage.delete();
-
       const Array = [];
 
       for (let i = 0; i < 6; i++) {
@@ -195,7 +185,6 @@ exports.run = async (bot, message, args, command, data) => {
         .setDescription(DisplayBoard(Board))
         .setFooter(`${message.author} V.S. ${Opponent} • ${bot.config.bot.Embed.Footer}`),
       );
-    }
   },
 
   exports.config = {

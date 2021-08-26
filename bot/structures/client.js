@@ -6,6 +6,7 @@ const path = require("path");
 const util = require("util");
 
 const AntiSpam = require("discord-anti-spam");
+const { DiscordTogether } = require("discord-together");
 
 const botlists = require("../../modules/dependencies/botlists");
 const Distube = require("../../modules/dependencies/distubehandler");
@@ -73,6 +74,8 @@ class bot extends Client {
         this.StatClient = StatClient;
       }
     }
+
+    this.discordTogether = new DiscordTogether(this);
 
     this.AntiSpam = new AntiSpam({
       warnThreshold: 3,

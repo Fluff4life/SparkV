@@ -27,7 +27,9 @@ exports.run = async (bot, message, args, command, data) => {
         .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${bot.config.bot.Embed.Footer}`)
         .setColor(bot.config.bot.Embed.Color);
 
-      message.reply(InfoEmbed);
+      message.reply({
+        embeds: [InfoEmbed]
+      });
     });
   } catch (err) {
     const ErrorEmbed = new Discord.MessageEmbed()
@@ -42,7 +44,9 @@ exports.run = async (bot, message, args, command, data) => {
       .setColor(bot.config.bot.Embed.Color)
       .setTimestamp();
 
-    message.reply(ErrorEmbed);
+    message.reply({
+      embeds: [ErrorEmbed]
+    });
   }
 },
 
