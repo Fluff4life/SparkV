@@ -63,7 +63,7 @@
     "mathjs": "^9.4.4",
     "mongoose": "^5.13.7",
     "ms": "^2.1.3",
-    "newrelic": "^8.1.0",
+    "newrelic": "^8.2.0",
     "noblox.js": "^4.9.0",
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
