@@ -31,8 +31,5 @@ try {
   console.log(`Uh oh! An error occured. ${err}`);
 }
 
-passport.serializeUser(async (user, done) => {
-  done(null, user);
-});
-
+passport.serializeUser(async (user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
