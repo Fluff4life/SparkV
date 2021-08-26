@@ -29,11 +29,10 @@
     "npm": "7.20.3"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.6.0",
     "@discordjs/rest": "^0.1.0-canary.0",
-    "@discordjs/voice": "github:discordjs/voice",
+    "@discordjs/voice": "^0.6.0",
     "@distube/soundcloud": "^0.2.2",
-    "@distube/spotify": "^0.6.2",
+    "@distube/spotify": "^0.6.3",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@sentry/node": "^6.11.0",
     "anti-swear-words-packages-discord": "^1.1.43",
@@ -98,6 +97,6 @@
     "eslint-plugin-prettier": "^3.4.1",
     "npm": "^7.21.0",
     "prettier": "2.3.2",
-    "sass": "^1.38.0"
+    "sass": "^1.38.1"
   }
 }
