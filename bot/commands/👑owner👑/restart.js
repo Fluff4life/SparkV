@@ -2,7 +2,7 @@ const Discord = require(`discord.js`);
 let restarting = false;
 
 exports.run = async (bot, message, args, command, data) => {
-  if (message.author.id !== process.env.OwnerID) {
+  if (message.author.id !== process.env.OWNERID) {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
 
@@ -32,7 +32,7 @@ exports.run = async (bot, message, args, command, data) => {
 
         bot.destroy();
       }).then(async () => {
-        bot.login(process.env.token);
+        bot.login(process.env.TOKEN);
         RestartStatus.edit("⚡ | Restart comeplete!");
       });
     }

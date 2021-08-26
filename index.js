@@ -36,11 +36,11 @@ async function Start() {
   });
 
   init({
-    dsn: process.env.SentryToken,
+    dsn: process.env.SENTRYTOKEN,
     release: `${PackageInfo.name}@${PackageInfo.version}`,
   });
 
-  await mongoose.connect(process.env.mongooseURL, {
+  await mongoose.connect(process.env.MONGOOSEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

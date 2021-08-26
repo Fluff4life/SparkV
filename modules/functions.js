@@ -168,7 +168,7 @@ module.exports = async bot => {
     if (message.author.id === bot.config.Owner.ID) {
       return true;
     } else {
-      if (process.env.Admins.includes(message.author.id)) {
+      if (process.env.ADMIN.includes(message.author.id)) {
         return true;
       }
 

@@ -35,7 +35,7 @@ exports.run = async bot => {
     });
 
     for (const guild of bot.guilds.cache) {
-      if (process.env.UserBlacklist.includes(guild.ownerID)) {
+      if (process.env.USERBLACKLIST.includes(guild.ownerID)) {
         try {
           await guild.leave();
 
@@ -45,7 +45,7 @@ exports.run = async bot => {
         }
       }
 
-      if (process.env.GuildBlacklist.includes(guild.id)) {
+      if (process.env.GUILDBLACKLIST.includes(guild.id)) {
         try {
           await guild.leave();
 

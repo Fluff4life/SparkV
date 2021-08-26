@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
-  if (message.author.id !== process.env.OwnerID) {
+  if (message.author.id !== process.env.OWNERID) {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
 

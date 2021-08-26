@@ -66,11 +66,11 @@ async function StartWebsite() {
   require("./utils/passport");
 
   app.use(session({
-    secret: process.env.secret || "SuperSecret",
+    secret: process.env.SECRET || "SuperSecret",
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: process.env.mongooseURL
+      mongoUrl: process.env.MONGOOSEURL
     })
   }));
 
@@ -114,7 +114,7 @@ async function StartWebsite() {
     Render(response, request, "500.ejs");
   });
 
-  app.listen(process.env.PORT || 3000, process.env.host, () => {
+  app.listen(process.env.PORT || 3000, process.env.HOST, () => {
     console.log("💻 | Server listening to port 3000.");
   });
 }

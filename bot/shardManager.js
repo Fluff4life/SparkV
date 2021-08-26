@@ -1,5 +1,5 @@
 const manager = new ShardingManager("./bot.js", {
-  token: process.env.token,
+  token: process.env.TOKEN,
   totalShards: Config.bot.Sharding.TotalShards || "auto",
   shardArgs: [...process.argv, ...["--sharding"]],
   execArgv: [...process.argv, ...[Config.Debug.Enabled ? null : "--trace-warnings"]],

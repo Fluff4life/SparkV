@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (bot, message) => {
-  message.reply(`${bot.config.bot.Emojis.success} | Here's my website! https://${process.env.baseURL}/bot)`);
+  message.reply(`${bot.config.bot.Emojis.success} | Here's my website! https://${process.env.BASEURL}/bot)`);
 },
 
   exports.config = {

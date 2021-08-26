@@ -58,7 +58,7 @@ async function Start() {
   });
 
   Ch1llBlox.SocketioClient = require("socket.io-client").connect(
-    `https://${process.env.baseURL}/api/communication?token=8010405464675`,
+    `https://${process.env.BASEURL}/api/communication?token=8010405464675`,
     {
       reconnection: true,
       reconnectionDelay: 2000,
@@ -71,4 +71,4 @@ async function Start() {
 }
 
 Start();
-Ch1llBlox.login(process.env.token);
+Ch1llBlox.login(process.env.TOKEN);

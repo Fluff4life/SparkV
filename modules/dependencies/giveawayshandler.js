@@ -16,7 +16,7 @@ module.exports = async bot => {
         });
     }
 
-    Levels.setURL(process.env.mongooseURL);
+    Levels.setURL(process.env.MONGOOSEURL);
     class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
         async getAllGiveaways() {
             giveaways = await GiveawaysSchema.findOne({

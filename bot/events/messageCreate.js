@@ -188,7 +188,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
     return;
   }
 
-  if (process.env.UserBlacklist.includes(message.author.id)) {
+  if (process.env.USERBLACKLIST.includes(message.author.id)) {
     try {
       return message.author
         .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
@@ -351,8 +351,8 @@ async function ActivateChatBot(bot, message, wasMentioned) {
 
   try {
     await fetch(
-      `http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.chat_bid)}&key=${encodeURIComponent(
-        process.env.chat_key,
+      `http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.CHAT_BID)}&key=${encodeURIComponent(
+        process.env.CHAT_KEY,
       )}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(
         wasMentioned === true ? SlicedMessage : message,
       )}`,

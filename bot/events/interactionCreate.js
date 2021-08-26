@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 const pages = [];
 const Commands = (bot, category) => bot.commands.filter(command => command.config.enabled && command.config.category === category).map(command => `\`^${command.config.name} ${command.config.usage}\`\n${command.config.description}`).join(`\n\n`);
 const CreatePage = async (bot, interaction, Category) => {
-    if (Category === `👑Owner👑` && interaction.user.id !== process.env.OwnerID) {
+    if (Category === `👑Owner👑` && interaction.user.id !== process.env.OWNERID) {
         return;
     }
 

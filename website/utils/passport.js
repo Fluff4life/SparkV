@@ -9,24 +9,13 @@ const Config = require("../../globalconfig.json");
 const DiscordStrat = {
   clientID: "848685407189336075",
   clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
-  callbackURL: `${Config.Debug.Enabled === true ? "http://localhost:3000" : `https://${process.env.baseURL}`}/api/auth/callback`,
+  callbackURL: `${Config.Debug.Enabled === true ? "http://localhost:3000" : `https://${process.env.BASEURL}`}/api/auth/callback`,
   scope: ["identify", "guilds", "guilds.join"],
 };
 
 const Auth = (type, token, tokenSecret, profile, done) => {
   if (type === "discord") {
     process.nextTick(async () => {
-      await fetch(`https://discordapp.com/api/v8/guilds/763803059876397056/members/${profile.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `bot ${process.env.token}`,
-        },
-        body: JSON.stringify({ access_token: token }),
-      })
-        .then(res => res.json())
-        .then(json => console.log(json));
-
       done(null, profile);
     });
   }

@@ -7,7 +7,7 @@ exports.run = async (bot, message, args, command, data) => {
 
   const Selections = [];
   const CreateSelection = async (bot, message, Category) => {
-    if (Category === `👑Owner👑` && message.author.id !== process.env.OwnerID) {
+    if (Category === `👑Owner👑` && message.author.id !== process.env.OWNERID) {
       return;
     }
 

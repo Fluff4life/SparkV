@@ -49,11 +49,11 @@ class bot extends Client {
 
     this.functions(this);
 
-    if (process.env.StatCordAPIKey) {
+    if (process.env.STATCORDAPIKEY) {
       if (!settings.sharding) {
         const StatClient = new Statcord.Client({
           client,
-          key: process.env.StatCordAPIKey,
+          key: process.env.STATCORDAPIKEY,
           postCpuStatistics: true,
           postMemStatistics: true,
           postNetworkStatistics: true,
@@ -64,7 +64,7 @@ class bot extends Client {
       } else if (settings.sharding === true) {
         const StatClient = new Statcord.ShardingClient({
           client,
-          key: process.env.StatCordAPIKey,
+          key: process.env.STATCORDAPIKEY,
           postCpuStatistics: true,
           postMemStatistics: true,
           postNetworkStatistics: true,
