@@ -4,8 +4,10 @@
   "description": "...",
   "main": "index.js",
   "scripts": {
-    "start": "doppler run -- node .",
-    "startweb": "doppler run -- node website/website.js",
+    "start": "node .",
+    "startweb": "node website/website.js",
+    "start:dev": "doppler run -- node .",
+    "startweb:dev": "doppler run -- node website/website.js",
     "update": "git pull && npm install",
     "checkPacs": "npx npm-check-updates",
     "checkPacs:update": "npx npm-check-updates -u && npm install",

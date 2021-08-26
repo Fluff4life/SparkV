@@ -10,6 +10,7 @@ const Discord = require("discord.js");
 const ejs = require("ejs");
 const express = require("express");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
 const SocketIo = require("socket.io");
 
@@ -68,7 +69,7 @@ async function StartWebsite() {
     secret: process.env.secret || "SuperSecret",
     resave: false,
     saveUninitialized: false,
-    store: require("connect-mongo").create({
+    store: new MongoStore({
       mongoUrl: process.env.mongooseURL
     })
   }));
