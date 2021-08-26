@@ -60,9 +60,6 @@ async function StartWebsite() {
     require("newrelic");
   }
 
-  app.set("trust proxy", 1);
-  app.use(require("compression"));
-
   require("./utils/passport");
 
   app.use(session({
@@ -114,9 +111,7 @@ async function StartWebsite() {
     Render(response, request, "500.ejs");
   });
 
-  app.listen(process.env.PORT || 3000, () => {
-    console.log("💻 | Server listening to port 3000.");
-  });
+  app.listen(process.env.PORT || 3000, () => console.log("💻 | Server listening to port 3000."));
 }
 
 StartWebsite();
