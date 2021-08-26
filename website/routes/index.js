@@ -9,10 +9,8 @@ Router.get("/", async (request, response) => Render(response, request, "company.
 Router.get("/kingch1ll", async (request, response) => {
   Render(response, request, "showoff.ejs", {
     head: {
-      SiteTitle: "KingCh1ll",
-      SiteDescription: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!",
-      SiteKeywords:
-        "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
+      title: "KingCh1ll",
+      desc: "KingCh1ll is a self-taught coder. He knows html, css, javascript, lua and more!"
     },
 
     // Navigation //

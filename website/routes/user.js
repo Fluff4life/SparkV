@@ -21,10 +21,8 @@ Router.get("/:id", async (request, response) => {
   } else {
     Render(response, request, "profile.ejs", {
       head: {
-        SiteTitle: `Ch1ll | ${User.username} | Profile`,
-        SiteDescription: `${User.username} is a user enjoying the benifits of using KingCh1ll's services. Including Ch1llBlox!`,
-        SiteKeywords:
-          "KingCh1ll, King, Ch1ll, KingChill, Chill, Discord, Developer, Developer Discord, Discord Developer, Roblox, Roblox Developer, Developer Roblox",
+        title: `Ch1ll | ${User.username} | Profile`,
+        desc: `${User.username} is a user enjoying the benifits of using KingCh1ll's services. Including Ch1llBlox!`
       },
 
       // Navigation //
