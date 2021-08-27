@@ -15,7 +15,6 @@
     "test:fix": "eslint . --ignore-path .gitignore --fix",
     "docs": "docgen --source bot --custom docs/index.yml --output docs/docs.json",
     "docs:test": "docgen --source bot --custom docs/index.yml",
-    "changelog": "conventional-changelog -p express -i RELEASE_CHANGELOG.md -s",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "sass:s": "sass --watch assets/scss:assets/css"
