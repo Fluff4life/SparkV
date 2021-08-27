@@ -1,0 +1,7 @@
+@use '../config' as *;
+
+.services {
+    position: relative;
+    padding: 0;
+    background: linear-gradient(to right, rgba($primary, .95), rgba($secondary, .95));
+}

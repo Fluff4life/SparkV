@@ -5,70 +5,9 @@ Handle.js
 
 var scroll = new SmoothScroll('a[href*="#"]');
 var online = true;
-var Popup;
-
-const TypedSettings = {
-  KingCh1ll: {
-    strings: [
-      "Professional Developer",
-      "Roblox Developer",
-      "Discord bot Developer",
-      "Website Developer",
-      "Codes in JavaScript",
-      "Codes in HTML",
-      "Codes in CSS",
-      "Codes in Roblox Lua",
-      "Chill Guy!",
-    ],
-    typeSpeed: 20,
-    backSpeed: 20,
-    smartBackspace: true,
-    loop: true,
-    shuffle: true,
-  },
-
-  Ch1llBlox: {
-    strings: ["Ch1ll bot!"],
-    typeSpeed: 20,
-    backSpeed: 20,
-    smartBackspace: true,
-    loop: true,
-    shuffle: true,
-  },
-};
-
-function navShrink() {
-  const navbarCollapsible = document.body.querySelector("#navShrink");
-
-  if (!navbarCollapsible) {
-    return;
-  }
-
-  if (window.scrollY === 0) {
-    navbarCollapsible.classList.remove("navbar-shrink");
-  } else {
-    navbarCollapsible.classList.add("navbar-shrink");
-  }
-}
-
-async function load() {
-  const LoadInterval = setInterval(() => {
-    if ($(".pace-inactive")) {
-      $("#loading").fadeOut();
-
-      return LoadInterval;
-    }
-  }, 0.1 * 1000);
-}
 
 $(window).load(async () => {
-  const done = await load();
-
-  if (done) {
-    clearInterval(done);
-  }
-
-  Popup = Swal.mixin({
+  var Popup = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
@@ -197,29 +136,14 @@ $(window).load(async () => {
 });
 
 $(document).ready(() => {
-  navShrink();
+  var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+    target: "#navbar-example"
+  });
 
-  document.addEventListener("scroll", navShrink);
-
-  const nav = document.body.querySelector("#navShrink");
-
-  if (nav) {
-    new bootstrap.ScrollSpy(document.body, {
-      target: "#navShrink",
-      offset: 75,
-    });
-
-    const navbarToggler = document.body.querySelector(".navbar-toggler");
-    const NavItems = [].slice.call(document.querySelectorAll("#navbarShrink .nav-link"));
-
-    NavItems.map(NavItem => {
-      NavItem.addEventListener("click", () => {
-        if (window.getComputedStyle(navbarToggler).display !== "none") {
-          navbarToggler.click();
-        }
-      });
-    });
-  }
+  var dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
+  dataSpyList.forEach(dataSpyEl => {
+    bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh();
+  });
 
   var iframes = document.getElementsByTagName("iframe");
 
@@ -227,24 +151,13 @@ $(document).ready(() => {
     iframe.setAttribute("sandbox", "allow-popups allow-forms");
   }
 
-  const TypedText = document.getElementById("TypedText");
-
-  if (TypedText) {
-    var TextSettings = TypedSettings[$(TypedText).attr("name")];
-
-    if (!TextSettings) {
-      return new Error("Invalid Typer name or settings.");
-    }
-
-    new Typed(`#TypedText`, TextSettings);
-  }
-
   AOS.init({
     once: false,
     startEvent: "load",
+    duration: "600"
   });
 
-  $(document).on("click", ".deletebot", async function() {
+  $(document).on("click", ".deletebot", async function () {
     await Swal.fire({
       title: `Are you sure you want to delete ${$(this).attr("name")}?`,
       text: "THIS ACTION CANNOT BE UNDONE!",
@@ -272,7 +185,7 @@ $(document).ready(() => {
     });
   });
 
-  $(".counter").each(function() {
+  $(".counter").each(function () {
     $(".counter").animate(
       {
         Counter: this.text(),
@@ -280,7 +193,7 @@ $(document).ready(() => {
       {
         duration: 2000,
         easing: "swing",
-        step: function() {
+        step: function () {
           this.text(`${Math.ceil(this.Counter)}+`);
         },
       },

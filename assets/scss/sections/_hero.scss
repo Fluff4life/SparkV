@@ -1,11 +1,13 @@
-@use '../custom' as *;
-@use '../components/mixins' as *;
+@use '../config' as *;
+
+// linear-gradient(to right, rgba($primary, .95), rgba($secondary, .95))
 
 .hero {
-    background: linear-gradient(to right, rgba($primary, .95), rgba($secondary, .95));
+    background: $primary;
     padding: 10rem 0 0 0;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .heroContainer {

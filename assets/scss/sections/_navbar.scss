@@ -1,8 +1,13 @@
-@use "../custom" as *;
-@use '../components/mixins' as *;
+@use '../config' as *;
+
+// linear-gradient(to right, rgba($primary, .95), rgba($secondary, .95))
 
 .menu {
-    background: linear-gradient(to right, rgba($primary, .95), rgba($secondary, .95));
+    display: flex;
+    list-style: none;
+    padding: 1rem 0 0 0;
+    flex-direction: row;
+    background: $primary;
 
     li {
         padding: 0 .7rem;

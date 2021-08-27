@@ -1,6 +1,5 @@
-@use '../custom' as *;
+// Mixins
 
-// Center
 @mixin center {
     position: absolute;
     top: 50%;
