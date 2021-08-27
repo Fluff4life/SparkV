@@ -49,30 +49,28 @@ class bot extends Client {
 
     this.functions(this);
 
-    if (process.env.STATCORDAPIKEY) {
-      if (!settings.sharding) {
-        const StatClient = new Statcord.Client({
-          client,
-          key: process.env.STATCORDAPIKEY,
-          postCpuStatistics: true,
-          postMemStatistics: true,
-          postNetworkStatistics: true,
-          autopost: true,
-        });
+    if (!settings.sharding) {
+      const StatClient = new Statcord.Client({
+        client,
+        key: process.env.STATCORDAPIKEY,
+        postCpuStatistics: true,
+        postMemStatistics: true,
+        postNetworkStatistics: true,
+        autopost: true,
+      });
 
-        this.StatClient = StatClient;
-      } else if (settings.sharding === true) {
-        const StatClient = new Statcord.ShardingClient({
-          client,
-          key: process.env.STATCORDAPIKEY,
-          postCpuStatistics: true,
-          postMemStatistics: true,
-          postNetworkStatistics: true,
-          autopost: true,
-        });
+      this.StatClient = StatClient;
+    } else if (settings.sharding === true) {
+      const StatClient = new Statcord.ShardingClient({
+        client,
+        key: process.env.STATCORDAPIKEY,
+        postCpuStatistics: true,
+        postMemStatistics: true,
+        postNetworkStatistics: true,
+        autopost: true,
+      });
 
-        this.StatClient = StatClient;
-      }
+      this.StatClient = StatClient;
     }
 
     this.discordTogether = new DiscordTogether(this);
