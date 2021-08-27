@@ -16,8 +16,6 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: "16.x"
-      - name: Install NPM
-      - run: npm install npm -g
       - name: Install Dependencies
         run: npm install -g
       - name: Correct Code
