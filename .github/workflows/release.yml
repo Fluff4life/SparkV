@@ -16,10 +16,8 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: "16.x"
+      - name: Install NPM
       - run: npm install npm -g
-      - uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Install Dependencies
         run: npm install -g
       - name: Correct Code
