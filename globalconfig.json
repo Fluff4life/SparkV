@@ -1,45 +1,45 @@
 {
-    "ownerID": 571811686617710592,
-    "bot": {
-        "ID": 763126208149585961,
-        "prefix": "^",
-        "support": {
-            "id": 763803059876397056,
-            "invite": "https://discord.gg/PPtzT8Mu3h"
-        },
-        "Sharding": {
-            "ShardingEnabled": false,
-            "TotalShards": "auto"
-        },
-        "Embed": {
-            "Color": "BLUE",
-            "Footer": "^Donate | ^Invite",
-            "StatusColors": {
-                "SuccessColor": "#0099ff",
-                "ErrorColor": "RED"
-            }
-        },
-        "Emojis": {
-            "success": "<a:Check:819934065025220668>",
-            "error": "<a:Cross:819934065314234418>",
-            "music": "<a:PepeMusic:819933524525449256>"
-        },
-        "Responses": {
-            "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proper arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
-            "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
-            "AFKMessage": "Hey dude, **{userMentioned}** is currently AFK. His reason: {reason}",
-            "AFKWelcomeMessage": "Hey bud, welcome back! I removed your AFK status.",
-            "InvalidPermisions": {
-                "bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
-                "User": "Uh oh! You don't have permission to do that. You need **{permission}**.",
-                "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
-            }
-        }
+  "ownerID": 571811686617710592,
+  "bot": {
+    "ID": 763126208149585961,
+    "prefix": "^",
+    "support": {
+      "id": 763803059876397056,
+      "invite": "https://discord.gg/PPtzT8Mu3h"
     },
-    "Website": {},
-    "Debug": {
-        "Enabled": false,
-        "BotEnabled": true,
-        "WebsiteEnabled": true
+    "Sharding": {
+      "ShardingEnabled": false,
+      "TotalShards": "auto"
+    },
+    "Embed": {
+      "Color": "BLUE",
+      "Footer": "^Donate | ^Invite",
+      "StatusColors": {
+        "SuccessColor": "#0099ff",
+        "ErrorColor": "RED"
+      }
+    },
+    "Emojis": {
+      "success": "<a:Check:819934065025220668>",
+      "error": "<a:Cross:819934065314234418>",
+      "music": "<a:PepeMusic:819933524525449256>"
+    },
+    "Responses": {
+      "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proper arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
+      "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
+      "AFKMessage": "Hey dude, **{userMentioned}** is currently AFK. His reason: {reason}",
+      "AFKWelcomeMessage": "Hey bud, welcome back! I removed your AFK status.",
+      "InvalidPermisions": {
+        "bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
+        "User": "Uh oh! You don't have permission to do that. You need **{permission}**.",
+        "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
+      }
     }
+  },
+  "Website": {},
+  "Debug": {
+    "Enabled": false,
+    "BotEnabled": true,
+    "WebsiteEnabled": true
+  }
 }

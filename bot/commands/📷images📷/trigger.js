@@ -1,21 +1,24 @@
 const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
-  const User = await bot.GetMember(message, args) || bot.users.cache.get(args[0]) || message.author;
+    const User =
+        (await bot.GetMember(message, args)) ||
+        bot.users.cache.get(args[0]) ||
+        message.author;
 
-  const canvacord = require("canvacord");
+    const canvacord = require("canvacord");
 
-  const Avatar = User.displayAvatarURL({
-    dynamic: false,
-    format: "gif"
-});
+    const Avatar = User.displayAvatarURL({
+        dynamic: false,
+        format: "gif",
+    });
 
-  const Image = await canvacord.Canvas.trigger(Avatar);
-  const Triggered = new Discord.MessageAttachment(Image, "triggered.gif");
+    const Image = await canvacord.Canvas.trigger(Avatar);
+    const Triggered = new Discord.MessageAttachment(Image, "triggered.gif");
 
-  message.reply(Triggered);
+    message.reply(Triggered);
 };
-  exports.config = {
+exports.config = {
     name: "Trigger",
     description: "wow you mad bro",
     aliases: ["mad"],
@@ -24,5 +27,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
-    cooldown: 2
+    cooldown: 2,
 };

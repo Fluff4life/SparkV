@@ -3,5 +3,9 @@
 .services {
     position: relative;
     padding: 0;
-    background: linear-gradient(to right, rgba($primary, .95), rgba($secondary, .95));
+    background: linear-gradient(
+        to right,
+        rgba($primary, 0.95),
+        rgba($secondary, 0.95)
+    );
 }

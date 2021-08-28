@@ -23,7 +23,7 @@ hr {
         margin-top: 1.2rem;
         text-transform: none;
 
-        @include media-breakpoint-up(lg){
+        @include media-breakpoint-up(lg) {
             font-size: 1.4rem;
             display: inline-block;
         }
@@ -44,12 +44,16 @@ hr {
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
 
-        @include media-breakpoint-up(lg){
+        @include media-breakpoint-up(lg) {
             font-size: 1.8rem;
         }
     }
 }
 
 .gradient {
-    background: linear-gradient(to right, rgba($primary, .95), rgba($secondary, .95));
+    background: linear-gradient(
+        to right,
+        rgba($primary, 0.95),
+        rgba($secondary, 0.95)
+    );
 }

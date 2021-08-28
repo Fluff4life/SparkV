@@ -3,7 +3,7 @@ $primary: #009cff; // #4169e1;
 $secondary: #d9f7ff; // #222428;
 
 // Dropdown
-$nav-link-padding-y: .5rem;
+$nav-link-padding-y: 0.5rem;
 $nav-link-padding-x: 1rem;
 
 $dropdown-link-hover-bg: $secondary;
@@ -25,4 +25,4 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 @import "../../node_modules/aos/src/sass/aos.scss";
 
 // Sweet Alert
-@import "../../node_modules/sweetalert2/src/sweetalert2.scss"
+@import "../../node_modules/sweetalert2/src/sweetalert2.scss";

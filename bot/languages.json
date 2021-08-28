@@ -1,9 +1,9 @@
 [
-    {
-        "name": "en-US",
-        "nativeName": "English",
-        "flag": ":flag_us:",
-        "default": true,
-        "aliases": ["English", "en", "en-us", "en_us", "en_US"]
-    }
+  {
+    "name": "en-US",
+    "nativeName": "English",
+    "flag": ":flag_us:",
+    "default": true,
+    "aliases": ["English", "en", "en-us", "en_us", "en_US"]
+  }
 ]

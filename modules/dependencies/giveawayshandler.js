@@ -4,7 +4,7 @@ const Levels = require("discord-xp");
 const GiveawaysSchema = require("../../database/schemas/giveaways");
 const logger = require("../../modules/logger");
 
-module.exports = async bot => {
+module.exports = async (bot) => {
     var giveaways = await GiveawaysSchema.findOne({
         ID: "giveaways",
     });
@@ -35,7 +35,7 @@ module.exports = async bot => {
 
             await giveaways
                 .save()
-                .catch(err =>
+                .catch((err) =>
                     console.log(
                         `[Giveaway Manager] - Failed to save giveaway to database. ${err}`
                     )
@@ -50,7 +50,7 @@ module.exports = async bot => {
             });
 
             const NewGiveawaysArray = giveaways.data.filter(
-                giveaway => giveaway.messageID !== MessageID
+                (giveaway) => giveaway.messageID !== MessageID
             );
 
             NewGiveawaysArray.push(NewGiveawayData);
@@ -58,7 +58,7 @@ module.exports = async bot => {
 
             await giveaways
                 .save()
-                .catch(err =>
+                .catch((err) =>
                     console.log(
                         `[Giveaway Manager] - Failed to edit giveaway and save to database. ${err}`
                     )
@@ -73,13 +73,13 @@ module.exports = async bot => {
             });
 
             const NewGiveawaysArray = giveaways.data.filter(
-                giveaway => giveaway.messageID !== MessageID
+                (giveaway) => giveaway.messageID !== MessageID
             );
             giveaways.data = NewGiveawaysArray;
 
             await giveaways
                 .save()
-                .catch(err =>
+                .catch((err) =>
                     console.log(
                         `[Giveaway Manager] - Failed to delete giveaway and save to database. ${err}`
                     )

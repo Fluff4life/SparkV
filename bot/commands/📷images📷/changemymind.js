@@ -1,24 +1,27 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
-  if (bot.config.Debug.Enabled === true) {
-    return;
-  }
+    if (bot.config.Debug.Enabled === true) {
+        return;
+    }
 
-  if (!args || !args[0]) {
-    return message.reply(`Please provide text.`);
-  }
+    if (!args || !args[0]) {
+        return message.reply(`Please provide text.`);
+    }
 
-  const canvacord = require(`canvacord`);
+    const canvacord = require(`canvacord`);
 
-  args = args.join(` `);
+    args = args.join(` `);
 
-  const Image = await canvacord.Canvas.changemymind(args);
-  const ChangeMyMind = new Discord.MessageAttachment(Image, `changemymind.gif`);
+    const Image = await canvacord.Canvas.changemymind(args);
+    const ChangeMyMind = new Discord.MessageAttachment(
+        Image,
+        `changemymind.gif`
+    );
 
-  message.reply(ChangeMyMind);
+    message.reply(ChangeMyMind);
 };
-  exports.config = {
+exports.config = {
     name: `ChangeMyMind`,
     description: `AAAAAAAAAAAAAAAAAAAAAAAAAAAH!`,
     aliases: [`cmm`],
@@ -27,5 +30,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
-    cooldown: 2
+    cooldown: 2,
 };

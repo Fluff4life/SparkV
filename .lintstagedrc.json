@@ -1,4 +1,4 @@
 {
-    "*.{mjs,js}": "eslint --fix --ext js",
-    "*.{json,yml,yaml}": "prettier --write"
-  }
+  "*.{mjs,js}": "eslint --fix --ext js",
+  "*.{json,yml,yaml}": "prettier --write"
+}
