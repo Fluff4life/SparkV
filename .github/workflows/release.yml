@@ -1,30 +1,50 @@
 name: Release
-
 on:
-  push:
-    paths:
-      - "**.js"
-  workflow_dispatch:
+  - workflow_dispatch
+  - push
+  - pull_request
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.3.4
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2.4.0
+      - uses: actions/checkout@v1
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: "16.x"
+          node-version: 16.7.x
+
       - name: Install Dependencies
-        run: npm install -g
+        run: npm ci
+
       - name: Correct Code
-        run: npm run test:fix
+        uses: eslint/github-action@v0
+
       - name: Format Code
-        run: npm run format:check
+        uses: creyD/prettier_action@v3.3
+        with:
+          prettier_options: --write **/*.{js,md}
+          only_changed: True
+        
       - name: Commit and Push Changes
         uses: EndBug/add-and-commit@v7
         with:
           author_name: github-actions[bot]
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: "style: 🎨 format code"
+
+  build:
+    name: Run ESLint
+    runs-on: ubuntu-latest
+    steps:
+      
+      # Check out the repository
+
+
+      # Install your dependencies
+      - run: npm ci
+
+      # Run ESLint
+      - uses: eslint/github-action@v0
