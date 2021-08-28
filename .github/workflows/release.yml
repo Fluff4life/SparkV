@@ -20,13 +20,10 @@ jobs:
         run: npm ci
 
       - name: Correct Code
-        uses: eslint/github-action@v0
+        run: npm run test:fix
 
       - name: Format Code
-        uses: creyD/prettier_action@v3.3
-        with:
-          prettier_options: --write **/*.{js,md}
-          only_changed: True
+        run: npm run format
         
       - name: Commit and Push Changes
         uses: EndBug/add-and-commit@v7
