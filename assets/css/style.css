@@ -1960,7 +1960,7 @@ progress {
   border-color: #dee2e6;
 }
 .table > :not(caption) > * > * {
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom-width: 1px;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
@@ -1980,7 +1980,7 @@ progress {
 }
 
 .table-sm > :not(caption) > * > * {
-  padding: 0.25rem 0.25rem;
+  padding: 0.25rem;
 }
 
 .table-bordered > :not(caption) > * {
@@ -4435,7 +4435,7 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
 
 .card-title {
@@ -4561,7 +4561,7 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
   font-size: 1rem;
   color: #212529;
   text-align: left;
@@ -4644,7 +4644,7 @@ textarea.form-control-lg {
 }
 
 .accordion-body {
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
 }
 
 .accordion-flush .accordion-collapse {
@@ -4668,7 +4668,7 @@ textarea.form-control-lg {
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
-  padding: 0 0;
+  padding: 0;
   margin-bottom: 1rem;
   list-style: none;
 }
@@ -4798,7 +4798,7 @@ textarea.form-control-lg {
 
 .alert {
   position: relative;
-  padding: 1rem 1rem;
+  padding: 1rem;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
@@ -5278,7 +5278,7 @@ textarea.form-control-lg {
   box-sizing: content-box;
   width: 1em;
   height: 1em;
-  padding: 0.25em 0.25em;
+  padding: 0.25em;
   color: #000;
   background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
   border: 0;
@@ -5439,13 +5439,13 @@ textarea.form-control-lg {
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
 }
 .modal-header .btn-close {
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   margin: -0.5rem -0.5rem -0.5rem auto;
 }
 
@@ -5812,12 +5812,12 @@ textarea.form-control-lg {
 }
 .bs-popover-bottom > .popover-arrow::before, .bs-popover-auto[data-popper-placement^=bottom] > .popover-arrow::before {
   top: 0;
-  border-width: 0 0.5rem 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem;
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 .bs-popover-bottom > .popover-arrow::after, .bs-popover-auto[data-popper-placement^=bottom] > .popover-arrow::after {
   top: 1px;
-  border-width: 0 0.5rem 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem;
   border-bottom-color: #fff;
 }
 .bs-popover-bottom .popover-header::before, .bs-popover-auto[data-popper-placement^=bottom] .popover-header::before {
@@ -5861,7 +5861,7 @@ textarea.form-control-lg {
 }
 
 .popover-body {
-  padding: 1rem 1rem;
+  padding: 1rem;
   color: #212529;
 }
 
@@ -6163,10 +6163,10 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
 .offcanvas-header .btn-close {
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   margin-top: -0.5rem;
   margin-right: -0.5rem;
   margin-bottom: -0.5rem;
@@ -6179,7 +6179,7 @@ textarea.form-control-lg {
 
 .offcanvas-body {
   flex-grow: 1;
-  padding: 1rem 1rem;
+  padding: 1rem;
   overflow-y: auto;
 }
 
@@ -12206,7 +12206,7 @@ body[data-aos-easing=ease-in-out-quart] [data-aos], [data-aos][data-aos][data-ao
   border-width: 0.25em;
   border-style: solid;
   border-radius: 100%;
-  border-color: #2778c4 transparent #2778c4 transparent;
+  border-color: #2778c4 transparent;
 }
 
 .swal2-styled {
@@ -12993,7 +12993,7 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   border: 0.1rem solid rgba(255, 255, 255, 0.6);
   color: #fff;
   display: block;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
   -webkit-appearance: button;
   -moz-appearance: button;
   appearance: button;
@@ -13083,7 +13083,7 @@ hr {
 .menu {
   display: flex;
   list-style: none;
-  padding: 1rem 0 0 0;
+  padding: 1rem 0 0;
   flex-direction: row;
   background: #009cff;
 }
@@ -13101,7 +13101,7 @@ hr {
 }
 
 .campanies {
-  padding: 0 0 5rem 0;
+  padding: 0 0 5rem;
 }
 .campanies__logo-box {
   max-width: 100%;
@@ -13122,7 +13122,7 @@ hr {
   padding-top: 1rem;
   display: flex;
   list-style: none;
-  padding: 0 0 0 0;
+  padding: 0;
   flex-direction: row;
   margin-bottom: 0;
   background: #009cff;
@@ -13148,7 +13148,7 @@ hr {
 
 .hero {
   background: #009cff;
-  padding: 10rem 0 0 0;
+  padding: 10rem 0 0;
   width: 100%;
   height: 100%;
   position: relative;
@@ -13286,5 +13286,3 @@ hr {
  * Copyright 2021 KingCh1ll
  * All rights reserved.
  */
-
-/*# sourceMappingURL=style.css.map */
