@@ -8,8 +8,8 @@ async function execute(bot, message) {
   );
 }
 
-  module.exports = new cmd(execute, {
-    description: `I'll send my dashboard!`,
-    aliases: ["dash"],
-    usage: `<user>`
-  });
+module.exports = new cmd(execute, {
+  description: `I'll send my dashboard!`,
+  aliases: ["dash"],
+  usage: `<user>`,
+});

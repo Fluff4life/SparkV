@@ -25,5 +25,5 @@ async function execute(bot, message, args, command, data) {
 module.exports = new cmd(execute, {
   description: `Just a little fun.`,
   aliases: ["levelboard", "llb"],
-  usage: ``
+  usage: ``,
 });
