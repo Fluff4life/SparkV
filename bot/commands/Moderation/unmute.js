@@ -37,11 +37,6 @@ async function execute(bot, message, args, command, data) {
     return message.reply(
       `${bot.config.bot.Emojis.error} | I couldn't find the muted role! Please make sure the role is called, \`Muted\`.`,
     );
-  }
-
-  if (User.roles.cache.has(Role)) {
-    return message.reply(`${bot.config.bot.Emojis.error} | This user isn't muted!`);
-  }
 
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle(`Convermination Prompt`)

@@ -5,11 +5,15 @@ const command = require("../../templates/gameCommand");
 async function execute(bot, message, args, command, data) {
   const { Trivia } = require("weky");
 
-  if (args[0]) {
-    if (!args[0] === "easy" || !args[0] === "medium" || !args[0] === "hard") {
-      args[0] = "easy";
+    if (args[0]) {
+        if (
+            !args[0] === "easy" ||
+            !args[0] === "medium" ||
+            !args[0] === "hard"
+        ) {
+            args[0] = "easy";
+        }
     }
-  }
 
   await Trivia({
     message: message,

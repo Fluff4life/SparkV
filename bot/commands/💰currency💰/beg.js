@@ -1,27 +1,32 @@
 const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
-  var Ch1llBucks = data.user.money.balance;
-  var Multiplier = data.user.money.multiplier;
-  const RandomAmmount = Math.floor(Math.random() * 500) + 1;
+    var Ch1llBucks = data.user.money.balance;
+    var Multiplier = data.user.money.multiplier;
+    const RandomAmmount = Math.floor(Math.random() * 500) + 1;
 
-  if (!Ch1llBucks) {
-    Ch1llBucks = 0;
-  }
+    if (!Ch1llBucks) {
+        Ch1llBucks = 0;
+    }
 
-  if (!Multiplier) {
-    Multiplier = 1;
-  }
+    if (!Multiplier) {
+        Multiplier = 1;
+    }
 
-  const Ammount = RandomAmmount * Multiplier;
+    const Ammount = RandomAmmount * Multiplier;
 
-  Ch1llBucks += Ammount;
+    Ch1llBucks += Ammount;
 
-  message.reply(
-    `${bot.config.bot.Emojis.success} | You begged and recieved ${await bot.FormatNumber(Ammount)} Ch1llBucks!`,
-  );
+    message.reply(
+        `${
+            bot.config.bot.Emojis.success
+        } | You begged and recieved ${await bot.FormatNumber(
+            Ammount
+        )} Ch1llBucks!`
+    );
 };
 exports.config = {
+<<<<<<< HEAD
   name: "Balance",
   description: "Beg for coins.",
   aliases: ["ask"],
@@ -31,4 +36,15 @@ exports.config = {
   member_permissions: [],
   enabled: true,
   cooldown: 15,
+=======
+    name: "Balance",
+    description: "Beg for coins.",
+    aliases: ["ask"],
+    usage: "<optional user>",
+    category: "💰Currency💰",
+    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+    member_permissions: [],
+    enabled: true,
+    cooldown: 15,
+>>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 };

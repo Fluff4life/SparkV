@@ -7,10 +7,10 @@ const CheckAuth = require("../../utils/CheckAuth");
 const Render = require("../../utils/Render");
 
 Router.get("/", CheckAuth, (request, response) => {
-  request.session.destroy(() => {
-    request.logout();
-    response.redirect("/");
-  });
+    request.session.destroy(() => {
+        request.logout();
+        response.redirect("/");
+    });
 });
 
 module.exports = Router;

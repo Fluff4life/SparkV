@@ -7,27 +7,34 @@ async function execute(bot, message, args, command, data) {
     return;
   }
 
-  const noblox = require("noblox.js");
+    const noblox = require("noblox.js");
 
-  try {
-    const UserID = await noblox.getIdFromUsername(args[0]);
+    try {
+        const UserID = await noblox.getIdFromUsername(args[0]);
 
-    if (!UserID) {
-      return message.reply(`User lookup canceled. User doesn't exist.`);
-    }
+        if (!UserID) {
+            return message.reply(`User lookup canceled. User doesn't exist.`);
+        }
 
-    await noblox.getPlayerInfo(UserID).then(PlayerInfo => {
-      const InfoEmbed = new Discord.MessageEmbed()
-        .setTitle(`${PlayerInfo.username}'s Profile`)
-        .setDescription(`*${PlayerInfo.status || "No status."}*`)
-        .addField(`**Account Age**`, `${PlayerInfo.age || "N/A"} days old (${PlayerInfo.joinDate || "N/A"})`)
-        .addField(`**Description**`, PlayerInfo.blurb || "N/A")
-        .setThumbnail(
-          `https://www.roblox.com/headshot-thumbnail/image?userId=${UserID}&width=420&height=420&format=png`,
-        )
-        .setURL(`https://www.roblox.com/users/${UserID}/profile`)
-        .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${bot.config.bot.Embed.Footer}`)
-        .setColor(bot.config.bot.Embed.Color);
+        await noblox.getPlayerInfo(UserID).then(PlayerInfo => {
+            const InfoEmbed = new Discord.MessageEmbed()
+                .setTitle(`${PlayerInfo.username}'s Profile`)
+                .setDescription(`*${PlayerInfo.status || "No status."}*`)
+                .addField(
+                    `**Account Age**`,
+                    `${PlayerInfo.age || "N/A"} days old (${
+                        PlayerInfo.joinDate || "N/A"
+                    })`
+                )
+                .addField(`**Description**`, PlayerInfo.blurb || "N/A")
+                .setThumbnail(
+                    `https://www.roblox.com/headshot-thumbnail/image?userId=${UserID}&width=420&height=420&format=png`
+                )
+                .setURL(`https://www.roblox.com/users/${UserID}/profile`)
+                .setFooter(
+                    `Username: ${PlayerInfo.username} | UserID: ${UserID} • ${bot.config.bot.Embed.Footer}`
+                )
+                .setColor(bot.config.bot.Embed.Color);
 
       message.reply({
         embeds: [InfoEmbed],

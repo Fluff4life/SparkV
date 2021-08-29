@@ -1,4 +1,5 @@
 self.addEventListener("install", event => {
+<<<<<<< HEAD
   event.waitUntil(
     (async () => {
       const cache = await caches.open("offline");
@@ -6,11 +7,23 @@ self.addEventListener("install", event => {
       await cache.add(new Request("/assets/offline.html", { cache: "reload" }));
     })(),
   );
+=======
+    event.waitUntil(
+        (async () => {
+            const cache = await caches.open("offline");
 
-  self.skipWaiting();
+            await cache.add(
+                new Request("/assets/offline.html", { cache: "reload" })
+            );
+        })()
+    );
+>>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
+
+    self.skipWaiting();
 });
 
 self.addEventListener("activate", event => {
+<<<<<<< HEAD
   event.waitUntil(
     (async () => {
       if ("navigationPreload" in self.registration) await self.registration.navigationPreload.enable();
@@ -42,4 +55,37 @@ self.addEventListener("fetch", event => {
       })(),
     );
   }
+=======
+    event.waitUntil(
+        (async () => {
+            if ("navigationPreload" in self.registration) await self.registration.navigationPreload.enable();
+        })()
+    );
+
+    self.clients.claim();
+});
+
+self.addEventListener("fetch", event => {
+    if (event.request.mode === "navigate") {
+        event.respondWith(
+            (async () => {
+                try {
+                    const PreloadResponse = await event.preloadResponse;
+
+                    if (PreloadResponse) {
+                        return PreloadResponse;
+                    }
+
+                    const NetworkResponse = await fetch(event.request);
+
+                    return NetworkResponse;
+                } catch (err) {
+                    const cache = await caches.open("offline");
+
+                    return await cache.match("/assets/offline.html");
+                }
+            })()
+        );
+    }
+>>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 });

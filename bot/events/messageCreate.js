@@ -19,48 +19,24 @@ exports.run = async (bot, message) => {
   data.guild = await bot.database.fetchGuild(message.guild.id);
   data.member = await bot.database.fetchMember(message.author.id, message.guild.id);
 
-  // AFK //
-  if (message.guild) {
-    const AFKReason = data.user.afk;
-
-    if (AFKReason) {
-      data.user.afk = null;
-
-      await data.user.save();
-      message.reply(bot.config.bot.Responses.AFKWelcomeMessage);
+    if (message.guild && !message.member) {
+        await message.guild.members.fetch(message.author.id);
     }
 
-    message.mentions.users.forEach(async MentionedUser => {
-      const MentionedUserData = await bot.database.fetchUser(MentionedUser.id);
+    data.config = bot.config;
 
-      if (MentionedUserData.afk) {
-        message.reply(
-          bot.config.bot.Responses.AFKMessage.toString()
-            .replaceAll(`{userMentioned}`, MentionedUser.user.username)
-            .replaceAll(`{reason}`, MentionedUserData.afk || "Reason data not found!"),
+    if (message.guild) {
+        data.guild = await bot.database.fetchGuild(message.guild.id);
+    }
+
+    if (message.guild) {
+        data.member = await bot.database.fetchMember(
+            message.author.id,
+            message.guild.id
         );
-      }
-    });
-  }
-
-  const AntiURL = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeLinks;
-  // Await bot.dashboard.getVal(message.guild.id, `removelinks`);
-
-  if (AntiURL === true) {
-    if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
-      try {
-        message.delete();
-      } catch (err) {
-        message
-          .reply(bot.config.bot.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
-          .then(m => m.delete({ timeout: 1000 }));
-      }
     }
 
-    return message.channel
-      .send(`🔨 ${message.author}, you cannot send links here!`)
-      .then(m => m.delete({ timeout: 1000 }));
-  }
+    data.user = await bot.database.fetchUser(message.author.id);
 
   const AntiSwear = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeProfanity;
 
@@ -77,55 +53,133 @@ exports.run = async (bot, message) => {
     }
   }
 
-  const AntiSpam = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeDuplicateText;
+        if (AFKReason) {
+            data.user.afk = null;
 
-  if (AntiSpam === true) {
-    if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
-      bot.AntiSpam.message(message);
-    }
-  }
+            await data.user.save();
+            message.reply(bot.config.bot.Responses.AFKWelcomeMessage);
+        }
 
-  const Leveling = bot.config.Debug.Enabled === true ? false : data.guild.settings.leveling.enabled;
+        message.mentions.users.forEach(async MentionedUser => {
+            const MentionedUserData = await bot.database.fetchUser(
+                MentionedUser.id
+            );
 
-  if (Leveling === true) {
-    let MaxXP = data.guild.settings.automod.leveling.max;
-    let MinXP = data.guild.settings.automod.leveling.min;
-
-    if (isNaN(MaxXP)) {
-      MaxXP = 25;
-    }
-
-    if (isNaN(MinXP)) {
-      MinXP = 5;
-    }
-
-    const RandomXP = Math.floor(Math.random() * MaxXP || 25) + MinXP || 5;
-    const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP);
-
-    if (HasLeveledUp) {
-      const User = await Levels.fetch(message.author.id, message.guild.id);
-      const Level = await bot.FormatNumber(User.level);
-
-      message.reply(
-        bot.config.bot.Responses.LevelUpMessage.toString()
-          .replaceAll(`{author}`, message.author)
-          .replaceAll(`{level}`, Level),
-      );
-    }
-  }
-
-  const Prefix = bot.config.Debug.Enabled === true ? "_" : data.guild.settings.prefix;
-  const ChatBot = bot.config.Debug.Enabled === true ? null : data.guild.settings.chatbot;
-
-  if (!message.content.startsWith(Prefix)) {
-    if (!ChatBot) {
-      return;
+            if (MentionedUserData.afk) {
+                message.reply(
+                    bot.config.bot.Responses.AFKMessage.toString()
+                        .replaceAll(
+                            `{userMentioned}`,
+                            MentionedUser.user.username
+                        )
+                        .replaceAll(
+                            `{reason}`,
+                            MentionedUserData.afk || "Reason data not found!"
+                        )
+                );
+            }
+        });
     }
 
-    if (ChatBot.toLowerCase() === `message`) {
-      return ActivateChatBot(bot, message, false);
+    const AntiURL =
+        bot.config.Debug.Enabled === true
+            ? false
+            : data.guild.settings.automod.removeLinks;
+    // Await bot.dashboard.getVal(message.guild.id, `removelinks`);
+
+    if (AntiURL === true) {
+        if (
+            !user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) &&
+            bot.isURL(message.content)
+        ) {
+            try {
+                message.delete();
+            } catch (err) {
+                message
+                    .reply(
+                        bot.config.bot.Responses.InvalidPermisions.bot
+                            .toString()
+                            .replaceAll(`{author}`, message.author)
+                    )
+                    .then(m => m.delete({ timeout: 1000 }));
+            }
+        }
+
+        return message.channel
+            .send(`🔨 ${message.author}, you cannot send links here!`)
+            .then(m => m.delete({ timeout: 1000 }));
     }
-  }
+
+    const AntiSwear =
+        bot.config.Debug.Enabled === true
+            ? false
+            : data.guild.settings.automod.removeProfanity;
+
+    if (AntiSwear === true) {
+        if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
+            AntiSwearPackage(bot, message, {
+                warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
+                muteRole: `Muted`,
+                ignoreWord: [`hello`],
+                muteCount: 3,
+                kickCount: 6,
+                banCount: 12,
+            });
+        }
+    }
+
+    const AntiSpam =
+        bot.config.Debug.Enabled === true
+            ? false
+            : data.guild.settings.automod.removeDuplicateText;
+
+    if (AntiSpam === true) {
+        if (
+            !message.channel.name.startsWith(`spam`) &&
+            !message.channel.name.endsWith(`spam`)
+        ) {
+            bot.AntiSpam.message(message);
+        }
+    }
+
+    const Leveling =
+        bot.config.Debug.Enabled === true
+            ? false
+            : data.guild.settings.leveling.enabled;
+
+    if (Leveling === true) {
+        let MaxXP = data.guild.settings.automod.leveling.max;
+        let MinXP = data.guild.settings.automod.leveling.min;
+
+        if (isNaN(MaxXP)) {
+            MaxXP = 25;
+        }
+
+        if (isNaN(MinXP)) {
+            MinXP = 5;
+        }
+
+        const RandomXP = Math.floor(Math.random() * MaxXP || 25) + MinXP || 5;
+        const HasLeveledUp = await Levels.appendXp(
+            message.author.id,
+            message.guild.id,
+            RandomXP
+        );
+
+        if (HasLeveledUp) {
+            const User = await Levels.fetch(
+                message.author.id,
+                message.guild.id
+            );
+            const Level = await bot.FormatNumber(User.level);
+
+            message.reply(
+                bot.config.bot.Responses.LevelUpMessage.toString()
+                    .replaceAll(`{author}`, message.author)
+                    .replaceAll(`{level}`, Level)
+            );
+        }
+    }
 
   if (message.mentions.has(bot.user)) {
     const args = message.content
@@ -150,15 +204,14 @@ exports.run = async (bot, message) => {
     const Prefix = bot.config.Debug.Enabled === true ? "_" : data.guild.settings.prefix;
     const ChatBot = bot.config.Debug.Enabled === true ? true : data.guild.settings.chatbot;
 
-    console.log(Prefix);
     if (!message.content.startsWith(Prefix)) {
-      if (ChatBot.toLowerCase() === `message`) {
-        return ActivateChatBot(bot, message, false);
-      }
-    }
+        if (!ChatBot) {
+            return;
+        }
 
-    if (!message.content.startsWith(Prefix)) {
-      return;
+        if (ChatBot.toLowerCase() === `message`) {
+            return ActivateChatBot(bot, message, false);
+        }
     }
 
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
@@ -166,8 +219,22 @@ exports.run = async (bot, message) => {
     const commandfile =
       bot.commands.get(command.name) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command));
 
-    return HandleCommand(bot, message, args, command, data, commandfile);
-  }
+        if (!message.content.startsWith(Prefix)) {
+            return;
+        }
+
+        const args = message.content.slice(Prefix.length).trim().split(/ +/);
+        const command = args.shift().toLowerCase();
+        const commandfile =
+            bot.commands.get(command) ||
+            bot.commands.find(
+                command_ =>
+                    command_.config.aliases &&
+                    command_.config.aliases.includes(command)
+            );
+
+        return HandleCommand(bot, message, args, command, data, commandfile);
+    }
 };
 
 async function HandleCommand(bot, message, args, command, data, commandfile) {
@@ -177,17 +244,19 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
     return;
   }
 
-  if (process.env.USERBLACKLIST.includes(message.author.id)) {
-    try {
-      return message.author
-        .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
-        .then(() => {
-          message.react("❌");
-        });
-    } catch {
-      message.react(bot.config.bot.Emojis.Error);
+    if (process.env.USERBLACKLIST.includes(message.author.id)) {
+        try {
+            return message.author
+                .send(
+                    `${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`
+                )
+                .then(() => {
+                    message.react("❌");
+                });
+        } catch {
+            message.react(bot.config.bot.Emojis.Error);
+        }
     }
-  }
 
   console.log(commandfile);
   if (!commandfile.settings.enabled) {
@@ -239,7 +308,6 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
         time: commandfile.cooldown * 1000 || 3000 + Date.now(),
       });
     }
-  }
 
   /*
   If (!bot.cooldowns.has(commandfile.name)) {
@@ -293,12 +361,12 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
   } catch (err) {
     console.error(err);
 
-    const AnnonymousUser = `Annonymous`;
+        const AnnonymousUser = `Annonymous`;
 
-    configureScope(scope => {
-      scope.setUser({
-        AnnonymousUser,
-      });
+        configureScope(scope => {
+            scope.setUser({
+                AnnonymousUser,
+            });
 
       scope.setTag(`Command`, commandfile.settings.name);
       scope.setTag(`CurrentPing`, bot.ws.ping);
@@ -310,64 +378,77 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
     );
   }
 
-  bot.database.createLog(message, data);
+    bot.database.createLog(message, data);
 }
 
 async function ActivateChatBot(bot, message, wasMentioned) {
-  message.channel.startTyping();
+    message.channel.startTyping();
 
-  var SlicedMessage;
+    var SlicedMessage;
 
-  if (message.content.slice(21) === "") {
-    // If case the user replys to Ch1llBlox instead of mentioning him, or for some other silly reason.
+    if (message.content.slice(21) === "") {
+        // If case the user replys to Ch1llBlox instead of mentioning him, or for some other silly reason.
 
-    SlicedMessage = message.content;
-  } else {
-    SlicedMessage = message.content.slice(21);
-  }
+        SlicedMessage = message.content;
+    } else {
+        SlicedMessage = message.content.slice(21);
+    }
 
-  try {
-    await fetch(
-      `http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.CHAT_BID)}&key=${encodeURIComponent(
-        process.env.CHAT_KEY,
-      )}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(
-        wasMentioned === true ? SlicedMessage : message,
-      )}`,
-    )
-      .then(res => res.json())
-      .then(body => {
-        const botmsg = body.cnt;
+    try {
+        await fetch(
+            `http://api.brainshop.ai/get?bid=${encodeURIComponent(
+                process.env.CHAT_BID
+            )}&key=${encodeURIComponent(
+                process.env.CHAT_KEY
+            )}&uid=${encodeURIComponent(
+                message.author.id
+            )}&msg=${encodeURIComponent(
+                wasMentioned === true ? SlicedMessage : message
+            )}`
+        )
+            .then(res => res.json())
+            .then(body => {
+                const botmsg = body.cnt;
 
-        if (botmsg) {
-          if (message.deleted) {
-            return;
-          }
+                if (botmsg) {
+                    if (message.deleted) {
+                        return;
+                    }
 
-          const APIEmbed = new Discord.MessageEmbed()
-            .setTitle(`Ch1llBlox`)
-            .setDescription(botmsg)
-            .setFooter(
-              `Never send personal information to Ch1llBlox. • ${bot.config.bot.Embed.Footer}`,
-              bot.user.displayAvatarURL(),
-            )
-            .setColor(bot.config.bot.Embed.Color);
+                    const APIEmbed = new Discord.MessageEmbed()
+                        .setTitle(`Ch1llBlox`)
+                        .setDescription(botmsg)
+                        .setFooter(
+                            `Never send personal information to Ch1llBlox. • ${bot.config.bot.Embed.Footer}`,
+                            bot.user.displayAvatarURL()
+                        )
+                        .setColor(bot.config.bot.Embed.Color);
 
-          if (bot.StatClient) {
-            bot.StatClient.postCommand(`ChatBot`, message.author.id);
-          }
+                    if (bot.StatClient) {
+                        bot.StatClient.postCommand(
+                            `ChatBot`,
+                            message.author.id
+                        );
+                    }
 
-          message.reply(APIEmbed);
-        } else {
-          console.error(`Failed to get message from Chat bot. Response: ${body}`);
+                    message.reply(APIEmbed);
+                } else {
+                    console.error(
+                        `Failed to get message from Chat bot. Response: ${body}`
+                    );
 
-          return message.reply(`${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`);
-        }
-      });
-  } catch (err) {
-    console.error(err);
+                    return message.reply(
+                        `${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`
+                    );
+                }
+            });
+    } catch (err) {
+        console.error(err);
 
-    return message.reply(`${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`);
-  }
+        return message.reply(
+            `${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`
+        );
+    }
 
-  message.channel.stopTyping();
+    message.channel.stopTyping();
 }

@@ -9,19 +9,16 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-  let queue = await bot.distube.getQueue(message);
+    let queue = await bot.distube.getQueue(message);
 
-  if (!queue) {
-    return message.reply(
-      `${bot.config.bot.Emojis.error} | There is nothing in the queue right now! Try playing some songs.`,
-    );
-  }
+    if (!queue) {
+        return message.reply(
+            `${bot.config.bot.Emojis.error} | There is nothing in the queue right now! Try playing some songs.`
+        );
+    }
 
-  if (queue.pause) {
-    bot.distube.resume(message);
-
-    return message.reply(`${bot.config.bot.Emojis.error} | I resumed the paused song for you!`);
-  }
+    if (queue.pause) {
+        bot.distube.resume(message);
 
   bot.distube.pause(message);
   message.reply(`${bot.config.bot.Emojis.music} | I paused the song for you!`);

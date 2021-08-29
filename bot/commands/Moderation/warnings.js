@@ -14,17 +14,25 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-  if (!User) {
-    return message
-      .reply(`${bot.config.bot.Emojis.error} | I cannot find that member!`)
-      .then(m => m.delete({ timeout: 5000 }));
-  }
+    if (!args[0]) {
+        return message
+            .reply(
+                `${bot.config.bot.Emojis.error} | Please mention someone to view their warnings!`
+            )
+            .then(m => m.delete({ timeout: 5000 }));
+    }
 
-  var warnings = bot.Database.get(`ServerData.${message.guild.id}.${User.id}.warnings`);
+    if (!User) {
+        return message
+            .reply(
+                `${bot.config.bot.Emojis.error} | I cannot find that member!`
+            )
+            .then(m => m.delete({ timeout: 5000 }));
+    }
 
-  if (!warnings) {
-    warnings = 0;
-  }
+    var warnings = bot.Database.get(
+        `ServerData.${message.guild.id}.${User.id}.warnings`
+    );
 
   message.reply(`${User} has **${warnings}** warnings.`);
 }

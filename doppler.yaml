@@ -1,3 +1,8 @@
 setup:
+<<<<<<< HEAD
   project: ch1llblox
   config: dev
+=======
+    project: ch1llblox
+    config: dev
+>>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
