@@ -24,7 +24,7 @@ module.exports = class RedditCommand {
   }
 
   async run(bot, message, args, command) {
-    var body = await fetch(`https://www.reddit.com${this.settings.endpoint}`).then(response => response.json());
+    const body = await fetch(`https://www.reddit.com${this.settings.endpoint}`).then(response => response.json());
 
     const posts = body.data.children.filter(filters[this.settings.type]);
     const selectedPost = posts[Math.floor(Math.random() * Object.keys(posts).length)].data;
