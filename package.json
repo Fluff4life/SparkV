@@ -26,8 +26,8 @@
   "author": "KingCh1ll",
   "license": "MIT",
   "engines": {
-    "node": "16.7.0",
-    "npm": "7.20.3"
+    "node": "16.8.x",
+    "npm": "7.x"
   },
   "dependencies": {
     "@discordjs/rest": "^0.1.0-canary.0",
