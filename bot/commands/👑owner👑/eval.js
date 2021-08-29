@@ -38,8 +38,8 @@ async function execute(bot, message, args, command, data) {
   }
 }
 
-  module.exports = new cmd(execute, {
-    description: `This is an owner only command.`,
-    aliases: [],
-    usage: `<user>`
-  });
+module.exports = new cmd(execute, {
+  description: `This is an owner only command.`,
+  aliases: [],
+  usage: `<user>`,
+});

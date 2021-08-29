@@ -45,14 +45,14 @@ async function execute(bot, message, args, command, data) {
   );
 }
 
-  (exports.config = {
-    name: `Weather`,
-    description: `Checks for todays weather forcast in the location specified.`,
-    aliases: [],
-    usage: `<contry>`,
-    category: `😃Fun😃`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5,
-  });
+exports.config = {
+  name: `Weather`,
+  description: `Checks for todays weather forcast in the location specified.`,
+  aliases: [],
+  usage: `<contry>`,
+  category: `😃Fun😃`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5,
+};

@@ -25,5 +25,5 @@ async function execute(bot, message, args, command, data) {
 module.exports = new cmd(execute, {
   description: `View your balance.`,
   aliases: ["bal"],
-  usage: `<optional user>`
+  usage: `<optional user>`,
 });
