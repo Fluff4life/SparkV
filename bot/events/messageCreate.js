@@ -28,10 +28,7 @@ exports.run = async (bot, message) => {
   }
 
   if (message.guild) {
-    data.member = await bot.database.fetchMember(
-      message.author.id,
-      message.guild.id
-    );
+    data.member = await bot.database.fetchMember(message.author.id, message.guild.id);
   }
 
   if (data.user.afk) {
@@ -57,45 +54,27 @@ exports.run = async (bot, message) => {
   }
 
   message.mentions.users.forEach(async MentionedUser => {
-    const MentionedUserData = await bot.database.fetchUser(
-      MentionedUser.id
-    );
+    const MentionedUserData = await bot.database.fetchUser(MentionedUser.id);
 
     if (MentionedUserData.afk) {
       message.reply(
         bot.config.bot.Responses.AFKMessage.toString()
-          .replaceAll(
-            `{userMentioned}`,
-            MentionedUser.user.username
-          )
-          .replaceAll(
-            `{reason}`,
-            MentionedUserData.afk || "Reason data not found!"
-          )
+          .replaceAll(`{userMentioned}`, MentionedUser.user.username)
+          .replaceAll(`{reason}`, MentionedUserData.afk || "Reason data not found!"),
       );
     }
   });
 
-  const AntiURL =
-    bot.config.Debug.Enabled === true
-      ? false
-      : data.guild.settings.automod.removeLinks;
+  const AntiURL = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeLinks;
   // Await bot.dashboard.getVal(message.guild.id, `removelinks`);
 
   if (AntiURL === true) {
-    if (
-      !user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) &&
-      bot.isURL(message.content)
-    ) {
+    if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
       try {
         message.delete();
       } catch (err) {
         message
-          .reply(
-            bot.config.bot.Responses.InvalidPermisions.bot
-              .toString()
-              .replaceAll(`{author}`, message.author)
-          )
+          .reply(bot.config.bot.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
           .then(m => m.delete({ timeout: 1000 }));
       }
     }
@@ -105,24 +84,15 @@ exports.run = async (bot, message) => {
       .then(m => m.delete({ timeout: 1000 }));
   }
 
-  const AntiSpam =
-    bot.config.Debug.Enabled === true
-      ? false
-      : data.guild.settings.automod.removeDuplicateText;
+  const AntiSpam = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeDuplicateText;
 
   if (AntiSpam === true) {
-    if (
-      !message.channel.name.startsWith(`spam`) &&
-      !message.channel.name.endsWith(`spam`)
-    ) {
+    if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
       bot.AntiSpam.message(message);
     }
   }
 
-  const Leveling =
-    bot.config.Debug.Enabled === true
-      ? false
-      : data.guild.settings.leveling.enabled;
+  const Leveling = bot.config.Debug.Enabled === true ? false : data.guild.settings.leveling.enabled;
 
   if (Leveling === true) {
     let MaxXP = data.guild.settings.automod.leveling.max;
@@ -137,23 +107,16 @@ exports.run = async (bot, message) => {
     }
 
     const RandomXP = Math.floor(Math.random() * MaxXP || 25) + MinXP || 5;
-    const HasLeveledUp = Levels.appendXp(
-      message.author.id,
-      message.guild.id,
-      RandomXP
-    );
+    const HasLeveledUp = Levels.appendXp(message.author.id, message.guild.id, RandomXP);
 
     if (HasLeveledUp) {
-      const User = Levels.fetch(
-        message.author.id,
-        message.guild.id
-      );
+      const User = Levels.fetch(message.author.id, message.guild.id);
       const Level = bot.FormatNumber(User.level);
 
       message.reply(
         bot.config.bot.Responses.LevelUpMessage.toString()
           .replaceAll(`{author}`, message.author)
-          .replaceAll(`{level}`, Level)
+          .replaceAll(`{level}`, Level),
       );
     }
   }
@@ -210,9 +173,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
   if (process.env.USERBLACKLIST.includes(message.author.id)) {
     try {
       return message.author
-        .send(
-          `${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`
-        )
+        .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
         .then(() => {
           message.react("❌");
         });
@@ -283,7 +244,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
           : await bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
 
       if (DeleteUsage === `Enabled`) {
-        message.delete().catch(() => { });
+        message.delete().catch(() => {});
       }
     });
 
@@ -328,15 +289,11 @@ async function ActivateChatBot(bot, message, wasMentioned) {
 
   try {
     await fetch(
-      `http://api.brainshop.ai/get?bid=${encodeURIComponent(
-        process.env.CHAT_BID
-      )}&key=${encodeURIComponent(
-        process.env.CHAT_KEY
-      )}&uid=${encodeURIComponent(
-        message.author.id
-      )}&msg=${encodeURIComponent(
-        wasMentioned === true ? SlicedMessage : message
-      )}`
+      `http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.CHAT_BID)}&key=${encodeURIComponent(
+        process.env.CHAT_KEY,
+      )}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(
+        wasMentioned === true ? SlicedMessage : message,
+      )}`,
     )
       .then(res => res.json())
       .then(body => {
@@ -352,34 +309,25 @@ async function ActivateChatBot(bot, message, wasMentioned) {
             .setDescription(botmsg)
             .setFooter(
               `Never send personal information to Ch1llBlox. • ${bot.config.bot.Embed.Footer}`,
-              bot.user.displayAvatarURL()
+              bot.user.displayAvatarURL(),
             )
             .setColor(bot.config.bot.Embed.Color);
 
           if (bot.StatClient) {
-            bot.StatClient.postCommand(
-              `ChatBot`,
-              message.author.id
-            );
+            bot.StatClient.postCommand(`ChatBot`, message.author.id);
           }
 
           message.reply(APIEmbed);
         } else {
-          console.error(
-            `Failed to get message from Chat bot. Response: ${body}`
-          );
+          console.error(`Failed to get message from Chat bot. Response: ${body}`);
 
-          return message.reply(
-            `${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`
-          );
+          return message.reply(`${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`);
         }
       });
   } catch (err) {
     console.error(err);
 
-    return message.reply(
-      `${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`
-    );
+    return message.reply(`${bot.config.bot.Emojis.error} | Wha- what? Something went wrong.`);
   }
 
   message.channel.stopTyping();
