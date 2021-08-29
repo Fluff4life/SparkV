@@ -3,21 +3,21 @@ const Discord = require("discord.js");
 exports.run = async (bot, message, args, command, data) => {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
-    if (bot.config.Debug.Enabled === true) {
-        return;
-    }
+  if (bot.config.Debug.Enabled === true) {
+    return;
+  }
 
-    const canvacord = require("canvacord");
+  const canvacord = require("canvacord");
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
     format: "gif",
   });
 
-    const Image = await canvacord.Canvas.trash(Avatar);
-    const Trash = new Discord.MessageAttachment(Image, "trash.gif");
+  const Image = await canvacord.Canvas.trash(Avatar);
+  const Trash = new Discord.MessageAttachment(Image, "trash.gif");
 
-    message.reply(Trash);
+  message.reply(Trash);
 };
 exports.config = {
   name: "Trash",

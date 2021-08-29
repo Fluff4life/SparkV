@@ -1,16 +1,16 @@
 const Discord = require(`discord.js`);
 
 const Credits = [
-    {
-        name: "**🛠 | Developers**",
-        value: "The people who made Ch1llBlox!\n**KingCh1ll** - Head Developer\n**Qu1ckly_Frost** - Developer",
-        inline: true,
-    },
-    {
-        name: "**✨ | Contributors**",
-        value: "People that have contributed to Ch1llBlox.\n**2Lost4Discord** - Getting the bot verified.",
-        inline: true,
-    },
+  {
+    name: "**🛠 | Developers**",
+    value: "The people who made Ch1llBlox!\n**KingCh1ll** - Head Developer\n**Qu1ckly_Frost** - Developer",
+    inline: true,
+  },
+  {
+    name: "**✨ | Contributors**",
+    value: "People that have contributed to Ch1llBlox.\n**2Lost4Discord** - Getting the bot verified.",
+    inline: true,
+  },
 ];
 
 (exports.run = async (bot, message) => {

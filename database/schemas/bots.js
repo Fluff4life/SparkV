@@ -3,17 +3,14 @@ const mongoose = require("mongoose");
 const config = require("../../globalconfig.json");
 
 function GenerateToken() {
-    const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwzy0123456789.-_";
-    let token = "CSBL-";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwzy0123456789.-_";
+  let token = "CSBL-";
 
-    for (let i = 0; i < 32; i++) {
-        token += characters.charAt(
-            Math.floor(Math.random() * characters.length)
-        );
-    }
+  for (let i = 0; i < 32; i++) {
+    token += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
 
-    return token;
+  return token;
 }
 
 const Schema = new mongoose.Schema({

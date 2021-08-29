@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const EasyPages = require("discordeasypages");
 
 module.exports = async bot => {
-    const { DisTube, Queue } = require("distube");
-    const { SpotifyPlugin } = require("@distube/spotify");
-    const { SoundCloudPlugin } = require("@distube/soundcloud");
+  const { DisTube, Queue } = require("distube");
+  const { SpotifyPlugin } = require("@distube/spotify");
+  const { SoundCloudPlugin } = require("@distube/soundcloud");
 
   bot.distube = new DisTube(bot, {
     youtubeCookie: process.env.YOUTUBEAPIKEY,
@@ -16,25 +16,21 @@ module.exports = async bot => {
     plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
   });
 
-    bot.distube
-        .on("playSong", async (queue, song) => {
-            if (song.playlist) {
-                const NowPlayingEmbed = new Discord.MessageEmbed()
-                    .setTitle(`🎵 Now Playing a Playlist 🎵`)
-                    .setDescription(song.playlist.name)
-                    .setThumbnail(song.playlist.thumbnail.url)
-                    .addFields(
-                        {
-                            name: `⚙︱Audio Stats`,
-                            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(
-                                song.likes
-                            )}\n👎︱Dislikes: ${await bot.FormatNumber(
-                                song.dislikes
-                            )}\n▶︱Views: ${await bot.FormatNumber(
-                                song.views
-                            )}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
-                            inline: true,
-                        },
+  bot.distube
+    .on("playSong", async (queue, song) => {
+      if (song.playlist) {
+        const NowPlayingEmbed = new Discord.MessageEmbed()
+          .setTitle(`🎵 Now Playing a Playlist 🎵`)
+          .setDescription(song.playlist.name)
+          .setThumbnail(song.playlist.thumbnail.url)
+          .addFields(
+            {
+              name: `⚙︱Audio Stats`,
+              value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(
+                song.dislikes,
+              )}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+              inline: true,
+            },
 
             {
               name: `🔊︱Audio Settings`,
@@ -120,25 +116,21 @@ module.exports = async bot => {
         )
         .setTimestamp();
 
-            queue.textChannel.reply(SongAddedQueue);
-        })
-        .on("addList", async (queue, playlist) => {
-            const SongAddedQueue = new Discord.MessagEmbed()
-                .setTitle("➕ Added Playlist To Queue")
-                .setDescription(playlist.name)
-                .setThumbnail(playlist.thumbnail)
-                .addFields(
-                    {
-                        name: `⚙︱Audio Stats`,
-                        value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(
-                            song.likes
-                        )}\n👎︱Dislikes: ${await bot.FormatNumber(
-                            song.dislikes
-                        )}\n▶︱Views: ${await bot.FormatNumber(
-                            song.views
-                        )}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
-                        inline: true,
-                    },
+      queue.textChannel.reply(SongAddedQueue);
+    })
+    .on("addList", async (queue, playlist) => {
+      const SongAddedQueue = new Discord.MessagEmbed()
+        .setTitle("➕ Added Playlist To Queue")
+        .setDescription(playlist.name)
+        .setThumbnail(playlist.thumbnail)
+        .addFields(
+          {
+            name: `⚙︱Audio Stats`,
+            value: `\`\`\`👍︱Likes: ${await bot.FormatNumber(song.likes)}\n👎︱Dislikes: ${await bot.FormatNumber(
+              song.dislikes,
+            )}\n▶︱Views: ${await bot.FormatNumber(song.views)}\n📼︱Duration: ${song.formattedDuration}\`\`\``,
+            inline: true,
+          },
 
           {
             name: `🔊︱Audio Settings`,
@@ -156,21 +148,21 @@ module.exports = async bot => {
         )
         .setTimestamp();
 
-            queue.textChannel.reply(SongAddedQueue);
-        })
-        .on("searchResult", result => {
-            try {
-                var Pages = [];
+      queue.textChannel.reply(SongAddedQueue);
+    })
+    .on("searchResult", result => {
+      try {
+        var Pages = [];
 
-                const CreatePage = Song => {
-                    const NewEmbed = new Discord.MessageEmbed()
-                        .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-                        .setColor(bot.config.bot.Embed.Color)
-                        .setURL(Song.url)
-                        .setImage(Song.thumbnail);
+        const CreatePage = Song => {
+          const NewEmbed = new Discord.MessageEmbed()
+            .setTitle(`${Song.formattedDuration} | ${Song.name}`)
+            .setColor(bot.config.bot.Embed.Color)
+            .setURL(Song.url)
+            .setImage(Song.thumbnail);
 
-                    Pages.push(NewEmbed);
-                };
+          Pages.push(NewEmbed);
+        };
 
         result.map(song => CreatePage(song));
         EasyPages(
@@ -200,11 +192,6 @@ module.exports = async bot => {
     .on("error", (channel, err) => {
       console.error(err);
 
-            channel.reply(
-                `❎︱Uh oh! An error occured. Please try again later. Error: ${err.slice(
-                    0,
-                    1950
-                )}`
-            );
-        });
+      channel.reply(`❎︱Uh oh! An error occured. Please try again later. Error: ${err.slice(0, 1950)}`);
+    });
 };

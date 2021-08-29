@@ -2,13 +2,10 @@ const Discord = require("discord.js");
 const request = require("node-fetch");
 
 exports.run = async (bot, message) => {
-    request("https://www.reddit.com/r/MemeEconomy/top/.json")
-        .then(res => res.json())
-        .then(json => {
-            const post =
-                json.data.children[
-                    Math.floor(Math.random() * json.data.children.length)
-                ].data;
+  request("https://www.reddit.com/r/MemeEconomy/top/.json")
+    .then(res => res.json())
+    .then(json => {
+      const post = json.data.children[Math.floor(Math.random() * json.data.children.length)].data;
 
       if (post.title.length > 256) {
         const MemeEconomyEmbed = new Discord.MessageEmbed()
@@ -33,9 +30,9 @@ exports.run = async (bot, message) => {
           )
           .setColor(bot.config.bot.Embed.Color);
 
-                message.reply(MemeEconomyEmbed);
-            }
-        });
+        message.reply(MemeEconomyEmbed);
+      }
+    });
 };
 exports.config = {
   name: "Economy",

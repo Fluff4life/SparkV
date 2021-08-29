@@ -2,19 +2,19 @@ const Discord = require("discord.js");
 const request = require("node-fetch");
 
 exports.run = async (bot, message) => {
-    request("http://aws.random.cat/meow")
-        .then(res => res.json())
-        .then(async json => {
-            const MemeMessage = await message.reply({
-                embed: {
-                    title: "Meow!",
-                    description: "Aweeeeee :D",
-                    color: "#0099ff",
-                    url: json.file,
+  request("http://aws.random.cat/meow")
+    .then(res => res.json())
+    .then(async json => {
+      const MemeMessage = await message.reply({
+        embed: {
+          title: "Meow!",
+          description: "Aweeeeee :D",
+          color: "#0099ff",
+          url: json.file,
 
-                    image: {
-                        url: json.file,
-                    },
+          image: {
+            url: json.file,
+          },
 
           footer: {
             text: `Powered by http://aws.random.cat/meow`,
@@ -23,8 +23,8 @@ exports.run = async (bot, message) => {
         },
       });
 
-            MemeMessage.react("😍");
-        });
+      MemeMessage.react("😍");
+    });
 };
 exports.config = {
   name: "Cat",

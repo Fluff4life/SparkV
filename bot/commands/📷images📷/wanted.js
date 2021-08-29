@@ -3,20 +3,20 @@ const Discord = require("discord.js");
 exports.run = async (bot, message, args, command, data) => {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
-    if (bot.config.Debug.Enabled === true) {
-        return;
-    }
-    const canvacord = require("canvacord");
+  if (bot.config.Debug.Enabled === true) {
+    return;
+  }
+  const canvacord = require("canvacord");
 
   const Avatar = User.displayAvatarURL({
     dynamic: false,
     format: "gif",
   });
 
-    const Image = await canvacord.Canvas.wanted(Avatar);
-    const Wanted = new Discord.MessageAttachment(Image, "wanted.gif");
+  const Image = await canvacord.Canvas.wanted(Avatar);
+  const Wanted = new Discord.MessageAttachment(Image, "wanted.gif");
 
-    message.reply(Wanted);
+  message.reply(Wanted);
 };
 exports.config = {
   name: "Wanted",

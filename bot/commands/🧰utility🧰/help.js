@@ -1,8 +1,4 @@
-const {
-  MessageActionRow,
-  MessageSelectMenu,
-  MessageEmbed,
-} = require("discord.js");
+const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require("discord.js");
 
 var prefix = `^`;
 
@@ -11,10 +7,7 @@ exports.run = async (bot, message, args, command, data) => {
 
   const Selections = [];
   const CreateSelection = async (bot, message, Category) => {
-    if (
-      Category === `👑Owner👑` &&
-      message.author.id !== process.env.OWNERID
-    ) {
+    if (Category === `👑Owner👑` && message.author.id !== process.env.OWNERID) {
       return;
     }
 
@@ -138,9 +131,7 @@ exports.run = async (bot, message, args, command, data) => {
     });
   } else {
     const name = args[0].toLowerCase();
-    const command =
-      bot.commands.get(name) ||
-      bot.commands.find(c => c.aliases && c.aliases.includes(name));
+    const command = bot.commands.get(name) || bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     const CommandHelpEmbed = new MessageEmbed()
       .setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)
@@ -164,14 +155,14 @@ exports.run = async (bot, message, args, command, data) => {
   }
 };
 
-  exports.config = {
-    name: `Help`,
-    description: `I will displays all commands. Do ${prefix}Help [command name] for specific command information!`,
-    aliases: [`cmds`, `commands`],
-    usage: `<command>`,
-    category: `🧰Utility🧰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5,
-  };
+exports.config = {
+  name: `Help`,
+  description: `I will displays all commands. Do ${prefix}Help [command name] for specific command information!`,
+  aliases: [`cmds`, `commands`],
+  usage: `<command>`,
+  category: `🧰Utility🧰`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5,
+};

@@ -79,9 +79,9 @@ async function execute(bot, message, args, command, data) {
   });
 }
 
-  module.exports = new command(execute, {
-    description: `I'll delete messages for you!`,
-    usage: `<all | users | bots> <filter (ignorePinned)>`,
-    aliases: [`purge`, `clr`],
-    perms: ["MANAGE_MESSAGES"],
-  });
+module.exports = new command(execute, {
+  description: `I'll delete messages for you!`,
+  usage: `<all | users | bots> <filter (ignorePinned)>`,
+  aliases: [`purge`, `clr`],
+  perms: ["MANAGE_MESSAGES"],
+});

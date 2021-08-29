@@ -1,14 +1,14 @@
 const Render = async (response, request, view, data) => {
-    if (!data) {
-        data = {};
-    }
+  if (!data) {
+    data = {};
+  }
 
-    const BaseData = {
-        path: request.path,
-        user: request.isAuthenticated() ? request.user : null,
-    };
+  const BaseData = {
+    path: request.path,
+    user: request.isAuthenticated() ? request.user : null,
+  };
 
-    response.status(200).render(view, Object.assign(BaseData, data));
+  response.status(200).render(view, Object.assign(BaseData, data));
 };
 
 module.exports = Render;

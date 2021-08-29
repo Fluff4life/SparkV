@@ -11,14 +11,11 @@ const Emotes = ["🥇", "🥈", "🥉"];
       `${Emotes[data.position - 1] || `${"🏅"}`} **Level ${data.level}** - ${data.username}#${data.discriminator}`,
   );
 
-    const LeaderboardEmbed = new Discord.MessageEmbed()
-        .setTitle(`${message.guild.name}'s Level Leaderboard`)
-        .setDescription(Leader.join("\n"))
-        .setFooter(
-            `${bot.user.username} • ${bot.config.bot.Embed.Footer}`,
-            bot.user.displayAvatarURL()
-        )
-        .setColor(bot.config.bot.Embed.Color);
+  const LeaderboardEmbed = new Discord.MessageEmbed()
+    .setTitle(`${message.guild.name}'s Level Leaderboard`)
+    .setDescription(Leader.join("\n"))
+    .setFooter(`${bot.user.username} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
+    .setColor(bot.config.bot.Embed.Color);
 
   message.reply(LeaderboardEmbed);
 }),

@@ -6,43 +6,37 @@ const Weather = require(`weather-js`);
     return message.reply(`${bot.config.bot.Emojis.error} | Please specify a location!`);
   }
 
-    args = args.join(` `);
+  args = args.join(` `);
 
-    Weather.find(
-        {
-            search: args,
-            degreeType: `F`,
-        },
-        (error, result) => {
-            if (error) {
-                return message.reply(error);
-            }
+  Weather.find(
+    {
+      search: args,
+      degreeType: `F`,
+    },
+    (error, result) => {
+      if (error) {
+        return message.reply(error);
+      }
 
-            if (result === undefined || result.length === 0) {
-                return message.reply(
-                    `${bot.config.bot.Emojis.error} | Invalid location!`
-                );
-            }
+      if (result === undefined || result.length === 0) {
+        return message.reply(`${bot.config.bot.Emojis.error} | Invalid location!`);
+      }
 
-            const Current = result[0].current;
-            const Location = result[0].location;
+      const Current = result[0].current;
+      const Location = result[0].location;
 
-            const WeatherInformation = new Discord.MessageEmbed()
-                .setTitle(`${Current.observationpoint}'s Weather Forecast`)
-                .setDescription(
-                    `Weather forecast for ${Current.observationpoint}`
-                )
-                .setThumbnail(Current.imageUrl)
-                .addField(`**Tempature**`, `${Current.temperature}°F`, true)
-                .addField(`**Wind**`, Current.winddisplay, true)
-                .addField(`**Feels Like**`, `${Current.temperature}°F`, true)
-                .addField(`**Humidity**`, `${Current.humidity}%`, true)
-                .addField(`**Timezone**`, `${Location.timezone} UTC`, true)
-                .setFooter(
-                    `Weather forecast for ${Current.observationpoint} • ${bot.config.bot.Embed.Footer}`
-                )
-                .setColor(bot.config.bot.Embed.Color)
-                .setTimestamp();
+      const WeatherInformation = new Discord.MessageEmbed()
+        .setTitle(`${Current.observationpoint}'s Weather Forecast`)
+        .setDescription(`Weather forecast for ${Current.observationpoint}`)
+        .setThumbnail(Current.imageUrl)
+        .addField(`**Tempature**`, `${Current.temperature}°F`, true)
+        .addField(`**Wind**`, Current.winddisplay, true)
+        .addField(`**Feels Like**`, `${Current.temperature}°F`, true)
+        .addField(`**Humidity**`, `${Current.humidity}%`, true)
+        .addField(`**Timezone**`, `${Location.timezone} UTC`, true)
+        .setFooter(`Weather forecast for ${Current.observationpoint} • ${bot.config.bot.Embed.Footer}`)
+        .setColor(bot.config.bot.Embed.Color)
+        .setTimestamp();
 
       message.reply(WeatherInformation);
     },

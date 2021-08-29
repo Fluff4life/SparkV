@@ -3,8 +3,7 @@ const Discord = require("discord.js");
 const showerthoughts = ["showerthoughts"];
 
 exports.run = async (bot, message) => {
-    const random_showerthought =
-        showerthoughts[Math.floor(Math.random() * showerthoughts.length)];
+  const random_showerthought = showerthoughts[Math.floor(Math.random() * showerthoughts.length)];
 
   const ShowerThoughtEmbed = new Discord.MessageEmbed()
     .setTitle("Here's a shower thought")
@@ -16,7 +15,7 @@ exports.run = async (bot, message) => {
     .setColor(bot.config.bot.Embed.Color)
     .setTimestamp();
 
-    await message.reply(ShowerThoughtEmbed);
+  await message.reply(ShowerThoughtEmbed);
 };
 
 exports.config = {

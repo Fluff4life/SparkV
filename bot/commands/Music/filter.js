@@ -9,7 +9,7 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-    const Queue = bot.distube.getQueue(message);
+  const Queue = bot.distube.getQueue(message);
 
   if (args[0].toLowerCase() === "off" && Queue.filter) {
     bot.distube

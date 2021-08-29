@@ -9,13 +9,11 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-    if (!bot.distube.isPlaying(message)) {
-        return message
-            .reply(
-                `${bot.config.bot.Emojis.error} | A song must be playing to use this command!`
-            )
-            .then(m => m.delete({ timeout: 5000 }));
-    }
+  if (!bot.distube.isPlaying(message)) {
+    return message
+      .reply(`${bot.config.bot.Emojis.error} | A song must be playing to use this command!`)
+      .then(m => m.delete({ timeout: 5000 }));
+  }
 
   bot.distube
     .shuffle(message)

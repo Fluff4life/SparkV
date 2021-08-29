@@ -36,10 +36,10 @@ const Schema = new mongoose.Schema({
 });
 
 Schema.method("GenerateAPIToken", async () => {
-    this.APIToken = GenerateToken();
+  this.APIToken = GenerateToken();
 
-    await this.save();
-    return this.APIToken;
+  await this.save();
+  return this.APIToken;
 });
 
 module.exports = mongoose.model("Member", Schema);

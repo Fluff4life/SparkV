@@ -40,8 +40,7 @@ module.exports = async bot => {
     var time = Days > 0 ? `${Days} Day${Days === 1 ? "" : "s"}, ` : "";
     time += Hours > 0 ? `${Hours} Hour${Hours === 1 ? "" : "s"}, ` : "";
     time += Mins > 0 ? `${Mins} Minute${Mins === 1 ? "" : "s"} & ` : "";
-    time +=
-      Secs > 0 ? `${Secs} Second${Secs === 1 ? "" : "s"}.` : "0 Seconds.";
+    time += Secs > 0 ? `${Secs} Second${Secs === 1 ? "" : "s"}.` : "0 Seconds.";
 
     return time;
   };
@@ -53,8 +52,7 @@ module.exports = async bot => {
       await message.react(Reaction);
     }
 
-    const filter = (reaction, user) =>
-      reactions.includes(reaction.emoji.name) && user.id === author.id;
+    const filter = (reaction, user) => reactions.includes(reaction.emoji.name) && user.id === author.id;
 
     setTimeout(() => {
       if (message.deleted) {
@@ -71,9 +69,7 @@ module.exports = async bot => {
         max: 1,
         time: seconds,
       })
-      .then(
-        collected => collected.first() && collected.first().emoji.name
-      );
+      .then(collected => collected.first() && collected.first().emoji.name);
   };
 
   bot.GetMember = async (message, args) => {
@@ -81,9 +77,7 @@ module.exports = async bot => {
     var checkCache = bot.users.cache.get(args.slice(0).join(" "));
     var checkCache2 = bot.users.cache.get(args[0]);
     var checkGuildCache = message.guild.members.cache.find(
-      u =>
-        u.user.username.toLowerCase() === args.slice(0).join(" ") ||
-        u.user.username === args[0]
+      u => u.user.username.toLowerCase() === args.slice(0).join(" ") || u.user.username === args[0],
     );
 
     if (message.mentions.members.first()) {
@@ -106,17 +100,13 @@ module.exports = async bot => {
   bot.isURL = string => {
     if (
       /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite|discord.com\/invite)\/+[a-zA-Z0-9]{6,16}/g.test(
-        string
+        string,
       )
     ) {
       return true;
     }
 
-    if (
-      /(https?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g.test(
-        string
-      )
-    ) {
+    if (/(https?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g.test(string)) {
       return true;
     }
 
@@ -144,19 +134,14 @@ module.exports = async bot => {
 
     const promises = [bot.shard.fetchClientValues("guilds.cache.size")];
 
-    return Promise.all(promises).then(results =>
-      results.flat().reduce((acc, ServerCount) => acc + ServerCount, 0)
-    );
+    return Promise.all(promises).then(results => results.flat().reduce((acc, ServerCount) => acc + ServerCount, 0));
   };
 
   bot.GetUserCount = async () => {
     if (bot.config.bot.Sharding.ShardingEnabled === false) {
       var CollectedUsers = 0;
 
-      bot.guilds.cache.map(
-        (server, id) =>
-          (CollectedUsers = server.memberCount + CollectedUsers)
-      );
+      bot.guilds.cache.map((server, id) => (CollectedUsers = server.memberCount + CollectedUsers));
 
       return CollectedUsers;
     }
@@ -301,6 +286,6 @@ module.exports = async bot => {
     };
   };
 
-    bot.wait = ms => new Promise(r => setTimeout(r, ms));
-    bot.FormatDate = date => new Intl.DateTimeFormat("en-US").format(date);
+  bot.wait = ms => new Promise(r => setTimeout(r, ms));
+  bot.FormatDate = date => new Intl.DateTimeFormat("en-US").format(date);
 };

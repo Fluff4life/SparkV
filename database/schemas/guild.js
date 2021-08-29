@@ -58,7 +58,7 @@ const Schema = new mongoose.Schema({
       modlogs: false,
       reports: false,
     },
-  }
+  },
 });
 
 module.exports = mongoose.model("Guild", Schema);

@@ -9,15 +9,12 @@ const Render = require("../../utils/Render");
 router.use(parser.json({ limit: "10mb" }));
 
 router.use((request, response, next) => {
-    response.setHeader("Access-Control-Allow-Origin", "*");
-    response.setHeader("Access-Control-Allow-Methods", "GET");
-    response.setHeader(
-        "Access-Control-Allow-Headers",
-        "X-Requested-With,content-type"
-    );
-    response.setHeader("Access-Control-Allow-Credentials", true);
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader("Access-Control-Allow-Methods", "GET");
+  response.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+  response.setHeader("Access-Control-Allow-Credentials", true);
 
-    next();
+  next();
 });
 
 router.use("/avatar", require("./avatar"));

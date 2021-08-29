@@ -43,7 +43,6 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.bot.Emojis.error} | This user isn't muted!`);
   }
 
-
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle(`Convermination Prompt`)
     .setDescription(`Are you sure you want to do this?`)

@@ -9,27 +9,21 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-    if (!bot.distube.isPlaying(message)) {
-        return message
-            .reply(
-                `${bot.config.bot.Emojis.error} | A song must be playing to use this command!`
-            )
-            .then(m => m.delete({ timeout: 5000 }));
-    }
+  if (!bot.distube.isPlaying(message)) {
+    return message
+      .reply(`${bot.config.bot.Emojis.error} | A song must be playing to use this command!`)
+      .then(m => m.delete({ timeout: 5000 }));
+  }
 
-    if (isNaN(args[0])) {
-        return message.reply(
-            `${bot.config.bot.Emojis.error} | That's not a valid number!`
-        );
-    }
+  if (isNaN(args[0])) {
+    return message.reply(`${bot.config.bot.Emojis.error} | That's not a valid number!`);
+  }
 
-    if (parseInt(args[0]) > 100) {
-        return message
-            .send(
-                `${bot.config.bot.Emojis.error} | Due to performance reasons, songs cannot go louder than 100.`
-            )
-            .then(m => m.delete({ timeout: 5000 }));
-    }
+  if (parseInt(args[0]) > 100) {
+    return message
+      .send(`${bot.config.bot.Emojis.error} | Due to performance reasons, songs cannot go louder than 100.`)
+      .then(m => m.delete({ timeout: 5000 }));
+  }
 
   bot.distube
     .setVolume(message, parseInt(args[0]))

@@ -3,17 +3,14 @@ const mongoose = require("mongoose");
 const config = require("../../globalconfig.json");
 
 function GenerateToken() {
-    const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwzy0123456789.-_";
-    let token = "CS-";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwzy0123456789.-_";
+  let token = "CS-";
 
-    for (let i = 0; i < 32; i++) {
-        token += characters.charAt(
-            Math.floor(Math.random() * characters.length)
-        );
-    }
+  for (let i = 0; i < 32; i++) {
+    token += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
 
-    return token;
+  return token;
 }
 
 const Schema = new mongoose.Schema({
@@ -38,10 +35,10 @@ const Schema = new mongoose.Schema({
 });
 
 Schema.method("GenerateAPIToken", async () => {
-    this.APIToken = GenerateToken();
+  this.APIToken = GenerateToken();
 
-    await this.save();
-    return this.APIToken;
+  await this.save();
+  return this.APIToken;
 });
 
 module.exports = mongoose.model("User", Schema);

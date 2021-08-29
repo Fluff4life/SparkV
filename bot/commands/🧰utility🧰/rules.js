@@ -14,11 +14,11 @@ var SetRules = false;
         "Using automation (Ex: auto-typers) is forbidden. Using automation (and with found proof) will cause a wipe of your data and a ban from using Ch1llBlox.",
     });
 
-        Rules.set(2, {
-            Title: "Command Spamming",
-            Description:
-                "Spamming commands is forbidden. Spamming Ch1llBlox's commands will result with a warning. If continued, a complete wipe of your data and a ban from Ch1llBlox",
-        });
+    Rules.set(2, {
+      Title: "Command Spamming",
+      Description:
+        "Spamming commands is forbidden. Spamming Ch1llBlox's commands will result with a warning. If continued, a complete wipe of your data and a ban from Ch1llBlox",
+    });
 
     Rules.set(3, {
       Title: "Alternate Accounts",

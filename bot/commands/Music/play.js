@@ -9,18 +9,16 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-    args = args.join(" ");
+  args = args.join(" ");
 
-    if (!args) {
-        return message.reply(
-            `${bot.config.bot.Emojis.error} | Please enter a song URL or query to search!`
-        );
-    }
+  if (!args) {
+    return message.reply(`${bot.config.bot.Emojis.error} | Please enter a song URL or query to search!`);
+  }
 
-    try {
-        bot.distube.play(message, args);
-    } catch (err) {
-        console.error(err);
+  try {
+    bot.distube.play(message, args);
+  } catch (err) {
+    console.error(err);
 
     message.reply(`${bot.config.bot.Emojis.error} | Uh oh! An error occured.`);
   }

@@ -3,9 +3,9 @@ const Discord = require("discord.js");
 const Replies = ["Heads", "Tails"];
 
 exports.run = async (bot, message, args, command, data) => {
-    const ReplyText = Math.floor(Math.random() * Replies.length);
+  const ReplyText = Math.floor(Math.random() * Replies.length);
 
-    return message.reply(`My coin flipped ${Replies[ReplyText]}!`);
+  return message.reply(`My coin flipped ${Replies[ReplyText]}!`);
 };
 
 exports.config = {

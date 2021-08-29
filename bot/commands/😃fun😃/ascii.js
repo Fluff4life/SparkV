@@ -1,34 +1,32 @@
 const Discord = require(`discord.js`);
 
 exports.run = async (bot, message, args, command, data) => {
-    if (bot.config.Debug.Enabled === true) {
-        return;
+  if (bot.config.Debug.Enabled === true) {
+    return;
+  }
+
+  const figlet = require(`figlet`);
+
+  if (!args || !args[0]) {
+    return message.reply(`Please provide text!`);
+  }
+
+  args = args.join(` `);
+
+  figlet.text(args, (err, data) => {
+    if (err) {
+      message.reply(`Uh oh! Something went wrong.`);
+      console.log(`Failed to figlet text: ${err}`);
+
+      return;
     }
 
-    const figlet = require(`figlet`);
-
-    if (!args || !args[0]) {
-        return message.reply(`Please provide text!`);
+    if (data.length > 2000) {
+      return message.reply(`Please provide text shorter than 200 characters.`);
     }
 
-    args = args.join(` `);
-
-    figlet.text(args, (err, data) => {
-        if (err) {
-            message.reply(`Uh oh! Something went wrong.`);
-            console.log(`Failed to figlet text: ${err}`);
-
-            return;
-        }
-
-        if (data.length > 2000) {
-            return message.reply(
-                `Please provide text shorter than 200 characters.`
-            );
-        }
-
-        message.replyNoMention(`\`\`\`${data}\`\`\``);
-    });
+    message.replyNoMention(`\`\`\`${data}\`\`\``);
+  });
 };
 
 exports.config = {

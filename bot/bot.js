@@ -48,26 +48,24 @@ const Ch1llBlox = new Client({
 });
 
 async function Start() {
-    await Ch1llBlox.LoadEvents(__dirname);
-    await Ch1llBlox.LoadCommands(__dirname);
+  await Ch1llBlox.LoadEvents(__dirname);
+  await Ch1llBlox.LoadCommands(__dirname);
 
   await Ch1llBlox.LoadModules({
     sharding: false,
   });
 
-    Ch1llBlox.SocketioClient = require("socket.io-client").connect(
-        `https://${process.env.BASEURL}/api/communication?token=8010405464675`,
-        {
-            reconnection: true,
-            reconnectionDelay: 2000,
-            reconnectionDelayMax: 5000,
-            reconnectionAttempts: Infinity,
-        }
-    );
+  Ch1llBlox.SocketioClient = require("socket.io-client").connect(
+    `https://${process.env.BASEURL}/api/communication?token=8010405464675`,
+    {
+      reconnection: true,
+      reconnectionDelay: 2000,
+      reconnectionDelayMax: 5000,
+      reconnectionAttempts: Infinity,
+    },
+  );
 
-    Ch1llBlox.SocketioClient.on("connect", () =>
-        console.log("Website connected successfully.")
-    );
+  Ch1llBlox.SocketioClient.on("connect", () => console.log("Website connected successfully."));
 }
 
 Start();

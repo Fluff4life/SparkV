@@ -3,11 +3,11 @@ const Discord = require("discord.js");
 exports.run = async (bot, message) => {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
-    if (bot.config.Debug.Enabled === true) {
-        return;
-    }
+  if (bot.config.Debug.Enabled === true) {
+    return;
+  }
 
-    const canvacord = require("canvacord");
+  const canvacord = require("canvacord");
 
   const Avatar = message.author.displayAvatarURL({
     dynamic: false,
@@ -19,10 +19,10 @@ exports.run = async (bot, message) => {
     format: "gif",
   });
 
-    const Image = await canvacord.Canvas.bed(UserAvatar, Avatar);
-    const Bed = new Discord.MessageAttachment(Image, "bed.gif");
+  const Image = await canvacord.Canvas.bed(UserAvatar, Avatar);
+  const Bed = new Discord.MessageAttachment(Image, "bed.gif");
 
-    message.reply(Bed);
+  message.reply(Bed);
 };
 exports.config = {
   name: "Bed",
