@@ -46,7 +46,7 @@ exports.run = async (bot, message) => {
             message.reply(bot.config.bot.Responses.AFKWelcomeMessage);
         }
 
-        message.mentions.users.forEach(async (MentionedUser) => {
+        message.mentions.users.forEach(async MentionedUser => {
             const MentionedUserData = await bot.database.fetchUser(
                 MentionedUser.id
             );
@@ -87,13 +87,13 @@ exports.run = async (bot, message) => {
                             .toString()
                             .replaceAll(`{author}`, message.author)
                     )
-                    .then((m) => m.delete({ timeout: 1000 }));
+                    .then(m => m.delete({ timeout: 1000 }));
             }
         }
 
         return message.channel
             .send(`🔨 ${message.author}, you cannot send links here!`)
-            .then((m) => m.delete({ timeout: 1000 }));
+            .then(m => m.delete({ timeout: 1000 }));
     }
 
     const AntiSwear =
@@ -191,7 +191,7 @@ exports.run = async (bot, message) => {
         const commandfile =
             bot.commands.get(command) ||
             bot.commands.find(
-                (command_) =>
+                command_ =>
                     command_.config.aliases &&
                     command_.config.aliases.includes(command)
             );
@@ -243,7 +243,7 @@ exports.run = async (bot, message) => {
         const commandfile =
             bot.commands.get(command) ||
             bot.commands.find(
-                (command_) =>
+                command_ =>
                     command_.config.aliases &&
                     command_.config.aliases.includes(command)
             );
@@ -441,7 +441,7 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
 
         const AnnonymousUser = `Annonymous`;
 
-        configureScope((scope) => {
+        configureScope(scope => {
             scope.setUser({
                 AnnonymousUser,
             });
@@ -484,8 +484,8 @@ async function ActivateChatBot(bot, message, wasMentioned) {
                 wasMentioned === true ? SlicedMessage : message
             )}`
         )
-            .then((res) => res.json())
-            .then((body) => {
+            .then(res => res.json())
+            .then(body => {
                 const botmsg = body.cnt;
 
                 if (botmsg) {

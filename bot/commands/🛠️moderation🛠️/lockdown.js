@@ -2,11 +2,11 @@ const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
     const Channels = message.guild.channels.cache.filter(
-        (channel) => channel.type !== "category"
+        channel => channel.type !== "category"
     );
 
     if (args[0].toLowerCase() === "on") {
-        Channels.forEach((Channel) => {
+        Channels.forEach(Channel => {
             Channel.updateOverwrite(message.guild.roles.everyone, {
                 SEND_MESSAGES: false,
             });
@@ -14,7 +14,7 @@ exports.run = async (bot, message, args, command, data) => {
 
         message.reply("🔒 Server is now locked. Users can no longer chat.");
     } else if (args[0].toLowerCase() === "off") {
-        Channels.forEach((Channel) => {
+        Channels.forEach(Channel => {
             Channel.updateOverwrite(message.guild.roles.everyone, {
                 SEND_MESSAGES: true,
             });

@@ -33,7 +33,7 @@ async function Start() {
     fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
         if (err) return Logger(err, "error");
 
-        files.forEach((file) => {
+        files.forEach(file => {
             let EventName = file.split(".")[0];
             let FileEvent = require(`./events/${EventName}`);
 

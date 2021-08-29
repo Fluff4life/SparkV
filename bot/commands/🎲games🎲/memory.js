@@ -17,7 +17,7 @@ const MemoryTypes = [
     `🍅`,
 ];
 
-const GenerateArray = (level) => {
+const GenerateArray = level => {
     const Pick = MemoryTypes[Math.floor(Math.random() * 3)];
     const Array = [];
 
@@ -44,7 +44,7 @@ const GenerateArray = (level) => {
     try {
         const Memorize = GenerateArray(args[0]);
         const MemorizeMessage = await message.reply(
-            Memorize.map((emoji) => `${emoji}`).join(` `)
+            Memorize.map(emoji => `${emoji}`).join(` `)
         );
 
         await bot.wait(25 * 1000);
@@ -52,7 +52,7 @@ const GenerateArray = (level) => {
 
         const MemorizeType = Memorize.join(` `);
         const Guess = await message.channel.awaitMessages(
-            (res) => messages.author.id === res.author.id,
+            res => messages.author.id === res.author.id,
             {
                 max: 1,
                 time: 30 * 1000,

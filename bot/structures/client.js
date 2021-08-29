@@ -104,7 +104,7 @@ class bot extends Client {
                 return this.logger(`EVENT LOADING ERROR - ${err}`, "error");
             }
 
-            files.forEach((file) => {
+            files.forEach(file => {
                 let EventName = file.split(".")[0];
                 let FileEvent = require(path.resolve(
                     `${MainPath}/events/${EventName}`
@@ -121,13 +121,13 @@ class bot extends Client {
                 return this.logger(`Commands failed to load! ${err}`, "error");
             }
 
-            cats.forEach((cat) => {
+            cats.forEach(cat => {
                 this.categories.set(cat, cat);
 
                 fs.readdir(
                     path.join(`${MainPath}/commands/${cat}`),
                     (err, files) => {
-                        files.forEach((file) => {
+                        files.forEach(file => {
                             if (!file.endsWith(".js")) {
                                 return;
                             }

@@ -6,7 +6,7 @@ const Discord = require(`discord.js`);
             .reply(
                 `${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!bot.distube.isPlaying(message)) {
@@ -14,7 +14,7 @@ const Discord = require(`discord.js`);
             .reply(
                 `${bot.config.bot.Emojis.error} | A song must be playing to use this command!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     const Queue = bot.distube.getQueue(message);
@@ -28,7 +28,7 @@ const Discord = require(`discord.js`);
                 .reply(
                     `${bot.config.bot.Emojis.error} | There must be more than 2 songs in the queue to use this command!`
                 )
-                .then((m) => m.delete({ timeout: 5000 }));
+                .then(m => m.delete({ timeout: 5000 }));
         }
 
         mode = 2;

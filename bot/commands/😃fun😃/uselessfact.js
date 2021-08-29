@@ -3,8 +3,8 @@ const request = require("node-fetch");
 
 (exports.run = async (bot, message) => {
     request("https://uselessfacts.jsph.pl/random.json?language=en")
-        .then((res) => res.json())
-        .then((json) => {
+        .then(res => res.json())
+        .then(json => {
             const FunFactEmbed = new Discord.MessageEmbed()
                 .setTitle(`${bot.config.bot.Emojis.success} | Did you know?`)
                 .setDescription(json.text)

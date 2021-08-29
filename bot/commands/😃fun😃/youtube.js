@@ -8,7 +8,7 @@ const Weather = require(`weather-js`);
 
     bot.discordTogether
         .createTogetherCode(message.member.voice.channel.id, "youtube")
-        .then(async (invite) => message.reply(`${invite.code}`));
+        .then(async invite => message.reply(`${invite.code}`));
 }),
     (exports.config = {
         name: `YouTube`,

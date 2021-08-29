@@ -9,8 +9,8 @@ const request = require(`node-fetch`);
     }
 
     request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${args}.json`)
-        .then((res) => res.json())
-        .then(async (json) => {
+        .then(res => res.json())
+        .then(async json => {
             const Embed = new Discord.MessageEmbed()
                 .setTitle(json.title)
                 .setDescription(json.description)
@@ -31,7 +31,7 @@ const request = require(`node-fetch`);
                 embeds: [Embed],
             });
         })
-        .catch((err) =>
+        .catch(err =>
             message.reply(`${bot.config.bot.Emojis.error} | An error occured!`)
         );
 }),

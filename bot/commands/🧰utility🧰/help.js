@@ -112,7 +112,7 @@ var prefix = `^`;
         }
     };
 
-    bot.categories.map((cat) => CreateSelection(bot, message, cat));
+    bot.categories.map(cat => CreateSelection(bot, message, cat));
 
     if (!args.length) {
         const NewEmbed = new MessageEmbed()
@@ -152,7 +152,7 @@ var prefix = `^`;
         const name = args[0].toLowerCase();
         const command =
             bot.commands.get(name) ||
-            bot.commands.find((c) => c.aliases && c.aliases.includes(name));
+            bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
             return message.reply(

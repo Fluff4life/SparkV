@@ -14,7 +14,7 @@ exports.run = async (bot, guild) => {
         Logger.send(ServerAddedEmbed);
     }
 
-    let MutedRole = guild.roles.cache.find((r) =>
+    let MutedRole = guild.roles.cache.find(r =>
         r.name.toLowerCase().includes("muted")
     );
 
@@ -55,7 +55,7 @@ exports.run = async (bot, guild) => {
 
     try {
         const SelfRole = guild.roles.cache.find(
-            (role) => role.name === "Ch1llBlox"
+            role => role.name === "Ch1llBlox"
         );
 
         if (SelfRole) {

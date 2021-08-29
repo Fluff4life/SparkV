@@ -5,7 +5,7 @@ module.exports = async (content, type = "log") => {
     if (type === "log") {
         return console.log(`📋 | ${content}`);
     } else if (type === "warn") {
-        await withScope((scope) => {
+        await withScope(scope => {
             scope.setLevel(Severity.Warning);
         });
 
@@ -19,7 +19,7 @@ module.exports = async (content, type = "log") => {
 
         return console.log(`⚠ | ${chalk.yellow(content)}`);
     } else if (type === "error") {
-        await withScope((scope) => {
+        await withScope(scope => {
             scope.setLevel(Severity.Error);
         });
 

@@ -32,7 +32,7 @@ exports.run = async (bot, message, args, command, data) => {
             }
 
             RestartStatus.edit(`⚡ | Ch1llBlox is now restarting.`)
-                .then((msg) => {
+                .then(msg => {
                     restarting = true;
 
                     bot.destroy();

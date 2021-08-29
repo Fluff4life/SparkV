@@ -17,7 +17,7 @@ async function fetchUser(key) {
             id: key,
         });
 
-        await user.save().catch((err) => console.log(err));
+        await user.save().catch(err => console.log(err));
 
         return user;
     }
@@ -35,7 +35,7 @@ async function fetchGuild(key) {
             id: key,
         });
 
-        await guild.save().catch((err) => console.log(err));
+        await guild.save().catch(err => console.log(err));
 
         return guild;
     }
@@ -55,7 +55,7 @@ async function fetchMember(userID, guildID) {
             guildID: guildID,
         });
 
-        await member.save().catch((err) => console.log(err));
+        await member.save().catch(err => console.log(err));
 
         return member;
     }
@@ -77,7 +77,7 @@ async function createLog(message, command) {
         date: Date.now(),
     });
 
-    await newLog.save().catch((err) => console.log(err));
+    await newLog.save().catch(err => console.log(err));
 
     return newLog;
 }

@@ -5,7 +5,7 @@ const { MessageEmbed } = require(`discord.js`);
         message.mentions.members.first() ||
         message.guild.members.cache.get(args[0]) ||
         message.guild.members.cache.find(
-            (User) =>
+            User =>
                 User.user.username.toLowerCase() === args.slice(0).join(` `) ||
                 User.user.username === args[0]
         );
@@ -16,7 +16,7 @@ const { MessageEmbed } = require(`discord.js`);
             .reply(
                 `${bot.config.bot.Emojis.error} | Please mention someone to warn!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!User) {
@@ -24,13 +24,13 @@ const { MessageEmbed } = require(`discord.js`);
             .reply(
                 `${bot.config.bot.Emojis.error} | I cannot find that member!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (User.id === message.author.id) {
         return message
             .reply(`${bot.config.bot.Emojis.error} | You cannot warn yourself.`)
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     const MemberData = await bot.fetchMember(User.id, guild.id);
@@ -45,11 +45,11 @@ const { MessageEmbed } = require(`discord.js`);
             .reply(
                 `${bot.config.bot.Emojis.error} | Uh oh... I can\`t warn this user!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     const Infractions = MemberData.infractions.filter(
-        (infraction) => infraction.type === "warn"
+        infraction => infraction.type === "warn"
     ).length;
     const BanCount = data.guild.settings.warnsInfractions.ban;
     const KickCount = data.guild.settings.warnsInfractions.kick;

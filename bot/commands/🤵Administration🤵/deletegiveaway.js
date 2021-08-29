@@ -10,7 +10,7 @@ const Discord = require(`discord.js`);
     }
 
     const Giveaway = bot.GiveawayManager.giveaways.find(
-        (giveaway) => giveaway.messageID === args[0]
+        giveaway => giveaway.messageID === args[0]
     );
 
     if (!Giveaway) {
@@ -23,7 +23,7 @@ const Discord = require(`discord.js`);
         .then(() => {
             message.reply(`Giveaway successfully deleted!`);
         })
-        .catch((err) => {
+        .catch(err => {
             console.error(err).then(() => {
                 message.reply(
                     `An error occured with Ch1llBlox! Please try this command again.`

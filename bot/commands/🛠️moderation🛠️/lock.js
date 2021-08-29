@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (bot, message, args, command, data) => {
     try {
-        message.guild.roles.cache.forEach((role) => {
+        message.guild.roles.cache.forEach(role => {
             message.channel.createOverwrite(role, {
                 SEND_MESSAGES: false,
             });

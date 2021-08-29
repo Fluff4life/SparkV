@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
-module.exports = async (bot) => {
+module.exports = async bot => {
     // String Functions
-    bot.FormatNumber = (Number) => {
+    bot.FormatNumber = Number => {
         if (typeof Number === "string") {
             Number = parseInt(Number);
         }
@@ -30,7 +30,7 @@ module.exports = async (bot) => {
     };
 
     // Converters
-    bot.MSToTime = (ms) => {
+    bot.MSToTime = ms => {
         let RoundNumber = ms > 0 ? Math.floor : Math.ceil;
         let Days = RoundNumber(ms / 86400000);
         let Hours = RoundNumber(ms / 3600000) % 24;
@@ -72,7 +72,7 @@ module.exports = async (bot) => {
                 time: seconds,
             })
             .then(
-                (collected) => collected.first() && collected.first().emoji.name
+                collected => collected.first() && collected.first().emoji.name
             );
     };
 
@@ -81,7 +81,7 @@ module.exports = async (bot) => {
         var checkCache = bot.users.cache.get(args.slice(0).join(" "));
         var checkCache2 = bot.users.cache.get(args[0]);
         var checkGuildCache = message.guild.members.cache.find(
-            (u) =>
+            u =>
                 u.user.username.toLowerCase() === args.slice(0).join(" ") ||
                 u.user.username === args[0]
         );
@@ -103,7 +103,7 @@ module.exports = async (bot) => {
         return member;
     };
 
-    bot.isURL = (string) => {
+    bot.isURL = string => {
         if (
             /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite|discord.com\/invite)\/+[a-zA-Z0-9]{6,16}/g.test(
                 string
@@ -123,7 +123,7 @@ module.exports = async (bot) => {
         return false;
     };
 
-    bot.GetUserFromMention = (mention) => {
+    bot.GetUserFromMention = mention => {
         if (!mention) return;
 
         if (mention.startsWith("<@") && mention.endsWith(">")) {
@@ -144,7 +144,7 @@ module.exports = async (bot) => {
 
         const promises = [bot.shard.fetchClientValues("guilds.cache.size")];
 
-        return Promise.all(promises).then((results) =>
+        return Promise.all(promises).then(results =>
             results.flat().reduce((acc, ServerCount) => acc + ServerCount, 0)
         );
     };
@@ -167,7 +167,7 @@ module.exports = async (bot) => {
             ),
         ];
 
-        return Promise.all(promises).then((results) =>
+        return Promise.all(promises).then(results =>
             results.flat().reduce((acc, MemberCount) => acc + MemberCount, 0)
         );
     };
@@ -175,10 +175,10 @@ module.exports = async (bot) => {
     bot.Debounce = (callback, wait, immediate) => {
         var timeout;
 
-        return function () {
+        return function() {
             var context = this,
                 args = args;
-            var later = function () {
+            var later = function() {
                 timeout = null;
                 if (!immediate) callback.apply(context, args);
             };
@@ -189,7 +189,7 @@ module.exports = async (bot) => {
         };
     };
 
-    bot.IsAdmin = (message) => {
+    bot.IsAdmin = message => {
         if (message.author.id === bot.config.Owner.ID) {
             return true;
         } else {
@@ -201,6 +201,6 @@ module.exports = async (bot) => {
         }
     };
 
-    bot.wait = (ms) => new Promise((r) => setTimeout(r, ms));
-    bot.FormatDate = (date) => new Intl.DateTimeFormat("en-US").format(date);
+    bot.wait = ms => new Promise(r => setTimeout(r, ms));
+    bot.FormatDate = date => new Intl.DateTimeFormat("en-US").format(date);
 };

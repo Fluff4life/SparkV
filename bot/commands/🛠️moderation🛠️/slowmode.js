@@ -3,7 +3,7 @@ const Discord = require(`discord.js`);
 exports.run = async (bot, message, args, command, data) => {
     const Channel = message.mentions.channels
         .filter(
-            (channel) =>
+            channel =>
                 channel.type === `text` && channel.guild.id === message.guild.id
         )
         .first();
@@ -17,7 +17,7 @@ exports.run = async (bot, message, args, command, data) => {
     if (isNaN(args[0])) {
         return message
             .reply(`${bot.config.bot.Emojis.error} | That's not a nunber.`)
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (args[0] > 21600) {

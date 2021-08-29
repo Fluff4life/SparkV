@@ -12,7 +12,7 @@ const LyrcisFinder = require(`lyrics-finder`);
             .reply(
                 `${bot.config.bot.Emojis.error} | Please supply the title of a song to search for.`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     args = args.join(" ");

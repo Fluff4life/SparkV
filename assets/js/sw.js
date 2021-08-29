@@ -24,7 +24,7 @@ if ("serviceWorker" in navigator) {
 function registerValidSW(swUrl) {
     navigator.serviceWorker
         .register(swUrl)
-        .then((registration) => {
+        .then(registration => {
             registration.onupdatefound = () => {
                 const installingWorker = registration.installing;
 
@@ -47,7 +47,7 @@ function registerValidSW(swUrl) {
                 };
             };
         })
-        .catch((err) =>
+        .catch(err =>
             console.error(
                 `⛔ | Service Worker: An error occoured while registration. ${err}`
             )
@@ -60,7 +60,7 @@ function checkValidServiceWorker(swUrl) {
             "Service-Worker": "script",
         },
     })
-        .then((response) => {
+        .then(response => {
             const contentType = response.headers.get("content-type");
 
             if (
@@ -68,7 +68,7 @@ function checkValidServiceWorker(swUrl) {
                 (contentType !== null &&
                     contentType.indexOf("javascript") === -1)
             ) {
-                navigator.serviceWorker.ready.then((registration) => {
+                navigator.serviceWorker.ready.then(registration => {
                     registration.unregister().then(() => {
                         window.location.reload();
                     });
@@ -77,7 +77,7 @@ function checkValidServiceWorker(swUrl) {
                 registerValidSW(swUrl);
             }
         })
-        .catch((err) =>
+        .catch(err =>
             console.log(
                 `⛔ | Failed to connect. Please check your network, or be forced to run in offline mode (only when avalible). This could be an error on our behalf. ${err}`
             )

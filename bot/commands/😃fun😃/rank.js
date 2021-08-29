@@ -24,7 +24,7 @@ exports.run = async (bot, message, args, command, data) => {
         .setRequiredXP(NeededXP || 100)
         .setProgressBar(`#0099ff`, `COLOR`);
 
-    Rank.build().then((data) => {
+    Rank.build().then(data => {
         const Attachment = new Discord.MessageAttachment(
             data,
             `${Target.tag}RankCard.gif`

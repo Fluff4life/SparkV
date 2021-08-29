@@ -11,7 +11,7 @@ const Emotes = ["🥇", "🥈", "🥉"];
         true
     );
     const Leader = Leaderboard.map(
-        (data) =>
+        data =>
             `${Emotes[data.position - 1] || `${"🏅"}`} **Level ${
                 data.level
             }** - ${data.username}#${data.discriminator}`

@@ -12,7 +12,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | Please mention someone to kick!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!UserToKick) {
@@ -20,13 +20,13 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | I cannot find that member!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (UserToKick.id === message.author.id) {
         return message
             .reply(`${bot.config.bot.Emojis.error} | You cannot kick yourself.`)
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!UserToKick.kickable) {
@@ -34,7 +34,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | Uh oh... I can't kick this user!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     const VerificationEmbed = new Discord.MessageEmbed()
@@ -56,7 +56,7 @@ exports.run = async (bot, message, args, command, data) => {
         // Yes
         message.delete();
 
-        UserToKick.kick().catch((err) => {
+        UserToKick.kick().catch(err => {
             message.reply(
                 `${bot.config.bot.Emojis.error} | Failed to kick. Error: ${err}`
             );
@@ -88,7 +88,7 @@ exports.run = async (bot, message, args, command, data) => {
 
         message
             .reply(`${bot.config.bot.Emojis.error} | Kick canceled.`)
-            .then((m) => m.delete({ timeout: 10000 }));
+            .then(m => m.delete({ timeout: 10000 }));
     }
 };
 exports.config = {

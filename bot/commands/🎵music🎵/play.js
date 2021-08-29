@@ -6,7 +6,7 @@ const Discord = require("discord.js");
             .reply(
                 `${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     args = args.join(" ");

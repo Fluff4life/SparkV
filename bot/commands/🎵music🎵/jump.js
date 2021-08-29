@@ -6,7 +6,7 @@ const Discord = require(`discord.js`);
             .reply(
                 `${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!bot.distube.isPlaying(message)) {
@@ -25,7 +25,7 @@ const Discord = require(`discord.js`);
         .catch(() =>
             message
                 .reply(`${bot.config.bot.Emojis.error} | Invalid song number!`)
-                .then((m) => m.delete({ timeout: 5000 }))
+                .then(m => m.delete({ timeout: 5000 }))
         );
 }),
     (exports.config = {

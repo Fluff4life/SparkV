@@ -8,7 +8,7 @@ const Discord = require("discord.js");
     }
 
     const Giveaway = bot.GiveawayManager.giveaways.find(
-        (giveaway) => giveaway.messageID === args[0]
+        giveaway => giveaway.messageID === args[0]
     );
 
     if (!Giveaway) {
@@ -21,7 +21,7 @@ const Discord = require("discord.js");
         .then(() => {
             message.reply("Giveaway successfully rerolled!");
         })
-        .catch((err) => {
+        .catch(err => {
             if (
                 err.startsWith(
                     `Giveaway with ID ${Giveaway.messageID} is not ended`

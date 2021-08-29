@@ -12,7 +12,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | Please mention someone to change their nickname!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!User) {
@@ -20,7 +20,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | I cannot find that member!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!User.roles) {
@@ -28,7 +28,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | That\`s not a user! That\`s a role.`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!NewNickname) {
@@ -36,7 +36,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | Please mention their new nickname!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (
@@ -74,7 +74,7 @@ exports.run = async (bot, message, args, command, data) => {
                     `${bot.config.bot.Emojis.success} | I successfully changed ${User}\`s nickname to ${NewNickname}!`
                 );
             })
-            .catch((err) => {
+            .catch(err => {
                 message
                     .reply(
                         `${bot.config.bot.Emojis.error} | Uh oh! I cannot change their nickname.`
@@ -88,7 +88,7 @@ exports.run = async (bot, message, args, command, data) => {
 
         message
             .reply(`${bot.config.bot.Emojis.error} | Nickname change canceled.`)
-            .then((m) => m.delete({ timeout: 10000 }));
+            .then(m => m.delete({ timeout: 10000 }));
     }
 };
 exports.config = {

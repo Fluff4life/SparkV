@@ -7,7 +7,8 @@ exports.run = async (bot, message, args, command, data) => {
         );
     }
 
-    message.reply(args.join(` `).split(``).reverse().join(``));
+    message.reply(args.join(` `).split(``).reverse()
+.join(``));
 };
 
 exports.config = {

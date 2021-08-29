@@ -3,7 +3,7 @@
         message.mentions.members.first() ||
         message.guild.members.cache.get(args[0]) ||
         message.guild.members.cache.find(
-            (User) =>
+            User =>
                 User.user.username.toLowerCase() === args.slice(0).join(` `) ||
                 User.user.username === args[0]
         );
@@ -13,7 +13,7 @@
             .reply(
                 `${bot.config.bot.Emojis.error} | Please mention someone to view their warnings!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!User) {
@@ -21,7 +21,7 @@
             .reply(
                 `${bot.config.bot.Emojis.error} | I cannot find that member!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     var warnings = bot.Database.get(

@@ -10,16 +10,16 @@ const urban = require(`urban`);
 
         return await message
             .reply(ErrorEmbed)
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     let word = args.join(` `);
 
-    urban(word).first(async (json) => {
+    urban(word).first(async json => {
         if (!json) {
             return message
                 .reply(`That word doesn't exist!`)
-                .then((m) => m.delete({ timeout: 5000 }));
+                .then(m => m.delete({ timeout: 5000 }));
         }
 
         const UrbanEmbed = new Discord.MessageEmbed()

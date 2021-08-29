@@ -14,7 +14,7 @@ const Discord = require("discord.js");
             return message.reply(`User lookup canceled. User doesn't exist.`);
         }
 
-        await noblox.getPlayerInfo(UserID).then((PlayerInfo) => {
+        await noblox.getPlayerInfo(UserID).then(PlayerInfo => {
             const InfoEmbed = new Discord.MessageEmbed()
                 .setTitle(`${PlayerInfo.username}'s Profile`)
                 .setDescription(`*${PlayerInfo.status || "No status."}*`)

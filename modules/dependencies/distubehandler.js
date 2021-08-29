@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const EasyPages = require("discordeasypages");
 
-module.exports = async (bot) => {
+module.exports = async bot => {
     const { DisTube, Queue } = require("distube");
     const { SpotifyPlugin } = require("@distube/spotify");
     const { SoundCloudPlugin } = require("@distube/soundcloud");
@@ -194,11 +194,11 @@ module.exports = async (bot) => {
 
             queue.textChannel.reply(SongAddedQueue);
         })
-        .on("searchResult", (result) => {
+        .on("searchResult", result => {
             try {
                 var Pages = [];
 
-                const CreatePage = (Song) => {
+                const CreatePage = Song => {
                     const NewEmbed = new Discord.MessageEmbed()
                         .setTitle(`${Song.formattedDuration} | ${Song.name}`)
                         .setColor(bot.config.bot.Embed.Color)
@@ -208,7 +208,7 @@ module.exports = async (bot) => {
                     Pages.push(NewEmbed);
                 };
 
-                result.map((song) => CreatePage(song));
+                result.map(song => CreatePage(song));
                 EasyPages(
                     queue.textChannel,
                     Pages,
@@ -219,34 +219,34 @@ module.exports = async (bot) => {
                 console.error(err);
             }
         })
-        .on("searchCancel", (message) =>
+        .on("searchCancel", message =>
             message.channel.reply(`Searching canceled.`)
         )
-        .on("searchInvalidAnswer", (message) =>
+        .on("searchInvalidAnswer", message =>
             message.channel.reply(
                 "Search answer invalid. Make sure you're sending your selected song's page number. For example, if I wanted to play a song on the 5th page, I would send the number 5."
             )
         )
-        .on("searchNoResult", (message) =>
+        .on("searchNoResult", message =>
             message.channel.send("No result found!")
         )
-        .on("finish", (queue) =>
+        .on("finish", queue =>
             queue.textChannel.reply("No songs left in queue.")
         )
-        .on("finishSong", (queue) =>
+        .on("finishSong", queue =>
             queue.textChannel.reply("Hope you enjoyed the song!")
         )
-        .on("noRelated", (message) =>
+        .on("noRelated", message =>
             message.channel.reply(
                 "I cannot find a related video to play. I am stopping the music."
             )
         )
-        .on("empty", (queue) =>
+        .on("empty", queue =>
             queue.textChannel.reply(
                 "Voice chat is empty. I'm going to leave the voice chat now."
             )
         )
-        .on("disconnect", (queue) =>
+        .on("disconnect", queue =>
             queue.textChannel.send("Disconnected from voice chat.")
         )
         .on("error", (channel, err) => {

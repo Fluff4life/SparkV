@@ -13,7 +13,7 @@ const Discord = require(`discord.js`);
                 .fetch({
                     limit: 99,
                 })
-                .then((msgs) => msgs.filter((msg) => !msg.author.bot));
+                .then(msgs => msgs.filter(msg => !msg.author.bot));
         }
     }
 
@@ -35,20 +35,20 @@ const Discord = require(`discord.js`);
             .fetch({
                 limit: 99,
             })
-            .then((msgs) => {
+            .then(msgs => {
                 // Filters
                 if (args[1] === "ignorePinned") {
-                    return msgs.filter((msg) => !msg.pinned);
+                    return msgs.filter(msg => !msg.pinned);
                 } else if (args[1] === "usersOnly") {
-                    return msgs.filter((msg) => !msg.author.bot);
+                    return msgs.filter(msg => !msg.author.bot);
                 } else if (args[1] === "botsOnly") {
-                    return msgs.filter((msg) => msg.author.bot);
+                    return msgs.filter(msg => msg.author.bot);
                 }
 
                 return msgs;
             });
 
-        message.channel.bulkDelete(messages).catch((err) => {
+        message.channel.bulkDelete(messages).catch(err => {
             console.error(err, "1");
 
             return message.channel.send(
@@ -60,10 +60,10 @@ const Discord = require(`discord.js`);
         message.delete();
 
         if (args[1] && !args[1] === "ignorePinned") {
-            messages = messages.filter((msg) => !msg.pinned);
+            messages = messages.filter(msg => !msg.pinned);
         }
 
-        message.channel.bulkDelete(messages).catch((err) => {
+        message.channel.bulkDelete(messages).catch(err => {
             console.error(err, "2");
 
             return message.channel.send(
@@ -78,7 +78,7 @@ const Discord = require(`discord.js`);
 
     message.channel
         .send(`Successfully cleared **${messages.length}** messages!`)
-        .then((msg) => {
+        .then(msg => {
             setTimeout(() => msg.delete(), 5 * 1000);
         });
 }),

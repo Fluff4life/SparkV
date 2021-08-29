@@ -3,8 +3,8 @@ const request = require("node-fetch");
 
 (exports.run = async (bot, message) => {
     request("https://api.adviceslip.com/advice")
-        .then((res) => res.json())
-        .then(async (json) => {
+        .then(res => res.json())
+        .then(async json => {
             const AdviceEmbed = new Discord.MessageEmbed()
                 .setTitle("Here's an advice")
                 .setDescription(json.slip.advice)

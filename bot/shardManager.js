@@ -9,7 +9,7 @@ const manager = new ShardingManager("./bot.js", {
 });
 
 // Shard Handlers //
-manager.on("shardCreate", (Shard) => {
+manager.on("shardCreate", Shard => {
     console.log(
         require("chalk").green(
             `DEPLOYING - SHARD ${Shard.id}/${manager.totalShards} DEPLOYING`
@@ -24,7 +24,7 @@ manager.on("shardCreate", (Shard) => {
         );
     });
 
-    Shard.on("disconnect", (event) => {
+    Shard.on("disconnect", event => {
         Logger("Fatal", err, {
             shard: Shard.id,
         });
@@ -44,7 +44,7 @@ manager.on("shardCreate", (Shard) => {
         );
     });
 
-    Shard.on("death", (event) => {
+    Shard.on("death", event => {
         Logger("Fatal", err, {
             shard: Shard.id,
         });

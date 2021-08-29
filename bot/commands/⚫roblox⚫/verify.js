@@ -29,8 +29,8 @@ function CreateID() {
 
     if (RocordEnabled === `Enabled`) {
         fetch(`https://verify.eryn.io/api/user/${message.author.id}`)
-            .then((response) => response.json())
-            .then((body) => {
+            .then(response => response.json())
+            .then(body => {
                 if (body.status === "ok") {
                     const DiscordEmbed = new Discord.MessageEmbed()
                         .setTitle(`Ch1llBlox Verification`)
@@ -61,12 +61,12 @@ function CreateID() {
 
         message.reply(PromptEmbed);
 
-        MessageColector.on(`collect`, async (msg) => {
+        MessageColector.on(`collect`, async msg => {
             if (msg.content.toLowerCase() === `cancel`) {
                 return message.reply(`Verification canceled.`);
             }
 
-            noblox.getIdFromUsername(msg.content).then(async (id) => {
+            noblox.getIdFromUsername(msg.content).then(async id => {
                 if (!id) {
                     return message.reply(
                         `Verification canceled. User doesn't exist.`
@@ -93,7 +93,7 @@ function CreateID() {
                         time: 200 * 1000,
                     });
 
-                VerifyMessageColector.on(`collect`, async (msg_) => {
+                VerifyMessageColector.on(`collect`, async msg_ => {
                     if (
                         msg_.content.includes(`done`) &&
                         msg_.author.id === message.author.id
@@ -101,8 +101,8 @@ function CreateID() {
                         message.reply(`Fetching about status. Please wait...`);
 
                         setTimeout(async () => {
-                            noblox.getStatus(id).then(async (status) => {
-                                noblox.getBlurb(id).then(async (about) => {
+                            noblox.getStatus(id).then(async status => {
+                                noblox.getBlurb(id).then(async about => {
                                     if (
                                         about.includes(VerificationID) ||
                                         status.includes(VerificationID)
@@ -118,7 +118,7 @@ function CreateID() {
                                         if (RocordRoleEnabled === `Enabled`) {
                                             let VerifiedRole =
                                                 message.guild.roles.cache.find(
-                                                    (r) =>
+                                                    r =>
                                                         r.name.toLowerCase() ===
                                                             `verified` ||
                                                         r.name

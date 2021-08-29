@@ -69,9 +69,9 @@ function HasWon(board) {
 
 function DisplayBoard(board) {
     const Map = board
-        .map((row) =>
+        .map(row =>
             row
-                .map((turn) => {
+                .map(turn => {
                     if (turn === `user`) {
                         return `🟡`;
                     } else if (turn === `opponent`) {
@@ -139,7 +139,7 @@ function DisplayBoard(board) {
 
     const GameMessage = await message.reply(GameEmbed);
 
-    while (!Winner && Board.some((row) => row.includes(null))) {
+    while (!Winner && Board.some(row => row.includes(null))) {
         const User = UserTurn ? message.author : Opponent;
         const Sign = UserTurn ? `user` : `opponent`;
 
@@ -159,7 +159,7 @@ function DisplayBoard(board) {
                 .setTimestamp()
         );
 
-        const Filter = async (response) => {
+        const Filter = async response => {
             if (response.author.id !== User.id) {
                 return false;
             }

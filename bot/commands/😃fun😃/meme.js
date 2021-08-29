@@ -17,8 +17,8 @@ exports.run = async (bot, message) => {
     const Subreddit = SubReddits[Math.floor(Math.random() * SubReddits.length)];
 
     request(`https://www.reddit.com/r/${Subreddit}/top/.json`)
-        .then((res) => res.json())
-        .then(async (json) => {
+        .then(res => res.json())
+        .then(async json => {
             const post =
                 json.data.children[
                     Math.floor(Math.random() * json.data.children.length)

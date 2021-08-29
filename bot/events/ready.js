@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (bot) => {
+exports.run = async bot => {
     const Activities = [
         {
             text: `${bot.config.bot.prefix}Help | ^Invite`,

@@ -29,7 +29,7 @@ const Discord = require("discord.js");
                     },
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 message.reply({
                     embed: {
                         title: "⚠️Failed to Shout⚠️",

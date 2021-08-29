@@ -9,7 +9,7 @@ const { MessageEmbed, Permissions } = require("discord.js");
             .reply(
                 `${bot.config.bot.Emojis.error} | Please mention someone to ban!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!UserToBan) {
@@ -17,13 +17,13 @@ const { MessageEmbed, Permissions } = require("discord.js");
             .reply(
                 `${bot.config.bot.Emojis.error} | I cannot find that member!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (UserToBan.id === message.author.id) {
         return message
             .reply(`${bot.config.bot.Emojis.error} | You cannot ban yourself.`)
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!UserToBan.bannable) {
@@ -31,17 +31,17 @@ const { MessageEmbed, Permissions } = require("discord.js");
             .reply(
                 `${bot.config.bot.Emojis.error} | Uh oh... I can\`t ban this user!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     message.delete();
     UserToBan.send(
         `${bot.config.bot.Emojis.error} | You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`
-    ).catch((err) => {});
+    ).catch(err => {});
 
     UserToBan.ban({
         reason: ReasonForBan,
-    }).catch((err) => {
+    }).catch(err => {
         message.reply(
             `${bot.config.bot.Emojis.error} | Failed to ban. Error: ${err}`
         );

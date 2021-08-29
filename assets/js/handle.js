@@ -13,13 +13,13 @@ $(window).load(async () => {
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
-        didOpen: (popup) => {
+        didOpen: popup => {
             popup.addEventListener("mouseenter", Swal.stopTimer);
             popup.addEventListener("mouseleave", Swal.resumeTimer);
         },
     });
 
-    window.addEventListener("error", (err) => {
+    window.addEventListener("error", err => {
         Popup.fire({
             icon: "error",
             title: "Uh oh!",
@@ -43,7 +43,7 @@ $(window).load(async () => {
             confirmButtonText: "<span>Show me around!</span>",
             denyButtonText: "<span>No thank you.</span>",
             reverseButtons: true,
-        }).then((result) => {
+        }).then(result => {
             if (result.isConfirmed) {
                 Swal.fire({
                     title: "Meet Ch1ll Studios!",
@@ -77,7 +77,7 @@ $(window).load(async () => {
                                 showCancelButton: false,
                                 showDenyButton: true,
                                 denyButtonText: "<span>SHUT!</span>",
-                            }).then((response) => {
+                            }).then(response => {
                                 if (response.isConfirmed) {
                                     localStorage.cookies = "accepted";
                                 }
@@ -93,7 +93,7 @@ $(window).load(async () => {
                     showCancelButton: false,
                     showDenyButton: true,
                     denyButtonText: "<span>SHUT!</span>",
-                }).then((response) => {
+                }).then(response => {
                     if (response.isConfirmed) {
                         localStorage.cookies = "accepted";
                     }
@@ -140,7 +140,7 @@ $(document).ready(() => {
     var dataSpyList = [].slice.call(
         document.querySelectorAll('[data-bs-spy="scroll"]')
     );
-    dataSpyList.forEach((dataSpyEl) => {
+    dataSpyList.forEach(dataSpyEl => {
         bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh();
     });
 
@@ -156,7 +156,7 @@ $(document).ready(() => {
         duration: "600",
     });
 
-    $(document).on("click", ".deletebot", async function () {
+    $(document).on("click", ".deletebot", async function() {
         await Swal.fire({
             title: `Are you sure you want to delete ${$(this).attr("name")}?`,
             text: "THIS ACTION CANNOT BE UNDONE!",
@@ -165,7 +165,7 @@ $(document).ready(() => {
             showCancelButton: true,
             input: "text",
             confirmButtonText: "Delete",
-            preConfirm: async (name) => {
+            preConfirm: async name => {
                 if (name.toLowerCase() !== $(this).attr("name").toLowerCase()) {
                     Swal.update({
                         title: "Cancelled",
@@ -184,7 +184,7 @@ $(document).ready(() => {
         });
     });
 
-    $(".counter").each(function () {
+    $(".counter").each(function() {
         $(".counter").animate(
             {
                 Counter: this.text(),
@@ -192,7 +192,7 @@ $(document).ready(() => {
             {
                 duration: 2000,
                 easing: "swing",
-                step: function () {
+                step: function() {
                     this.text(`${Math.ceil(this.Counter)}+`);
                 },
             }

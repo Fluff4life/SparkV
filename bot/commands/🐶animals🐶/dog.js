@@ -3,8 +3,8 @@ const request = require("node-fetch");
 
 exports.run = async (bot, message) => {
     request("https://dog.ceo/api/breeds/image/random")
-        .then((res) => res.json())
-        .then(async (json) => {
+        .then(res => res.json())
+        .then(async json => {
             if (!json.status === "success") {
                 return await message.reply({
                     embed: {

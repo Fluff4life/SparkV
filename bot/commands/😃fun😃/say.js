@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 exports.run = async (bot, message, args, command, data) => {
     args = args.join(" ");
 
-    message.delete().catch((_) => {});
+    message.delete().catch(_ => {});
 
     message.reply(`${args}\n*-${message.author.username}*`);
 };

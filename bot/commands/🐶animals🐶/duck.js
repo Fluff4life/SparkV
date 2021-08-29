@@ -3,8 +3,8 @@ const request = require("node-fetch");
 
 exports.run = async (bot, message) => {
     request("https://random-d.uk/api/random?format=json")
-        .then((res) => res.json())
-        .then(async (json) => {
+        .then(res => res.json())
+        .then(async json => {
             const MemeMessage = await message.reply({
                 embed: {
                     title: "Quack!",

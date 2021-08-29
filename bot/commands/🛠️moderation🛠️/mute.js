@@ -12,7 +12,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | Please mention someone to mute!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!User) {
@@ -20,13 +20,13 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | I cannot find that member!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (User.id === message.author.id) {
         return message
             .reply(`${bot.config.bot.Emojis.error} | You cannot mute yourself.`)
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (!User.kickable) {
@@ -34,7 +34,7 @@ exports.run = async (bot, message, args, command, data) => {
             .reply(
                 `${bot.config.bot.Emojis.error} | Uh oh... I can't mute this user!`
             )
-            .then((m) => m.delete({ timeout: 5000 }));
+            .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (User.user.bot) {
@@ -42,9 +42,9 @@ exports.run = async (bot, message, args, command, data) => {
     }
 
     const Roles = User.roles.cache
-        .filter((role) => role.id !== message.guild.id)
-        .map((role) => role.id);
-    var MutedRole = message.guild.roles.cache.find((role) =>
+        .filter(role => role.id !== message.guild.id)
+        .map(role => role.id);
+    var MutedRole = message.guild.roles.cache.find(role =>
         role.name.toLowerCase().includes(`muted`)
     );
 
@@ -63,7 +63,7 @@ exports.run = async (bot, message, args, command, data) => {
             },
         });
 
-        message.guild.channels.cache.forEach(async (channel) => {
+        message.guild.channels.cache.forEach(async channel => {
             await channel.createOverwrite(MutedRole, {
                 SEND_MESSAGES: false,
                 ADD_REACTIONS: true,
@@ -99,7 +99,7 @@ exports.run = async (bot, message, args, command, data) => {
         User.roles.add(MutedRole);
         User.send(
             `You have been muted in ${message.guild.name}. Reason: ${Reason}.`
-        ).catch((err) => {});
+        ).catch(err => {});
 
         const MuteEmbend = new Discord.MessageEmbed()
             .setTitle(`Mute Command`)
@@ -121,7 +121,7 @@ exports.run = async (bot, message, args, command, data) => {
 
         message
             .reply(`${bot.config.bot.Emojis.error} | Mute canceled.`)
-            .then((m) => m.delete({ timeout: 10000 }));
+            .then(m => m.delete({ timeout: 10000 }));
     }
 };
 exports.config = {
