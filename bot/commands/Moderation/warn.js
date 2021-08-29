@@ -1,6 +1,6 @@
 const { MessageEmbed } = require(`discord.js`);
 
-const command = require("../../templates/modCommand");
+const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
   const User =
@@ -114,7 +114,7 @@ async function execute(bot, message, args, command, data) {
   }
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `I will warn a user`,
   aliases: [],
   usage: `<user> <optional reason>`,

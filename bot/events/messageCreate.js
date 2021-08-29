@@ -126,7 +126,7 @@ exports.run = async (bot, message) => {
       .slice(bot.user.id.length + 4)
       .trim()
       .split(/ +/);
-    const command = args.shift().toLowerCase();
+    const cmd = args.shift().toLowerCase();
     const commandfile =
       bot.commands.get(command.name) ||
       bot.commands.find(cmd => cmd.settings.aliases && cmd.settings.aliases.includes(command));
@@ -155,7 +155,7 @@ exports.run = async (bot, message) => {
     }
 
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
+    const cmd = args.shift().toLowerCase();
     const commandfile =
       bot.commands.get(command.name) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command));
 

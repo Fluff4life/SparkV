@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const command = require("../../templates/gameCommand");
+const cmd = require("../../templates/gameCommand");
 
 async function execute(bot, message, args, command, data) {
   const { RockPaperScissors } = require("weky");
@@ -35,7 +35,7 @@ async function execute(bot, message, args, command, data) {
   });
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: "Play a game of Rock Paper Scissors with me!",
   usage: "",
   aliases: ["rps"],

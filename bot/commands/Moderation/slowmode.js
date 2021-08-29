@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/modCommand");
+const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
   const Channel = message.mentions.channels
@@ -27,7 +27,7 @@ async function execute(bot, message, args, command, data) {
   message.reply(`${bot.config.bot.Emojis.success} | Slowmode is now ${args[0]} seconds.`);
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `I will set the channel's slowmode to anything you want.`,
   aliases: ["slow"],
   usage: `<user> <reason>`,

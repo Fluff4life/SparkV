@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const command = require("../../templates/gameCommand");
+const cmd = require("../../templates/gameCommand");
 
 async function execute(bot, message, args, command, data) {
   const { WouldYouRather } = require("weky");
@@ -18,7 +18,7 @@ async function execute(bot, message, args, command, data) {
   });
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: "Would you rather.",
   usage: "",
   aliases: ["wyr"],

@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/modCommand");
+const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
   let messages;
@@ -79,7 +79,7 @@ async function execute(bot, message, args, command, data) {
   });
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `I'll delete messages for you!`,
   usage: `<all | users | bots> <filter (ignorePinned)>`,
   aliases: [`purge`, `clr`],

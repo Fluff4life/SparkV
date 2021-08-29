@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/gameCommand");
+const cmd = require("../../templates/gameCommand");
 
 const MemoryTypes = [`🍎`, `🥭`, `🥑`, `🍏`, `🍐`, `🍋`, `🍓`, `🍒`, `🍍`, `🍌`, `🍊`, `🍉`, `🍇`, `🍅`];
 
@@ -53,7 +53,7 @@ async function execute(bot, message, args, command, data) {
   }
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Pratice your memory!`,
   usage: "<optional user>",
   aliases: ["memo"],

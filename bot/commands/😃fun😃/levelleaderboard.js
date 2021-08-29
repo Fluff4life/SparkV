@@ -1,9 +1,11 @@
 const Levels = require("discord-xp");
 const Discord = require("discord.js");
 
+const cmd = require("../../templates/command");
+
 const Emotes = ["🥇", "🥈", "🥉"];
 
-(exports.run = async (bot, message, args, command, data) => {
+async function execute(bot, message, args, command, data) {
   const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10);
   const Leaderboard = await Levels.computeLeaderboard(bot, RawLeaderboard, true);
   const Leader = Leaderboard.map(
@@ -18,15 +20,10 @@ const Emotes = ["🥇", "🥈", "🥉"];
     .setColor(bot.config.bot.Embed.Color);
 
   message.reply(LeaderboardEmbed);
-}),
-  (exports.config = {
-    name: "LevelLeaderboard",
-    description: "View the server's Level leaderboard.",
-    aliases: ["levelboard", "llb"],
-    usage: "",
-    category: "😃Fun😃",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 2.5,
-  });
+}
+
+module.exports = new cmd(execute, {
+  description: `Just a little fun.`,
+  aliases: ["levelboard", "llb"],
+  usage: ``
+});

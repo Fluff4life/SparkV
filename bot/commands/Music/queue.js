@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/musicCommand");
+const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
   const queue = bot.distube.getQueue(message);
@@ -31,7 +31,7 @@ async function execute(bot, message, args, command, data) {
   });
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Shows the songs in queue.`,
   usage: "<number>",
   aliases: ["que"],

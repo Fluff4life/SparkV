@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const command = require("../../templates/musicCommand");
+const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
@@ -24,7 +24,7 @@ async function execute(bot, message, args, command, data) {
   }
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: "Plays a song with the given name or URL.",
   usage: "<song title or URL>",
   aliases: ["leap"],

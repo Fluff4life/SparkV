@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 const fetch = require("node-fetch");
 
-const command = require("../../templates/command");
+const cmd = require("../../templates/command");
 
 function CreateID() {
   let text = `haha yes`;
@@ -155,7 +155,7 @@ function execute(bot, message, args, command, data) {
   });
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Verify yourself! Only works when enabled on the dashboard.`,
   usage: "<username>",
   aliases: [],

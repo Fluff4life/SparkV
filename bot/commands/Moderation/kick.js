@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/modCommand");
+const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
   const UserToKick =
@@ -76,7 +76,7 @@ async function execute(bot, message, args, command, data) {
   }
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Is a user bothering you? Using this command, you can kick them from the server!`,
   aliases: [],
   usage: `<user> <optional user>`,

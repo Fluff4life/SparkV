@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const command = require("../../templates/musicCommand");
+const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
   if (!bot.distube.isPlaying(message)) {
@@ -24,7 +24,7 @@ async function execute(bot, message, args, command, data) {
   }
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description:
     "Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse.",
   usage: "<Filter>",

@@ -1,6 +1,6 @@
 const { MessageEmbed, Permissions } = require("discord.js");
 
-const command = require("../../templates/modCommand");
+const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
   const UserToBan = bot.GetMember(message, args);
@@ -54,7 +54,7 @@ async function execute(bot, message, args, command, data) {
   message.reply(BanEmbed);
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Is a user bothering you and keep coming back after you kick them? Using this command, they won\'t come back unless they are unbanned.`,
   usage: `<user> <optional reason>`,
   aliases: [`pban`],

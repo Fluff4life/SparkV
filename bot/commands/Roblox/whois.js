@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const command = require("../../templates/command");
+const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (bot.config.Debug.Enabled === true) {
@@ -52,7 +52,7 @@ async function execute(bot, message, args, command, data) {
   }
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: "Ch1llBlox will look up any user and return information on that user.",
   usage: "<username>",
   aliases: [],

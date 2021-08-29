@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/gameCommand");
+const cmd = require("../../templates/gameCommand");
 
 function CheckLine(a, b, c, d) {
   return a !== null && a === b && a === c && a === d;
@@ -194,7 +194,7 @@ async function execute(bot, message, args, command, data) {
   );
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Play a game of ConnectFour with me or mention someone to play with!`,
   usage: "<optional user>",
   aliases: ["cf"],

@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/musicCommand");
+const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
@@ -41,7 +41,7 @@ async function execute(bot, message, args, command, data) {
   message.reply(`${bot.config.bot.Emojis.music} | Okay, I'll ${mode}.`);
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Replays the currently playing song.`,
   usage: "<song or queue: leave empty to deactivate>",
   aliases: ["replay", "loop"],

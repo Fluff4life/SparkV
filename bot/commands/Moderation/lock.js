@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const command = require("../../templates/modCommand");
+const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
   try {
@@ -14,7 +14,7 @@ async function execute(bot, message, args, command, data) {
   message.reply("Channel is now locked.");
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: "I'll lock the current channel.",
   aliases: [],
   usage: ``,

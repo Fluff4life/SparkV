@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const command = require("../../templates/modCommand");
+const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
   try {
@@ -14,7 +14,7 @@ async function execute(bot, message, args, command, data) {
   message.reply(`${bot.config.bot.Emojis.success} | Channel is now unlocked.`);
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: "I'll unlock the current channel.",
   aliases: ["slow"],
   usage: `<user> <reason>`,

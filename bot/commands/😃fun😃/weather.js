@@ -1,7 +1,9 @@
 const Discord = require(`discord.js`);
 const Weather = require(`weather-js`);
 
-(exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   if (!args) {
     return message.reply(`${bot.config.bot.Emojis.error} | Please specify a location!`);
   }
@@ -41,7 +43,8 @@ const Weather = require(`weather-js`);
       message.reply(WeatherInformation);
     },
   );
-}),
+}
+
   (exports.config = {
     name: `Weather`,
     description: `Checks for todays weather forcast in the location specified.`,

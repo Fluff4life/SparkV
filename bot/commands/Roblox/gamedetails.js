@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 const request = require(`node-fetch`);
 
-const command = require("../../templates/command");
+const cmd = require("../../templates/command");
 
 function execute(bot, message, args, command) {
   if (!args) {
@@ -30,7 +30,7 @@ function execute(bot, message, args, command) {
     .catch(err => message.reply(`${bot.config.bot.Emojis.error} | An error occured!`));
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `I'll grab the details of any game for you.`,
   aliases: [`gd`],
   perms: ["EMBED_LINKS"],

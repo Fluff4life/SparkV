@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-const command = require("../../templates/musicCommand");
+const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
@@ -31,7 +31,7 @@ async function execute(bot, message, args, command, data) {
     .catch(err => message.reply(`${bot.config.bot.Emojis.error} | Uh oh! An error occured.`));
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Sets the volume of the currently playing track.`,
   usage: "",
   aliases: ["setvolume", "vol"],

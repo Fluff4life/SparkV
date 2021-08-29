@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 const EasyPages = require("discordeasypages");
 
-const command = require("../../templates/musicCommand");
+const cmd = require("../../templates/musicCommand");
 
 const fetch = require(`node-fetch`);
 const LyrcisFinder = require(`lyrics-finder`);
@@ -63,7 +63,7 @@ async function execute(bot, message, args, command, data) {
   };
 }
 
-module.exports = new command(execute, {
+module.exports = new cmd(execute, {
   description: `Get any song's lyrics!`,
   usage: "<song title or URL>",
   aliases: ["song", "verse"],

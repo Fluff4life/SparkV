@@ -131,7 +131,7 @@ exports.run = async (bot, message, args, command, data) => {
     });
   } else {
     const name = args[0].toLowerCase();
-    const command = bot.commands.get(name) || bot.commands.find(c => c.aliases && c.aliases.includes(name));
+    const cmd = bot.commands.get(name) || bot.commands.find(c => c.aliases && c.aliases.includes(name));
 
     const CommandHelpEmbed = new MessageEmbed()
       .setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)

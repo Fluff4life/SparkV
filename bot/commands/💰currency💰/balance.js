@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-(exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   const User = bot.GetMember(message, args) || message.author;
 
   var Ch1llBucks = data.user.money.balance;
@@ -18,15 +20,10 @@ const Discord = require(`discord.js`);
     .setTimestamp();
 
   message.reply(BalanceEmbed);
-}),
-  (exports.config = {
-    name: `Balance`,
-    description: `View your balance.`,
-    aliases: [`bal`],
-    usage: `<optional user>`,
-    category: `💰Currency💰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 2,
-  });
+}
+
+module.exports = new cmd(execute, {
+  description: `View your balance.`,
+  aliases: ["bal"],
+  usage: `<optional user>`
+});

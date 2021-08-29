@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-(exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   if (message.author.id !== process.env.C) {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
@@ -34,15 +36,10 @@ const Discord = require(`discord.js`);
   } else {
     message.channel.send(`Token was contained in input. Nice try noob.`);
   }
-}),
-  (exports.config = {
-    name: `Eval`,
+}
+
+  module.exports = new cmd(execute, {
     description: `This is an owner only command.`,
     aliases: [],
-    usage: ``,
-    category: `👑Owner👑`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 1.5,
+    usage: `<user>`
   });
