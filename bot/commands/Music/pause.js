@@ -17,9 +17,6 @@ async function execute(bot, message, args, command, data) {
         );
     }
 
-    if (queue.pause) {
-        bot.distube.resume(message);
-
   bot.distube.pause(message);
   message.reply(`${bot.config.bot.Emojis.music} | I paused the song for you!`);
 }

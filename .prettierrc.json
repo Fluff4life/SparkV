@@ -1,26 +1,7 @@
 {
-<<<<<<< HEAD
   "singleQuote": true,
   "printWidth": 120,
   "trailingComma": "all",
   "endOfLine": "lf",
   "arrowParens": "avoid"
-=======
-  "tabWidth": 4,
-  "overrides": [
-    {
-      "files": [".prettierrc.json"],
-      "options": {
-        "tabWidth": 4
-      }
-    },
-    {
-      "files": ["*.json"],
-      "options": {
-        "tabWidth": 2
-      }
-    }
-  ],
-  "endOfLine": "lf"
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 }

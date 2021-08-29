@@ -6,23 +6,12 @@ const command = require("../../templates/musicCommand");
 const fetch = require(`node-fetch`);
 const LyrcisFinder = require(`lyrics-finder`);
 
-<<<<<<< HEAD:bot/commands/Music/lyrics.js
 async function execute(bot, message, args, command, data) {
   if (!args) {
     return message
       .reply(`${bot.config.bot.Emojis.error} | Please supply the title of a song to search for.`)
       .then(m => m.delete({ timeout: 5000 }));
   }
-=======
-(exports.run = async (bot, message, args, command, data) => {
-    if (!args) {
-        return message
-            .reply(
-                `${bot.config.bot.Emojis.error} | Please supply the title of a song to search for.`
-            )
-            .then(m => m.delete({ timeout: 5000 }));
-    }
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89:bot/commands/🎵music🎵/lyrics.js
 
     args = args.join(" ");
 
@@ -71,7 +60,6 @@ async function execute(bot, message, args, command, data) {
             .setColor(bot.config.bot.Embed.Color)
             .setTimestamp();
 
-<<<<<<< HEAD:bot/commands/Music/lyrics.js
   LyricsSubArray.map((x, i) => CreatePage(bot, message, x));
   EasyPages(message, Pages, ["⬅", "➡"]);
 }
@@ -82,29 +70,3 @@ module.exports = new command(execute, {
   aliases: ["song", "verse"],
   perms: ["EMBED_LINKS"],
 });
-=======
-        pages.push(SongEmbed);
-    };
-
-    LyricsSubArray.map((x, i) => CreatePage(bot, message, x));
-    EasyPages(message, Pages, ["⬅", "➡"]);
-}),
-    (exports.config = {
-        name: `Lyrics`,
-        description: `Get any song's lyrics!`,
-        aliases: [`song`, `verse`],
-        usage: `<song title or URL>`,
-        category: `🎵Music🎵`,
-        bot_permissions: [
-            `SEND_MESSAGES`,
-            `READ_MESSAGE_HISTORY`,
-            `EMBED_LINKS`,
-            `VIEW_CHANNEL`,
-            `CONNECT`,
-            `SPEAK`,
-        ],
-        member_permissions: [],
-        enabled: true,
-        cooldown: 5,
-    });
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89:bot/commands/🎵music🎵/lyrics.js
