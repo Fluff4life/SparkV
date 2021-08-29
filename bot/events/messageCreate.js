@@ -33,9 +33,7 @@ exports.run = async (bot, message) => {
       message.guild.id
     );
   }
-
-  data.user = await bot.database.fetchUser(message.author.id);
-
+  
   const AntiSwear = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeProfanity;
 
   if (AntiSwear === true) {

@@ -62,6 +62,7 @@ async function execute(bot, message, args, command, data) {
 
   LyricsSubArray.map((x, i) => CreatePage(bot, message, x));
   EasyPages(message, Pages, ["⬅", "➡"]);
+};
 }
 
 module.exports = new command(execute, {

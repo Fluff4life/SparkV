@@ -70,9 +70,6 @@ async function Start() {
     } else {
         await require("./bot/bot");
     }
-  } else {
-    await require("./bot/bot");
-  }
 }
 
 Start();
