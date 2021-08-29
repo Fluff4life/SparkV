@@ -13,7 +13,7 @@ const Credits = [
   },
 ];
 
-exports.run = async (bot, message) => {
+(exports.run = async (bot, message) => {
   const NewEmbed = new Discord.MessageEmbed()
     .setTitle("Credits")
     .setDescription(`Here's the list of people who've helped Ch1llBlox on his path to success!`)
@@ -22,9 +22,8 @@ exports.run = async (bot, message) => {
     .addFields(Credits);
 
   return message.reply(NewEmbed);
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: `Credits`,
     description: `Look at everyone who helped make Ch1llBlox!`,
     aliases: [],
@@ -33,5 +32,5 @@ exports.run = async (bot, message) => {
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
-    cooldown: 1.5
-};
+    cooldown: 1.5,
+  });

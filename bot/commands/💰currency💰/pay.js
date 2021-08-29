@@ -38,14 +38,14 @@ exports.run = async (bot, message, args, command, data) => {
 
   message.reply(`${bot.config.bot.Emojis.success} | You gave ${User} ❄${await bot.FormatNumber(args[1])} Ch1llBucks!`);
 };
-  exports.config = {
-    name: `Pay`,
-    description: `Give someone some Ch1llBucks!`,
-    aliases: [`gift`],
-    usage: `<user>`,
-    category: `💰Currency💰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 15
+exports.config = {
+  name: `Pay`,
+  description: `Give someone some Ch1llBucks!`,
+  aliases: [`gift`],
+  usage: `<user>`,
+  category: `💰Currency💰`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 15,
 };

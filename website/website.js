@@ -62,14 +62,16 @@ async function StartWebsite() {
 
   require("./utils/passport");
 
-  app.use(session({
-    secret: process.env.SECRET || "SuperSecret",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGOOSEURL
-    })
-  }));
+  app.use(
+    session({
+      secret: process.env.SECRET || "SuperSecret",
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGOOSEURL,
+      }),
+    }),
+  );
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -80,12 +82,18 @@ async function StartWebsite() {
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));
 
-  app.use(require("serve-favicon")(path.resolve(`${process.cwd()}${path.sep}assets${path.sep}images${path.sep}site${path.sep}favicon.ico`)));
+  app.use(
+    require("serve-favicon")(
+      path.resolve(`${process.cwd()}${path.sep}assets${path.sep}images${path.sep}site${path.sep}favicon.ico`),
+    ),
+  );
 
   app.use("/assets", express.static(path.join(`${process.cwd()}${path.sep}assets`)));
   app.set("views", path.resolve(`${MainDir}${path.sep}views`));
 
-  app.get("/service-worker.js", (request, response) => response.sendFile(path.resolve(__dirname, "utils", "service_worker.js")));
+  app.get("/service-worker.js", (request, response) =>
+    response.sendFile(path.resolve(__dirname, "utils", "service_worker.js")),
+  );
 
   LoadRoutes();
 

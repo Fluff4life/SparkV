@@ -29,14 +29,14 @@ exports.run = async (bot, message, args, command, data) => {
   });
 };
 
-  exports.config = {
-    name: `Ascii`,
-    description: `I will change any text to ascii!`,
-    aliases: [],
-    usage: `<text>`,
-    category: `😃Fun😃`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5
+exports.config = {
+  name: `Ascii`,
+  description: `I will change any text to ascii!`,
+  aliases: [],
+  usage: `<text>`,
+  category: `😃Fun😃`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5,
 };

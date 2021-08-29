@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (bot, message) => {
+(exports.run = async (bot, message) => {
   const InvitesEmbend = new Discord.MessageEmbed()
     .setTitle("Invites")
     .setDescription(`The following are links for Ch1llBlox!`)
@@ -11,9 +11,8 @@ exports.run = async (bot, message) => {
     .setColor(bot.config.bot.Embed.Color);
 
   await message.reply(InvitesEmbend);
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: "Invite",
     description: "Displays links.",
     aliases: ["invite", "support"],
@@ -22,5 +21,5 @@ exports.run = async (bot, message) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: [],
     enabled: true,
-    cooldown: 1.5
-};
+    cooldown: 1.5,
+  });

@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 const Weather = require(`weather-js`);
 
-exports.run = async (bot, message, args, command, data) => {
+(exports.run = async (bot, message, args, command, data) => {
   if (!args) {
     return message.reply(`${bot.config.bot.Emojis.error} | Please specify a location!`);
   }
@@ -41,9 +41,8 @@ exports.run = async (bot, message, args, command, data) => {
       message.reply(WeatherInformation);
     },
   );
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: `Weather`,
     description: `Checks for todays weather forcast in the location specified.`,
     aliases: [],
@@ -52,5 +51,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
     member_permissions: [],
     enabled: true,
-    cooldown: 5
-};
+    cooldown: 5,
+  });

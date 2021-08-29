@@ -14,7 +14,7 @@ exports.run = async (bot, message) => {
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(
             `👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.bot.Embed.Footer}`,
-            bot.user.displayAvatarURL()
+            bot.user.displayAvatarURL(),
           )
           .setColor(bot.config.bot.Embed.Color);
 
@@ -26,7 +26,7 @@ exports.run = async (bot, message) => {
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(
             `👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.bot.Embed.Footer}`,
-            bot.user.displayAvatarURL()
+            bot.user.displayAvatarURL(),
           )
           .setColor(bot.config.bot.Embed.Color);
 
@@ -34,14 +34,14 @@ exports.run = async (bot, message) => {
       }
     });
 };
-  exports.config = {
-    name: "Economy",
-    description: "lol",
-    aliases: ["memeeconomy"],
-    usage: "",
-    category: "😃Fun😃",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 3
+exports.config = {
+  name: "Economy",
+  description: "lol",
+  aliases: ["memeeconomy"],
+  usage: "",
+  category: "😃Fun😃",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3,
 };

@@ -10,11 +10,11 @@ const CheckAuth = require("../../utils/CheckAuth");
 const Render = require("../../utils/Render");
 
 route.post("/:id", CheckAuth, async (request, response) => {
-    if (!request.user.staff) {
-        return response.status(401).send({ success: false, message: "401 Forbidden" });
-    }
+  if (!request.user.staff) {
+    return response.status(401).send({ success: false, message: "401 Forbidden" });
+  }
 
-    // To be continued.
+  // To be continued.
 });
 
 module.exports = Router;

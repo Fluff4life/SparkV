@@ -18,14 +18,14 @@ exports.run = async (bot, message, args, command, data) => {
 
   message.reply(ChangeMyMind);
 };
-  exports.config = {
-    name: `ChangeMyMind`,
-    description: `AAAAAAAAAAAAAAAAAAAAAAAAAAAH!`,
-    aliases: [`cmm`],
-    usage: `<text>`,
-    category: `📷Images📷`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 2
+exports.config = {
+  name: `ChangeMyMind`,
+  description: `AAAAAAAAAAAAAAAAAAAAAAAAAAAH!`,
+  aliases: [`cmm`],
+  usage: `<text>`,
+  category: `📷Images📷`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 2,
 };

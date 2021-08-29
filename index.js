@@ -56,8 +56,6 @@ async function Start() {
     if (Config.Debug.WebsiteEnabled === true) {
       await require("./website/website");
     }
-  } else if (Config.bot.Sharding.ShardingEnabled === true) {
-    await require("./bot/shardManager");
   } else {
     await require("./bot/bot");
   }

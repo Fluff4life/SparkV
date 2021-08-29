@@ -76,7 +76,9 @@ module.exports = async bot => {
     var member = message.mentions.members.first();
     var checkCache = bot.users.cache.get(args.slice(0).join(" "));
     var checkCache2 = bot.users.cache.get(args[0]);
-    var checkGuildCache = message.guild.members.cache.find(u => u.user.username.toLowerCase() === args.slice(0).join(" ") || u.user.username === args[0]);
+    var checkGuildCache = message.guild.members.cache.find(
+      u => u.user.username.toLowerCase() === args.slice(0).join(" ") || u.user.username === args[0],
+    );
 
     if (message.mentions.members.first()) {
       member = message.mentions.members.first();
@@ -96,7 +98,11 @@ module.exports = async bot => {
   };
 
   bot.isURL = string => {
-    if (/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite|discord.com\/invite)\/+[a-zA-Z0-9]{6,16}/g.test(string)) {
+    if (
+      /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite|discord.com\/invite)\/+[a-zA-Z0-9]{6,16}/g.test(
+        string,
+      )
+    ) {
       return true;
     }
 
@@ -140,9 +146,7 @@ module.exports = async bot => {
       return CollectedUsers;
     }
 
-    const promises = [
-      bot.shard.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")
-    ];
+    const promises = [bot.shard.broadcastEval("this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)")];
 
     return Promise.all(promises).then(results => results.flat().reduce((acc, MemberCount) => acc + MemberCount, 0));
   };

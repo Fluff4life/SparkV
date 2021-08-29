@@ -6,7 +6,7 @@ exports.run = async (bot, message, args, command, data) => {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
 
-  const User = await bot.GetMember(message, args) || bot.users.cache.get(args[0]);
+  const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]);
   const Leveling = await bot.dashboard.getVal(`Leveling`);
   const FormattedNumber = await bot.FormatNumber(args[1]);
 
@@ -26,14 +26,14 @@ exports.run = async (bot, message, args, command, data) => {
     message.reply(`${bot.config.bot.Emojis.error} | Error setting ${User}'s XP to ${FormattedNumber}.`);
   }
 };
-  exports.config = {
-    name: `SetXP`,
-    description: `Set XP.`,
-    aliases: [],
-    usage: `<Ammount>`,
-    category: `👑Owner👑`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 2.5
+exports.config = {
+  name: `SetXP`,
+  description: `Set XP.`,
+  aliases: [],
+  usage: `<Ammount>`,
+  category: `👑Owner👑`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 2.5,
 };

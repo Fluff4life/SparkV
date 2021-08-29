@@ -1,5 +1,6 @@
 self.addEventListener("install", event => {
-  event.waitUntil((async () => {
+  event.waitUntil(
+    (async () => {
       const cache = await caches.open("offline");
 
       await cache.add(new Request("/assets/offline.html", { cache: "reload" }));
@@ -10,18 +11,19 @@ self.addEventListener("install", event => {
 });
 
 self.addEventListener("activate", event => {
-  event.waitUntil((async () => {
+  event.waitUntil(
+    (async () => {
       if ("navigationPreload" in self.registration) await self.registration.navigationPreload.enable();
     })(),
   );
-
 
   self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
   if (event.request.mode === "navigate") {
-    event.respondWith((async () => {
+    event.respondWith(
+      (async () => {
         try {
           const PreloadResponse = await event.preloadResponse;
 

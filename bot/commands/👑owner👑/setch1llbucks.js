@@ -16,14 +16,14 @@ exports.run = async (bot, message, args, command, data) => {
 
   message.reply(`${bot.config.bot.Emojis.success} | Success!`);
 };
-  exports.config = {
-    name: `SetCh1llBucks`,
-    description: `Set someone's Ch1llBucks!`,
-    aliases: [],
-    usage: `<user> <ammount>`,
-    category: `👑Owner👑`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 15
+exports.config = {
+  name: `SetCh1llBucks`,
+  description: `Set someone's Ch1llBucks!`,
+  aliases: [],
+  usage: `<user> <ammount>`,
+  category: `👑Owner👑`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 15,
 };

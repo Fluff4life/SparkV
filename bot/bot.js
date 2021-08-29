@@ -18,34 +18,32 @@ console.log(require("chalk").blue("  ____|_| |_|_|_|_|____/|_|___/_/_ "));
 
 const Client = require("./structures/client");
 const Ch1llBlox = new Client({
-  bot: {
-    intents: [
-      Intents.FLAGS.GUILDS,
-      // Intents.FLAGS.GUILD_MEMBERS,
-      Intents.FLAGS.GUILD_BANS,
-      Intents.FLAGS.GUILD_WEBHOOKS,
-      Intents.FLAGS.GUILD_MESSAGES,
-      Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-      Intents.FLAGS.DIRECT_MESSAGES,
-      Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-      Intents.FLAGS.GUILD_VOICE_STATES,
-      // Intents.FLAGS.GUILD_PRESENCES,
-    ],
-    makeCache: Options.cacheWithLimits({
-      MessageManager: 200,
-    }),
-    partials: ["CHANNEL"],
-    allowedMentions: {
-      parse: ["users", "roles", "everyone"],
-      repliedUser: true
+  intents: [
+    Intents.FLAGS.DIRECT_MESSAGES,
+    Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_BANS,
+    Intents.FLAGS.GUILD_WEBHOOKS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_VOICE_STATES,
+    // Intents.FLAGS.GUILD_MEMBERS,
+    // Intents.FLAGS.GUILD_PRESENCES,
+  ],
+  makeCache: Options.cacheWithLimits({
+    MessageManager: 200,
+  }),
+  partials: ["CHANNEL"],
+  allowedMentions: {
+    parse: ["users", "roles", "everyone"],
+    repliedUser: true,
+  },
+  presence: {
+    activity: {
+      name: `Loading Ch1llBlox (99%)`,
+      type: "PLAYING",
     },
-    presence: {
-      activity: {
-        name: `Loading Ch1llBlox (99%)`,
-        type: "PLAYING",
-      },
-      status: "dnd",
-    },
+    status: "dnd",
   },
 });
 
@@ -54,7 +52,7 @@ async function Start() {
   await Ch1llBlox.LoadCommands(__dirname);
 
   await Ch1llBlox.LoadModules({
-    sharding: false
+    sharding: false,
   });
 
   Ch1llBlox.SocketioClient = require("socket.io-client").connect(

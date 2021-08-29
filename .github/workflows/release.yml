@@ -1,30 +1,31 @@
 name: Release
-
 on:
-  push:
-    paths:
-      - "**.js"
-  workflow_dispatch:
+  - workflow_dispatch
+  - push
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.3.4
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2.4.0
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: "16.x"
+          node-version: 16.7.x
+
       - name: Install Dependencies
-        run: npm install -g
+        run: npm ci
+
+      - name: Format Code
+        run: npm run format
+
       - name: Correct Code
         run: npm run test:fix
-      - name: Format Code
-        run: npm run format:check
+
       - name: Commit and Push Changes
-        uses: EndBug/add-and-commit@v7
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          author_name: github-actions[bot]
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          message: "style: 🎨 format code"
+          commit_message: "🎨 | Cleaned Up Code"
+          branch: master

@@ -68,25 +68,33 @@ exports.run = async (bot, message, args, command, data) => {
   }
 
   if (win) {
-    message.reply(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${bot.config.bot.Emojis.success} | You won ❄${await bot.FormatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`);
+    message.reply(
+      `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
+        bot.config.bot.Emojis.success
+      } | You won ❄${await bot.FormatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`,
+    );
 
     data.user.money.balance = Ch1llBucks + args[0] * SlotItems.length;
     await data.user.save();
   } else {
-    message.reply(`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${bot.config.bot.Emojis.error} | You lost ❄${await bot.FormatNumber(parseInt(args[0]))} Ch1llBucks.`);
+    message.reply(
+      `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
+        bot.config.bot.Emojis.error
+      } | You lost ❄${await bot.FormatNumber(parseInt(args[0]))} Ch1llBucks.`,
+    );
 
     data.user.money.balance = Ch1llBucks - args[0];
     await data.user.save();
   }
 };
-  exports.config = {
-    name: `Slots`,
-    description: `Don't gamble kids!`,
-    aliases: [`bet`],
-    usage: `<amount>`,
-    category: `💰Currency💰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 15
+exports.config = {
+  name: `Slots`,
+  description: `Don't gamble kids!`,
+  aliases: [`bet`],
+  usage: `<amount>`,
+  category: `💰Currency💰`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 15,
 };

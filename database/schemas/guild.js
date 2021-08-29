@@ -47,7 +47,7 @@ const Schema = new mongoose.Schema({
       leveling: {
         enabled: false,
         max: 25,
-        min: 5
+        min: 5,
       },
       chatbot: null,
       warnsInfractions: {

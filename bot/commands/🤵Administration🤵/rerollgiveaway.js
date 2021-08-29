@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-exports.run = async (bot, message, args, command, data) => {
+(exports.run = async (bot, message, args, command, data) => {
   const ID = args[0];
 
   if (!ID || isNaN(ID)) {
@@ -26,9 +26,8 @@ exports.run = async (bot, message, args, command, data) => {
         });
       }
     });
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: "RerollGiveaway",
     description: "Rerolls a giveaway. Requires the permision MANAGE_MESSAGES.",
     aliases: ["rerollg"],
@@ -37,5 +36,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
     member_permissions: ["MANAGE_MESSAGES"],
     enabled: true,
-    cooldown: 10
-};
+    cooldown: 10,
+  });

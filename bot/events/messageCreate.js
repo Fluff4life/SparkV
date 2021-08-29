@@ -6,31 +6,18 @@ const fetch = require("node-fetch");
 const userS = require("../../database/schemas/user");
 
 exports.run = async (bot, message) => {
-  const data = {};
-
-  if (message.author.bot) {
+  if (message.author.bot || !message.guild) {
     return;
   }
 
-  if (!message.guild) {
-    return;
-  }
-
-  if (message.guild && !message.member) {
+  if (!message.member) {
     await message.guild.members.fetch(message.author.id);
   }
 
-  data.config = bot.config;
-
-  if (message.guild) {
-    data.guild = await bot.database.fetchGuild(message.guild.id);
-  }
-
-  if (message.guild) {
-    data.member = await bot.database.fetchMember(message.author.id, message.guild.id);
-  }
-
+  const data = {};
   data.user = await bot.database.fetchUser(message.author.id);
+  data.guild = await bot.database.fetchGuild(message.guild.id);
+  data.member = await bot.database.fetchMember(message.author.id, message.guild.id);
 
   // AFK //
   if (message.guild) {
@@ -85,7 +72,7 @@ exports.run = async (bot, message) => {
         ignoreWord: [`hello`],
         muteCount: 3,
         kickCount: 6,
-        banCount: 12
+        banCount: 12,
       });
     }
   }
@@ -147,8 +134,9 @@ exports.run = async (bot, message) => {
       .split(/ +/);
     const command = args.shift().toLowerCase();
     const commandfile =
-      bot.commands.get(command) ||
-      bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
+      bot.commands.get(command.name) ||
+      bot.commands.find(cmd => cmd.settings.aliases && cmd.settings.aliases.includes(command));
+
     if (commandfile) {
       return HandleCommand(bot, message, args, command, data, commandfile);
     } else {
@@ -176,14 +164,15 @@ exports.run = async (bot, message) => {
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
     const commandfile =
-      bot.commands.get(command) ||
-      bot.commands.find(command_ => command_.config.aliases && command_.config.aliases.includes(command));
+      bot.commands.get(command.name) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command));
 
     return HandleCommand(bot, message, args, command, data, commandfile);
   }
 };
 
 async function HandleCommand(bot, message, args, command, data, commandfile) {
+  console.log(commandfile);
+
   if (!commandfile) {
     return;
   }
@@ -200,40 +189,23 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
     }
   }
 
-  if (commandfile.config.bot_permissions) {
-    const BotPermisions = message.channel.permissionsFor(bot.user);
-
-    if (!BotPermisions || !BotPermisions.has(Discord.Permissions.FLAGS[commandfile.config.bot_permissions])) {
-      return message.reply(
-        bot.config.bot.Responses.bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions),
-      );
-    }
-  }
-
-  if (commandfile.config.member_permissions) {
-    const AuthorPermisions = message.channel.permissionsFor(message.author);
-
-    if (!AuthorPermisions || !AuthorPermisions.has(Discord.Permissions.FLAGS[commandfile.config.member_permissions])) {
-      return message.reply(
-        bot.config.bot.Responses.bot.toString().replaceAll(`{permission}`, commandfile.config.member_permissions),
-      );
-    }
-  }
-
-  if (!commandfile.config.enabled) {
+  console.log(commandfile);
+  if (!commandfile.settings.enabled) {
     return message.reply(
       `${bot.config.bot.Emojis.error} | This command is currently disabled! Please try again later.`,
     );
   }
 
-  const MusicEnabled = bot.config.Debug.Enabled === true ? "Enabled" : await bot.dashboard.getVal(message.guild.id, `MusicEnabled`);
-  const Leveling = bot.config.Debug.Enabled === true ? "Enabled" : await bot.dashboard.getVal(message.guild.id, `leveling`);
+  const MusicEnabled =
+    bot.config.Debug.Enabled === true ? "Enabled" : await bot.dashboard.getVal(message.guild.id, `MusicEnabled`);
+  const Leveling =
+    bot.config.Debug.Enabled === true ? "Enabled" : await bot.dashboard.getVal(message.guild.id, `leveling`);
 
-  if (commandfile.config.category === `🎵Music🎵` && MusicEnabled === `Disabled`) {
+  if (commandfile.category === `🎵Music🎵` && MusicEnabled === `Disabled`) {
     return message.reply(
       `${bot.config.bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`,
     );
-  } else if (commandfile.config.category === `💫leveling💫` && Leveling === `Disabled`) {
+  } else if (commandfile.category === `💫leveling💫` && Leveling === `Disabled`) {
     return message.reply(
       `${bot.config.bot.Emojis.error} | This command is disabled by the server owner. Please visit my dashboard and enable leveling.`,
     );
@@ -259,24 +231,24 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
           },
         });
       } else {
-        UserSlowmode.time = commandfile.config.cooldown * 1000 || 3000 + Date.now();
+        UserSlowmode.time = commandfile.cooldown * 1000 || 3000 + Date.now();
       }
     } else {
       data.guild.slowmode.users.push({
         id: message.author.id + message.channel.id,
-        time: commandfile.config.cooldown * 1000 || 3000 + Date.now(),
+        time: commandfile.cooldown * 1000 || 3000 + Date.now(),
       });
     }
   }
 
   /*
-  If (!bot.cooldowns.has(commandfile.config.name)) {
-    bot.cooldowns.set(commandfile.config.name, new Discord.Collection())
+  If (!bot.cooldowns.has(commandfile.name)) {
+    bot.cooldowns.set(commandfile.name, new Discord.Collection())
   }
 
   const Now = Date.now()
-  const Timestamps = bot.cooldowns.get(commandfile.config.name)
-  const CooldownAmount = Math.round(commandfile.config.cooldown | (3 * 1000))
+  const Timestamps = bot.cooldowns.get(commandfile.name)
+  const CooldownAmount = Math.round(commandfile.cooldown | (3 * 1000))
 
   if (Timestamps.has(message.author.id)) {
     const ExpireTime = Math.round(Timestamps.get(message.author.id) + CooldownAmount)
@@ -304,16 +276,19 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
   */
 
   try {
-    await commandfile.run(bot, message, args, command, data, data).then(async () => {
-      const DeleteUsage = bot.config.Debug.Enabled === true ? "Disabled" : await bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
+    await commandfile.run(bot, message, args, command, data).then(async () => {
+      const DeleteUsage =
+        bot.config.Debug.Enabled === true
+          ? "Disabled"
+          : await bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
 
       if (DeleteUsage === `Enabled`) {
-        message.delete().catch(() => { });
+        message.delete().catch(() => {});
       }
     });
 
     if (bot.StatClient) {
-      bot.StatClient.postCommand(commandfile.config.name, message.author.id);
+      bot.StatClient.postCommand(command, message.author.id);
     }
   } catch (err) {
     console.error(err);
@@ -325,12 +300,14 @@ async function HandleCommand(bot, message, args, command, data, commandfile) {
         AnnonymousUser,
       });
 
-      scope.setTag(`Command`, commandfile.config.name);
+      scope.setTag(`Command`, commandfile.settings.name);
       scope.setTag(`CurrentPing`, bot.ws.ping);
       scope.setTag(`GuildType`, message.channel.type);
     });
 
-    message.reply(`${bot.config.bot.Emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,);
+    message.reply(
+      `${bot.config.bot.Emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,
+    );
   }
 
   bot.database.createLog(message, data);

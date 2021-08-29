@@ -19,21 +19,21 @@ exports.run = async (bot, message) => {
           footer: {
             text: json.message,
             image: bot.user.displayAvatarURL(),
+          },
         },
-      }
       });
 
       MemeMessage.react("😍");
     });
 };
-  exports.config = {
-    name: "Fox",
-    description: "I will send a cute fox! Ducks are better.",
-    aliases: ["cutefox"],
-    usage: "",
-    category: "🐶Animals🐶",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 3
+exports.config = {
+  name: "Fox",
+  description: "I will send a cute fox! Ducks are better.",
+  aliases: ["cutefox"],
+  usage: "",
+  category: "🐶Animals🐶",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3,
 };

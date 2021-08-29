@@ -68,14 +68,14 @@ exports.run = async (bot, message, args, command, data) => {
     message.reply(`${bot.config.bot.Emojis.success} | Deposited ❄${await bot.FormatNumber(args[0])} into bank!`);
   }
 };
-  exports.config = {
-    name: `Deposit`,
-    description: `Deposit your Ch1llBucks into your bank.`,
-    aliases: [`dep`],
-    usage: `<all or ammount>`,
-    category: `💰Currency💰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5
+exports.config = {
+  name: `Deposit`,
+  description: `Deposit your Ch1llBucks into your bank.`,
+  aliases: [`dep`],
+  usage: `<all or ammount>`,
+  category: `💰Currency💰`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5,
 };

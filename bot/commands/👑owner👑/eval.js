@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+(exports.run = async (bot, message, args, command, data) => {
   if (message.author.id !== process.env.C) {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
@@ -34,9 +34,8 @@ exports.run = async (bot, message, args, command, data) => {
   } else {
     message.channel.send(`Token was contained in input. Nice try noob.`);
   }
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: `Eval`,
     description: `This is an owner only command.`,
     aliases: [],
@@ -45,5 +44,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [],
     enabled: true,
-    cooldown: 1.5
-};
+    cooldown: 1.5,
+  });

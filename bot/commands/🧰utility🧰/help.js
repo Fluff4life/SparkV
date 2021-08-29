@@ -2,7 +2,7 @@ const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require("discord.j
 
 var prefix = `^`;
 
-exports.run = async (bot, message, args, command, data) => {
+(exports.run = async (bot, message, args, command, data) => {
   prefix = data.guild.prefix;
 
   const Selections = [];
@@ -16,84 +16,84 @@ exports.run = async (bot, message, args, command, data) => {
         label: Category,
         description: "These are owner only commands.",
         value: Category,
-        emoji: "👑"
+        emoji: "👑",
       });
     } else if (Category === "⚫Roblox⚫") {
       Selections.push({
         label: Category,
         description: "Intergrate your server with Roblox!",
         value: Category,
-        emoji: "⚫"
+        emoji: "⚫",
       });
     } else if (Category === "🎲Games🎲") {
       Selections.push({
         label: Category,
         description: "Make your server more fun with our large ammount of games!",
         value: Category,
-        emoji: "🎲"
+        emoji: "🎲",
       });
     } else if (Category === "🎵Music🎵") {
       Selections.push({
         label: Category,
         description: "Play music right from your Discord server. With no ads and at no added cost!",
         value: Category,
-        emoji: "🎵"
+        emoji: "🎵",
       });
     } else if (Category === "🐶Animals🐶") {
       Selections.push({
         label: Category,
         description: "Look at animals doing cute things.",
         value: Category,
-        emoji: "🐶"
+        emoji: "🐶",
       });
     } else if (Category === "💰Currency💰") {
       Selections.push({
         label: Category,
         description: "Make money, play games, gamble!",
         value: Category,
-        emoji: "💰"
+        emoji: "💰",
       });
     } else if (Category === "📷Images📷") {
       Selections.push({
         label: Category,
         description: "Make your server x2 the fun with our image commands!",
         value: Category,
-        emoji: "📷"
+        emoji: "📷",
       });
     } else if (Category === "🤵Administration🤵") {
       Selections.push({
         label: Category,
         description: "Admins in your server only. You can make giveaways for your server to interact with!",
         value: Category,
-        emoji: "🤵"
+        emoji: "🤵",
       });
     } else if (Category === "🧰Utility🧰") {
       Selections.push({
         label: Category,
         description: "Utility commands. Not very good unless you find a calculator fun.",
         value: Category,
-        emoji: "🧰"
+        emoji: "🧰",
       });
     } else if (Category === "😃Fun😃") {
       Selections.push({
         label: Category,
         description: "Make your server way more fun with our fun commands!",
         value: Category,
-        emoji: "😃"
+        emoji: "😃",
       });
     } else if (Category === "🛠️Moderation🛠️") {
       Selections.push({
         label: Category,
         description: "Commands for server moderators. Packed with everything one could need!",
         value: Category,
-        emoji: "🛠️"
+        emoji: "🛠️",
       });
     } else {
       Selections.push({
         label: Category,
         description: "Unknown description.",
         value: Category,
-        emoji: "❓"
+        emoji: "❓",
       });
     }
   };
@@ -105,22 +105,29 @@ exports.run = async (bot, message, args, command, data) => {
       .setTitle("Select a Category!")
       .setDescription("Select a category from tapping the selection box below.")
       .setAuthor("Ch1llBlox Help", bot.user.displayAvatarURL({ dynamic: true, format: "png" }))
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "png" }))
-      .setFooter("Ch1llBlox - Making your Discord life easier!", bot.user.displayAvatarURL({ dynamic: true, format: "png" }))
+      .setThumbnail(
+        message.author.displayAvatarURL({
+          dynamic: true,
+          format: "png",
+        }),
+      )
+      .setFooter(
+        "Ch1llBlox - Making your Discord life easier!",
+        bot.user.displayAvatarURL({ dynamic: true, format: "png" }),
+      )
       .setColor(bot.config.bot.Embed.Color)
       .setTimestamp();
 
-    const row = new MessageActionRow().addComponents(new MessageSelectMenu()
-      .setCustomId("SelectHelpMenu")
-      .setPlaceholder("Select a category to view it's commands.")
-      .addOptions(Selections)
+    const row = new MessageActionRow().addComponents(
+      new MessageSelectMenu()
+        .setCustomId("SelectHelpMenu")
+        .setPlaceholder("Select a category to view it's commands.")
+        .addOptions(Selections),
     );
 
     message.channel.send({
       embeds: [NewEmbed],
-      components: [
-        row
-      ]
+      components: [row],
     });
   } else {
     const name = args[0].toLowerCase();
@@ -133,21 +140,25 @@ exports.run = async (bot, message, args, command, data) => {
     const CommandHelpEmbed = new MessageEmbed()
       .setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)
       .setDescription(command.config.description)
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
+      .setThumbnail(
+        message.author.displayAvatarURL({
+          dynamic: true,
+          format: "gif",
+        }),
+      )
       .addField(`**ALIASES**`, `\`\`\`${command.config.aliases.join(`,\n`)}\`\`\``, true)
       .addField(`**CATEGORY**`, `\`\`\`${command.config.category}\`\`\``, true)
       .addField(`**COOLDOWN**`, `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
       .setFooter(
         `${prefix}Help to get a list of all commands • ${bot.config.bot.Embed.Footer}`,
-        bot.user.displayAvatarURL()
+        bot.user.displayAvatarURL(),
       )
       .setColor(bot.config.bot.Embed.Color);
 
     return message.reply(CommandHelpEmbed);
   }
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: `Help`,
     description: `I will displays all commands. Do ${prefix}Help [command name] for specific command information!`,
     aliases: [`cmds`, `commands`],
@@ -156,5 +167,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
     member_permissions: [],
     enabled: true,
-    cooldown: 5
-  };
+    cooldown: 5,
+  });

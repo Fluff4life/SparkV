@@ -3,7 +3,7 @@ const Levels = require(`discord-xp`);
 const canvacord = require(`canvacord`);
 
 exports.run = async (bot, message, args, command, data) => {
-  const Target = await bot.GetMember(message, args) || message.author;
+  const Target = (await bot.GetMember(message, args)) || message.author;
   const User = await Levels.fetch(Target.id, message.guild.id, true);
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1);
 
@@ -26,20 +26,18 @@ exports.run = async (bot, message, args, command, data) => {
     const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.gif`);
 
     return message.reply({
-      files: [
-        Attachment
-      ]
+      files: [Attachment],
     });
   });
 };
-  exports.config = {
-    name: `Rank`,
-    description: `View a users rank!`,
-    aliases: [],
-    usage: `<optional user>`,
-    category: `😃Fun😃`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5
+exports.config = {
+  name: `Rank`,
+  description: `View a users rank!`,
+  aliases: [],
+  usage: `<optional user>`,
+  category: `😃Fun😃`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5,
 };

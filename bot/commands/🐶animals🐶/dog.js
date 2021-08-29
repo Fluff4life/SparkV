@@ -14,9 +14,9 @@ exports.run = async (bot, message) => {
 
             footer: {
               text: "Maybe up vote our bot while you wait?",
-              icon_url: bot.user.displayAvatarURL()
+              icon_url: bot.user.displayAvatarURL(),
             },
-          }
+          },
         });
       }
 
@@ -34,21 +34,21 @@ exports.run = async (bot, message) => {
           footer: {
             text: `Powered by https://dog.ceo/dog-api/documentation/`,
             image: bot.user.displayAvatarURL(),
+          },
         },
-      }
       });
 
       MemeMessage.react("😍");
     });
 };
-  exports.config = {
-    name: "Dog",
-    description: "I will send a cute dog! Aweeeee :D",
-    aliases: ["cutedog"],
-    usage: "",
-    category: "🐶Animals🐶",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 3
+exports.config = {
+  name: "Dog",
+  description: "I will send a cute dog! Aweeeee :D",
+  aliases: ["cutedog"],
+  usage: "",
+  category: "🐶Animals🐶",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 3,
 };

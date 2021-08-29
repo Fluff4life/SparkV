@@ -9,14 +9,14 @@ exports.run = async (bot, message, args, command, data) => {
 .join(``));
 };
 
-  exports.config = {
-    name: `Reverse`,
-    description: `I will reverse any text you give me lol.`,
-    aliases: [`talk`],
-    usage: `<message>`,
-    category: `😃Fun😃`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5
+exports.config = {
+  name: `Reverse`,
+  description: `I will reverse any text you give me lol.`,
+  aliases: [`talk`],
+  usage: `<message>`,
+  category: `😃Fun😃`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5,
 };

@@ -13,10 +13,7 @@ module.exports = async bot => {
     leaveOnFinish: true,
     leaveOnEmpty: true,
     leaveOnStop: true,
-    plugins: [
-      new SpotifyPlugin(),
-      new SoundCloudPlugin()
-    ]
+    plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
   });
 
   bot.distube
@@ -37,8 +34,9 @@ module.exports = async bot => {
 
             {
               name: `🔊︱Audio Settings`,
-              value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
-                }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+              value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
+                queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+              }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
               inline: true,
             },
           )
@@ -51,9 +49,7 @@ module.exports = async bot => {
           .setTimestamp();
 
         queue.textChannel.reply({
-          embeds: [
-            NowPlayingEmbed
-          ]
+          embeds: [NowPlayingEmbed],
         });
       } else {
         const NowPlayingEmbed = new Discord.MessageEmbed()
@@ -71,8 +67,9 @@ module.exports = async bot => {
 
             {
               name: `🔊︱Audio Settings`,
-              value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: ${queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
-                }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+              value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: ${
+                queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+              }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
               inline: true,
             },
           )
@@ -85,7 +82,7 @@ module.exports = async bot => {
           .setTimestamp();
 
         queue.textChannel.reply({
-          embeds: [NowPlayingEmbed]
+          embeds: [NowPlayingEmbed],
         });
       }
     })
@@ -105,8 +102,9 @@ module.exports = async bot => {
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
-              }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
+              queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+            }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
           },
         )
@@ -136,8 +134,9 @@ module.exports = async bot => {
 
           {
             name: `🔊︱Audio Settings`,
-            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
-              }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
+            value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
+              queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
+            }\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
             inline: true,
           },
         )
@@ -166,17 +165,28 @@ module.exports = async bot => {
         };
 
         result.map(song => CreatePage(song));
-        EasyPages(queue.textChannel, Pages, ["⬅", "➡"], "⚡ - To select this song, send the current page number. For example, to select page 1 send 1.",);
+        EasyPages(
+          queue.textChannel,
+          Pages,
+          ["⬅", "➡"],
+          "⚡ - To select this song, send the current page number. For example, to select page 1 send 1.",
+        );
       } catch (err) {
         console.error(err);
       }
     })
     .on("searchCancel", message => message.channel.reply(`Searching canceled.`))
-    .on("searchInvalidAnswer", message => message.channel.reply("Search answer invalid. Make sure you're sending your selected song's page number. For example, if I wanted to play a song on the 5th page, I would send the number 5."))
+    .on("searchInvalidAnswer", message =>
+      message.channel.reply(
+        "Search answer invalid. Make sure you're sending your selected song's page number. For example, if I wanted to play a song on the 5th page, I would send the number 5.",
+      ),
+    )
     .on("searchNoResult", message => message.channel.send("No result found!"))
     .on("finish", queue => queue.textChannel.reply("No songs left in queue."))
     .on("finishSong", queue => queue.textChannel.reply("Hope you enjoyed the song!"))
-    .on("noRelated", message => message.channel.reply("I cannot find a related video to play. I am stopping the music."))
+    .on("noRelated", message =>
+      message.channel.reply("I cannot find a related video to play. I am stopping the music."),
+    )
     .on("empty", queue => queue.textChannel.reply("Voice chat is empty. I'm going to leave the voice chat now."))
     .on("disconnect", queue => queue.textChannel.send("Disconnected from voice chat."))
     .on("error", (channel, err) => {

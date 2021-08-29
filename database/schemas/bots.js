@@ -17,7 +17,10 @@ const Schema = new mongoose.Schema({
   id: { type: String },
   username: { type: String },
   summery: { type: String, default: "<p>This bot has no summery.</p>" },
-  description: { type: String, default: "<p>This bot has no description.</p>" },
+  description: {
+    type: String,
+    default: "<p>This bot has no description.</p>",
+  },
   logo: { type: String, default: null },
   invite: { type: String, default: null },
   prefix: { type: String, default: null },
@@ -30,17 +33,17 @@ const Schema = new mongoose.Schema({
   owners: {
     main: {
       type: String,
-      default: null
+      default: null,
     },
     additional: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
   },
   auth: { type: String, default: GenerateToken() },
   note: { type: String, default: null },
   state: { type: String, default: "unverified" },
-  dateAdded: { type: Number, default: new Date() }
+  dateAdded: { type: Number, default: new Date() },
 });
 
 module.exports = mongoose.model("Bots", Schema);

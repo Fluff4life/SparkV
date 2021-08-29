@@ -48,14 +48,14 @@ exports.run = async (bot, message, args, command, data) => {
     message.reply(`${bot.config.bot.Emojis.success} | Withdrawed ❄${await bot.FormatNumber(args[0])} from your bank!`);
   }
 };
-  exports.config = {
-    name: `Withdraw`,
-    description: `Withdraw your Ch1llBucks in your bank into your wallet.`,
-    aliases: [`with`],
-    usage: ``,
-    category: `💰Currency💰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 15
+exports.config = {
+  name: `Withdraw`,
+  description: `Withdraw your Ch1llBucks in your bank into your wallet.`,
+  aliases: [`with`],
+  usage: ``,
+  category: `💰Currency💰`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 15,
 };

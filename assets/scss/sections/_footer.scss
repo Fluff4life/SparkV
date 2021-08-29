@@ -1,32 +1,32 @@
 @use '../config' as *;
 
 .footer {
-    padding-top: 1rem;
-    display: flex;
-    list-style: none;
-    padding: 0 0 0 0;
-    flex-direction: row;
-    margin-bottom: 0;
-    background: $primary;
+  padding-top: 1rem;
+  display: flex;
+  list-style: none;
+  padding: 0 0 0 0;
+  flex-direction: row;
+  margin-bottom: 0;
+  background: $primary;
 }
 
 .campany-list {
-    display: block;
-    position: relative;
+  display: block;
+  position: relative;
 
-    li {
-        margin-bottom: .5rem;
-        text-decoration: none;
+  li {
+    margin-bottom: 0.5rem;
+    text-decoration: none;
 
-        a {
-            color: $white;
-            padding: 0 .7rem;
-            text-transform: capitalize;
-            font-weight: 600;
-        }
-
-        &:hover {
-            color: $white;
-        }
+    a {
+      color: $white;
+      padding: 0 0.7rem;
+      text-transform: capitalize;
+      font-weight: 600;
     }
+
+    &:hover {
+      color: $white;
+    }
+  }
 }

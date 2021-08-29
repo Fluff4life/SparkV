@@ -8,14 +8,14 @@ exports.run = async (bot, message, args, command, data) => {
   message.reply(`${args}\n*-${message.author.username}*`);
 };
 
-  exports.config = {
-    name: "Say",
-    description: "I will say whatever you want me to say.",
-    aliases: ["talk"],
-    usage: "<message>",
-    category: "😃Fun😃",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5
+exports.config = {
+  name: "Say",
+  description: "I will say whatever you want me to say.",
+  aliases: ["talk"],
+  usage: "<message>",
+  category: "😃Fun😃",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 5,
 };

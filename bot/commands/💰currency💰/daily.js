@@ -15,14 +15,14 @@ exports.run = async (bot, message, args, command, data) => {
     `${bot.config.bot.Emojis.success} | You've just earned ❄${await bot.FormatNumber(Ammount)} Ch1llBucks!`,
   );
 };
-  exports.config = {
-    name: "Daily",
-    description: "Collect your daily ammount of Ch1llBucks!",
-    aliases: [],
-    usage: "",
-    category: "💰Currency💰",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 86400
+exports.config = {
+  name: "Daily",
+  description: "Collect your daily ammount of Ch1llBucks!",
+  aliases: [],
+  usage: "",
+  category: "💰Currency💰",
+  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 86400,
 };

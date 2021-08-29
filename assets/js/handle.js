@@ -55,8 +55,7 @@ $(window).load(async () => {
         }).then(() => {
           Swal.fire({
             title: "Meet, Ch1llBlox!",
-            text:
-              "The first service on our list is Ch1llBlox. Ch1llBlox is a prenium, but yet free Discord bot. Ch1llBlox both keeps your server protected and boosts the activity within the server! Ch1llBlox is also EASILY customizable. Oh yeah, he also plays music and a whole lot of other things like games and such!",
+            text: "The first service on our list is Ch1llBlox. Ch1llBlox is a prenium, but yet free Discord bot. Ch1llBlox both keeps your server protected and boosts the activity within the server! Ch1llBlox is also EASILY customizable. Oh yeah, he also plays music and a whole lot of other things like games and such!",
             imageUrl: "/assets/images/Ch1llBlox.png",
             imageHeight: 100,
             imageWidth: 100,
@@ -67,8 +66,7 @@ $(window).load(async () => {
           }).then(() => {
             Swal.fire({
               title: "The End... But more coming soon!",
-              text:
-                "Ch1ll Studios is constantly working on new services! We'll have more services soon for you to enjoy :)",
+              text: "Ch1ll Studios is constantly working on new services! We'll have more services soon for you to enjoy :)",
               icon: "info",
               confirmButtonText: "<span>Ah.</span>",
             }).then(() => {
@@ -105,8 +103,7 @@ $(window).load(async () => {
   } else {
     Swal.fire({
       title: "Uh oh!",
-      text:
-        "Your browser doesn't support local storage! We need you to update your browser or use a different one before using our website.",
+      text: "Your browser doesn't support local storage! We need you to update your browser or use a different one before using our website.",
       icon: "error",
       confirmButtonText: "<span>😞 Dang...</span>",
     }).then(() => {
@@ -137,7 +134,7 @@ $(window).load(async () => {
 
 $(document).ready(() => {
   var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-    target: "#navbar-example"
+    target: "#navbar-example",
   });
 
   var dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
@@ -154,10 +151,10 @@ $(document).ready(() => {
   AOS.init({
     once: false,
     startEvent: "load",
-    duration: "600"
+    duration: "600",
   });
 
-  $(document).on("click", ".deletebot", async function () {
+  $(document).on("click", ".deletebot", async function() {
     await Swal.fire({
       title: `Are you sure you want to delete ${$(this).attr("name")}?`,
       text: "THIS ACTION CANNOT BE UNDONE!",
@@ -185,7 +182,7 @@ $(document).ready(() => {
     });
   });
 
-  $(".counter").each(function () {
+  $(".counter").each(function() {
     $(".counter").animate(
       {
         Counter: this.text(),
@@ -193,7 +190,7 @@ $(document).ready(() => {
       {
         duration: 2000,
         easing: "swing",
-        step: function () {
+        step: function() {
           this.text(`${Math.ceil(this.Counter)}+`);
         },
       },

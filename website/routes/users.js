@@ -28,7 +28,7 @@ Router.get("/:userID/profile", async (request, response) => {
     Render(response, request, "profile.ejs", {
       head: {
         title: `Ch1ll | ${User.username} | Profile`,
-        desc: `${User.username} is a user enjoying the benifits of using KingCh1ll's services. Including Ch1llBlox!`
+        desc: `${User.username} is a user enjoying the benifits of using KingCh1ll's services. Including Ch1llBlox!`,
       },
 
       // Navigation //

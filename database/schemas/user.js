@@ -28,7 +28,10 @@ const Schema = new mongoose.Schema({
   APIToken: { type: String, default: GenerateToken() },
   cooldowns: { type: String, default: null },
   afk: { type: String, default: null },
-  money: { type: Object, default: { balance: 0, bank: 0, bankMax: 1000, multiplier: 1 } },
+  money: {
+    type: Object,
+    default: { balance: 0, bank: 0, bankMax: 1000, multiplier: 1 },
+  },
 });
 
 Schema.method("GenerateAPIToken", async () => {

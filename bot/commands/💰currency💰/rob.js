@@ -3,7 +3,7 @@ const Discord = require(`discord.js`);
 const results = [`WIN`, `LOST`];
 
 exports.run = async (bot, message, args, command, data) => {
-  const User = await bot.GetMember(message, args) || bot.users.cache.get(args[0]);
+  const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]);
 
   if (!User) {
     return message.reply(`${bot.config.bot.Emojis.error} | Please say a person to rob.`);
@@ -65,14 +65,14 @@ exports.run = async (bot, message, args, command, data) => {
     message.reply(`${bot.config.bot.Emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`);
   }
 };
-  exports.config = {
-    name: `Rob`,
-    description: `why u bully me?`,
-    aliases: [`crime`],
-    usage: `<user>`,
-    category: `💰Currency💰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 15
+exports.config = {
+  name: `Rob`,
+  description: `why u bully me?`,
+  aliases: [`crime`],
+  usage: `<user>`,
+  category: `💰Currency💰`,
+  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
+  member_permissions: [],
+  enabled: true,
+  cooldown: 15,
 };

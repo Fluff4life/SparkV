@@ -16,7 +16,10 @@ const Schema = new mongoose.Schema({
 
   // Data //
   cooldown: { type: Number, default: null },
-  afk: { type: Object, default: { enabled: false, reason: "No reason supplied." } },
+  afk: {
+    type: Object,
+    default: { enabled: false, reason: "No reason supplied." },
+  },
 
   money: { type: Number, default: 0 },
   bank: { type: Number, default: 0 },
@@ -26,7 +29,10 @@ const Schema = new mongoose.Schema({
   level: { type: Number, default: 0 },
 
   infractions: { type: Array, default: [] },
-  mute: { type: Object, default: { muted: false, case: null, endDate: null } },
+  mute: {
+    type: Object,
+    default: { muted: false, case: null, endDate: null },
+  },
 });
 
 Schema.method("GenerateAPIToken", async () => {

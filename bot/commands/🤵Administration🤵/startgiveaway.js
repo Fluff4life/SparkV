@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 const ms = require(`ms`);
 
-exports.run = async (bot, message, args, command, data) => {
+(exports.run = async (bot, message, args, command, data) => {
   const Channel = message.mentions.channels.first();
   const Duration = args[1];
   const Winners = args[2];
@@ -47,13 +47,12 @@ exports.run = async (bot, message, args, command, data) => {
         days: `days`,
         pluralS: false,
       },
-    }
+    },
   });
 
   message.reply(`${bot.config.bot.Emojis.success} | Giveaway starting in ${Channel}!`);
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: `StartGiveaway`,
     description: `Starts a giveaway. Requires the permision MANAGE_MESSAGES.`,
     aliases: [`startg`],
@@ -62,5 +61,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
     member_permissions: [`MANAGE_MESSAGES`],
     enabled: true,
-    cooldown: 10
-};
+    cooldown: 10,
+  });

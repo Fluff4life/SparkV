@@ -1,21 +1,20 @@
-const { Client, Collection, Intents, Structures } = require("discord.js");
-const Statcord = require("statcord.js");
-
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
 
 const AntiSpam = require("discord-anti-spam");
 const { DiscordTogether } = require("discord-together");
+const { Client, Collection, Intents, Structures } = require("discord.js");
+const Statcord = require("statcord.js");
 
 const botlists = require("../../modules/dependencies/botlists");
 const Distube = require("../../modules/dependencies/distubehandler");
 const giveawayshandler = require("../../modules/dependencies/giveawayshandler");
 const Noblox = require("../../modules/dependencies/noblox");
 
-class bot extends Client {
+module.exports = class bot extends Client {
   constructor(settings) {
-    super(settings.bot);
+    super(settings);
 
     // Config
     this.config = require("../../globalconfig.json");
@@ -113,29 +112,31 @@ class bot extends Client {
   }
 
   async LoadCommands(MainPath) {
-    fs.readdir(path.join(`${MainPath}/commands`), (err, cats) => {
-      if (err) {
-        return this.logger(`Commands failed to load! ${err}`, "error");
+    for (const categoryPath of fs.readdirSync(path.join(`${MainPath}/commands`))) {
+      const category = require(path.join(`${MainPath}/commands/${categoryPath}`));
+
+      for (const command of category.commands) {
+        command.category = category.name;
+        command.description = category.description;
+
+        this.commands.set(command.name, command);
+
+        if (!command.settings) {
+          return;
+        }
+
+        if (!command.settings.aliases) {
+          return;
+        }
+
+        for (const alias of command.settings.aliases) {
+          if (!alias) {
+            return;
+          }
+
+          this.aliases.set(alias, null);
+        }
       }
-
-      cats.forEach(cat => {
-        this.categories.set(cat, cat);
-
-        fs.readdir(path.join(`${MainPath}/commands/${cat}`), (err, files) => {
-          files.forEach(file => {
-            if (!file.endsWith(".js")) {
-              return;
-            }
-
-            let commandname = file.split(".")[0];
-            let FileJs = require(path.resolve(`${MainPath}/commands/${cat}/${commandname}`));
-
-            this.commands.set(commandname, FileJs);
-          });
-        });
-      });
-    });
+    }
   }
-}
-
-module.exports = bot;
+};

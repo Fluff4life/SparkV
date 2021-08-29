@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 
 const Emotes = ["🥇", "🥈", "🥉"];
 
-exports.run = async (bot, message, args, command, data) => {
+(exports.run = async (bot, message, args, command, data) => {
   const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10);
   const Leaderboard = await Levels.computeLeaderboard(bot, RawLeaderboard, true);
   const Leader = Leaderboard.map(
@@ -18,9 +18,8 @@ exports.run = async (bot, message, args, command, data) => {
     .setColor(bot.config.bot.Embed.Color);
 
   message.reply(LeaderboardEmbed);
-},
-
-  exports.config = {
+}),
+  (exports.config = {
     name: "LevelLeaderboard",
     description: "View the server's Level leaderboard.",
     aliases: ["levelboard", "llb"],
@@ -29,5 +28,5 @@ exports.run = async (bot, message, args, command, data) => {
     bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     member_permissions: [],
     enabled: true,
-    cooldown: 2.5
-};
+    cooldown: 2.5,
+  });
