@@ -9,7 +9,6 @@ exports.run = async (bot, message, args, command, data) => {
 };
 
 exports.config = {
-<<<<<<< HEAD
   name: "Say",
   description: "I will say whatever you want me to say.",
   aliases: ["talk"],
@@ -19,20 +18,4 @@ exports.config = {
   member_permissions: [],
   enabled: true,
   cooldown: 5,
-=======
-    name: "Say",
-    description: "I will say whatever you want me to say.",
-    aliases: ["talk"],
-    usage: "<message>",
-    category: "😃Fun😃",
-    bot_permissions: [
-        "SEND_MESSAGES",
-        "EMBED_LINKS",
-        "VIEW_CHANNEL",
-        "MANAGE_MESSAGES",
-    ],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 5,
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 };

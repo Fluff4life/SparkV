@@ -1,7 +1,6 @@
 @use '../config' as *;
 
 .btn-rounded {
-<<<<<<< HEAD
   position: relative;
   padding: 0.8375rem 4.375rem 0.8375rem 1.25rem;
   font-weight: 700;
@@ -24,19 +23,6 @@
   &:hover {
     background: $white;
     color: $primary;
-=======
-    position: relative;
-    padding: 0.8375rem 4.375rem 0.8375rem 1.25rem;
-    font-weight: 700;
-    border: 0.1rem solid rgba($white, 0.6);
-    color: $white;
-    display: block;
-    margin: 10px 10px 10px 10px;
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-align: center;
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
     text-decoration: none;
     outline: 0;
   }
@@ -57,8 +43,5 @@
       font-size: 25px;
       line-height: 40px;
     }
-<<<<<<< HEAD
   }
-=======
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 }

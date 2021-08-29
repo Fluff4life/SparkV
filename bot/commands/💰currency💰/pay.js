@@ -55,7 +55,6 @@ exports.run = async (bot, message, args, command, data) => {
     );
 };
 exports.config = {
-<<<<<<< HEAD
   name: `Pay`,
   description: `Give someone some Ch1llBucks!`,
   aliases: [`gift`],
@@ -65,15 +64,4 @@ exports.config = {
   member_permissions: [],
   enabled: true,
   cooldown: 15,
-=======
-    name: `Pay`,
-    description: `Give someone some Ch1llBucks!`,
-    aliases: [`gift`],
-    usage: `<user>`,
-    category: `💰Currency💰`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 15,
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 };

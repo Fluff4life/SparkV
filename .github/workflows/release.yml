@@ -28,8 +28,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "🎨 | Cleaned Up Code"
-<<<<<<< HEAD
           branch: master
-=======
-          branch: master
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89

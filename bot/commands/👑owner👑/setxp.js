@@ -6,16 +6,9 @@ exports.run = async (bot, message, args, command, data) => {
         return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
     }
 
-<<<<<<< HEAD
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]);
   const Leveling = await bot.dashboard.getVal(`Leveling`);
   const FormattedNumber = await bot.FormatNumber(args[1]);
-=======
-    const User =
-        (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]);
-    const Leveling = await bot.dashboard.getVal(`Leveling`);
-    const FormattedNumber = await bot.FormatNumber(args[1]);
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 
     if (!Leveling === true) {
         return message.reply(
@@ -38,7 +31,6 @@ exports.run = async (bot, message, args, command, data) => {
     }
 };
 exports.config = {
-<<<<<<< HEAD
   name: `SetXP`,
   description: `Set XP.`,
   aliases: [],
@@ -48,15 +40,4 @@ exports.config = {
   member_permissions: [],
   enabled: true,
   cooldown: 2.5,
-=======
-    name: `SetXP`,
-    description: `Set XP.`,
-    aliases: [],
-    usage: `<Ammount>`,
-    category: `👑Owner👑`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 2.5,
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 };

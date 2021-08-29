@@ -17,7 +17,6 @@ exports.run = async (bot, message, args, command, data) => {
     message.reply(Color);
 };
 exports.config = {
-<<<<<<< HEAD
   name: `Color`,
   description: `Hex to color.`,
   aliases: [],
@@ -27,15 +26,4 @@ exports.config = {
   member_permissions: [],
   enabled: true,
   cooldown: 1.5,
-=======
-    name: `Color`,
-    description: `Hex to color.`,
-    aliases: [],
-    usage: `<HEX>`,
-    category: `📷Images📷`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 1.5,
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 };

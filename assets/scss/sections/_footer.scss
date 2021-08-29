@@ -14,7 +14,6 @@
   display: block;
   position: relative;
 
-<<<<<<< HEAD
   li {
     margin-bottom: 0.5rem;
     text-decoration: none;
@@ -25,18 +24,6 @@
       text-transform: capitalize;
       font-weight: 600;
     }
-=======
-    li {
-        margin-bottom: 0.5rem;
-        text-decoration: none;
-
-        a {
-            color: $white;
-            padding: 0 0.7rem;
-            text-transform: capitalize;
-            font-weight: 600;
-        }
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 
     &:hover {
       color: $white;

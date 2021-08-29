@@ -7,7 +7,6 @@ hr {
 
 // Display
 .display-2 {
-<<<<<<< HEAD
   margin-bottom: 1rem;
   text-transform: capitalize;
   font-family: 'Poppins', sans-serif;
@@ -27,34 +26,11 @@ hr {
     @include media-breakpoint-up(lg) {
       font-size: 1.4rem;
       display: inline-block;
-=======
-    margin-bottom: 1rem;
-    text-transform: capitalize;
-    font-family: "Poppins", sans-serif;
-
-    & .title {
-        display: inline-block;
-        font-weight: 700;
-        font-family: "Poppins", sans-serif;
-    }
-
-    & .desc {
-        font-size: 1rem;
-        display: block;
-        margin-top: 1.2rem;
-        text-transform: none;
-
-        @include media-breakpoint-up(lg) {
-            font-size: 1.4rem;
-            display: inline-block;
-        }
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
     }
   }
 }
 
 .display-3 {
-<<<<<<< HEAD
   font-family: 'Poppins', sans-serif;
 
   & .title {
@@ -70,36 +46,10 @@ hr {
 
     @include media-breakpoint-up(lg) {
       font-size: 1.8rem;
-=======
-    font-family: "Poppins", sans-serif;
-
-    & .title {
-        font-family: "Poppins", sans-serif;
-        font-size: 1.2rem;
-        text-transform: capitalize;
-        font-weight: 600;
-        display: inline-block;
-        background-image: linear-gradient(to right, $primary, $secondary);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-        @include media-breakpoint-up(lg) {
-            font-size: 1.8rem;
-        }
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
     }
   }
 }
 
 .gradient {
-<<<<<<< HEAD
   background: linear-gradient(to right, rgba($primary, 0.95), rgba($secondary, 0.95));
-=======
-    background: linear-gradient(
-        to right,
-        rgba($primary, 0.95),
-        rgba($secondary, 0.95)
-    );
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 }

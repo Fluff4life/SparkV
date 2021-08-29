@@ -23,19 +23,12 @@ const Replies = [
 ];
 
 (exports.run = async (bot, message, args, command, data) => {
-<<<<<<< HEAD
   if (!args || !args[0]) {
     return message.reply(`Please provide a question to ask 8ball.`);
   }
-=======
-    if (!args || !args[0]) {
-        return message.reply(`Please provide a question to ask 8ball.`);
-    }
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 
     const ReplyText = Math.floor(Math.random() * Replies.length + 0);
 
-<<<<<<< HEAD
   return message.reply(Replies[ReplyText]);
 }),
   (exports.config = {
@@ -49,23 +42,3 @@ const Replies = [
     enabled: true,
     cooldown: 3,
   });
-=======
-    return message.reply(Replies[ReplyText]);
-}),
-    (exports.config = {
-        name: `8Ball`,
-        description: `Just a little fun.`,
-        aliases: [`ball`],
-        usage: `<question>`,
-        category: `😃Fun😃`,
-        bot_permissions: [
-            `SEND_MESSAGES`,
-            `EMBED_LINKS`,
-            `VIEW_CHANNEL`,
-            `MANAGE_MESSAGES`,
-        ],
-        member_permissions: [],
-        enabled: true,
-        cooldown: 3,
-    });
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89

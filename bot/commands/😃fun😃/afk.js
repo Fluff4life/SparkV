@@ -18,7 +18,6 @@ exports.run = async (bot, message, args, command, data) => {
     }
 };
 exports.config = {
-<<<<<<< HEAD
   name: `Afk`,
   description: `This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason.`,
   aliases: [],
@@ -28,15 +27,4 @@ exports.config = {
   member_permissions: [],
   enabled: true,
   cooldown: 3,
-=======
-    name: `Afk`,
-    description: `This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason.`,
-    aliases: [],
-    usage: `<optional reason>`,
-    category: `😃Fun😃`,
-    bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 3,
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 };

@@ -26,7 +26,6 @@
 }
 
 .border-animation {
-<<<<<<< HEAD
   position: absolute;
   top: 0;
   left: 0;
@@ -35,16 +34,6 @@
   border: 0.55rem solid $white;
   border-radius: 50%;
   animation: pulse-border 1.5s linear infinite;
-=======
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6rem;
-    height: 6rem;
-    border: 0.55rem solid $white;
-    border-radius: 50%;
-    animation: pulse-border 1.5s linear infinite;
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 
   &--boarder-1 {
     animation-delay: 1s;

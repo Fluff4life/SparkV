@@ -18,7 +18,6 @@ exports.run = async (bot, message, args, command, data) => {
     );
 };
 exports.config = {
-<<<<<<< HEAD
   name: "Daily",
   description: "Collect your daily ammount of Ch1llBucks!",
   aliases: [],
@@ -28,15 +27,4 @@ exports.config = {
   member_permissions: [],
   enabled: true,
   cooldown: 86400,
-=======
-    name: "Daily",
-    description: "Collect your daily ammount of Ch1llBucks!",
-    aliases: [],
-    usage: "",
-    category: "💰Currency💰",
-    bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-    member_permissions: [],
-    enabled: true,
-    cooldown: 86400,
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 };

@@ -17,7 +17,6 @@ function GenerateToken() {
 }
 
 const Schema = new mongoose.Schema({
-<<<<<<< HEAD
   // User //
   id: { type: String },
 
@@ -36,26 +35,6 @@ const Schema = new mongoose.Schema({
     type: Object,
     default: { balance: 0, bank: 0, bankMax: 1000, multiplier: 1 },
   },
-=======
-    // User //
-    id: { type: String },
-
-    // Information //
-    bio: { type: String },
-    birthday: { type: Number },
-
-    // Stats //
-    registrationDate: { type: Number, default: Date.now() },
-
-    // Data //
-    APIToken: { type: String, default: GenerateToken() },
-    cooldowns: { type: String, default: null },
-    afk: { type: String, default: null },
-    money: {
-        type: Object,
-        default: { balance: 0, bank: 0, bankMax: 1000, multiplier: 1 },
-    },
->>>>>>> 70609d4f007e7ef8d0bb40ceac5f221f0697eb89
 });
 
 Schema.method("GenerateAPIToken", async () => {

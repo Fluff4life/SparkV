@@ -26,9 +26,6 @@ async function execute(bot, message, args, command, data) {
             .then(m => m.delete({ timeout: 5000 }));
     }
 
-    const Queue = bot.distube.getQueue(message);
-    var mode;
-
     if (args[0].toLowerCase() === `song`) {
         mode = 1;
     } else if (args[0].toLowerCase() === `queue`) {
