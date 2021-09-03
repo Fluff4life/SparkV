@@ -1,88 +1,125 @@
-const { GiveawaysManager } = require("discord-giveaways");
-const Levels = require("discord-xp");
+const mongoose = require("mongoose");
+const Discord = require("discord.js");
 
-const GiveawaysSchema = require("../../database/schemas/giveaways");
-const logger = require("../../modules/logger");
+const GuildS = require("./schemas/guild");
+const MemberS = require("./schemas/member");
+const UserS = require("./schemas/user");
 
-module.exports = async bot => {
-  var giveaways = await GiveawaysSchema.findOne({
-    ID: "giveaways",
-  });
+let mongoURL;
 
-  if (!giveaways) {
-    giveaways = new GiveawaysSchema({
-      ID: "giveaways",
-      data: [],
+class database {
+  /**
+   * @param {string} [mURL] - Your valid mongoDB url.
+   */
+
+  async setURL(mURL) {
+    if (!mURL) {
+      throw new TypeError("Please provide a correct database URL.");
+    }
+
+    mongoURL = mURL;
+
+    return mongoose.connect(mURL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
     });
   }
 
-  Levels.setURL(process.env.MONGOOSEURL);
-  class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
-    async getAllGiveaways() {
-      giveaways = await GiveawaysSchema.findOne({
-        ID: "giveaways",
+  /**
+   * @param {string} [userID] - Key
+   */
+
+  async fetchUser(key) {
+    let user = await UserS.findOne({
+      id: key,
+    });
+
+    if (user) {
+      return user;
+    } else {
+      user = new UserS({
+        id: key,
       });
 
-      return Allgiveaways || [];
-    }
+      await user.save().catch(err => console.log(err));
 
-    async saveGiveaway(MessageID, GiveawayData) {
-      giveaways = await GiveawaysSchema.findOne({
-        ID: "giveaways",
-      });
-
-      giveaways.data.push(GiveawayData);
-
-      await giveaways
-        .save()
-        .catch(err => console.log(`[Giveaway Manager] - Failed to save giveaway to database. ${err}`));
-
-      return true;
-    }
-
-    async editGiveaway(MessageID, NewGiveawayData) {
-      giveaways = await GiveawaysSchema.findOne({
-        ID: "giveaways",
-      });
-
-      const NewGiveawaysArray = giveaways.data.filter(giveaway => giveaway.messageID !== MessageID);
-
-      NewGiveawaysArray.push(NewGiveawayData);
-      giveaways.data = NewGiveawaysArray;
-
-      await giveaways
-        .save()
-        .catch(err => console.log(`[Giveaway Manager] - Failed to edit giveaway and save to database. ${err}`));
-
-      return true;
-    }
-
-    async deleteGiveaway(MessageID) {
-      giveaways = await GiveawaysSchema.findOne({
-        ID: "giveaways",
-      });
-
-      const NewGiveawaysArray = giveaways.data.filter(giveaway => giveaway.messageID !== MessageID);
-      giveaways.data = NewGiveawaysArray;
-
-      await giveaways
-        .save()
-        .catch(err => console.log(`[Giveaway Manager] - Failed to delete giveaway and save to database. ${err}`));
-
-      return true;
+      return user;
     }
   }
 
-  const Manager = new GiveawayManagerWithOwnDatabase(bot, {
-    updateCountdownEvery: 2.5 * 1000,
-    default: {
-      botsCanWin: false,
-      exemptPermissions: [],
-      embedColor: bot.config.bot.Embed.Color,
-      embedColorEnd: "#FF0000",
-      reaction: "🎉",
-    },
-  });
+  /**
+   * @param {string} [userID] - Key
+   */
 
-  bot.GiveawayManager = Manager;
-};
+  async fetchGuild(key) {
+    let guild = await GuildS.findOne({
+      id: key,
+    });
+
+    if (guild) {
+      return guild;
+    } else {
+      guild = new GuildS({
+        id: key,
+      });
+
+      await guild.save().catch(err => console.log(err));
+
+      console.log(guild);
+      return guild;
+    }
+  }
+
+  /**
+   * @param {string} [userID] - Key
+   */
+
+  async createUser(key) {
+    if (!key) {
+      throw new TypeError("A key was not provided.");
+    }
+
+    const user = await UserS.findOne({
+      id: key
+    });
+
+    if (user) {
+      return false;
+    }
+
+    const newUser = new UserS({
+      id: key
+    });
+
+    await newUser.save().catch(err => console.error(`Failed to create user. ${err}`));
+
+    return newUser;
+  }
+
+  /**
+   * @param {string} [userID] - Key
+   */
+
+  async deleteUser(key) {
+    if (!key) {
+      throw new TypeError("A key was not provided.");
+    }
+
+    const user = await UserS.findOne({
+      id: key
+    });
+
+    if (!user) {
+      return false;
+    }
+
+    await UserS.findOneAndDelete({
+      id: key
+    }).catch(err => console.error(`Failed to delete user. ${err}`));
+
+    return user;
+  }
+}
+
+module.exports = database;
