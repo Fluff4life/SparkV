@@ -15,8 +15,10 @@ jobs:
         with:
           node-version: 16.8.x
 
-      - name: Install Dependencies
+      - name: Install Npm
         uses: bahmutov/npm-install@v1
+
+      - name: Install Dependencies
         run: npm install
         
       - name: Run Clean Up
