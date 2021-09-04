@@ -1,5 +1,5 @@
 name: Clean Code
-on: [ workflow_dispatch, push ]
+on: [ workflow_dispatch ]
 
 jobs:
   build:

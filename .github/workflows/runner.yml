@@ -1,7 +1,7 @@
 name: Start Ch1llBlox
 on: 
 - workflow_dispatch # When you activate the workflow. 
-- push # When the repository gets an update.
+# - push # When the repository gets an update.
 
 jobs:
   build:
@@ -25,4 +25,4 @@ jobs:
           token: ${{ secrets.TOKEN }}
 
       - name: Start Bot
-        run: npm run start
+        run: npm run start:dev
