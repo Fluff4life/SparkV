@@ -22,7 +22,7 @@ class database {
     return mongoose.connect(mURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     });
   }
 
@@ -81,7 +81,7 @@ class database {
     }
 
     const user = await UserS.findOne({
-      id: key
+      id: key,
     });
 
     if (user) {
@@ -89,7 +89,7 @@ class database {
     }
 
     const newUser = new UserS({
-      id: key
+      id: key,
     });
 
     await newUser.save().catch(err => console.error(`Failed to create user. ${err}`));
@@ -107,7 +107,7 @@ class database {
     }
 
     const user = await UserS.findOne({
-      id: key
+      id: key,
     });
 
     if (!user) {
@@ -115,7 +115,7 @@ class database {
     }
 
     await UserS.findOneAndDelete({
-      id: key
+      id: key,
     }).catch(err => console.error(`Failed to delete user. ${err}`));
 
     return user;
