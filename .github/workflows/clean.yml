@@ -1,7 +1,5 @@
-name: Release
-on:
-  - workflow_dispatch
-  - push
+name: Clean Code
+on: [ workflow_dispatch, push ]
 
 jobs:
   build:
