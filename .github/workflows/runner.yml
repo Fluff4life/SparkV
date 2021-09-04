@@ -1,7 +1,7 @@
 name: Start Ch1llBlox
 on: 
 - workflow_dispatch # When you activate the workflow. 
-# - push # When the repository gets an update.
+- push # When the repository gets an update.
 
 jobs:
   build:
@@ -26,3 +26,22 @@ jobs:
 
       - name: Start Bot
         run: npm run start:dev
+        env: 
+          ADMINS: ${{ secrets.ADMINS }}
+          BASEURL: ${{ secrets.BASEURL }}
+          BOTLISTTOKEN: ${{ secrets.BOTLISTTOKEN }}
+          BOT_INVITE: ${{ secrets.BOT_INVITE }}
+          CHAT_BID: ${{ secrets.CHAT_BID }}
+          CHAT_KEY: ${{ secrets.CHAT_KEY }}
+          DBLKEY: ${{ secrets.DBLKEY }}
+          GUILDBLACKLIST: ${{ secrets.GUILDBLACKLIST }}
+          HOSTNAME: ${{ secrets.HOSTNAME }}
+          MONGOOSEURL: ${{ secrets.MONGOOSEURL }}
+          OWNERID: ${{ secrets.OWNERID }}
+          PREFIX: ${{ secrets.PREFIX }}
+          ROBLOXCOOKIE: ${{ secrets.ROBLOXCOOKIE }}
+          SENTRYTOKEN: ${{ secrets.SENTRYTOKEN }}
+          STATCORDAPIKEY: ${{ secrets.STATCORDAPIKEY }}
+          TOKEN: ${{ secrets.TOKEN }}
+          USERBLACKLIST: ${{ secrets.USERBLACKLIST }}
+          VOTINGPASS: ${{ secrets.VOTINGPASS }}
