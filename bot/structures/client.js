@@ -46,7 +46,18 @@ module.exports = class bot extends Client {
   async LoadModules(settings) {
     const client = this;
 
+    // Initialize Functions
     this.functions(this);
+
+    // Update Docs
+    async function updateDocs(bot) {
+      const updateDocs = require("../../modules/updateDocs");
+
+      updateDocs.update(bot);
+    }
+
+    updateDocs(this);
+    setInterval(updateDocs(this), 3600 * 1000);
 
     if (!settings.sharding) {
       const StatClient = new Statcord.Client({

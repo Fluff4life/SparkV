@@ -22,6 +22,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           event-type: clean
+          token: ${{ secrets.TOKEN }}
 
       - name: Start Bot
         run: npm run start
