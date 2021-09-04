@@ -1,15 +1,15 @@
 const mtable = require("markdown-table");
 
 module.exports = {
-    /**
-     * Update the docs
-     * @param {Object} bot The Ch1llBlox bot Instance.
-     */
-    update(bot) {
-        const commands = bot.commands;
+  /**
+   * Update the docs
+   * @param {Object} bot The Ch1llBlox bot Instance.
+   */
+  update(bot) {
+    const commands = bot.commands;
 
-		console.log(commands);
-    }
+    console.log(commands);
+  },
 };
 
 /*
