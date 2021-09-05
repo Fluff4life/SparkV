@@ -13,8 +13,6 @@
     "checkPacs:u": "npx npm-check-updates -u && npm install",
     "test": "eslint . --ignore-path .gitignore",
     "test:fix": "eslint . --ignore-path .gitignore --fix",
-    "docs": "docgen --source bot --custom docs/index.yml --output docs/docs.json",
-    "docs:test": "docgen --source bot --custom docs/index.yml",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "sass:s": "sass --watch assets/scss:assets/css"
