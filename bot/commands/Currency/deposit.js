@@ -75,5 +75,5 @@ module.exports = new cmd(execute, {
   description: `Deposit your Ch1llBucks into your bank.`,
   usage: `<all or ammount>`,
   aliases: ["dep"],
-  perms: ["EMBED_LINKS"]
+  perms: ["EMBED_LINKS"],
 });

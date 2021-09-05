@@ -128,8 +128,7 @@ exports.run = async (bot, message) => {
       .split(/ +/);
     const cmd = args.shift().toLowerCase();
     const commandfile =
-      bot.commands.get(cmd) ||
-      bot.commands.find(cmd => cmd.settings.aliases && cmd.settings.aliases.includes(cmd));
+      bot.commands.get(cmd) || bot.commands.find(cmd => cmd.settings.aliases && cmd.settings.aliases.includes(cmd));
 
     if (commandfile) {
       return HandleCommand(bot, message, args, command, data, commandfile);
@@ -157,7 +156,8 @@ exports.run = async (bot, message) => {
     const args = message.content.slice(Prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
     const commandfile =
-      bot.commands.get(command.settings.name) || bot.commands.find(cmd => cmd.settings.aliases && cmd.settings.aliases.includes(command.settings.name));
+      bot.commands.get(command.settings.name) ||
+      bot.commands.find(cmd => cmd.settings.aliases && cmd.settings.aliases.includes(command.settings.name));
 
     return HandleCommand(bot, message, args, command, data, commandfile);
   }

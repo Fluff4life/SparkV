@@ -28,5 +28,5 @@ module.exports = new cmd(execute, {
   description: "Beg for coins.",
   usage: `<optional user>`,
   aliases: [],
-  perms: ["EMBED_LINKS"]
+  perms: ["EMBED_LINKS"],
 });

@@ -23,5 +23,5 @@ module.exports = new cmd(execute, {
   usage: ``,
   aliases: [],
   perms: ["EMBED_LINKS"],
-  cooldown: 6000
+  cooldown: 6000,
 });

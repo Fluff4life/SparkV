@@ -45,5 +45,5 @@ module.exports = new cmd(execute, {
   description: `Give someone some Ch1llBucks!`,
   usage: `<user>`,
   aliases: ["gift"],
-  perms: ["EMBED_LINKS"]
+  perms: ["EMBED_LINKS"],
 });

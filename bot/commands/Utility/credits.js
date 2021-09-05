@@ -15,18 +15,21 @@ const Credits = [
   },
 ];
 
-module.exports = new cmd((bot, message) => {
-  const NewEmbed = new Discord.MessageEmbed()
-    .setTitle("Credits")
-    .setDescription(`Here's the list of people who've helped Ch1llBlox on his path to success!`)
-    .setColor(bot.config.bot.Embed.Color)
-    .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
-    .addFields(Credits);
+module.exports = new cmd(
+  (bot, message) => {
+    const NewEmbed = new Discord.MessageEmbed()
+      .setTitle("Credits")
+      .setDescription(`Here's the list of people who've helped Ch1llBlox on his path to success!`)
+      .setColor(bot.config.bot.Embed.Color)
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
+      .addFields(Credits);
 
-  return message.reply(NewEmbed);
-}, {
-  description: `Look at everyone who helped make Ch1llBlox!`,
-  usage: "",
-  aliases: ["deleteg"],
-  perms: ["EMBED_LINKS"],
-});
+    return message.reply(NewEmbed);
+  },
+  {
+    description: `Look at everyone who helped make Ch1llBlox!`,
+    usage: "",
+    aliases: ["deleteg"],
+    perms: ["EMBED_LINKS"],
+  },
+);
