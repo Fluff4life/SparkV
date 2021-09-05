@@ -1,7 +1,6 @@
 name: Start Ch1llBlox
 on: 
 - workflow_dispatch # When you activate the workflow. 
-- push # When the repository gets an update.
 
 jobs:
   build:

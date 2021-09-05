@@ -36,7 +36,7 @@ exports.run = async (bot, interaction) => {
 
   if (interaction.isSelectMenu()) {
     if (interaction.customId === "SelectHelpMenu") {
-      bot.categories.map(cat => CreatePage(bot, interaction, cat));
+      bot.map(cat => CreatePage(bot, interaction, cat));
 
       await interaction.update({
         embeds: [pages.filter(p => p.title === interaction.values[0])[0]],

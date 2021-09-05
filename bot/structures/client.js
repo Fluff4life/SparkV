@@ -34,8 +34,8 @@ module.exports = class bot extends Client {
     this.UserSchema = require("../../database/schemas/user");
 
     // Collections
-    this.categories = new Collection();
-    this.commands = new Collection();
+    this.categories = [];
+    this.commands = [];
     this.aliases = new Collection();
     this.events = new Collection();
     this.cooldowns = new Collection();
