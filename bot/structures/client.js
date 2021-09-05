@@ -11,6 +11,7 @@ const botlists = require("../../modules/dependencies/botlists");
 const Distube = require("../../modules/dependencies/distubehandler");
 const giveawayshandler = require("../../modules/dependencies/giveawayshandler");
 const Noblox = require("../../modules/dependencies/noblox");
+const updateDocs = require("../../modules/updateDocs");
 
 module.exports = class bot extends Client {
   constructor(settings) {
@@ -43,21 +44,15 @@ module.exports = class bot extends Client {
     return this;
   }
 
-  async LoadModules(settings) {
+  async LoadModules(settings, MainDir) {
     const client = this;
 
     // Initialize Functions
     this.functions(this);
 
     // Update Docs
-    async function updateDocs(bot) {
-      const updateDocs = require("../../modules/updateDocs");
-
-      updateDocs.update(bot);
-    }
-
-    updateDocs(this);
-    setInterval(updateDocs(this), 3600 * 1000);
+    updateDocs.update(this, MainDir);
+    setInterval(() => updateDocs.update(this, MainDir), 3600 * 1000);
 
     if (!settings.sharding) {
       const StatClient = new Statcord.Client({
@@ -123,31 +118,56 @@ module.exports = class bot extends Client {
   }
 
   async LoadCommands(MainPath) {
-    for (const categoryPath of fs.readdirSync(path.join(`${MainPath}/commands`))) {
-      const category = require(path.join(`${MainPath}/commands/${categoryPath}`));
+    fs.readdir(path.join(`${MainPath}/commands`), (err, cats) => {
+      if (err) {
+        return this.logger(`Commands failed to load! ${err}`, "error");
+      }
 
-      for (const command of category.commands) {
-        command.category = category.name;
-        command.description = category.description;
+      cats.forEach(cat => {
+        const category = require(path.join(`${MainPath}/commands/${cat}`));
+        this.categories.push(category.name);
 
-        this.commands.set(command.name, command);
-
-        if (!command.settings) {
-          return;
-        }
-
-        if (!command.settings.aliases) {
-          return;
-        }
-
-        for (const alias of command.settings.aliases) {
-          if (!alias) {
-            return;
+        fs.readdir(path.join(`${MainPath}/commands/${cat}`), (err, files) => {
+          if (err) {
+            return this.logger(`Commands failed to load! ${err}`, "error");
           }
 
-          this.aliases.set(alias, null);
-        }
-      }
-    }
+          files.forEach(file => {
+            if (!file.endsWith(".js")) {
+              return;
+            }
+
+            let commandname = file.split(".")[0];
+            let command = require(path.resolve(`${MainPath}/commands/${cat}/${commandname}`));
+
+            command.category = category.name;
+            command.description = category.description;
+
+            if (!this.categories.includes(command.category)) {
+              this.categories.push(command.category);
+            }
+
+            if (!command || !command.settings || command.config) {
+              return;
+            }
+
+            command.settings.name = commandname;
+            this.commands.push(command);
+
+            if (!command.settings.aliases) {
+              return;
+            }
+
+            for (const alias of command.settings.aliases) {
+              if (!alias) {
+                return;
+              }
+
+              this.aliases.set(alias, null);
+            }
+          });
+        });
+      });
+    });
   }
 };

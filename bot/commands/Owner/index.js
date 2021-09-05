@@ -6,7 +6,7 @@ const commands = fs
   .map(c => require(`${__dirname}/${c}`));
 
 module.exports = {
-  name: "😂 Memey 😂",
-  description: "A gift from Ch1llBlox. The best memes on reddit right now.",
+  name: "👑 Owner 👑",
+  description: "Owner only commands.",
   commands,
 };

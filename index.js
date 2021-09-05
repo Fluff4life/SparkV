@@ -35,6 +35,8 @@ async function Start() {
     });
   });
 
+  process.env.MainDir = __dirname;
+
   init({
     dsn: process.env.SENTRYTOKEN,
     release: `${PackageInfo.name}@${PackageInfo.version}`,
