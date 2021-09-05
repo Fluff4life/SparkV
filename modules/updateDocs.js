@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 const fs = require("fs");
 const mtable = require("markdown-table");
 const path = require("path");
@@ -14,7 +15,7 @@ module.exports = {
 
 	let baseText = `# Commands\nCh1llBlox's Command List! Ch1llBlox contains more than **${Math.floor(cmdCount)} commands**!\n\n`;
 
-	console.log(bot.commands)
+	console.log(bot.commands);
 	console.log(bot.categories);
 
 	bot.categories.sort((a, b) => {

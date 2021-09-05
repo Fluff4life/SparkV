@@ -1,22 +1,14 @@
 ---
 
-name: Bug report
-about: Report incorrect behavior.
-title: ''
-labels: 's: unverified, type: bug'
-assignees: ''
+name: Feature request
+about: Request a feature for Ch1llBlox.
+title: ""
+labels: "type: enhancement"
+assignees: ""
 ---
-## The Problem
 
-describe the bug in as much detail as possible
+- [] This feature request is related to an on going problem.
+- [] I made a Pull Request.
 
-## How to Preproduce
-
-If you can, Include a reproducible code sample below
-
-```js
-// code here
-```
-
-**Details:**
-*Put any details that may help us here*
+**The Solution**
+*A description of what you want to happen.*
