@@ -76,5 +76,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: `<all or ammount>`,
   aliases: ["dep"],
-  perms: ["EMBED_LINKS"]
+  perms: ["EMBED_LINKS"],
 });
