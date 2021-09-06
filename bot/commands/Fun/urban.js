@@ -1,7 +1,9 @@
 const Discord = require(`discord.js`);
 const urban = require(`urban`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   if (args.length < 1) {
     const ErrorEmbed = new Discord.MessageEmbed()
       .setTitle(`${bot.config.bot.Emojis.error} | Invalid command usage!`)
@@ -24,16 +26,11 @@ exports.run = async (bot, message, args, command, data) => {
     .setColor(bot.config.bot.Embed.Color);
 
   return await message.reply(UrbanEmbed);
-};
+}
 
-exports.config = {
-  name: `Urban`,
+module.exports = new cmd(execute, {
   description: `I will return an urban dictionary definition of a word!`,
-  aliases: [`thought`],
+  aliases: [],
+  dirname: __dirname,
   usage: `<word>`,
-  category: `😃Fun😃`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 3,
-};
+});

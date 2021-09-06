@@ -37,6 +37,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: "Play a game of Rock Paper Scissors with me!",
+  dirname: __dirname,
   usage: "",
   aliases: ["rps"],
   perms: ["EMBED_LINKS"],

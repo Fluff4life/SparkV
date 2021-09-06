@@ -26,6 +26,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: "I'll lock the server.",
+  dirname: __dirname,
   aliases: [],
   usage: `<on | off>`,
   perms: ["MANAGE_CHANNELS"],

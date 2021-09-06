@@ -33,6 +33,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `I'll display a user's warnings.`,
+  dirname: __dirname,
   aliases: [],
   usage: `<user>`,
   perms: ["KICK_MEMBERS"],

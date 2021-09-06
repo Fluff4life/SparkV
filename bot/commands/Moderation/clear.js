@@ -81,6 +81,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `I'll delete messages for you!`,
+  dirname: __dirname,
   usage: `<all | users | bots> <filter (ignorePinned)>`,
   aliases: [`purge`, `clr`],
   perms: ["MANAGE_MESSAGES"],

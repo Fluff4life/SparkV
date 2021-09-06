@@ -33,9 +33,8 @@ const Ch1llBlox = new Client({
   makeCache: Options.cacheWithLimits({
     MessageManager: 200,
   }),
-  partials: ["CHANNEL"],
   allowedMentions: {
-    parse: ["users", "roles", "everyone"],
+    parse: ["users"],
     repliedUser: true,
   },
   presence: {
@@ -51,9 +50,12 @@ async function Start() {
   await Ch1llBlox.LoadEvents(__dirname);
   await Ch1llBlox.LoadCommands(__dirname);
 
-  await Ch1llBlox.LoadModules({
-    sharding: false,
-  }, process.env.MainDir);
+  await Ch1llBlox.LoadModules(
+    {
+      sharding: false,
+    },
+    process.env.MainDir,
+  );
 
   Ch1llBlox.SocketioClient = require("socket.io-client").connect(
     `https://${process.env.BASEURL}/api/communication?token=8010405464675`,

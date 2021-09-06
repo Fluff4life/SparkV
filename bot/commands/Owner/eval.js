@@ -40,6 +40,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `This is an owner only command.`,
+  dirname: __dirname,
   aliases: [],
   usage: `<user>`,
 });

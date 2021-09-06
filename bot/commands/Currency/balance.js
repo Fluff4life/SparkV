@@ -12,9 +12,9 @@ async function execute(bot, message, args, command, data) {
   const BalanceEmbed = new Discord.MessageEmbed()
     .setTitle(`**${User.tag}'s Balance**`)
     .setDescription(
-      `Wallet: ❄${await bot.FormatNumber(Ch1llBucks)}\nBank: ❄${await bot.FormatNumber(Bank)}/${await bot.FormatNumber(
+      `Wallet: ❄${await bot.functions.FormatNumber(Ch1llBucks)}\nBank: ❄${await bot.functions.FormatNumber(Bank)}/${await bot.functions.FormatNumber(
         BankMax,
-      )}\nNet Worth: ${await bot.FormatNumber(Bank + Ch1llBucks)}`,
+      )}\nNet Worth: ${await bot.functions.FormatNumber(Bank + Ch1llBucks)}`,
     )
     .setColor(bot.config.bot.Embed.Color)
     .setTimestamp();
@@ -24,6 +24,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `View your balance.`,
+  dirname: __dirname,
   aliases: ["bal"],
   usage: `<optional user>`,
 });

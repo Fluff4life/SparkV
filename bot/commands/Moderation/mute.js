@@ -105,6 +105,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `I'll mute someone.`,
+  dirname: __dirname,
   aliases: [],
   usage: `<user> <reason>`,
   perms: ["MANAGE_ROLES", "MANAGE_CHANNELS"],

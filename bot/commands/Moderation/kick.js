@@ -78,6 +78,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Is a user bothering you? Using this command, you can kick them from the server!`,
+  dirname: __dirname,
   aliases: [],
   usage: `<user> <optional user>`,
   perms: ["KICK_MEMBERS"],

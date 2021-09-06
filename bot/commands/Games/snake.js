@@ -29,6 +29,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Get those apples and grow, grow, grow to get the best score.`,
+  dirname: __dirname,
   usage: "",
   aliases: [],
   perms: ["EMBED_LINKS"],

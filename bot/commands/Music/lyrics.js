@@ -65,6 +65,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Get any song's lyrics!`,
+  dirname: __dirname,
   usage: "<song title or URL>",
   aliases: ["song", "verse"],
   perms: ["EMBED_LINKS"],

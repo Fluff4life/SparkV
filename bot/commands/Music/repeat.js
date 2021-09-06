@@ -43,6 +43,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Replays the currently playing song.`,
+  dirname: __dirname,
   usage: "<song or queue: leave empty to deactivate>",
   aliases: ["replay", "loop"],
   perms: ["EMBED_LINKS"],

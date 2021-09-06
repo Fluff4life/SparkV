@@ -33,6 +33,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Sets the volume of the currently playing track.`,
+  dirname: __dirname,
   usage: "",
   aliases: ["setvolume", "vol"],
   perms: ["EMBED_LINKS"],

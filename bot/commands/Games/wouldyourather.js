@@ -20,6 +20,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: "Would you rather.",
+  dirname: __dirname,
   usage: "",
   aliases: ["wyr"],
   perms: ["EMBED_LINKS"],

@@ -32,6 +32,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: "Rerolls a giveaway. Requires the permision MANAGE_MESSAGES.",
+  dirname: __dirname,
   usage: "<MessageID>",
   aliases: ["rerollg"],
   perms: ["EMBED_LINKS", "MANAGE_MESSAGES"],

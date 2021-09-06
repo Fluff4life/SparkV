@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
-exports.run = async (bot, message) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message) {
   const { Calculator } = require("weky");
 
   await Calculator({
@@ -14,16 +16,11 @@ exports.run = async (bot, message) => {
     invalidQuery: "The provided equation is invalid!",
     othersMessage: "Only <@{{author}}> can use the buttons!",
   });
-};
+}
 
-exports.config = {
-  name: `Calculator`,
+module.exports = new cmd(execute, {
   description: `Calculate any equation!`,
   aliases: ["calc"],
+  dirname: __dirname,
   usage: ``,
-  category: `🧰Utility🧰`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 1.5,
-};
+});

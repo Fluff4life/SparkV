@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   if (!args || !args[0]) {
     return message.reply(`Please provide a valid HEX color code. Example: #ff0000.`);
   }
@@ -13,15 +15,11 @@ exports.run = async (bot, message, args, command, data) => {
   const Color = new Discord.MessageAttachment(Image, `color.png`);
 
   message.reply(Color);
-};
-exports.config = {
-  name: `Color`,
+}
+
+module.exports = new cmd(execute, {
   description: `Hex to color.`,
   aliases: [],
-  usage: `<HEX>`,
-  category: `📷Images📷`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 1.5,
-};
+  dirname: __dirname,
+  usage: `<hex>`,
+});

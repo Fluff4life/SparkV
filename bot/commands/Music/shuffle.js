@@ -23,6 +23,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Shuffles the queue.`,
+  dirname: __dirname,
   usage: "",
   aliases: ["unpause"],
   perms: ["EMBED_LINKS"],

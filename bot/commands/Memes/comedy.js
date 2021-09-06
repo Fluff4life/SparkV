@@ -2,6 +2,7 @@ const RedditCommand = require("../../templates/redditCommand");
 
 module.exports = new RedditCommand({
   description: "The place for comedy memes from r/ComedyCemetery!",
+  dirname: __dirname,
   aliases: ["doi", "dinternet", "dosei"],
   usage: "",
   enabled: true,

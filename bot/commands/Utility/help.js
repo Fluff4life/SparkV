@@ -1,8 +1,10 @@
 const { MessageActionRow, MessageSelectMenu, MessageEmbed } = require("discord.js");
 
+const cmd = require("../../templates/command");
+
 var prefix = `^`;
 
-exports.run = async (bot, message, args, command, data) => {
+async function execute(bot, message, args, command, data) {
   prefix = data.guild.prefix;
 
   const Selections = [];
@@ -153,16 +155,11 @@ exports.run = async (bot, message, args, command, data) => {
 
     return message.reply(CommandHelpEmbed);
   }
-};
+}
 
-exports.config = {
-  name: `Help`,
+module.exports = new cmd(execute, {
   description: `I will displays all commands. Do ${prefix}Help [command name] for specific command information!`,
   aliases: [`cmds`, `commands`],
   usage: `<command>`,
-  category: `🧰Utility🧰`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `ADD_REACTIONS`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 5,
-};
+  dirname: __dirname
+});

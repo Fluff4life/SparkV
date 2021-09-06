@@ -2,6 +2,7 @@ const RedditCommand = require("../../templates/redditCommand");
 
 module.exports = new RedditCommand({
   description: "Awww cute bunny!",
+  dirname: __dirname,
   aliases: ["cuteanimal"],
   usage: "",
   enabled: true,

@@ -1,22 +1,19 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   if (!args) {
     return message.reply(`${bot.config.bot.Emojis.error} | Bruh I cannot reverse no text lol.`);
   }
 
   message.reply(args.join(` `).split(``).reverse()
-.join(``));
-};
+.join(""));
+}
 
-exports.config = {
-  name: `Reverse`,
+module.exports = new cmd(execute, {
   description: `I will reverse any text you give me lol.`,
-  aliases: [`talk`],
-  usage: `<message>`,
-  category: `😃Fun😃`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`, `MANAGE_MESSAGES`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 5,
-};
+  aliases: [],
+  dirname: __dirname,
+  usage: `<optional user>`,
+});

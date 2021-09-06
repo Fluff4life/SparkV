@@ -50,6 +50,7 @@ module.exports = new cmd((bot, message, args, command, data) => {
   EasyPages(message, pages, ["⬅", "➡"]);
 }, {
   description: "Follow them lol.",
+  dirname: __dirname,
   usage: "",
   aliases: ["TOS"],
   perms: ["EMBED_LINKS", "MANAGE_MESSAGES"]

@@ -2,7 +2,9 @@ const Discord = require(`discord.js`);
 
 const user = require("../../../database/schemas/user");
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   const reason = args.slice(0).join(" ") || "No reason supplied.";
 
   if (data.user.afk) {
@@ -16,15 +18,11 @@ exports.run = async (bot, message, args, command, data) => {
 
     message.reply(`You're now AFK. Reason: ${reason}`);
   }
-};
-exports.config = {
-  name: `Afk`,
+}
+
+module.exports = new cmd(execute, {
   description: `This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason.`,
+  dirname: __dirname,
   aliases: [],
   usage: `<optional reason>`,
-  category: `😃Fun😃`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 3,
-};
+});

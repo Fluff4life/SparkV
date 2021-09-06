@@ -1,21 +1,18 @@
 const Discord = require("discord.js");
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   args = args.join(" ");
 
   message.delete().catch(_ => {});
 
   message.reply(`${args}\n*-${message.author.username}*`);
-};
+}
 
-exports.config = {
-  name: "Say",
+module.exports = new cmd(execute, {
   description: "I will say whatever you want me to say.",
-  aliases: ["talk"],
-  usage: "<message>",
-  category: "😃Fun😃",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "MANAGE_MESSAGES"],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 5,
-};
+  aliases: [],
+  dirname: __dirname,
+  usage: `<message>`,
+});

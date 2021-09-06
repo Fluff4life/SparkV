@@ -15,6 +15,7 @@ module.exports = new cmd(async () => {
   await message.reply(InvitesEmbend);
 }, {
   description: "Displays links.",
+  dirname: __dirname,
   usage: "",
   aliases: ["invite", "support"],
   perms: ["EMBED_LINKS"]

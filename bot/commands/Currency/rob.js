@@ -52,7 +52,7 @@ async function execute(bot, message, args, command, data) {
     UserBalance.save();
 
     message.reply(
-      `${bot.config.bot.Emojis.success} | You robbed ${User} and recieved ${await bot.FormatNumber(
+      `${bot.config.bot.Emojis.success} | You robbed ${User} and recieved ${await bot.functions.FormatNumber(
         Ammount,
       )} Ch1llBucks!`,
     );
@@ -69,6 +69,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `why u bully me?`,
+  dirname: __dirname,
   usage: `<user>`,
   aliases: [],
   perms: ["EMBED_LINKS"],

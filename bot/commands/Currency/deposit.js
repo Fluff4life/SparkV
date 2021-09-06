@@ -29,7 +29,7 @@ async function execute(bot, message, args, command, data) {
       await data.user.save();
 
       message.reply(
-        `${bot.config.bot.Emojis.success} | You just deposited ❄${await bot.FormatNumber(BankMax)} into your bank!`,
+        `${bot.config.bot.Emojis.success} | You just deposited ❄${await bot.functions.FormatNumber(BankMax)} into your bank!`,
       );
     } else {
       data.user.money.bank = Bank + Ch1llBucks;
@@ -38,7 +38,7 @@ async function execute(bot, message, args, command, data) {
       await data.user.save();
 
       message.reply(
-        `${bot.config.bot.Emojis.success} | You just deposited ❄${await bot.FormatNumber(Ch1llBucks)} into your bank!`,
+        `${bot.config.bot.Emojis.success} | You just deposited ❄${await bot.functions.FormatNumber(Ch1llBucks)} into your bank!`,
       );
     }
   } else {
@@ -67,12 +67,13 @@ async function execute(bot, message, args, command, data) {
 
     await data.user.save();
 
-    message.reply(`${bot.config.bot.Emojis.success} | Deposited ❄${await bot.FormatNumber(args[0])} into bank!`);
+    message.reply(`${bot.config.bot.Emojis.success} | Deposited ❄${await bot.functions.FormatNumber(args[0])} into bank!`);
   }
 }
 
 module.exports = new cmd(execute, {
   description: `Deposit your Ch1llBucks into your bank.`,
+  dirname: __dirname,
   usage: `<all or ammount>`,
   aliases: ["dep"],
   perms: ["EMBED_LINKS"]

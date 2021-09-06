@@ -28,6 +28,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Delete a giveaway. Requires the permision MANAGE_MESSAGES.`,
+  dirname: __dirname,
   usage: "",
   aliases: ["deleteg"],
   perms: ["EMBED_LINKS", "MANAGE_MESSAGES"],

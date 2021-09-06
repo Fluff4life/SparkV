@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
-exports.run = async (bot, message) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message) {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
   if (bot.config.Debug.Enabled === true) {
@@ -23,15 +25,11 @@ exports.run = async (bot, message) => {
   const Slap = new Discord.MessageAttachment(Image, "slap.gif");
 
   message.reply(Slap);
-};
-exports.config = {
-  name: "Slap",
+}
+
+module.exports = new cmd(execute, {
   description: "SLAP SLAP SLAP!",
   aliases: ["punch"],
-  usage: "<optional user>",
-  category: "📷Images📷",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 2,
-};
+  dirname: __dirname,
+  usage: `<user | self>`,
+});

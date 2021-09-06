@@ -116,6 +116,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `I will warn a user`,
+  dirname: __dirname,
   aliases: [],
   usage: `<user> <optional reason>`,
   perms: ["KICK_MEMBERS"],

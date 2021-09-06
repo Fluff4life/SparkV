@@ -20,12 +20,13 @@ async function execute(bot, message, args, command, data) {
   Ch1llBucks += Ammount;
 
   message.reply(
-    `${bot.config.bot.Emojis.success} | You begged and recieved ${await bot.FormatNumber(Ammount)} Ch1llBucks!`,
+    `${bot.config.bot.Emojis.success} | You begged and recieved ${await bot.functions.FormatNumber(Ammount)} Ch1llBucks!`,
   );
 }
 
 module.exports = new cmd(execute, {
   description: "Beg for coins.",
+  dirname: __dirname,
   usage: `<optional user>`,
   aliases: [],
   perms: ["EMBED_LINKS"]

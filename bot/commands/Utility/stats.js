@@ -7,7 +7,7 @@ module.exports = new cmd(async (bot, message) => {
   const BotMessage = await message.reply("Fetching Stats...");
   let footerMessage = `Ch1llBlox's Stats • ${bot.config.bot.Embed.Footer}`;
 
-  if (bot.MSToTime(bot.uptime) === "5 Minutes") {
+  if (bot.functions.MSToTime(bot.uptime) === "5 Minutes") {
     footerMessage = "pog you found me lol great job on timing it on exactly 5 minutes";
   }
 
@@ -34,18 +34,22 @@ module.exports = new cmd(async (bot, message) => {
     )
     .addField(
       "**DATA**",
-      `\`\`\`Uptime: ${bot.MSToTime(bot.uptime)}\nServers: ${bot.FormatNumber(
-        await bot.GetServerCount(),
-      )}\nUsers: ${bot.FormatNumber(await bot.GetUserCount())}\`\`\``,
+      `\`\`\`Uptime: ${bot.functions.MSToTime(bot.uptime)}\nServers: ${bot.functions.FormatNumber(
+        await bot.functions.GetServerCount(),
+      )}\nUsers: ${bot.functions.FormatNumber(await bot.functions.GetUserCount())}\`\`\``,
       true,
     )
     .setFooter(footerMessage)
     .setColor(bot.config.bot.Embed.Color)
     .setTimestamp();
 
-  BotMessage.edit(StatsEmbed);
+  BotMessage.edit({
+    content: "Loading complete!",
+    embeds: [StatsEmbed]
+  });
 }, {
   description: "Ch1llBlox's stats.",
+  dirname: __dirname,
   usage: "",
   aliases: ["ping", "pong", "up", "ram", "memory", "uptime", "latency", "data", "storage"],
   perms: ["EMBED_LINKS"]

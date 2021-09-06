@@ -73,6 +73,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `I\'ll change a user\'s nickname to your choice.`,
+  dirname: __dirname,
   aliases: ["setnick"],
   usage: `<user> <reason>`,
   perms: ["CHANGE_NICKNAME"],

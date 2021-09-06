@@ -26,6 +26,7 @@ module.exports = new cmd((bot, message) => {
   return message.reply(NewEmbed);
 }, {
   description: `Look at everyone who helped make Ch1llBlox!`,
+  dirname: __dirname,
   usage: "",
   aliases: ["deleteg"],
   perms: ["EMBED_LINKS"],

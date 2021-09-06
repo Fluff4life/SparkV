@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
   if (bot.config.Debug.Enabled === true) {
@@ -29,15 +31,11 @@ exports.run = async (bot, message, args, command, data) => {
   const YouTube = new Discord.MessageAttachment(Image, `youtube.gif`);
 
   message.reply(YouTube);
-};
-exports.config = {
-  name: `YouTubeComment`,
+}
+
+module.exports = new cmd(execute, {
   description: `YouTube comment lol.`,
-  aliases: [],
-  usage: `<optional user> <text>`,
-  category: `📷Images📷`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 2,
-};
+  aliases: ["waste"],
+  dirname: __dirname,
+  usage: `<user | self> <text>`,
+});

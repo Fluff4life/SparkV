@@ -41,6 +41,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Disconnects me from the voice channel and removes all songs in queue.`,
+  dirname: __dirname,
   usage: "",
   aliases: ["disconnect", "leave"],
   perms: ["EMBED_LINKS"],

@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-exports.run = async (bot, message) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message) {
   request("https://api.adviceslip.com/advice")
     .then(res => res.json())
     .then(async json => {
@@ -17,16 +19,11 @@ exports.run = async (bot, message) => {
       Message.react("👍");
       Message.react("👎");
     });
-};
+}
 
-exports.config = {
-  name: "Advice",
+module.exports = new cmd(execute, {
   description: "You'll need it.",
-  aliases: [],
-  usage: "",
-  category: "😃Fun😃",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 5,
-};
+  dirname: __dirname,
+  aliases: ["job"],
+  usage: ``,
+});

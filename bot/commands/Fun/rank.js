@@ -1,7 +1,9 @@
 const Discord = require(`discord.js`);
 const Levels = require(`discord-xp`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   const canvacord = require(`canvacord`);
 
   const Target = (await bot.GetMember(message, args)) || message.author;
@@ -30,16 +32,11 @@ exports.run = async (bot, message, args, command, data) => {
       files: [Attachment],
     });
   });
-};
+}
 
-exports.config = {
-  name: `Rank`,
+module.exports = new cmd(execute, {
   description: `View a users rank!`,
-  aliases: [],
+  dirname: __dirname,
+  aliases: ["memeeconomy"],
   usage: `<optional user>`,
-  category: `😃Fun😃`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 5,
-};
+});

@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const config = require("../../globalconfig.json");
 
-const Schema = new mongoose.Schema({
+module.exports = mongoose.model("BGuild", new mongoose.Schema({
   id: { type: String },
   registrationDate: { type: Number, default: Date.now() },
 
   // Data //
-  members: { type: Object, default: {} },
   casesCount: { type: Number, default: 0 },
   ignoredChannels: { type: Array, default: [] },
   customCommands: { type: Array, default: [] },
@@ -59,6 +58,4 @@ const Schema = new mongoose.Schema({
       reports: false,
     },
   },
-});
-
-module.exports = mongoose.model("Guild", Schema);
+}));

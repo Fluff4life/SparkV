@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const config = require("../../globalconfig.json");
 
-const Schema = new mongoose.Schema({
+module.exports = mongoose.model("BMember", new mongoose.Schema({
   // User Information //
   id: { type: String },
   guildID: { type: String },
@@ -33,13 +33,4 @@ const Schema = new mongoose.Schema({
     type: Object,
     default: { muted: false, case: null, endDate: null },
   },
-});
-
-Schema.method("GenerateAPIToken", async () => {
-  this.APIToken = GenerateToken();
-
-  await this.save();
-  return this.APIToken;
-});
-
-module.exports = mongoose.model("Member", Schema);
+}));

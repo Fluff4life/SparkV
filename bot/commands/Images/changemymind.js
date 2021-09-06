@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   if (bot.config.Debug.Enabled === true) {
     return;
   }
@@ -17,15 +19,11 @@ exports.run = async (bot, message, args, command, data) => {
   const ChangeMyMind = new Discord.MessageAttachment(Image, `changemymind.gif`);
 
   message.reply(ChangeMyMind);
-};
-exports.config = {
-  name: `ChangeMyMind`,
-  description: `AAAAAAAAAAAAAAAAAAAAAAAAAAAH!`,
-  aliases: [`cmm`],
+}
+
+module.exports = new cmd(execute, {
+  description: `Change my mind.`,
+  aliases: ["cmm"],
+  dirname: __dirname,
   usage: `<text>`,
-  category: `📷Images📷`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 2,
-};
+});

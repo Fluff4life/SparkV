@@ -23,6 +23,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Pauses the current song playing.`,
+  dirname: __dirname,
   usage: "",
   aliases: ["softstop"],
   perms: ["EMBED_LINKS"],

@@ -13,6 +13,11 @@ const giveawayshandler = require("../../modules/dependencies/giveawayshandler");
 const Noblox = require("../../modules/dependencies/noblox");
 const updateDocs = require("../../modules/updateDocs");
 
+const GuildSchema = require("../../database/schemas/guild");
+const LogSchema = require("../../database/schemas/log");
+const MemberSchema = require("../../database/schemas/member");
+const UserSchema = require("../../database/schemas/user");
+
 module.exports = class bot extends Client {
   constructor(settings) {
     super(settings);
@@ -35,11 +40,14 @@ module.exports = class bot extends Client {
     this.UserSchema = require("../../database/schemas/user");
 
     // Collections
-    this.categories = [];
-    this.commands = [];
+    this.categories = new Collection();
+    this.commands = new Collection();
     this.aliases = new Collection();
     this.events = new Collection();
     this.cooldowns = new Collection();
+
+    // Start functions
+    require("../../modules/functions").init(this);
 
     return this;
   }
@@ -47,12 +55,8 @@ module.exports = class bot extends Client {
   async LoadModules(settings, MainDir) {
     const client = this;
 
-    // Initialize Functions
-    this.functions(this);
-
     // Update Docs
-    updateDocs.update(this, MainDir);
-    setInterval(() => updateDocs.update(this, MainDir), 3600 * 1000);
+    setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
 
     if (!settings.sharding) {
       const StatClient = new Statcord.Client({
@@ -103,18 +107,17 @@ module.exports = class bot extends Client {
   }
 
   async LoadEvents(MainPath) {
-    fs.readdir(path.join(`${MainPath}/events`), (err, files) => {
-      if (err) {
-        return this.logger(`EVENT LOADING ERROR - ${err}`, "error");
+    const events = fs.readdirSync(path.join(`${MainPath}/events`)).filter(file => file.endsWith(".js"));
+
+    for (const eventF of events) {
+      const event = require(path.resolve(`${MainPath}/events/${eventF}`));
+
+      if (event.once) {
+        this.once(eventF.split(".")[0], (...args) => event.execute(this, ...args));
+      } else {
+        this.on(eventF.split(".")[0], (...args) => event.execute(this, ...args));
       }
-
-      files.forEach(file => {
-        let EventName = file.split(".")[0];
-        let FileEvent = require(path.resolve(`${MainPath}/events/${EventName}`));
-
-        this.on(EventName, (...args) => FileEvent.run(this, ...args));
-      });
-    });
+    }
   }
 
   async LoadCommands(MainPath) {
@@ -125,7 +128,7 @@ module.exports = class bot extends Client {
 
       cats.forEach(cat => {
         const category = require(path.join(`${MainPath}/commands/${cat}`));
-        this.categories.push(category.name);
+        this.categories.set(category.name, category);
 
         fs.readdir(path.join(`${MainPath}/commands/${cat}`), (err, files) => {
           if (err) {
@@ -140,19 +143,19 @@ module.exports = class bot extends Client {
             let commandname = file.split(".")[0];
             let command = require(path.resolve(`${MainPath}/commands/${cat}/${commandname}`));
 
-            command.category = category.name;
-            command.description = category.description;
-
-            if (!this.categories.includes(command.category)) {
-              this.categories.push(command.category);
-            }
-
             if (!command || !command.settings || command.config) {
               return;
             }
 
+            command.category = category.name;
+            command.description = category.description;
+
+            if (!this.categories.has(command.category)) {
+              this.categories.set(command.category, category);
+            }
+
             command.settings.name = commandname;
-            this.commands.push(command);
+            this.commands.set(commandname, command);
 
             if (!command.settings.aliases) {
               return;

@@ -24,6 +24,7 @@ async function execute(bot, message) {
 
 module.exports = new cmd(execute, {
   description: "Yes it does noob",
+  dirname: __dirname,
   aliases: ["nope"],
   usage: `<optional user>`,
 });

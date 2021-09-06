@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   if (message.author.id !== process.env.OWNERID) {
     return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
   }
@@ -15,15 +17,11 @@ exports.run = async (bot, message, args, command, data) => {
   await data.user.save();
 
   message.reply(`${bot.config.bot.Emojis.success} | Success!`);
-};
-exports.config = {
-  name: `SetCh1llBucks`,
+}
+
+module.exports = new cmd(execute, {
   description: `Set someone's Ch1llBucks!`,
   aliases: [],
+  dirname: __dirname,
   usage: `<user> <ammount>`,
-  category: `👑Owner👑`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 15,
-};
+});

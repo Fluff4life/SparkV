@@ -33,6 +33,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Shows the songs in queue.`,
+  dirname: __dirname,
   usage: "<number>",
   aliases: ["que"],
   perms: ["EMBED_LINKS"],

@@ -36,6 +36,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Play a game of trivia!`,
+  dirname: __dirname,
   usage: "",
   aliases: ["questions"],
   perms: ["EMBED_LINKS"],

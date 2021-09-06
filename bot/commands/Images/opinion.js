@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
   if (bot.config.Debug.Enabled === true) {
@@ -24,15 +26,11 @@ exports.run = async (bot, message, args, command, data) => {
   const Opinion = new Discord.MessageAttachment(Image, `opinion.png`);
 
   message.reply(Opinion);
-};
-exports.config = {
-  name: `Opinion`,
+}
+
+module.exports = new cmd(execute, {
   description: `lol`,
-  aliases: [`nofact`],
+  aliases: ["nofact"],
+  dirname: __dirname,
   usage: `<text>`,
-  category: `📷Images📷`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 2,
-};
+});

@@ -157,6 +157,7 @@ function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Verify yourself! Only works when enabled on the dashboard.`,
+  dirname: __dirname,
   usage: "<username>",
   aliases: [],
   perms: ["EMBED_LINKS"],

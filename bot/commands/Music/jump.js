@@ -19,6 +19,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `I will jump to a certain song in the queue.`,
+  dirname: __dirname,
   usage: "<number>",
   aliases: ["leap"],
   perms: ["EMBED_LINKS"],

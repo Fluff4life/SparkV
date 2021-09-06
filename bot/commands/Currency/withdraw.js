@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   var Ch1llBucks = data.user.money.balance;
   var Bank = data.user.money.bank;
 
@@ -21,7 +23,7 @@ exports.run = async (bot, message, args, command, data) => {
     await data.user.save();
 
     message.reply(
-      `${bot.config.bot.Emojis.success} | You just withdrawed ❄${await bot.FormatNumber(Bank)} from your bank!`,
+      `${bot.config.bot.Emojis.success} | You just withdrawed ❄${await bot.functions.FormatNumber(Bank)} from your bank!`,
     );
   } else {
     if (!args[0]) {
@@ -45,17 +47,13 @@ exports.run = async (bot, message, args, command, data) => {
 
     await data.user.save();
 
-    message.reply(`${bot.config.bot.Emojis.success} | Withdrawed ❄${await bot.FormatNumber(args[0])} from your bank!`);
+    message.reply(`${bot.config.bot.Emojis.success} | Withdrawed ❄${await bot.functions.FormatNumber(args[0])} from your bank!`);
   }
-};
-exports.config = {
-  name: `Withdraw`,
+}
+
+module.exports = new cmd(execute, {
   description: `Withdraw your Ch1llBucks in your bank into your wallet.`,
-  aliases: [`with`],
+  dirname: __dirname,
+  aliases: ["with"],
   usage: ``,
-  category: `💰Currency💰`,
-  bot_permissions: [`SEND_MESSAGES`, `EMBED_LINKS`, `VIEW_CHANNEL`],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 15,
-};
+});

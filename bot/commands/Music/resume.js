@@ -28,6 +28,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Resume playing the current song.`,
+  dirname: __dirname,
   usage: "",
   aliases: ["unpause"],
   perms: ["EMBED_LINKS"],

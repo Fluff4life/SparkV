@@ -32,6 +32,7 @@ function execute(bot, message, args, command) {
 
 module.exports = new cmd(execute, {
   description: "Ch1llBlox will shout to any group owned by you!",
+  dirname: __dirname,
   usage: "<Shout Message>",
   enabled: false,
   aliases: [],

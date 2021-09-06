@@ -32,6 +32,7 @@ function execute(bot, message, args, command) {
 
 module.exports = new cmd(execute, {
   description: `I'll grab the details of any game for you.`,
+  dirname: __dirname,
   aliases: [`gd`],
   perms: ["EMBED_LINKS"],
 });

@@ -55,6 +55,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
   description: `Pratice your memory!`,
+  dirname: __dirname,
   usage: "<optional user>",
   aliases: ["memo"],
   perms: ["EMBED_LINKS"],

@@ -29,18 +29,21 @@ const CreatePage = async (bot, interaction, Category) => {
   pages.push(NewEmbed);
 };
 
-exports.run = async (bot, interaction) => {
-  if (interaction.isCommand()) {
-    return;
-  }
+module.exports = {
+  once: false,
+  async execute(bot, interaction) {
+    if (interaction.isCommand()) {
+      return;
+    }
 
-  if (interaction.isSelectMenu()) {
-    if (interaction.customId === "SelectHelpMenu") {
-      bot.map(cat => CreatePage(bot, interaction, cat));
+    if (interaction.isSelectMenu()) {
+      if (interaction.customId === "SelectHelpMenu") {
+        bot.map(cat => CreatePage(bot, interaction, cat));
 
-      await interaction.update({
-        embeds: [pages.filter(p => p.title === interaction.values[0])[0]],
-      });
+        await interaction.update({
+          embeds: [pages.filter(p => p.title === interaction.values[0])[0]],
+        });
+      }
     }
   }
 };

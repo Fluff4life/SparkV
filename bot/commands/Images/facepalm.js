@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
-exports.run = async (bot, message, args, command, data) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message, args, command, data) {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
   if (bot.config.Debug.Enabled === true) {
@@ -18,15 +20,11 @@ exports.run = async (bot, message, args, command, data) => {
   const FacePalm = new Discord.MessageAttachment(Image, "facepalm.gif");
 
   message.reply(FacePalm);
-};
-exports.config = {
-  name: "Facepalm",
+}
+
+module.exports = new cmd(execute, {
   description: "bruh",
   aliases: ["ow"],
-  usage: "<optional user>",
-  category: "📷Images📷",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL"],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 2,
-};
+  dirname: __dirname,
+  usage: `<optional user>`,
+});

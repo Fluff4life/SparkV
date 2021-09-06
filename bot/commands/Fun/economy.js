@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
 const request = require("node-fetch");
 
-exports.run = async (bot, message) => {
+const cmd = require("../../templates/command");
+
+async function execute(bot, message) {
   request("https://www.reddit.com/r/MemeEconomy/top/.json")
     .then(res => res.json())
     .then(json => {
@@ -33,15 +35,11 @@ exports.run = async (bot, message) => {
         message.reply(MemeEconomyEmbed);
       }
     });
-};
-exports.config = {
-  name: "Economy",
+}
+
+module.exports = new cmd(execute, {
   description: "lol",
+  dirname: __dirname,
   aliases: ["memeeconomy"],
-  usage: "",
-  category: "😃Fun😃",
-  bot_permissions: ["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS"],
-  member_permissions: [],
-  enabled: true,
-  cooldown: 3,
-};
+  usage: ``,
+});
