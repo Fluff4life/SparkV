@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 
-const Invitergx = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite|discord.com\/invite)\/+[a-zA-Z0-9]{6,16}/g;
+const Invitergx =
+  /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite|discord.com\/invite)\/+[a-zA-Z0-9]{6,16}/g;
 const URLrgx = /(https?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
 
 let bot;
@@ -25,7 +26,11 @@ module.exports = {
    * @returns {string} Prefix.
    */
   getPrefix(message, data) {
-    const acceptedPrefixes = [`<@!${message.client.user.id}> `, `<@${message.client.user.id}> `, bot.config.Debug.Enabled ? "_" : data.guild.prefix];
+    const acceptedPrefixes = [
+      `<@!${message.client.user.id}> `,
+      `<@${message.client.user.id}> `,
+      bot.config.Debug.Enabled ? "_" : data.guild.prefix,
+    ];
 
     let prefix;
 

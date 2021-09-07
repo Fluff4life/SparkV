@@ -24,11 +24,13 @@ module.exports = new cmd(
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addFields(Credits);
 
-  return message.reply(NewEmbed);
-}, {
-  description: `Look at everyone who helped make Ch1llBlox!`,
-  dirname: __dirname,
-  usage: "",
-  aliases: ["deleteg"],
-  perms: ["EMBED_LINKS"],
-});
+    return message.reply(NewEmbed);
+  },
+  {
+    description: `Look at everyone who helped make Ch1llBlox!`,
+    dirname: __dirname,
+    usage: "",
+    aliases: ["deleteg"],
+    perms: ["EMBED_LINKS"],
+  },
+);

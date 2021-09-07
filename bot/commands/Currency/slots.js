@@ -69,21 +69,21 @@ async function execute(bot, message, args, command, data) {
     win = true;
   }
 
-    if (win) {
-      message.reply(
-        `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
-          bot.config.bot.Emojis.success
-        } | You won ❄${await bot.functions.FormatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`,
-      );
+  if (win) {
+    message.reply(
+      `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
+        bot.config.bot.Emojis.success
+      } | You won ❄${await bot.functions.FormatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`,
+    );
 
-      data.user.money.balance = Ch1llBucks + args[0] * SlotItems.length;
-      await data.user.save();
-    } else {
-      message.reply(
-        `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
-          bot.config.bot.Emojis.error
-        } | You lost ❄${await bot.functions.FormatNumber(parseInt(args[0]))} Ch1llBucks.`,
-      );
+    data.user.money.balance = Ch1llBucks + args[0] * SlotItems.length;
+    await data.user.save();
+  } else {
+    message.reply(
+      `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
+        bot.config.bot.Emojis.error
+      } | You lost ❄${await bot.functions.FormatNumber(parseInt(args[0]))} Ch1llBucks.`,
+    );
 
     data.user.money.balance = Ch1llBucks - args[0];
     await data.user.save();

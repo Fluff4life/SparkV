@@ -161,5 +161,5 @@ module.exports = new cmd(execute, {
   description: `I will displays all commands. Do ${prefix}Help [command name] for specific command information!`,
   aliases: [`cmds`, `commands`],
   usage: `<command>`,
-  dirname: __dirname
+  dirname: __dirname,
 });

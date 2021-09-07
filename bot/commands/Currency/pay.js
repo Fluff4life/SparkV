@@ -38,7 +38,9 @@ async function execute(bot, message, args, command, data) {
   UserCh1llBucks.save();
   await data.user.save();
 
-  message.reply(`${bot.config.bot.Emojis.success} | You gave ${User} ❄${await bot.functions.FormatNumber(args[1])} Ch1llBucks!`);
+  message.reply(
+    `${bot.config.bot.Emojis.success} | You gave ${User} ❄${await bot.functions.FormatNumber(args[1])} Ch1llBucks!`,
+  );
 }
 
 module.exports = new cmd(execute, {

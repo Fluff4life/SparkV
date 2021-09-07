@@ -13,11 +13,13 @@ module.exports = new cmd(
       .setFooter(`Invites for Ch1llBlox • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
       .setColor(bot.config.bot.Embed.Color);
 
-  await message.reply(InvitesEmbend);
-}, {
-  description: "Displays links.",
-  dirname: __dirname,
-  usage: "",
-  aliases: ["invite", "support"],
-  perms: ["EMBED_LINKS"]
-});
+    await message.reply(InvitesEmbend);
+  },
+  {
+    description: "Displays links.",
+    dirname: __dirname,
+    usage: "",
+    aliases: ["invite", "support"],
+    perms: ["EMBED_LINKS"],
+  },
+);

@@ -15,5 +15,5 @@ module.exports = {
 
       Logger.send(ServerAddedEmbed);
     }
-  }
+  },
 };

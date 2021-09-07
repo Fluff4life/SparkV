@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports = {
-	once: false,
-	async execute(bot, guild) {
+  once: false,
+  async execute(bot, guild) {
     console.log(`Ch1llBlox has been added to ${guild.name} (Id: ${guild.id}).`);
 
     const Logger = bot.channels.cache.get(831314946624454656);
@@ -68,5 +68,5 @@ module.exports = {
         console.log(`Failed to send message to ${guild.name} (${guild.id})!`);
       }
     }
-	},
+  },
 };

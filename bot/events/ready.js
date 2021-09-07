@@ -76,6 +76,11 @@ module.exports = {
     }
 
     console.log("-------- Ch1llBlox --------");
-    bot.logger(`Logged into Discord as ${bot.user.tag} (${bot.user.id})\n🏢 | Servers: ${bot.functions.FormatNumber(await bot.functions.GetServerCount())}\n👥 | Users: ${bot.functions.FormatNumber(await bot.functions.GetUserCount())}`, "bot");
+    bot.logger(
+      `Logged into Discord as ${bot.user.tag} (${bot.user.id})\n🏢 | Servers: ${bot.functions.FormatNumber(
+        await bot.functions.GetServerCount(),
+      )}\n👥 | Users: ${bot.functions.FormatNumber(await bot.functions.GetUserCount())}`,
+      "bot",
+    );
   },
 };

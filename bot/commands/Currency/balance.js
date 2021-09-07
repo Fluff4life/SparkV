@@ -12,9 +12,11 @@ async function execute(bot, message, args, command, data) {
   const BalanceEmbed = new Discord.MessageEmbed()
     .setTitle(`**${User.tag}'s Balance**`)
     .setDescription(
-      `Wallet: ❄${await bot.functions.FormatNumber(Ch1llBucks)}\nBank: ❄${await bot.functions.FormatNumber(Bank)}/${await bot.functions.FormatNumber(
-        BankMax,
-      )}\nNet Worth: ${await bot.functions.FormatNumber(Bank + Ch1llBucks)}`,
+      `Wallet: ❄${await bot.functions.FormatNumber(Ch1llBucks)}\nBank: ❄${await bot.functions.FormatNumber(
+        Bank,
+      )}/${await bot.functions.FormatNumber(BankMax)}\nNet Worth: ${await bot.functions.FormatNumber(
+        Bank + Ch1llBucks,
+      )}`,
     )
     .setColor(bot.config.bot.Embed.Color)
     .setTimestamp();
