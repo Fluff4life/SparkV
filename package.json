@@ -70,7 +70,7 @@
     "socket.io": "^4.2.0",
     "socket.io-client": "^4.2.0",
     "statcord.js": "^3.3.0",
-    "sweetalert2": "^11.1.4",
+    "sweetalert2": "^11.1.5",
     "topgg-autoposter": "^2.0.0",
     "urban": "^0.3.4",
     "weather-js": "^2.0.0",
