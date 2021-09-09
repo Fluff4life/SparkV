@@ -41,4 +41,4 @@ Schema.method("GenerateAPIToken", async () => {
   return this.APIToken;
 });
 
-module.exports = mongoose.model("BUser", Schema);
+module.exports = mongoose.model("User", Schema);

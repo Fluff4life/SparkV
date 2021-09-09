@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   /**
    * Update the docs
-   * @param {Object} bot The Ch1llBlox bot Instance.
+   * @param {Object} bot The SparkV bot Instance.
    * @param {Dirname} MainDir The main directory.
    */
   update(bot, MainDir) {
@@ -12,7 +12,7 @@ module.exports = {
 
     bot.commands.each(() => ++cmdCount);
 
-    let baseText = `# Commands\n\nCh1llBlox's Command List! Ch1llBlox contains more than **${cmdCount} commands**!\n\n`;
+    let baseText = `# Commands\n\nSparkV's Command List! SparkV contains more than **${cmdCount} commands**!\n\n`;
 
     bot.categories
       .sort((a, b) => {

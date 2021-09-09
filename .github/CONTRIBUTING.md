@@ -2,7 +2,7 @@
 
 ## How to Contribute
 
-If you want to contribute to Ch1llBlox's development, feel free to fork our repo and submit a pull request.
+If you want to contribute to SparkV's development, feel free to fork our repo and submit a pull request.
 
 ## Steps
 

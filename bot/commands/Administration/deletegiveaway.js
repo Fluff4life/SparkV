@@ -21,7 +21,7 @@ async function execute(bot, message, args, command, data) {
     })
     .catch(err => {
       console.error(err).then(() => {
-        message.reply(`An error occured with Ch1llBlox! Please try this command again.`);
+        message.reply(`An error occured with SparkV! Please try this command again.`);
       });
     });
 }

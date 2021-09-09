@@ -28,7 +28,7 @@ function execute(bot, message, args, command, data) {
     .then(body => {
       if (body.status === "ok") {
         const DiscordEmbed = new Discord.MessageEmbed()
-          .setTitle(`Ch1llBlox Verification`)
+          .setTitle(`SparkV Verification`)
           .setDescription(`You've been successfully verified as **${body.robloxUsername}**!`)
           .setColor(`GREEN`)
           .setFooter(bot.config.bot.Embed.Footer);

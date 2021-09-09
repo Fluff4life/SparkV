@@ -106,7 +106,7 @@ async function execute(bot, message, args, command, data) {
     const NewEmbed = new MessageEmbed()
       .setTitle("Select a Category!")
       .setDescription("Select a category from tapping the selection box below.")
-      .setAuthor("Ch1llBlox Help", bot.user.displayAvatarURL({ dynamic: true, format: "png" }))
+      .setAuthor("SparkV Help", bot.user.displayAvatarURL({ dynamic: true, format: "png" }))
       .setThumbnail(
         message.author.displayAvatarURL({
           dynamic: true,
@@ -114,7 +114,7 @@ async function execute(bot, message, args, command, data) {
         }),
       )
       .setFooter(
-        "Ch1llBlox - Making your Discord life easier!",
+        "SparkV - Making your Discord life easier!",
         bot.user.displayAvatarURL({ dynamic: true, format: "png" }),
       )
       .setColor(bot.config.bot.Embed.Color)

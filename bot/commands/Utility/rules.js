@@ -12,19 +12,19 @@ module.exports = new cmd(
       Rules.set(1, {
         Title: "Automation",
         Description:
-          "Using automation (Ex: auto-typers) is forbidden. Using automation (and with found proof) will cause a wipe of your data and a ban from using Ch1llBlox.",
+          "Using automation (Ex: auto-typers) is forbidden. Using automation (and with found proof) will cause a wipe of your data and a ban from using SparkV.",
       });
 
       Rules.set(2, {
         Title: "Command Spamming",
         Description:
-          "Spamming commands is forbidden. Spamming Ch1llBlox's commands will result with a warning. If continued, a complete wipe of your data and a ban from Ch1llBlox",
+          "Spamming commands is forbidden. Spamming SparkV's commands will result with a warning. If continued, a complete wipe of your data and a ban from SparkV",
       });
 
       Rules.set(3, {
         Title: "Alternate Accounts",
         Description:
-          "Using alternate accounts to earn yourself money is forbidden. If continued (with found proof), your data will be wiped and you will be banned from Ch1llBlox.",
+          "Using alternate accounts to earn yourself money is forbidden. If continued (with found proof), your data will be wiped and you will be banned from SparkV.",
       });
 
       SetRules = true;

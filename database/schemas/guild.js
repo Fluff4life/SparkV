@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const config = require("../../globalconfig.json");
 
 module.exports = mongoose.model(
-  "BGuild",
+  "Guild",
   new mongoose.Schema({
     id: { type: String },
     registrationDate: { type: Number, default: Date.now() },

@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 module.exports = new cmd(
   async (bot, message) => {
     const BotMessage = await message.reply("Fetching Stats...");
-    let footerMessage = `Ch1llBlox's Stats • ${bot.config.bot.Embed.Footer}`;
+    let footerMessage = `SparkV's Stats • ${bot.config.bot.Embed.Footer}`;
 
     if (bot.functions.MSToTime(bot.uptime) === "5 Minutes") {
       footerMessage = "pog you found me lol great job on timing it on exactly 5 minutes";
@@ -21,7 +21,7 @@ module.exports = new cmd(
 
     const StatsEmbed = new Discord.MessageEmbed()
       .setTitle("📊 Stats 📊")
-      .addField("**LATENCY**", `\`\`\`Ch1llBlox: ${LocalPing}ms\nAPI: ${APIPing}ms\`\`\``, true)
+      .addField("**LATENCY**", `\`\`\`SparkV: ${LocalPing}ms\nAPI: ${APIPing}ms\`\`\``, true)
       .addField(
         "**STORAGE**",
         `\`\`\`Memory: ${(UsedMemory / Math.pow(1024, 3)).toFixed(2)}/${(TotalMemory / Math.pow(1024, 3)).toFixed(
@@ -50,7 +50,7 @@ module.exports = new cmd(
     });
   },
   {
-    description: "Ch1llBlox's stats.",
+    description: "SparkV's stats.",
     dirname: __dirname,
     usage: "",
     aliases: ["ping", "pong", "up", "ram", "memory", "uptime", "latency", "data", "storage"],

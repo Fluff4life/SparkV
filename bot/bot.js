@@ -17,7 +17,7 @@ console.log(require("chalk").blue(" | |___| | | | | | | |_) | | (_) >  < "));
 console.log(require("chalk").blue("  ____|_| |_|_|_|_|____/|_|___/_/_ "));
 
 const Client = require("./structures/client");
-const Ch1llBlox = new Client({
+const SparkV = new Client({
   intents: [
     Intents.FLAGS.DIRECT_MESSAGES,
     Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
@@ -39,7 +39,7 @@ const Ch1llBlox = new Client({
   },
   presence: {
     activity: {
-      name: `Loading Ch1llBlox (99%)`,
+      name: `Loading SparkV (99%)`,
       type: "PLAYING",
     },
     status: "dnd",
@@ -47,17 +47,17 @@ const Ch1llBlox = new Client({
 });
 
 async function Start() {
-  await Ch1llBlox.LoadEvents(__dirname);
-  await Ch1llBlox.LoadCommands(__dirname);
+  await SparkV.LoadEvents(__dirname);
+  await SparkV.LoadCommands(__dirname);
 
-  await Ch1llBlox.LoadModules(
+  await SparkV.LoadModules(
     {
       sharding: false,
     },
     process.env.MainDir,
   );
 
-  Ch1llBlox.SocketioClient = require("socket.io-client").connect(
+  SparkV.SocketioClient = require("socket.io-client").connect(
     `https://${process.env.BASEURL}/api/communication?token=8010405464675`,
     {
       reconnection: true,
@@ -67,8 +67,8 @@ async function Start() {
     },
   );
 
-  Ch1llBlox.SocketioClient.on("connect", () => console.log("Website connected successfully."));
+  SparkV.SocketioClient.on("connect", () => console.log("Website connected successfully."));
 }
 
 Start();
-Ch1llBlox.login(process.env.TOKEN);
+SparkV.login(process.env.TOKEN);

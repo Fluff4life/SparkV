@@ -3,14 +3,14 @@ const Discord = require("discord.js");
 module.exports = {
   once: false,
   async execute(bot, guild) {
-    console.log(`Ch1llBlox has been added to ${guild.name} (Id: ${guild.id}).`);
+    console.log(`SparkV has been added to ${guild.name} (Id: ${guild.id}).`);
 
     const Logger = bot.channels.cache.get(831314946624454656);
 
     if (Logger) {
       const ServerAddedEmbed = Discord.MessageEmbed()
         .setTitle("🔼︱Guild Added")
-        .setDescription(`Ch1llBlox has joined ${guild.name} (${guild.id})!`)
+        .setDescription(`SparkV has joined ${guild.name} (${guild.id})!`)
         .setColor("GREEN");
 
       Logger.send(ServerAddedEmbed);
@@ -48,7 +48,7 @@ module.exports = {
     }
 
     try {
-      const SelfRole = guild.roles.cache.find(role => role.name === "Ch1llBlox");
+      const SelfRole = guild.roles.cache.find(role => role.name === "SparkV");
 
       if (SelfRole) {
         SelfRole.setColor("BLUE");
@@ -62,7 +62,7 @@ module.exports = {
     ) {
       try {
         await guild.systemChannel.send(
-          "Hi! My name's Ch1llBlox. I'm a bot with over 120+ commands to assist you with keeping you entertained and your server active! Simply use the command ^Help to get a list of my commands. Want to enable a setting? Go to my dashboard! Use the command ^Dashboard and click on the link I send you. Thanks for inviting me!",
+          "Hi! My name's SparkV. I'm a bot with over 120+ commands to assist you with keeping you entertained and your server active! Simply use the command ^Help to get a list of my commands. Want to enable a setting? Go to my dashboard! Use the command ^Dashboard and click on the link I send you. Thanks for inviting me!",
         );
       } catch {
         console.log(`Failed to send message to ${guild.name} (${guild.id})!`);

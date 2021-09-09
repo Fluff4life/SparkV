@@ -158,6 +158,8 @@ module.exports = {
     return member;
   },
 
+  // Plugins //
+
   /**
    *
    * @param {string} String The string to check for a URL.

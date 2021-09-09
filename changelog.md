@@ -4,7 +4,7 @@ description: All notable changes to this project will be documented in this file
 
 # Changelog
 
-## [6.0.0](https://github.com/KingCh1ll/ch1llblox) - 2021-09-01
+## [6.0.0](https://github.com/KingCh1ll/sparkv) - 2021-09-01
 
 ### Added
 
@@ -18,12 +18,12 @@ description: All notable changes to this project will be documented in this file
 * 😎 \| Fixed Merge Issues
 * ⚡ \| Updated Read Me
 * 🤖 \| Dependabot Update
-* ✅ \| Ch1llBlox v6 Bug Fixes
+* ✅ \| SparkV v6 Bug Fixes
 * ⚙ \| Fixed Engines
 * ✅ \| Updated Packages
 * ⚙ \| Part 3/3
 * ⚙ \| v6 - Part 2/3
-* 🚧 \| Ch1llBlox v6 - Part 1/3
+* 🚧 \| SparkV v6 - Part 1/3
 
 ### Changed
 

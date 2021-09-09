@@ -16,11 +16,11 @@ const CreatePage = async (bot, interaction, Category) => {
     .setDescription(Commands(bot, Category))
     .setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
     .setAuthor(
-      "Ch1llBlox Help",
+      "SparkV Help",
       `https://cdn.discordapp.com/avatars/${interaction.message.author.id}/${interaction.message.author.avatar}.png?size=256`,
     )
     .setFooter(
-      "Ch1llBlox - Making your Discord life easier!",
+      "SparkV - Making your Discord life easier!",
       `https://cdn.discordapp.com/avatars/${interaction.message.author.id}/${interaction.message.author.avatar}.png?size=256`,
     )
     .setColor(bot.config.bot.Embed.Color)

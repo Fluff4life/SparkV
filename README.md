@@ -2,17 +2,17 @@
 
 ## About
 
-Ch1llBlox is an open sourced Discord bot using [Discord.js](https://github.com/discordjs) coded in [JavaScript](https://javascript.com/) by [KingCh1ll](https://ch1ll.dev/).
+SparkV is an open sourced Discord bot using [Discord.js](https://github.com/discordjs) coded in [JavaScript](https://javascript.com/) by [KingCh1ll](https://ch1ll.dev/).
 
-> Ch1llBlox is loved by more than 70,000 Discord users and more than 100 servers.
+> SparkV is powering many servers. Join those servers today!
 
 ## Features
 
-Ch1llBlox features:
+SparkV features:
 
-* ⚡ \| **Online 24/7**: Never worry about Ch1llBlox going offline, because he is up 24/7!
+* ⚡ \| **Online 24/7**: Never worry about SparkV going offline, because he is up 24/7!
 * ⚙ \| **Customization**: Fully customizable!
-* 💻 \| **100+ Commands**: Ch1llBlox offers 100+ commands! See the command list [here](https://docs.ch1ll.dev/ch1llblox/commands).
+* 💻 \| **100+ Commands**: SparkV offers 100+ commands! See the command list [here](https://docs.ch1ll.dev/SparkV/commands).
 
 ## Support
 

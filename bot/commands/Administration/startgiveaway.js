@@ -39,7 +39,7 @@ async function execute(bot, message, args, command, data) {
       winMessage: `⚡ Congrats, {winners}! You won just **{prize}**! ⚡`,
       noWinner: `${bot.config.bot.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
       hostedBy: `❔ Giveaway hosted by {user}!`,
-      embedFooter: `Thanks for using Ch1llBlox!`,
+      embedFooter: `Thanks for using SparkV!`,
       winners: `winner(s)`,
       endedAt: `Ends at`,
       units: {

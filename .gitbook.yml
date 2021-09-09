@@ -1,6 +1,6 @@
 root: ./
-title: "Ch1llBlox"
-description: "Ch1llBlox is a powerful Discord Bot for your Discord server."
+title: "SparkV"
+description: "SparkV is a powerful Discord Bot for your Discord server."
 structure:
     readme: ./README.md
     summary: ./docs/summary.md

@@ -12,7 +12,7 @@ module.exports = {
     // Data
     const data = {};
 
-    // If the message's author is a bot, return. This prevents Ch1llBlox from responding to himself.
+    // If the message's author is a bot, return. This prevents SparkV from responding to himself.
     if (message.author.bot) {
       return;
     }
@@ -95,7 +95,7 @@ module.exports = {
           .then(m => m.delete({ timeout: 1000 }));
       }
 
-      const AntiSpam = bot.config.Debug.Enabled === true ? false : data.guild.settings.automod.removeDuplicateText;
+      const AntiSpam = data.guild.settings.automod.removeDuplicateText;
 
       if (AntiSpam === true) {
         if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
@@ -103,7 +103,7 @@ module.exports = {
         }
       }
 
-      const Leveling = bot.config.Debug.Enabled === true ? false : data.guild.settings.leveling.enabled;
+      const Leveling = data.guild.settings.leveling.enabled;
 
       if (Leveling === true) {
         let MaxXP = data.guild.settings.automod.leveling.max;
@@ -136,7 +136,7 @@ module.exports = {
     if (process.env.USERBLACKLIST.includes(message.author.id)) {
       try {
         return message.author
-          .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using Ch1llBlox.`)
+          .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using SparkV.`)
           .then(() => {
             message.react("❌");
           });
@@ -180,7 +180,7 @@ module.exports = {
 
     if (commandfile.settings.guildOnly && !message.guild) {
       return message.channel.send(
-        "This command is guild only. Please join a server with Ch1llBlox in it or invite Ch1llBlox to your own server.",
+        "This command is guild only. Please join a server with SparkV in it or invite SparkV to your own server.",
       );
     }
 
@@ -257,7 +257,7 @@ async function chatbot(message, wasMentioned) {
   var SlicedMessage;
 
   if (message.content.slice(21) === "") {
-    // If case the user replys to Ch1llBlox instead of mentioning him, or for some other silly reason.
+    // If case the user replys to SparkV instead of mentioning him, or for some other silly reason.
 
     SlicedMessage = message.content;
   } else {
@@ -280,10 +280,10 @@ async function chatbot(message, wasMentioned) {
           }
 
           const APIEmbed = new Discord.MessageEmbed()
-            .setTitle(`Ch1llBlox`)
+            .setTitle(`SparkV`)
             .setDescription(body.cnt)
             .setFooter(
-              `Never send personal information to Ch1llBlox. • ${bot.config.bot.Embed.Footer}`,
+              `Never send personal information to SparkV. • ${bot.config.bot.Embed.Footer}`,
               bot.user.displayAvatarURL(),
             )
             .setColor(bot.config.bot.Embed.Color);

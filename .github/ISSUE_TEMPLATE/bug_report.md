@@ -1,7 +1,7 @@
 ---
 
 name: Feature request
-about: Request a feature for Ch1llBlox.
+about: Request a feature for SparkV.
 title: ""
 labels: "type: enhancement"
 assignees: ""

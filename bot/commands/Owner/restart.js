@@ -13,7 +13,7 @@ async function execute(bot, message, args, command, data) {
   }
 
   const RestartStatus = await message.reply(
-    `⚡ | Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`,
+    `⚡ | SparkV is now preparing for restart. Time left: ${Timer} seconds.`,
   );
   var Timer = 5;
 
@@ -25,13 +25,13 @@ async function execute(bot, message, args, command, data) {
         return;
       }
 
-      RestartStatus.edit(`⚡ | Ch1llBlox is now preparing for restart. Time left: ${Timer} seconds.`);
+      RestartStatus.edit(`⚡ | SparkV is now preparing for restart. Time left: ${Timer} seconds.`);
     } else {
       if (restarting === true) {
         return;
       }
 
-      RestartStatus.edit(`⚡ | Ch1llBlox is now restarting.`)
+      RestartStatus.edit(`⚡ | SparkV is now restarting.`)
         .then(msg => {
           restarting = true;
 

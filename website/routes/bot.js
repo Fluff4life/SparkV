@@ -7,6 +7,6 @@ const CheckAuth = require("../utils/CheckAuth");
 const Render = require("../utils/Render");
 
 Router.get("/", async (request, response) => Render(response, request, "bot.ejs"));
-Router.get("/donate", async (request, response) => Render(response, request, "ch1llblox/donate.ejs"));
+Router.get("/donate", async (request, response) => Render(response, request, "donate.ejs"));
 
 module.exports = Router;

@@ -7,6 +7,6 @@ const commands = fs
 
 module.exports = {
   name: "😂 Memey 😂",
-  description: "A gift from Ch1llBlox. The best memes on reddit right now.",
+  description: "A gift from SparkV. The best memes on reddit right now.",
   commands,
 };

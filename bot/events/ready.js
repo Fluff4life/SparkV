@@ -66,7 +66,7 @@ module.exports = {
       status: "dnd",
 
       activity: {
-        name: "Loading Ch1llBlox (100%)",
+        name: "Loading SparkV (100%)",
         type: "CUSTOM_STATUS",
       },
     });
@@ -75,7 +75,7 @@ module.exports = {
       bot.StatClient.autopost();
     }
 
-    console.log("-------- Ch1llBlox --------");
+    console.log("-------- SparkV --------");
     bot.logger(
       `Logged into Discord as ${bot.user.tag} (${bot.user.id})\n🏢 | Servers: ${bot.functions.FormatNumber(
         await bot.functions.GetServerCount(),
