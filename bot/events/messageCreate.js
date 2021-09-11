@@ -216,19 +216,12 @@ module.exports = {
 
     try {
       await commandfile.run(bot, message, args, command, data).then(async () => {
-        const DeleteUsage =
-          bot.config.Debug.Enabled === true
-            ? "Disabled"
-            : await bot.dashboard.getVal(message.guild.id, `deletecommandusage`);
-
-        if (DeleteUsage === `Enabled`) {
-          message.delete().catch(() => {});
+        if (data.guild.autoRemoveCommands === true) {
+          message.delete().catch(() => { });
         }
-      });
 
-      if (bot.StatClient) {
         bot.StatClient.postCommand(command, message.author.id);
-      }
+      });
     } catch (err) {
       console.error(err);
 
