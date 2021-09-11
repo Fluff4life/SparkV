@@ -11,8 +11,8 @@ module.exports = {
         topgg: process.env.DBLKEY
       },
       clientLibrary: "discord.js",
-      serverCount: async () => await bot.function.GetServerCount(),
-      userCount: async () => await bot.function.GetUserCount(),
+      serverCount: async () => await bot.functions.GetServerCount(),
+      userCount: async () => await bot.functions.GetUserCount(),
     });
 
     poster.startInterval();

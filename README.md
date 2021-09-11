@@ -2,8 +2,7 @@
 
 ## About
 
-SparkV is an open sourced Discord bot using [Discord.js](https://github.com/discordjs) coded in [JavaScript](https://javascript.com/) by [KingCh1ll](https://ch1ll.dev/).
-
+Meet SparkV by Ch1ll Studio. The most powerful multipurpose, moderation, leveling and meme bot to power your server like never before. Created when Ch1llBlox deceased, SparkV rose to power. With over 100+ commands and NO paywall, makes SparkV more powerful than most bots. SparkV is also an open sourced Discord bot using [Discord.js](https://github.com/discordjs) coded in [JavaScript](https://javascript.com/) by [KingCh1ll](https://ch1ll.dev/).
 > SparkV is powering many servers. Join those servers today!
 
 ## Features
