@@ -51,20 +51,20 @@ SparkV's Command List! SparkV contains more than **111 commands**!
 | **uselessfact**      | I will get a useless fact! You're better off with the advice command...                                                                 | {word}            | 2 seconds |
 ## 🎮 Games 🎮
 
-| Name                  | Description                                                          | Usage           | Cooldown   |
-| --------------------- | -------------------------------------------------------------------- | --------------- | ---------- |
-| **betrayal**          | Ch1llBlox will look up any user and return information on that user. | {username}      | 60 seconds |
-| **chess**             | Ch1llBlox will look up any user and return information on that user. | {username}      | 60 seconds |
-| **connectfour**       | Play a game of ConnectFour with me or mention someone to play with!  | {optional user} | 60 seconds |
-| **fishing**           | Ch1llBlox will look up any user and return information on that user. | {username}      | 60 seconds |
-| **memory**            | Pratice your memory!                                                 | {optional user} | 60 seconds |
-| **poker**             | Ch1llBlox will look up any user and return information on that user. | {username}      | 60 seconds |
-| **rockpaperscissors** | Play a game of Rock Paper Scissors with me!                          |                 | 60 seconds |
-| **snake**             | Get those apples and grow, grow, grow to get the best score.         |                 | 60 seconds |
-| **tictactoe**         | Play a game of Tic Tac Toe with me or mention someone to play with!  |                 | 60 seconds |
-| **trivia**            | Play a game of trivia!                                               |                 | 60 seconds |
-| **wouldyourather**    | Would you rather.                                                    |                 | 60 seconds |
-| **youtube**           | YouTube together!                                                    |                 | 60 seconds |
+| Name                  | Description                                                         | Usage           | Cooldown   |
+| --------------------- | ------------------------------------------------------------------- | --------------- | ---------- |
+| **betrayal**          | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
+| **chess**             | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
+| **connectfour**       | Play a game of ConnectFour with me or mention someone to play with! | {optional user} | 60 seconds |
+| **fishing**           | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
+| **memory**            | Pratice your memory!                                                | {optional user} | 60 seconds |
+| **poker**             | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
+| **rockpaperscissors** | Play a game of Rock Paper Scissors with me!                         |                 | 60 seconds |
+| **snake**             | Get those apples and grow, grow, grow to get the best score.        |                 | 60 seconds |
+| **tictactoe**         | Play a game of Tic Tac Toe with me or mention someone to play with! |                 | 60 seconds |
+| **trivia**            | Play a game of trivia!                                              |                 | 60 seconds |
+| **wouldyourather**    | Would you rather.                                                   |                 | 60 seconds |
+| **youtube**           | YouTube together!                                                   |                 | 60 seconds |
 ## 📷Images📷
 
 | Name               | Description                     | Usage                | Cooldown  |
@@ -142,22 +142,22 @@ SparkV's Command List! SparkV contains more than **111 commands**!
 | **setxp**         | Set XP.                        | {user} {ammount} | 2 seconds |
 ## ⚫Roblox⚫
 
-| Name            | Description                                                          | Usage           | Cooldown  |
-| --------------- | -------------------------------------------------------------------- | --------------- | --------- |
-| **gamedetails** | I'll grab the details of any game for you.                           | {command}       | 2 seconds |
-| **shout**       | Ch1llBlox will shout to any group owned by you!                      | {Shout Message} | 2 seconds |
-| **verify**      | Verify yourself! Only works when enabled on the dashboard.           | {username}      | 2 seconds |
-| **whois**       | Ch1llBlox will look up any user and return information on that user. | {username}      | 2 seconds |
+| Name            | Description                                                       | Usage           | Cooldown  |
+| --------------- | ----------------------------------------------------------------- | --------------- | --------- |
+| **gamedetails** | I'll grab the details of any game for you.                        | {command}       | 2 seconds |
+| **shout**       | SparkV will shout to any group owned by you!                      | {Shout Message} | 2 seconds |
+| **verify**      | Verify yourself! Only works when enabled on the dashboard.        | {username}      | 2 seconds |
+| **whois**       | SparkV will look up any user and return information on that user. | {username}      | 2 seconds |
 ## 🧰 Utility 🧰
 
-| Name           | Description                                                                                         | Usage     | Cooldown  |
-| -------------- | --------------------------------------------------------------------------------------------------- | --------- | --------- |
-| **calculator** | Calculate any equation!                                                                             |           | 2 seconds |
-| **credits**    | Look at everyone who helped make Ch1llBlox!                                                         |           | 2 seconds |
-| **dashboard**  | I'll send my dashboard!                                                                             | {user}    | 2 seconds |
-| **donate**     | Donate in the form of robux to help Ch1llBlox's developement. Every donation is really appreciated! |           | 2 seconds |
-| **help**       | I will displays all commands. Do ^Help [command name] for specific command information!             | {command} | 2 seconds |
-| **invite**     | Displays links.                                                                                     |           | 2 seconds |
-| **rules**      | Follow them lol.                                                                                    |           | 2 seconds |
-| **stats**      | Ch1llBlox's stats.                                                                                  |           | 2 seconds |
-| **website**    | I'll send my website!                                                                               |           | 2 seconds |
+| Name           | Description                                                                                      | Usage     | Cooldown  |
+| -------------- | ------------------------------------------------------------------------------------------------ | --------- | --------- |
+| **calculator** | Calculate any equation!                                                                          |           | 2 seconds |
+| **credits**    | Look at everyone who helped make SparkV!                                                         |           | 2 seconds |
+| **dashboard**  | I'll send my dashboard!                                                                          | {user}    | 2 seconds |
+| **donate**     | Donate in the form of robux to help SparkV's developement. Every donation is really appreciated! |           | 2 seconds |
+| **help**       | View Ch1llBlox's 100+ commands.                                                                  | {command} | 2 seconds |
+| **invite**     | Displays links.                                                                                  |           | 2 seconds |
+| **rules**      | Follow them lol.                                                                                 |           | 2 seconds |
+| **stats**      | SparkV's stats.                                                                                  |           | 2 seconds |
+| **website**    | I'll send my website!                                                                            |           | 2 seconds |

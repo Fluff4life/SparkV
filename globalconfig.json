@@ -3,6 +3,7 @@
   "bot": {
     "ID": 763126208149585961,
     "prefix": "^",
+    "bot_invite": "https://discord.com/oauth2/authorize?client_id=884525761694933073&scope=bot+applications.commands&response_type=code&redirect_uri=https%3A%2F%2Fch1llblox.botdash.pro&permissions=4231916662",
     "support": {
       "id": 763803059876397056,
       "invite": "https://discord.gg/PPtzT8Mu3h"

@@ -5,6 +5,6 @@ const logger = require("../../modules/logger");
 module.exports = {
   once: false,
   async execute(bot, event) {
-    await logger(`bot Warning! - ${event}`, "warning");
+    await logger(`bot Warning! - ${event}`, "warn");
   },
 };

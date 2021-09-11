@@ -1,10 +1,21 @@
 const Discord = require("discord.js");
+const dbots = require("dbots");
 
 module.exports = {
   once: true,
   async execute(bot) {
-    // Top.gg Stats //
-    require("../modules/topStats").init(bot, process.env.DBLKEY, process.env.DBLPASS);
+    // Bot Lists //
+    const poster = new dbots.Poster({
+      clientID: bot.user.id,
+      apiKeys: {
+        topgg: process.env.DBLKEY
+      },
+      clientLibrary: "discord.js",
+      serverCount: async () => await bot.function.GetServerCount(),
+      userCount: async () => await bot.function.GetUserCount(),
+    });
+
+    poster.startInterval();
 
     const Activities = [
       {

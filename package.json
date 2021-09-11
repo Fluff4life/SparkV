@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.6.0",
+    "@discordjs/rest": "^0.1.0-canary.0",
     "@discordjs/voice": "^0.6.0",
     "@distube/soundcloud": "^0.2.2",
     "@distube/spotify": "^0.6.3",
@@ -42,8 +43,9 @@
     "canvas": "^2.8.0",
     "chalk": "^4.1.2",
     "connect-mongo": "^4.5.0",
-    "dblapi.js": "^2.4.1",
+    "dbots": "^9.0.1",
     "discord-anti-spam": "^2.5.8",
+    "discord-api-types": "^0.23.1",
     "discord-giveaways": "^5.0.1",
     "discord-tictactoe": "^2.1.1",
     "discord-together": "^1.1.62",
@@ -71,7 +73,6 @@
     "socket.io-client": "^4.2.0",
     "statcord.js": "^3.3.0",
     "sweetalert2": "^11.1.5",
-    "topgg-autoposter": "^2.0.0",
     "urban": "^0.3.4",
     "weather-js": "^2.0.0",
     "weky": "^3.1.5"
@@ -79,9 +80,7 @@
   "devDependencies": {
     "ejs-lint": "^1.2.1",
     "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-prettier": "^4.0.0",
     "prettier": "2.3.2",
     "sass": "^1.39.0"
   }

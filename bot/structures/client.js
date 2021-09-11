@@ -7,7 +7,6 @@ const { DiscordTogether } = require("discord-together");
 const { Client, Collection, Intents, Structures } = require("discord.js");
 const Statcord = require("statcord.js");
 
-const botlists = require("../../modules/dependencies/botlists");
 const Distube = require("../../modules/dependencies/distubehandler");
 const giveawayshandler = require("../../modules/dependencies/giveawayshandler");
 const Noblox = require("../../modules/dependencies/noblox");
