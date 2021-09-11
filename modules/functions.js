@@ -29,7 +29,7 @@ module.exports = {
     const acceptedPrefixes = [
       `<@!${message.client.user.id}> `,
       `<@${message.client.user.id}> `,
-      bot.config.Debug.Enabled ? "_" : data.guild.prefix,
+      bot.config.Debug.Enabled === true ? "_" : data.guild.settings.prefix,
     ];
 
     let prefix;
