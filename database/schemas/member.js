@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const config = require("../../globalconfig.json");
 
 module.exports = mongoose.model(
-  "Member",
+  "BMember",
   new mongoose.Schema({
     // User Information //
     id: { type: String },
