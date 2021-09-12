@@ -19,8 +19,17 @@ module.exports = {
 
           const NewEmbed = new MessageEmbed()
             .setTitle(Category.name)
-            .setDescription(bot.commands.filter(command => command.settings.enabled && command.category === Category.name).map(command => `\`^${command.settings.name} ${command.settings.usage}\`\n${command.settings.description}`).join(`\n\n`))
-            .setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
+            .setDescription(
+              bot.commands
+                .filter(command => command.settings.enabled && command.category === Category.name)
+                .map(
+                  command => `\`^${command.settings.name} ${command.settings.usage}\`\n${command.settings.description}`,
+                )
+                .join(`\n\n`),
+            )
+            .setThumbnail(
+              `https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`,
+            )
             .setAuthor(
               "SparkV Help",
               `https://cdn.discordapp.com/avatars/${interaction.message.author.id}/${interaction.message.author.avatar}.png?size=256`,
@@ -44,13 +53,12 @@ module.exports = {
             label: Category.name,
             description: Category.description,
             value: Category.name,
-            emoji: Category.emoji ? Category.emoji : null
+            emoji: Category.emoji ? Category.emoji : null,
           });
         };
 
         bot.categories.map(cat => CreatePage(bot, interaction, cat));
         bot.categories.map(cat => CreateSelection(interaction, cat));
-
 
         const CatSelect = new MessageSelectMenu()
           .setCustomId("SelectHelpMenu")
@@ -74,13 +82,11 @@ module.exports = {
 
         console.log(pages.filter(p => p.title === interaction.values[0])[0]);
         await interaction.update({
-          embeds: [
-            pages.filter(p => p.title === interaction.values[0])[0]
-          ],
+          embeds: [pages.filter(p => p.title === interaction.values[0])[0]],
           components: [
             new MessageActionRow().addComponents(CatSelect),
-            new MessageActionRow().addComponents(InviteButton, SupportButton, VoteButton)
-          ]
+            new MessageActionRow().addComponents(InviteButton, SupportButton, VoteButton),
+          ],
         });
       }
     }

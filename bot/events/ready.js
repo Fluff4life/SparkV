@@ -8,7 +8,7 @@ module.exports = {
     const poster = new dbots.Poster({
       clientID: bot.user.id,
       apiKeys: {
-        topgg: process.env.DBLKEY
+        topgg: process.env.DBLKEY,
       },
       clientLibrary: "discord.js",
       serverCount: async () => await bot.functions.GetServerCount(),

@@ -15,7 +15,7 @@ async function execute(bot, message, args, command, data) {
       label: Category.name,
       description: Category.description,
       value: Category.name,
-      emoji: Category.emoji ? Category.emoji : null
+      emoji: Category.emoji ? Category.emoji : null,
     });
   };
 
@@ -44,10 +44,8 @@ async function execute(bot, message, args, command, data) {
       .setPlaceholder("Select a category to view it's commands.")
       .addOptions(Selections);
 
-    const InviteButton = new MessageButton()
-      .setURL(bot.config.bot.bot_invite)
-      .setLabel("Bot Invite")
-      .setStyle("LINK");
+    const InviteButton = new MessageButton().setURL(bot.config.bot.bot_invite).setLabel("Bot Invite")
+.setStyle("LINK");
 
     const SupportButton = new MessageButton()
       .setURL(bot.config.bot.support.invite)
@@ -63,13 +61,8 @@ async function execute(bot, message, args, command, data) {
     const row2 = new MessageActionRow().addComponents(InviteButton, SupportButton, VoteButton);
 
     message.channel.send({
-      embeds: [
-        NewEmbed
-      ],
-      components: [
-        row,
-        row2
-      ],
+      embeds: [NewEmbed],
+      components: [row, row2],
     });
   } else {
     const name = args[0].toLowerCase();

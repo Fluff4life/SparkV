@@ -217,7 +217,7 @@ module.exports = {
     try {
       await commandfile.run(bot, message, args, command, data).then(async () => {
         if (data.guild.autoRemoveCommands === true) {
-          message.delete().catch(() => { });
+          message.delete().catch(() => {});
         }
 
         bot.StatClient.postCommand(command, message.author.id);
