@@ -80,7 +80,6 @@ module.exports = {
           .setLabel("Vote for me!")
           .setStyle("LINK");
 
-        console.log(pages.filter(p => p.title === interaction.values[0])[0]);
         await interaction.update({
           embeds: [pages.filter(p => p.title === interaction.values[0])[0]],
           components: [

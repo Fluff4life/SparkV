@@ -5,7 +5,7 @@ module.exports = {
   async execute(bot, guild) {
     console.log(`SparkV has been added to ${guild.name} (Id: ${guild.id}).`);
 
-    const Logger = bot.channels.cache.get(831314946624454656);
+    const Logger = bot.channels.cache.get("831314946624454656");
 
     if (Logger) {
       const ServerAddedEmbed = Discord.MessageEmbed()
@@ -61,9 +61,26 @@ module.exports = {
       guild.systemChannel.permissionsFor(bot.user).has("VIEW_CHANNEL")
     ) {
       try {
-        await guild.systemChannel.send(
-          "Hi! My name's SparkV. I'm a bot with over 120+ commands to assist you with keeping you entertained and your server active! Simply use the command ^Help to get a list of my commands. Want to enable a setting? Go to my dashboard! Use the command ^Dashboard and click on the link I send you. Thanks for inviting me!",
-        );
+        const InviteButton = new MessageButton()
+          .setURL(bot.config.bot.bot_invite)
+          .setLabel("Bot Invite")
+          .setStyle("LINK");
+
+        const SupportButton = new MessageButton()
+          .setURL(bot.config.bot.support.invite)
+          .setLabel("Support Invite")
+          .setStyle("LINK");
+
+        const VoteButton = new MessageButton()
+          .setURL("https://top.gg/bot/763126208149585961")
+          .setLabel("Vote for me!")
+          .setStyle("LINK");
+
+        await guild.systemChannel.send({
+          content:
+            "Hi! My name's SparkV. I'm a bot with over 100+ commands to assist you with keeping you entertained and your server active! Simply use the command ^Help to get a list of my commands. Want to enable a setting? Go to my dashboard! Use the command ^Dashboard and click on the link I send you. Thanks for inviting me!",
+          components: [new MessageActionRow().addComponents(InviteButton, SupportButton, VoteButton)],
+        });
       } catch {
         console.log(`Failed to send message to ${guild.name} (${guild.id})!`);
       }
