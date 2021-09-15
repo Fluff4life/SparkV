@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * Bootstrap v5.1.0 (https://getbootstrap.com/)
+ * Bootstrap v5.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -46,7 +46,8 @@
   --bs-dark-rgb: 33, 37, 41;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
-  --bs-body-rgb: 33, 37, 41;
+  --bs-body-color-rgb: 33, 37, 41;
+  --bs-body-bg-rgb: 255, 255, 255;
   --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -2000,7 +2001,7 @@ progress {
   border-color: #dee2e6;
 }
 .table > :not(caption) > * > * {
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom-width: 1px;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
@@ -2020,7 +2021,7 @@ progress {
 }
 
 .table-sm > :not(caption) > * > * {
-  padding: 0.25rem;
+  padding: 0.25rem 0.25rem;
 }
 
 .table-bordered > :not(caption) > * {
@@ -4697,7 +4698,7 @@ fieldset:disabled .btn {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem;
+  padding: 1rem 1rem;
 }
 
 .card-title {
@@ -4823,7 +4824,7 @@ fieldset:disabled .btn {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem;
   font-size: 1rem;
   color: #212529;
   text-align: left;
@@ -4907,7 +4908,7 @@ fieldset:disabled .btn {
 }
 
 .accordion-body {
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem;
 }
 
 .accordion-flush .accordion-collapse {
@@ -4931,7 +4932,7 @@ fieldset:disabled .btn {
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 0 0;
   margin-bottom: 1rem;
   list-style: none;
 }
@@ -5062,7 +5063,7 @@ fieldset:disabled .btn {
 
 .alert {
   position: relative;
-  padding: 1rem;
+  padding: 1rem 1rem;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
@@ -5561,7 +5562,7 @@ fieldset:disabled .btn {
   box-sizing: content-box;
   width: 1em;
   height: 1em;
-  padding: 0.25em;
+  padding: 0.25em 0.25em;
   color: #000;
   background: transparent
     url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
@@ -5725,13 +5726,13 @@ fieldset:disabled .btn {
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
 }
 .modal-header .btn-close {
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem;
   margin: -0.5rem -0.5rem -0.5rem auto;
 }
 
@@ -6119,13 +6120,13 @@ fieldset:disabled .btn {
 .bs-popover-bottom > .popover-arrow::before,
 .bs-popover-auto[data-popper-placement^='bottom'] > .popover-arrow::before {
   top: 0;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 .bs-popover-bottom > .popover-arrow::after,
 .bs-popover-auto[data-popper-placement^='bottom'] > .popover-arrow::after {
   top: 1px;
-  border-width: 0 0.5rem 0.5rem;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: #fff;
 }
 .bs-popover-bottom .popover-header::before,
@@ -6173,7 +6174,7 @@ fieldset:disabled .btn {
 }
 
 .popover-body {
-  padding: 1rem;
+  padding: 1rem 1rem;
   color: #212529;
 }
 
@@ -6476,10 +6477,10 @@ fieldset:disabled .btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 1rem;
 }
 .offcanvas-header .btn-close {
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem;
   margin-top: -0.5rem;
   margin-right: -0.5rem;
   margin-bottom: -0.5rem;
@@ -6492,7 +6493,7 @@ fieldset:disabled .btn {
 
 .offcanvas-body {
   flex-grow: 1;
-  padding: 1rem;
+  padding: 1rem 1rem;
   overflow-y: auto;
 }
 
@@ -7921,7 +7922,7 @@ fieldset:disabled .btn {
 
 .text-body {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-body-rgb), var(--bs-text-opacity)) !important;
+  color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-muted {
@@ -8012,7 +8013,7 @@ fieldset:disabled .btn {
 
 .bg-body {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-body-rgb), var(--bs-bg-opacity)) !important;
+  background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-transparent {
@@ -12573,19 +12574,13 @@ body[data-aos-easing='ease-in-out-quart'] [data-aos],
   bottom: 0;
   left: 0;
   box-sizing: border-box;
-  grid-template-areas: 'top-start     top            top-end' 'center-start  center         center-end' 'bottom-start  bottom-center  bottom-end' 'gap gap gap';
-  grid-template-rows: auto auto auto 0.625em;
+  grid-template-areas: 'top-start     top            top-end' 'center-start  center         center-end' 'bottom-start  bottom-center  bottom-end';
+  grid-template-rows: minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);
   height: 100%;
-  padding: 0.625em 0.625em 0;
+  padding: 0.625em;
   overflow-x: hidden;
   transition: background-color 0.1s;
   -webkit-overflow-scrolling: touch;
-}
-.swal2-container::after {
-  content: '';
-  grid-column: 1/4;
-  grid-row: 4;
-  height: 0.625em;
 }
 .swal2-container.swal2-backdrop-show,
 .swal2-container.swal2-noanimation {
@@ -12716,7 +12711,7 @@ body[data-aos-easing='ease-in-out-quart'] [data-aos],
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: auto;
   margin: 1.25em auto 0;
   padding: 0;
 }
@@ -12741,7 +12736,7 @@ body[data-aos-easing='ease-in-out-quart'] [data-aos],
   border-width: 0.25em;
   border-style: solid;
   border-radius: 100%;
-  border-color: #2778c4 transparent;
+  border-color: #2778c4 transparent #2778c4 transparent;
 }
 
 .swal2-styled {
@@ -13663,7 +13658,6 @@ hr {
   padding-top: 1rem;
   display: flex;
   list-style: none;
-  padding: 0;
   flex-direction: row;
   margin-bottom: 0;
   background: #009cff;
@@ -13827,3 +13821,5 @@ hr {
  * Copyright 2021 KingCh1ll
  * All rights reserved.
  */
+
+/*# sourceMappingURL=style.css.map */
