@@ -5,7 +5,7 @@ const GiveawaysSchema = require("../../database/schemas/giveaways");
 const logger = require("../../modules/logger");
 
 module.exports = async bot => {
-  var giveaways = await GiveawaysSchema.findOne({
+  let giveaways = await GiveawaysSchema.findOne({
     ID: "giveaways",
   });
 

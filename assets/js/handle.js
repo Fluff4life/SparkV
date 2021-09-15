@@ -3,11 +3,11 @@ KingCh1ll
 Handle.js
 */
 
-var scroll = new SmoothScroll('a[href*="#"]');
-var online = true;
+let scroll = new SmoothScroll('a[href*="#"]');
+let online = true;
 
 $(window).load(async () => {
-  var Popup = Swal.mixin({
+  let Popup = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
@@ -27,26 +27,26 @@ $(window).load(async () => {
     });
   });
 
-  var iframes = document.getElementsByTagName("iframe");
+  let iframes = document.getElementsByTagName("iframe");
 
-  for (var iframe of iframes) {
+  for (let iframe of iframes) {
     iframe.setAttribute("sandbox", "allow-popups allow-forms");
   }
 });
 
 $(document).ready(() => {
-  var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+  let scrollSpy = new bootstrap.ScrollSpy(document.body, {
     target: "#navbar-example",
   });
 
-  var dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
+  let dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
   dataSpyList.forEach(dataSpyEl => {
     bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh();
   });
 
-  var iframes = document.getElementsByTagName("iframe");
+  let iframes = document.getElementsByTagName("iframe");
 
-  for (var iframe of iframes) {
+  for (let iframe of iframes) {
     iframe.setAttribute("sandbox", "allow-popups allow-forms");
   }
 

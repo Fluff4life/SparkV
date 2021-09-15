@@ -37,7 +37,7 @@ async function execute(bot, message, args, command, data) {
   const LyricsArray = Lyrics.lyrics.split(`\n`);
   const LyricsSubArray = [];
   const pages = [];
-  var e = 0;
+  let e = 0;
 
   for (const line of LyricsArray) {
     if (LyricsSubArray[e].length + line.length < 2000) {

@@ -19,7 +19,7 @@ module.exports = class RedditCommand {
   }
 
   async run(bot, message, args, command) {
-    var body = await fetch(`${this.settings.endpoint}`).then(response => response.json());
+    let body = await fetch(`${this.settings.endpoint}`).then(response => response.json());
 
     if (body.file) {
       body = body.file;

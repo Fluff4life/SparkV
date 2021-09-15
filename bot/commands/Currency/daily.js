@@ -5,8 +5,8 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   const RandomAmmount = Math.floor(Math.random() * 3500) + 1;
 
-  var Ch1llBucks = data.user.money.balance;
-  var Multiplier = data.user.money.multiplier;
+  let Ch1llBucks = data.user.money.balance;
+  let Multiplier = data.user.money.multiplier;
 
   const Ammount = RandomAmmount * Multiplier;
 

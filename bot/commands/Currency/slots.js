@@ -36,8 +36,8 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.bot.Emojis.error} | lol you need to tell me how much to bet.`);
   }
 
-  var Ch1llBucks = data.user.money.balance;
-  var win = false;
+  let Ch1llBucks = data.user.money.balance;
+  let win = false;
 
   if (Ch1llBucks === 0 || Ch1llBucks === null) {
     return message.reply(`${bot.config.bot.Emojis.error} | You have no Ch1llBucks!`);

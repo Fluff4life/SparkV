@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  var Ch1llBucks = data.user.money.balance;
-  var Multiplier = data.user.money.multiplier;
+  let Ch1llBucks = data.user.money.balance;
+  let Multiplier = data.user.money.multiplier;
   const RandomAmmount = Math.floor(Math.random() * 500) + 1;
 
   if (!Ch1llBucks) {

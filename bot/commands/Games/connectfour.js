@@ -96,11 +96,11 @@ async function execute(bot, message, args, command, data) {
   const Board = Array;
   const ColLevels = [5, 5, 5, 5, 5, 5, 5];
 
-  var UserTurn = true;
-  var Winner = null;
-  var LastTurnDebounce = false;
+  let UserTurn = true;
+  let Winner = null;
+  let LastTurnDebounce = false;
 
-  var GameEmbed = new Discord.MessageEmbed()
+  let GameEmbed = new Discord.MessageEmbed()
     .setTitle(`**${message.author} V.S ${Opponent}**`)
     .setDescription(`${DisplayBoard(Board)}`)
     .setColor(bot.config.bot.Embed.Color)

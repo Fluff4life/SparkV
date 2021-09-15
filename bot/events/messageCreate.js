@@ -247,7 +247,7 @@ module.exports = {
 };
 
 async function chatbot(message, wasMentioned) {
-  var SlicedMessage;
+  let SlicedMessage;
 
   if (message.content.slice(21) === "") {
     // If case the user replys to SparkV instead of mentioning him, or for some other silly reason.

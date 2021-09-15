@@ -3,9 +3,9 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  var Ch1llBucks = data.user.money.balance;
-  var Bank = data.user.money.bank;
-  var BankMax = data.user.money.bankMax;
+  let Ch1llBucks = data.user.money.balance;
+  let Bank = data.user.money.bank;
+  let BankMax = data.user.money.bankMax;
 
   if (!args) {
     return message.reply(

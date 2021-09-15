@@ -26,7 +26,7 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-  var warnings = bot.Database.get(`ServerData.${message.guild.id}.${User.id}.warnings`);
+  let warnings = bot.Database.get(`ServerData.${message.guild.id}.${User.id}.warnings`);
 
   message.reply(`${User} has **${warnings}** warnings.`);
 }

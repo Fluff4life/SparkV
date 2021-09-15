@@ -10,9 +10,9 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.bot.Emojis.error} | Please say a person to rob.`);
   }
 
-  var RobberCh1llBucks = data.user.money.balance;
-  var UserBalance = await bot.database.fetchUser(User.id);
-  var UserCh1llBucks = UserBalance.money.balance;
+  let RobberCh1llBucks = data.user.money.balance;
+  let UserBalance = await bot.database.fetchUser(User.id);
+  let UserCh1llBucks = UserBalance.money.balance;
 
   if (RobberCh1llBucks < 500) {
     return message.reply(

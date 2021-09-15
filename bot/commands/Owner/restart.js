@@ -13,7 +13,7 @@ async function execute(bot, message, args, command, data) {
   }
 
   const RestartStatus = await message.reply(`⚡ | SparkV is now preparing for restart. Time left: ${Timer} seconds.`);
-  var Timer = 5;
+  let Timer = 5;
 
   setInterval(() => {
     --Timer;

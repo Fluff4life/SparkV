@@ -4,7 +4,7 @@ const EasyPages = require("discordeasypages");
 const cmd = require("../../templates/command");
 
 const Rules = new Discord.Collection();
-var SetRules = false;
+let SetRules = false;
 
 module.exports = new cmd(
   (bot, message, args, command, data) => {

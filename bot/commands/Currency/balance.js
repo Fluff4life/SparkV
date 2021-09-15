@@ -5,9 +5,9 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   const User = bot.GetMember(message, args) || message.author;
 
-  var Ch1llBucks = data.user.money.balance;
-  var Bank = data.user.money.bank;
-  var BankMax = data.user.money.bankMax;
+  let Ch1llBucks = data.user.money.balance;
+  let Bank = data.user.money.bank;
+  let BankMax = data.user.money.bankMax;
 
   const BalanceEmbed = new Discord.MessageEmbed()
     .setTitle(`**${User.tag}'s Balance**`)

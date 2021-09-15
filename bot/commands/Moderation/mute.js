@@ -36,7 +36,7 @@ async function execute(bot, message, args, command, data) {
   }
 
   const Roles = User.roles.cache.filter(role => role.id !== message.guild.id).map(role => role.id);
-  var MutedRole = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(`muted`));
+  let MutedRole = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(`muted`));
 
   if (!MutedRole) {
     if (!message.guild || !message.guild.roles) {

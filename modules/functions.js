@@ -56,10 +56,10 @@ module.exports = {
     }
 
     const DecPlaces = Math.pow(10, 1);
-    var Abbrev = ["k", "m", "g", "t", "p", "e"];
+    let Abbrev = ["k", "m", "g", "t", "p", "e"];
 
-    for (var i = Abbrev.length - 1; i >= 0; i--) {
-      var Size = Math.pow(10, (i + 1) * 3);
+    for (let i = Abbrev.length - 1; i >= 0; i--) {
+      let Size = Math.pow(10, (i + 1) * 3);
 
       if (Size <= Number) {
         Number = Math.round((Number * DecPlaces) / Size) / DecPlaces;
@@ -89,7 +89,7 @@ module.exports = {
     let Mins = RoundNumber(ms / 60000) % 60;
     let Secs = RoundNumber(ms / 1000) % 60;
 
-    var time = Days > 0 ? `${Days} Day${Days === 1 ? "" : "s"}, ` : "";
+    let time = Days > 0 ? `${Days} Day${Days === 1 ? "" : "s"}, ` : "";
     time += Hours > 0 ? `${Hours} Hour${Hours === 1 ? "" : "s"}, ` : "";
     time += Mins > 0 ? `${Mins} Minute${Mins === 1 ? "" : "s"} & ` : "";
     time += Secs > 0 ? `${Secs} Second${Secs === 1 ? "" : "s"}.` : "0 Seconds.";
@@ -134,10 +134,10 @@ module.exports = {
    * @returns {Object} Member. If the member is not found, the value will be null.
    */
   async GetMember(message, args) {
-    var member = message.mentions.members.first();
-    var checkCache = bot.users.cache.get(args.slice(0).join(" "));
-    var checkCache2 = bot.users.cache.get(args[0]);
-    var checkGuildCache = message.guild.members.cache.find(
+    let member = message.mentions.members.first();
+    let checkCache = bot.users.cache.get(args.slice(0).join(" "));
+    let checkCache2 = bot.users.cache.get(args[0]);
+    let checkGuildCache = message.guild.members.cache.find(
       u => u.user.username.toLowerCase() === args.slice(0).join(" ") || u.user.username === args[0],
     );
 
@@ -216,7 +216,7 @@ module.exports = {
    */
   async GetUserCount() {
     if (bot.config.bot.Sharding.ShardingEnabled === false) {
-      var CollectedUsers = 0;
+      let CollectedUsers = 0;
 
       bot.guilds.cache.map((server, id) => (CollectedUsers = server.memberCount + CollectedUsers));
 
@@ -226,16 +226,16 @@ module.exports = {
 
   /*
   Async Debounce(callback, wait, immediate) {
-    var timeout
+    let timeout
 
     return function() {
-      var context = this,
+      let context = this,
         args = args
-      var later = function() {
+      let later = function() {
         timeout = null
         if (!immediate) callback.apply(context, args)
       }
-      var callNow = immediate && !timeout
+      let callNow = immediate && !timeout
       clearTimeout(timeout)
       timeout = setTimeout(later, wait)
       if (callNow) callback.apply(context, args)

@@ -31,7 +31,7 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-  var Role = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(`muted`));
+  let Role = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(`muted`));
 
   if (!Role) {
     return message.reply(

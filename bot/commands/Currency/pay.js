@@ -25,8 +25,8 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.bot.Emojis.error} | You cannot give a user negitive Ch1llBucks lol.`);
   }
 
-  var Ch1llBucks = data.user.money.balance;
-  var UserCh1llBucks = await bot.database.fetchUser(User.id);
+  let Ch1llBucks = data.user.money.balance;
+  let UserCh1llBucks = await bot.database.fetchUser(User.id);
 
   if (Ch1llBucks < args[1]) {
     return message.reply(`${bot.config.bot.Emojis.error} | You don't have that much money!`);

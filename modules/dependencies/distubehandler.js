@@ -168,7 +168,7 @@ module.exports = async bot => {
     })
     .on("searchResult", result => {
       try {
-        var Pages = [];
+        let Pages = [];
 
         const CreatePage = Song => {
           const NewEmbed = new Discord.MessageEmbed()

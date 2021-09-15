@@ -16,7 +16,7 @@ async function execute(bot, message, args, command, data) {
   }
 
   const Queue = bot.distube.getQueue(message);
-  var mode;
+  let mode;
 
   if (!bot.distube.isPlaying(message)) {
     return message

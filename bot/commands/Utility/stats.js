@@ -12,12 +12,12 @@ module.exports = new cmd(
       footerMessage = "pog you found me lol great job on timing it on exactly 5 minutes";
     }
 
-    var UsedMemory = os.totalmem() - os.freemem();
-    var TotalMemory = os.totalmem();
-    var MemoryPersentage = `${((UsedMemory / TotalMemory) * 100).toFixed(2)}%`;
+    let UsedMemory = os.totalmem() - os.freemem();
+    let TotalMemory = os.totalmem();
+    let MemoryPersentage = `${((UsedMemory / TotalMemory) * 100).toFixed(2)}%`;
 
-    var LocalPing = new Date().getTime() - message.createdTimestamp;
-    var APIPing = bot.ws.ping;
+    let LocalPing = new Date().getTime() - message.createdTimestamp;
+    let APIPing = bot.ws.ping;
 
     const StatsEmbed = new Discord.MessageEmbed()
       .setTitle("📊 Stats 📊")
