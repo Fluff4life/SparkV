@@ -7,7 +7,6 @@ module.exports = async bot => {
   const { SoundCloudPlugin } = require("@distube/soundcloud");
 
   bot.distube = new DisTube(bot, {
-    youtubeCookie: process.env.YOUTUBEAPIKEY,
     searchSongs: 20,
     searchCooldown: 30,
     leaveOnFinish: true,

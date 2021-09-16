@@ -57,6 +57,8 @@ module.exports = class bot extends Client {
     // Update Docs
     setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
 
+    Distube(this);
+
     if (!settings.sharding) {
       const StatClient = new Statcord.Client({
         client,
