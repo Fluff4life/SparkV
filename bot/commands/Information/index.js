@@ -8,6 +8,5 @@ const commands = fs
 module.exports = {
   name: "📋 Information 📋",
   description: "These are some basic informational commands and statistics.",
-  'Here are some basic information commands, guides, and statistics
   commands,
 };
