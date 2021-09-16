@@ -51,7 +51,7 @@ module.exports = async bot => {
           )
           .setTimestamp();
 
-        queue.textChannel.reply({
+        queue.textChannel.send({
           embeds: [NowPlayingEmbed],
         });
       } else {
@@ -88,13 +88,13 @@ module.exports = async bot => {
           )
           .setTimestamp();
 
-        queue.textChannel.reply({
+        queue.textChannel.send({
           embeds: [NowPlayingEmbed],
         });
       }
     })
     .on("addSong", async (queue, song) => {
-      const SongAddedQueue = new Discord.MessagEmbed()
+      const SongAddedQueue = new Discord.MessageEmbed()
         .setTitle("➕ Added Song To Queue")
         .setDescription(song.name)
         .setThumbnail(song.thumbnail)
@@ -127,10 +127,10 @@ module.exports = async bot => {
         )
         .setTimestamp();
 
-      queue.textChannel.reply(SongAddedQueue);
+      queue.textChannel.send(SongAddedQueue);
     })
     .on("addList", async (queue, playlist) => {
-      const SongAddedQueue = new Discord.MessagEmbed()
+      const SongAddedQueue = new Discord.MessageEmbed()
         .setTitle("➕ Added Playlist To Queue")
         .setDescription(playlist.name)
         .setThumbnail(playlist.thumbnail)
@@ -163,7 +163,7 @@ module.exports = async bot => {
         )
         .setTimestamp();
 
-      queue.textChannel.reply(SongAddedQueue);
+      queue.textChannel.send(SongAddedQueue);
     })
     .on("searchResult", result => {
       try {
@@ -197,12 +197,12 @@ module.exports = async bot => {
       ),
     )
     .on("searchNoResult", message => message.channel.send("No result found!"))
-    .on("finish", queue => queue.textChannel.reply("No songs left in queue."))
-    .on("finishSong", queue => queue.textChannel.reply("Hope you enjoyed the song!"))
+    .on("finish", queue => queue.textChannel.send("No songs left in queue."))
+    .on("finishSong", queue => queue.textChannel.send("Hope you enjoyed the song!"))
     .on("noRelated", message =>
       message.channel.reply("I cannot find a related video to play. I am stopping the music."),
     )
-    .on("empty", queue => queue.textChannel.reply("Voice chat is empty. I'm going to leave the voice chat now."))
+    .on("empty", queue => queue.textChannel.send("Voice chat is empty. I'm going to leave the voice chat now."))
     .on("disconnect", queue => queue.textChannel.send("Disconnected from voice chat."))
     .on("error", (channel, err) => {
       console.error(err);
