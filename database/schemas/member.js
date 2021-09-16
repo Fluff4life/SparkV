@@ -18,11 +18,6 @@ module.exports = mongoose.model(
 
     // Data //
     cooldown: { type: Number, default: null },
-    afk: {
-      type: Object,
-      default: { enabled: false, reason: "No reason supplied." },
-    },
-
     money: { type: Number, default: 0 },
     bank: { type: Number, default: 0 },
     bankSpace: { type: Number, default: 1000 },
