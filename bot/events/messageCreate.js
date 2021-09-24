@@ -45,6 +45,10 @@ module.exports = {
 
     data.user = userD;
 
+    if (!data) {
+      return message.channel.send("Unable to get data. Please try again later.");
+    }
+
     // Plugins
     if (message.guild) {
       if (data.user.afk) {

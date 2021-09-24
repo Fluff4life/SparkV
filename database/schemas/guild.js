@@ -18,6 +18,7 @@ module.exports = mongoose.model(
     // Guild Settings //
     settings: {
       type: Object,
+      required: true,
       default: {
         prefix: "^",
         welcome: {

@@ -33,7 +33,7 @@ async function execute(bot, message, args, command, data) {
   const MemberPosition = member.roles.highest.position;
   const ModerationPosition = message.member.roles.highest.position;
 
-  if (message.member.ownerID !== message.author.id && !ModerationPosition > MemberPosition) {
+  if (message.member.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
     return message
       .reply(`${bot.config.bot.Emojis.error} | Uh oh... I can\`t warn this user!`)
       .then(m => m.delete({ timeout: 5000 }));
@@ -76,7 +76,7 @@ async function execute(bot, message, args, command, data) {
     const MemberPosition = member.roles.highest.position;
     const ModerationPosition = message.member.roles.highest.position;
 
-    if (message.member.ownerID !== message.author.id && !ModerationPosition > MemberPosition) {
+    if (message.member.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
       return message
         .reply(`${bot.config.bot.Emojis.error} | Uh oh... I can\`t warn this user!`)
         .then(m => m.delete({ timeout: 5000 }));

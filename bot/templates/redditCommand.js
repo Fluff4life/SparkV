@@ -24,9 +24,24 @@ module.exports = class RedditCommand {
   }
 
   async run(bot, message, args, command) {
-    const body = await fetch(`https://www.reddit.com${this.settings.endpoint}`).then(response => response.json());
+    const cache = await bot.redis.getAsync(this.settings.endpoint).then(res = json.parse(res));
+    let res;
 
-    const posts = body.data.children.filter(filters[this.settings.type]);
+    if (cache) {
+      res = cache;
+    } else {
+      res = await fetch(`https://www.reddit.com${this.settings.endpoint}`)
+        .then(res => res.json())
+        .catch(() => null);
+
+      bot.redis.setAsync(this.settings.endpoint, JSON.stringify(res), "EX", 15 * 60);
+    }
+
+    if (!res) {
+      return;
+    }
+
+    const posts = res.data.children.filter(filters[this.settings.type]);
     const selectedPost = posts[Math.floor(Math.random() * Object.keys(posts).length)].data;
 
     const RedditEmbed = new Discord.MessageEmbed()

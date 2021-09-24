@@ -1,28 +1,31 @@
 const Discord = require("discord.js");
 
-module.exports = {
-  async getUser(UserID) {
-    const UserS = require("./schemas/user");
+const UserS = require("./schemas/user");
+const MemberS = require("./schemas/member");
+const GuildS = require("./schemas/guild");
 
-    let user = await UserS.findOne({
-      id: UserID,
+module.exports = {
+  async init(bot) {
+    this.client = bot;
+  },
+
+  async getUser(UserID) {
+    let data = await UserS.findOne({
+      id: UserID
     });
 
-    if (user) {
-      return user;
+    if (data) {
+      return data;
     } else {
-      user = new UserS({
-        id: UserID,
+      data = new UserS({
+        id: UserID
       });
 
-      await user.save();
-      return user;
+      return data;
     }
   },
 
   async getMember(MemberID, GuildID) {
-    const MemberS = require("./schemas/member");
-
     let member = await MemberS.findOne({
       id: MemberID,
       guildID: GuildID,
@@ -36,15 +39,11 @@ module.exports = {
         guildID: GuildID,
       });
 
-      await member.save();
-
       return member;
     }
   },
 
   async getGuild(GuildID) {
-    const GuildS = require("./schemas/guild");
-
     let guild = await GuildS.findOne({
       id: GuildID,
     });
@@ -55,8 +54,6 @@ module.exports = {
       guild = new GuildS({
         id: GuildID,
       });
-
-      await guild.save();
 
       return guild;
     }

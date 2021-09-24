@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
+const redis = require("redis");
 
 const AntiSpam = require("discord-anti-spam");
 const { DiscordTogether } = require("discord-together");
@@ -45,6 +46,12 @@ module.exports = class bot extends Client {
     this.events = new Collection();
     this.cooldowns = new Collection();
 
+    // Database Cache
+    this.dbCache = {};
+    this.dbCache.guilds = new Collection();
+		this.dbCache.members = new Collection();
+		this.dbCache.users = new Collection();
+
     // Start functions
     require("../../modules/functions").init(this);
 
@@ -54,9 +61,30 @@ module.exports = class bot extends Client {
   async LoadModules(settings, MainDir) {
     const client = this;
 
+    // Function
+    const createRedis = () => new Promise(resolve => {
+      const rClient = redis.createClient({
+        host: "127.0.0.1"
+      });
+
+      for (const prop in rClient) {
+        if (typeof rClient[prop] === "function") {
+          rClient[`${prop}Async`] = util.promisify(rClient[prop]).bind(rClient);
+        }
+      }
+
+      rClient.on("error", err => console.error(err));
+      rClient.on("ready", resolve.bind(null, rClient));
+    });
+
     // Update Docs
     setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
 
+    // Cache
+    this.redis = await createRedis();
+
+    // Functions
+    this.database.init(this);
     Distube(this);
 
     if (!settings.sharding) {

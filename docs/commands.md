@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **111 commands**!
+SparkV's Command List! SparkV contains more than **112 commands**!
 
 ## 🤵 Administration 🤵
 
@@ -19,6 +19,11 @@ SparkV's Command List! SparkV contains more than **111 commands**!
 | **dog**    | I will send a cute dog! Aweeeee :D                 |       | 3 seconds |
 | **duck**   | Quack :D                                           |       | 3 seconds |
 | **fox**    | I will send a cute fox! Ducks are cuter.           |       | 3 seconds |
+## ⚙️ Configuration ⚙️
+
+| Name       | Description         | Usage | Cooldown   |
+| ---------- | ------------------- | ----- | ---------- |
+| **prefix** | Changes the prefix. |       | 60 seconds |
 ## 💰 Currency 💰
 
 | Name         | Description                                             | Usage            | Cooldown  |
@@ -87,6 +92,10 @@ SparkV's Command List! SparkV contains more than **111 commands**!
 | **wanted**         | Wanted sign.                    | {user | self}        | 2 seconds |
 | **wasted**         | Dang man, that's a life wasted. | {user | self}        | 2 seconds |
 | **youtubecomment** | YouTube comment lol.            | {user | self} {text} | 2 seconds |
+## 📋 Information 📋
+
+| Name | Description | Usage | Cooldown |
+| ---- | ----------- | ----- | -------- |
 ## 😂 Memey 😂
 
 | Name               | Description                                       | Usage | Cooldown  |

@@ -4,32 +4,24 @@ const dbots = require("dbots");
 module.exports = {
   once: true,
   async execute(bot) {
-    // Bot Lists //
-    const poster = new dbots.Poster({
-      clientID: bot.user.id,
-      apiKeys: {
-        topgg: process.env.DBLKEY,
-      },
-      clientLibrary: "discord.js",
-      serverCount: async () => await bot.functions.GetServerCount(),
-      userCount: async () => await bot.functions.GetUserCount(),
+    // Start Loading
+    bot.user.setPresence({
+      status: "dnd",
+      activities: [{ name: "Loading SparkV (100%)" }],
     });
 
-    poster.startInterval();
-
+    // Check Guild's Blacklist status and set the Presence.
     const Activities = [
       {
         text: `${bot.config.bot.prefix}Help | ^Invite`,
         type: "WATCHING",
         status: "online",
       },
-
       {
         text: `${bot.functions.FormatNumber(await bot.functions.GetServerCount())} servers! | ^Invite`,
         type: "WATCHING",
         status: "online",
       },
-
       {
         text: `${bot.functions.FormatNumber(await bot.functions.GetUserCount())} users | ^Invite!`,
         type: "WATCHING",
@@ -43,15 +35,17 @@ module.exports = {
       bot.user.setPresence({
         status: Activity.status,
 
-        activity: {
-          name: Activity.text,
-          type: Activity.type,
-          url: Activity.url,
-        },
+        activities: [
+          {
+            name: Activity.text,
+            type: Activity.type,
+            url: Activity.url,
+          },
+        ],
       });
 
       for (const guild of bot.guilds.cache) {
-        if (process.env.USERBLACKLIST.includes(guild.ownerID)) {
+        if (process.env.USERBLACKLIST.includes(guild.ownerId)) {
           try {
             await guild.leave();
 
@@ -73,18 +67,20 @@ module.exports = {
       }
     }, 60 * 1000);
 
-    bot.user.setPresence({
-      status: "dnd",
-
-      activity: {
-        name: "Loading SparkV (100%)",
-        type: "CUSTOM_STATUS",
+    // Bot Lists //
+    const poster = new dbots.Poster({
+      clientID: bot.user.id,
+      apiKeys: {
+        topgg: process.env.DBLKEY,
       },
+      clientLibrary: "discord.js",
+      serverCount: async () => await bot.functions.GetServerCount(),
+      userCount: async () => await bot.functions.GetUserCount(),
     });
 
-    if (bot.StatClient) {
-      bot.StatClient.autopost();
-    }
+    // Start Posting
+    bot.StatClient.autopost();
+    poster.startInterval();
 
     console.log("-------- SparkV --------");
     bot.logger(
