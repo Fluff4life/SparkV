@@ -9,6 +9,7 @@ let cooldowns = [];
 module.exports = {
   once: false,
   async execute(bot, message) {
+    console.log(cooldowns);
     // Data
     const data = {};
 
@@ -192,27 +193,25 @@ module.exports = {
       return message.channel.send("This command is reserved for KingCh1ll only.");
     }
 
-    let userCooldown = cooldowns[message.author.id];
-
-    if (!userCooldown) {
-      cooldowns[message.author.id] = {};
-      userCooldown = cooldowns[message.author.id];
+    if (!cooldowns[message.author.id]) {
+      cooldowns[message.author.id] = [];
     }
 
+    const userCooldown = cooldowns[message.author.id];
     const time = userCooldown[commandfile.settings.name] || 0;
 
-    if (time && time > Date.now()) {
+    if (time > Date.now()) {
+      const cooldownEmbed = new Discord.MessageEmbed()
+        .setTitle(`${bot.config.bot.Emojis.error} | Whoa there ${message.author.username}!`)
+        .setDescription(`Please wait ${Math.ceil((time - Date.now()) / 1000)} more seconds to use that command again.`)
+        .setThumbnail(message.author.avatarURL)
+        .setColor(`#0099ff`)
+        .setFooter(bot.config.bot.Embed.Footer, bot.user.displayAvatarURL());
+
       return message.reply({
-        embed: {
-          title: `${bot.config.bot.Emojis.error} | Whoa there ${message.author.username}!`,
-          description: `Please wait ${Math.ceil((time - Date.now()) / 1000)} more seconds to use that command again.`,
-          thumbnail: message.author.avatarURL,
-          color: `#0099ff`,
-          footer: {
-            text: bot.config.bot.Embed.Footer,
-            icon_url: bot.user.displayAvatarURL(),
-          },
-        },
+        embeds: [
+          cooldownEmbed
+        ]
       });
     }
 
@@ -285,9 +284,7 @@ async function chatbot(message, wasMentioned) {
             )
             .setColor(bot.config.bot.Embed.Color);
 
-          if (bot.StatClient) {
-            bot.StatClient.postCommand(`ChatBot`, message.author.id);
-          }
+          bot.StatClient.postCommand(`ChatBot`, message.author.id);
 
           message.reply(APIEmbed);
         } else {

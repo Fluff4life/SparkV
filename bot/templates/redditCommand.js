@@ -14,7 +14,7 @@ module.exports = class RedditCommand {
       null,
       Object.assign(
         {
-          cooldown: 3 * 1000,
+          cooldown: 2 * 1000,
           slash: true,
           perms: ["EMBED_LINKS"],
         },
@@ -24,8 +24,8 @@ module.exports = class RedditCommand {
   }
 
   async run(bot, message, args, command) {
-    const cache = await bot.redis.getAsync(this.settings.endpoint).then(res = json.parse(res));
     let res;
+    const cache = await bot.redis.getAsync(this.settings.endpoint).then(res => JSON.parse(res));
 
     if (cache) {
       res = cache;

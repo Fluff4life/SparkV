@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
-const redis = require("redis");
 
 const AntiSpam = require("discord-anti-spam");
 const { DiscordTogether } = require("discord-together");
@@ -49,8 +48,8 @@ module.exports = class bot extends Client {
     // Database Cache
     this.dbCache = {};
     this.dbCache.guilds = new Collection();
-		this.dbCache.members = new Collection();
-		this.dbCache.users = new Collection();
+    this.dbCache.members = new Collection();
+    this.dbCache.users = new Collection();
 
     // Start functions
     require("../../modules/functions").init(this);
@@ -63,9 +62,11 @@ module.exports = class bot extends Client {
 
     // Function
     const createRedis = () => new Promise(resolve => {
-      const rClient = redis.createClient({
-        host: "127.0.0.1"
+      const rClient = require("redis").createClient({
+        host: process.env.REDIS_HOST,
+        port: process.env.REDIS_PORT
       });
+      rClient.auth(process.env.REDIS_PASSWORD);
 
       for (const prop in rClient) {
         if (typeof rClient[prop] === "function") {

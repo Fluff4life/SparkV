@@ -13,7 +13,7 @@ module.exports = {
     // Check Guild's Blacklist status and set the Presence.
     const Activities = [
       {
-        text: `${bot.config.bot.prefix}Help | ^Invite`,
+        text: `${bot.config.bot.prefix}Help`,
         type: "WATCHING",
         status: "online",
       },
