@@ -32,7 +32,7 @@
     }
   },
   "debug": {
-    "enabled": true,
+    "enabled": false,
     "BotEnabled": true,
     "WebsiteEnabled": true
   }
