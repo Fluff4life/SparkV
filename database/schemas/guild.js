@@ -9,6 +9,7 @@ const GuildSchema = new mongoose.Schema({
   // Data //
   prefix: { type: String, required: true, trim: true, default: config.prefix || "^" },
   language: { type: String, default: "US-en" },
+  timezone: { type: String, default: "US-en" },
   casesCount: { type: Number, default: 0 },
   autoRemoveCommands: { type: Boolean, default: false },
 
@@ -23,7 +24,7 @@ const GuildSchema = new mongoose.Schema({
       max: { type: Number, default: 25 },
       min: { type: Number, default: 5 }
     },
-    chatbot: { type: Boolean, default: false },
+    chatbot: { type: String, default: false },
   }
 });
 
