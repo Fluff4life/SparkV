@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **113 commands**!
+SparkV's Command List! SparkV contains more than **116 commands**!
 
 ## 🤵 Administration 🤵
 
@@ -56,21 +56,24 @@ SparkV's Command List! SparkV contains more than **113 commands**!
 | **uselessfact**      | I will get a useless fact! You're better off with the advice command...                                                                 | {word}            | 2 seconds |
 ## 🎮 Games 🎮
 
-| Name                  | Description                                                                                          | Usage                                                                | Cooldown   |
-| --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ---------- |
-| **akinator**          | Play a guessing game of akinator!                                                                    | {game type (Types: Character, Animal or Object)[Default: Character]} | 60 seconds |
-| **betrayal**          | Play a game of betrayal!                                                                             |                                                                      | 60 seconds |
-| **chess**             | Play a game of chess! Requires two people in a VC.                                                   | {username}                                                           | 60 seconds |
-| **connectfour**       | Play a game of ConnectFour with me or mention someone to play with!                                  | {optional user}                                                      | 60 seconds |
-| **fishing**           | Catch some fish! Requires you to join a VC.                                                          |                                                                      | 60 seconds |
-| **memory**            | Pratice your memory!                                                                                 | {optional user}                                                      | 60 seconds |
-| **poker**             | Play a game of poker! You must be 18+ to play. Requires you to join a vc with a minimum of 2 people. |                                                                      | 60 seconds |
-| **rockpaperscissors** | Play a game of Rock Paper Scissors with me!                                                          |                                                                      | 2 seconds  |
-| **snake**             | Get those apples and grow, grow, grow to get the best score.                                         |                                                                      | 2 seconds  |
-| **tictactoe**         | Play a game of Tic Tac Toe with me or mention someone to play with!                                  |                                                                      | 2 seconds  |
-| **trivia**            | Play a game of trivia!                                                                               |                                                                      | 2 seconds  |
-| **wouldyourather**    | Would you rather.                                                                                    |                                                                      | 2 seconds  |
-| **youtube**           | YouTube together!                                                                                    |                                                                      | 60 seconds |
+| Name                  | Description                                                                                                                      | Usage                                                                | Cooldown   |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ---------- |
+| **akinator**          | Play a guessing game of akinator!                                                                                                | {game type (Types: Character, Animal or Object)[Default: Character]} | 60 seconds |
+| **betrayal**          | Play a game of betrayal!                                                                                                         |                                                                      | 60 seconds |
+| **chess**             | Play a game of chess! Requires two people in a VC.                                                                               | {username}                                                           | 60 seconds |
+| **connectfour**       | Play a game of ConnectFour with me or mention someone to play with!                                                              | {optional user}                                                      | 60 seconds |
+| **fasttype**          | Play a game of fast type! This will show you your WPM.                                                                           |                                                                      | 2 seconds  |
+| **fight**             | Fight another player!                                                                                                            | {user}                                                               | 2 seconds  |
+| **fishing**           | Catch some fish! Requires you to join a VC.                                                                                      |                                                                      | 60 seconds |
+| **memory**            | Pratice your memory!                                                                                                             | {optional user}                                                      | 60 seconds |
+| **neverhaveiever**    | Asks you a question wether you have or have not done something. It then gives you the percent of the choices most people choose! |                                                                      | 2 seconds  |
+| **poker**             | Play a game of poker! You must be 18+ to play. Requires you to join a vc with a minimum of 2 people.                             |                                                                      | 60 seconds |
+| **rockpaperscissors** | Play a game of Rock Paper Scissors with me!                                                                                      |                                                                      | 2 seconds  |
+| **snake**             | Get those apples and grow, grow, grow to get the best score.                                                                     |                                                                      | 2 seconds  |
+| **tictactoe**         | Play a game of Tic Tac Toe with me or mention someone to play with!                                                              |                                                                      | 2 seconds  |
+| **trivia**            | Play a game of trivia!                                                                                                           |                                                                      | 2 seconds  |
+| **wouldyourather**    | Would you rather.                                                                                                                |                                                                      | 2 seconds  |
+| **youtube**           | YouTube together!                                                                                                                |                                                                      | 60 seconds |
 ## 📷Images📷
 
 | Name               | Description                     | Usage                | Cooldown  |
@@ -95,8 +98,15 @@ SparkV's Command List! SparkV contains more than **113 commands**!
 | **youtubecomment** | YouTube comment lol.            | {user | self} {text} | 2 seconds |
 ## 📋 Information 📋
 
-| Name | Description | Usage | Cooldown |
-| ---- | ----------- | ----- | -------- |
+| Name          | Description                                                                                      | Usage     | Cooldown  |
+| ------------- | ------------------------------------------------------------------------------------------------ | --------- | --------- |
+| **credits**   | Look at everyone who helped make SparkV!                                                         |           | 2 seconds |
+| **dashboard** | I'll send my dashboard!                                                                          | {user}    | 2 seconds |
+| **donate**    | Donate in the form of robux to help SparkV's developement. Every donation is really appreciated! |           | 2 seconds |
+| **help**      | View Ch1llBlox's 100+ commands.                                                                  | {command} | 2 seconds |
+| **invite**    | Displays links.                                                                                  |           | 2 seconds |
+| **rules**     | Follow them lol.                                                                                 |           | 2 seconds |
+| **website**   | I'll send my website!                                                                            |           | 2 seconds |
 ## 😂 Memey 😂
 
 | Name               | Description                                       | Usage | Cooldown  |
@@ -160,14 +170,7 @@ SparkV's Command List! SparkV contains more than **113 commands**!
 | **whois**       | SparkV will look up any user and return information on that user. | {username}      | 2 seconds |
 ## 🧰 Utility 🧰
 
-| Name           | Description                                                                                      | Usage     | Cooldown  |
-| -------------- | ------------------------------------------------------------------------------------------------ | --------- | --------- |
-| **calculator** | Calculate any equation!                                                                          |           | 2 seconds |
-| **credits**    | Look at everyone who helped make SparkV!                                                         |           | 2 seconds |
-| **dashboard**  | I'll send my dashboard!                                                                          | {user}    | 2 seconds |
-| **donate**     | Donate in the form of robux to help SparkV's developement. Every donation is really appreciated! |           | 2 seconds |
-| **help**       | View Ch1llBlox's 100+ commands.                                                                  | {command} | 2 seconds |
-| **invite**     | Displays links.                                                                                  |           | 2 seconds |
-| **rules**      | Follow them lol.                                                                                 |           | 2 seconds |
-| **stats**      | SparkV's stats.                                                                                  |           | 2 seconds |
-| **website**    | I'll send my website!                                                                            |           | 2 seconds |
+| Name           | Description             | Usage | Cooldown  |
+| -------------- | ----------------------- | ----- | --------- |
+| **calculator** | Calculate any equation! |       | 2 seconds |
+| **stats**      | SparkV's stats.         |       | 2 seconds |
