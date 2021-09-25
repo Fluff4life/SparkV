@@ -58,27 +58,4 @@ module.exports = {
       return guild;
     }
   },
-
-  async createLog(message, cmdName) {
-    const LogS = require("./schemas/log");
-
-    let newLog = new LogS({
-      commandName: cmdName,
-      user: {
-        username: message.author.username,
-        discriminator: message.author.discriminator,
-        id: message.author.id,
-      },
-      guild: {
-        name: message.guild ? message.guild.name : "dm",
-        id: message.guild ? message.guild.id : "dm",
-        channel: message.channel ? message.channel.id : "unknown",
-      },
-      date: Date.now(),
-    });
-
-    await newLog.save();
-
-    return newLog;
-  },
 };

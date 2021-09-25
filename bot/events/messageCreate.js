@@ -243,8 +243,6 @@ module.exports = {
         `${bot.config.Emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,
       );
     }
-
-    bot.database.createLog(message, commandfile.settings.name);
   },
 };
 

@@ -13,7 +13,6 @@ const Noblox = require("../../modules/dependencies/noblox");
 const updateDocs = require("../../modules/updateDocs");
 
 const GuildSchema = require("../../database/schemas/guild");
-const LogSchema = require("../../database/schemas/log");
 const MemberSchema = require("../../database/schemas/member");
 const UserSchema = require("../../database/schemas/user");
 
@@ -34,7 +33,6 @@ module.exports = class bot extends Client {
     this.database = require("../../database/handler");
 
     this.GuildSchema = require("../../database/schemas/guild");
-    this.LogSchema = require("../../database/schemas/log");
     this.MemberSchema = require("../../database/schemas/member");
     this.UserSchema = require("../../database/schemas/user");
 
