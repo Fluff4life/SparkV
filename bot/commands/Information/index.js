@@ -7,6 +7,6 @@ const commands = fs
 
 module.exports = {
   name: "📋 Information 📋",
-  description: "These are some basic informational commands and statistics.",
+  description: "Here are some basic informational commands.",
   commands,
 };

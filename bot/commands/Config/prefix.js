@@ -1,16 +1,31 @@
 const Discord = require(`discord.js`);
 
-const cmd = require("../../templates/configCommand");
+const cmd = require("../../templates/command");
+const database = require("../../../database/handler");
 
-module.exports = new cmd({
+async function execute(bot, message, args, command) {
+  if (!args[0]) {
+    return message.reply("You need to provide a **prefix**.");
+  }
+
+  if (args[0].length > 5) {
+    return message.reply("You need to provide a prefix **UNDER** `5` characters.");
+  }
+
+  const data = await database.getGuild(message.guild.id);
+
+  data.prefix = args.join(" ").trim();
+  data.markModified("prefix");
+
+  await data.save();
+
+  return message.reply(`The prefix is now **\`${args[0]}\`**`);
+}
+
+module.exports = new cmd(execute, {
   description: `Changes the prefix.`,
   dirname: __dirname,
   usage: "",
   aliases: [],
-  perms: ["MANAGE_MESSAGES"],
-  settingName: "prefix",
-  responces: {
-    invalid_args: "You need to provide a **prefix**.",
-    invalid_args_length: "You need to provide a prefix **UNDER** `5` characters."
-  }
+  perms: ["MANAGE_MESSAGES"]
 });

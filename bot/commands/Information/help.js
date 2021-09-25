@@ -3,7 +3,7 @@ const { MessageActionRow, MessageButton, MessageSelectMenu, MessageEmbed } = req
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const prefix = data.guild.settings.prefix;
+  const prefix = data.guild.prefix;
   const Selections = [];
 
   const CreateSelection = async (message, Category) => {

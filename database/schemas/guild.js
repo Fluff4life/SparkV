@@ -2,64 +2,31 @@ const mongoose = require("mongoose");
 
 const config = require("../../globalconfig.json");
 
-module.exports = mongoose.model(
-  "Guild",
-  new mongoose.Schema({
-    id: { type: String },
-    registrationDate: { type: Number, default: Date.now() },
+const GuildSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  registrationDate: { type: Number, default: Date.now() },
 
-    // Data //
-    casesCount: { type: Number, default: 0 },
-    ignoredChannels: { type: Array, default: [] },
-    customCommands: { type: Array, default: [] },
-    commands: { type: Array, default: [] },
-    autoRemoveCommands: { type: Boolean, default: false },
+  // Data //
+  prefix: { type: String, required: true, trim: true, default: config.prefix || "^" },
+  language: { type: String, default: "US-en" },
+  casesCount: { type: Number, default: 0 },
+  autoRemoveCommands: { type: Boolean, default: false },
 
-    // Guild Settings //
-    settings: {
-      type: Object,
-      required: true,
-      default: {
-        prefix: "^",
-        welcome: {
-          enabled: false,
-          channel: null,
-          message: null,
-          image: null,
-          embed: false,
-        },
-        goodbye: {
-          enabled: false,
-          channel: null,
-          message: null,
-          image: null,
-          embed: false,
-        },
-        language: "US-en",
-        autorole: {
-          enabled: false,
-          role: null,
-        },
-        automod: {
-          removeLinks: false,
-          removeProfanity: false,
-          removeDuplicateText: false,
-          ignored: [],
-        },
-        leveling: {
-          enabled: false,
-          max: 25,
-          min: 5,
-        },
-        chatbot: null,
-        warnsInfractions: {
-          kick: false,
-          ban: false,
-        },
-        suggestions: false,
-        modlogs: false,
-        reports: false,
-      },
+  plugins: {
+    automod: {
+      removeLinks: { type: Boolean, default: false },
+      removeProfanity: { type: Boolean, default: false },
+      removeDuplicateText: { type: Boolean, default: false }
     },
-  }),
-);
+    leveling: {
+      enabled: { type: Boolean, default: false },
+      max: { type: Number, default: 25 },
+      min: { type: Number, default: 5 }
+    },
+    chatbot: { type: Boolean, default: false },
+  }
+});
+
+const GuildData = new mongoose.model("Guild", GuildSchema);
+
+module.exports = GuildData;

@@ -70,7 +70,7 @@ module.exports = {
         }
       });
 
-      if (data.guild.settings.automod.removeProfanity === true) {
+      if (data.guild.plugins.automod.removeProfanity === true) {
         if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
           AntiSwearPackage(bot, message, {
             warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
@@ -83,7 +83,7 @@ module.exports = {
         }
       }
 
-      if (data.guild.settings.automod.removeLinks === true) {
+      if (data.guild.plugins.automod.removeLinks === true) {
         if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
           try {
             message.delete();
@@ -99,7 +99,7 @@ module.exports = {
           .then(m => m.delete({ timeout: 1000 }));
       }
 
-      const AntiSpam = data.guild.settings.automod.removeDuplicateText;
+      const AntiSpam = data.guild.plugins.automod.removeDuplicateText;
 
       if (AntiSpam === true) {
         if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
@@ -107,11 +107,11 @@ module.exports = {
         }
       }
 
-      const Leveling = data.guild.settings.leveling.enabled;
+      const Leveling = data.guild.plugins.leveling.enabled;
 
       if (Leveling === true) {
-        let MaxXP = data.guild.settings.automod.leveling.max;
-        let MinXP = data.guild.settings.automod.leveling.min;
+        let MaxXP = data.guild.plugins.automod.leveling.max;
+        let MinXP = data.guild.plugins.automod.leveling.min;
 
         if (isNaN(MaxXP)) {
           MaxXP = 25;
@@ -157,7 +157,7 @@ module.exports = {
     }
 
     // Chat bot
-    const ChatBot = bot.config.debug.enabled === true ? true : data.guild.settings.chatbot;
+    const ChatBot = bot.config.debug.enabled === true ? true : data.guild.plugins.chatbot;
 
     if (message.mentions.has(bot.user)) {
       if (ChatBot === "mention" && message.channel.type === "text") {

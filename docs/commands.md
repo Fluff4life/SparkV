@@ -21,9 +21,9 @@ SparkV's Command List! SparkV contains more than **113 commands**!
 | **fox**    | I will send a cute fox! Ducks are cuter.           |       | 3 seconds |
 ## ⚙️ Configuration ⚙️
 
-| Name       | Description         | Usage | Cooldown   |
-| ---------- | ------------------- | ----- | ---------- |
-| **prefix** | Changes the prefix. |       | 60 seconds |
+| Name       | Description         | Usage | Cooldown  |
+| ---------- | ------------------- | ----- | --------- |
+| **prefix** | Changes the prefix. |       | 2 seconds |
 ## 💰 Currency 💰
 
 | Name         | Description                                             | Usage            | Cooldown  |
