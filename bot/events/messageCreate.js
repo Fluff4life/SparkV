@@ -9,7 +9,6 @@ let cooldowns = [];
 module.exports = {
   once: false,
   async execute(bot, message) {
-    console.log(cooldowns);
     // Data
     const data = {};
 
