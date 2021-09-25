@@ -1,9 +1,12 @@
 const Discord = require("discord.js");
+const { RockPaperScissors } = require("weky");
 
-const cmd = require("../../templates/gameCommand");
+const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const { RockPaperScissors } = require("weky");
+  if (!message.mentions.users.first()) {
+    return message.reply("lol you need to mention someone to play against.");
+  }
 
   await RockPaperScissors({
     message: message,
@@ -11,6 +14,7 @@ async function execute(bot, message, args, command, data) {
     embed: {
       title: "Rock Paper Scissors",
       description: "Press the button below to choose your element.",
+      footer: bot.config.embed.footer,
       color: "#7289da",
       timestamp: true,
     },
@@ -40,7 +44,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: "",
   aliases: ["rps"],
-  perms: ["EMBED_LINKS"],
-  gname: "chess",
-  type: "game",
+  perms: ["EMBED_LINKS"]
 });

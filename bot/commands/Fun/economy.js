@@ -15,10 +15,10 @@ async function execute(bot, message) {
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(
-            `👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.bot.Embed.Footer}`,
+            `👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.embed.footer}`,
             bot.user.displayAvatarURL(),
           )
-          .setColor(bot.config.bot.Embed.Color);
+          .setColor(bot.config.embed.color);
 
         message.reply(MemeEconomyEmbed);
       } else {
@@ -27,10 +27,10 @@ async function execute(bot, message) {
           .setImage(post.url)
           .setURL(`https://www.reddit.com${post.permalink}`)
           .setFooter(
-            `👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.bot.Embed.Footer}`,
+            `👍${post.ups} | 💬${post.num_comments} | 😃u/${post.author} • ${bot.config.embed.footer}`,
             bot.user.displayAvatarURL(),
           )
-          .setColor(bot.config.bot.Embed.Color);
+          .setColor(bot.config.embed.color);
 
         message.reply(MemeEconomyEmbed);
       }

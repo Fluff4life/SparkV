@@ -56,7 +56,7 @@ async function LoadRoutes() {
 // Code //
 console.log("-------- Website --------");
 async function StartWebsite() {
-  if (Config.Debug.Enabled === false) {
+  if (Config.debug.enabled === false) {
     require("newrelic");
   }
 

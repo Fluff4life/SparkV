@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (bot.config.Debug.Enabled === true) {
+  if (bot.config.debug.enabled === true) {
     return;
   }
 

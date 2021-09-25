@@ -10,19 +10,19 @@ async function execute(bot, message, args, command, data) {
   const Prize = args.slice(3).join(` `);
 
   if (!Channel) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid channel.`);
+    return message.reply(`${bot.config.Emojis.error} | Please provide a valid channel.`);
   }
 
   if (!Duration || isNaN(ms(Duration))) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid duration.`);
+    return message.reply(`${bot.config.Emojis.error} | Please provide a valid duration.`);
   }
 
   if (!Winners || isNaN(Winners) || parseInt(Winners) <= 0) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid number of winners!`);
+    return message.reply(`${bot.config.Emojis.error} | Please provide a valid number of winners!`);
   }
 
   if (!Prize) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Why do you want to give away nothing lol.`);
+    return message.reply(`${bot.config.Emojis.error} | Why do you want to give away nothing lol.`);
   }
 
   bot.GiveawayManager.start(Channel, {
@@ -37,7 +37,7 @@ async function execute(bot, message, args, command, data) {
       timeRemaining: `⏳ Time remaining: **{duration}**! ⏳`,
       inviteToParticipate: `🎉 React to enter! 🎉`,
       winMessage: `⚡ Congrats, {winners}! You won just **{prize}**! ⚡`,
-      noWinner: `${bot.config.bot.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
+      noWinner: `${bot.config.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
       hostedBy: `❔ Giveaway hosted by {user}!`,
       embedFooter: `Thanks for using SparkV!`,
       winners: `winner(s)`,
@@ -52,7 +52,7 @@ async function execute(bot, message, args, command, data) {
     },
   });
 
-  message.reply(`${bot.config.bot.Emojis.success} | Giveaway starting in ${Channel}!`);
+  message.reply(`${bot.config.Emojis.success} | Giveaway starting in ${Channel}!`);
 }
 
 module.exports = new cmd(execute, {

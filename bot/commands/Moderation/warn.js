@@ -13,19 +13,19 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | Please mention someone to warn!`)
+      .reply(`${bot.config.Emojis.error} | Please mention someone to warn!`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
   if (!User) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | I cannot find that member!`)
+      .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
   if (User.id === message.author.id) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | You cannot warn yourself.`)
+      .reply(`${bot.config.Emojis.error} | You cannot warn yourself.`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
@@ -35,7 +35,7 @@ async function execute(bot, message, args, command, data) {
 
   if (message.member.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | Uh oh... I can\`t warn this user!`)
+      .reply(`${bot.config.Emojis.error} | Uh oh... I can\`t warn this user!`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
@@ -62,13 +62,13 @@ async function execute(bot, message, args, command, data) {
 
     if (!User) {
       return message
-        .reply(`${bot.config.bot.Emojis.error} | I cannot find that member!`)
+        .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
         .then(m => m.delete({ timeout: 5000 }));
     }
 
     if (User.id === message.author.id) {
       return message
-        .reply(`${bot.config.bot.Emojis.error} | You cannot warn yourself.`)
+        .reply(`${bot.config.Emojis.error} | You cannot warn yourself.`)
         .then(m => m.delete({ timeout: 5000 }));
     }
 
@@ -78,7 +78,7 @@ async function execute(bot, message, args, command, data) {
 
     if (message.member.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
       return message
-        .reply(`${bot.config.bot.Emojis.error} | Uh oh... I can\`t warn this user!`)
+        .reply(`${bot.config.Emojis.error} | Uh oh... I can\`t warn this user!`)
         .then(m => m.delete({ timeout: 5000 }));
     }
 

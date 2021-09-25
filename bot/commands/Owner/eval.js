@@ -4,17 +4,17 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (message.author.id !== process.env.C) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
+    return message.reply(`${bot.config.Emojis.error} | Access denied.`);
   }
 
   if (!args) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Please input code.`);
+    return message.reply(`${bot.config.Emojis.error} | Please input code.`);
   }
 
   const Input = args.join(` `);
 
   if (!Input.toLowerCase().includes(`token`)) {
-    const Embed = new Discord.MessageEmbed().setTitle(`${bot.config.bot.Emojis.success} | Eval Results`);
+    const Embed = new Discord.MessageEmbed().setTitle(`${bot.config.Emojis.success} | Eval Results`);
 
     try {
       let Output = eval(Input);

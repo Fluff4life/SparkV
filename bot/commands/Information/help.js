@@ -36,7 +36,7 @@ async function execute(bot, message, args, command, data) {
         "SparkV - Making your Discord life easier!",
         bot.user.displayAvatarURL({ dynamic: true, format: "png" }),
       )
-      .setColor(bot.config.bot.Embed.Color)
+      .setColor(bot.config.embed.color)
       .setTimestamp();
 
     const CatSelect = new MessageSelectMenu()
@@ -44,11 +44,11 @@ async function execute(bot, message, args, command, data) {
       .setPlaceholder("Select a category to view it's commands.")
       .addOptions(Selections);
 
-    const InviteButton = new MessageButton().setURL(bot.config.bot.bot_invite).setLabel("Bot Invite")
+    const InviteButton = new MessageButton().setURL(bot.config.bot_invite).setLabel("Bot Invite")
 .setStyle("LINK");
 
     const SupportButton = new MessageButton()
-      .setURL(bot.config.bot.support.invite)
+      .setURL(bot.config.support.invite)
       .setLabel("Support Invite")
       .setStyle("LINK");
 
@@ -81,10 +81,10 @@ async function execute(bot, message, args, command, data) {
       .addField(`**CATEGORY**`, `\`\`\`${command.config.category}\`\`\``, true)
       .addField(`**COOLDOWN**`, `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
       .setFooter(
-        `${prefix}Help to get a list of all commands • ${bot.config.bot.Embed.Footer}`,
+        `${prefix}Help to get a list of all commands • ${bot.config.embed.footer}`,
         bot.user.displayAvatarURL(),
       )
-      .setColor(bot.config.bot.Embed.Color);
+      .setColor(bot.config.embed.color);
 
     return message.reply(CommandHelpEmbed);
   }

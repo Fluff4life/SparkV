@@ -9,25 +9,25 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | Please mention someone to mute!`)
+      .reply(`${bot.config.Emojis.error} | Please mention someone to mute!`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
   if (!User) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | I cannot find that member!`)
+      .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
   if (User.id === message.author.id) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | You cannot mute yourself.`)
+      .reply(`${bot.config.Emojis.error} | You cannot mute yourself.`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
   if (!User.kickable) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | Uh oh... I can't mute this user!`)
+      .reply(`${bot.config.Emojis.error} | Uh oh... I can't mute this user!`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
@@ -68,13 +68,13 @@ async function execute(bot, message, args, command, data) {
   const VerificationEmbed = new Discord.MessageEmbed()
     .setTitle(`Convermination Prompt`)
     .setDescription(`Are you sure you want to do this?`)
-    .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.bot.Embed.Footer}`);
+    .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.embed.footer}`);
 
   const VerificationMessage = await message.reply(VerificationEmbed);
   const Emoji = await bot.PromptMessage(
     VerificationMessage,
     message.author,
-    [`✅`, `${bot.config.bot.Emojis.error} | `],
+    [`✅`, `${bot.config.Emojis.error} | `],
     60,
   );
 
@@ -87,19 +87,19 @@ async function execute(bot, message, args, command, data) {
 
     const MuteEmbend = new Discord.MessageEmbed()
       .setTitle(`Mute Command`)
-      .setDescription(`${bot.config.bot.Emojis.success} | Successfully Muted <@${User.id}>(${User.id})!`)
+      .setDescription(`${bot.config.Emojis.success} | Successfully Muted <@${User.id}>(${User.id})!`)
       .setThumbnail(User.avatar)
       .addField(`Moderator/Admin: `, `${message.author.tag}`)
       .addField(`Reason: `, Reason)
-      .setFooter(`${bot.config.bot.prefix}Unmute to unmute a user. • ${bot.config.bot.Embed.Footer}`)
-      .setColor(bot.config.bot.Embed.Color)
+      .setFooter(`${bot.config.prefix}Unmute to unmute a user. • ${bot.config.embed.footer}`)
+      .setColor(bot.config.embed.color)
       .setTimestamp();
 
     message.reply(MuteEmbend);
-  } else if (emoji === `${bot.config.bot.Emojis.error} | `) {
+  } else if (emoji === `${bot.config.Emojis.error} | `) {
     message.delete();
 
-    message.reply(`${bot.config.bot.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
+    message.reply(`${bot.config.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
   }
 }
 

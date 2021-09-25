@@ -10,7 +10,7 @@ const DiscordStrat = {
   clientID: "848685407189336075",
   clientSecret: "mG176mrsaj92SGbmnMsZVwSm6dTJg7zS",
   callbackURL: `${
-    Config.Debug.Enabled === true ? "http://localhost:3000" : `https://${process.env.BASEURL}`
+    Config.debug.enabled === true ? "http://localhost:3000" : `https://${process.env.BASEURL}`
   }/api/auth/callback`,
   scope: ["identify", "guilds", "guilds.join"],
 };

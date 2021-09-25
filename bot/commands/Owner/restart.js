@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (message.author.id !== process.env.OWNERID) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
+    return message.reply(`${bot.config.Emojis.error} | Access denied.`);
   }
 
   if (restarting === true) {

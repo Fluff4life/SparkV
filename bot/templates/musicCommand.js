@@ -11,7 +11,7 @@ module.exports = class ModCommand {
   async run(bot, message, args, command, data) {
     if (!message.member.voice.channel) {
       return message
-        .reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
+        .reply(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
         .then(m => m.delete({ timeout: 5000 }));
     }
 

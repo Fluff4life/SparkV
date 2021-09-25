@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **112 commands**!
+SparkV's Command List! SparkV contains more than **113 commands**!
 
 ## 🤵 Administration 🤵
 
@@ -13,17 +13,17 @@ SparkV's Command List! SparkV contains more than **112 commands**!
 
 | Name       | Description                                        | Usage | Cooldown  |
 | ---------- | -------------------------------------------------- | ----- | --------- |
-| **animal** | I will send a animal pic from multible subreddits. |       | 3 seconds |
-| **bunny**  | Awww cute bunny!                                   |       | 3 seconds |
+| **animal** | I will send a animal pic from multible subreddits. |       | 2 seconds |
+| **bunny**  | Awww cute bunny!                                   |       | 2 seconds |
 | **cat**    | I will send a cute cat! Cute, but dogs are cuter.  |       | 3 seconds |
 | **dog**    | I will send a cute dog! Aweeeee :D                 |       | 3 seconds |
 | **duck**   | Quack :D                                           |       | 3 seconds |
 | **fox**    | I will send a cute fox! Ducks are cuter.           |       | 3 seconds |
 ## ⚙️ Configuration ⚙️
 
-| Name       | Description         | Usage | Cooldown    |
-| ---------- | ------------------- | ----- | ----------- |
-| **prefix** | Changes the prefix. |       | 100 seconds |
+| Name       | Description         | Usage | Cooldown   |
+| ---------- | ------------------- | ----- | ---------- |
+| **prefix** | Changes the prefix. |       | 60 seconds |
 ## 💰 Currency 💰
 
 | Name         | Description                                             | Usage            | Cooldown  |
@@ -51,25 +51,26 @@ SparkV's Command List! SparkV contains more than **112 commands**!
 | **rank**             | View a users rank!                                                                                                                      | {optional user}   | 2 seconds |
 | **reverse**          | I will reverse any text you give me lol.                                                                                                | {optional user}   | 2 seconds |
 | **say**              | I will say whatever you want me to say.                                                                                                 | {message}         | 2 seconds |
-| **showerthought**    | I will say whatever you want me to say.                                                                                                 |                   | 3 seconds |
+| **showerthought**    | I will say whatever you want me to say.                                                                                                 |                   | 2 seconds |
 | **urban**            | I will return an urban dictionary definition of a word!                                                                                 | {word}            | 2 seconds |
 | **uselessfact**      | I will get a useless fact! You're better off with the advice command...                                                                 | {word}            | 2 seconds |
 ## 🎮 Games 🎮
 
-| Name                  | Description                                                         | Usage           | Cooldown   |
-| --------------------- | ------------------------------------------------------------------- | --------------- | ---------- |
-| **betrayal**          | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
-| **chess**             | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
-| **connectfour**       | Play a game of ConnectFour with me or mention someone to play with! | {optional user} | 60 seconds |
-| **fishing**           | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
-| **memory**            | Pratice your memory!                                                | {optional user} | 60 seconds |
-| **poker**             | SparkV will look up any user and return information on that user.   | {username}      | 60 seconds |
-| **rockpaperscissors** | Play a game of Rock Paper Scissors with me!                         |                 | 60 seconds |
-| **snake**             | Get those apples and grow, grow, grow to get the best score.        |                 | 60 seconds |
-| **tictactoe**         | Play a game of Tic Tac Toe with me or mention someone to play with! |                 | 60 seconds |
-| **trivia**            | Play a game of trivia!                                              |                 | 60 seconds |
-| **wouldyourather**    | Would you rather.                                                   |                 | 60 seconds |
-| **youtube**           | YouTube together!                                                   |                 | 60 seconds |
+| Name                  | Description                                                                                          | Usage                                                                | Cooldown   |
+| --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ---------- |
+| **akinator**          | Play a guessing game of akinator!                                                                    | {game type (Types: Character, Animal or Object)[Default: Character]} | 60 seconds |
+| **betrayal**          | Play a game of betrayal!                                                                             |                                                                      | 60 seconds |
+| **chess**             | Play a game of chess! Requires two people in a VC.                                                   | {username}                                                           | 60 seconds |
+| **connectfour**       | Play a game of ConnectFour with me or mention someone to play with!                                  | {optional user}                                                      | 60 seconds |
+| **fishing**           | Catch some fish! Requires you to join a VC.                                                          |                                                                      | 60 seconds |
+| **memory**            | Pratice your memory!                                                                                 | {optional user}                                                      | 60 seconds |
+| **poker**             | Play a game of poker! You must be 18+ to play. Requires you to join a vc with a minimum of 2 people. |                                                                      | 60 seconds |
+| **rockpaperscissors** | Play a game of Rock Paper Scissors with me!                                                          |                                                                      | 2 seconds  |
+| **snake**             | Get those apples and grow, grow, grow to get the best score.                                         |                                                                      | 2 seconds  |
+| **tictactoe**         | Play a game of Tic Tac Toe with me or mention someone to play with!                                  |                                                                      | 2 seconds  |
+| **trivia**            | Play a game of trivia!                                                                               |                                                                      | 2 seconds  |
+| **wouldyourather**    | Would you rather.                                                                                    |                                                                      | 2 seconds  |
+| **youtube**           | YouTube together!                                                                                    |                                                                      | 60 seconds |
 ## 📷Images📷
 
 | Name               | Description                     | Usage                | Cooldown  |
@@ -100,14 +101,14 @@ SparkV's Command List! SparkV contains more than **112 commands**!
 
 | Name               | Description                                       | Usage | Cooldown  |
 | ------------------ | ------------------------------------------------- | ----- | --------- |
-| **animalsadvice**  | Take an advice from an animal!                    |       | 3 seconds |
-| **comedy**         | The place for comedy memes from r/ComedyCemetery! |       | 3 seconds |
-| **comic**          | A comic to keep you entertained.                  |       | 3 seconds |
-| **dankmeme**       | Meme but SUPER dank. Only the funnyiest memes.    |       | 3 seconds |
-| **doseofinternet** | I'll send a dose of the internet.                 |       | 3 seconds |
-| **meirl**          | meirl memes lol.                                  |       | 3 seconds |
-| **meme**           | LOL                                               |       | 3 seconds |
-| **prequel**        | Star Wars memes lol.                              |       | 3 seconds |
+| **animalsadvice**  | Take an advice from an animal!                    |       | 2 seconds |
+| **comedy**         | The place for comedy memes from r/ComedyCemetery! |       | 2 seconds |
+| **comic**          | A comic to keep you entertained.                  |       | 2 seconds |
+| **dankmeme**       | Meme but SUPER dank. Only the funnyiest memes.    |       | 2 seconds |
+| **doseofinternet** | I'll send a dose of the internet.                 |       | 2 seconds |
+| **meirl**          | meirl memes lol.                                  |       | 2 seconds |
+| **meme**           | LOL                                               |       | 2 seconds |
+| **prequel**        | Star Wars memes lol.                              |       | 2 seconds |
 ## 🛠️ Moderation 🛠️
 
 | Name         | Description                                                                                                                          | Usage                                        | Cooldown  |

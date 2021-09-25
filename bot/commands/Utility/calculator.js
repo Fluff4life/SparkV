@@ -9,6 +9,7 @@ async function execute(bot, message) {
     message: message,
     embed: {
       title: "Calculator",
+      footer: bot.config.embed.footer,
       color: "#7289da",
       timestamp: true,
     },

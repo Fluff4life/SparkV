@@ -4,7 +4,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Bruh I cannot reverse no text lol.`);
+    return message.reply(`${bot.config.Emojis.error} | Bruh I cannot reverse no text lol.`);
   }
 
   message.reply(args.join(` `).split(``).reverse()

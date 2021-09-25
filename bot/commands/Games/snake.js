@@ -1,15 +1,15 @@
 const Discord = require(`discord.js`);
+const { Snake } = require("weky");
 
-const cmd = require("../../templates/gameCommand");
+const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const { Snake } = require("weky");
-
   await Snake({
     message: message,
     embed: {
       title: "Snake",
       description: "Game over. You scored **{{score}}** points!",
+      footer: bot.config.embed.footer,
       color: "#7289da",
       timestamp: true,
     },
@@ -32,6 +32,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: "",
   aliases: [],
-  perms: ["EMBED_LINKS"],
-  type: "game",
+  perms: ["EMBED_LINKS"]
 });

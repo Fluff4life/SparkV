@@ -17,7 +17,7 @@ function CreateID() {
 }
 
 function execute(bot, message, args, command, data) {
-  if (bot.config.Debug.Enabled === true) {
+  if (bot.config.debug.enabled === true) {
     return;
   }
 
@@ -31,15 +31,15 @@ function execute(bot, message, args, command, data) {
           .setTitle(`SparkV Verification`)
           .setDescription(`You've been successfully verified as **${body.robloxUsername}**!`)
           .setColor(`GREEN`)
-          .setFooter(bot.config.bot.Embed.Footer);
+          .setFooter(bot.config.embed.footer);
       } else {
         const DiscordEmbed = new Discord.MessageEmbed()
           .setTitle(`Verification Prompt`)
           .setDescription(
             `You don't have any verified accounts! Please [click here](https://discord.com/oauth2/authorize?client_id=240413107850182656&scope=identify+guilds&response_type=code&redirect_uri=https%3A%2F%2Fverify.eryn.io) to link yourself with the API and then try again."`,
           )
-          .setColor(bot.config.bot.Embed.Color)
-          .setFooter(bot.config.bot.Embed.Footer);
+          .setColor(bot.config.embed.color)
+          .setFooter(bot.config.embed.footer);
       }
     });
 
@@ -47,7 +47,7 @@ function execute(bot, message, args, command, data) {
     .setTitle(`Verification Prompt`)
     .setDescription(`What's your Roblox username?`)
     .setFooter(`This verification prompt will cancel after 200 seconds.`)
-    .setColor(bot.config.bot.Embed.Color)
+    .setColor(bot.config.embed.color)
     .setTimestamp();
 
   message.reply(PromptEmbed);
@@ -69,8 +69,8 @@ function execute(bot, message, args, command, data) {
         .setDescription(
           `Hi, **${msg.content}**! To verify that you are indeed, ${msg.content}, please put \`${VerificationID}\` anywhere in your about section.\n\nSay **Done** when comeplete.\nSay **Cancel** to cancel.`,
         )
-        .setFooter(`ID: ${id} • ${bot.config.bot.Embed.Footer}`)
-        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(`ID: ${id} • ${bot.config.embed.footer}`)
+        .setColor(bot.config.embed.color)
         .setTimestamp();
 
       message.reply(UsernameFound);

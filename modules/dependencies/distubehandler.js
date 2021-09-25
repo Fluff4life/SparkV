@@ -44,9 +44,9 @@ module.exports = async bot => {
             },
           )
           .setURL(song.url)
-          .setColor(bot.config.bot.Embed.Color)
+          .setColor(bot.config.embed.color)
           .setFooter(
-            `📼 ${song.user.username} (${song.user.tag}) • (${song.playlist.songs.length} songs) - Now Playing ${song.name} • ${bot.config.bot.Embed.Footer}`,
+            `📼 ${song.user.username} (${song.user.tag}) • (${song.playlist.songs.length} songs) - Now Playing ${song.name} • ${bot.config.embed.footer}`,
             bot.user.displayAvatarURL(),
           )
           .setTimestamp();
@@ -81,9 +81,9 @@ module.exports = async bot => {
             },
           )
           .setURL(song.url)
-          .setColor(bot.config.bot.Embed.Color)
+          .setColor(bot.config.embed.color)
           .setFooter(
-            `📼 ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`,
+            `📼 ${song.user.username} (${song.user.tag}) • ${bot.config.embed.footer}`,
             bot.user.displayAvatarURL(),
           )
           .setTimestamp();
@@ -120,9 +120,9 @@ module.exports = async bot => {
           },
         )
         .setURL(song.url)
-        .setColor(bot.config.bot.Embed.Color)
+        .setColor(bot.config.embed.color)
         .setFooter(
-          `📼 Added by ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`,
+          `📼 Added by ${song.user.username} (${song.user.tag}) • ${bot.config.embed.footer}`,
           bot.user.displayAvatarURL(),
         )
         .setTimestamp();
@@ -156,9 +156,9 @@ module.exports = async bot => {
           },
         )
         .setURL(song.url)
-        .setColor(bot.config.bot.Embed.Color)
+        .setColor(bot.config.embed.color)
         .setFooter(
-          `📼 ${song.user.username} (${song.user.tag}) • ${bot.config.bot.Embed.Footer}`,
+          `📼 ${song.user.username} (${song.user.tag}) • ${bot.config.embed.footer}`,
           bot.user.displayAvatarURL(),
         )
         .setTimestamp();
@@ -172,7 +172,7 @@ module.exports = async bot => {
         const CreatePage = Song => {
           const NewEmbed = new Discord.MessageEmbed()
             .setTitle(`${Song.formattedDuration} | ${Song.name}`)
-            .setColor(bot.config.bot.Embed.Color)
+            .setColor(bot.config.embed.color)
             .setURL(Song.url)
             .setImage(Song.thumbnail);
 

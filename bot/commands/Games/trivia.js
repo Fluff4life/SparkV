@@ -1,10 +1,9 @@
 const Discord = require(`discord.js`);
+const { Trivia } = require("weky");
 
-const cmd = require("../../templates/gameCommand");
+const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const { Trivia } = require("weky");
-
   if (args[0]) {
     if (!args[0] === "easy" || !args[0] === "medium" || !args[0] === "hard") {
       args[0] = "easy";
@@ -16,6 +15,7 @@ async function execute(bot, message, args, command, data) {
     embed: {
       title: "Trivia",
       description: "You only have **{{time}}** to guess the answer!",
+      footer: bot.config.embed.footer,
       color: "#7289da",
       timestamp: true,
     },
@@ -39,6 +39,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: "",
   aliases: ["questions"],
-  perms: ["EMBED_LINKS"],
-  type: "game",
+  perms: ["EMBED_LINKS"]
 });

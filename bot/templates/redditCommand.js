@@ -49,10 +49,10 @@ module.exports = class RedditCommand {
       .setImage(this.settings.type === "image" ? selectedPost.url : "")
       .setURL(`https://www.reddit.com${selectedPost.permalink}`)
       .setFooter(
-        `👍${selectedPost.ups} | 💬${selectedPost.num_comments} | 😃u/${selectedPost.author} | ⚙️r/${selectedPost.subreddit} • ${bot.config.bot.Embed.Footer}`,
+        `👍${selectedPost.ups} | 💬${selectedPost.num_comments} | 😃u/${selectedPost.author} | ⚙️r/${selectedPost.subreddit} • ${bot.config.embed.footer}`,
         bot.user.displayAvatarURL(),
       )
-      .setColor(bot.config.bot.Embed.Color);
+      .setColor(bot.config.embed.color);
 
     if (this.settings.type === "text") {
       RedditEmbed.setDescription(selectedPost.selftext);

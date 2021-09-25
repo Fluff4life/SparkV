@@ -11,7 +11,7 @@ async function execute(bot, message, args, command, data) {
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1);
 
   if (!User) {
-    return message.reply(`${bot.config.bot.Emojis.error} | This user hasn't earned any XP yet!`);
+    return message.reply(`${bot.config.Emojis.error} | This user hasn't earned any XP yet!`);
   }
 
   const Rank = new canvacord.Rank()

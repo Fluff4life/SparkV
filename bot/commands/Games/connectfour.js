@@ -67,16 +67,16 @@ async function execute(bot, message, args, command, data) {
 
   if (!Opponent) {
     return message.reply(
-      `${bot.config.bot.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`,
+      `${bot.config.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`,
     );
   }
 
   if (Opponent.user.bot) {
-    return message.reply(`${bot.config.bot.Emojis.error} | That user is a bot lol.`);
+    return message.reply(`${bot.config.Emojis.error} | That user is a bot lol.`);
   }
 
   if (Opponent.user.id === message.author.id) {
-    return message.reply(`${bot.config.bot.Emojis.error} | You cannot play against yourself lol.`);
+    return message.reply(`${bot.config.Emojis.error} | You cannot play against yourself lol.`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -84,8 +84,8 @@ async function execute(bot, message, args, command, data) {
     .setDescription(
       `${Opponent}, ${message.author} challenged you to a duel! React to this message to accpet or decline.`,
     )
-    .setFooter(`Canceling in 60 seconds. • ${bot.config.bot.Embed.Footer}`)
-    .setColor(bot.config.bot.Embed.Color);
+    .setFooter(`Canceling in 60 seconds. • ${bot.config.embed.footer}`)
+    .setColor(bot.config.embed.color);
 
   const Array = [];
 
@@ -103,7 +103,7 @@ async function execute(bot, message, args, command, data) {
   let GameEmbed = new Discord.MessageEmbed()
     .setTitle(`**${message.author} V.S ${Opponent}**`)
     .setDescription(`${DisplayBoard(Board)}`)
-    .setColor(bot.config.bot.Embed.Color)
+    .setColor(bot.config.embed.color)
     .setTimestamp();
 
   const GameMessage = await message.reply(GameEmbed);
@@ -117,8 +117,8 @@ async function execute(bot, message, args, command, data) {
     await GameMessage.edit(
       GameEmbed.setTitle(`**${message.author.username} V.S ${Opponent.user.username}**`)
         .setDescription(`${DisplayBoard(Board)}\n${User}, which column do you pick?`)
-        .setFooter(`Type \`end\` to forfeit. • ${bot.config.bot.Embed.Footer}`)
-        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(`Type \`end\` to forfeit. • ${bot.config.embed.footer}`)
+        .setColor(bot.config.embed.color)
         .setTimestamp(),
     );
 
@@ -171,7 +171,7 @@ async function execute(bot, message, args, command, data) {
       GameMessage.edit(
         GameEmbed.setTitle(`❔ Game expired`)
           .setDescription(DisplayBoard(Board))
-          .setFooter(`Game expired due to inactivity. • ${bot.config.bot.Embed.Footer}`),
+          .setFooter(`Game expired due to inactivity. • ${bot.config.embed.footer}`),
       );
 
       return;
@@ -190,7 +190,7 @@ async function execute(bot, message, args, command, data) {
   GameMessage.edit(
     GameEmbed.setTitle(Winner ? `${Winner} won!` : `It's a draw!`)
       .setDescription(DisplayBoard(Board))
-      .setFooter(`${message.author} V.S. ${Opponent} • ${bot.config.bot.Embed.Footer}`),
+      .setFooter(`${message.author} V.S. ${Opponent} • ${bot.config.embed.footer}`),
   );
 }
 
@@ -199,6 +199,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: "<optional user>",
   aliases: ["cf"],
-  perms: ["EMBED_LINKS"],
-  gname: "chess",
+  perms: ["EMBED_LINKS"]
 });

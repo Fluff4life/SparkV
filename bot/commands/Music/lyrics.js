@@ -9,7 +9,7 @@ const LyrcisFinder = require(`lyrics-finder`);
 async function execute(bot, message, args, command, data) {
   if (!args) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | Please supply the title of a song to search for.`)
+      .reply(`${bot.config.Emojis.error} | Please supply the title of a song to search for.`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
@@ -18,7 +18,7 @@ async function execute(bot, message, args, command, data) {
   const Lyrics = LyrcisFinder(args);
 
   if (!Lyrics) {
-    return message.reply(`${bot.config.bot.Emojis.error} | I couldn't find the lyrics for **${args}**!`);
+    return message.reply(`${bot.config.Emojis.error} | I couldn't find the lyrics for **${args}**!`);
   }
 
   if (Lyrics.lyrics.length <= 2000) {
@@ -26,9 +26,9 @@ async function execute(bot, message, args, command, data) {
       .setTitle(Lyrics.title)
       .setDescription(Lyrics.lyrics)
       .setThumbnail(Lyrics.thumbnail.genius)
-      .setFooter(bot.config.bot.Embed.Footer)
+      .setFooter(bot.config.embed.footer)
       .setAuthor(`Song by ${Lyrics.author}`, null, Lyrics.links.genius)
-      .setColor(bot.config.bot.Embed.Color)
+      .setColor(bot.config.embed.color)
       .setTimestamp();
 
     return message.reply(SongEmbed);
@@ -53,9 +53,9 @@ async function execute(bot, message, args, command, data) {
       .setTitle(Lyrics.title)
       .setDescription(x)
       .setThumbnail(Lyrics.thumbnail.genius)
-      .setFooter(bot.config.bot.Embed.Footer)
+      .setFooter(bot.config.embed.footer)
       .setAuthor(`Song by ${Lyrics.author}`, null, Lyrics.links.genius)
-      .setColor(bot.config.bot.Embed.Color)
+      .setColor(bot.config.embed.color)
       .setTimestamp();
 
     LyricsSubArray.map((x, i) => CreatePage(bot, message, x));

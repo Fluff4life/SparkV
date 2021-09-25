@@ -16,7 +16,7 @@ const PackageInfo = require("./package.json");
 // Loading Splash Screen
 console.log(require("asciiart-logo")(require("./package.json")).render());
 
-if (require("./globalconfig.json").Debug.Enabled === true) {
+if (require("./globalconfig.json").debug.enabled === true) {
   console.log(require("chalk").grey("----------------------------------------"));
   require("./modules/logger")("DEBUG - ENABLED -> Some features may not work on this mode.");
   console.log(require("chalk").grey("----------------------------------------"));
@@ -50,15 +50,15 @@ async function Start() {
   mongoose.connection.on("error", console.error.bind(console, "Database connection error!"));
   mongoose.connection.on("open", () => Logger("DATABASE - ONLINE"));
 
-  if (Config.Debug.Enabled === true) {
-    if (Config.Debug.BotEnabled === true) {
+  if (Config.debug.enabled === true) {
+    if (Config.debug.BotEnabled === true) {
       await require("./bot/bot");
     }
 
-    if (Config.Debug.WebsiteEnabled === true) {
+    if (Config.debug.WebsiteEnabled === true) {
       await require("./website/website");
     }
-  } else if (Config.bot.Sharding.ShardingEnabled === true) {
+  } else if (Config.Sharding.ShardingEnabled === true) {
     await require("./bot/shardManager");
   } else {
     await require("./bot/bot");

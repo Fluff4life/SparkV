@@ -1,10 +1,9 @@
 const TicTacToe = require("discord-tictactoe");
 const Discord = require("discord.js");
 
-const cmd = require("../../templates/gameCommand");
+const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  console.log("Running tic tac toe game.");
   const Game = new TicTacToe({ language: "en" }, bot);
 
   Game.handleMessage(message);
@@ -15,6 +14,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: "",
   aliases: ["ttt"],
-  perms: ["EMBED_LINKS"],
-  type: "game",
+  perms: ["EMBED_LINKS"]
 });

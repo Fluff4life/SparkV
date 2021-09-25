@@ -4,7 +4,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (message.author.id !== process.env.OWNERID) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Access denied.`);
+    return message.reply(`${bot.config.Emojis.error} | Access denied.`);
   }
 
   const User = await bot.GetMember(message, args);
@@ -16,7 +16,7 @@ async function execute(bot, message, args, command, data) {
   data.user.money.balance = args[1];
   await data.user.save();
 
-  message.reply(`${bot.config.bot.Emojis.success} | Success!`);
+  message.reply(`${bot.config.Emojis.success} | Success!`);
 }
 
 module.exports = new cmd(execute, {

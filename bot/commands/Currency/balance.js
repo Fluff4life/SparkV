@@ -18,7 +18,7 @@ async function execute(bot, message, args, command, data) {
         Bank + Ch1llBucks,
       )}`,
     )
-    .setColor(bot.config.bot.Embed.Color)
+    .setColor(bot.config.embed.color)
     .setTimestamp();
 
   message.reply(BalanceEmbed);

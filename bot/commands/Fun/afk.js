@@ -11,7 +11,7 @@ async function execute(bot, message, args, command, data) {
     data.user.afk = null;
     await data.user.save();
 
-    message.reply(bot.config.bot.Responses.AFKWelcomeMessage);
+    message.reply(bot.config.Responses.AFKWelcomeMessage);
   } else {
     data.user.afk = reason;
     await data.user.save();

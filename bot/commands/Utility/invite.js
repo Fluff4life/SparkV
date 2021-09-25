@@ -8,10 +8,10 @@ module.exports = new cmd(
       .setTitle("Invites")
       .setDescription(`The following are links for SparkV!`)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
-      .addField("**Support Server**", `[Click Here](${bot.config.bot.support.invite})`, true)
-      .addField("**Bot Invite**", `[Click Here](${bot.config.bot.bot_invite})`, true)
-      .setFooter(`Invites for SparkV • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
-      .setColor(bot.config.bot.Embed.Color);
+      .addField("**Support Server**", `[Click Here](${bot.config.support.invite})`, true)
+      .addField("**Bot Invite**", `[Click Here](${bot.config.bot_invite})`, true)
+      .setFooter(`Invites for SparkV • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
+      .setColor(bot.config.embed.color);
 
     await message.reply(InvitesEmbend);
   },

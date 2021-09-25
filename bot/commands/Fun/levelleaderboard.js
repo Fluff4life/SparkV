@@ -16,8 +16,8 @@ async function execute(bot, message, args, command, data) {
   const LeaderboardEmbed = new Discord.MessageEmbed()
     .setTitle(`${message.guild.name}'s Level Leaderboard`)
     .setDescription(Leader.join("\n"))
-    .setFooter(`${bot.user.username} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
-    .setColor(bot.config.bot.Embed.Color);
+    .setFooter(`${bot.user.username} • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
+    .setColor(bot.config.embed.color);
 
   message.reply(LeaderboardEmbed);
 }

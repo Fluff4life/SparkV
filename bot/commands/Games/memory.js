@@ -18,16 +18,16 @@ const GenerateArray = level => {
 async function execute(bot, message, args, command, data) {
   if (!args) {
     return message.reply(
-      `${bot.config.bot.Emojis.error} | Next time, say how many directions you want to challenge yourself with.`,
+      `${bot.config.Emojis.error} | Next time, say how many directions you want to challenge yourself with.`,
     );
   }
 
   if (args[0] < 1 || args[0] > 20) {
-    return message.reply(`${bot.config.bot.Emojis.error} | You can only select between 1-20.`);
+    return message.reply(`${bot.config.Emojis.error} | You can only select between 1-20.`);
   }
 
   if (args[0] < 1 || args[0] > 20) {
-    return message.reply(`${bot.config.bot.Emojis.error} | You can only select between 1-20.`);
+    return message.reply(`${bot.config.Emojis.error} | You can only select between 1-20.`);
   }
 
   try {

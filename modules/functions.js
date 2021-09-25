@@ -29,7 +29,7 @@ module.exports = {
     const acceptedPrefixes = [
       `<@!${message.client.user.id}> `,
       `<@${message.client.user.id}> `,
-      bot.config.Debug.Enabled === true ? "_" : data.guild.settings.prefix,
+      bot.config.debug.enabled === true ? "_" : data.guild.settings.prefix,
     ];
 
     let prefix;
@@ -201,7 +201,7 @@ module.exports = {
    * @returns {string} Server count
    */
   async GetServerCount() {
-    if (bot.config.bot.Sharding.ShardingEnabled === false) {
+    if (bot.config.Sharding.ShardingEnabled === false) {
       return bot.guilds.cache.size;
     }
 
@@ -215,7 +215,7 @@ module.exports = {
    * @returns {string} User count
    */
   async GetUserCount() {
-    if (bot.config.bot.Sharding.ShardingEnabled === false) {
+    if (bot.config.Sharding.ShardingEnabled === false) {
       let CollectedUsers = 0;
 
       bot.guilds.cache.map((server, id) => (CollectedUsers = server.memberCount + CollectedUsers));

@@ -36,7 +36,7 @@ module.exports = new cmd(
       const NewEmbed = new Discord.MessageEmbed()
         .setTitle(`Rule #${RuleNumber} - ${RuleTitle}`)
         .setDescription(`\`\`\`${RuleDescription}\`\`\``)
-        .setColor(bot.config.bot.Embed.Color)
+        .setColor(bot.config.embed.color)
         .setThumbnail(
           Message.author.displayAvatarURL({
             dynamic: true,

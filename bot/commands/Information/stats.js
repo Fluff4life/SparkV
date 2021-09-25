@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 module.exports = new cmd(
   async (bot, message) => {
     const BotMessage = await message.reply("Fetching Stats...");
-    let footerMessage = `SparkV's Stats • ${bot.config.bot.Embed.Footer}`;
+    let footerMessage = `SparkV's Stats • ${bot.config.embed.footer}`;
 
     if (bot.functions.MSToTime(bot.uptime) === "5 Minutes") {
       footerMessage = "pog you found me lol great job on timing it on exactly 5 minutes";
@@ -41,7 +41,7 @@ module.exports = new cmd(
         true,
       )
       .setFooter(footerMessage)
-      .setColor(bot.config.bot.Embed.Color)
+      .setColor(bot.config.embed.color)
       .setTimestamp();
 
     BotMessage.edit({

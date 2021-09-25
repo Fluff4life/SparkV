@@ -38,7 +38,7 @@ module.exports = {
               "SparkV - Making your Discord life easier!",
               `https://cdn.discordapp.com/avatars/${interaction.message.author.id}/${interaction.message.author.avatar}.png?size=256`,
             )
-            .setColor(bot.config.bot.Embed.Color)
+            .setColor(bot.config.embed.color)
             .setTimestamp();
 
           pages.push(NewEmbed);
@@ -66,12 +66,12 @@ module.exports = {
           .addOptions(Selections);
 
         const InviteButton = new MessageButton()
-          .setURL(bot.config.bot.bot_invite)
+          .setURL(bot.config.bot_invite)
           .setLabel("Bot Invite")
           .setStyle("LINK");
 
         const SupportButton = new MessageButton()
-          .setURL(bot.config.bot.support.invite)
+          .setURL(bot.config.support.invite)
           .setLabel("Support Invite")
           .setStyle("LINK");
 

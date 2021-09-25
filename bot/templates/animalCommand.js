@@ -32,8 +32,8 @@ module.exports = class RedditCommand {
     const ImageEmbed = new Discord.MessageEmbed()
       .setTitle("😍 | Awwwww")
       .setImage(body)
-      .setFooter(`Powered by ${this.settings.endpoint} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
-      .setColor(bot.config.bot.Embed.Color);
+      .setFooter(`Powered by ${this.settings.endpoint} • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
+      .setColor(bot.config.embed.color);
 
     message.reply({
       embeds: [RedditEmbed],

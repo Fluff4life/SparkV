@@ -10,8 +10,8 @@ async function execute(bot, message) {
       const AdviceEmbed = new Discord.MessageEmbed()
         .setTitle("Here's an advice")
         .setDescription(json.slip.advice)
-        .setFooter(`You got advice #${json.slip.id} • ${bot.config.bot.Embed.Footer}`, bot.user.displayAvatarURL())
-        .setColor(bot.config.bot.Embed.Color)
+        .setFooter(`You got advice #${json.slip.id} • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
+        .setColor(bot.config.embed.color)
         .setTimestamp();
 
       const Message = await message.reply(AdviceEmbed);

@@ -20,7 +20,7 @@ module.exports = new cmd(
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle("Credits")
       .setDescription(`Here's the list of people who've helped SparkV on his path to success!`)
-      .setColor(bot.config.bot.Embed.Color)
+      .setColor(bot.config.embed.color)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addFields(Credits);
 

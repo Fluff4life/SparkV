@@ -2,9 +2,9 @@ const { ShardingManager } = require("discord.js");
 
 const manager = new ShardingManager("./bot.js", {
   token: process.env.TOKEN,
-  totalShards: Config.bot.Sharding.TotalShards || "auto",
+  totalShards: Config.Sharding.TotalShards || "auto",
   shardArgs: [...process.argv, ...["--sharding"]],
-  execArgv: [...process.argv, ...[Config.Debug.Enabled ? null : "--trace-warnings"]],
+  execArgv: [...process.argv, ...[Config.debug.enabled ? null : "--trace-warnings"]],
 });
 
 // Shard Handlers //

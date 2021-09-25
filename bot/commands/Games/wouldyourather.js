@@ -1,15 +1,15 @@
 const Discord = require("discord.js");
+const { WouldYouRather } = require("weky");
 
-const cmd = require("../../templates/gameCommand");
+const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const { WouldYouRather } = require("weky");
-
   await WouldYouRather({
     message: message,
     embed: {
       title: "Would you rather...",
       color: "#7289da",
+      footer: bot.config.embed.footer,
       timestamp: true,
     },
     thinkMessage: "Hmmmmmm",
@@ -23,6 +23,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: "",
   aliases: ["wyr"],
-  perms: ["EMBED_LINKS"],
-  type: "game",
+  perms: ["EMBED_LINKS"]
 });

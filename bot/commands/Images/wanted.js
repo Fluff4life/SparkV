@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
-  if (bot.config.Debug.Enabled === true) {
+  if (bot.config.debug.enabled === true) {
     return;
   }
   const canvacord = require("canvacord");

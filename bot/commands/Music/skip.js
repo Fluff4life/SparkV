@@ -5,7 +5,7 @@ const cmd = require("../../templates/musicCommand");
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
     return message
-      .reply(`${bot.config.bot.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
+      .reply(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
       .then(m => m.delete({ timeout: 5000 }));
   }
 
@@ -16,7 +16,7 @@ async function execute(bot, message, args, command, data) {
 
     message.reply({
       embed: {
-        title: `${bot.config.bot.Emojis.music} | Skipped Song`,
+        title: `${bot.config.Emojis.music} | Skipped Song`,
         description: `Skipped currently playing song.`,
         color: `#0099ff`,
 

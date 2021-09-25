@@ -55,7 +55,7 @@ module.exports = {
         data.user.afk = null;
 
         await data.user.save();
-        message.reply(bot.config.bot.Responses.AFKWelcomeMessage);
+        message.reply(bot.config.Responses.AFKWelcomeMessage);
       }
 
       message.mentions.users.forEach(async u => {
@@ -63,7 +63,7 @@ module.exports = {
 
         if (user.afk) {
           message.reply(
-            bot.config.bot.Responses.AFKMessage.toString()
+            bot.config.Responses.AFKMessage.toString()
               .replaceAll(`{userMentioned}`, MentionedUser.user.username)
               .replaceAll(`{reason}`, MentionedUserData.afk || "Reason data not found!"),
           );
@@ -89,7 +89,7 @@ module.exports = {
             message.delete();
           } catch (err) {
             message
-              .reply(bot.config.bot.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
+              .reply(bot.config.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
               .then(m => m.delete({ timeout: 1000 }));
           }
         }
@@ -129,7 +129,7 @@ module.exports = {
           const Level = bot.functions.FormatNumber(User.level);
 
           message.reply(
-            bot.config.bot.Responses.LevelUpMessage.toString()
+            bot.config.Responses.LevelUpMessage.toString()
               .replaceAll(`{author}`, message.author)
               .replaceAll(`{level}`, Level),
           );
@@ -140,12 +140,12 @@ module.exports = {
     if (process.env.USERBLACKLIST.includes(message.author.id)) {
       try {
         return message.author
-          .send(`${bot.config.bot.Emojis.Error} | Uh oh! Looks like you're banned from using SparkV.`)
+          .send(`${bot.config.Emojis.Error} | Uh oh! Looks like you're banned from using SparkV.`)
           .then(() => {
             message.react("❌");
           });
       } catch {
-        message.react(bot.config.bot.Emojis.Error);
+        message.react(bot.config.Emojis.Error);
       }
     }
 
@@ -157,7 +157,7 @@ module.exports = {
     }
 
     // Chat bot
-    const ChatBot = bot.config.Debug.Enabled === true ? true : data.guild.settings.chatbot;
+    const ChatBot = bot.config.debug.enabled === true ? true : data.guild.settings.chatbot;
 
     if (message.mentions.has(bot.user)) {
       if (ChatBot === "mention" && message.channel.type === "text") {
@@ -178,7 +178,7 @@ module.exports = {
 
     if (!commandfile.settings.enabled) {
       return message.reply(
-        `${bot.config.bot.Emojis.error} | This command is currently disabled! Please try again later.`,
+        `${bot.config.Emojis.error} | This command is currently disabled! Please try again later.`,
       );
     }
 
@@ -201,11 +201,11 @@ module.exports = {
 
     if (time > Date.now()) {
       const cooldownEmbed = new Discord.MessageEmbed()
-        .setTitle(`${bot.config.bot.Emojis.error} | Whoa there ${message.author.username}!`)
+        .setTitle(`${bot.config.Emojis.error} | Whoa there ${message.author.username}!`)
         .setDescription(`Please wait ${Math.ceil((time - Date.now()) / 1000)} more seconds to use that command again.`)
         .setThumbnail(message.author.avatarURL)
         .setColor(`#0099ff`)
-        .setFooter(bot.config.bot.Embed.Footer, bot.user.displayAvatarURL());
+        .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL());
 
       return message.reply({
         embeds: [
@@ -240,7 +240,7 @@ module.exports = {
       });
 
       message.reply(
-        `${bot.config.bot.Emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,
+        `${bot.config.Emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,
       );
     }
 
@@ -278,10 +278,10 @@ async function chatbot(message, wasMentioned) {
             .setTitle(`SparkV`)
             .setDescription(body.cnt)
             .setFooter(
-              `Never send personal information to SparkV. • ${bot.config.bot.Embed.Footer}`,
+              `Never send personal information to SparkV. • ${bot.config.embed.footer}`,
               bot.user.displayAvatarURL(),
             )
-            .setColor(bot.config.bot.Embed.Color);
+            .setColor(bot.config.embed.color);
 
           bot.StatClient.postCommand(`ChatBot`, message.author.id);
 

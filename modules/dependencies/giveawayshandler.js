@@ -78,7 +78,7 @@ module.exports = async bot => {
     default: {
       botsCanWin: false,
       exemptPermissions: [],
-      embedColor: bot.config.bot.Embed.Color,
+      embedColor: bot.config.embed.color,
       embedColorEnd: "#FF0000",
       reaction: "🎉",
     },

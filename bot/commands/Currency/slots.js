@@ -33,26 +33,26 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args) {
-    return message.reply(`${bot.config.bot.Emojis.error} | lol you need to tell me how much to bet.`);
+    return message.reply(`${bot.config.Emojis.error} | lol you need to tell me how much to bet.`);
   }
 
   let Ch1llBucks = data.user.money.balance;
   let win = false;
 
   if (Ch1llBucks === 0 || Ch1llBucks === null) {
-    return message.reply(`${bot.config.bot.Emojis.error} | You have no Ch1llBucks!`);
+    return message.reply(`${bot.config.Emojis.error} | You have no Ch1llBucks!`);
   }
 
   if (isNaN(args[0])) {
-    return message.reply(`${bot.config.bot.Emojis.error} | That's not a number!`);
+    return message.reply(`${bot.config.Emojis.error} | That's not a number!`);
   }
 
   if (message.content.includes(`-`)) {
-    return message.reply(`${bot.config.bot.Emojis.error} | You cannot bet negitive Ch1llBucks lol.`);
+    return message.reply(`${bot.config.Emojis.error} | You cannot bet negitive Ch1llBucks lol.`);
   }
 
   if (args[0] > Ch1llBucks) {
-    return message.reply(`${bot.config.bot.Emojis.error} | You don't have that much lol.`);
+    return message.reply(`${bot.config.Emojis.error} | You don't have that much lol.`);
   }
 
   let number = [];
@@ -72,7 +72,7 @@ async function execute(bot, message, args, command, data) {
   if (win) {
     message.reply(
       `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
-        bot.config.bot.Emojis.success
+        bot.config.Emojis.success
       } | You won ❄${await bot.functions.FormatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`,
     );
 
@@ -81,7 +81,7 @@ async function execute(bot, message, args, command, data) {
   } else {
     message.reply(
       `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
-        bot.config.bot.Emojis.error
+        bot.config.Emojis.error
       } | You lost ❄${await bot.functions.FormatNumber(parseInt(args[0]))} Ch1llBucks.`,
     );
 

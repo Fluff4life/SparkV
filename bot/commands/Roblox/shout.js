@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 function execute(bot, message, args, command) {
   if (!args) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Next time, respond with the ID of the game lmao.`);
+    return message.reply(`${bot.config.Emojis.error} | Next time, respond with the ID of the game lmao.`);
   }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${args}.json`)
@@ -27,7 +27,7 @@ function execute(bot, message, args, command) {
         embeds: [Embed],
       });
     })
-    .catch(err => message.reply(`${bot.config.bot.Emojis.error} | An error occured!`));
+    .catch(err => message.reply(`${bot.config.Emojis.error} | An error occured!`));
 }
 
 module.exports = new cmd(execute, {

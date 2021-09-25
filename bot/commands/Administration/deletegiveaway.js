@@ -6,7 +6,7 @@ async function execute(bot, message, args, command, data) {
   const ID = args[0];
 
   if (!ID || isNaN(ID)) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Please provide a valid message ID.`);
+    return message.reply(`${bot.config.Emojis.error} | Please provide a valid message ID.`);
   }
 
   const Giveaway = bot.GiveawayManager.giveaways.find(giveaway => giveaway.messageID === args[0]);

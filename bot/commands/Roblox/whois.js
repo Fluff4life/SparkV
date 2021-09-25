@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (bot.config.Debug.Enabled === true) {
+  if (bot.config.debug.enabled === true) {
     return;
   }
 
@@ -26,8 +26,8 @@ async function execute(bot, message, args, command, data) {
           `https://www.roblox.com/headshot-thumbnail/image?userId=${UserID}&width=420&height=420&format=png`,
         )
         .setURL(`https://www.roblox.com/users/${UserID}/profile`)
-        .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${bot.config.bot.Embed.Footer}`)
-        .setColor(bot.config.bot.Embed.Color);
+        .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${bot.config.embed.footer}`)
+        .setColor(bot.config.embed.color);
 
       message.reply({
         embeds: [InfoEmbed],
@@ -39,11 +39,11 @@ async function execute(bot, message, args, command, data) {
       .setDescription(
         "Uh oh! Looks like this user doesn't exist or roblox is down. Check [Roblox Status](https://status.roblox.com/).",
       )
-      .setFooter(`User not found • ${bot.config.bot.Embed.Footer}`)
+      .setFooter(`User not found • ${bot.config.embed.footer}`)
       .setThumbnail(
         "https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png",
       )
-      .setColor(bot.config.bot.Embed.Color)
+      .setColor(bot.config.embed.color)
       .setTimestamp();
 
     message.reply({

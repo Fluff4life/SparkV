@@ -10,6 +10,7 @@ async function execute(bot, message) {
     embed: {
       title: "Calculator",
       color: "#7289da",
+      footer: bot.config.embed.footer,
       timestamp: true,
     },
     disabledQuery: "Calculator is disabled!",

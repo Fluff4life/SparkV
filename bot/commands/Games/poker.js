@@ -3,8 +3,9 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/gameCommand");
 
 module.exports = new cmd(null, {
-  description: "SparkV will look up any user and return information on that user.",
-  usage: "<username>",
+  description: "Play a game of poker! You must be 18+ to play. Requires you to join a vc with a minimum of 2 people.",
+  usage: "",
+  dirname: __dirname,
   aliases: [],
   perms: ["EMBED_LINKS"],
   gname: "poker",

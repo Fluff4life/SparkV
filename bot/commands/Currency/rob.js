@@ -7,7 +7,7 @@ async function execute(bot, message, args, command, data) {
   const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]);
 
   if (!User) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Please say a person to rob.`);
+    return message.reply(`${bot.config.Emojis.error} | Please say a person to rob.`);
   }
 
   let RobberCh1llBucks = data.user.money.balance;
@@ -16,27 +16,27 @@ async function execute(bot, message, args, command, data) {
 
   if (RobberCh1llBucks < 500) {
     return message.reply(
-      `${bot.config.bot.Emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`,
+      `${bot.config.Emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`,
     );
   }
 
   if (UserCh1llBucks <= 0 || UserCh1llBucks === null) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`);
+    return message.reply(`${bot.config.Emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`);
   }
 
   if (message.author.id === User.id) {
-    return message.reply(`${bot.config.bot.Emojis.error} | Why do you want to rob yourself lol.`);
+    return message.reply(`${bot.config.Emojis.error} | Why do you want to rob yourself lol.`);
   }
 
   if (User.id === process.env.OWNERID) {
     return message.reply(
-      `${bot.config.bot.Emojis.error} | This user is protected! You can buy a protection shield from being robbed in the shop.`,
+      `${bot.config.Emojis.error} | This user is protected! You can buy a protection shield from being robbed in the shop.`,
     );
   }
 
   if (UserCh1llBucks < 0) {
     return message.reply(
-      `${bot.config.bot.Emojis.error} | This user is in **DEBT**! LOL!! HOW ON EARTH DID THAT HAPPEN LMFAOOOOO!!! Anyways, contact support and we'll reset your balance. :)`,
+      `${bot.config.Emojis.error} | This user is in **DEBT**! LOL!! HOW ON EARTH DID THAT HAPPEN LMFAOOOOO!!! Anyways, contact support and we'll reset your balance. :)`,
     );
   }
 
@@ -52,7 +52,7 @@ async function execute(bot, message, args, command, data) {
     UserBalance.save();
 
     message.reply(
-      `${bot.config.bot.Emojis.success} | You robbed ${User} and recieved ${await bot.functions.FormatNumber(
+      `${bot.config.Emojis.success} | You robbed ${User} and recieved ${await bot.functions.FormatNumber(
         Ammount,
       )} Ch1llBucks!`,
     );
@@ -63,7 +63,7 @@ async function execute(bot, message, args, command, data) {
     await data.user.save();
     UserBalance.save();
 
-    message.reply(`${bot.config.bot.Emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`);
+    message.reply(`${bot.config.Emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`);
   }
 }
 
