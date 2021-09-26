@@ -110,8 +110,8 @@ module.exports = {
       const Leveling = data.guild.plugins.leveling.enabled;
 
       if (Leveling === true) {
-        let MaxXP = data.guild.plugins.automod.leveling.max;
-        let MinXP = data.guild.plugins.automod.leveling.min;
+        let MaxXP = data.guild.plugins.leveling.max;
+        let MinXP = data.guild.plugins.leveling.min;
 
         if (isNaN(MaxXP)) {
           MaxXP = 25;
