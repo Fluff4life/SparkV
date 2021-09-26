@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { FastType } = require("weky");
+const { Fight } = require("weky");
 
 const cmd = require("../../templates/command");
 
