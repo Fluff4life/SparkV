@@ -27,18 +27,18 @@ module.exports = {
    */
   getPrefix(message, data) {
     const acceptedPrefixes = [
+      bot.config.debug.enabled === true ? "_" : data.guild.prefix,
       `<@!${message.client.user.id}> `,
       `<@${message.client.user.id}> `,
-      bot.config.debug.enabled === true ? "_" : data.guild.prefix,
+      message.client.user.username.toLowerCase(),
     ];
 
-    let prefix;
+    let prefix = null;
 
     acceptedPrefixes.forEach(p => {
-      if (message.content.toLowerCase().startsWith(p)) {
+      if (message.content.startsWith(p) || message.content.toLowerCase().startsWith(p)) {
+        console.log(p);
         prefix = p;
-      } else {
-        prefix = null;
       }
     });
 

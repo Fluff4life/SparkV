@@ -153,14 +153,7 @@ module.exports = {
       }
     }
 
-    // Check for a prefix
-    const prefix = bot.functions.getPrefix(message, data);
-
-    if (!prefix) {
-      return;
-    }
-
-    // Chat bot
+    // Chat Bot
     const ChatBot = bot.config.debug.enabled === true ? true : data.guild.plugins.chatbot;
 
     if (message.mentions.has(bot.user)) {
@@ -169,6 +162,13 @@ module.exports = {
       }
     } else if (ChatBot === "message" && message.channel.type === "text") {
       return chatbot(message, false);
+    }
+
+    // Check for a prefix
+    const prefix = bot.functions.getPrefix(message, data);
+
+    if (!prefix) {
+      return;
     }
 
     // Command Handler
