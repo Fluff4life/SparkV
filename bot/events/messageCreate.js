@@ -85,7 +85,10 @@ module.exports = {
       }
 
       if (data.guild.plugins.automod.removeLinks === true) {
-        if (!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.functions.isURL(message.content)) {
+        if (
+          !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) &&
+          bot.functions.isURL(message.content)
+        ) {
           try {
             message.delete();
           } catch (err) {
@@ -95,8 +98,8 @@ module.exports = {
           }
 
           return message.channel
-          .send(`🔨 ${message.author}, you cannot send links here!`)
-          .then(m => m.delete({ timeout: 5000 }));
+            .send(`🔨 ${message.author}, you cannot send links here!`)
+            .then(m => m.delete({ timeout: 5000 }));
         }
       }
 
@@ -178,9 +181,7 @@ module.exports = {
     }
 
     if (!commandfile.settings.enabled) {
-      return message.reply(
-        `${bot.config.Emojis.error} | This command is currently disabled! Please try again later.`,
-      );
+      return message.reply(`${bot.config.Emojis.error} | This command is currently disabled! Please try again later.`);
     }
 
     if (commandfile.settings.guildOnly && !message.guild) {
@@ -209,9 +210,7 @@ module.exports = {
         .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL());
 
       return message.reply({
-        embeds: [
-          cooldownEmbed
-        ]
+        embeds: [cooldownEmbed],
       });
     }
 
@@ -220,7 +219,7 @@ module.exports = {
     try {
       await commandfile.run(bot, message, args, command, data).then(async () => {
         if (data.guild.autoRemoveCommands === true) {
-          message.delete().catch(() => { });
+          message.delete().catch(() => {});
         }
 
         bot.StatClient.postCommand(command, message.author.id);

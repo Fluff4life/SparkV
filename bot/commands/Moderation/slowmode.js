@@ -12,9 +12,7 @@ async function execute(bot, message, args, command, data) {
   }
 
   if (isNaN(args[0])) {
-    return message
-      .reply(`${bot.config.Emojis.error} | That's not a nunber.`)
-      .then(m => m.delete({ timeout: 5000 }));
+    return message.reply(`${bot.config.Emojis.error} | That's not a nunber.`).then(m => m.delete({ timeout: 5000 }));
   }
 
   if (args[0] > 21600) {

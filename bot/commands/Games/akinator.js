@@ -9,5 +9,5 @@ module.exports = new cmd(null, {
   aliases: [],
   perms: ["EMBED_LINKS"],
   gname: "akinator",
-  type: "game"
+  type: "game",
 });

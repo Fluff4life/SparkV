@@ -11,14 +11,14 @@ module.exports = {
 
   async getUser(UserID) {
     let data = await UserS.findOne({
-      id: UserID
+      id: UserID,
     });
 
     if (data) {
       return data;
     } else {
       data = new UserS({
-        id: UserID
+        id: UserID,
       });
 
       return data;

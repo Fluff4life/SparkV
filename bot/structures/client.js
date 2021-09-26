@@ -59,22 +59,23 @@ module.exports = class bot extends Client {
     const client = this;
 
     // Function
-    const createRedis = () => new Promise(resolve => {
-      const rClient = require("redis").createClient({
-        host: process.env.REDIS_HOST,
-        port: process.env.REDIS_PORT
-      });
-      rClient.auth(process.env.REDIS_PASSWORD);
+    const createRedis = () =>
+      new Promise(resolve => {
+        const rClient = require("redis").createClient({
+          host: process.env.REDIS_HOST,
+          port: process.env.REDIS_PORT,
+        });
+        rClient.auth(process.env.REDIS_PASSWORD);
 
-      for (const prop in rClient) {
-        if (typeof rClient[prop] === "function") {
-          rClient[`${prop}Async`] = util.promisify(rClient[prop]).bind(rClient);
+        for (const prop in rClient) {
+          if (typeof rClient[prop] === "function") {
+            rClient[`${prop}Async`] = util.promisify(rClient[prop]).bind(rClient);
+          }
         }
-      }
 
-      rClient.on("error", err => console.error(err));
-      rClient.on("ready", resolve.bind(null, rClient));
-    });
+        rClient.on("error", err => console.error(err));
+        rClient.on("ready", resolve.bind(null, rClient));
+      });
 
     // Update Docs
     setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);

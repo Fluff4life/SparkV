@@ -20,13 +20,12 @@ const GuildSchema = new mongoose.Schema({
         type: Boolean,
       },
       message: {
-        default:
-          "Welcome {mention} to {server}!\nYou're our {members} member.",
+        default: "Welcome {mention} to {server}!\nYou're our {members} member.",
         type: String,
       },
       channel: {
         type: String,
-        default: null
+        default: null,
       },
     },
     goodbye: {
@@ -35,27 +34,26 @@ const GuildSchema = new mongoose.Schema({
         type: Boolean,
       },
       message: {
-        default:
-          "Bye {mention}!\nWe're really sad to see you go.\nWithout you, we're now {members} members",
+        default: "Bye {mention}!\nWe're really sad to see you go.\nWithout you, we're now {members} members",
         type: String,
       },
       channel: {
         type: String,
-        default: null
+        default: null,
       },
     },
     automod: {
       removeLinks: { type: Boolean, default: false },
       removeProfanity: { type: Boolean, default: false },
-      removeDuplicateText: { type: Boolean, default: false }
+      removeDuplicateText: { type: Boolean, default: false },
     },
     leveling: {
       enabled: { type: Boolean, default: false },
       max: { type: Number, default: 25 },
-      min: { type: Number, default: 5 }
+      min: { type: Number, default: 5 },
     },
     chatbot: { type: String, default: false },
-  }
+  },
 });
 
 const GuildData = new mongoose.model("Guild", GuildSchema);

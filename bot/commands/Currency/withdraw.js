@@ -23,9 +23,7 @@ async function execute(bot, message, args, command, data) {
     await data.user.save();
 
     message.reply(
-      `${bot.config.Emojis.success} | You just withdrawed ❄${await bot.functions.FormatNumber(
-        Bank,
-      )} from your bank!`,
+      `${bot.config.Emojis.success} | You just withdrawed ❄${await bot.functions.FormatNumber(Bank)} from your bank!`,
     );
   } else {
     if (!args[0]) {

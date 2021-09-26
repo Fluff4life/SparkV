@@ -61,10 +61,8 @@ module.exports = {
       guild.systemChannel.permissionsFor(bot.user).has("VIEW_CHANNEL")
     ) {
       try {
-        const InviteButton = new MessageButton()
-          .setURL(bot.config.bot_invite)
-          .setLabel("Bot Invite")
-          .setStyle("LINK");
+        const InviteButton = new MessageButton().setURL(bot.config.bot_invite).setLabel("Bot Invite")
+.setStyle("LINK");
 
         const SupportButton = new MessageButton()
           .setURL(bot.config.support.invite)
