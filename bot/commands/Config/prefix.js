@@ -27,5 +27,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   usage: "",
   aliases: [],
-  perms: ["MANAGE_MESSAGES"]
+  perms: ["MANAGE_MESSAGES"],
 });

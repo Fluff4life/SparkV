@@ -71,9 +71,7 @@ async function execute(bot, message, args, command, data) {
 
     await data.user.save();
 
-    message.reply(
-      `${bot.config.Emojis.success} | Deposited ❄${await bot.functions.FormatNumber(args[0])} into bank!`,
-    );
+    message.reply(`${bot.config.Emojis.success} | Deposited ❄${await bot.functions.FormatNumber(args[0])} into bank!`);
   }
 }
 

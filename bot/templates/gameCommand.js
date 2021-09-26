@@ -15,11 +15,7 @@ module.exports = class ModCommand {
         .then(async invite => message.reply(`${invite.code}`));
     } else if (this.settings.type === "game") {
       if (this.settings.gname === "akinator") {
-        const gameTypes = [
-          "animal",
-          "character",
-          "object"
-        ];
+        const gameTypes = ["animal", "character", "object"];
 
         let gameType;
         // The Type of Akinator Game to Play. ("animal", "character" or "object")
@@ -36,7 +32,7 @@ module.exports = class ModCommand {
 
         akinator(message, {
           gameType: gameType,
-          useButtons: true
+          useButtons: true,
         });
       } else {
         message.reply(`Invalid game name: \`${this.settings.gname}\``);

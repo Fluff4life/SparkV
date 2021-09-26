@@ -55,9 +55,7 @@ async function execute(bot, message, args, command, data) {
 
     User.setNickname(NewNickname)
       .then(() => {
-        message.reply(
-          `${bot.config.Emojis.success} | I successfully changed ${User}\`s nickname to ${NewNickname}!`,
-        );
+        message.reply(`${bot.config.Emojis.success} | I successfully changed ${User}\`s nickname to ${NewNickname}!`);
       })
       .catch(err => {
         message.reply(`${bot.config.Emojis.error} | Uh oh! I cannot change their nickname.`).then(() => {

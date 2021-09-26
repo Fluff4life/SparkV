@@ -65,10 +65,8 @@ module.exports = {
           .setPlaceholder("Select a category to view it's commands.")
           .addOptions(Selections);
 
-        const InviteButton = new MessageButton()
-          .setURL(bot.config.bot_invite)
-          .setLabel("Bot Invite")
-          .setStyle("LINK");
+        const InviteButton = new MessageButton().setURL(bot.config.bot_invite).setLabel("Bot Invite")
+.setStyle("LINK");
 
         const SupportButton = new MessageButton()
           .setURL(bot.config.support.invite)
