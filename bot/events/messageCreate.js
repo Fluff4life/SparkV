@@ -154,7 +154,7 @@ module.exports = {
     }
 
     // Chat Bot
-    const ChatBot = bot.config.debug.enabled === true ? true : data.guild.plugins.chatbot;
+    const ChatBot = data.guild.plugins.chatbot;
 
     if (message.mentions.has(bot.user)) {
       if (ChatBot === "mention" && message.channel.type === "text") {

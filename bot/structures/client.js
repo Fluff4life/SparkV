@@ -86,6 +86,8 @@ module.exports = class bot extends Client {
     // Functions
     this.database.init(this);
     Distube(this);
+    giveawayshandler(this);
+    Noblox(this);
 
     if (!settings.sharding) {
       const StatClient = new Statcord.Client({

@@ -37,7 +37,6 @@ module.exports = {
 
     acceptedPrefixes.forEach(p => {
       if (message.content.startsWith(p) || message.content.toLowerCase().startsWith(p)) {
-        console.log(p);
         prefix = p;
       }
     });
