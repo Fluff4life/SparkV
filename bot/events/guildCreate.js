@@ -8,7 +8,7 @@ module.exports = {
     const Logger = bot.channels.cache.get("831314946624454656");
 
     if (Logger) {
-      const ServerAddedEmbed = Discord.MessageEmbed()
+      const ServerAddedEmbed = new Discord.MessageEmbed()
         .setTitle("🔼︱Guild Added")
         .setDescription(`SparkV has joined ${guild.name} (${guild.id})!`)
         .setColor("GREEN");

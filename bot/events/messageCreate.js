@@ -71,7 +71,7 @@ module.exports = {
       });
 
       if (data.guild.plugins.automod.removeProfanity === true) {
-        if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
+        if (!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
           AntiSwearPackage(bot, message, {
             warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
             muteRole: `Muted`,
@@ -84,7 +84,7 @@ module.exports = {
       }
 
       if (data.guild.plugins.automod.removeLinks === true) {
-        if (!user.hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
+        if (!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) && bot.isURL(message.content)) {
           try {
             message.delete();
           } catch (err) {

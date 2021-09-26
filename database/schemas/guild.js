@@ -14,6 +14,36 @@ const GuildSchema = new mongoose.Schema({
   autoRemoveCommands: { type: Boolean, default: false },
 
   plugins: {
+    welcome: {
+      enabled: {
+        default: false,
+        type: Boolean,
+      },
+      message: {
+        default:
+          "Welcome {mention} to {server}!\nYou're our {members} member.",
+        type: String,
+      },
+      channel: {
+        type: String,
+        default: null
+      },
+    },
+    goodbye: {
+      enabled: {
+        default: false,
+        type: Boolean,
+      },
+      message: {
+        default:
+          "Bye {mention}!\nWe're really sad to see you go.\nWithout you, we're now {members} members",
+        type: String,
+      },
+      channel: {
+        type: String,
+        default: null
+      },
+    },
     automod: {
       removeLinks: { type: Boolean, default: false },
       removeProfanity: { type: Boolean, default: false },
