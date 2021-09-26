@@ -130,12 +130,12 @@ module.exports = {
 
         if (HasLeveledUp) {
           const User = Levels.fetch(message.author.id, message.guild.id);
-          const Level = await bot.functions.FormatNumber(User.level);
+          console.log(User.level);
 
           message.reply(
             bot.config.Responses.LevelUpMessage.toString()
               .replaceAll(`{author}`, message.author)
-              .replaceAll(`{level}`, Level),
+              .replaceAll(`{level}`, await bot.functions.FormatNumber(User.level)),
           );
         }
       }
