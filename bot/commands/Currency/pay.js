@@ -3,7 +3,7 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = await bot.GetMember(message, args);
+  const User = await bot.functions.GetMember(message, args);
 
   if (!args) {
     return message.reply(`${bot.config.Emojis.error} | You need to mention someone to pay and how much.`);

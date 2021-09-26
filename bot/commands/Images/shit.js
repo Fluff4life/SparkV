@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
+  const User = (await bot.functions.GetMember(message, args)) || bot.users.cache.get(args[0]) || message.author;
 
   if (bot.config.debug.enabled === true) {
     return;

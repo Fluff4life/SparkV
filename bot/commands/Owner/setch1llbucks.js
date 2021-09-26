@@ -7,7 +7,7 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.Emojis.error} | Access denied.`);
   }
 
-  const User = await bot.GetMember(message, args);
+  const User = await bot.functions.GetMember(message, args);
 
   if (!User) {
     return message.reply;

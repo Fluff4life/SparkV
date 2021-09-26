@@ -3,7 +3,7 @@ const { MessageEmbed, Permissions } = require("discord.js");
 const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
-  const UserToBan = bot.GetMember(message, args);
+  const UserToBan = bot.functions.GetMember(message, args);
   const ReasonForBan = args.join(` `).slice(22) || `No reason provided.`;
 
   if (!args[0]) {

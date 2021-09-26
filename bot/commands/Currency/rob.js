@@ -4,7 +4,7 @@ const cmd = require("../../templates/command");
 const results = [`WIN`, `LOST`];
 
 async function execute(bot, message, args, command, data) {
-  const User = (await bot.GetMember(message, args)) || bot.users.cache.get(args[0]);
+  const User = (await bot.functions.GetMember(message, args)) || bot.users.cache.get(args[0]);
 
   if (!User) {
     return message.reply(`${bot.config.Emojis.error} | Please say a person to rob.`);

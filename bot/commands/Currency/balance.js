@@ -3,7 +3,7 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = bot.GetMember(message, args) || message.author;
+  const User = bot.functions.GetMember(message, args) || message.author;
 
   let Ch1llBucks = data.user.money.balance;
   let Bank = data.user.money.bank;
