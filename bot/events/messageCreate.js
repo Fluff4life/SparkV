@@ -90,13 +90,13 @@ module.exports = {
           } catch (err) {
             message
               .reply(bot.config.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
-              .then(m => m.delete({ timeout: 1000 }));
+              .then(m => m.delete({ timeout: 5000 }));
           }
-        }
 
-        return message.channel
+          return message.channel
           .send(`🔨 ${message.author}, you cannot send links here!`)
-          .then(m => m.delete({ timeout: 1000 }));
+          .then(m => m.delete({ timeout: 5000 }));
+        }
       }
 
       const AntiSpam = data.guild.plugins.automod.removeDuplicateText;
@@ -219,7 +219,7 @@ module.exports = {
     try {
       await commandfile.run(bot, message, args, command, data).then(async () => {
         if (data.guild.autoRemoveCommands === true) {
-          message.delete().catch(() => {});
+          message.delete().catch(() => { });
         }
 
         bot.StatClient.postCommand(command, message.author.id);
