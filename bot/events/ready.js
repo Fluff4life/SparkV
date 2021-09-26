@@ -68,19 +68,23 @@ module.exports = {
     }, 60 * 1000);
 
     // Bot Lists //
-    const poster = new dbots.Poster({
-      clientID: bot.user.id,
-      apiKeys: {
-        topgg: process.env.DBLKEY,
-      },
-      clientLibrary: "discord.js",
-      serverCount: async () => await bot.functions.GetServerCount(),
-      userCount: async () => await bot.functions.GetUserCount(),
-    });
+    if (bot.config.debug.enabled === false) {
+      const poster = new dbots.Poster({
+        clientID: bot.user.id,
+        apiKeys: {
+          topgg: process.env.DBLKEY,
+        },
+        clientLibrary: "discord.js",
+        serverCount: async () => await bot.functions.GetServerCount(),
+        userCount: async () => await bot.functions.GetUserCount(),
+      });
 
-    // Start Posting
-    bot.StatClient.autopost();
-    poster.startInterval();
+      // Start Posting to Bot Lists
+      poster.startInterval();
+
+      // Auto Post Bot Stats
+      bot.StatClient.autopost();
+    }
 
     console.log("-------- SparkV --------");
     bot.logger(

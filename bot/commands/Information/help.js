@@ -53,7 +53,7 @@ async function execute(bot, message, args, command, data) {
       .setStyle("LINK");
 
     const VoteButton = new MessageButton()
-      .setURL("https://top.gg/bot/763126208149585961")
+      .setURL("https://top.gg/bot/874294905034407966")
       .setLabel("Vote for me!")
       .setStyle("LINK");
 
