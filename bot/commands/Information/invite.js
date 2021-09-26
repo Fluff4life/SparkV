@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/command");
 
 module.exports = new cmd(
-  async () => {
+  async (bot, message) => {
     const InvitesEmbend = new Discord.MessageEmbed()
       .setTitle("Invites")
       .setDescription(`The following are links for SparkV!`)
@@ -13,7 +13,9 @@ module.exports = new cmd(
       .setFooter(`Invites for SparkV • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
       .setColor(bot.config.embed.color);
 
-    await message.reply(InvitesEmbend);
+    await message.reply({
+      embeds: [InvitesEmbend]
+    });
   },
   {
     description: "Displays links.",
