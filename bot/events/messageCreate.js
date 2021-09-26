@@ -53,6 +53,7 @@ module.exports = {
     if (message.guild) {
       if (data.user.afk) {
         data.user.afk = null;
+        data.user.markModified("afk");
 
         await data.user.save();
         message.reply(bot.config.Responses.AFKWelcomeMessage);
@@ -126,7 +127,7 @@ module.exports = {
 
         if (HasLeveledUp) {
           const User = Levels.fetch(message.author.id, message.guild.id);
-          const Level = bot.functions.FormatNumber(User.level);
+          const Level = await bot.functions.FormatNumber(User.level);
 
           message.reply(
             bot.config.Responses.LevelUpMessage.toString()

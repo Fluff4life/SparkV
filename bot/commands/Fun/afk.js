@@ -9,11 +9,13 @@ async function execute(bot, message, args, command, data) {
 
   if (data.user.afk) {
     data.user.afk = null;
+    data.user.markModified("afk");
     await data.user.save();
 
     message.reply(bot.config.Responses.AFKWelcomeMessage);
   } else {
     data.user.afk = reason;
+    data.user.markModified("afk");
     await data.user.save();
 
     message.reply(`You're now AFK. Reason: ${reason}`);
