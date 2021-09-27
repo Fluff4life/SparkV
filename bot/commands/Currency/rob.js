@@ -48,6 +48,9 @@ async function execute(bot, message, args, command, data) {
     data.user.money.balance = RobberCh1llBucks + Ammount;
     UserBalance.money.balance = UserCh1llBucks - Ammount;
 
+    data.user.markModified("money.balance");
+    UserBalance.markModified("money.balance");
+
     await data.user.save();
     UserBalance.save();
 

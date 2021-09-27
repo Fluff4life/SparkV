@@ -11,6 +11,7 @@ async function execute(bot, message, args, command, data) {
   const Ammount = RandomAmmount * Multiplier;
 
   data.user.money.balance = Ch1llBucks + Ammount;
+  data.markModified("money.balance");
   await data.user.save();
 
   message.reply(

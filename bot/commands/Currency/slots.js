@@ -77,6 +77,7 @@ async function execute(bot, message, args, command, data) {
     );
 
     data.user.money.balance = Ch1llBucks + args[0] * SlotItems.length;
+    data.user.markModified("money.balance");
     await data.user.save();
   } else {
     message.reply(
@@ -86,6 +87,8 @@ async function execute(bot, message, args, command, data) {
     );
 
     data.user.money.balance = Ch1llBucks - args[0];
+    data.user.markModified("money.balance");
+
     await data.user.save();
   }
 }

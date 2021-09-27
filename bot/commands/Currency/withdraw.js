@@ -20,6 +20,8 @@ async function execute(bot, message, args, command, data) {
     data.user.money.balance = Ch1llBucks + Bank;
     data.user.money.bank = 0;
 
+    data.user.markModified("money.balance");
+    data.user.markModified("money.bank");
     await data.user.save();
 
     message.reply(
@@ -45,6 +47,8 @@ async function execute(bot, message, args, command, data) {
     data.user.money.balance = Ch1llBucks + args[0];
     data.user.money.bank = Bank - args[0];
 
+    data.user.markModified("money.balance");
+    data.user.markModified("money.bank");
     await data.user.save();
 
     message.reply(

@@ -17,11 +17,6 @@ module.exports = mongoose.model(
     registrationDate: { type: Number, default: Date.now() },
 
     // Data //
-    cooldown: { type: Number, default: null },
-    money: { type: Number, default: 0 },
-    bank: { type: Number, default: 0 },
-    bankSpace: { type: Number, default: 1000 },
-
     xp: { type: Number, default: 0 },
     level: { type: Number, default: 0 },
 

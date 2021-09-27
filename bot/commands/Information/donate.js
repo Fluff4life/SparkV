@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 module.exports = new cmd(
   (bot, message) => {
     message.reply(
-      `${bot.config.Emojis.success} | Did you know that SparkV took 7 months to develope? It's true! KingCh1ll wanted everything perfect for its release. If you want to support SparkV's developement, go to **https://${process.env.BASEURL}/bot/donate**. Thank you!`,
+      `${bot.config.Emojis.success} | If you want to support SparkV's developement, go to **https://sparkv.tk/donate**. Thank you!`,
     );
   },
   {

@@ -44,7 +44,8 @@ async function execute(bot, message, args, command, data) {
   const KickCount = data.guild.settings.warnsInfractions.kick;
 
   data.guild.casesCount++;
-  data.guild.save();
+  data.guild.markModified("casesCount");
+  await data.guild.save();
 
   const CaseInformation = {
     channel: message.channel.id,
@@ -87,7 +88,8 @@ async function execute(bot, message, args, command, data) {
     const KickCount = data.guild.settings.warnsInfractions.kick;
 
     data.guild.casesCount++;
-    data.guild.save();
+    data.guild.markModified("casesCount");
+    await data.guild.save();
 
     const CaseInformation = {
       channel: message.channel.id,

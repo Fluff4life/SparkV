@@ -29,14 +29,17 @@ const Schema = new mongoose.Schema({
   cooldowns: { type: String, default: null },
   afk: { type: String, default: null },
   money: {
-    type: Object,
-    default: { balance: 0, bank: 0, bankMax: 1000, multiplier: 1 },
+    balance: { type: String, default: "0" },
+    bank: { type: String, default: "0" },
+    bankMax: { type: String, default: "1000" },
+    multiplier: { type: String, default: "0" }
   },
 });
 
 Schema.method("GenerateAPIToken", async () => {
   this.APIToken = GenerateToken();
 
+  data.guild.markModified("APIToken");
   await this.save();
   return this.APIToken;
 });

@@ -26,6 +26,8 @@ async function execute(bot, message, args, command, data) {
       data.user.money.bank = Bank + BankMax;
       data.user.money.balance = Ch1llBucks - BankMax;
 
+      data.markModified("money.bank");
+      data.markModified("money.balance");
       await data.user.save();
 
       message.reply(
@@ -37,6 +39,8 @@ async function execute(bot, message, args, command, data) {
       data.user.money.bank = Bank + Ch1llBucks;
       data.user.money.balance = Ch1llBucks - Ch1llBucks;
 
+      data.user.markModified("money.bank");
+      data.user.markModified("money.balance");
       await data.user.save();
 
       message.reply(
@@ -69,6 +73,8 @@ async function execute(bot, message, args, command, data) {
     data.user.money.balance = Ch1llBucks - args[0];
     data.user.money.bank = Bank + args[0];
 
+    data.user.markModified("money.balance");
+    data.user.markModified("money.bank");
     await data.user.save();
 
     message.reply(`${bot.config.Emojis.success} | Deposited ❄${await bot.functions.FormatNumber(args[0])} into bank!`);

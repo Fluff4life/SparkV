@@ -15,7 +15,7 @@ module.exports = async bot => {
       data: []
     });
 
-    giveawayData.save();
+    await giveawayData.save();
   }
 
   Levels.setURL(process.env.MONGOOSEURL);
@@ -65,6 +65,7 @@ module.exports = async bot => {
       const NewGiveawaysArray = giveawayData.data.filter(giveaway => giveaway.messageID !== MessageID);
       giveawayData.data = NewGiveawaysArray;
 
+      giveawayData.markModified("data");
       await giveawayData.save().catch(err => console.log(`[Giveaway Manager] - Failed to delete giveaway and save to database. ${err}`));
 
       return true;

@@ -14,6 +14,7 @@ async function execute(bot, message, args, command, data) {
   }
 
   data.user.money.balance = args[1];
+  data.user.markModified("money.balance");
   await data.user.save();
 
   message.reply(`${bot.config.Emojis.success} | Success!`);
