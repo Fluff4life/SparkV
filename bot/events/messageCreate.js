@@ -156,7 +156,6 @@ module.exports = {
     // Chat Bot
     const ChatBot = data.guild.plugins.chatbot;
 
-    console.log(message.mentions.has(bot.user))
     if (message.mentions.has(bot.user)) {
       if (ChatBot === "mention") {
         return chatbot(message, true);
@@ -277,14 +276,16 @@ async function chatbot(message, wasMentioned) {
             .setTitle(`SparkV`)
             .setDescription(body.cnt)
             .setFooter(
-              `Never send personal information to SparkV. • ${bot.config.embed.footer}`,
-              bot.user.displayAvatarURL(),
+              `Never send personal information to SparkV. • ${message.client.config.embed.footer}`,
+              message.client.user.displayAvatarURL(),
             )
-            .setColor(bot.config.embed.color);
+            .setColor(message.client.config.embed.color);
 
-          bot.StatClient.postCommand(`ChatBot`, message.author.id);
+          message.client.StatClient.postCommand(`ChatBot`, message.author.id);
 
-          message.reply(APIEmbed);
+          message.reply({
+            embeds: [APIEmbed]
+          });
         } else {
           return console.error(`Failed to get message from Chat bot. Response: ${body}`);
         }

@@ -17,10 +17,6 @@ function CreateID() {
 }
 
 function execute(bot, message, args, command, data) {
-  if (bot.config.debug.enabled === true) {
-    return;
-  }
-
   const noblox = require(`noblox.js`);
 
   fetch(`https://verify.eryn.io/api/user/${message.author.id}`)

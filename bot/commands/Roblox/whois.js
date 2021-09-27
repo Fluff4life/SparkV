@@ -3,10 +3,6 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (bot.config.debug.enabled === true) {
-    return;
-  }
-
   const noblox = require("noblox.js");
 
   try {

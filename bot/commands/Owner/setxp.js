@@ -8,7 +8,7 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.Emojis.error} | Access denied.`);
   }
 
-  const User = (await bot.functions.GetMember(message, args)) || bot.users.cache.get(args[0]);
+  const User = bot.users.cache.get(args[0]);
   const Leveling = await bot.dashboard.getVal(`Leveling`);
   const FormattedNumber = await bot.functions.FormatNumber(args[1]);
 

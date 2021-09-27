@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   const canvacord = require(`canvacord`);
 
-  const Target = (await bot.functions.GetMember(message, args)) || message.author;
+  const Target = message.author;
   const User = await Levels.fetch(Target.id, message.guild.id, true);
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1);
 
