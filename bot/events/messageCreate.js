@@ -156,11 +156,12 @@ module.exports = {
     // Chat Bot
     const ChatBot = data.guild.plugins.chatbot;
 
+    console.log(message.mentions.has(bot.user))
     if (message.mentions.has(bot.user)) {
-      if (ChatBot === "mention" && message.channel.type === "text") {
+      if (ChatBot === "mention") {
         return chatbot(message, true);
       }
-    } else if (ChatBot === "message" && message.channel.type === "text") {
+    } else if (ChatBot === "message") {
       return chatbot(message, false);
     }
 
@@ -259,7 +260,7 @@ async function chatbot(message, wasMentioned) {
 
   try {
     await fetch(
-      `https://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.CHAT_BID)}&key=${encodeURIComponent(
+      `http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.CHAT_BID)}&key=${encodeURIComponent(
         process.env.CHAT_KEY,
       )}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(
         wasMentioned === true ? SlicedMessage : message,
