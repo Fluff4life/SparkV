@@ -10,10 +10,14 @@ module.exports = {
     if (Logger) {
       const ServerAddedEmbed = new Discord.MessageEmbed()
         .setTitle("🔽︱Guild Removed")
-        .setDescription(`SparkV left ${guild.name} (${guild.id}).`)
+        .setDescription(`SparkV left **${guild.name} (${guild.id})**.`)
         .setColor("RED");
 
-      Logger.send(ServerAddedEmbed);
+      Logger.send({
+        embeds: [
+          ServerAddedEmbed
+        ]
+      });
     }
   },
 };

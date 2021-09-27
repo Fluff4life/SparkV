@@ -10,10 +10,12 @@ module.exports = {
     if (Logger) {
       const ServerAddedEmbed = new Discord.MessageEmbed()
         .setTitle("🔼︱Guild Added")
-        .setDescription(`SparkV has joined ${guild.name} (${guild.id})!`)
+        .setDescription(`SparkV has joined **${guild.name} (${guild.id})**!`)
         .setColor("GREEN");
 
-      Logger.send(ServerAddedEmbed);
+      Logger.send({
+        embeds: [ServerAddedEmbed]
+      });
     }
 
     let MutedRole = guild.roles.cache.find(r => r.name.toLowerCase().includes("muted"));
@@ -46,14 +48,6 @@ module.exports = {
         }
       } catch (err) {}
     }
-
-    try {
-      const SelfRole = guild.roles.cache.find(role => role.name === "SparkV");
-
-      if (SelfRole) {
-        SelfRole.setColor("BLUE");
-      }
-    } catch (err) {}
 
     if (
       guild.systemChannel &&

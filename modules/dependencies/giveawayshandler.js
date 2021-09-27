@@ -25,7 +25,7 @@ module.exports = async bot => {
         ID: "giveaways",
       });
 
-      return allGiveaways || [];
+      return allGiveaways.data || [];
     }
 
     async saveGiveaway(MessageID, GiveawayData) {

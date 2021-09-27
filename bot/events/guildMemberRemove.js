@@ -9,11 +9,11 @@ module.exports = {
   async execute(bot, member) {
     const data = await database.getGuild(member.guild.id);
 
-    if (!data.plugins.welcome.enabled) {
+    if (!data.plugins.goodbye.enabled) {
       return;
     }
 
-    let channel = member.guild.channels.cache.find(ch => ch.id === data.plugins.welcome.channel);
+    let channel = member.guild.channels.cache.find(ch => ch.id === data.plugins.goodbye.channel);
 
     if (!channel) {
       return;
@@ -21,7 +21,7 @@ module.exports = {
 
     channel.sendTyping();
 
-    const image = await new Canvas.Welcome()
+    const image = await new Canvas.Goodbye()
       .setUsername(member.user.username)
       .setDiscriminator(member.user.discriminator)
       .setMemberCount(member.guild.memberCount)
@@ -36,8 +36,8 @@ module.exports = {
       .setBackground(path.join(`${process.env.MainDir}/assets/images/background.png`))
       .toAttachment();
 
-    const attachment = new Discord.MessageAttachment(image.toBuffer(), `Welcome-${member.user.tag}.png`);
-    const msg = data.plugins.welcome.message
+    const attachment = new Discord.MessageAttachment(image.toBuffer(), `Goodbye-${member.user.tag}.png`);
+    const msg = data.plugins.goodbye.message
       .replaceAll("{mention}", `${member}`)
       .replaceAll("{tag}", `${member.user.tag}`)
       .replaceAll("{username}", `${member.user.username}`)
