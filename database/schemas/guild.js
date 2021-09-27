@@ -20,7 +20,7 @@ const GuildSchema = new mongoose.Schema({
         type: Boolean,
       },
       message: {
-        default: "Welcome {mention} to {server}!\nYou're our {members} member.",
+        default: "Welcome {mention} to **{server}**! You're our **{members}th member**!",
         type: String,
       },
       channel: {
@@ -34,7 +34,7 @@ const GuildSchema = new mongoose.Schema({
         type: Boolean,
       },
       message: {
-        default: "Bye {mention}!\nWe're really sad to see you go.\nWithout you, we're now {members} members",
+        default: "Bye {mention}! We're really sad to see you go. Without you, we're now **{members} members**.",
         type: String,
       },
       channel: {
