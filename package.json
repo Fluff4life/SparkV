@@ -24,7 +24,7 @@
   "author": "KingCh1ll",
   "license": "MIT",
   "engines": {
-    "node": "16.8.x",
+    "node": "16.9.x",
     "npm": "7.x"
   },
   "dependencies": {
@@ -34,7 +34,7 @@
     "@distube/soundcloud": "^0.2.2",
     "@distube/spotify": "^0.6.4",
     "@sentry/node": "^6.13.2",
-    "anti-swear-words-packages-discord": "^1.1.43",
+    "@vitalets/google-translate-api": "^7.0.0",
     "aos": "^2.3.4",
     "asciiart-logo": "^0.2.6",
     "body-parser": "^1.19.0",

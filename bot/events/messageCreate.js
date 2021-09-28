@@ -1,8 +1,9 @@
 const { configureScope } = require("@sentry/node");
-const AntiSwearPackage = require("anti-swear-words-packages-discord");
 const Levels = require("discord-xp");
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
+
+const cursewords = require("../cursewords.json");
 
 let cooldowns = [];
 
@@ -46,7 +47,7 @@ module.exports = {
     data.user = userD;
 
     if (!data) {
-      return message.channel.send("Unable to get data. Please try again later.");
+      return message.reply("Unable to get data. Please try again later.");
     }
 
     // Plugins
@@ -73,14 +74,66 @@ module.exports = {
 
       if (data.guild.plugins.automod.removeProfanity === true) {
         if (!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
-          AntiSwearPackage(bot, message, {
-            warnMSG: `🔨 ${message.author}, please stop cursing. If you curse again, you'll be muted.`,
-            muteRole: `Muted`,
-            ignoreWord: [`hello`],
-            muteCount: 3,
-            kickCount: 6,
-            banCount: 12,
-          });
+          let ignoredWords = [`hello`];
+          let cursed = false;
+
+          for (var i in cursewords) {
+            if (message.content.toLowerCase().includes(cursewords[i].toLowerCase())) {
+              cursed = true;
+            }
+          }
+
+          for (var i in ignoredWords) {
+            if (message.content.toLowerCase().includes(ignoredWords[i].toLowerCase())) {
+              cursed = false;
+            }
+          }
+
+          if (cursed) {
+            ++data.member.infractionsCount;
+            data.member.infractions.push({
+              type: "cursing",
+            });
+
+            data.member.markModified("infractionsCount");
+            data.member.markModified("infractions");
+
+            message.delete();
+            message.reply(`🔨 | ${message.author}, please stop cursing. If you curse again, you'll be muted. | You have **${data.member.infractionsCount}** warning(s)!`);
+
+            if (data.member.infractionsCount === 3) {
+              const mutedRole = message.guild.roles.cache.find(role => role.name.toLowerCase().includes("muted") || role.name.toLowerCase().includes("mute"));
+
+              if (!mutedRole) {
+                message.reply("Unable to find the muted role.");
+              } else {
+                message.member.roles.add(mutedRole);
+              }
+
+              message.reply(`You've been muted for getting **${data.member.infractionsCount}** warning(s)!`);
+            }
+
+            if (data.member.infractionsCount === 6) {
+              message.member.send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`).catch(err => {});
+              message.reply(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`);
+
+              try {
+                message.member.kick();
+              } catch (err) {
+                return message.reply("Failed to kick user. Make sure I have the correct permisions!");
+              }
+            }
+
+            if (data.member.infractionsCount === 12) {
+              message.reply(`You've been **BANNED** for passing **${data.member.infractionsCount}** warning(s)!`);
+
+              try {
+                message.member.ban();
+              } catch (err) {
+                return message.reply("Failed to ban user. Make sure I have the correct permisions!");
+              }
+            }
+          }
         }
       }
 
@@ -185,13 +238,13 @@ module.exports = {
     }
 
     if (commandfile.settings.guildOnly && !message.guild) {
-      return message.channel.send(
+      return message.reply(
         "This command is guild only. Please join a server with SparkV in it or invite SparkV to your own server.",
       );
     }
 
     if (commandfile.settings.ownerOnly && !message.author.id === process.env.OWNERID) {
-      return message.channel.send("This command is reserved for KingCh1ll only.");
+      return message.reply("This command is reserved for KingCh1ll only.");
     }
 
     if (!cooldowns[message.author.id]) {
@@ -219,7 +272,7 @@ module.exports = {
     try {
       await commandfile.run(bot, message, args, command, data).then(async () => {
         if (data.guild.autoRemoveCommands === true) {
-          message.delete().catch(() => {});
+          message.delete().catch(() => { });
         }
 
         bot.StatClient.postCommand(command, message.author.id);
