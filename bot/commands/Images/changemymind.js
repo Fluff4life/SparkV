@@ -16,7 +16,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.changemymind(args);
   const ChangeMyMind = new Discord.MessageAttachment(Image, `changemymind.gif`);
 
-  message.reply(ChangeMyMind);
+  message.reply({
+    attachments: [ChangeMyMind]
+  });
 }
 
 module.exports = new cmd(execute, {

@@ -23,7 +23,7 @@ async function execute(bot, message, args, command, data) {
       return message.reply(`Please provide text shorter than 200 characters.`);
     }
 
-    message.replyNoMention(`\`\`\`${data}\`\`\``);
+    message.reply(`\`\`\`${data}\`\`\``);
   });
 }
 

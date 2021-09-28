@@ -24,7 +24,9 @@ module.exports = new cmd(
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addFields(Credits);
 
-    return message.reply(NewEmbed);
+    return message.reply({
+      embeds: [NewEmbed]
+    });
   },
   {
     description: `Look at everyone who helped make SparkV!`,

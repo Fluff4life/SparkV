@@ -22,7 +22,9 @@ async function execute(bot, message) {
   const Image = await canvacord.Canvas.bed(UserAvatar, Avatar);
   const Bed = new Discord.MessageAttachment(Image, "bed.gif");
 
-  message.reply(Bed);
+  message.reply({
+    attachments: [Bed]
+  });
 }
 
 module.exports = new cmd(execute, {

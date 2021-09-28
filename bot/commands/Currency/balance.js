@@ -21,7 +21,9 @@ async function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color)
     .setTimestamp();
 
-  message.reply(BalanceEmbed);
+  message.reply({
+    embeds: [BalanceEmbed]
+  });
 }
 
 module.exports = new cmd(execute, {

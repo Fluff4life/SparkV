@@ -46,7 +46,9 @@ function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color)
     .setTimestamp();
 
-  message.reply(PromptEmbed);
+  message.reply({
+    embeds: [PromptEmbed]
+  });
 
   MessageColector.on(`collect`, async msg => {
     if (msg.content.toLowerCase() === `cancel`) {
@@ -69,7 +71,9 @@ function execute(bot, message, args, command, data) {
         .setColor(bot.config.embed.color)
         .setTimestamp();
 
-      message.reply(UsernameFound);
+      message.reply({
+        embeds: [UsernameFound]
+      });
 
       const VerifyMessageColector = message.channel.createMessageCollector(Filter, {
         max: 1,

@@ -22,7 +22,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.opinion(Avatar, args);
   const Opinion = new Discord.MessageAttachment(Image, `opinion.png`);
 
-  message.reply(Opinion);
+  message.reply({
+    attachments: [Opinion]
+  });
 }
 
 module.exports = new cmd(execute, {

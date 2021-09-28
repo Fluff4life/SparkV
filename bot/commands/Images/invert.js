@@ -17,7 +17,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.invert(Avatar);
   const Invert = new Discord.MessageAttachment(Image, "invert.gif");
 
-  message.reply(Invert);
+  message.reply({
+    attachments: [Invert]
+  });
 }
 
 module.exports = new cmd(execute, {

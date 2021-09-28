@@ -17,7 +17,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.rip(Avatar);
   const Rip = new Discord.MessageAttachment(Image, "rip.gif");
 
-  message.reply(Rip);
+  message.reply({
+    attachments: Rip
+  });
 }
 
 module.exports = new cmd(execute, {

@@ -106,7 +106,9 @@ async function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color)
     .setTimestamp();
 
-  const GameMessage = await message.reply(GameEmbed);
+  const GameMessage = await message.reply({
+    embeds: [GameEmbed]
+  });
 
   while (!Winner && Board.some(row => row.includes(null))) {
     const User = UserTurn ? message.author : Opponent;

@@ -75,7 +75,9 @@ async function execute(bot, message, args, command, data) {
       .setColor(bot.config.embed.color)
       .setTimestamp();
 
-    message.reply(MuteEmbend);
+    message.reply({
+      embeds: [MuteEmbend]
+    });
   } else if (emoji === bot.config.Emojis.error) {
     message.delete();
 

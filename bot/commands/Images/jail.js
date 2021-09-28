@@ -17,7 +17,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.jail(Avatar, true);
   const Jail = new Discord.MessageAttachment(Image, "jail.gif");
 
-  message.reply(Jail);
+  message.reply({
+    attachments: [Jail]
+  });
 }
 
 module.exports = new cmd(execute, {

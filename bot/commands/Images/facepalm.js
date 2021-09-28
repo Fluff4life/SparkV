@@ -17,7 +17,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.facepalm(Avatar);
   const FacePalm = new Discord.MessageAttachment(Image, "facepalm.gif");
 
-  message.reply(FacePalm);
+  message.reply({
+    attachments: [FacePalm]
+  });
 }
 
 module.exports = new cmd(execute, {

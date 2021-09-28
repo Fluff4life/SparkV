@@ -40,7 +40,9 @@ async function execute(bot, message, args, command, data) {
         .setColor(bot.config.embed.color)
         .setTimestamp();
 
-      message.reply(WeatherInformation);
+      message.reply({
+        embeds: [WeatherInformation]
+      });
     },
   );
 }

@@ -40,7 +40,10 @@ async function execute(bot, message, args, command, data) {
     .setDescription(`Are you sure you want to do this?`)
     .setFooter(`Canceling in 60 seconds if no emoji reacted • ${bot.config.embed.footer}`);
 
-  const VerificationMessage = await message.reply(VerificationEmbed);
+  const VerificationMessage = await message.reply({
+    embeds: [VerificationEmbed]
+  });
+  
   const Emoji = await bot.PromptMessage(
     VerificationMessage,
     message.author,

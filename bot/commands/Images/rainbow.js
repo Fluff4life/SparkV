@@ -17,7 +17,9 @@ async function execute(bot, message) {
   const Image = await canvacord.Canvas.opinion(Avatar);
   const Rainbow = new Discord.MessageAttachment(Image, "raindow.gif");
 
-  message.reply(Rainbow);
+  message.reply({
+    attachments: [Rainbow]
+  });
 }
 
 module.exports = new cmd(execute, {

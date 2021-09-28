@@ -15,7 +15,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.trigger(Avatar);
   const Triggered = new Discord.MessageAttachment(Image, "triggered.gif");
 
-  message.reply(Triggered);
+  message.reply({
+    attachments: [Triggered]
+  });
 }
 
 module.exports = new cmd(execute, {

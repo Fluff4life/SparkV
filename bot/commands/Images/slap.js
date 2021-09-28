@@ -22,7 +22,9 @@ async function execute(bot, message) {
   const Image = await canvacord.Canvas.slap(Avatar, UserAvatar);
   const Slap = new Discord.MessageAttachment(Image, "slap.gif");
 
-  message.reply(Slap);
+  message.reply({
+    attachments: [Slap]
+  });
 }
 
 module.exports = new cmd(execute, {

@@ -20,7 +20,9 @@ async function execute(bot, message) {
           )
           .setColor(bot.config.embed.color);
 
-        message.reply(MemeEconomyEmbed);
+        message.reply({
+          embeds: [MemeEconomyEmbed]
+        });
       } else {
         const MemeEconomyEmbed = new Discord.MessageEmbed()
           .setTitle(post.title)
@@ -32,7 +34,9 @@ async function execute(bot, message) {
           )
           .setColor(bot.config.embed.color);
 
-        message.reply(MemeEconomyEmbed);
+        message.reply({
+          embeds: [MemeEconomyEmbed]
+        });
       }
     });
 }

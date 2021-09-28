@@ -17,7 +17,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.wasted(Avatar);
   const Wasted = new Discord.MessageAttachment(Image, "wasted.gif");
 
-  message.reply(Wasted);
+  message.reply({
+    attachments: [Wasted]
+  });
 }
 
 module.exports = new cmd(execute, {

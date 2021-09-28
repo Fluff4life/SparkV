@@ -15,7 +15,9 @@ async function execute(bot, message) {
   const Image = await canvacord.Canvas.affect(Avatar);
   const Affect = new Discord.MessageAttachment(Image, "affect.gif");
 
-  message.reply(Affect);
+  message.reply({
+    attachments: [Affect],
+  });
 }
 
 module.exports = new cmd(execute, {

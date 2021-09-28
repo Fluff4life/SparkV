@@ -31,7 +31,9 @@ async function execute(bot, message, args, command, data) {
       .setColor(bot.config.embed.color)
       .setTimestamp();
 
-    return message.reply(SongEmbed);
+    return message.reply({
+      embeds: [SongEmbed]
+    });
   }
 
   const LyricsArray = Lyrics.lyrics.split(`\n`);

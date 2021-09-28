@@ -10,7 +10,9 @@ async function execute(bot, message, args, command, data) {
       .setDescription(`Please provide a word to urban!`)
       .setFooter(`Try ^Urban [Word] • ${bot.config.embed.footer}`);
 
-    return await message.reply(ErrorEmbed).then(m => m.delete({ timeout: 5000 }));
+    return await message.reply({
+      embeds: [ErrorEmbed]
+    }).then(m => m.delete({ timeout: 5000 }));
   }
 
   const UrbanEmbed = new Discord.MessageEmbed()
@@ -25,7 +27,9 @@ async function execute(bot, message, args, command, data) {
     )
     .setColor(bot.config.embed.color);
 
-  return await message.reply(UrbanEmbed);
+  return await message.reply({
+    embeds: [UrbanEmbed]
+  });
 }
 
 module.exports = new cmd(execute, {

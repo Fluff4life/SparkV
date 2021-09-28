@@ -14,7 +14,9 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.color(`#${args}`);
   const Color = new Discord.MessageAttachment(Image, `color.png`);
 
-  message.reply(Color);
+  message.reply({
+    attachments: [Color]
+  });
 }
 
 module.exports = new cmd(execute, {

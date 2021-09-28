@@ -19,7 +19,9 @@ async function execute(bot, message, args, command, data) {
     .setFooter(`${bot.user.username} • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
     .setColor(bot.config.embed.color);
 
-  message.reply(LeaderboardEmbed);
+  message.reply({
+    embeds: [LeaderboardEmbed]
+  });
 }
 
 module.exports = new cmd(execute, {

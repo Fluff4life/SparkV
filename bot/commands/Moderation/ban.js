@@ -51,7 +51,9 @@ async function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color)
     .setTimestamp();
 
-  message.reply(BanEmbed);
+  message.reply({
+    embeds: [BanEmbed]
+  });
 }
 
 module.exports = new cmd(execute, {

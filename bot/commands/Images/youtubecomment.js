@@ -27,7 +27,9 @@ async function execute(bot, message, args, command, data) {
 
   const YouTube = new Discord.MessageAttachment(Image, `youtube.gif`);
 
-  message.reply(YouTube);
+  message.reply({
+    attachments: [YouTube]
+  });
 }
 
 module.exports = new cmd(execute, {
