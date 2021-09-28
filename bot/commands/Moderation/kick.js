@@ -39,7 +39,7 @@ async function execute(bot, message, args, command, data) {
   const VerificationMessage = await message.reply({
     embeds: [VerificationEmbed]
   });
-  
+
   const Emoji = await bot.PromptMessage(
     VerificationMessage,
     message.author,

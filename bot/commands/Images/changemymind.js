@@ -3,8 +3,6 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-
-
   if (!args || !args[0]) {
     return message.reply(`Please provide text.`);
   }

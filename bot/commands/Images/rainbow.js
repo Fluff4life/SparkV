@@ -6,7 +6,6 @@ async function execute(bot, message) {
   const User = bot.users.cache.get(args[0]) || message.author;
 
 
-
   const canvacord = require("canvacord");
 
   const Avatar = User.displayAvatarURL({
