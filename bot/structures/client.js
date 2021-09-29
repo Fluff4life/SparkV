@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const util = require("util");
 
-const AntiSpam = require("discord-anti-spam");
 const { DiscordTogether } = require("discord-together");
 const { Client, Collection, Intents, Structures } = require("discord.js");
 const Statcord = require("statcord.js");
@@ -42,12 +41,6 @@ module.exports = class bot extends Client {
     this.aliases = new Collection();
     this.events = new Collection();
     this.cooldowns = new Collection();
-
-    // Database Cache
-    this.dbCache = {};
-    this.dbCache.guilds = new Collection();
-    this.dbCache.members = new Collection();
-    this.dbCache.users = new Collection();
 
     // Start functions
     require("../../modules/functions").init(this);
@@ -114,27 +107,6 @@ module.exports = class bot extends Client {
     }
 
     this.discordTogether = new DiscordTogether(this);
-
-    this.AntiSpam = new AntiSpam({
-      warnThreshold: 3,
-      muteThreshold: 6,
-      kickThreshold: 12,
-      banThreshold: 24,
-      maxInterval: 5500,
-      warnMessage: "{@user}, please stop spamming. If you continue to spam, you'll be muted.",
-      kickMessage: "**{user_tag}** has been kicked for spamming.",
-      muteMessage: "**{user_tag}** has been muted for spamming.",
-      banMessage: "**{user_tag}** has been banned for spamming.",
-      maxDuplicatesWarning: 5,
-      maxDuplicatesKick: 12,
-      maxDuplicatesBan: 24,
-      exemptPermissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"],
-      ignoreBots: true,
-      verbose: true,
-      ignoredUsers: [],
-      muteRoleName: "Muted",
-      removeMessages: true,
-    });
   }
 
   async LoadEvents(MainPath) {
