@@ -38,7 +38,7 @@ module.exports = {
     // Bot Lists //
     if (bot.config.debug.enabled === false) {
       const poster = new dbots.Poster({
-        bot,
+        client: bot,
         apiKeys: {
           topgg: process.env.DBLKEY,
         },
