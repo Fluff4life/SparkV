@@ -12,20 +12,6 @@ module.exports = {
 
     // Check Guild's Blacklist status
     setInterval(async () => {
-      const Activity = Activities[Math.floor(Math.random() * Activities.length)];
-
-      bot.user.setPresence({
-        status: Activity.status,
-
-        activities: [
-          {
-            name: Activity.text,
-            type: Activity.type,
-            url: Activity.url,
-          },
-        ],
-      });
-
       for (const guild of bot.guilds.cache) {
         if (process.env.USERBLACKLIST.includes(guild.ownerId)) {
           try {
