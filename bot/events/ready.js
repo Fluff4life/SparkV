@@ -10,25 +10,7 @@ module.exports = {
       activities: [{ name: "Loading SparkV (100%)" }],
     });
 
-    // Check Guild's Blacklist status and set the Presence.
-    const Activities = [
-      {
-        text: `${bot.config.prefix}Help`,
-        type: "WATCHING",
-        status: "online",
-      },
-      {
-        text: `${bot.functions.FormatNumber(await bot.functions.GetServerCount())} servers! | ^Invite`,
-        type: "WATCHING",
-        status: "online",
-      },
-      {
-        text: `${bot.functions.FormatNumber(await bot.functions.GetUserCount())} users | ^Invite!`,
-        type: "WATCHING",
-        status: "online",
-      },
-    ];
-
+    // Check Guild's Blacklist status
     setInterval(async () => {
       const Activity = Activities[Math.floor(Math.random() * Activities.length)];
 
@@ -80,6 +62,7 @@ module.exports = {
       });
 
       // Start Posting to Bot Lists
+      poster.post();
       poster.startInterval();
 
       // Auto Post Bot Stats
@@ -87,6 +70,14 @@ module.exports = {
     }
 
     console.log("-------- SparkV --------");
+    bot.user.setPresence({
+      status: "online",
+      activities: [{
+        name: `${bot.config.prefix}Help | ${bot.functions.FormatNumber(await bot.functions.GetServerCount())} servers`,
+        type: "PLAYING"
+      }]
+    });
+
     bot.logger(
       `Logged into Discord as ${bot.user.tag} (${bot.user.id})\n🏢 | Servers: ${bot.functions.FormatNumber(
         await bot.functions.GetServerCount(),
