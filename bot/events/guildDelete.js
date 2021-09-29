@@ -5,17 +5,17 @@ module.exports = {
   execute(bot, guild) {
     console.log(`SparkV has been removed from ${guild.name} (Id: ${guild.id}).`);
 
-    const Logger = bot.channels.cache.get("840330596609949696");
+    const Logger = bot.channels.cache.get("831314946624454656");
 
     if (Logger) {
-      const ServerAddedEmbed = new Discord.MessageEmbed()
+      const ServerRemovedEmbed = new Discord.MessageEmbed()
         .setTitle("🔽︱Guild Removed")
         .setDescription(`SparkV left **${guild.name} (${guild.id})**.`)
         .setColor("RED");
 
       Logger.send({
         embeds: [
-          ServerAddedEmbed
+          ServerRemovedEmbed
         ]
       });
     }
