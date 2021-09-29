@@ -55,7 +55,7 @@ async function execute(bot, message, args, command, data) {
     });
   } else if (messages) {
     console.log("2");
-    message.delete();
+    message.delete().catch(err => {})
 
     if (args[1] && !args[1] === "ignorePinned") {
       messages = messages.filter(msg => !msg.pinned);

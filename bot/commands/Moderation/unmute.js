@@ -58,7 +58,7 @@ async function execute(bot, message, args, command, data) {
 
   if (Emoji === bot.config.Emojis.success) {
     // Yes
-    message.delete();
+    message.delete().catch(err => {})
 
     User.roles.remove(Role);
     User.send(
@@ -79,7 +79,7 @@ async function execute(bot, message, args, command, data) {
       embeds: [MuteEmbend]
     });
   } else if (emoji === bot.config.Emojis.error) {
-    message.delete();
+    message.delete().catch(err => {})
 
     message.reply(`${bot.config.Emojis.error} | Unmute canceled.`).then(m => m.delete({ timeout: 10000 }));
   }

@@ -53,8 +53,8 @@ async function execute(bot, message, args, command, data) {
 
   if (Emoji === bot.config.Emojis.success) {
     // Yes
-    message.delete();
-    VerificationMessage.delete();
+    message.delete().catch(err => {})
+    Verificationmessage.delete().catch(err => {})
 
     User.setNickname(NewNickname)
       .then(() => {
@@ -66,7 +66,7 @@ async function execute(bot, message, args, command, data) {
         });
       });
   } else if (emoji === bot.config.Emojis.error) {
-    message.delete();
+    message.delete().catch(err => {})
 
     message.reply(`${bot.config.Emojis.error} | Nickname change canceled.`).then(m => m.delete({ timeout: 10000 }));
   }

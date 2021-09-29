@@ -6,6 +6,7 @@ const fetch = require("node-fetch");
 const cursewords = require("../cursewords.json");
 
 let cooldowns = [];
+let messages = [];
 
 module.exports = {
   once: false,
@@ -98,40 +99,48 @@ module.exports = {
             data.member.markModified("infractionsCount");
             data.member.markModified("infractions");
 
-            message.delete();
-            message.reply(`🔨 | ${message.author}, please stop cursing. If you curse again, you'll be muted. | You have **${data.member.infractionsCount}** warning(s)!`);
+            message.delete().catch(err => { });
+            message.channel.send(`🔨 | ${message.author}, please stop cursing. If you curse again, you'll be muted. | You have **${data.member.infractionsCount}** warning(s)!`);
 
-            if (data.member.infractionsCount === 3) {
+            if (data.member.infractionsCount === 12) {
+              message.reply(`You've been **BANNED** for passing **${data.member.infractionsCount}** warning(s)!`);
+
+              try {
+                message.member.ban({
+                  reason: "Continued to curse after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned."
+                });
+              } catch (err) {
+                return message.reply("Failed to ban user. Make sure I have the correct permisions!");
+              }
+            }
+
+            if (data.member.infractionsCount >= 6) {
+              message.member.send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`).catch(err => { });
+              message.reply(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`);
+
+              try {
+                message.member.kick({
+                  reason: "Continued to curse after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban."
+                });
+              } catch (err) {
+                return message.reply("Failed to kick user. Make sure I have the correct permisions!");
+              }
+            }
+
+            if (data.member.infractionsCount >= 3) {
               const mutedRole = message.guild.roles.cache.find(role => role.name.toLowerCase().includes("muted") || role.name.toLowerCase().includes("mute"));
 
               if (!mutedRole) {
                 message.reply("Unable to find the muted role.");
               } else {
                 message.member.roles.add(mutedRole);
+
+                setTimeout(() => {
+                  message.member.roles.remove(mutedRole);
+                }, 300 * 1000);
               }
 
-              message.reply(`You've been muted for getting **${data.member.infractionsCount}** warning(s)!`);
-            }
-
-            if (data.member.infractionsCount === 6) {
-              message.member.send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`).catch(err => {});
-              message.reply(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`);
-
-              try {
-                message.member.kick();
-              } catch (err) {
-                return message.reply("Failed to kick user. Make sure I have the correct permisions!");
-              }
-            }
-
-            if (data.member.infractionsCount === 12) {
-              message.reply(`You've been **BANNED** for passing **${data.member.infractionsCount}** warning(s)!`);
-
-              try {
-                message.member.ban();
-              } catch (err) {
-                return message.reply("Failed to ban user. Make sure I have the correct permisions!");
-              }
+              message.reply(`You've been muted for getting **${data.member.infractionsCount}** warning(s)! You'll be unmuted in 5 minutes.`);
             }
           }
         }
@@ -140,10 +149,11 @@ module.exports = {
       if (data.guild.plugins.automod.removeLinks === true) {
         if (
           !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) &&
+          !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.ADMINISTRATOR) &&
           bot.functions.isURL(message.content)
         ) {
           try {
-            message.delete();
+            message.delete().catch(err => { });
           } catch (err) {
             message
               .reply(bot.config.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author))
@@ -159,8 +169,79 @@ module.exports = {
       const AntiSpam = data.guild.plugins.automod.removeDuplicateText;
 
       if (AntiSpam === true) {
-        if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
-          bot.AntiSpam.message(message);
+        if (!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) || !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.ADMINISTRATOR)) {
+          if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
+            const member = message.member || await message.guild.members.fetch(message.author);
+
+            const currentMessage = {
+              messageID: message.id,
+              guildID: message.guild.id,
+              authorID: message.author.id,
+              channelID: message.channel.id,
+              content: message.content,
+              sendTimestamp: message.createdTimestamp
+            };
+
+            messages.push(currentMessage);
+
+            const matches = messages.filter(msg => msg.authorID === message.author.id && msg.guildID === message.guild.id && msg.sentTimestamp > (Date.now() - 5500));
+            let actionTaken = false;
+
+            matches.forEach(message => {
+              const channel = client.channels.cache.get(message.channelID);
+
+              if (channel) {
+                const msg = channel.messages.cache.get(message.messageID);
+
+                if (msg) {
+                  msg.delete().catch(err => { });
+                }
+              }
+            });
+
+            message.channel.send(`🔨 | ${message.author}, please stop spamming. If you continue to spam, you'll be punished. | You have **${data.member.infractionsCountSpam}** warning(s)!`);
+
+            if (data.member.infractionsCountSpam === 12) {
+              message.reply(`You've been **BANNED** for passing **${data.member.infractionsCountSpam}** warning(s)!`);
+
+              try {
+                message.member.ban({
+                  reason: "Continued to spam after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned."
+                });
+              } catch (err) {
+                return message.reply("Failed to ban user. Make sure I have the correct permisions!");
+              }
+            }
+
+            if (data.member.infractionsCountSpam >= 6) {
+              message.member.send(`You've been **KICKED** for getting **${data.member.infractionsCountSpam}** warning(s)!`).catch(err => { });
+              message.reply(`You've been **KICKED** for getting **${data.member.infractionsCountSpam}** warning(s)!`);
+
+              try {
+                message.member.kick({
+                  reason: "Continued to spam after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban."
+                });
+              } catch (err) {
+                return message.reply("Failed to kick user. Make sure I have the correct permisions!");
+              }
+            }
+
+            if (data.member.infractionsCountSpam >= 3) {
+              const mutedRole = message.guild.roles.cache.find(role => role.name.toLowerCase().includes("muted") || role.name.toLowerCase().includes("mute"));
+
+              if (!mutedRole) {
+                message.reply("Unable to find the muted role.");
+              } else {
+                message.member.roles.add(mutedRole);
+
+                setTimeout(() => {
+                  message.member.roles.remove(mutedRole);
+                }, 300 * 1000);
+              }
+
+              message.reply(`You've been muted for getting **${data.member.infractionsCountSpam}** warning(s)!`);
+            }
+          }
         }
       }
 

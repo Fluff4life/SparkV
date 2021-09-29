@@ -21,6 +21,8 @@ module.exports = mongoose.model(
     level: { type: Number, default: 0 },
 
     infractions: { type: Array, default: [] },
+    infractionsCount: { type: Number, default: 0 },
+    infractionsCountSpam: { type: Number, default: 0 },
     mute: {
       type: Object,
       default: { muted: false, case: null, endDate: null },

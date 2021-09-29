@@ -5,7 +5,6 @@
 // Librarys //
 const fs = require("fs");
 const path = require("path");
-const AntiSpam = require("discord-anti-spam");
 const Statcord = require("statcord.js");
 const { Collection, Intents, Permissions, Options } = require("discord.js");
 

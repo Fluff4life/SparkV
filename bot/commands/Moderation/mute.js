@@ -83,7 +83,7 @@ async function execute(bot, message, args, command, data) {
 
   if (Emoji === `✅`) {
     // Yes
-    message.delete();
+    message.delete().catch(err => {})
 
     User.roles.add(MutedRole);
     User.send(`You have been muted in ${message.guild.name}. Reason: ${Reason}.`).catch(err => {});
@@ -102,7 +102,7 @@ async function execute(bot, message, args, command, data) {
       embeds: [MuteEmbend]
     });
   } else if (emoji === `${bot.config.Emojis.error} | `) {
-    message.delete();
+    message.delete().catch(err => {})
 
     message.reply(`${bot.config.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
   }

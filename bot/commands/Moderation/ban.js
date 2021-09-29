@@ -30,7 +30,7 @@ async function execute(bot, message, args, command, data) {
       .then(m => m.delete({ timeout: 5000 }));
   }
 
-  message.delete();
+  message.delete().catch(err => {});
   UserToBan.send(
     `${bot.config.Emojis.error} | You have been banned from ${message.guild.name}. Reason: ${ReasonForBan}.`,
   ).catch(err => {});
