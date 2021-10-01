@@ -3,117 +3,48 @@ const { MessageEmbed } = require(`discord.js`);
 const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
-  const User =
-    message.mentions.members.first() ||
-    message.guild.members.cache.get(args[0]) ||
-    message.guild.members.cache.find(
-      User => User.user.username.toLowerCase() === args.slice(0).join(` `) || User.user.username === args[0],
-    );
+  const User = message.mentions.members.first();
   const Reason = args.join(` `).slice(22) || `No reason provided.`;
 
-  if (!args[0]) {
-    return message
-      .reply(`${bot.config.Emojis.error} | Please mention someone to warn!`)
-      .then(m => m.delete({ timeout: 5000 }));
-  }
-
   if (!User) {
-    return message
-      .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
-      .then(m => m.delete({ timeout: 5000 }));
+    return message.reply(`${bot.config.Emojis.error} | Please mention someone to warn!`);
   }
 
   if (User.id === message.author.id) {
-    return message
-      .reply(`${bot.config.Emojis.error} | You cannot warn yourself.`)
-      .then(m => m.delete({ timeout: 5000 }));
+    return message.reply(`${bot.config.Emojis.error} | You cannot warn yourself lmfao.`);
   }
 
-  const MemberData = await bot.fetchMember(User.id, guild.id);
-  const MemberPosition = member.roles.highest.position;
+  const MemberPosition = message.member.roles.highest.position;
   const ModerationPosition = message.member.roles.highest.position;
 
-  if (message.member.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
-    return message
-      .reply(`${bot.config.Emojis.error} | Uh oh... I can\`t warn this user!`)
-      .then(m => m.delete({ timeout: 5000 }));
+  if (message.guild.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
+    return message.reply(`${bot.config.Emojis.error} | Uh oh... I can\`t warn this user! This user is either the owner, or is a higher rank than SparkV.`);
   }
 
-  const Infractions = MemberData.infractions.filter(infraction => infraction.type === "warn").length;
-  const BanCount = data.guild.settings.warnsInfractions.ban;
-  const KickCount = data.guild.settings.warnsInfractions.kick;
-
-  data.guild.casesCount++;
-  data.guild.markModified("casesCount");
-  await data.guild.save();
-
-  const CaseInformation = {
-    channel: message.channel.id,
-    moderator: message.author.id,
+  ++data.member.infractionsCount;
+  data.member.infractions.push({
+    type: Reason,
     date: Date.now(),
-    type: "warn",
-    case: data.guild.casesCount,
-    reason: Reason,
-  };
+  });
 
-  if (BanCount) {
-    if (Infractions >= BanCount) {
-      // Ban the user for going past the Ban Count.
-    }
+  data.member.markModified("infractionsCount");
+  data.member.markModified("infractions");
+  await data.member.save();
 
-    if (!User) {
-      return message
-        .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
-        .then(m => m.delete({ timeout: 5000 }));
-    }
+  User.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}`).catch(err => {
+    message.channel.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}\n\nI would've sent this in your DMs, but they were off.`);
+    message.reply(`The user you mentioned has their DMs off. I pinged him instead.`);
+  });
 
-    if (User.id === message.author.id) {
-      return message
-        .reply(`${bot.config.Emojis.error} | You cannot warn yourself.`)
-        .then(m => m.delete({ timeout: 5000 }));
-    }
+  const WarnEmbed = new MessageEmbed()
+  .setTitle(`Successfully Warned ${User.tag}!`)
+  .setDescription(`I successfully warned ${User} (${User.id}).`)
+  .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
+  .setColor(bot.config.embed.color);
 
-    const MemberData = await bot.fetchMember(User.id, guild.id);
-    const MemberPosition = member.roles.highest.position;
-    const ModerationPosition = message.member.roles.highest.position;
-
-    if (message.member.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
-      return message
-        .reply(`${bot.config.Emojis.error} | Uh oh... I can\`t warn this user!`)
-        .then(m => m.delete({ timeout: 5000 }));
-    }
-
-    const Infractions = MemberData.infractions.filter(infraction => infraction.type === "warn").length;
-    const BanCount = data.guild.settings.warnsInfractions.ban;
-    const KickCount = data.guild.settings.warnsInfractions.kick;
-
-    data.guild.casesCount++;
-    data.guild.markModified("casesCount");
-    await data.guild.save();
-
-    const CaseInformation = {
-      channel: message.channel.id,
-      moderator: message.author.id,
-      date: Date.now(),
-      type: "warn",
-      case: data.guild.casesCount,
-      reason: Reason,
-    };
-
-    if (BanCount) {
-      if (Infractions >= BanCount) {
-        // Ban the user for going past the Ban Count.
-      }
-    }
-
-    if (KickCount) {
-      if (Infractions >= KickCount) {
-        // Kick the user for going past the Kick Count.
-      }
-    }
-
-    channel.send(CaseEmbed);
-  }
+  message.reply({
+    embeds: [WarnEmbed]
+  });
 }
 
 module.exports = new cmd(execute, {

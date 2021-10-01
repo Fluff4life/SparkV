@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **117 commands**!
+SparkV's Command List! SparkV contains more than **120 commands**!
 
 ## 🤵 Administration 🤵
 
@@ -122,20 +122,20 @@ SparkV's Command List! SparkV contains more than **117 commands**!
 | **prequel**        | Star Wars memes lol.                              |       | 2 seconds |
 ## 🛠️ Moderation 🛠️
 
-| Name         | Description                                                                                                                          | Usage                                        | Cooldown  |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- | --------- |
-| **ban**      | Is a user bothering you and keep coming back after you kick them? Using this command, they won't come back unless they are unbanned. | {user} {optional reason}                     | 2 seconds |
-| **clear**    | I'll delete messages for you!                                                                                                        | {all | users | bots} {filter (ignorePinned)} | 2 seconds |
-| **kick**     | Is a user bothering you? Using this command, you can kick them from the server!                                                      | {user} {optional user}                       | 2 seconds |
-| **lock**     | I'll lock the current channel.                                                                                                       |                                              | 2 seconds |
-| **lockdown** | I'll lock the server.                                                                                                                | {on | off}                                   | 2 seconds |
-| **mute**     | I'll mute someone.                                                                                                                   | {user} {reason}                              | 2 seconds |
-| **nickname** | I'll change a user's nickname to your choice.                                                                                        | {user} {reason}                              | 2 seconds |
-| **slowmode** | I will set the channel's slowmode to anything you want.                                                                              | {user} {reason}                              | 2 seconds |
-| **unlock**   | I'll unlock the current channel.                                                                                                     | {user} {reason}                              | 2 seconds |
-| **unmute**   | I'll unmute someone who was muted previously.                                                                                        | {user} {reason}                              | 2 seconds |
-| **warn**     | I will warn a user                                                                                                                   | {user} {optional reason}                     | 2 seconds |
-| **warnings** | I'll display a user's warnings.                                                                                                      | {user}                                       | 2 seconds |
+| Name            | Description                                                                                                                          | Usage                                        | Cooldown  |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- | --------- |
+| **ban**         | Is a user bothering you and keep coming back after you kick them? Using this command, they won't come back unless they are unbanned. | {user} {optional reason}                     | 2 seconds |
+| **clear**       | I'll delete messages for you!                                                                                                        | {all | users | bots} {filter (ignorePinned)} | 2 seconds |
+| **infractions** | I'll display a user's warnings.                                                                                                      | {user}                                       | 2 seconds |
+| **kick**        | Is a user bothering you? Using this command, you can kick them from the server!                                                      | {user} {optional user}                       | 2 seconds |
+| **lock**        | I'll lock the current channel.                                                                                                       |                                              | 2 seconds |
+| **lockdown**    | I'll lock the server.                                                                                                                | {on | off}                                   | 2 seconds |
+| **mute**        | I'll mute someone.                                                                                                                   | {user} {reason}                              | 2 seconds |
+| **nickname**    | I'll change a user's nickname to your choice.                                                                                        | {user} {reason}                              | 2 seconds |
+| **slowmode**    | I will set the channel's slowmode to anything you want.                                                                              | {user} {reason}                              | 2 seconds |
+| **unlock**      | I'll unlock the current channel.                                                                                                     | {user} {reason}                              | 2 seconds |
+| **unmute**      | I'll unmute someone who was muted previously.                                                                                        | {user} {reason}                              | 2 seconds |
+| **warn**        | I will warn a user                                                                                                                   | {user} {optional reason}                     | 2 seconds |
 ## 🎵 Music 🎵
 
 | Name        | Description                                                                                                                     | Usage                                      | Cooldown   |
@@ -171,7 +171,10 @@ SparkV's Command List! SparkV contains more than **117 commands**!
 | **whois**       | SparkV will look up any user and return information on that user. | {username}      | 2 seconds |
 ## 🧰 Utility 🧰
 
-| Name           | Description             | Usage | Cooldown  |
-| -------------- | ----------------------- | ----- | --------- |
-| **calculator** | Calculate any equation! |       | 2 seconds |
-| **stats**      | SparkV's stats.         |       | 2 seconds |
+| Name           | Description                      | Usage           | Cooldown  |
+| -------------- | -------------------------------- | --------------- | --------- |
+| **calculator** | Calculate any equation!          |                 | 2 seconds |
+| **decode**     | decode a string that was encoded | {type} {string} | 2 seconds |
+| **encode**     | encode a string                  | {type} {string} | 2 seconds |
+| **stats**      | SparkV's stats.                  |                 | 2 seconds |
+| **userinfo**   | See information about a user.    | {user}          | 2 seconds |

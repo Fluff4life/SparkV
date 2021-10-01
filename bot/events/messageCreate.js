@@ -9,9 +9,9 @@ let cooldowns = [];
 let messages = [];
 
 // Used for AntiSpam
-function deleteMessages() {
+function deleteMessages(bot, matches) {
   matches.forEach(message => {
-    const channel = client.channels.cache.get(message.channelID);
+    const channel = bot.channels.cache.get(message.channelID);
 
     if (channel) {
       const msg = channel.messages.cache.get(message.messageID);
@@ -109,6 +109,7 @@ module.exports = {
             ++data.member.infractionsCount;
             data.member.infractions.push({
               type: "cursing",
+              date: Date.now(),
             });
 
             data.member.markModified("infractionsCount");
@@ -116,27 +117,27 @@ module.exports = {
 
             message.delete().catch(err => {});
             message.channel.send(
-              `🔨 | ${message.author}, please stop cursing. If you curse again, you'll be muted. | You have **${data.member.infractionsCount}** warning(s)!`,
+              `🔨 | ${message.author}, please stop cursing. If you curse again, you'll be muted. | You have **${data.member.infractionsCount}** warning(s).`,
             );
 
             if (data.member.infractionsCount === 12) {
-              message.reply(`You've been **BANNED** for passing **${data.member.infractionsCount}** warning(s)!`);
+              message.reply(`You've been **BANNED** for passing **${data.member.infractionsCount}** warning(s).`);
 
               try {
                 message.member.ban({
                   reason:
-                    "Continued to curse after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
+                    "Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
                 });
               } catch (err) {
                 return message.reply("Failed to ban user. Make sure I have the correct permisions!");
               }
             }
 
-            if (data.member.infractionsCount >= 6) {
+            if (data.member.infractionsCount === 6) {
               message.member
-                .send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`)
+                .send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`)
                 .catch(err => {});
-              message.reply(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s)!`);
+              message.reply(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`);
 
               try {
                 message.member.kick({
@@ -148,7 +149,7 @@ module.exports = {
               }
             }
 
-            if (data.member.infractionsCount >= 3) {
+            if (data.member.infractionsCount === 3) {
               const mutedRole = message.guild.roles.cache.find(
                 role => role.name.toLowerCase().includes("muted") || role.name.toLowerCase().includes("mute"),
               );
@@ -164,7 +165,7 @@ module.exports = {
               }
 
               message.reply(
-                `You've been muted for getting **${data.member.infractionsCount}** warning(s)! You'll be unmuted in 5 minutes.`,
+                `You've been muted for getting **${data.member.infractionsCount}** warning(s). You'll be unmuted in 5 minutes.`,
               );
             }
           }
@@ -177,6 +178,16 @@ module.exports = {
           !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.ADMINISTRATOR) &&
           bot.functions.isURL(message.content)
         ) {
+          ++data.member.infractionsCount;
+          data.member.infractions.push({
+            type: "links",
+            date: Date.now(),
+          });
+
+          data.member.markModified("infractionsCount");
+          data.member.markModified("infractions");
+          await data.member.save();
+
           try {
             message.delete().catch(err => {});
           } catch (err) {
@@ -185,9 +196,58 @@ module.exports = {
               .then(m => m.delete({ timeout: 5000 }));
           }
 
-          return message.channel
-            .send(`🔨 ${message.author}, you cannot send links here!`)
-            .then(m => m.delete({ timeout: 5000 }));
+          message.channel.send(
+            `🔨 | ${message.author}, you cannot send links! | You have **${data.member.infractionsCount}** warning(s).`,
+          );
+
+          if (data.member.infractionsCount === 12) {
+            message.reply(`You've been **BANNED** for passing **${data.member.infractionsCount}** warning(s).`);
+
+            try {
+              message.member.ban({
+                reason:
+                  "Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
+              });
+            } catch (err) {
+              return message.reply("Failed to ban user. Make sure I have the correct permisions!");
+            }
+          }
+
+          if (data.member.infractionsCount === 6) {
+            message.member
+              .send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`)
+              .catch(err => {});
+            message.reply(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`);
+
+            try {
+              message.member.kick({
+                reason:
+                  "Continued to curse after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
+              });
+            } catch (err) {
+              return message.reply("Failed to kick user. Make sure I have the correct permisions!");
+            }
+          }
+
+          if (data.member.infractionsCount === 3) {
+            const mutedRole = message.guild.roles.cache.find(
+              role => role.name.toLowerCase().includes("muted") || role.name.toLowerCase().includes("mute"),
+            );
+
+            if (!mutedRole) {
+              message.reply("Unable to find the muted role.");
+            } else {
+              message.member.roles.add(mutedRole);
+
+              setTimeout(() => {
+                message.member.roles.remove(mutedRole);
+              }, 300 * 1000);
+            }
+
+            message.reply(
+              `You've been muted for getting **${data.member.infractionsCount}** warning(s). You'll be unmuted in 5 minutes.`,
+            );
+          }
         }
       }
 
@@ -198,88 +258,96 @@ module.exports = {
           !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) ||
           !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.ADMINISTRATOR)
         ) {
-          if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
-            const member = message.member || (await message.guild.members.fetch(message.author));
+          return;
+        }
 
-            const currentMessage = {
-              messageID: message.id,
-              guildID: message.guild.id,
-              authorID: message.author.id,
-              channelID: message.channel.id,
-              content: message.content,
-              sendTimestamp: message.createdTimestamp,
-            };
+        if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
+          const member = message.member || (await message.guild.members.fetch(message.author));
 
-            messages.push(currentMessage);
+          const currentMessage = {
+            messageID: message.id,
+            guildID: message.guild.id,
+            authorID: message.author.id,
+            channelID: message.channel.id,
+            content: message.content,
+            sendTimestamp: message.createdTimestamp,
+          };
 
-            const foundMatches = messages.filter(
-              msg => msg.authorID === message.author.id && msg.guildID === message.guild.id,
+          messages.push(currentMessage);
+
+          const foundMatches = messages.filter(
+            msg => msg.authorID === message.author.id && msg.guildID === message.guild.id,
+          );
+
+          if (!foundMatches) {
+            return;
+          }
+
+          const matches = foundMatches.filter(msg => msg.sendTimestamp > Date.now() - 5500);
+
+          if (matches.length >= 5) {
+            ++data.member.infractionsCount;
+            data.member.infractions.push({
+              type: "spam",
+              date: Date.now(),
+            });
+
+            data.member.markModified("infractionsCount");
+            data.member.markModified("infractions");
+            await data.member.save();
+
+            message.channel.send(
+              `🔨 | ${message.author}, please stop spamming. If you continue to spam, you'll be punished. | You have **${data.member.infractionsCount}** warning(s).`,
             );
-            const matches = foundMatches.filter(msg => msg.sentTimestamp > Date.now() - 5500);
-            let actionTaken = false;
 
-            if (matches) {
-              ++data.member.infractionsCountSpam;
-              data.member.infractions.push({
-                type: "spam",
-              });
+            if (data.member.infractionsCount === 12) {
+              deleteMessages(bot, matches);
+              message.reply(`You've been **BANNED** for passing **${data.member.infractionsCount}** warning(s).`);
 
-              data.member.markModified("infractionsCountSpam");
-              data.member.markModified("infractions");
+              try {
+                message.member.ban({
+                  reason:
+                    "Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
+                });
+              } catch (err) {
+                return message.reply("Failed to ban user. Make sure I have the correct permisions!");
+              }
+            }
 
-              message.channel.send(
-                `🔨 | ${message.author}, please stop spamming. If you continue to spam, you'll be punished. | You have **${data.member.infractionsCountSpam}** warning(s)!`,
+            if (data.member.infractionsCount === 6) {
+              deleteMessages(bot, matches);
+              message.member
+                .send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`)
+                .catch(err => {});
+              message.reply(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`);
+
+              try {
+                message.member.kick({
+                  reason:
+                    "Continued to spam after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
+                });
+              } catch (err) {
+                return message.reply("Failed to kick user. Make sure I have the correct permisions!");
+              }
+            }
+
+            if (data.member.infractionsCount === 3) {
+              deleteMessages(bot, matches);
+              const mutedRole = message.guild.roles.cache.find(
+                role => role.name.toLowerCase().includes("muted") || role.name.toLowerCase().includes("mute"),
               );
 
-              if (data.member.infractionsCountSpam === 12) {
-                deleteMessages();
-                message.reply(`You've been **BANNED** for passing **${data.member.infractionsCountSpam}** warning(s)!`);
+              if (!mutedRole) {
+                message.reply("Unable to find the muted role.");
+              } else {
+                message.member.roles.add(mutedRole);
 
-                try {
-                  message.member.ban({
-                    reason:
-                      "Continued to spam after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
-                  });
-                } catch (err) {
-                  return message.reply("Failed to ban user. Make sure I have the correct permisions!");
-                }
+                setTimeout(() => {
+                  message.member.roles.remove(mutedRole);
+                }, 300 * 1000);
               }
 
-              if (data.member.infractionsCountSpam >= 6) {
-                deleteMessages();
-                message.member
-                  .send(`You've been **KICKED** for getting **${data.member.infractionsCountSpam}** warning(s)!`)
-                  .catch(err => {});
-                message.reply(`You've been **KICKED** for getting **${data.member.infractionsCountSpam}** warning(s)!`);
-
-                try {
-                  message.member.kick({
-                    reason:
-                      "Continued to spam after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
-                  });
-                } catch (err) {
-                  return message.reply("Failed to kick user. Make sure I have the correct permisions!");
-                }
-              }
-
-              if (data.member.infractionsCountSpam >= 3) {
-                deleteMessages();
-                const mutedRole = message.guild.roles.cache.find(
-                  role => role.name.toLowerCase().includes("muted") || role.name.toLowerCase().includes("mute"),
-                );
-
-                if (!mutedRole) {
-                  message.reply("Unable to find the muted role.");
-                } else {
-                  message.member.roles.add(mutedRole);
-
-                  setTimeout(() => {
-                    message.member.roles.remove(mutedRole);
-                  }, 300 * 1000);
-                }
-
-                message.reply(`You've been muted for getting **${data.member.infractionsCountSpam}** warning(s)!`);
-              }
+              message.reply(`You've been muted for getting **${data.member.infractionsCount}** warning(s).`);
             }
           }
         }
