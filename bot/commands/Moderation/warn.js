@@ -14,6 +14,7 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.Emojis.error} | You cannot warn yourself lmfao.`);
   }
 
+  const memberData = bot.database.getMember(message.author.id, message.guild.id);
   const MemberPosition = message.member.roles.highest.position;
   const ModerationPosition = message.member.roles.highest.position;
 
@@ -21,15 +22,15 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.Emojis.error} | Uh oh... I can\`t warn this user! This user is either the owner, or is a higher rank than SparkV.`);
   }
 
-  ++data.member.infractionsCount;
-  data.member.infractions.push({
+  ++memberData.infractionsCount;
+  memberData.infractions.push({
     type: Reason,
     date: Date.now(),
   });
 
-  data.member.markModified("infractionsCount");
-  data.member.markModified("infractions");
-  await data.member.save();
+  memberData.markModified("infractionsCount");
+  memberData.markModified("infractions");
+  await memberData.save();
 
   User.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}`).catch(err => {
     message.channel.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}\n\nI would've sent this in your DMs, but they were off.`);
@@ -37,7 +38,7 @@ async function execute(bot, message, args, command, data) {
   });
 
   const WarnEmbed = new MessageEmbed()
-  .setTitle(`Successfully Warned ${User.tag}!`)
+  .setTitle(`Warn Successful!`)
   .setDescription(`I successfully warned ${User} (${User.id}).`)
   .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
   .setColor(bot.config.embed.color);
