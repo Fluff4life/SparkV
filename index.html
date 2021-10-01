@@ -7,7 +7,8 @@
   <meta charset="utf-8" />
 
   <title>SparkV - The Powerful Multipurpose Discord Bot</title>
-  <meta name="description" content="SparkV is the most POWERFUL multipurpose Discord bot with NO PAYWALL! Start powering your Discord server without spending a dime." />
+  <meta name="description"
+    content="SparkV is the most POWERFUL multipurpose Discord bot with NO PAYWALL! Start powering your Discord server without spending a dime." />
   <meta name="og:title" content="SparkV - The Powerful Multipurpose Discord Bot" />
   <meta name="og:description"
     content="SparkV is the most POWERFUL multipurpose Discord bot with NO PAYWALL! Start powering your Discord server without spending a dime." />
@@ -72,7 +73,7 @@
     <div class="container">
       <a class="navbar-brand" style="font-family: 'Poppins', sans-serif; font-weight: 700" href="/">
         <img src="assets/images/SparkV.png" alt="SparkV's Logo" height="36" width="36">
-        SparkV - The Powerful Multipurpose Discord Bot
+        SparkV
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -92,7 +93,7 @@
           lol
           <span><i class="fas fa-sign-in-alt"></i></span>
         </a>
-        
+
       </div>
     </div>
   </nav>
@@ -104,7 +105,8 @@
         <div class="col-md-6 heroContainer text-start">
           <h1 class="display-2">
             <span class="display-2 title animate__animated animate__slideInUp">SparkV</span>
-            <span class="display-2 desc lh-base animate__animated animate__slideInUp">The Powerful Multipurpose Discord Bot</span>
+            <span class="display-2 desc lh-base animate__animated animate__slideInUp">The Powerful Multipurpose Discord
+              Bot</span>
           </h1>
 
           <a type="button" class="rounded-pill btn-rounded animate__animated animate__zoomInUp">Donate
@@ -412,6 +414,70 @@
     </div>
   </footer>
 
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        const isLocalhost = Boolean(
+          window.location.hostname === "localhost" ||
+          window.location.hostname === "[::1]" ||
+          window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[01]?)){3}$/),
+        );
+        const swUrl = `assets/js/sw.js`;
+
+        if (isLocalhost) {
+          fetch(swUrl, {
+            headers: {
+              "Service-Worker": "script",
+            },
+          }).then(response => {
+              const contentType = response.headers.get("content-type");
+
+              if (response.status === 404 || (contentType !== null && contentType.indexOf("javascript") === -1)) {
+                navigator.serviceWorker.ready.then(registration => {
+                  registration.unregister().then(() => {
+                    window.location.reload();
+                  });
+                });
+              } else {
+                registerValidSW(swUrl);
+              }
+            }).catch(err => console.log(`⛔ | Failed to connect. Please check your network, or be forced to run in offline mode (only when avalible). This could be an error on our behalf. ${err}`));
+
+          navigator.serviceWorker.ready.then(() => console.log(`⚙ | Service Worker online.`));
+        } else {
+          registerValidSW(swUrl);
+        }
+      });
+    }
+
+    function registerValidSW(swUrl) {
+      navigator.serviceWorker
+        .register(swUrl)
+        .then(registration => {
+          registration.onupdatefound = () => {
+            const installingWorker = registration.installing;
+
+            if (installingWorker === null) {
+              return;
+            }
+
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === "installed") {
+                if (navigator.serviceWorker.controller) {
+                  console.log(
+                    "⚙ | Service Worker: New content is avalible and will be used when all tabs for this page are closed.",
+                  );
+                }
+              } else {
+                console.log("⚙ | Service Worker: Content is ready for offline usage.");
+              }
+            };
+          };
+        })
+        .catch(err => console.error(`⛔ | Service Worker: An error occoured while registration. ${err}`));
+    }
+  </script>
+
   <!-- Main Scripts -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -446,16 +512,16 @@
     firebase.analytics();
     firebase.performance();
   </script>
-<script>
-  (function(h,o,t,j,a,r){
-      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-      h._hjSettings={hjid:2604704,hjsv:6};
-      a=o.getElementsByTagName('head')[0];
-      r=o.createElement('script');r.async=1;
-      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+  <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 2604704, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
       a.appendChild(r);
-  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
 </body>
 
 </html>
