@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 module.exports = new cmd(
   async (bot, message, args) => {
-    const user = bot.users.cache.get(args[0]) || message.author;
+    const user = message.mentions.members.first() || message.author;
     let member = message.channel.guild.members.cache.get(user.id);
 
     const InfoEmbed = new Discord.MessageEmbed()
