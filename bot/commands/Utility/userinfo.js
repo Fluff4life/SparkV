@@ -9,7 +9,7 @@ module.exports = new cmd(
     let member = message.channel.guild.members.cache.get(user.id);
 
     const InfoEmbed = new Discord.MessageEmbed()
-    .setAuthor(user.tag, user.displayAvatarURL({ dynamic: true, format: "png" }))
+    .setAuthor(user.tag, user.user ? user.user.displayAvatarURL({ dynamic: true, format: "png" }) : user.displayAvatarURL({ dynamic: true, format: "png" }))
     .addFields(
         {
             name: "**Account Info**",
@@ -18,7 +18,7 @@ module.exports = new cmd(
           },
           {
             name: "**Profile Links**",
-            value: `Avatar URL: [Click Here](${user.displayAvatarURL({ dynamic: true, format: "png" })})`,
+            value: `Avatar URL: [Click Here](${user.user ? user.user.displayAvatarURL({ dynamic: true, format: "png" }) : user.displayAvatarURL({ dynamic: true, format: "png" })})`,
             inline: true,
           },
     )
