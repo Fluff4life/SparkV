@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-const config = require("../../globalconfig.json");
-
 function GenerateToken() {
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwzy0123456789.-_";
   let token = "CS-";
@@ -29,10 +27,10 @@ const Schema = new mongoose.Schema({
   cooldowns: { type: String, default: null },
   afk: { type: String, default: null },
   money: {
-    balance: { type: String, default: "0" },
-    bank: { type: String, default: "0" },
-    bankMax: { type: String, default: "1000" },
-    multiplier: { type: String, default: "0" }
+    balance: { type: Number, default: 0 },
+    bank: { type: Number, default: 0 },
+    bankMax: { type: Number, default: 0 },
+    multiplier: { type: Number, default: 0 }
   },
 });
 

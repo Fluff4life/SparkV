@@ -41,6 +41,8 @@ module.exports = {
         client: bot,
         apiKeys: {
           topgg: process.env.DBLKEY,
+          // voidbots: process.env.VBLKEY,
+          // discordlabs: process.env.DLBLKEY
         },
         clientLibrary: "discord.js",
         serverCount: async () => await bot.functions.GetServerCount(),
@@ -52,6 +54,7 @@ module.exports = {
       poster.startInterval();
 
       // Auto Post Bot Stats
+      bot.StatClient.post();
       bot.StatClient.autopost();
     }
 
