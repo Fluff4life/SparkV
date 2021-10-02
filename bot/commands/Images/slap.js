@@ -1,28 +1,15 @@
 const Discord = require("discord.js");
+const canvacord = require("canvacord");
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message) {
-  const User = bot.users.cache.get(args[0]) || message.author;
-
-
-  const canvacord = require("canvacord");
-
-  const Avatar = message.author.displayAvatarURL({
-    dynamic: false,
-    format: "gif",
-  });
-
-  const UserAvatar = User.displayAvatarURL({
-    dynamic: false,
-    format: "gif",
-  });
-
-  const Image = await canvacord.Canvas.slap(Avatar, UserAvatar);
-  const Slap = new Discord.MessageAttachment(Image, "slap.gif");
+  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const User2 = await bot.functions.fetchUser(args[0]) || message.author;
+  const Image = await canvacord.Canvas.slap(User.displayAvatarURL({ format: "png" }), User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [Slap]
+    attachments: [new Discord.MessageAttachment(Image, "slap.png")]
   });
 }
 

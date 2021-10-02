@@ -1,4 +1,5 @@
 const Discord = require(`discord.js`);
+const canvacord = require(`canvacord`);
 
 const cmd = require("../../templates/command");
 
@@ -7,15 +8,12 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`Please provide text.`);
   }
 
-  const canvacord = require(`canvacord`);
-
   args = args.join(` `);
 
   const Image = await canvacord.Canvas.changemymind(args);
-  const ChangeMyMind = new Discord.MessageAttachment(Image, `changemymind.gif`);
 
   message.reply({
-    attachments: [ChangeMyMind]
+    attachments: [new Discord.MessageAttachment(Image, "affect.png")]
   });
 }
 

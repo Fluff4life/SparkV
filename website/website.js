@@ -56,10 +56,6 @@ async function LoadRoutes() {
 // Code //
 console.log("-------- Website --------");
 async function StartWebsite() {
-  if (Config.debug.enabled === false) {
-    require("newrelic");
-  }
-
   require("./utils/passport");
 
   app.use(

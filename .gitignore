@@ -1,7 +1,6 @@
 # Logs
 logs
 *.log
-newrelic_agent.log
 json.sqlite
 npm-debug.log*
 yarn-debug.log*

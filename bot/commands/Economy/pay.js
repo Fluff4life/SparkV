@@ -41,7 +41,7 @@ async function execute(bot, message, args, command, data) {
   await data.user.save();
 
   message.reply(
-    `${bot.config.Emojis.success} | You gave ${User} ❄${await bot.functions.FormatNumber(args[1])} Ch1llBucks!`,
+    `${bot.config.Emojis.success} | You gave ${User} ❄${await bot.functions.formatNumber(args[1])} Ch1llBucks!`,
   );
 }
 

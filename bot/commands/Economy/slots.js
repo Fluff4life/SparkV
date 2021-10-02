@@ -73,7 +73,7 @@ async function execute(bot, message, args, command, data) {
     message.reply(
       `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
         bot.config.Emojis.success
-      } | You won ❄${await bot.functions.FormatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`,
+      } | You won ❄${await bot.functions.formatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`,
     );
 
     data.user.money.balance = Ch1llBucks + args[0] * SlotItems.length;
@@ -83,7 +83,7 @@ async function execute(bot, message, args, command, data) {
     message.reply(
       `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
         bot.config.Emojis.error
-      } | You lost ❄${await bot.functions.FormatNumber(parseInt(args[0]))} Ch1llBucks.`,
+      } | You lost ❄${await bot.functions.formatNumber(parseInt(args[0]))} Ch1llBucks.`,
     );
 
     data.user.money.balance = Ch1llBucks - args[0];

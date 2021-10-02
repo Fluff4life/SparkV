@@ -377,7 +377,7 @@ module.exports = {
           message.reply(
             bot.config.Responses.LevelUpMessage.toString()
               .replaceAll(`{author}`, message.author)
-              .replaceAll(`{level}`, await bot.functions.FormatNumber(User.level)),
+              .replaceAll(`{level}`, await bot.functions.formatNumber(User.level)),
           );
         }
       }

@@ -1,29 +1,20 @@
 const Discord = require("discord.js");
+const canvacord = require("canvacord");
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = bot.users.cache.get(args[0]) || message.author;
-
-
-  const canvacord = require("canvacord");
-
-  const Avatar = User.displayAvatarURL({
-    dynamic: false,
-    format: "gif",
-  });
-
-  const Image = await canvacord.Canvas.trash(Avatar);
-  const Trash = new Discord.MessageAttachment(Image, "trash.gif");
+  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const Image = await canvacord.Canvas.trash(User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [Trash]
+    attachments: [new Discord.MessageAttachment(Image, "trash.png")]
   });
 }
 
 module.exports = new cmd(execute, {
-  description: "Ug trash.",
-  aliases: ["punch"],
+  description: "wow it trash",
+  aliases: ["garbage"],
   dirname: __dirname,
   usage: `<user | self>`,
 });

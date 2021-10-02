@@ -1,23 +1,14 @@
 const Discord = require("discord.js");
+const canvacord = require("canvacord");
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = bot.users.cache.get(args[0]) || message.author;
-
-
-  const canvacord = require("canvacord");
-
-  const Avatar = User.displayAvatarURL({
-    dynamic: false,
-    format: "gif",
-  });
-
-  const Image = await canvacord.Canvas.wanted(Avatar);
-  const Wanted = new Discord.MessageAttachment(Image, "wanted.gif");
+  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const Image = await canvacord.Canvas.wanted(User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [Wanted]
+    attachments: [new Discord.MessageAttachment(Image, "wanted.png")]
   });
 }
 

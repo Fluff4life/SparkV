@@ -1,17 +1,15 @@
 const Discord = require("discord.js");
+const canvacord = require("canvacord");
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const canvacord = require("canvacord");
-
   args = args.join(" ");
 
   const Image = await canvacord.Canvas.ohno(args);
-  const OhNo = new Discord.MessageAttachment(Image, "ohno.png");
 
   message.reply({
-    attachments: OhNo
+    attachments: [new Discord.MessageAttachment(Image, "jail.png")]
   });
 }
 

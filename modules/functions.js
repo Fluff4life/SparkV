@@ -49,7 +49,7 @@ module.exports = {
    * @param {number} Number The number to format.
    * @returns {string} The formatted number.
    */
-  FormatNumber(Number) {
+  formatNumber(Number) {
     if (typeof Number === "string") {
       Number = parseInt(Number);
     }
@@ -96,35 +96,65 @@ module.exports = {
     return time;
   },
 
-  /*
-  Old.
-  async PromptMessage(message, author, reactions, seconds) {
-    seconds *= 1000
-
-    for (const Reaction of reactions) {
-      await message.react(Reaction)
+  /**
+   *
+   * @param {string} key The search quarry.
+   * @returns {Object} User if found.
+   */
+  async fetchUser(key) {
+    if (!key || typeof key !== "string") {
+      return;
     }
 
-    const filter = (reaction, user) => reactions.includes(reaction.emoji.name) && user.id === author.id
+    if (key.match(/^<@!?(\d+)>$/)) {
+      let user = bot.users.fetch(key.match(/^<@!?(\d+)>$/)[1]).catch(() => { });
 
-    setTimeout(() => {
-      if (message.deleted) {
-        return
+      if (user) {
+        return user;
       }
+    }
 
-      message.reactions.removeAll()
+    if (key.match(/^!?(\w+)#(\d+)$/)) {
+      let user = bot.users.find(u => u.username === key.match(/^!?(\w+)#(\d+)$/)[0] && u.discriminator === key.match(/^!?(\w+)#(\d+)$/)[1]);
 
-      return false
-    }, seconds)
+      if (user) {
+        return user;
+      }
+    }
 
-    return message
-      .awaitReactions(filter, {
-        max: 1,
-        time: seconds
-      })
-      .then(collected => collected.first() && collected.first().emoji.name)
+    return await bot.users.fetch(key).catch(() => { });
   },
-  */
+
+  /**
+   *
+   * @param {string} key The search quarry.
+   * @param {string} guild The Discord.js Guild ID.
+   * @returns {Object} Member if found.
+   */
+  async fetchMember(key, guild) {
+    if (!key || typeof key !== "string") {
+      return;
+    }
+
+    if (key.match(/^<@!?(\d+)>$/)) {
+      let member = guild.members.fetch(key.match(/^<@!?(\d+)>$/)[1]).catch(() => { });
+
+      if (member) {
+        return member;
+      }
+    }
+
+    if (key.match(/^!?(\w+)#(\d+)$/)) {
+      guild = await guild.fetch();
+      let member = guild.members.cache.find(m => m.user.tag === key);
+
+      if (member) {
+        return member;
+      }
+    }
+
+    return await guild.members.fetch(key).catch(() => { });
+  },
 
   /**
    *
@@ -161,7 +191,7 @@ module.exports = {
 
   /**
    *
-   * @param {string} String The string to check for a URL.
+   * @param {string} String The String to check for a URL.
    * @returns {boolean}
    */
   isURL(String) {

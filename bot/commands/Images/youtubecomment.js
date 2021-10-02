@@ -1,34 +1,24 @@
 const Discord = require(`discord.js`);
+const canvacord = require(`canvacord`);
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = bot.users.cache.get(args[0]) || message.author;
-
-
   if (!args || !args[0]) {
     return message.reply(`Please provide text.`);
   }
 
-  const canvacord = require(`canvacord`);
-
   args = args.join(` `).slice(22);
 
-  const Avatar = User.displayAvatarURL({
-    dynamic: false,
-    format: `gif`,
-  });
-
+  const User = await bot.functions.fetchUser(args[0]) || message.author;
   const Image = await canvacord.Canvas.youtube({
     username: User.username,
-    avatar: Avatar,
-    content: args,
+    avatar: User.displayAvatarURL({ format: "png" }),
+    content: args
   });
 
-  const YouTube = new Discord.MessageAttachment(Image, `youtube.gif`);
-
   message.reply({
-    attachments: [YouTube]
+    attachments: [new Discord.MessageAttachment(Image, "youtube.png")]
   });
 }
 

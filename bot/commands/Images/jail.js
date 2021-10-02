@@ -1,23 +1,14 @@
 const Discord = require("discord.js");
+const canvacord = require("canvacord");
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = bot.users.cache.get(args[0]) || message.author;
-
-
-  const canvacord = require("canvacord");
-
-  const Avatar = User.displayAvatarURL({
-    dynamic: false,
-    format: "gif",
-  });
-
-  const Image = await canvacord.Canvas.jail(Avatar, true);
-  const Jail = new Discord.MessageAttachment(Image, "jail.gif");
+  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const Image = await canvacord.Canvas.invert(User.displayAvatarURL({ format: "png" }), true);
 
   message.reply({
-    attachments: [Jail]
+    attachments: [new Discord.MessageAttachment(Image, "jail.png")]
   });
 }
 

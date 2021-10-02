@@ -35,9 +35,9 @@ module.exports = new cmd(
       )
       .addField(
         "**DATA**",
-        `\`\`\`Uptime: ${bot.functions.MSToTime(bot.uptime)}\nServers: ${bot.functions.FormatNumber(
+        `\`\`\`Uptime: ${bot.functions.MSToTime(bot.uptime)}\nServers: ${bot.functions.formatNumber(
           await bot.functions.GetServerCount(),
-        )}\nUsers: ${bot.functions.FormatNumber(await bot.functions.GetUserCount())}\`\`\``,
+        )}\nUsers: ${bot.functions.formatNumber(await bot.functions.GetUserCount())}\`\`\``,
         true,
       )
       .setFooter(footerMessage)

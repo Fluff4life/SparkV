@@ -1,29 +1,20 @@
 const Discord = require(`discord.js`);
+const canvacord = require(`canvacord`);
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = bot.users.cache.get(args[0]) || message.author;
-
-
   if (!args || !args[0]) {
     return message.reply(`Please provide text.`);
   }
 
-  const canvacord = require(`canvacord`);
-
   args = args.join(` `);
 
-  const Avatar = User.displayAvatarURL({
-    dynamic: false,
-    format: `png`,
-  });
-
-  const Image = await canvacord.Canvas.opinion(Avatar, args);
-  const Opinion = new Discord.MessageAttachment(Image, `opinion.png`);
+  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const Image = await canvacord.Canvas.opinion(User.displayAvatarURL({ format: "png" }), args);
 
   message.reply({
-    attachments: [Opinion]
+    attachments: [new Discord.MessageAttachment(Image, "opinion.png")]
   });
 }
 

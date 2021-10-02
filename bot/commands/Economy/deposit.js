@@ -31,7 +31,7 @@ async function execute(bot, message, args, command, data) {
       await data.user.save();
 
       message.reply(
-        `${bot.config.Emojis.success} | You just deposited ❄${await bot.functions.FormatNumber(
+        `${bot.config.Emojis.success} | You just deposited ❄${await bot.functions.formatNumber(
           BankMax,
         )} into your bank!`,
       );
@@ -44,7 +44,7 @@ async function execute(bot, message, args, command, data) {
       await data.user.save();
 
       message.reply(
-        `${bot.config.Emojis.success} | You just deposited ❄${await bot.functions.FormatNumber(
+        `${bot.config.Emojis.success} | You just deposited ❄${await bot.functions.formatNumber(
           Ch1llBucks,
         )} into your bank!`,
       );
@@ -77,7 +77,7 @@ async function execute(bot, message, args, command, data) {
     data.user.markModified("money.bank");
     await data.user.save();
 
-    message.reply(`${bot.config.Emojis.success} | Deposited ❄${await bot.functions.FormatNumber(args[0])} into bank!`);
+    message.reply(`${bot.config.Emojis.success} | Deposited ❄${await bot.functions.formatNumber(args[0])} into bank!`);
   }
 }
 

@@ -59,15 +59,15 @@ module.exports = {
     bot.user.setPresence({
       status: "online",
       activities: [{
-        name: `${bot.config.prefix}Help | ${bot.functions.FormatNumber(await bot.functions.GetServerCount())} servers`,
+        name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(await bot.functions.GetServerCount())} servers`,
         type: "PLAYING"
       }]
     });
 
     bot.logger(
-      `Logged into Discord as ${bot.user.tag} (${bot.user.id})\n🏢 | Servers: ${bot.functions.FormatNumber(
+      `Logged into Discord as ${bot.user.tag} (${bot.user.id})\n🏢 | Servers: ${bot.functions.formatNumber(
         await bot.functions.GetServerCount(),
-      )}\n👥 | Users: ${bot.functions.FormatNumber(await bot.functions.GetUserCount())}`,
+      )}\n👥 | Users: ${bot.functions.formatNumber(await bot.functions.GetUserCount())}`,
       "bot",
     );
   },
