@@ -3,7 +3,7 @@ const canvacord = require("canvacord");
 
 const cmd = require("../../templates/command");
 
-async function execute(bot, message) {
+async function execute(bot, message, args) {
   const User = (await bot.functions.fetchUser(args[0])) || message.author;
   const User2 = (await bot.functions.fetchUser(args[1])) || message.author;
 
