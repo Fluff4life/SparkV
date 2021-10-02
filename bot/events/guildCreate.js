@@ -5,6 +5,14 @@ module.exports = {
   async execute(bot, guild) {
     console.log(`SparkV has been added to ${guild.name} (Id: ${guild.id}).`);
 
+    bot.user.setPresence({
+      status: "online",
+      activities: [{
+        name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(await bot.functions.GetServerCount())} servers`,
+        type: "PLAYING"
+      }]
+    });
+
     const Logger = bot.channels.cache.get("831314946624454656");
 
     if (Logger) {
