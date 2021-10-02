@@ -44,9 +44,11 @@ module.exports = {
       .replaceAll("{server}", `${member.guild.name}`)
       .replaceAll("{members}", `${await bot.functions.formatNumber(member.guild.memberCount)}`);
 
-    channel.send({
-      content: msg,
-      files: [attachment]
-    }).catch(err => { });
+    channel
+      .send({
+        content: msg,
+        files: [attachment],
+      })
+      .catch(err => {});
   },
 };

@@ -4,11 +4,11 @@ const canvacord = require("canvacord");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const User = (await bot.functions.fetchUser(args[0])) || message.author;
   const Image = await canvacord.Canvas.shit(User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "shit.png")]
+    attachments: [new Discord.MessageAttachment(Image, "shit.png")],
   });
 }
 

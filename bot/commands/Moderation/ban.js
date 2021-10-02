@@ -52,7 +52,7 @@ async function execute(bot, message, args, command, data) {
     .setTimestamp();
 
   message.reply({
-    embeds: [BanEmbed]
+    embeds: [BanEmbed],
   });
 }
 

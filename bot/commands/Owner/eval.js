@@ -18,9 +18,11 @@ async function execute(bot, message, args, command, data) {
 
     if (typeof result !== "string") {
       result = inspect(result, {
-        depth: +!(inspect(result, {
-          depth: 1
-        }).length > 1000)
+        depth: +!(
+          inspect(result, {
+            depth: 1,
+          }).length > 1000
+        ),
       });
     }
 
@@ -30,9 +32,12 @@ async function execute(bot, message, args, command, data) {
   }
 
   if (input.length + result.length >= 4000) {
-    const paste = await fetch(`https://hastepaste.com/api/create?raw=false&ext=javascript&text=${encodeURIComponent(`${input}\n\n${result}`)}`, {
-      method: "POST"
-    }).catch(err => message.reply(err.message));
+    const paste = await fetch(
+      `https://hastepaste.com/api/create?raw=false&ext=javascript&text=${encodeURIComponent(`${input}\n\n${result}`)}`,
+      {
+        method: "POST",
+      },
+    ).catch(err => message.reply(err.message));
 
     return message.reply(`Eval exceeds 4000 characters. Please view here: ${paste.body}`);
   } else {
@@ -43,7 +48,7 @@ async function execute(bot, message, args, command, data) {
       .setColor(`GREEN`);
 
     return message.reply({
-      embeds: [Embed]
+      embeds: [Embed],
     });
   }
 }

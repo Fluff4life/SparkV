@@ -41,7 +41,7 @@ async function execute(bot, message, args, command, data) {
         .setTimestamp();
 
       message.reply({
-        embeds: [WeatherInformation]
+        embeds: [WeatherInformation],
       });
     },
   );

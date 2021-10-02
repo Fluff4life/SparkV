@@ -7,10 +7,14 @@ module.exports = {
 
     bot.user.setPresence({
       status: "online",
-      activities: [{
-        name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(await bot.functions.GetServerCount())} servers`,
-        type: "PLAYING"
-      }]
+      activities: [
+        {
+          name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(
+            await bot.functions.GetServerCount(),
+          )} servers`,
+          type: "PLAYING",
+        },
+      ],
     });
 
     const Logger = bot.channels.cache.get("831314946624454656");
@@ -22,9 +26,7 @@ module.exports = {
         .setColor("RED");
 
       Logger.send({
-        embeds: [
-          ServerRemovedEmbed
-        ]
+        embeds: [ServerRemovedEmbed],
       });
     }
   },

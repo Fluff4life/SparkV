@@ -66,7 +66,7 @@ module.exports = {
           .addOptions(Selections);
 
         const InviteButton = new MessageButton().setURL(bot.config.bot_invite).setLabel("Bot Invite")
-          .setStyle("LINK");
+.setStyle("LINK");
 
         const SupportButton = new MessageButton()
           .setURL(bot.config.support.invite)
@@ -79,9 +79,7 @@ module.exports = {
           .setStyle("LINK");
 
         await interaction.update({
-          embeds: [
-            pages.filter(p => p.title === interaction.values[0])[0]
-          ],
+          embeds: [pages.filter(p => p.title === interaction.values[0])[0]],
           components: [
             new MessageActionRow().addComponents(CatSelect),
             new MessageActionRow().addComponents(InviteButton, SupportButton, VoteButton),

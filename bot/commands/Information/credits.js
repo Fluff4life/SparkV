@@ -25,7 +25,7 @@ module.exports = new cmd(
       .addFields(Credits);
 
     return message.reply({
-      embeds: [NewEmbed]
+      embeds: [NewEmbed],
     });
   },
   {

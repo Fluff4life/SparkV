@@ -13,16 +13,22 @@ async function execute(bot, message, args, command, data) {
     return message.reply("This user doesn't have any infractions!");
   }
 
-  const infractions = data.member.infractions.map(infraction => `**${infraction.type}** - <t:${~~(infraction.date / 1000)}:R>\n`);
+  const infractions = data.member.infractions.map(
+    infraction => `**${infraction.type}** - <t:${~~(infraction.date / 1000)}:R>\n`,
+  );
 
   const warningsEmbed = new Discord.MessageEmbed()
-  .setTitle(`${User.tag}'s infractions`)
-  .setDescription(`${User} has **${data.member.infractionsCount}** warning${data.member.infractionsCount > 1 ? "s" : ""}.\n\n${infractions}`)
-  .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
-  .setColor(bot.config.embed.color);
+    .setTitle(`${User.tag}'s infractions`)
+    .setDescription(
+      `${User} has **${data.member.infractionsCount}** warning${
+        data.member.infractionsCount > 1 ? "s" : ""
+      }.\n\n${infractions}`,
+    )
+    .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
+    .setColor(bot.config.embed.color);
 
   message.reply({
-    embeds: [warningsEmbed]
+    embeds: [warningsEmbed],
   });
 }
 

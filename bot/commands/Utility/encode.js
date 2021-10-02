@@ -6,7 +6,9 @@ const cmd = require("../../templates/command");
 module.exports = new cmd(
   async (bot, message, args) => {
     if (!args) {
-      return message.reply("Next time, choose the type of encoding and the text to encode. Types: `base64`, `hex` or `url`");
+      return message.reply(
+        "Next time, choose the type of encoding and the text to encode. Types: `base64`, `hex` or `url`",
+      );
     }
 
     let [type, ...string] = args;

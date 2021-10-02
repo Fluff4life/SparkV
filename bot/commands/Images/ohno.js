@@ -9,7 +9,7 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.ohno(args);
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "jail.png")]
+    attachments: [new Discord.MessageAttachment(Image, "jail.png")],
   });
 }
 

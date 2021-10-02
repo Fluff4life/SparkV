@@ -10,11 +10,11 @@ async function execute(bot, message, args, command, data) {
 
   args = args.join(` `);
 
-  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const User = (await bot.functions.fetchUser(args[0])) || message.author;
   const Image = await canvacord.Canvas.opinion(User.displayAvatarURL({ format: "png" }), args);
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "opinion.png")]
+    attachments: [new Discord.MessageAttachment(Image, "opinion.png")],
   });
 }
 

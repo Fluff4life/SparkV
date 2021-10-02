@@ -14,7 +14,7 @@ module.exports = new cmd(
       .setColor(bot.config.embed.color);
 
     await message.reply({
-      embeds: [InvitesEmbend]
+      embeds: [InvitesEmbend],
     });
   },
   {

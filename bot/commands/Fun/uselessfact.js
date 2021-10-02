@@ -15,7 +15,7 @@ async function execute(bot, message) {
         .setTimestamp();
 
       const Message = message.reply({
-        embeds: [FunFactEmbed]
+        embeds: [FunFactEmbed],
       });
 
       Message.react("🤯");

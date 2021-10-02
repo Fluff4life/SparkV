@@ -4,11 +4,11 @@ const canvacord = require("canvacord");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const User = (await bot.functions.fetchUser(args[0])) || message.author;
   const Image = await canvacord.Canvas.invert(User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "invert.png")]
+    attachments: [new Discord.MessageAttachment(Image, "invert.png")],
   });
 }
 

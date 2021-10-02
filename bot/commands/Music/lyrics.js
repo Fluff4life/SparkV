@@ -32,7 +32,7 @@ async function execute(bot, message, args, command, data) {
       .setTimestamp();
 
     return message.reply({
-      embeds: [SongEmbed]
+      embeds: [SongEmbed],
     });
   }
 

@@ -107,7 +107,7 @@ module.exports = {
     }
 
     if (key.match(/^<@!?(\d+)>$/)) {
-      let user = bot.users.fetch(key.match(/^<@!?(\d+)>$/)[1]).catch(() => { });
+      let user = bot.users.fetch(key.match(/^<@!?(\d+)>$/)[1]).catch(() => {});
 
       if (user) {
         return user;
@@ -115,14 +115,16 @@ module.exports = {
     }
 
     if (key.match(/^!?(\w+)#(\d+)$/)) {
-      let user = bot.users.find(u => u.username === key.match(/^!?(\w+)#(\d+)$/)[0] && u.discriminator === key.match(/^!?(\w+)#(\d+)$/)[1]);
+      let user = bot.users.find(
+        u => u.username === key.match(/^!?(\w+)#(\d+)$/)[0] && u.discriminator === key.match(/^!?(\w+)#(\d+)$/)[1],
+      );
 
       if (user) {
         return user;
       }
     }
 
-    return await bot.users.fetch(key).catch(() => { });
+    return await bot.users.fetch(key).catch(() => {});
   },
 
   /**
@@ -137,7 +139,7 @@ module.exports = {
     }
 
     if (key.match(/^<@!?(\d+)>$/)) {
-      let member = guild.members.fetch(key.match(/^<@!?(\d+)>$/)[1]).catch(() => { });
+      let member = guild.members.fetch(key.match(/^<@!?(\d+)>$/)[1]).catch(() => {});
 
       if (member) {
         return member;
@@ -153,7 +155,7 @@ module.exports = {
       }
     }
 
-    return await guild.members.fetch(key).catch(() => { });
+    return await guild.members.fetch(key).catch(() => {});
   },
 
   /**

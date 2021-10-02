@@ -22,7 +22,7 @@ async function execute(bot, message, args, command, data) {
     .setTimestamp();
 
   message.reply({
-    embeds: [BalanceEmbed]
+    embeds: [BalanceEmbed],
   });
 }
 
