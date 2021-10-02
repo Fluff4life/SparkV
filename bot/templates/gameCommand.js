@@ -10,6 +10,12 @@ module.exports = class ModCommand {
 
   async run(bot, message, args, command, data) {
     if (this.settings.type === "together") {
+      if (!message.member.voice.channel) {
+        return message
+          .reply(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
+          .then(m => m.delete({ timeout: 5000 }));
+      }
+
       bot.discordTogether
         .createTogetherCode(message.member.voice.channel.id, this.settings.gname)
         .then(async invite => message.reply(`${invite.code}`));
