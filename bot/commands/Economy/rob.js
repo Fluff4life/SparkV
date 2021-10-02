@@ -55,7 +55,7 @@ async function execute(bot, message, args, command, data) {
     UserBalance.save();
 
     message.reply(
-      `${bot.config.Emojis.success} | You robbed ${User} and recieved ${await bot.functions.formatNumber(
+      `${bot.config.Emojis.success} | You robbed ${User} and recieved ${bot.functions.formatNumber(
         Ammount,
       )} Ch1llBucks!`,
     );

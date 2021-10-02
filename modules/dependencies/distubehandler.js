@@ -25,11 +25,11 @@ module.exports = async bot => {
           .addFields(
             {
               name: `⚙︱Audio Stats`,
-              value: `\`\`\`👍︱Likes: ${await bot.functions.formatNumber(
+              value: `\`\`\`👍︱Likes: ${bot.functions.formatNumber(
                 song.likes,
-              )}\n👎︱Dislikes: ${await bot.functions.formatNumber(
+              )}\n👎︱Dislikes: ${bot.functions.formatNumber(
                 song.dislikes,
-              )}\n▶︱Views: ${await bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
+              )}\n▶︱Views: ${bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
                 song.formattedDuration
               }\`\`\``,
               inline: true,
@@ -62,11 +62,11 @@ module.exports = async bot => {
           .addFields(
             {
               name: `⚙︱Audio Stats`,
-              value: `\`\`\`👍︱Likes: ${await bot.functions.formatNumber(
+              value: `\`\`\`👍︱Likes: ${bot.functions.formatNumber(
                 song.likes,
-              )}\n👎︱Dislikes: ${await bot.functions.formatNumber(
+              )}\n👎︱Dislikes: ${bot.functions.formatNumber(
                 song.dislikes,
-              )}\n▶︱Views: ${await bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
+              )}\n▶︱Views: ${bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
                 song.formattedDuration
               }\`\`\``,
               inline: true,
@@ -101,11 +101,11 @@ module.exports = async bot => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await bot.functions.formatNumber(
+            value: `\`\`\`👍︱Likes: ${bot.functions.formatNumber(
               song.likes,
-            )}\n👎︱Dislikes: ${await bot.functions.formatNumber(
+            )}\n👎︱Dislikes: ${bot.functions.formatNumber(
               song.dislikes,
-            )}\n▶︱Views: ${await bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
+            )}\n▶︱Views: ${bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
               song.formattedDuration
             }\`\`\``,
             inline: true,
@@ -137,11 +137,11 @@ module.exports = async bot => {
         .addFields(
           {
             name: `⚙︱Audio Stats`,
-            value: `\`\`\`👍︱Likes: ${await bot.functions.formatNumber(
+            value: `\`\`\`👍︱Likes: ${bot.functions.formatNumber(
               song.likes,
-            )}\n👎︱Dislikes: ${await bot.functions.formatNumber(
+            )}\n👎︱Dislikes: ${bot.functions.formatNumber(
               song.dislikes,
-            )}\n▶︱Views: ${await bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
+            )}\n▶︱Views: ${bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
               song.formattedDuration
             }\`\`\``,
             inline: true,

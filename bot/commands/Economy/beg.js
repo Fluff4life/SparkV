@@ -20,7 +20,7 @@ async function execute(bot, message, args, command, data) {
   Ch1llBucks += Ammount;
 
   message.reply(
-    `${bot.config.Emojis.success} | You begged and recieved ${await bot.functions.formatNumber(Ammount)} Ch1llBucks!`,
+    `${bot.config.Emojis.success} | You begged and recieved ${bot.functions.formatNumber(Ammount)} Ch1llBucks!`,
   );
 }
 

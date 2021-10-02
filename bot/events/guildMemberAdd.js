@@ -42,7 +42,7 @@ module.exports = {
       .replaceAll("{tag}", `${member.user.tag}`)
       .replaceAll("{username}", `${member.user.username}`)
       .replaceAll("{server}", `${member.guild.name}`)
-      .replaceAll("{members}", `${await bot.functions.formatNumber(member.guild.memberCount)}`);
+      .replaceAll("{members}", `${bot.functions.formatNumber(member.guild.memberCount)}`);
 
     channel
       .send({

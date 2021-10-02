@@ -10,7 +10,7 @@ async function execute(bot, message, args, command, data) {
 
   const User = bot.users.cache.get(args[0]);
   const Leveling = await bot.dashboard.getVal(`Leveling`);
-  const FormattedNumber = await bot.functions.formatNumber(args[1]);
+  const FormattedNumber = bot.functions.formatNumber(args[1]);
 
   if (!Leveling === true) {
     return message.reply(
