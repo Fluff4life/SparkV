@@ -58,10 +58,14 @@ module.exports = {
     console.log("-------- SparkV --------");
     bot.user.setPresence({
       status: "online",
-      activities: [{
-        name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(await bot.functions.GetServerCount())} servers`,
-        type: "PLAYING"
-      }]
+      activities: [
+        {
+          name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(
+            await bot.functions.GetServerCount(),
+          )} servers`,
+          type: "PLAYING",
+        },
+      ],
     });
 
     bot.logger(

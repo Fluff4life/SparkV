@@ -10,14 +10,13 @@ async function execute(bot, message) {
       title: "Lie Swatter",
       color: "#5865F2",
       footer: bot.config.embed.footer,
-      timestamp: true
+      timestamp: true,
     },
     thinkMessage: "Hmmmmm",
-    winMessage:
-      "Great job! It was **{{answer}}**. You got it correct in **{{time}}**.",
+    winMessage: "Great job! It was **{{answer}}**. You got it correct in **{{time}}**.",
     loseMessage: "Awwww. You choose the wrong answer. It was **{{answer}}**.",
     othersMessage: "Only <@{{author}}> can use the buttons!",
-    buttons: { true: "Truth", lie: "Lie" }
+    buttons: { true: "Truth", lie: "Lie" },
   });
 }
 

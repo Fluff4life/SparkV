@@ -107,7 +107,7 @@ async function execute(bot, message, args, command, data) {
     .setTimestamp();
 
   const GameMessage = await message.reply({
-    embeds: [GameEmbed]
+    embeds: [GameEmbed],
   });
 
   while (!Winner && Board.some(row => row.includes(null))) {

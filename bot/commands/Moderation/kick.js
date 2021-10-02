@@ -37,7 +37,7 @@ async function execute(bot, message, args, command, data) {
     .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.embed.footer}`);
 
   const VerificationMessage = await message.reply({
-    embeds: [VerificationEmbed]
+    embeds: [VerificationEmbed],
   });
 
   const Emoji = await bot.PromptMessage(
@@ -49,7 +49,7 @@ async function execute(bot, message, args, command, data) {
 
   if (Emoji === bot.config.Emojis.success) {
     // Yes
-    message.delete().catch(err => {})
+    message.delete().catch(err => {});
 
     UserToKick.kick().catch(err => {
       message.reply(`${bot.config.Emojis.error} | Failed to kick. Error: ${err}`);
@@ -73,7 +73,7 @@ async function execute(bot, message, args, command, data) {
 
     message.reply(KickEmbend);
   } else if (emoji === bot.config.Emojis.error) {
-    message.delete().catch(err => {})
+    message.delete().catch(err => {});
 
     message.reply(`${bot.config.Emojis.error} | Kick canceled.`).then(m => m.delete({ timeout: 10000 }));
   }

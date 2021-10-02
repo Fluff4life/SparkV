@@ -4,7 +4,7 @@ const canvacord = require("canvacord");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message) {
-  const User = await bot.functions.fetchUser(args[0]) || message.author;
+  const User = (await bot.functions.fetchUser(args[0])) || message.author;
   const avatar = user.displayAvatarURL({ dynamic: true, format: "png" });
 
   if (message.content.includes("-url")) {
@@ -12,7 +12,7 @@ async function execute(bot, message) {
   }
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(avatar, `${User.tag}-avatar.png`)]
+    attachments: [new Discord.MessageAttachment(avatar, `${User.tag}-avatar.png`)],
   });
 }
 

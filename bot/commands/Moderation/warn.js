@@ -19,7 +19,9 @@ async function execute(bot, message, args, command, data) {
   const ModerationPosition = message.member.roles.highest.position;
 
   if (message.guild.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
-    return message.reply(`${bot.config.Emojis.error} | Uh oh... I can\`t warn this user! This user is either the owner, or is a higher rank than SparkV.`);
+    return message.reply(
+      `${bot.config.Emojis.error} | Uh oh... I can\`t warn this user! This user is either the owner, or is a higher rank than SparkV.`,
+    );
   }
 
   ++memberData.infractionsCount;
@@ -33,18 +35,20 @@ async function execute(bot, message, args, command, data) {
   await memberData.save();
 
   User.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}`).catch(err => {
-    message.channel.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}\n\nI would've sent this in your DMs, but they were off.`);
+    message.channel.send(
+      `You were warned in **${message.guild.name}**. Reason: ${Reason}\n\nI would've sent this in your DMs, but they were off.`,
+    );
     message.reply(`The user you mentioned has their DMs off. I pinged him instead.`);
   });
 
   const WarnEmbed = new MessageEmbed()
-  .setTitle(`Warn Successful!`)
-  .setDescription(`I successfully warned ${User} (${User.id}).`)
-  .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
-  .setColor(bot.config.embed.color);
+    .setTitle(`Warn Successful!`)
+    .setDescription(`I successfully warned ${User} (${User.id}).`)
+    .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
+    .setColor(bot.config.embed.color);
 
   message.reply({
-    embeds: [WarnEmbed]
+    embeds: [WarnEmbed],
   });
 }
 

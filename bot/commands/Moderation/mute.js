@@ -71,7 +71,7 @@ async function execute(bot, message, args, command, data) {
     .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.embed.footer}`);
 
   const VerificationMessage = await message.reply({
-    embeds: [VerificationEmbed]
+    embeds: [VerificationEmbed],
   });
 
   const Emoji = await bot.PromptMessage(
@@ -83,7 +83,7 @@ async function execute(bot, message, args, command, data) {
 
   if (Emoji === `✅`) {
     // Yes
-    message.delete().catch(err => {})
+    message.delete().catch(err => {});
 
     User.roles.add(MutedRole);
     User.send(`You have been muted in ${message.guild.name}. Reason: ${Reason}.`).catch(err => {});
@@ -99,10 +99,10 @@ async function execute(bot, message, args, command, data) {
       .setTimestamp();
 
     message.reply({
-      embeds: [MuteEmbend]
+      embeds: [MuteEmbend],
     });
   } else if (emoji === `${bot.config.Emojis.error} | `) {
-    message.delete().catch(err => {})
+    message.delete().catch(err => {});
 
     message.reply(`${bot.config.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
   }

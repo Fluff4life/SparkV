@@ -47,7 +47,7 @@ function execute(bot, message, args, command, data) {
     .setTimestamp();
 
   message.reply({
-    embeds: [PromptEmbed]
+    embeds: [PromptEmbed],
   });
 
   MessageColector.on(`collect`, async msg => {
@@ -72,7 +72,7 @@ function execute(bot, message, args, command, data) {
         .setTimestamp();
 
       message.reply({
-        embeds: [UsernameFound]
+        embeds: [UsernameFound],
       });
 
       const VerifyMessageColector = message.channel.createMessageCollector(Filter, {

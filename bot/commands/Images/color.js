@@ -15,7 +15,7 @@ async function execute(bot, message, args, command, data) {
   const Color = new Discord.MessageAttachment(Image, `color.png`);
 
   message.reply({
-    attachments: [Color]
+    attachments: [Color],
   });
 }
 

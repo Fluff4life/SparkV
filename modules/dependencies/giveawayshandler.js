@@ -12,7 +12,7 @@ module.exports = async bot => {
   if (!giveaways) {
     const giveawayData = new GiveawaysSchema({
       ID: "giveaways",
-      data: []
+      data: [],
     });
 
     await giveawayData.save();
@@ -36,7 +36,9 @@ module.exports = async bot => {
       giveawayData.data.push(GiveawayData);
       giveawayData.markModified("data");
 
-      await giveawayData.save().catch(err => console.log(`[Giveaway Manager] - Failed to save giveaway to database. ${err}`));
+      await giveawayData
+        .save()
+        .catch(err => console.log(`[Giveaway Manager] - Failed to save giveaway to database. ${err}`));
 
       return true;
     }
@@ -52,7 +54,9 @@ module.exports = async bot => {
       giveawayData.data = NewGiveawaysArray;
       giveawayData.markModified("data");
 
-      await giveawayData.save().catch(err => console.log(`[Giveaway Manager] - Failed to edit giveaway and save to database. ${err}`));
+      await giveawayData
+        .save()
+        .catch(err => console.log(`[Giveaway Manager] - Failed to edit giveaway and save to database. ${err}`));
 
       return true;
     }
@@ -66,7 +70,9 @@ module.exports = async bot => {
       giveawayData.data = NewGiveawaysArray;
 
       giveawayData.markModified("data");
-      await giveawayData.save().catch(err => console.log(`[Giveaway Manager] - Failed to delete giveaway and save to database. ${err}`));
+      await giveawayData
+        .save()
+        .catch(err => console.log(`[Giveaway Manager] - Failed to delete giveaway and save to database. ${err}`));
 
       return true;
     }

@@ -9,24 +9,33 @@ module.exports = new cmd(
     let member = message.channel.guild.members.cache.get(user.id);
 
     const InfoEmbed = new Discord.MessageEmbed()
-    .setAuthor(user.user ? user.user.tag : user.tag, user.user ? user.user.displayAvatarURL({ dynamic: true, format: "png" }) : user.displayAvatarURL({ dynamic: true, format: "png" }))
-    .addFields(
+      .setAuthor(
+        user.user ? user.user.tag : user.tag,
+        user.user
+          ? user.user.displayAvatarURL({ dynamic: true, format: "png" })
+          : user.displayAvatarURL({ dynamic: true, format: "png" }),
+      )
+      .addFields(
         {
-            name: "**Account Info**",
-            value: `Joined: <t:${~~(member.joinedAt / 1000)}:R>\nRegistered: <t:${~~(user.createdAt / 1000)}:R>`,
-            inline: true,
-          },
-          {
-            name: "**Profile Links**",
-            value: `Avatar URL: [Click Here](${user.user ? user.user.displayAvatarURL({ dynamic: true, format: "png" }) : user.displayAvatarURL({ dynamic: true, format: "png" })})`,
-            inline: true,
-          },
-    )
-    .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL({ dynamic: true, format: "png" }))
-    .setColor(bot.config.embed.color);
+          name: "**Account Info**",
+          value: `Joined: <t:${~~(member.joinedAt / 1000)}:R>\nRegistered: <t:${~~(user.createdAt / 1000)}:R>`,
+          inline: true,
+        },
+        {
+          name: "**Profile Links**",
+          value: `Avatar URL: [Click Here](${
+            user.user
+              ? user.user.displayAvatarURL({ dynamic: true, format: "png" })
+              : user.displayAvatarURL({ dynamic: true, format: "png" })
+          })`,
+          inline: true,
+        },
+      )
+      .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL({ dynamic: true, format: "png" }))
+      .setColor(bot.config.embed.color);
 
     message.reply({
-        embeds: [InfoEmbed]
+      embeds: [InfoEmbed],
     });
   },
   {

@@ -20,7 +20,7 @@ async function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color);
 
   message.reply({
-    embeds: [LeaderboardEmbed]
+    embeds: [LeaderboardEmbed],
   });
 }
 

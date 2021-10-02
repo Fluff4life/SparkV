@@ -21,7 +21,7 @@ async function execute(bot, message) {
           .setColor(bot.config.embed.color);
 
         message.reply({
-          embeds: [MemeEconomyEmbed]
+          embeds: [MemeEconomyEmbed],
         });
       } else {
         const MemeEconomyEmbed = new Discord.MessageEmbed()
@@ -35,7 +35,7 @@ async function execute(bot, message) {
           .setColor(bot.config.embed.color);
 
         message.reply({
-          embeds: [MemeEconomyEmbed]
+          embeds: [MemeEconomyEmbed],
         });
       }
     });

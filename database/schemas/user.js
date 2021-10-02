@@ -32,7 +32,7 @@ const Schema = new mongoose.Schema({
     balance: { type: String, default: "0" },
     bank: { type: String, default: "0" },
     bankMax: { type: String, default: "1000" },
-    multiplier: { type: String, default: "0" }
+    multiplier: { type: String, default: "0" },
   },
 });
 
