@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 module.exports = new cmd(
   async (bot, message) => {
-    const BotMessage = await message.reply("Fetching Stats...");
+    const BotMessage = await await message.replyT("Fetching Stats...");
     let footerMessage = `SparkV's Stats • ${bot.config.embed.footer}`;
 
     if (bot.functions.MSToTime(bot.uptime) === "5 Minutes") {

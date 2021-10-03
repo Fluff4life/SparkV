@@ -26,12 +26,12 @@ const Replies = [
 
 async function execute(bot, message, args, command, data) {
   if (!args || !args[0]) {
-    return message.reply(`Please provide a question to ask 8ball.`);
+    return await message.replyT(`Please provide a question to ask 8ball.`);
   }
 
   const ReplyText = Math.floor(Math.random() * Replies.length + 0);
 
-  return message.reply(Replies[ReplyText]);
+  return await message.replyT(Replies[ReplyText]);
 }
 
 module.exports = new cmd(execute, {

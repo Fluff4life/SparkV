@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 async function execute(bot, message) {
   request("https://www.reddit.com/r/MemeEconomy/top/.json")
     .then(res => res.json())
-    .then(json => {
+    .then(async json => {
       const post = json.data.children[Math.floor(Math.random() * json.data.children.length)].data;
 
       if (post.title.length > 256) {
@@ -20,7 +20,7 @@ async function execute(bot, message) {
           )
           .setColor(bot.config.embed.color);
 
-        message.reply({
+        await message.replyT({
           embeds: [MemeEconomyEmbed],
         });
       } else {
@@ -34,7 +34,7 @@ async function execute(bot, message) {
           )
           .setColor(bot.config.embed.color);
 
-        message.reply({
+        await message.replyT({
           embeds: [MemeEconomyEmbed],
         });
       }

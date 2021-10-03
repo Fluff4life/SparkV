@@ -10,19 +10,19 @@ async function execute(bot, message, args, command, data) {
   const Prize = args.slice(3).join(` `);
 
   if (!Channel) {
-    return message.reply(`${bot.config.Emojis.error} | Please provide a valid channel.`);
+    return await message.replyT(`${bot.config.Emojis.error} | Please provide a valid channel.`);
   }
 
   if (!Duration || isNaN(ms(Duration))) {
-    return message.reply(`${bot.config.Emojis.error} | Please provide a valid duration.`);
+    return await message.replyT(`${bot.config.Emojis.error} | Please provide a valid duration.`);
   }
 
   if (!Winners || isNaN(Winners) || parseInt(Winners) <= 0) {
-    return message.reply(`${bot.config.Emojis.error} | Please provide a valid number of winners!`);
+    return await message.replyT(`${bot.config.Emojis.error} | Please provide a valid number of winners!`);
   }
 
   if (!Prize) {
-    return message.reply(`${bot.config.Emojis.error} | Why do you want to give away nothing lol.`);
+    return await message.replyT(`${bot.config.Emojis.error} | Why do you want to give away nothing lol.`);
   }
 
   bot.GiveawayManager.start(Channel, {
@@ -52,7 +52,7 @@ async function execute(bot, message, args, command, data) {
     },
   });
 
-  message.reply(`${bot.config.Emojis.success} | Giveaway starting in ${Channel}!`);
+  await message.replyT(`${bot.config.Emojis.success} | Giveaway starting in ${Channel}!`);
 }
 
 module.exports = new cmd(execute, {

@@ -17,22 +17,22 @@ const GenerateArray = level => {
 
 async function execute(bot, message, args, command, data) {
   if (!args) {
-    return message.reply(
+    return await message.replyT(
       `${bot.config.Emojis.error} | Next time, say how many directions you want to challenge yourself with.`,
     );
   }
 
   if (args[0] < 1 || args[0] > 20) {
-    return message.reply(`${bot.config.Emojis.error} | You can only select between 1-20.`);
+    return await message.replyT(`${bot.config.Emojis.error} | You can only select between 1-20.`);
   }
 
   if (args[0] < 1 || args[0] > 20) {
-    return message.reply(`${bot.config.Emojis.error} | You can only select between 1-20.`);
+    return await message.replyT(`${bot.config.Emojis.error} | You can only select between 1-20.`);
   }
 
   try {
     const Memorize = GenerateArray(args[0]);
-    const MemorizeMessage = await message.reply(Memorize.map(emoji => `${emoji}`).join(` `));
+    const MemorizeMessage = await await message.replyT(Memorize.map(emoji => `${emoji}`).join(` `));
 
     await bot.wait(25 * 1000);
     MemorizeMessage.edit(`⚡ Now, type what you saw.`);

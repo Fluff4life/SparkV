@@ -8,26 +8,22 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .reply(`${bot.config.Emojis.error} | Please mention someone to ban!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Please mention someone to ban!`);
   }
 
   if (!UserToBan) {
     return message
-      .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | I cannot find that member!`);
   }
 
   if (UserToBan.id === message.author.id) {
     return message
-      .reply(`${bot.config.Emojis.error} | You cannot ban yourself.`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | You cannot ban yourself.`);
   }
 
   if (!UserToBan.bannable) {
     return message
-      .reply(`${bot.config.Emojis.error} | Uh oh... I can\`t ban this user!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Uh oh... I can\`t ban this user!`);
   }
 
   message.delete().catch(err => {});
@@ -37,9 +33,7 @@ async function execute(bot, message, args, command, data) {
 
   UserToBan.ban({
     reason: ReasonForBan,
-  }).catch(err => {
-    message.reply(`${bot.config.Emojis.error} | Failed to ban. Error: ${err}`);
-  });
+  }).catch(async err => await message.replyT(`${bot.config.Emojis.error} | Failed to ban. Error: ${err}`));
 
   const BanEmbed = new MessageEmbed()
     .setTitle(`${bot.config.Emojis.success} | Ban Command`)
@@ -51,7 +45,7 @@ async function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color)
     .setTimestamp();
 
-  message.reply({
+  await message.replyT({
     embeds: [BanEmbed],
   });
 }

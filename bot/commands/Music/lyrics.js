@@ -9,8 +9,7 @@ const LyrcisFinder = require(`lyrics-finder`);
 async function execute(bot, message, args, command, data) {
   if (!args) {
     return message
-      .reply(`${bot.config.Emojis.error} | Please supply the title of a song to search for.`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Please supply the title of a song to search for.`);
   }
 
   args = args.join(" ");
@@ -18,7 +17,7 @@ async function execute(bot, message, args, command, data) {
   const Lyrics = LyrcisFinder(args);
 
   if (!Lyrics) {
-    return message.reply(`${bot.config.Emojis.error} | I couldn't find the lyrics for **${args}**!`);
+    return await message.replyT(`${bot.config.Emojis.error} | I couldn't find the lyrics for **${args}**!`);
   }
 
   if (Lyrics.lyrics.length <= 2000) {
@@ -31,7 +30,7 @@ async function execute(bot, message, args, command, data) {
       .setColor(bot.config.embed.color)
       .setTimestamp();
 
-    return message.reply({
+    return await message.replyT({
       embeds: [SongEmbed],
     });
   }

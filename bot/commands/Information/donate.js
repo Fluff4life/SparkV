@@ -3,8 +3,8 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 module.exports = new cmd(
-  (bot, message) => {
-    message.reply(
+  async (bot, message) => {
+    await message.replyT(
       `${bot.config.Emojis.success} | If you want to support SparkV's developement, go to **https://sparkv.tk/donate**. Thank you!`,
     );
   },

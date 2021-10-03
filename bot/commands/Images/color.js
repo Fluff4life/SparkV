@@ -4,7 +4,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args || !args[0]) {
-    return message.reply(`Please provide a valid HEX color code. Example: #ff0000.`);
+    return await message.replyT(`Please provide a valid HEX color code. Example: #ff0000.`);
   }
 
   const canvacord = require(`canvacord`);
@@ -14,7 +14,7 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.color(`#${args}`);
   const Color = new Discord.MessageAttachment(Image, `color.png`);
 
-  message.reply({
+  await message.replyT({
     files: [Color],
   });
 }

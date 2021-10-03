@@ -11,8 +11,7 @@ module.exports = class ModCommand {
   async run(bot, message, args, command, data) {
     if (!message.member.voice.channel) {
       return message
-        .reply(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
-        .then(m => m.delete({ timeout: 5000 }));
+        .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
     }
 
     const perms = message.channel.permissionsFor(message.guild.me);
@@ -22,7 +21,7 @@ module.exports = class ModCommand {
       !perms.has(Permissions.FLAGS.CONNECT) ||
       !perms.has(Permissions.FLAGS.USE_VAD)
     ) {
-      return message.reply("Make sure I have speak, connect and use voice activity perms.");
+      return await message.replyT("Make sure I have speak, connect and use voice activity perms.");
     }
 
     if (this.execute) {

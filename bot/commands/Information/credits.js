@@ -16,7 +16,7 @@ const Credits = [
 ];
 
 module.exports = new cmd(
-  (bot, message) => {
+  async (bot, message) => {
     const NewEmbed = new Discord.MessageEmbed()
       .setTitle("Credits")
       .setDescription(`Here's the list of people who've helped SparkV on his path to success!`)
@@ -24,7 +24,7 @@ module.exports = new cmd(
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
       .addFields(Credits);
 
-    return message.reply({
+    return await message.replyT({
       embeds: [NewEmbed],
     });
   },

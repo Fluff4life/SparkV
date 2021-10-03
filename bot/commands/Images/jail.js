@@ -7,7 +7,7 @@ async function execute(bot, message, args, command, data) {
   const User = (await bot.functions.fetchUser(args[0])) || message.author;
   const Image = await canvacord.Canvas.invert(User.displayAvatarURL({ format: "png" }), true);
 
-  message.reply({
+  await message.replyT({
     files: [new Discord.MessageAttachment(Image, "jail.png")],
   });
 }

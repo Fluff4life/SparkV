@@ -9,10 +9,10 @@ async function execute(bot, message, args, command, data) {
     const UserID = await noblox.getIdFromUsername(args[0]);
 
     if (!UserID) {
-      return message.reply(`User lookup canceled. User doesn't exist.`);
+      return await message.replyT(`User lookup canceled. User doesn't exist.`);
     }
 
-    await noblox.getPlayerInfo(UserID).then(PlayerInfo => {
+    await noblox.getPlayerInfo(UserID).then(async PlayerInfo => {
       const InfoEmbed = new Discord.MessageEmbed()
         .setTitle(`${PlayerInfo.username}'s Profile`)
         .setDescription(`*${PlayerInfo.status || "No status."}*`)
@@ -25,7 +25,7 @@ async function execute(bot, message, args, command, data) {
         .setFooter(`Username: ${PlayerInfo.username} | UserID: ${UserID} • ${bot.config.embed.footer}`)
         .setColor(bot.config.embed.color);
 
-      message.reply({
+      await message.replyT({
         embeds: [InfoEmbed],
       });
     });
@@ -42,7 +42,7 @@ async function execute(bot, message, args, command, data) {
       .setColor(bot.config.embed.color)
       .setTimestamp();
 
-    message.reply({
+    await message.replyT({
       embeds: [ErrorEmbed],
     });
   }

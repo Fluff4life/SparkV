@@ -10,7 +10,7 @@ async function execute(bot, message, args, command, data) {
   data.user.markModified("money.balance");
   await data.user.save();
 
-  message.reply(
+  await message.replyT(
     `${bot.config.Emojis.success} | You've just earned ❄${bot.functions.formatNumber(Ammount)} coins!`,
   );
 }

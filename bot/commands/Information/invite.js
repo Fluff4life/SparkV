@@ -13,7 +13,7 @@ module.exports = new cmd(
       .setFooter(`Invites for SparkV • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
       .setColor(bot.config.embed.color);
 
-    await message.reply({
+    await await message.replyT({
       embeds: [InvitesEmbend],
     });
   },

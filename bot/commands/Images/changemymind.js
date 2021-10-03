@@ -5,14 +5,14 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args || !args[0]) {
-    return message.reply(`Please provide text.`);
+    return await message.replyT(`Please provide text.`);
   }
 
   args = args.join(` `);
 
   const Image = await canvacord.Canvas.changemymind(args);
 
-  message.reply({
+  await message.replyT({
     files: [new Discord.MessageAttachment(Image, "affect.png")],
   });
 }

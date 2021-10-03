@@ -12,7 +12,7 @@ async function execute(bot, message, args, command, data) {
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1);
 
   if (!User) {
-    return message.reply(`${bot.config.Emojis.error} | This user hasn't earned any XP yet!`);
+    return await message.replyT(`${bot.config.Emojis.error} | This user hasn't earned any XP yet!`);
   }
 
   const Rank = new canvacord.Rank()
@@ -26,10 +26,10 @@ async function execute(bot, message, args, command, data) {
     .setRequiredXP(NeededXP || 100)
     .setProgressBar(`#0099ff`, `COLOR`);
 
-  Rank.build().then(data => {
+  Rank.build().then(async data => {
     const Attachment = new Discord.MessageAttachment(data, `${Target.user.tag}RankCard.gif`);
 
-    return message.reply({
+    return await message.replyT({
       files: [Attachment],
     });
   });

@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!message.mentions.users.first()) {
-    return message.reply("lol you need to mention someone to play against.");
+    return await message.replyT("lol you need to mention someone to play against.");
   }
 
   await RockPaperScissors({

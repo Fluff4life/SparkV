@@ -11,7 +11,7 @@ async function execute(bot, message, args, command, data) {
     });
   } catch (err) {}
 
-  message.reply("Channel is now locked.");
+  await message.replyT("Channel is now locked.");
 }
 
 module.exports = new cmd(execute, {

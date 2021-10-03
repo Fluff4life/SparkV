@@ -16,7 +16,7 @@ function CreateID() {
   return text;
 }
 
-function execute(bot, message, args, command, data) {
+async function execute(bot, message, args, command, data) {
   const noblox = require(`noblox.js`);
 
   fetch(`https://verify.eryn.io/api/user/${message.author.id}`)
@@ -46,18 +46,18 @@ function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color)
     .setTimestamp();
 
-  message.reply({
+  await message.replyT({
     embeds: [PromptEmbed],
   });
 
   MessageColector.on(`collect`, async msg => {
     if (msg.content.toLowerCase() === `cancel`) {
-      return message.reply(`Verification canceled.`);
+      return await message.replyT(`Verification canceled.`);
     }
 
     noblox.getIdFromUsername(msg.content).then(async id => {
       if (!id) {
-        return message.reply(`Verification canceled. User doesn't exist.`);
+        return await message.replyT(`Verification canceled. User doesn't exist.`);
       }
 
       const VerificationID = CreateID();
@@ -71,7 +71,7 @@ function execute(bot, message, args, command, data) {
         .setColor(bot.config.embed.color)
         .setTimestamp();
 
-      message.reply({
+      await message.replyT({
         embeds: [UsernameFound],
       });
 
@@ -83,13 +83,13 @@ function execute(bot, message, args, command, data) {
 
       VerifyMessageColector.on(`collect`, async msg_ => {
         if (msg_.content.includes(`done`) && msg_.author.id === message.author.id) {
-          message.reply(`Fetching about status. Please wait...`);
+          await message.replyT(`Fetching about status. Please wait...`);
 
           setTimeout(async () => {
             noblox.getStatus(id).then(async status => {
               noblox.getBlurb(id).then(async about => {
                 if (about.includes(VerificationID) || status.includes(VerificationID)) {
-                  message.reply(Verified);
+                  await message.replyT(Verified);
 
                   const RocordRoleEnabled = await bot.dashboard.getVal(message.guild.id, `RocordVerifyRoleEnabled`);
 
@@ -102,13 +102,13 @@ function execute(bot, message, args, command, data) {
                     );
 
                     if (!VerifiedRole) {
-                      return message.reply(
+                      return await message.replyT(
                         `This server isn't set up right! Verified role not found. Make sure you've created a role that contains \`Verified\`.`,
                       );
                     }
 
-                    message.member.roles.add(VerifiedRole).catch(() => {
-                      message.reply(
+                    message.member.roles.add(VerifiedRole).catch(async () => {
+                      await message.replyT(
                         `I cannot give you this role! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.`,
                       );
                     });
@@ -135,20 +135,20 @@ function execute(bot, message, args, command, data) {
 
                     message.member
                       .setNickname(RocordNicknameTemplate)
-                      .catch(() =>
-                        message.reply(
+                      .catch(async () =>
+                        await message.replyT(
                           `I cannot change your nickname! Due to Discord API, please check my permisions and make sure I'm higher then your highest role.`,
                         ),
                       );
                   }
                 } else {
-                  message.reply(`Failed to find Verification ID on your status/about page.`);
+                  await message.replyT(`Failed to find Verification ID on your status/about page.`);
                 }
               });
             });
           }, 5 * 1000);
         } else if (msg_.content.includes(`cancel`) && msg_.author.id === message.author.id) {
-          return message.reply(`Cancelled prompt.`);
+          return await message.replyT(`Cancelled prompt.`);
         }
       });
     });

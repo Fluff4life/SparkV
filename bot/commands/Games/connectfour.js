@@ -66,17 +66,17 @@ async function execute(bot, message, args, command, data) {
   const Opponent = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
   if (!Opponent) {
-    return message.reply(
+    return await message.replyT(
       `${bot.config.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`,
     );
   }
 
   if (Opponent.user.bot) {
-    return message.reply(`${bot.config.Emojis.error} | That user is a bot lol.`);
+    return await message.replyT(`${bot.config.Emojis.error} | That user is a bot lol.`);
   }
 
   if (Opponent.user.id === message.author.id) {
-    return message.reply(`${bot.config.Emojis.error} | You cannot play against yourself lol.`);
+    return await message.replyT(`${bot.config.Emojis.error} | You cannot play against yourself lol.`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -106,7 +106,7 @@ async function execute(bot, message, args, command, data) {
     .setColor(bot.config.embed.color)
     .setTimestamp();
 
-  const GameMessage = await message.reply({
+  const GameMessage = await await message.replyT({
     embeds: [GameEmbed],
   });
 

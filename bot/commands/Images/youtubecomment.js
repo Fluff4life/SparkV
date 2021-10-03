@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args || !args[0]) {
-    return message.reply(`Please provide text.`);
+    return await message.replyT(`Please provide text.`);
   }
 
   args = args.join(` `).slice(22);
@@ -17,7 +17,7 @@ async function execute(bot, message, args, command, data) {
     content: args,
   });
 
-  message.reply({
+  await message.replyT({
     files: [new Discord.MessageAttachment(Image, "youtube.png")],
   });
 }

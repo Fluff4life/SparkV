@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args) {
-    return message.reply(`${bot.config.Emojis.error} | Please specify a location!`);
+    return await message.replyT(`${bot.config.Emojis.error} | Please specify a location!`);
   }
 
   args = args.join(` `);
@@ -15,13 +15,13 @@ async function execute(bot, message, args, command, data) {
       search: args,
       degreeType: `F`,
     },
-    (error, result) => {
+    async (error, result) => {
       if (error) {
-        return message.reply(error);
+        return await message.replyT(error);
       }
 
       if (result === undefined || result.length === 0) {
-        return message.reply(`${bot.config.Emojis.error} | Invalid location!`);
+        return await message.replyT(`${bot.config.Emojis.error} | Invalid location!`);
       }
 
       const Current = result[0].current;
@@ -40,7 +40,7 @@ async function execute(bot, message, args, command, data) {
         .setColor(bot.config.embed.color)
         .setTimestamp();
 
-      message.reply({
+      await message.replyT({
         embeds: [WeatherInformation],
       });
     },

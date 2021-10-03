@@ -8,10 +8,10 @@ async function execute(bot, message, args) {
   const avatar = user.displayAvatarURL({ dynamic: true, format: "png" });
 
   if (message.content.includes("-url")) {
-    message.reply(`URL: <${avatar}>`);
+    await message.replyT(`URL: <${avatar}>`);
   }
 
-  message.reply({
+  await message.replyT({
     files: [new Discord.MessageAttachment(avatar, `${User.tag}-avatar.png`)],
   });
 }

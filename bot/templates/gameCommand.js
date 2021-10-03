@@ -12,13 +12,12 @@ module.exports = class ModCommand {
     if (this.settings.type === "together") {
       if (!message.member.voice.channel) {
         return message
-          .reply(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
-          .then(m => m.delete({ timeout: 5000 }));
+          .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
       }
 
       bot.discordTogether
         .createTogetherCode(message.member.voice.channel.id, this.settings.gname)
-        .then(async invite => message.reply(`${invite.code}`));
+        .then(async invite => await message.replyT(`${invite.code}`));
     } else if (this.settings.type === "game") {
       if (this.settings.gname === "akinator") {
         const gameTypes = ["animal", "character", "object"];
@@ -30,7 +29,7 @@ module.exports = class ModCommand {
           if (gameTypes.includes(args[0].toLowerCase())) {
             gameType = args[0].toLowerCase();
           } else {
-            return message.reply(`Invalid game type: \`${args[0]}\``);
+            return await message.replyT(`Invalid game type: \`${args[0]}\``);
           }
         } else {
           gameType = "character";
@@ -39,12 +38,13 @@ module.exports = class ModCommand {
         akinator(message, {
           gameType: gameType,
           useButtons: true,
+          language: data.guild.languge
         });
       } else {
-        message.reply(`Invalid game name: \`${this.settings.gname}\``);
+        await message.replyT(`Invalid game name: \`${this.settings.gname}\``);
       }
     } else {
-      message.reply(`Invalid game type: \`${this.settings.type}\``);
+      await message.replyT(`Invalid game type: \`${this.settings.type}\``);
     }
 
     if (this.execute) {

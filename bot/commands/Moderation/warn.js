@@ -7,11 +7,11 @@ async function execute(bot, message, args, command, data) {
   const Reason = args.join(` `).slice(22) || `No reason provided.`;
 
   if (!User) {
-    return message.reply(`${bot.config.Emojis.error} | Please mention someone to warn!`);
+    return await message.replyT(`${bot.config.Emojis.error} | Please mention someone to warn!`);
   }
 
   if (User.id === message.author.id) {
-    return message.reply(`${bot.config.Emojis.error} | You cannot warn yourself lmfao.`);
+    return await message.replyT(`${bot.config.Emojis.error} | You cannot warn yourself lmfao.`);
   }
 
   const memberData = bot.database.getMember(message.author.id, message.guild.id);
@@ -19,7 +19,7 @@ async function execute(bot, message, args, command, data) {
   const ModerationPosition = message.member.roles.highest.position;
 
   if (message.guild.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
-    return message.reply(
+    return await message.replyT(
       `${bot.config.Emojis.error} | Uh oh... I can\`t warn this user! This user is either the owner, or is a higher rank than SparkV.`,
     );
   }
@@ -34,11 +34,11 @@ async function execute(bot, message, args, command, data) {
   memberData.markModified("infractions");
   await memberData.save();
 
-  User.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}`).catch(err => {
+  User.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}`).catch(async err => {
     message.channel.send(
       `You were warned in **${message.guild.name}**. Reason: ${Reason}\n\nI would've sent this in your DMs, but they were off.`,
     );
-    message.reply(`The user you mentioned has their DMs off. I pinged him instead.`);
+    await message.replyT(`The user you mentioned has their DMs off. I pinged him instead.`);
   });
 
   const WarnEmbed = new MessageEmbed()
@@ -47,7 +47,7 @@ async function execute(bot, message, args, command, data) {
     .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
     .setColor(bot.config.embed.color);
 
-  message.reply({
+  await message.replyT({
     embeds: [WarnEmbed],
   });
 }

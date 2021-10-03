@@ -8,7 +8,7 @@ async function execute(bot, message, args, command, data) {
 
   const Image = await canvacord.Canvas.ohno(args);
 
-  message.reply({
+  await message.replyT({
     files: [new Discord.MessageAttachment(Image, "jail.png")],
   });
 }

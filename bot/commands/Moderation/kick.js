@@ -9,26 +9,22 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .reply(`${bot.config.Emojis.error} | Please mention someone to kick!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Please mention someone to kick!`);
   }
 
   if (!UserToKick) {
     return message
-      .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | I cannot find that member!`);
   }
 
   if (UserToKick.id === message.author.id) {
     return message
-      .reply(`${bot.config.Emojis.error} | You cannot kick yourself.`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | You cannot kick yourself.`);
   }
 
   if (!UserToKick.kickable) {
     return message
-      .reply(`${bot.config.Emojis.error} | Uh oh... I can't kick this user!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Uh oh... I can't kick this user!`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -36,7 +32,7 @@ async function execute(bot, message, args, command, data) {
     .setDescription(`Are you sure you want to do this?`)
     .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.embed.footer}`);
 
-  const VerificationMessage = await message.reply({
+  const VerificationMessage = await await message.replyT({
     embeds: [VerificationEmbed],
   });
 
@@ -51,9 +47,7 @@ async function execute(bot, message, args, command, data) {
     // Yes
     message.delete().catch(err => {});
 
-    UserToKick.kick().catch(err => {
-      message.reply(`${bot.config.Emojis.error} | Failed to kick. Error: ${err}`);
-    });
+    UserToKick.kick().catch(async err => await message.replyT(`${bot.config.Emojis.error} | Failed to kick. Error: ${err}`));
 
     try {
       UserToKick.send(
@@ -71,11 +65,11 @@ async function execute(bot, message, args, command, data) {
       .setColor(bot.config.embed.color)
       .setTimestamp();
 
-    message.reply(KickEmbend);
+    await message.replyT(KickEmbend);
   } else if (emoji === bot.config.Emojis.error) {
     message.delete().catch(err => {});
 
-    message.reply(`${bot.config.Emojis.error} | Kick canceled.`).then(m => m.delete({ timeout: 10000 }));
+    await message.replyT(`${bot.config.Emojis.error} | Kick canceled.`).then(m => m.delete({ timeout: 10000 }));
   }
 }
 

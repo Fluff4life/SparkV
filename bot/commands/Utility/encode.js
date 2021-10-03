@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 module.exports = new cmd(
   async (bot, message, args) => {
     if (!args) {
-      return message.reply(
+      return await message.replyT(
         "Next time, choose the type of encoding and the text to encode. Types: `base64`, `hex` or `url`",
       );
     }
@@ -14,14 +14,14 @@ module.exports = new cmd(
     let [type, ...string] = args;
 
     if (type === "base64") {
-      message.reply(Buffer.from(string.join(" ")).toString("base64"));
+      await message.replyT(Buffer.from(string.join(" ")).toString("base64"));
     } else if (type === "hex") {
       let h = Buffer.from(string.join(" ")).toString("base64");
       let e = Buffer.from(h, "base64");
 
-      message.reply(e.toString("hex"));
+      await message.replyT(e.toString("hex"));
     } else if (type === "url") {
-      message.reply(encodeURIComponent(string.join(" ")));
+      await message.replyT(encodeURIComponent(string.join(" ")));
     }
   },
   {

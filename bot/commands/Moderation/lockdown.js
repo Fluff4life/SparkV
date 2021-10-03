@@ -12,7 +12,7 @@ async function execute(bot, message, args, command, data) {
       });
     });
 
-    message.reply("🔒 Server is now locked. Users can no longer chat.");
+    await message.replyT("🔒 Server is now locked. Users can no longer chat.");
   } else if (args[0].toLowerCase() === "off") {
     Channels.forEach(Channel => {
       Channel.updateOverwrite(message.guild.roles.everyone, {
@@ -20,7 +20,7 @@ async function execute(bot, message, args, command, data) {
       });
     });
 
-    message.reply("🔒 Server is now unlocked. Users can now chat.");
+    await message.replyT("🔒 Server is now unlocked. Users can now chat.");
   }
 }
 

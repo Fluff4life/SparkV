@@ -10,7 +10,7 @@ async function execute(bot, message, args, command, data) {
       .setDescription(`Please provide a word to urban!`)
       .setFooter(`Try ^Urban [Word] • ${bot.config.embed.footer}`);
 
-    return await message.reply({
+    return await await message.replyT({
       embeds: [ErrorEmbed],
     });
   }
@@ -30,7 +30,7 @@ async function execute(bot, message, args, command, data) {
     )
     .setColor(bot.config.embed.color);
 
-  return await message.reply({
+  return await await message.replyT({
     embeds: [UrbanEmbed],
   });
 }

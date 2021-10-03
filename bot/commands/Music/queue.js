@@ -6,10 +6,10 @@ async function execute(bot, message, args, command, data) {
   const queue = bot.distube.getQueue(message);
 
   if (!queue) {
-    return message.reply(`${bot.config.Emojis.error} | The queue is empty! Try adding some songs.`);
+    return await message.replyT(`${bot.config.Emojis.error} | The queue is empty! Try adding some songs.`);
   }
 
-  message.reply({
+  await message.replyT({
     embed: {
       title: `${bot.config.Emojis.music} | Queue for ${message.guild.name}`,
       description: queue.songs

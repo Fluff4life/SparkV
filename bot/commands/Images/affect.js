@@ -8,7 +8,7 @@ async function execute(bot, message, args) {
 
   const Image = await canvacord.Canvas.affect(User.displayAvatarURL({ format: "png" }));
 
-  message.reply({
+  await message.replyT({
     files: [new Discord.MessageAttachment(Image, "affect.png")],
   });
 }

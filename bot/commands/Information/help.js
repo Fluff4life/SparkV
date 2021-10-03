@@ -86,7 +86,7 @@ async function execute(bot, message, args, command, data) {
       )
       .setColor(bot.config.embed.color);
 
-    return message.reply({
+    return await message.replyT({
       embeds: [CommandHelpEmbed],
     });
   }

@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message) {
   if (!message.mentions.users.first()) {
-    return message.reply("Next time, mention someone to fight.");
+    return await message.replyT("Next time, mention someone to fight.");
   }
 
   await Fight({

@@ -5,11 +5,11 @@ const database = require("../../../database/handler");
 
 async function execute(bot, message, args, command) {
   if (!args[0]) {
-    return message.reply("You need to provide a **prefix**.");
+    return await message.replyT("You need to provide a **prefix**.");
   }
 
   if (args[0].length > 5) {
-    return message.reply("You need to provide a prefix **UNDER** `5` characters.");
+    return await message.replyT("You need to provide a prefix **UNDER** `5` characters.");
   }
 
   const data = await database.getGuild(message.guild.id);
@@ -19,7 +19,7 @@ async function execute(bot, message, args, command) {
 
   await data.save();
 
-  return message.reply(`The prefix is now **\`${args[0]}\`**`);
+  return await message.replyT(`The prefix is now **\`${args[0]}\`**`);
 }
 
 module.exports = new cmd(execute, {

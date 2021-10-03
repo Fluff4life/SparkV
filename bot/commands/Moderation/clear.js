@@ -24,9 +24,9 @@ async function execute(bot, message, args, command, data) {
     const msgCount = parseInt(args[0]) + 1;
 
     if (isNaN(msgCount)) {
-      return message.reply("The provided number of messages to delete isn't a valid number.");
+      return await message.replyT("The provided number of messages to delete isn't a valid number.");
     } else if (msgCount < 1 || msgCount > 100) {
-      return message.reply("The provided number of messages to delete is either under 1 or above 99.");
+      return await message.replyT("The provided number of messages to delete is either under 1 or above 99.");
     }
 
     messages = await message.channel.messages

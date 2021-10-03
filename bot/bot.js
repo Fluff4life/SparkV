@@ -2,6 +2,9 @@
 // Last Edited: 2/25/2021 //
 // Index.js //
 
+// Run Client Extender
+require("./structures/extenders");
+
 // Librarys //
 const fs = require("fs");
 const path = require("path");

@@ -9,30 +9,26 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .reply(`${bot.config.Emojis.error} | Please mention someone to change their nickname!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Please mention someone to change their nickname!`);
   }
 
   if (!User) {
     return message
-      .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | I cannot find that member!`);
   }
 
   if (!User.roles) {
     return message
-      .reply(`${bot.config.Emojis.error} | That\`s not a user! That\`s a role.`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | That\`s not a user! That\`s a role.`);
   }
 
   if (!NewNickname) {
     return message
-      .reply(`${bot.config.Emojis.error} | Please mention their new nickname!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Please mention their new nickname!`);
   }
 
   if (User.roles.highest.comparePositionTo(message.guild.me.roles.highest) >= 0) {
-    return message.reply(`Uh oh! I cannot change their nickname. They\`re a higher role than me!`);
+    return await message.replyT(`Uh oh! I cannot change their nickname. They\`re a higher role than me!`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -40,7 +36,7 @@ async function execute(bot, message, args, command, data) {
     .setDescription(`Are you sure you want to do this?`)
     .setFooter(`Canceling in 60 seconds if no emoji reacted • ${bot.config.embed.footer}`);
 
-  const VerificationMessage = await message.reply({
+  const VerificationMessage = await await message.replyT({
     embeds: [VerificationEmbed],
   });
 
@@ -57,18 +53,16 @@ async function execute(bot, message, args, command, data) {
     Verificationmessage.delete().catch(err => {});
 
     User.setNickname(NewNickname)
-      .then(() => {
-        message.reply(`${bot.config.Emojis.success} | I successfully changed ${User}\`s nickname to ${NewNickname}!`);
-      })
-      .catch(err => {
-        message.reply(`${bot.config.Emojis.error} | Uh oh! I cannot change their nickname.`).then(() => {
+      .then(async () => await message.replyT(`${bot.config.Emojis.success} | I successfully changed ${User}\`s nickname to ${NewNickname}!`))
+      .catch(async err => {
+        await message.replyT(`${bot.config.Emojis.error} | Uh oh! I cannot change their nickname.`).then(() => {
           console.error(err);
         });
       });
   } else if (emoji === bot.config.Emojis.error) {
     message.delete().catch(err => {});
 
-    message.reply(`${bot.config.Emojis.error} | Nickname change canceled.`).then(m => m.delete({ timeout: 10000 }));
+    await message.replyT(`${bot.config.Emojis.error} | Nickname change canceled.`).then(m => m.delete({ timeout: 10000 }));
   }
 }
 

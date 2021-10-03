@@ -21,7 +21,6 @@ module.exports = class bot extends Client {
 
     // Config
     this.config = require("../../globalconfig.json");
-    this.languages = require("../languages.json");
 
     // Utils
     this.logger = require("../../modules/logger");

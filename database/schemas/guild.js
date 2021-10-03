@@ -8,8 +8,7 @@ const GuildSchema = new mongoose.Schema({
 
   // Data //
   prefix: { type: String, required: true, trim: true, default: config.prefix || "^" },
-  language: { type: String, default: "US-en" },
-  timezone: { type: String, default: "US-en" },
+  language: { type: String, default: "en" },
   casesCount: { type: Number, default: 0 },
   autoRemoveCommands: { type: Boolean, default: false },
 

@@ -5,14 +5,13 @@ const cmd = require("../../templates/musicCommand");
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
     return message
-      .reply(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
   }
 
   args = args.join(" ");
 
   if (!args) {
-    return message.reply(`${bot.config.Emojis.error} | Please enter a song URL or query to search!`);
+    return await message.replyT(`${bot.config.Emojis.error} | Please enter a song URL or query to search!`);
   }
 
   try {
@@ -20,7 +19,7 @@ async function execute(bot, message, args, command, data) {
   } catch (err) {
     console.error(err);
 
-    message.reply(`${bot.config.Emojis.error} | Uh oh! An error occured.`);
+    await message.replyT(`${bot.config.Emojis.error} | Uh oh! An error occured.`);
   }
 }
 

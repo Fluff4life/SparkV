@@ -3,9 +3,9 @@ const request = require(`node-fetch`);
 
 const cmd = require("../../templates/command");
 
-function execute(bot, message, args, command) {
+async function execute(bot, message, args, command) {
   if (!args) {
-    return message.reply(`${bot.config.Emojis.error} | Next time, respond with the ID of the game lmao.`);
+    return await message.replyT(`${bot.config.Emojis.error} | Next time, respond with the ID of the game lmao.`);
   }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${args}.json`)
@@ -23,11 +23,11 @@ function execute(bot, message, args, command) {
         .setColor(json.color)
         .setTimestamp();
 
-      message.reply({
+      await message.replyT({
         embeds: [Embed],
       });
     })
-    .catch(err => message.reply(`${bot.config.Emojis.error} | An error occured!`));
+    .catch(async err => await message.replyT(`${bot.config.Emojis.error} | An error occured!`));
 }
 
 module.exports = new cmd(execute, {

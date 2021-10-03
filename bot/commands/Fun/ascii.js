@@ -5,23 +5,23 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args || !args[0]) {
-    return message.reply(`Please provide text!`);
+    return await message.replyT(`Please provide text!`);
   }
 
   args = args.join(` `);
 
-  figlet.text(args, (err, data) => {
+  figlet.text(args, async (err, data) => {
     if (err) {
       console.log(`Failed to figlet text: ${err}`);
 
-      return message.reply(`Uh oh! Something went wrong.`);
+      return await message.replyT(`Uh oh! Something went wrong.`);
     }
 
     if (data.length > 1800) {
-      return message.reply(`Please provide text shorter than 200 characters.`);
+      return await message.replyT(`Please provide text shorter than 200 characters.`);
     }
 
-    message.reply(`\`\`\`${data}\`\`\``);
+    await message.replyT(`\`\`\`${data}\`\`\``);
   });
 }
 

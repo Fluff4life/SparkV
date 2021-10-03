@@ -9,30 +9,26 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .reply(`${bot.config.Emojis.error} | Please mention someone to mute!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Please mention someone to mute!`);
   }
 
   if (!User) {
     return message
-      .reply(`${bot.config.Emojis.error} | I cannot find that member!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | I cannot find that member!`);
   }
 
   if (User.id === message.author.id) {
     return message
-      .reply(`${bot.config.Emojis.error} | You cannot mute yourself.`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | You cannot mute yourself.`);
   }
 
   if (!User.kickable) {
     return message
-      .reply(`${bot.config.Emojis.error} | Uh oh... I can't mute this user!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | Uh oh... I can't mute this user!`);
   }
 
   if (User.user.bot) {
-    return message.reply(`I cannot mute bots!`);
+    return await message.replyT(`I cannot mute bots!`);
   }
 
   const Roles = User.roles.cache.filter(role => role.id !== message.guild.id).map(role => role.id);
@@ -40,7 +36,7 @@ async function execute(bot, message, args, command, data) {
 
   if (!MutedRole) {
     if (!message.guild || !message.guild.roles) {
-      return message.reply(`Uh oh! An error occured. Make sure I have the correct permisions.`);
+      return await message.replyT(`Uh oh! An error occured. Make sure I have the correct permisions.`);
     }
 
     MutedRole = await message.guild.roles.create({
@@ -62,7 +58,7 @@ async function execute(bot, message, args, command, data) {
   }
 
   if (User.roles.cache.has(MutedRole.id)) {
-    return message.reply(`This user is already muted!`);
+    return await message.replyT(`This user is already muted!`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -70,7 +66,7 @@ async function execute(bot, message, args, command, data) {
     .setDescription(`Are you sure you want to do this?`)
     .setFooter(`Canceling in 60 seconds if no emoji reacted. • ${bot.config.embed.footer}`);
 
-  const VerificationMessage = await message.reply({
+  const VerificationMessage = await await message.replyT({
     embeds: [VerificationEmbed],
   });
 
@@ -98,13 +94,13 @@ async function execute(bot, message, args, command, data) {
       .setColor(bot.config.embed.color)
       .setTimestamp();
 
-    message.reply({
+    await message.replyT({
       embeds: [MuteEmbend],
     });
   } else if (emoji === `${bot.config.Emojis.error} | `) {
     message.delete().catch(err => {});
 
-    message.reply(`${bot.config.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
+    await message.replyT(`${bot.config.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
   }
 }
 

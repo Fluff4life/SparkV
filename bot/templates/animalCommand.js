@@ -35,7 +35,7 @@ module.exports = class RedditCommand {
       .setFooter(`Powered by ${this.settings.endpoint} • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
       .setColor(bot.config.embed.color);
 
-    message.reply({
+    await message.replyT({
       embeds: [RedditEmbed],
     });
   }

@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 async function execute(bot, message) {
   request("https://uselessfacts.jsph.pl/random.json?language=en")
     .then(res => res.json())
-    .then(json => {
+    .then(async json => {
       const FunFactEmbed = new Discord.MessageEmbed()
         .setTitle(`${bot.config.Emojis.success} | Did you know?`)
         .setDescription(json.text)
@@ -14,7 +14,7 @@ async function execute(bot, message) {
         .setColor(bot.config.embed.color)
         .setTimestamp();
 
-      message.reply({
+      await message.replyT({
         embeds: [FunFactEmbed],
       });
     });

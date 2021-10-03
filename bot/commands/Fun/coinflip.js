@@ -7,7 +7,7 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   const ReplyText = Math.floor(Math.random() * Replies.length);
 
-  return message.reply(`My coin flipped ${Replies[ReplyText]}!`);
+  return await message.replyT(`My coin flipped ${Replies[ReplyText]}!`);
 }
 
 module.exports = new cmd(execute, {

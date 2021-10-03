@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (message.author.id !== process.env.OWNERID) {
-    return message.reply(`${bot.config.Emojis.error} | Access denied.`);
+    return await message.replyT(`${bot.config.Emojis.error} | Access denied.`);
   }
 
   let input = args.join(" ");
@@ -37,9 +37,9 @@ async function execute(bot, message, args, command, data) {
       {
         method: "POST",
       },
-    ).catch(err => message.reply(err.message));
+    ).catch(async err => await message.replyT(err.message));
 
-    return message.reply(`Eval exceeds 4000 characters. Please view here: ${paste.body}`);
+    return await message.replyT(`Eval exceeds 4000 characters. Please view here: ${paste.body}`);
   } else {
     const Embed = new Discord.MessageEmbed()
       .setTitle(`${bot.config.Emojis.success} | Eval Results`)
@@ -47,7 +47,7 @@ async function execute(bot, message, args, command, data) {
       .addField(`Output`, `\`\`\`js\n${result}\`\`\``)
       .setColor(`GREEN`);
 
-    return message.reply({
+    return await message.replyT({
       embeds: [Embed],
     });
   }

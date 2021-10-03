@@ -5,22 +5,20 @@ const cmd = require("../../templates/musicCommand");
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
     return message
-      .reply(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
   }
 
   if (!bot.distube.isPlaying(message)) {
     return message
-      .reply(`${bot.config.Emojis.error} | A song must be __**playing**__ to use this command!`)
-      .then(m => m.delete({ timeout: 5000 }));
+      .replyT(`${bot.config.Emojis.error} | A song must be __**playing**__ to use this command!`);
   }
 
   bot.distube
     .seek(message, parseInt(args[0]))
-    .then(() => {
-      message.reply(`${bot.config.Emojis.music} | Okay, I set the track's position to ${args[0]}.`);
+    .then(async () => {
+      await message.replyT(`${bot.config.Emojis.music} | Okay, I set the track's position to ${args[0]}.`);
     })
-    .catch(err => message.reply(`${bot.config.Emojis.error} | Uh oh! An error occured.`));
+    .catch(async err => await message.replyT(`${bot.config.Emojis.error} | Uh oh! An error occured.`));
 }
 
 module.exports = new cmd(execute, {

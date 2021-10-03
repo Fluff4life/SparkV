@@ -6,11 +6,11 @@ async function execute(bot, message, args, command, data) {
   const User = message.mentions.members.first() || message.author;
 
   if (!User) {
-    return message.reply(`${bot.config.Emojis.error} | Please mention someone to view their warnings!`);
+    return await message.replyT(`${bot.config.Emojis.error} | Please mention someone to view their warnings!`);
   }
 
   if (!data.member.infractionsCount === 0) {
-    return message.reply("This user doesn't have any infractions!");
+    return await message.replyT("This user doesn't have any infractions!");
   }
 
   const infractions = data.member.infractions.map(
@@ -27,7 +27,7 @@ async function execute(bot, message, args, command, data) {
     .setFooter(bot.config.embed.footer, bot.user.displayAvatarURL())
     .setColor(bot.config.embed.color);
 
-  message.reply({
+  await message.replyT({
     embeds: [warningsEmbed],
   });
 }
