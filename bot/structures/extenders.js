@@ -7,7 +7,7 @@ Message.prototype.translate = async function(content) {
         return content;
     }
 
-    const cache = await this.client.redis.getAsync(`${options.content}-${this.guild.data.language}`).then(res => JSON.parse(res));
+    const cache = await this.client.redis.getAsync(`${content}-${this.guild.data.language}`).then(res => JSON.parse(res));
     let translation;
 
     if (cache) {
@@ -29,7 +29,7 @@ Message.prototype.translate = async function(content) {
             }
         }).catch(err => console.error(err));
 
-        this.client.redis.setAsync(`${options.content}-${this.guild.data.language}`, JSON.stringify(translation), "EX", 15 * 60);
+        this.client.redis.setAsync(`${content}-${this.guild.data.language}`, JSON.stringify(translation), "EX", 15 * 60);
     }
 
     return translation;
