@@ -22,31 +22,30 @@ async function execute(bot, message, args, command, data) {
   }
 
   if (message.content.includes(`-`)) {
-    return message.reply(`${bot.config.Emojis.error} | You cannot give a user negitive Ch1llBucks lol.`);
+    return message.reply(`${bot.config.Emojis.error} | You cannot give a user negitive data.user.money.balance lol.`);
   }
 
-  let Ch1llBucks = data.user.money.balance;
-  let UserCh1llBucks = await bot.database.fetchUser(User.id);
+  let UserMoney = await bot.database.fetchUser(User.id);
 
-  if (Ch1llBucks < args[1]) {
+  if (data.user.money.balance < args[1]) {
     return message.reply(`${bot.config.Emojis.error} | You don't have that much money!`);
   }
 
-  UserCh1llBucks.money.balance = UserCh1llBucks + parseInt(args[1]);
-  data.user.money.balance = Ch1llBucks - parseInt(args[1]);
+  UserMoney.money.balance = UserMoney + parseInt(args[1]);
+  data.user.money.balance -= parseInt(args[1]);
 
   data.user.markModified("money.balance");
-  UserCh1llBucks.markModified("money.balance");
-  UserCh1llBucks.save();
+  UserMoney.markModified("money.balance");
+  UserMoney.save();
   await data.user.save();
 
   message.reply(
-    `${bot.config.Emojis.success} | You gave ${User} ❄${bot.functions.formatNumber(args[1])} Ch1llBucks!`,
+    `${bot.config.Emojis.success} | You gave ${User} ❄${bot.functions.formatNumber(args[1])} data.user.money.balance!`,
   );
 }
 
 module.exports = new cmd(execute, {
-  description: `Give someone some Ch1llBucks!`,
+  description: `Give someone some data.user.money.balance!`,
   dirname: __dirname,
   usage: `<user>`,
   aliases: ["gift"],

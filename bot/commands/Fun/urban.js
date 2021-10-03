@@ -4,27 +4,28 @@ const urban = require(`urban`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (args.length < 1) {
+  if (!args) {
     const ErrorEmbed = new Discord.MessageEmbed()
       .setTitle(`${bot.config.Emojis.error} | Invalid command usage!`)
       .setDescription(`Please provide a word to urban!`)
       .setFooter(`Try ^Urban [Word] • ${bot.config.embed.footer}`);
 
-    return await message
-      .reply({
-        embeds: [ErrorEmbed],
-      })
-      .then(m => m.delete({ timeout: 5000 }));
+    return await message.reply({
+      embeds: [ErrorEmbed],
+    });
   }
 
+  args = await urban(args.join(" "));
+  console.log(args);
+
   const UrbanEmbed = new Discord.MessageEmbed()
-    .setTitle(`${bot.config.Emojis.success} | Definition of ${json.word}`)
-    .setDescription(json.definition)
+    .setTitle(`${bot.config.Emojis.success} | Definition of ${args}`)
+    .setDescription(args.definition)
     .setThumbnail(`https://i.imgur.com/VFXr0ID.jpg`)
-    .addField(`Example`, json.example)
-    .setURL(json.permalink)
+    .addField(`Example`, args.example)
+    .setURL(args.permalink)
     .setFooter(
-      `👍${json.thumbs_up} 👎${json.thumbs_down} | 😃${json.author} • ${bot.config.embed.footer}`,
+      `👍${args.thumbs_up} 👎${args.thumbs_down} | 😃${args.author} • ${bot.config.embed.footer}`,
       bot.user.displayAvatarURL(),
     )
     .setColor(bot.config.embed.color);
@@ -35,8 +36,9 @@ async function execute(bot, message, args, command, data) {
 }
 
 module.exports = new cmd(execute, {
-  description: `I will return an urban dictionary definition of a word!`,
+  description: `I will return an urban dictionary definition of a word! Due to recent API failures, this command is disabled to provide you a better experience.`,
   aliases: [],
   dirname: __dirname,
   usage: `<word>`,
+  enabled: false
 });

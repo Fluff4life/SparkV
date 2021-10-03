@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const Replies = ["Heads", "Tails"];
+const Replies = ["heads", "tails"];
 
 const cmd = require("../../templates/command");
 

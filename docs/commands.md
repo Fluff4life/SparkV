@@ -35,21 +35,20 @@ SparkV's Command List! SparkV contains more than **121 commands**!
 | **work**     | Work for your job and earn some Ch1llBucks.             |                  | 2 seconds |
 ## 😃 Fun 😃
 
-| Name                 | Description                                                                                                                             | Usage             | Cooldown  |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | --------- |
-| **8ball**            | Just a little fun.                                                                                                                      | {question}        | 2 seconds |
-| **advice**           | You'll need it.                                                                                                                         |                   | 2 seconds |
-| **afk**              | This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason. | {optional reason} | 2 seconds |
-| **ascii**            | I will change any text to ascii!                                                                                                        | {text}            | 2 seconds |
-| **coinflip**         | I have no bias! I swear noob!1!                                                                                                         |                   | 2 seconds |
-| **economy**          | lol                                                                                                                                     |                   | 2 seconds |
-| **levelleaderboard** | Just a little fun.                                                                                                                      |                   | 2 seconds |
-| **rank**             | View a users rank!                                                                                                                      | {optional user}   | 2 seconds |
-| **reverse**          | I will reverse any text you give me lol.                                                                                                | {optional user}   | 2 seconds |
-| **say**              | I will say whatever you want me to say.                                                                                                 | {message}         | 2 seconds |
-| **showerthought**    | I will say whatever you want me to say.                                                                                                 |                   | 2 seconds |
-| **urban**            | I will return an urban dictionary definition of a word!                                                                                 | {word}            | 2 seconds |
-| **uselessfact**      | I will get a useless fact! You're better off with the advice command...                                                                 | {word}            | 2 seconds |
+| Name                 | Description                                                                                                                                      | Usage             | Cooldown  |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | --------- |
+| **8ball**            | Just a little fun.                                                                                                                               | {question}        | 2 seconds |
+| **advice**           | You'll need it.                                                                                                                                  |                   | 2 seconds |
+| **afk**              | This command will set your status to AFK. If anyone pings you, that person will be notified that you are afk with your selected reason.          | {optional reason} | 2 seconds |
+| **ascii**            | I will change any text to ascii!                                                                                                                 | {text}            | 2 seconds |
+| **coinflip**         | I have no bias! I swear noob!1!                                                                                                                  |                   | 2 seconds |
+| **levelleaderboard** | Just a little fun.                                                                                                                               |                   | 2 seconds |
+| **rank**             | View a users rank!                                                                                                                               | {optional user}   | 2 seconds |
+| **reverse**          | I will reverse any text you give me lol.                                                                                                         | {optional user}   | 2 seconds |
+| **say**              | I will say whatever you want me to say.                                                                                                          | {message}         | 2 seconds |
+| **showerthought**    | You know that momment where you think/realize something crazy in the shower? Well, there is a whole subreddit full of them...                    |                   | 2 seconds |
+| **urban**            | I will return an urban dictionary definition of a word! Due to recent API failures, this command is disabled to provide you a better experience. | {word}            | 2 seconds |
+| **uselessfact**      | I will get a useless fact! You're better off with the advice command...                                                                          | {word}            | 2 seconds |
 ## 🎮 Games 🎮
 
 | Name                  | Description                                                                                          | Usage                                                                | Cooldown   |
@@ -114,6 +113,7 @@ SparkV's Command List! SparkV contains more than **121 commands**!
 | **comic**          | A comic to keep you entertained.                  |       | 2 seconds |
 | **dankmeme**       | Meme but SUPER dank. Only the funnyiest memes.    |       | 2 seconds |
 | **doseofinternet** | I'll send a dose of the internet.                 |       | 2 seconds |
+| **economy**        | lol                                               |       | 2 seconds |
 | **meirl**          | meirl memes lol.                                  |       | 2 seconds |
 | **meme**           | LOL                                               |       | 2 seconds |
 | **prequel**        | Star Wars memes lol.                              |       | 2 seconds |

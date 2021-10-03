@@ -3,9 +3,6 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  let Ch1llBucks = data.user.money.balance;
-  let Bank = data.user.money.bank;
-
   if (!args) {
     return message.reply(
       `${bot.config.Emojis.error} | You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.`,
@@ -13,11 +10,11 @@ async function execute(bot, message, args, command, data) {
   }
 
   if (args[0].toLowerCase() === `all`) {
-    if (Bank === 0 || Bank === null) {
-      return message.reply(`${bot.config.Emojis.error} | You have no Ch1llBucks in your bank!`);
+    if (data.user.money.bank === 0 || data.user.money.bank === null) {
+      return message.reply(`${bot.config.Emojis.error} | You have no data.user.money.balance in your bank!`);
     }
 
-    data.user.money.balance = Ch1llBucks + Bank;
+    data.user.money.balance += data.user.money.bank;
     data.user.money.bank = 0;
 
     data.user.markModified("money.balance");
@@ -25,7 +22,7 @@ async function execute(bot, message, args, command, data) {
     await data.user.save();
 
     message.reply(
-      `${bot.config.Emojis.success} | You just withdrawed ❄${bot.functions.formatNumber(Bank)} from your bank!`,
+      `${bot.config.Emojis.success} | You just withdrawed ❄${bot.functions.formatNumber(data.user.money.bank)} from your bank!`,
     );
   } else {
     if (!args[0]) {
@@ -37,15 +34,15 @@ async function execute(bot, message, args, command, data) {
     }
 
     if (message.content.includes(`-`)) {
-      return message.reply(`${bot.config.Emojis.error} | You can't withdraw negitive Ch1llBucks lol.`);
+      return message.reply(`${bot.config.Emojis.error} | You can't withdraw negitive data.user.money.balance lol.`);
     }
 
-    if (Bank < args[0]) {
-      return message.reply(`${bot.config.Emojis.error} | You don't have that much Ch1llBucks in your bank!`);
+    if (data.user.money.bank < args[0]) {
+      return message.reply(`${bot.config.Emojis.error} | You don't have that much data.user.money.balance in your bank!`);
     }
 
-    data.user.money.balance = Ch1llBucks + args[0];
-    data.user.money.bank = Bank - args[0];
+    data.user.money.balance += args[0];
+    data.user.money.bank -= args[0];
 
     data.user.markModified("money.balance");
     data.user.markModified("money.bank");
@@ -58,7 +55,7 @@ async function execute(bot, message, args, command, data) {
 }
 
 module.exports = new cmd(execute, {
-  description: `Withdraw your Ch1llBucks in your bank into your wallet.`,
+  description: `Withdraw your data.user.money.balance in your bank into your wallet.`,
   dirname: __dirname,
   aliases: ["with"],
   usage: ``,

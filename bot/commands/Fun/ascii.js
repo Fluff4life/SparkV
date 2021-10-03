@@ -1,10 +1,9 @@
 const Discord = require(`discord.js`);
+const figlet = require(`figlet`);
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const figlet = require(`figlet`);
-
   if (!args || !args[0]) {
     return message.reply(`Please provide text!`);
   }
@@ -13,13 +12,12 @@ async function execute(bot, message, args, command, data) {
 
   figlet.text(args, (err, data) => {
     if (err) {
-      message.reply(`Uh oh! Something went wrong.`);
       console.log(`Failed to figlet text: ${err}`);
 
-      return;
+      return message.reply(`Uh oh! Something went wrong.`);
     }
 
-    if (data.length > 2000) {
+    if (data.length > 1800) {
       return message.reply(`Please provide text shorter than 200 characters.`);
     }
 

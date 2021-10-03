@@ -14,10 +14,9 @@ async function execute(bot, message) {
         .setColor(bot.config.embed.color)
         .setTimestamp();
 
-      const Message = await message.reply(AdviceEmbed);
-
-      Message.react("👍");
-      Message.react("👎");
+      await message.reply({
+        embeds: [AdviceEmbed]
+      });
     });
 }
 

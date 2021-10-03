@@ -404,13 +404,13 @@ module.exports = {
     // Command Handler
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    const commandfile = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
+    const commandfile = bot.commands.get(command) || bot.aliases.get(command);
 
     if (!commandfile) {
       return;
     }
 
-    if (!commandfile.settings.enabled) {
+    if (commandfile.settings.enabled === false) {
       return message.reply(`${bot.config.Emojis.error} | This command is currently disabled! Please try again later.`);
     }
 

@@ -10,17 +10,15 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.Emojis.error} | Please say a person to rob.`);
   }
 
-  let RobberCh1llBucks = data.user.money.balance;
   let UserBalance = await bot.database.fetchUser(User.id);
-  let UserCh1llBucks = UserBalance.money.balance;
 
-  if (RobberCh1llBucks < 500) {
+  if (data.user.money.balance < 500) {
     return message.reply(
       `${bot.config.Emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`,
     );
   }
 
-  if (UserCh1llBucks <= 0 || UserCh1llBucks === null) {
+  if (UserBalance.money.balance <= 0 || UserBalance.money.balance === null) {
     return message.reply(`${bot.config.Emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`);
   }
 
@@ -34,7 +32,7 @@ async function execute(bot, message, args, command, data) {
     );
   }
 
-  if (UserCh1llBucks < 0) {
+  if (UserBalance.money.balance < 0) {
     return message.reply(
       `${bot.config.Emojis.error} | This user is in **DEBT**! LOL!! HOW ON EARTH DID THAT HAPPEN LMFAOOOOO!!! Anyways, contact support and we'll reset your balance. :)`,
     );
@@ -43,16 +41,16 @@ async function execute(bot, message, args, command, data) {
   const Result = results[Math.floor(Math.random() * results.length)];
 
   if (Result === `WIN`) {
-    const Ammount = Math.floor(Math.random() * UserCh1llBucks);
+    const Ammount = Math.floor(Math.random() * UserBalance.money.balance);
 
-    data.user.money.balance = RobberCh1llBucks + Ammount;
-    UserBalance.money.balance = UserCh1llBucks - Ammount;
+    data.user.money.balance += Ammount;
+    UserBalance.money.balance -= Ammount;
 
     data.user.markModified("money.balance");
     UserBalance.markModified("money.balance");
 
     await data.user.save();
-    UserBalance.save();
+    await UserBalance.save();
 
     message.reply(
       `${bot.config.Emojis.success} | You robbed ${User} and recieved ${bot.functions.formatNumber(
@@ -60,11 +58,11 @@ async function execute(bot, message, args, command, data) {
       )} Ch1llBucks!`,
     );
   } else {
-    data.user.money.balance = RobberCh1llBucks - 250;
-    UserBalance.money.balance = UserCh1llBucks + 250;
+    data.user.money.balance -= 250;
+    UserBalance.money.balance += 250;
 
     await data.user.save();
-    UserBalance.save();
+    await UserBalance.save();
 
     message.reply(`${bot.config.Emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`);
   }

@@ -1,13 +1,14 @@
 const Discord = require(`discord.js`);
 const Levels = require(`discord-xp`);
+const canvacord = require(`canvacord`);
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const canvacord = require(`canvacord`);
+  let Target = await bot.functions.fetchUser(args[0]) || message.author;
+  Target = await message.guild.members.fetch(Target);
 
-  const Target = message.author;
-  const User = await Levels.fetch(Target.id, message.guild.id, true);
+  const User = await Levels.fetch(Target.user.id, message.guild.id, true);
   const NeededXP = Levels.xpFor(parseInt(User.level) + 1);
 
   if (!User) {
@@ -15,9 +16,9 @@ async function execute(bot, message, args, command, data) {
   }
 
   const Rank = new canvacord.Rank()
-    .setUsername(Target.username)
-    .setDiscriminator(Target.discriminator)
-    .setAvatar(Target.displayAvatarURL({ dynamic: false, format: `gif` }))
+    .setUsername(Target.user.username)
+    .setDiscriminator(Target.user.discriminator)
+    .setAvatar(Target.user.displayAvatarURL({ dynamic: false, format: `gif` }))
     .setStatus(Target.presence?.status)
     .setRank(User.position)
     .setLevel(User.level || 0)
@@ -26,7 +27,7 @@ async function execute(bot, message, args, command, data) {
     .setProgressBar(`#0099ff`, `COLOR`);
 
   Rank.build().then(data => {
-    const Attachment = new Discord.MessageAttachment(data, `${Target.tag}RankCard.gif`);
+    const Attachment = new Discord.MessageAttachment(data, `${Target.user.tag}RankCard.gif`);
 
     return message.reply({
       files: [Attachment],

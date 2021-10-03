@@ -13,7 +13,7 @@ async function execute(bot, message) {
       color: "#7289da",
       timestamp: true,
     },
-    disabledQuery: "Calculator is disabled!",
+    disabledQuery: "Calculator is !",
     invalidQuery: "The provided equation is invalid!",
     othersMessage: "Only <@{{author}}> can use the buttons!",
   });

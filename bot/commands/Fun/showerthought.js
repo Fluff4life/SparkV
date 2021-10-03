@@ -1,9 +1,9 @@
 const RedditCommand = require("../../templates/redditCommand");
 
 module.exports = new RedditCommand({
-  description: "I will say whatever you want me to say.",
+  description: "You know that momment where you think/realize something crazy in the shower? Well, there is a whole subreddit full of them...",
   dirname: __dirname,
-  aliases: ["thought"],
+  aliases: ["shower", "thought"],
   usage: "",
   enabled: true,
   endpoint: "/r/showerthoughts/top/.json?sort=top&t=week",

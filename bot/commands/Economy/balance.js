@@ -3,19 +3,15 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  const User = bot.functions.fetchUser(args[0]) || message.author;
-
-  let Coins = data.user.money.balance;
-  let Bank = data.user.money.bank;
-  let BankMax = data.user.money.bankMax;
+  const User = await bot.functions.fetchUser(args[0]) || message.author;
 
   const BalanceEmbed = new Discord.MessageEmbed()
     .setTitle(`**${User.tag}'s Balance**`)
     .setDescription(
-      `Wallet: ❄${bot.functions.formatNumber(Coins)}\nBank: ❄${bot.functions.formatNumber(
-        Bank,
-      )}/${bot.functions.formatNumber(BankMax)}\nNet Worth: ${bot.functions.formatNumber(
-        Bank + Coins,
+      `Wallet: ❄${bot.functions.formatNumber(data.user.money.balance)}\nBank: ❄${bot.functions.formatNumber(
+        data.user.money.bank,
+      )}/${bot.functions.formatNumber(data.user.money.bankMax)}\nNet Worth: ${bot.functions.formatNumber(
+        data.user.money.bank + data.user.money.balance,
       )}`,
     )
     .setColor(bot.config.embed.color)

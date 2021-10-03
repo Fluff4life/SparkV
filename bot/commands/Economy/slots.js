@@ -36,11 +36,10 @@ async function execute(bot, message, args, command, data) {
     return message.reply(`${bot.config.Emojis.error} | lol you need to tell me how much to bet.`);
   }
 
-  let Ch1llBucks = data.user.money.balance;
   let win = false;
 
-  if (Ch1llBucks === 0 || Ch1llBucks === null) {
-    return message.reply(`${bot.config.Emojis.error} | You have no Ch1llBucks!`);
+  if (data.user.money.balance === 0 || data.user.money.balance === null) {
+    return message.reply(`${bot.config.Emojis.error} | You have no data.user.money.balance!`);
   }
 
   if (isNaN(args[0])) {
@@ -48,10 +47,10 @@ async function execute(bot, message, args, command, data) {
   }
 
   if (message.content.includes(`-`)) {
-    return message.reply(`${bot.config.Emojis.error} | You cannot bet negitive Ch1llBucks lol.`);
+    return message.reply(`${bot.config.Emojis.error} | You cannot bet negitive data.user.money.balance lol.`);
   }
 
-  if (args[0] > Ch1llBucks) {
+  if (args[0] > data.user.money.balance) {
     return message.reply(`${bot.config.Emojis.error} | You don't have that much lol.`);
   }
 
@@ -73,20 +72,20 @@ async function execute(bot, message, args, command, data) {
     message.reply(
       `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
         bot.config.Emojis.success
-      } | You won ❄${bot.functions.formatNumber(parseInt(args[0]) * 4)} Ch1llBucks!`,
+      } | You won ❄${bot.functions.formatNumber(parseInt(args[0]) * 4)} data.user.money.balance!`,
     );
 
-    data.user.money.balance = Ch1llBucks + args[0] * SlotItems.length;
+    data.user.money.balance += args[0] * SlotItems.length;
     data.user.markModified("money.balance");
     await data.user.save();
   } else {
     message.reply(
       `${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
         bot.config.Emojis.error
-      } | You lost ❄${bot.functions.formatNumber(parseInt(args[0]))} Ch1llBucks.`,
+      } | You lost ❄${bot.functions.formatNumber(parseInt(args[0]))} data.user.money.balance.`,
     );
 
-    data.user.money.balance = Ch1llBucks - args[0];
+    data.user.money.balance -= args[0];
     data.user.markModified("money.balance");
 
     await data.user.save();

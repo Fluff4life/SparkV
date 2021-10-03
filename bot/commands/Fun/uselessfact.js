@@ -14,12 +14,9 @@ async function execute(bot, message) {
         .setColor(bot.config.embed.color)
         .setTimestamp();
 
-      const Message = message.reply({
+      message.reply({
         embeds: [FunFactEmbed],
       });
-
-      Message.react("🤯");
-      Message.react("😬");
     });
 }
 

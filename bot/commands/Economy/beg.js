@@ -3,24 +3,15 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  let Ch1llBucks = data.user.money.balance;
-  let Multiplier = data.user.money.multiplier;
   const RandomAmmount = Math.floor(Math.random() * 500) + 1;
+  const Ammount = RandomAmmount * data.user.money.multiplier;
 
-  if (!Ch1llBucks) {
-    Ch1llBucks = 0;
-  }
-
-  if (!Multiplier) {
-    Multiplier = 1;
-  }
-
-  const Ammount = RandomAmmount * Multiplier;
-
-  Ch1llBucks += Ammount;
+  data.user.money.balance += Ammount;
+  data.user.markModified("money.balance");
+  await data.user.save();
 
   message.reply(
-    `${bot.config.Emojis.success} | You begged and recieved ${bot.functions.formatNumber(Ammount)} Ch1llBucks!`,
+    `${bot.config.Emojis.success} | You begged and recieved ${bot.functions.formatNumber(Ammount)} Coins!`,
   );
 }
 

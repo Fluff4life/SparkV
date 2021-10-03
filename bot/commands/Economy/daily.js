@@ -4,18 +4,14 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   const RandomAmmount = Math.floor(Math.random() * 3500) + 1;
+  const Ammount = RandomAmmount * data.user.money.multiplier;
 
-  let Ch1llBucks = data.user.money.balance;
-  let Multiplier = data.user.money.multiplier;
-
-  const Ammount = RandomAmmount * Multiplier;
-
-  data.user.money.balance = Ch1llBucks + Ammount;
-  data.markModified("money.balance");
+  data.user.money.balance += Ammount;
+  data.user.markModified("money.balance");
   await data.user.save();
 
   message.reply(
-    `${bot.config.Emojis.success} | You've just earned ❄${bot.functions.formatNumber(Ammount)} Ch1llBucks!`,
+    `${bot.config.Emojis.success} | You've just earned ❄${bot.functions.formatNumber(Ammount)} coins!`,
   );
 }
 

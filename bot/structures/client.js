@@ -169,7 +169,7 @@ module.exports = class bot extends Client {
                 return;
               }
 
-              this.aliases.set(alias, null);
+              this.aliases.set(alias, command);
             }
           });
         });
