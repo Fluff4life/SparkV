@@ -41,7 +41,8 @@ module.exports = {
         client: bot,
         apiKeys: {
           topgg: process.env.DBLKEY,
-          // voidbots: process.env.VBLKEY,
+          discordbotlist: process.env.DBL2KEY,
+          voidbots: process.env.VBLKEY,
           // discordlabs: process.env.DLBLKEY
         },
         clientLibrary: "discord.js",
