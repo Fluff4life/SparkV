@@ -13,7 +13,7 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.changemymind(args);
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "affect.png")],
+    files: [new Discord.MessageAttachment(Image, "affect.png")],
   });
 }
 

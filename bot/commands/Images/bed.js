@@ -13,7 +13,7 @@ async function execute(bot, message, args) {
   );
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "bed.png")],
+    files: [new Discord.MessageAttachment(Image, "bed.png")],
   });
 }
 

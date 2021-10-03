@@ -8,7 +8,7 @@ async function execute(bot, message, args) {
   const Image = await canvacord.Canvas.rainbow(User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "rainbow.png")],
+    files: [new Discord.MessageAttachment(Image, "rainbow.png")],
   });
 }
 

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const canvacord = require("canvacord");
 
 const cmd = require("../../templates/command");
 
@@ -7,7 +8,7 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.rip(User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "rainbow.png")],
+    files: [new Discord.MessageAttachment(Image, "rip.png")],
   });
 }
 

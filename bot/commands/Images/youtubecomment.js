@@ -18,7 +18,7 @@ async function execute(bot, message, args, command, data) {
   });
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "youtube.png")],
+    files: [new Discord.MessageAttachment(Image, "youtube.png")],
   });
 }
 

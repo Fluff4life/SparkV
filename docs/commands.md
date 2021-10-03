@@ -22,17 +22,17 @@ SparkV's Command List! SparkV contains more than **121 commands**!
 | **fox**    | I will send a cute fox! Ducks are cuter.           |       | 3 seconds |
 ## 💰 Economy 💰
 
-| Name         | Description                                             | Usage            | Cooldown  |
-| ------------ | ------------------------------------------------------- | ---------------- | --------- |
-| **balance**  | View your balance.                                      | {optional user}  | 2 seconds |
-| **beg**      | Beg for coins.                                          | {optional user}  | 2 seconds |
-| **daily**    | Collect your daily ammount of Ch1llBucks!               |                  | 6 seconds |
-| **deposit**  | Deposit your Ch1llBucks into your bank.                 | {all or ammount} | 2 seconds |
-| **pay**      | Give someone some Ch1llBucks!                           | {user}           | 2 seconds |
-| **rob**      | why u bully me?                                         | {user}           | 2 seconds |
-| **slots**    | Don't gamble kids!                                      | {amount}         | 2 seconds |
-| **withdraw** | Withdraw your Ch1llBucks in your bank into your wallet. |                  | 2 seconds |
-| **work**     | Work for your job and earn some Ch1llBucks.             |                  | 2 seconds |
+| Name         | Description                                                          | Usage            | Cooldown  |
+| ------------ | -------------------------------------------------------------------- | ---------------- | --------- |
+| **balance**  | View your balance.                                                   | {optional user}  | 2 seconds |
+| **beg**      | Beg for coins.                                                       | {optional user}  | 2 seconds |
+| **daily**    | Collect your daily ammount of Ch1llBucks!                            |                  | 6 seconds |
+| **deposit**  | Deposit your data.user.money.balance into your bank.                 | {all or ammount} | 2 seconds |
+| **pay**      | Give someone some data.user.money.balance!                           | {user}           | 2 seconds |
+| **rob**      | why u bully me?                                                      | {user}           | 2 seconds |
+| **slots**    | Don't gamble kids!                                                   | {amount}         | 2 seconds |
+| **withdraw** | Withdraw your data.user.money.balance in your bank into your wallet. |                  | 2 seconds |
+| **work**     | Work for your job and earn some Ch1llBucks.                          |                  | 2 seconds |
 ## 😃 Fun 😃
 
 | Name                 | Description                                                                                                                                      | Usage             | Cooldown  |

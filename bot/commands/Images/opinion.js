@@ -14,7 +14,7 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.opinion(User.displayAvatarURL({ format: "png" }), args);
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "opinion.png")],
+    files: [new Discord.MessageAttachment(Image, "opinion.png")],
   });
 }
 

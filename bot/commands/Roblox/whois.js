@@ -37,7 +37,7 @@ async function execute(bot, message, args, command, data) {
       )
       .setFooter(`User not found • ${bot.config.embed.footer}`)
       .setThumbnail(
-        "https://media.discordapp.net/attachments/539579135786352652/641188940983959555/627171202464743434.png",
+        "https://media.discordapp.net/files/539579135786352652/641188940983959555/627171202464743434.png",
       )
       .setColor(bot.config.embed.color)
       .setTimestamp();

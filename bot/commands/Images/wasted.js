@@ -8,7 +8,7 @@ async function execute(bot, message, args, command, data) {
   const Image = await canvacord.Canvas.wasted(User.displayAvatarURL({ format: "png" }));
 
   message.reply({
-    attachments: [new Discord.MessageAttachment(Image, "wasted.png")],
+    files: [new Discord.MessageAttachment(Image, "wasted.png")],
   });
 }
 
