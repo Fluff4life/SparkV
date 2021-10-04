@@ -24,8 +24,8 @@
   "author": "KingCh1ll",
   "license": "MIT",
   "engines": {
-    "node": "16.10.x",
-    "npm": "7.x"
+    "node": ">=16.6.0",
+    "npm": ">=7.0.0"
   },
   "dependencies": {
     "@discordjs/opus": "^0.6.0",
