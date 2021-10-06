@@ -36,7 +36,7 @@ module.exports = class RedditCommand {
       .setColor(bot.config.embed.color);
 
     await message.replyT({
-      embeds: [RedditEmbed],
+      embeds: [ImageEmbed],
     });
   }
 };
