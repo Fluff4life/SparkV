@@ -21,8 +21,8 @@ console.log(require("chalk").blue("  ____|_| |_|_|_|_|____/|_|___/_/_ "));
 const Client = require("./structures/client");
 const SparkV = new Client({
   intents: [
-    Intents.FLAGS.DIRECT_MESSAGES,
-    Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+    // Intents.FLAGS.DIRECT_MESSAGES,
+    // Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_BANS,
     Intents.FLAGS.GUILD_WEBHOOKS,
@@ -32,9 +32,6 @@ const SparkV = new Client({
     Intents.FLAGS.GUILD_MEMBERS,
     Intents.FLAGS.GUILD_PRESENCES,
   ],
-  makeCache: Options.cacheWithLimits({
-    MessageManager: 200,
-  }),
   allowedMentions: {
     parse: ["users"],
     repliedUser: true,
