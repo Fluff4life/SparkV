@@ -60,7 +60,7 @@ async function execute(bot, message, args, command, data) {
     const row = new MessageActionRow().addComponents(CatSelect);
     const row2 = new MessageActionRow().addComponents(InviteButton, SupportButton, VoteButton);
 
-    message.channel.send({
+    message.replyT({
       embeds: [NewEmbed],
       components: [row, row2],
     });

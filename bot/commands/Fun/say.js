@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   args = args.join(" ");
 
-  message.channel.send(`${args}\n*-${message.author.username}*`);
+  message.replyT(`${args}\n*-${message.author.username}*`);
   message.delete().catch(_ => {});
 }
 

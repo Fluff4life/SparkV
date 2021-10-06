@@ -196,7 +196,7 @@ module.exports = async bot => {
         "Search answer invalid. Make sure you're sending your selected song's page number. For example, if I wanted to play a song on the 5th page, I would send the number 5.",
       ),
     )
-    .on("searchNoResult", message => message.channel.send("No result found!"))
+    .on("searchNoResult", message => message.replyT("No result found!"))
     .on("finish", queue => queue.textChannel.send("No songs left in queue."))
     .on("finishSong", queue => queue.textChannel.send("Hope you enjoyed the song!"))
     .on("noRelated", message =>

@@ -113,7 +113,7 @@ module.exports = {
             data.member.markModified("infractions");
 
             message.delete().catch(err => {});
-            message.channel.send(
+            message.replyT(
               `🔨 | ${message.author}, please stop cursing. If you curse again, you'll be muted. | You have **${data.member.infractionsCount}** warning(s).`,
             );
 
@@ -192,7 +192,7 @@ module.exports = {
               .replyT(bot.config.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author));
           }
 
-          message.channel.send(
+          message.replyT(
             `🔨 | ${message.author}, you cannot send links! | You have **${data.member.infractionsCount}** warning(s).`,
           );
 
@@ -284,7 +284,7 @@ module.exports = {
               data.member.markModified("infractions");
               await data.member.save();
 
-              message.channel.send(
+              message.replyT(
                 `🔨 | ${message.author}, please stop spamming. If you continue to spam, you'll be punished. | You have **${data.member.infractionsCount}** warning(s).`,
               );
 

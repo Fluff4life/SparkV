@@ -35,7 +35,7 @@ async function execute(bot, message, args, command, data) {
   await memberData.save();
 
   User.send(`You were warned in **${message.guild.name}**. Reason: ${Reason}`).catch(async err => {
-    message.channel.send(
+    message.replyT(
       `You were warned in **${message.guild.name}**. Reason: ${Reason}\n\nI would've sent this in your DMs, but they were off.`,
     );
     await message.replyT(`The user you mentioned has their DMs off. I pinged him instead.`);
