@@ -3,86 +3,49 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
-  let messages;
-
-  if (args[0]) {
-    if (args[0] === "all") {
-      console.log(args[0]);
-      args[0] = 99;
-    } else if (args[0] === "bots") {
-    } else if (args[0] === "users") {
-      messages = await message.channel.messages
-        .fetch({
-          limit: 99,
-        })
-        .then(msgs => msgs.filter(msg => !msg.author.bot));
-    }
+  let user = message.mentions.users.first();
+  if (!args[0] || isNaN(args[0]) || parseInt(args[0]) < 1) {
+    return message.replyT("Please provide valid command usage. For example, {prefix}clear <number of messages to delete>. If you want to delete all the messages, then just do ^clear all.");
   }
 
-  if (!isNaN(parseInt(args[0]))) {
-    console.log("1");
-    const msgCount = parseInt(args[0]) + 1;
+  if (args[0] && args[0] === "all") {
+      const clonedChannel = await message.channel.clone();
 
-    if (isNaN(msgCount)) {
-      return await message.replyT("The provided number of messages to delete isn't a valid number.");
-    } else if (msgCount < 1 || msgCount > 100) {
-      return await message.replyT("The provided number of messages to delete is either under 1 or above 99.");
-    }
+      await message.channel.delete();
+      clonedChannel.setPosition(message.channel.position);
 
-    messages = await message.channel.messages
-      .fetch({
-        limit: 99,
-      })
-      .then(msgs => {
-        // Filters
-        if (args[1] === "ignorePinned") {
-          return msgs.filter(msg => !msg.pinned);
-        } else if (args[1] === "usersOnly") {
-          return msgs.filter(msg => !msg.author.bot);
-        } else if (args[1] === "botsOnly") {
-          return msgs.filter(msg => msg.author.bot);
-        }
-
-        return msgs;
-      });
-
-    message.channel.bulkDelete(messages).catch(err => {
-      console.error(err, "1");
-
-      return message.channel.send(
-        "Uh oh! An error occured while trying to delete messages in this channel. Please check my permissions and try again.",
-      );
-    });
-  } else if (messages) {
-    console.log("2");
-    message.delete().catch(err => {});
-
-    if (args[1] && !args[1] === "ignorePinned") {
-      messages = messages.filter(msg => !msg.pinned);
-    }
-
-    message.channel.bulkDelete(messages).catch(err => {
-      console.error(err, "2");
-
-      return message.channel.send(
-        "Uh oh! An error occured while trying to delete messages in this channel. Please check my permissions and try again.",
-      );
-    });
-  } else {
-    return message.channel.send(
-      "Uh oh! An error occured while trying to delete messages in this channel. Please check my permissions and try again.",
-    );
+      return newChannel.replyT("Successfully cleared all messages.");
   }
 
-  message.channel.send(`Successfully cleared **${messages.length}** messages!`).then(msg => {
-    setTimeout(() => msg.delete(), 5 * 1000);
+  await message.delete().catch(err => {});
+
+  let messages = await message.channel.messages.fetch({
+    limit: 100
   });
+  messages = messages.array();
+
+  if (user) {
+    messages.filter(m => m.author.id === user.id);
+  }
+
+  if (messages.length > args[0]) {
+    messages.length = parseInt(args[0], 10);
+  }
+
+  messages.filter(m => !m.pinned);
+  args[0]++;
+
+  message.channel.bulkDelete(messages, true);
+
+  let mSuccess = await message.replyT(`Successfully cleared **${--args[0]}** messages${user ? ` from ${user.tag}.` : "."}`);
+
+  setTimeout(() => mSuccess.delete(), 2 * 1000);
 }
 
 module.exports = new cmd(execute, {
   description: `I'll delete messages for you!`,
   dirname: __dirname,
-  usage: `<all | users | bots> <filter (ignorePinned)>`,
+  usage: `<number of messages to delete | all> <Optional: Mention a User to only delete the messages of>`,
   aliases: [`purge`, `clr`],
   perms: ["MANAGE_MESSAGES"],
 });
