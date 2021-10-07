@@ -6,7 +6,8 @@ const commands = fs
   .map(c => require(`${__dirname}/${c}`));
 
 module.exports = {
-  name: "⚫Roblox⚫",
+  name: "Roblox",
   description: "Roblox commands!",
+  emoji: "<:roblox:819679702490808340>",
   commands,
 };

@@ -6,7 +6,8 @@ const commands = fs
   .map(c => require(`${__dirname}/${c}`));
 
 module.exports = {
-  name: "🛠️ Moderation 🛠️",
+  name: "Moderation",
   description: "The power to ban, kick, mute and more at your control.",
+  emoji: "🛠️",
   commands,
 };

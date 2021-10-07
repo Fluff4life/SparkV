@@ -2,7 +2,7 @@
 
 SparkV's Command List! SparkV contains more than **123 commands**!
 
-## 🤵 Administration 🤵
+## 🤵 Administration
 
 | Name               | Description                                                 | Usage                                  | Cooldown  |
 | ------------------ | ----------------------------------------------------------- | -------------------------------------- | --------- |
@@ -10,7 +10,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **rerollgiveaway** | Rerolls a giveaway. Requires the permision MANAGE_MESSAGES. | {MessageID}                            | 2 seconds |
 | **setprefix**      | Changes the prefix.                                         |                                        | 2 seconds |
 | **startgiveaway**  | Starts a giveaway. Requires the permision MANAGE_MESSAGES.  | {channel} {duration} {winners} {prize} | 2 seconds |
-## 🐶 Animals 🐶
+## 🐶 Animals
 
 | Name       | Description                                        | Usage | Cooldown  |
 | ---------- | -------------------------------------------------- | ----- | --------- |
@@ -20,7 +20,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **dog**    | I will send a cute dog! Aweeeee :D                 |       | 3 seconds |
 | **duck**   | Quack :D                                           |       | 3 seconds |
 | **fox**    | I will send a cute fox! Ducks are cuter.           |       | 3 seconds |
-## 💰 Economy 💰
+## 💰 Economy
 
 | Name         | Description                                                          | Usage            | Cooldown  |
 | ------------ | -------------------------------------------------------------------- | ---------------- | --------- |
@@ -33,7 +33,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **slots**    | Don't gamble kids!                                                   | {amount}         | 2 seconds |
 | **withdraw** | Withdraw your data.user.money.balance in your bank into your wallet. |                  | 2 seconds |
 | **work**     | Work for your job and earn some Ch1llBucks.                          |                  | 2 seconds |
-## 😃 Fun 😃
+## 😃 Fun
 
 | Name                 | Description                                                                                                                                      | Usage             | Cooldown  |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | --------- |
@@ -49,7 +49,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **showerthought**    | You know that momment where you think/realize something crazy in the shower? Well, there is a whole subreddit full of them...                    |                   | 2 seconds |
 | **urban**            | I will return an urban dictionary definition of a word! Due to recent API failures, this command is disabled to provide you a better experience. | {word}            | 2 seconds |
 | **uselessfact**      | I will get a useless fact! You're better off with the advice command...                                                                          | {word}            | 2 seconds |
-## 🎮 Games 🎮
+## 🎮 Games
 
 | Name                  | Description                                                                                          | Usage                                                                | Cooldown   |
 | --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ---------- |
@@ -72,7 +72,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **trivia**            | Play a game of trivia!                                                                               |                                                                      | 2 seconds  |
 | **wouldyourather**    | Would you rather.                                                                                    |                                                                      | 2 seconds  |
 | **youtube**           | YouTube together!                                                                                    |                                                                      | 60 seconds |
-## 📷Images📷
+## 📷 Images
 
 | Name               | Description                     | Usage                | Cooldown  |
 | ------------------ | ------------------------------- | -------------------- | --------- |
@@ -95,7 +95,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **wanted**         | Wanted sign.                    | {user | self}        | 2 seconds |
 | **wasted**         | Dang man, that's a life wasted. | {user | self}        | 2 seconds |
 | **youtubecomment** | YouTube comment lol.            | {user | self} {text} | 2 seconds |
-## 📋 Information 📋
+## 📋 Information
 
 | Name          | Description                                                                                      | Usage     | Cooldown  |
 | ------------- | ------------------------------------------------------------------------------------------------ | --------- | --------- |
@@ -106,7 +106,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **invite**    | Displays links.                                                                                  |           | 2 seconds |
 | **rules**     | Follow them lol.                                                                                 |           | 2 seconds |
 | **website**   | I'll send my website!                                                                            |           | 2 seconds |
-## 😂 Memey 😂
+## 😂 Memey
 
 | Name               | Description                                       | Usage | Cooldown  |
 | ------------------ | ------------------------------------------------- | ----- | --------- |
@@ -119,23 +119,23 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **meirl**          | meirl memes lol.                                  |       | 2 seconds |
 | **meme**           | LOL                                               |       | 2 seconds |
 | **prequel**        | Star Wars memes lol.                              |       | 2 seconds |
-## 🛠️ Moderation 🛠️
+## 🛠️ Moderation
 
-| Name            | Description                                                                                                                          | Usage                                        | Cooldown  |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- | --------- |
-| **ban**         | Is a user bothering you and keep coming back after you kick them? Using this command, they won't come back unless they are unbanned. | {user} {optional reason}                     | 2 seconds |
-| **clear**       | I'll delete messages for you!                                                                                                        | {all | users | bots} {filter (ignorePinned)} | 2 seconds |
-| **infractions** | I'll display a user's warnings.                                                                                                      | {user}                                       | 2 seconds |
-| **kick**        | Is a user bothering you? Using this command, you can kick them from the server!                                                      | {user} {optional user}                       | 2 seconds |
-| **lock**        | I'll lock the current channel.                                                                                                       |                                              | 2 seconds |
-| **lockdown**    | I'll lock the server.                                                                                                                | {on | off}                                   | 2 seconds |
-| **mute**        | I'll mute someone.                                                                                                                   | {user} {reason}                              | 2 seconds |
-| **nickname**    | I'll change a user's nickname to your choice.                                                                                        | {user} {reason}                              | 2 seconds |
-| **slowmode**    | I will set the channel's slowmode to anything you want.                                                                              | {user} {reason}                              | 2 seconds |
-| **unlock**      | I'll unlock the current channel.                                                                                                     | {user} {reason}                              | 2 seconds |
-| **unmute**      | I'll unmute someone who was muted previously.                                                                                        | {user} {reason}                              | 2 seconds |
-| **warn**        | I will warn a user                                                                                                                   | {user} {optional reason}                     | 2 seconds |
-## 🎵 Music 🎵
+| Name            | Description                                                                                                                          | Usage                                                                                          | Cooldown  |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | --------- |
+| **ban**         | Is a user bothering you and keep coming back after you kick them? Using this command, they won't come back unless they are unbanned. | {user} {optional reason}                                                                       | 2 seconds |
+| **clear**       | I'll delete messages for you!                                                                                                        | {number of messages to delete | all} {Optional: Mention a User to only delete the messages of} | 2 seconds |
+| **infractions** | I'll display a user's warnings.                                                                                                      | {user}                                                                                         | 2 seconds |
+| **kick**        | Is a user bothering you? Using this command, you can kick them from the server!                                                      | {user} {optional user}                                                                         | 2 seconds |
+| **lock**        | I'll lock the current channel.                                                                                                       |                                                                                                | 2 seconds |
+| **lockdown**    | I'll lock the server.                                                                                                                | {on | off}                                                                                     | 2 seconds |
+| **mute**        | I'll mute someone.                                                                                                                   | {user} {reason}                                                                                | 2 seconds |
+| **nickname**    | I'll change a user's nickname to your choice.                                                                                        | {user} {reason}                                                                                | 2 seconds |
+| **slowmode**    | I will set the channel's slowmode to anything you want.                                                                              | {user} {reason}                                                                                | 2 seconds |
+| **unlock**      | I'll unlock the current channel.                                                                                                     | {user} {reason}                                                                                | 2 seconds |
+| **unmute**      | I'll unmute someone who was muted previously.                                                                                        | {user} {reason}                                                                                | 2 seconds |
+| **warn**        | I will warn a user                                                                                                                   | {user} {optional reason}                                                                       | 2 seconds |
+## 🎵 Music
 
 | Name        | Description                                                                                                                     | Usage                                      | Cooldown   |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ---------- |
@@ -152,7 +152,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **skip**    | Skip to the next song in the queue.                                                                                             |                                            | 60 seconds |
 | **stop**    | Disconnects me from the voice channel and removes all songs in queue.                                                           |                                            | 60 seconds |
 | **volume**  | Sets the volume of the currently playing track.                                                                                 |                                            | 60 seconds |
-## 👑 Owner 👑
+## 👑 Owner
 
 | Name              | Description                    | Usage            | Cooldown  |
 | ----------------- | ------------------------------ | ---------------- | --------- |
@@ -160,7 +160,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **restart**       | This is an owner only command. | {ch1llbucks}     | 2 seconds |
 | **setch1llbucks** | Set someone's Ch1llBucks!      | {user} {ammount} | 2 seconds |
 | **setxp**         | Set XP.                        | {user} {ammount} | 2 seconds |
-## ⚫Roblox⚫
+## <:roblox:819679702490808340> Roblox
 
 | Name            | Description                                                       | Usage           | Cooldown  |
 | --------------- | ----------------------------------------------------------------- | --------------- | --------- |
@@ -168,7 +168,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **shout**       | SparkV will shout to any group owned by you!                      | {Shout Message} | 2 seconds |
 | **verify**      | Verify yourself! Only works when enabled on the dashboard.        | {username}      | 2 seconds |
 | **whois**       | SparkV will look up any user and return information on that user. | {username}      | 2 seconds |
-## 🧰 Utility 🧰
+## 🧰 Utility
 
 | Name           | Description                      | Usage           | Cooldown  |
 | -------------- | -------------------------------- | --------------- | --------- |

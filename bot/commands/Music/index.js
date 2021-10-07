@@ -6,7 +6,8 @@ const commands = fs
   .map(c => require(`${__dirname}/${c}`));
 
 module.exports = {
-  name: "🎵 Music 🎵",
+  name: "Music",
   description: "The power of music - all in a single bot.",
+  emoji: "🎵",
   commands,
 };

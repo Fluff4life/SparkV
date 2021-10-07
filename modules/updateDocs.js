@@ -42,7 +42,7 @@ module.exports = {
           }
         });
 
-        baseText += `## ${cat.name}\n\n`;
+        baseText += `## ${cat.emoji} ${cat.name}\n\n`;
 
         info.push(["Name", "Description", "Usage", "Cooldown"]);
 
