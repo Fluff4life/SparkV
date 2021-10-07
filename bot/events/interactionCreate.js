@@ -4,10 +4,21 @@ module.exports = {
   once: false,
   async execute(bot, interaction) {
     if (interaction.isCommand()) {
-      return;
-    }
+      const command = bot.commands.get(interaction.commandName);
 
-    if (interaction.isSelectMenu()) {
+      if (!command) return;
+
+      try {
+        await command.execute(bot, interaction);
+      } catch (error) {
+        console.error(error);
+
+        await interaction.reply({
+          content: "❌ | There was an error while executing this command!",
+          ephemeral: true,
+        });
+      }
+    } else if (interaction.isSelectMenu()) {
       if (interaction.customId === "SelectHelpMenu") {
         const pages = [];
         const Selections = [];
@@ -66,7 +77,7 @@ module.exports = {
           .addOptions(Selections);
 
         const InviteButton = new MessageButton().setURL(bot.config.bot_invite).setLabel("Bot Invite")
-.setStyle("LINK");
+          .setStyle("LINK");
 
         const SupportButton = new MessageButton()
           .setURL(bot.config.support.invite)
