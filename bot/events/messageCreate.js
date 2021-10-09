@@ -401,9 +401,9 @@ module.exports = {
         }
       } else if (data.guild.plugins.chatbot === "message") {
         return chatbot(message, false);
-      } else {
-        return;
       }
+
+      return;
     }
 
     // Command Handler
