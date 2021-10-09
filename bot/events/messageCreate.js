@@ -60,11 +60,12 @@ module.exports = {
     data.user = userD;
 
     if (!data) {
-      return await message.replyT("Unable to get data. Please try again later.");
+      return;
     }
 
     // Plugins
     if (message.guild) {
+      // Check user for AFK Status
       if (data.user.afk) {
         data.user.afk = null;
         data.user.markModified("afk");
@@ -73,18 +74,20 @@ module.exports = {
         await message.replyT(bot.config.Responses.AFKWelcomeMessage);
       }
 
+      // Check mentions for AFK
       message.mentions.users.forEach(async u => {
-        const user = await bot.database.getUser(u.id);
+        const mentionedUserData = await bot.database.getUser(u.id);
 
         if (user.afk) {
           await message.replyT(
             bot.config.Responses.AFKMessage.toString()
-              .replaceAll(`{userMentioned}`, MentionedUser.user.username)
-              .replaceAll(`{reason}`, MentionedUserData.afk || "Reason data not found!"),
+              .replaceAll(`{userMentioned}`, u.user.username)
+              .replaceAll(`{reason}`, mentionedUserData.afk || "Reason data not found!"),
           );
         }
       });
 
+      // Check for profanity (curse words)
       if (data.guild.plugins.automod.removeProfanity === true) {
         if (!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
           let ignoredWords = [`hello`];
@@ -169,6 +172,7 @@ module.exports = {
         }
       }
 
+      // Check for links
       if (data.guild.plugins.automod.removeLinks === true) {
         if (
           !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) &&
@@ -247,6 +251,7 @@ module.exports = {
         }
       }
 
+      // Check for spam
       if (data.guild.plugins.automod.removeDuplicateText === true) {
         if (!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) || !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.ADMINISTRATOR)) {
           if (!message.channel.name.startsWith(`spam`) && !message.channel.name.endsWith(`spam`)) {
@@ -342,6 +347,7 @@ module.exports = {
         }
       }
 
+      // Leveling!
       if (data.guild.plugins.leveling.enabled === true) {
         let MaxXP = data.guild.plugins.leveling.max;
         let MinXP = data.guild.plugins.leveling.min;
