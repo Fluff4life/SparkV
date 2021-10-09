@@ -78,7 +78,7 @@ module.exports = {
       message.mentions.users.forEach(async u => {
         const mentionedUserData = await bot.database.getUser(u.id);
 
-        if (user.afk) {
+        if (mentionedUserData.afk) {
           await message.replyT(
             bot.config.Responses.AFKMessage.toString()
               .replaceAll(`{userMentioned}`, u.user.username)
