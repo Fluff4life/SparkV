@@ -43,7 +43,7 @@ module.exports = {
           topgg: process.env.DBLKEY,
           discordbotlist: process.env.DBL2KEY,
           voidbots: process.env.VBLKEY,
-          // Discordlabs: process.env.DLBLKEY
+          discordlabs: process.env.DLBLKEY
         },
         clientLibrary: "discord.js",
         serverCount: async () => await bot.functions.GetServerCount(),
