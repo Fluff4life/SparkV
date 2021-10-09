@@ -389,21 +389,21 @@ module.exports = {
     }
 
     // Chat Bot
-    const ChatBot = data.guild.plugins.chatbot;
 
-    if (message.mentions.has(bot.user)) {
-      if (ChatBot === "mention") {
-        return chatbot(message, true);
-      }
-    } else if (ChatBot === "message") {
-      return chatbot(message, false);
-    }
 
     // Check for a prefix
     const prefix = bot.functions.getPrefix(message, data);
 
     if (!prefix) {
-      return;
+      if (message.mentions.has(bot.user)) {
+        if (data.guild.plugins.chatbot === "mention") {
+          return chatbot(message, true);
+        }
+      } else if (data.guild.plugins.chatbot === "message") {
+        return chatbot(message, false);
+      } else {
+        return;
+      }
     }
 
     // Command Handler

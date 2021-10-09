@@ -28,9 +28,6 @@ module.exports = {
   getPrefix(message, data) {
     const acceptedPrefixes = [
       bot.config.debug.enabled === true ? "_" : data.guild.prefix,
-      `<@!${message.client.user.id}> `,
-      `<@${message.client.user.id}> `,
-      message.client.user.username.toLowerCase(),
     ];
 
     let prefix = null;
