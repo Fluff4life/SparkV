@@ -81,7 +81,7 @@ module.exports = {
         if (mentionedUserData.afk) {
           await message.replyT(
             bot.config.Responses.AFKMessage.toString()
-              .replaceAll(`{userMentioned}`, u.user.username)
+              .replaceAll(`{userMentioned}`, u.username)
               .replaceAll(`{reason}`, mentionedUserData.afk || "Reason data not found!"),
           );
         }

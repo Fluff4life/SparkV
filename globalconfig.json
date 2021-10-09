@@ -23,7 +23,7 @@
   "Responses": {
     "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proper arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
     "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
-    "AFKMessage": "Hey dude, **{userMentioned}** is currently AFK. His reason: {reason}",
+    "AFKMessage": "Hey dude, **{userMentioned}** is currently AFK. Their reason: {reason}",
     "AFKWelcomeMessage": "Hey bud, welcome back! I removed your AFK status.",
     "InvalidPermisions": {
       "bot": "Uh oh! I don't have permission to do that. Please select my role and allow **{permission}**.",
