@@ -97,15 +97,15 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **youtubecomment** | YouTube comment lol.            | {user | self} {text} | 2 seconds |
 ## 📋 Information
 
-| Name          | Description                                                                                      | Usage     | Cooldown  |
-| ------------- | ------------------------------------------------------------------------------------------------ | --------- | --------- |
-| **credits**   | Look at everyone who helped make SparkV!                                                         |           | 2 seconds |
-| **dashboard** | I'll send my dashboard!                                                                          | {user}    | 2 seconds |
-| **donate**    | Donate in the form of robux to help SparkV's developement. Every donation is really appreciated! |           | 2 seconds |
-| **help**      | View Ch1llBlox's 100+ commands.                                                                  | {command} | 2 seconds |
-| **invite**    | Displays links.                                                                                  |           | 2 seconds |
-| **rules**     | Follow them lol.                                                                                 |           | 2 seconds |
-| **website**   | I'll send my website!                                                                            |           | 2 seconds |
+| Name          | Description                                                          | Usage     | Cooldown  |
+| ------------- | -------------------------------------------------------------------- | --------- | --------- |
+| **credits**   | Look at everyone who helped make SparkV!                             |           | 2 seconds |
+| **dashboard** | I'll send my dashboard!                                              | {user}    | 2 seconds |
+| **donate**    | Donate to help SparkV's developement. Every donation is appreciated! |           | 2 seconds |
+| **help**      | View Ch1llBlox's 100+ commands.                                      | {command} | 2 seconds |
+| **invite**    | Displays links.                                                      |           | 2 seconds |
+| **rules**     | Follow them lol.                                                     |           | 2 seconds |
+| **website**   | I'll send my website!                                                |           | 2 seconds |
 ## 😂 Memey
 
 | Name               | Description                                       | Usage | Cooldown  |
