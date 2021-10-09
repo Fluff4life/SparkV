@@ -9,7 +9,7 @@ module.exports = new cmd(
     );
   },
   {
-    description: `Donate in the form of robux to help SparkV's developement. Every donation is really appreciated!`,
+    description: `Donate to help SparkV's developement. Every donation is appreciated!`,
     dirname: __dirname,
     usage: "",
     aliases: [],
