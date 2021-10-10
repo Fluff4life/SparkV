@@ -44,7 +44,7 @@ module.exports = {
           discordbotlist: process.env.DBL2KEY,
           voidbots: process.env.VBLKEY,
           discordlabs: process.env.DLBLKEY,
-          discordbotsgg: prccess.env.DBGGKEY,
+          discordbotsgg: process.env.DBGGKEY,
           infinitybotlist: process.env.IBLKEY
         },
         clientLibrary: "discord.js",
