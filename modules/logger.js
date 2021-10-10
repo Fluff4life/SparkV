@@ -1,6 +1,8 @@
 const { withScope, captureException, Severity } = require("@sentry/node");
 const chalk = require("chalk");
 
+const config = require("../globalconfig.json");
+
 module.exports = async (content, type = "log") => {
   if (type === "log") {
     return console.log(`📋 | ${content}`);
@@ -9,10 +11,12 @@ module.exports = async (content, type = "log") => {
       scope.setLevel(Severity.Warning);
     });
 
-    try {
-      await captureException(content);
-    } catch (err) {
-      console.log(`⛔ | Failed to capture exception warning (${content}) to Sentry. ${err}`);
+    if (config.debug.enabled === false) {
+      try {
+        await captureException(content);
+      } catch (err) {
+        console.log(`⛔ | Failed to capture exception warning (${content}) to Sentry. ${err}`);
+      }
     }
 
     return console.log(`⚠ | ${chalk.yellow(content)}`);
@@ -21,10 +25,12 @@ module.exports = async (content, type = "log") => {
       scope.setLevel(Severity.Error);
     });
 
-    try {
-      await captureException(content);
-    } catch (err) {
-      console.log(`⛔ | Failed to capture exception (${content}) to Sentry. ${err}`);
+    if (config.debug.enabled === false) {
+      try {
+        await captureException(content);
+      } catch (err) {
+        console.log(`⛔ | Failed to capture exception (${content}) to Sentry. ${err}`);
+      }
     }
 
     return console.log(`⛔ | ${chalk.red(content)}`);
