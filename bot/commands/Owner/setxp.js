@@ -4,10 +4,6 @@ const Levels = require(`discord-xp`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (message.author.id !== process.env.OWNERID) {
-    return await message.replyT(`${bot.config.Emojis.error} | Access denied.`);
-  }
-
   const User = bot.users.cache.get(args[0]);
   const Leveling = await bot.dashboard.getVal(`Leveling`);
   const FormattedNumber = bot.functions.formatNumber(args[1]);
@@ -34,4 +30,5 @@ module.exports = new cmd(execute, {
   aliases: [],
   dirname: __dirname,
   usage: `<user> <ammount>`,
+  ownerOnly: true
 });

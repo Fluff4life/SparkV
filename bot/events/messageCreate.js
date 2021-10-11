@@ -425,8 +425,8 @@ module.exports = {
       );
     }
 
-    if (commandfile.settings.ownerOnly && !message.author.id === process.env.OWNERID) {
-      return await message.replyT("This command is reserved for KingCh1ll only.");
+    if (commandfile.settings.ownerOnly && message.author.id !== bot.config.ownerID) {
+      return await message.replyT("This command is restricted. Only the owner (KingCh1ll) can use this command.");
     }
 
     if (!cooldowns[message.author.id]) {

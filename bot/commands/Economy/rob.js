@@ -26,7 +26,7 @@ async function execute(bot, message, args, command, data) {
     return await message.replyT(`${bot.config.Emojis.error} | Why do you want to rob yourself lol.`);
   }
 
-  if (User.id === process.env.OWNERID) {
+  if (User.id === bot.config.ownerID) {
     return await message.replyT(
       `${bot.config.Emojis.error} | This user is protected! You can buy a protection shield from being robbed in the shop.`,
     );

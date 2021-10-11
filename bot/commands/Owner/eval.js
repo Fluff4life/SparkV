@@ -5,10 +5,6 @@ const fetch = require("node-fetch");
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (message.author.id !== process.env.OWNERID) {
-    return await message.replyT(`${bot.config.Emojis.error} | Access denied.`);
-  }
-
   let input = args.join(" ");
   let hasAsync = input.includes("return") || input.includes("await");
   let result;
@@ -58,4 +54,5 @@ module.exports = new cmd(execute, {
   dirname: __dirname,
   aliases: [],
   usage: `<user>`,
+  ownerOnly: true
 });

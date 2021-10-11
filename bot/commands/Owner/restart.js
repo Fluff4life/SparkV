@@ -4,15 +4,11 @@ let restarting = false;
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (message.author.id !== process.env.OWNERID) {
-    return await message.replyT(`${bot.config.Emojis.error} | Access denied.`);
-  }
-
   if (restarting === true) {
     return;
   }
 
-  const RestartStatus = await await message.replyT(`⚡ | SparkV is now preparing for restart. Time left: ${Timer} seconds.`);
+  const RestartStatus = await message.replyT(`⚡ | SparkV is now preparing for restart. Time left: ${Timer} seconds.`);
   let Timer = 5;
 
   setInterval(() => {
@@ -48,4 +44,5 @@ module.exports = new cmd(execute, {
   aliases: [],
   dirname: __dirname,
   usage: `<ch1llbucks>`,
+  ownerOnly: true
 });

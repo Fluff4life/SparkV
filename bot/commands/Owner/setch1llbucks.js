@@ -3,10 +3,6 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (message.author.id !== process.env.OWNERID) {
-    return await message.replyT(`${bot.config.Emojis.error} | Access denied.`);
-  }
-
   const User = await bot.functions.GetMember(message, args);
 
   if (!User) {
@@ -25,4 +21,5 @@ module.exports = new cmd(execute, {
   aliases: [],
   dirname: __dirname,
   usage: `<user> <ammount>`,
+  ownerOnly: true
 });

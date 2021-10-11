@@ -24,7 +24,7 @@ module.exports = {
         const Selections = [];
 
         const CreatePage = async (bot, interaction, Category) => {
-          if (Category.name === `👑Owner👑` && interaction.user.id !== process.env.OWNERID) {
+          if (Category.name.toLowerCase().includes("owner") && interaction.user.id !== bot.config.ownerID) {
             return;
           }
 
@@ -56,7 +56,7 @@ module.exports = {
         };
 
         const CreateSelection = async (interaction, Category) => {
-          if (Category.name.toLowerCase().includes("owner") && interaction.message.author.id !== process.env.OWNERID) {
+          if (Category.name.toLowerCase().includes("owner") && interaction.message.author.id !== bot.config.ownerID) {
             return;
           }
 
