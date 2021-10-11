@@ -20,5 +20,5 @@ module.exports = new cmd(execute, {
   description: "4K avatar 512x512",
   dirname: __dirname,
   aliases: [],
-  usage: `<user | self>`,
+  usage: `(@member) (optional: -url)`,
 });
