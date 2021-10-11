@@ -5,74 +5,30 @@ const GiveawaysSchema = require("../../database/schemas/giveaways");
 const logger = require("../../modules/logger");
 
 module.exports = async bot => {
-  const giveaways = await GiveawaysSchema.findOne({
-    ID: "giveaways",
-  });
-
-  if (!giveaways) {
-    const giveawayData = new GiveawaysSchema({
-      ID: "giveaways",
-      data: [],
-    });
-
-    await giveawayData.save();
-  }
-
   Levels.setURL(process.env.MONGOOSEURL);
   class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
     async getAllGiveaways() {
-      const allGiveaways = await GiveawaysSchema.findOne({
-        ID: "giveaways",
-      });
-
-      return allGiveaways.data || [];
+      return await GiveawaysSchema.find().lean().exec();
     }
 
-    async saveGiveaway(MessageID, GiveawayData) {
-      const giveawayData = await GiveawaysSchema.findOne({
-        ID: "giveaways",
-      });
-
-      giveawayData.data.push(GiveawayData);
-      giveawayData.markModified("data");
-
-      await giveawayData
-        .save()
-        .catch(err => console.log(`[Giveaway Manager] - Failed to save giveaway to database. ${err}`));
+    async saveGiveaway(messageId, giveawayData) {
+      await GiveawaysSchema.create(giveawayData);
 
       return true;
     }
 
-    async editGiveaway(MessageID, NewGiveawayData) {
-      const giveawayData = await GiveawaysSchema.findOne({
-        ID: "giveaways",
-      });
+    async editGiveaway(messageId, giveawayData) {
+        await GiveawaysSchema.updateOne({
+          messageId
+        }, giveawayData, {
+          omitUndefined: true
+        }).exec();
 
-      const NewGiveawaysArray = giveawayData.data.filter(giveaway => giveaway.messageID !== MessageID);
-
-      NewGiveawaysArray.push(NewGiveawayData);
-      giveawayData.data = NewGiveawaysArray;
-      giveawayData.markModified("data");
-
-      await giveawayData
-        .save()
-        .catch(err => console.log(`[Giveaway Manager] - Failed to edit giveaway and save to database. ${err}`));
-
-      return true;
+        return true;
     }
 
-    async deleteGiveaway(MessageID) {
-      const giveawayData = await GiveawaysSchema.findOne({
-        ID: "giveaways",
-      });
-
-      const NewGiveawaysArray = giveawayData.data.filter(giveaway => giveaway.messageID !== MessageID);
-      giveawayData.data = NewGiveawaysArray;
-
-      giveawayData.markModified("data");
-      await giveawayData
-        .save()
-        .catch(err => console.log(`[Giveaway Manager] - Failed to delete giveaway and save to database. ${err}`));
+    async deleteGiveaway(messageId) {
+      await GiveawaysSchema.deleteOne({ messageId }).exec();
 
       return true;
     }

@@ -4,12 +4,12 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 
 ## 🤵 Administration
 
-| Name               | Description                                                 | Usage                                  | Cooldown  |
-| ------------------ | ----------------------------------------------------------- | -------------------------------------- | --------- |
-| **deletegiveaway** | Delete a giveaway. Requires the permision MANAGE_MESSAGES.  |                                        | 2 seconds |
-| **rerollgiveaway** | Rerolls a giveaway. Requires the permision MANAGE_MESSAGES. | {MessageID}                            | 2 seconds |
-| **setprefix**      | Changes the prefix.                                         |                                        | 2 seconds |
-| **startgiveaway**  | Starts a giveaway. Requires the permision MANAGE_MESSAGES.  | {channel} {duration} {winners} {prize} | 2 seconds |
+| Name               | Description                                                 | Usage       | Cooldown  |
+| ------------------ | ----------------------------------------------------------- | ----------- | --------- |
+| **deletegiveaway** | Delete a giveaway. Requires the permision MANAGE_MESSAGES.  |             | 2 seconds |
+| **rerollgiveaway** | Rerolls a giveaway. Requires the permision MANAGE_MESSAGES. | {MessageID} | 2 seconds |
+| **setprefix**      | Changes the prefix.                                         |             | 2 seconds |
+| **startgiveaway**  | Starts a giveaway. Requires the permision MANAGE_MESSAGES.  |             | 2 seconds |
 ## 🐶 Animals
 
 | Name       | Description                                        | Usage | Cooldown  |

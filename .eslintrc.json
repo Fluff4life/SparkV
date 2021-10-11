@@ -1,6 +1,6 @@
 {
   "extends": ["eslint:recommended"],
-  "plugins": ["import"],
+  "plugins": [],
   "parserOptions": {
     "ecmaVersion": 2021
   },
