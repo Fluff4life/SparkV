@@ -74,27 +74,27 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **youtube**           | YouTube together!                                                                                    |                                                                      | 60 seconds |
 ## 📷 Images
 
-| Name               | Description                     | Usage                | Cooldown  |
-| ------------------ | ------------------------------- | -------------------- | --------- |
-| **affect**         | Yes it does noob                | {optional user}      | 2 seconds |
-| **avatar**         | 4K avatar 512x512               | {user | self}        | 2 seconds |
-| **bed**            | Why do you hate me, brother?    | {optional user}      | 2 seconds |
-| **changemymind**   | Change my mind.                 | {text}               | 2 seconds |
-| **color**          | Hex to color.                   | {hex}                | 2 seconds |
-| **facepalm**       | bruh                            | {optional user}      | 2 seconds |
-| **invert**         | bruh                            | {optional user}      | 2 seconds |
-| **jail**           | Haha get in jail noob           | {optional user}      | 2 seconds |
-| **ohno**           | OH NO HE'S STUPID!              | {text}               | 2 seconds |
-| **opinion**        | lol                             | {text}               | 2 seconds |
-| **rainbow**        | wow bro are you gae?            | {optional user}      | 2 seconds |
-| **rip**            | Rest In Peace.                  | {optional user}      | 2 seconds |
-| **shit**           | Ew!                             | {user | self}        | 2 seconds |
-| **slap**           | SLAP SLAP SLAP!                 | {user | self}        | 2 seconds |
-| **trash**          | wow it trash                    | {user | self}        | 2 seconds |
-| **trigger**        | wow you mad bro                 | {user | self}        | 2 seconds |
-| **wanted**         | Wanted sign.                    | {user | self}        | 2 seconds |
-| **wasted**         | Dang man, that's a life wasted. | {user | self}        | 2 seconds |
-| **youtubecomment** | YouTube comment lol.            | {user | self} {text} | 2 seconds |
+| Name               | Description                     | Usage                      | Cooldown  |
+| ------------------ | ------------------------------- | -------------------------- | --------- |
+| **affect**         | Yes it does noob                | {optional user}            | 2 seconds |
+| **avatar**         | 4K avatar 512x512               | (@member) (optional: -url) | 2 seconds |
+| **bed**            | Why do you hate me, brother?    | {optional user}            | 2 seconds |
+| **changemymind**   | Change my mind.                 | {text}                     | 2 seconds |
+| **color**          | Hex to color.                   | {hex}                      | 2 seconds |
+| **facepalm**       | bruh                            | {optional user}            | 2 seconds |
+| **invert**         | bruh                            | {optional user}            | 2 seconds |
+| **jail**           | Haha get in jail noob           | {optional user}            | 2 seconds |
+| **ohno**           | OH NO HE'S STUPID!              | {text}                     | 2 seconds |
+| **opinion**        | lol                             | {text}                     | 2 seconds |
+| **rainbow**        | wow bro are you gae?            | {optional user}            | 2 seconds |
+| **rip**            | Rest In Peace.                  | {optional user}            | 2 seconds |
+| **shit**           | Ew!                             | {user | self}              | 2 seconds |
+| **slap**           | SLAP SLAP SLAP!                 | {user | self}              | 2 seconds |
+| **trash**          | wow it trash                    | {user | self}              | 2 seconds |
+| **trigger**        | wow you mad bro                 | {user | self}              | 2 seconds |
+| **wanted**         | Wanted sign.                    | {user | self}              | 2 seconds |
+| **wasted**         | Dang man, that's a life wasted. | {user | self}              | 2 seconds |
+| **youtubecomment** | YouTube comment lol.            | {user | self} {text}       | 2 seconds |
 ## 📋 Information
 
 | Name          | Description                                                          | Usage     | Cooldown  |
@@ -152,15 +152,7 @@ SparkV's Command List! SparkV contains more than **123 commands**!
 | **skip**    | Skip to the next song in the queue.                                                                                             |                                            | 60 seconds |
 | **stop**    | Disconnects me from the voice channel and removes all songs in queue.                                                           |                                            | 60 seconds |
 | **volume**  | Sets the volume of the currently playing track.                                                                                 |                                            | 60 seconds |
-## 👑 Owner
-
-| Name              | Description                    | Usage            | Cooldown  |
-| ----------------- | ------------------------------ | ---------------- | --------- |
-| **eval**          | This is an owner only command. | {user}           | 2 seconds |
-| **restart**       | This is an owner only command. | {ch1llbucks}     | 2 seconds |
-| **setch1llbucks** | Set someone's Ch1llBucks!      | {user} {ammount} | 2 seconds |
-| **setxp**         | Set XP.                        | {user} {ammount} | 2 seconds |
-## <:roblox:819679702490808340> Roblox
+## Roblox
 
 | Name            | Description                                                       | Usage           | Cooldown  |
 | --------------- | ----------------------------------------------------------------- | --------------- | --------- |

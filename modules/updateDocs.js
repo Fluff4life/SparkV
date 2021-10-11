@@ -35,6 +35,10 @@ module.exports = {
         }
       })
       .forEach(cat => {
+        if (cat.name.toLowerCase().includes("owner")) {
+          return;
+        }
+
         const info = [];
         const cmds = bot.commands.filter(cmd => {
           if (cmd) {
@@ -42,7 +46,11 @@ module.exports = {
           }
         });
 
-        baseText += `## ${cat.emoji} ${cat.name}\n\n`;
+        if (cat.emoji.includes("<")) {
+          baseText += `## ${cat.name}\n\n`;
+        } else {
+          baseText += `## ${cat.emoji} ${cat.name}\n\n`;
+        }
 
         info.push(["Name", "Description", "Usage", "Cooldown"]);
 
