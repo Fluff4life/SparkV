@@ -7,7 +7,7 @@ async function execute(bot, message, args, command, data) {
   const Selections = [];
 
   const CreateSelection = async (message, Category) => {
-    if (Category.name.startsWith("👑 Ow") && message.author.id !== process.env.OWNERID) {
+    if (Category.name.toLowerCase().includes("owner") && message.author.id !== process.env.OWNERID) {
       return;
     }
 

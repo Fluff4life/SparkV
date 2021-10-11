@@ -56,7 +56,7 @@ module.exports = {
         };
 
         const CreateSelection = async (interaction, Category) => {
-          if (Category.name.startsWith("👑 Ow") && interaction.message.author.id !== process.env.OWNERID) {
+          if (Category.name.toLowerCase().includes("owner") && interaction.message.author.id !== process.env.OWNERID) {
             return;
           }
 
