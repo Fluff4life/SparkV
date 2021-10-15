@@ -3,8 +3,7 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/modCommand");
 
 async function execute(bot, message, args, command, data) {
-  const UserToKick =
-    message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[0]) || `@<${args[0]}>`;
+  const UserToKick = bot.functions.GetMember(message, args);
   const ReasonForKick = args.join(` `).slice(22) || `No reason provided.`;
 
   if (!args[0]) {
