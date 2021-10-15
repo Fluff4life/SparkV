@@ -12,7 +12,7 @@ module.exports = class ModCommand {
     if (this.settings.type === "together") {
       if (!message.member.voice.channel) {
         return message
-          .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
+          .replyT(`${bot.config.emojis.error} | You must be in a __**voice channel**__ to use this command!`);
       }
 
       bot.discordTogether

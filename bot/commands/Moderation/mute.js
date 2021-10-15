@@ -9,22 +9,22 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .replyT(`${bot.config.Emojis.error} | Please mention someone to mute!`);
+      .replyT(`${bot.config.emojis.error} | Please mention someone to mute!`);
   }
 
   if (!User) {
     return message
-      .replyT(`${bot.config.Emojis.error} | I cannot find that member!`);
+      .replyT(`${bot.config.emojis.error} | I cannot find that member!`);
   }
 
   if (User.id === message.author.id) {
     return message
-      .replyT(`${bot.config.Emojis.error} | You cannot mute yourself.`);
+      .replyT(`${bot.config.emojis.error} | You cannot mute yourself.`);
   }
 
   if (!User.kickable) {
     return message
-      .replyT(`${bot.config.Emojis.error} | Uh oh... I can't mute this user!`);
+      .replyT(`${bot.config.emojis.error} | Uh oh... I can't mute this user!`);
   }
 
   if (User.user.bot) {
@@ -73,7 +73,7 @@ async function execute(bot, message, args, command, data) {
   const Emoji = await bot.PromptMessage(
     VerificationMessage,
     message.author,
-    [`✅`, `${bot.config.Emojis.error} | `],
+    [`✅`, `${bot.config.emojis.error} | `],
     60,
   );
 
@@ -86,7 +86,7 @@ async function execute(bot, message, args, command, data) {
 
     const MuteEmbend = new Discord.MessageEmbed()
       .setTitle(`Mute Command`)
-      .setDescription(`${bot.config.Emojis.success} | Successfully Muted <@${User.id}>(${User.id})!`)
+      .setDescription(`${bot.config.emojis.success} | Successfully Muted <@${User.id}>(${User.id})!`)
       .setThumbnail(User.avatar)
       .addField(`Moderator/Admin: `, `${message.author.tag}`)
       .addField(`Reason: `, Reason)
@@ -97,10 +97,10 @@ async function execute(bot, message, args, command, data) {
     await message.replyT({
       embeds: [MuteEmbend],
     });
-  } else if (emoji === `${bot.config.Emojis.error} | `) {
+  } else if (emoji === `${bot.config.emojis.error} | `) {
     message.delete().catch(err => {});
 
-    await message.replyT(`${bot.config.Emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
+    await message.replyT(`${bot.config.emojis.error} | Mute canceled.`).then(m => m.delete({ timeout: 10000 }));
   }
 }
 

@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
   if (!args) {
-    return await message.replyT(`${bot.config.Emojis.error} | Please specify a location!`);
+    return await message.replyT(`${bot.config.emojis.error} | Please specify a location!`);
   }
 
   args = args.join(` `);
@@ -21,7 +21,7 @@ async function execute(bot, message, args, command, data) {
       }
 
       if (result === undefined || result.length === 0) {
-        return await message.replyT(`${bot.config.Emojis.error} | Invalid location!`);
+        return await message.replyT(`${bot.config.emojis.error} | Invalid location!`);
       }
 
       const Current = result[0].current;

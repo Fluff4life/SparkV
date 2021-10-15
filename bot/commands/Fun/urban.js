@@ -6,7 +6,7 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   if (!args) {
     const ErrorEmbed = new Discord.MessageEmbed()
-      .setTitle(`${bot.config.Emojis.error} | Invalid command usage!`)
+      .setTitle(`${bot.config.emojis.error} | Invalid command usage!`)
       .setDescription(`Please provide a word to urban!`)
       .setFooter(`Try ^Urban [Word] • ${bot.config.embed.footer}`);
 
@@ -19,7 +19,7 @@ async function execute(bot, message, args, command, data) {
   console.log(args);
 
   const UrbanEmbed = new Discord.MessageEmbed()
-    .setTitle(`${bot.config.Emojis.success} | Definition of ${args}`)
+    .setTitle(`${bot.config.emojis.success} | Definition of ${args}`)
     .setDescription(args.definition)
     .setThumbnail(`https://i.imgur.com/VFXr0ID.jpg`)
     .addField(`Example`, args.example)

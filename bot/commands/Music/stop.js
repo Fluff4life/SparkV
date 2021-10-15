@@ -5,12 +5,12 @@ const cmd = require("../../templates/musicCommand");
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
     return message
-      .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
+      .replyT(`${bot.config.emojis.error} | You must be in a __**voice channel**__ to use this command!`);
   }
 
   if (!bot.distube.isPlaying(message)) {
     return message
-      .replyT(`${bot.config.Emojis.error} | A song must be playing to use this command!`);
+      .replyT(`${bot.config.emojis.error} | A song must be playing to use this command!`);
   }
 
   let queue = await bot.distube.getQueue(message);
@@ -20,7 +20,7 @@ async function execute(bot, message, args, command, data) {
 
     await message.replyT({
       embed: {
-        title: `${bot.config.Emojis.error} | Stopped Song`,
+        title: `${bot.config.emojis.error} | Stopped Song`,
         description: `Stopped currently playing song.`,
         color: `#0099ff`,
 

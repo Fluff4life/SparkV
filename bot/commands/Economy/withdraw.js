@@ -5,13 +5,13 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
   if (!args) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.`,
+      `${bot.config.emojis.error} | You need to tell me how much you want me to withdraw. You can say all if you want all of your Ch1ll Bucks from the bank into your wallet.`,
     );
   }
 
   if (args[0].toLowerCase() === `all`) {
     if (data.user.money.bank === 0 || data.user.money.bank === null) {
-      return await message.replyT(`${bot.config.Emojis.error} | You have no data.user.money.balance in your bank!`);
+      return await message.replyT(`${bot.config.emojis.error} | You have no data.user.money.balance in your bank!`);
     }
 
     data.user.money.balance += data.user.money.bank;
@@ -22,23 +22,23 @@ async function execute(bot, message, args, command, data) {
     await data.user.save();
 
     await message.replyT(
-      `${bot.config.Emojis.success} | You just withdrawed ❄${bot.functions.formatNumber(data.user.money.bank)} from your bank!`,
+      `${bot.config.emojis.success} | You just withdrawed ❄${bot.functions.formatNumber(data.user.money.bank)} from your bank!`,
     );
   } else {
     if (!args[0]) {
-      return await message.replyT(`${bot.config.Emojis.error} | lol you can't withdraw nothing.`);
+      return await message.replyT(`${bot.config.emojis.error} | lol you can't withdraw nothing.`);
     }
 
     if (isNaN(args[0])) {
-      return await message.replyT(`${bot.config.Emojis.error} | Bruh please say a number.`);
+      return await message.replyT(`${bot.config.emojis.error} | Bruh please say a number.`);
     }
 
     if (message.content.includes(`-`)) {
-      return await message.replyT(`${bot.config.Emojis.error} | You can't withdraw negitive data.user.money.balance lol.`);
+      return await message.replyT(`${bot.config.emojis.error} | You can't withdraw negitive data.user.money.balance lol.`);
     }
 
     if (data.user.money.bank < args[0]) {
-      return await message.replyT(`${bot.config.Emojis.error} | You don't have that much data.user.money.balance in your bank!`);
+      return await message.replyT(`${bot.config.emojis.error} | You don't have that much data.user.money.balance in your bank!`);
     }
 
     data.user.money.balance += args[0];
@@ -49,7 +49,7 @@ async function execute(bot, message, args, command, data) {
     await data.user.save();
 
     await message.replyT(
-      `${bot.config.Emojis.success} | Withdrawed ❄${bot.functions.formatNumber(args[0])} from your bank!`,
+      `${bot.config.emojis.success} | Withdrawed ❄${bot.functions.formatNumber(args[0])} from your bank!`,
     );
   }
 }

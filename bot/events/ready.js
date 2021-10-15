@@ -36,7 +36,7 @@ module.exports = {
     }, 60 * 1000);
 
     // Bot Lists //
-    if (bot.config.debug.enabled === false) {
+    if (bot.config.debug === false) {
       const poster = new dbots.Poster({
         client: bot,
         apiKeys: {

@@ -6,12 +6,12 @@ async function execute(bot, message, args, command, data) {
   const queue = bot.distube.getQueue(message);
 
   if (!queue) {
-    return await message.replyT(`${bot.config.Emojis.error} | The queue is empty! Try adding some songs.`);
+    return await message.replyT(`${bot.config.emojis.error} | The queue is empty! Try adding some songs.`);
   }
 
   await message.replyT({
     embed: {
-      title: `${bot.config.Emojis.music} | Queue for ${message.guild.name}`,
+      title: `${bot.config.emojis.music} | Queue for ${message.guild.name}`,
       description: queue.songs
         .map((song, id) => `**${id + 1}**. ${song.name} - ${song.formattedDuration}`)
         .slice(0, 10)

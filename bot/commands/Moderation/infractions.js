@@ -6,7 +6,7 @@ async function execute(bot, message, args, command, data) {
   const User = message.mentions.members.first() || message.author;
 
   if (!User) {
-    return await message.replyT(`${bot.config.Emojis.error} | Please mention someone to view their warnings!`);
+    return await message.replyT(`${bot.config.emojis.error} | Please mention someone to view their warnings!`);
   }
 
   if (!data.member.infractionsCount === 0) {

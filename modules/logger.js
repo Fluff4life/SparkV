@@ -11,7 +11,7 @@ module.exports = async (content, type = "log") => {
       scope.setLevel(Severity.Warning);
     });
 
-    if (config.debug.enabled === false) {
+    if (config.debug === false) {
       try {
         await captureException(content);
       } catch (err) {
@@ -25,7 +25,7 @@ module.exports = async (content, type = "log") => {
       scope.setLevel(Severity.Error);
     });
 
-    if (config.debug.enabled === false) {
+    if (config.debug === false) {
       try {
         await captureException(content);
       } catch (err) {

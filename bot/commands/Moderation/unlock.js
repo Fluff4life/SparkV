@@ -11,7 +11,7 @@ async function execute(bot, message, args, command, data) {
     });
   } catch (err) {}
 
-  await message.replyT(`${bot.config.Emojis.success} | Channel is now unlocked.`);
+  await message.replyT(`${bot.config.emojis.success} | Channel is now unlocked.`);
 }
 
 module.exports = new cmd(execute, {

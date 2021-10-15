@@ -5,19 +5,19 @@ const cmd = require("../../templates/musicCommand");
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
     return message
-      .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
+      .replyT(`${bot.config.emojis.error} | You must be in a __**voice channel**__ to use this command!`);
   }
 
   let queue = await bot.distube.getQueue(message);
 
   if (!queue) {
-    return await message.replyT(`${bot.config.Emojis.error} | No songs was ever/still is paused.`);
+    return await message.replyT(`${bot.config.emojis.error} | No songs was ever/still is paused.`);
   }
 
   bot.distube.resume(message).then(async () => {
     await message.replyT({
       embed: {
-        title: `${bot.config.Emojis.music} | Resumed`,
+        title: `${bot.config.emojis.music} | Resumed`,
         description: `Resumed song`,
         color: `#0099ff`,
       },

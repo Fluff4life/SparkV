@@ -9,7 +9,7 @@ const LyrcisFinder = require(`lyrics-finder`);
 async function execute(bot, message, args, command, data) {
   if (!args) {
     return message
-      .replyT(`${bot.config.Emojis.error} | Please supply the title of a song to search for.`);
+      .replyT(`${bot.config.emojis.error} | Please supply the title of a song to search for.`);
   }
 
   args = args.join(" ");
@@ -17,7 +17,7 @@ async function execute(bot, message, args, command, data) {
   const Lyrics = LyrcisFinder(args);
 
   if (!Lyrics) {
-    return await message.replyT(`${bot.config.Emojis.error} | I couldn't find the lyrics for **${args}**!`);
+    return await message.replyT(`${bot.config.emojis.error} | I couldn't find the lyrics for **${args}**!`);
   }
 
   if (Lyrics.lyrics.length <= 2000) {

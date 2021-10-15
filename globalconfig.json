@@ -7,20 +7,20 @@
     "id": 763803059876397056,
     "invite": "https://discord.gg/PPtzT8Mu3h"
   },
-  "Sharding": {
-    "ShardingEnabled": false,
-    "TotalShards": "auto"
+  "sharding": {
+    "shardingEnabled": false,
+    "totalShards": "auto"
   },
   "embed": {
     "color": "BLUE",
     "footer": "^Donate | ^Invite"
   },
-  "Emojis": {
+  "emojis": {
     "success": "<a:Check:819934065025220668>",
     "error": "<a:Cross:819934065314234418>",
     "music": "<a:PepeMusic:819933524525449256>"
   },
-  "Responses": {
+  "responses": {
     "InvalidArguments": "Uh oh! {user}, it looks like you didn't use this command's proper arguments. Here's an example to help you out: `{prefix}{command}{arguments}`!",
     "LevelUpMessage": "⚡ Congrats {author}, you're now at level **{level}**!",
     "AFKMessage": "Hey dude, **{userMentioned}** is currently AFK. Their reason: {reason}",
@@ -31,9 +31,5 @@
       "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
     }
   },
-  "debug": {
-    "enabled": false,
-    "BotEnabled": true,
-    "WebsiteEnabled": true
-  }
+  "debug": false
 }

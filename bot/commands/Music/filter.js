@@ -5,7 +5,7 @@ const cmd = require("../../templates/musicCommand");
 async function execute(bot, message, args, command, data) {
   if (!bot.distube.isPlaying(message)) {
     return message
-      .replyT(`${bot.config.Emojis.error} | A song must be playing to use this command!`);
+      .replyT(`${bot.config.emojis.error} | A song must be playing to use this command!`);
   }
 
   const Queue = bot.distube.getQueue(message);
@@ -13,13 +13,13 @@ async function execute(bot, message, args, command, data) {
   if (args[0].toLowerCase() === "off" && Queue.filter) {
     bot.distube
       .setFilter(message, Queue.filter)
-      .then(async () => await message.replyT(`${bot.config.Emojis.error} | Okay, I turned off the filter.`));
+      .then(async () => await message.replyT(`${bot.config.emojis.error} | Okay, I turned off the filter.`));
   } else if (Object.keys(bot.distube.filters).includes(args[0])) {
     bot.distube
       .setFilter(message, args[0])
-      .then(async () => await message.replyT(`${bot.config.Emojis.music} | Okay, I turned on filter ${args[0]}.`));
+      .then(async () => await message.replyT(`${bot.config.emojis.music} | Okay, I turned on filter ${args[0]}.`));
   } else {
-    return await message.replyT(`${bot.config.Emojis.error} | That's not a valid filter!`);
+    return await message.replyT(`${bot.config.emojis.error} | That's not a valid filter!`);
   }
 }
 

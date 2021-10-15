@@ -67,16 +67,16 @@ async function execute(bot, message, args, command, data) {
 
   if (!Opponent) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`,
+      `${bot.config.emojis.error} | This command doesn't support API yet. Please mention someone to challenge.`,
     );
   }
 
   if (Opponent.user.bot) {
-    return await message.replyT(`${bot.config.Emojis.error} | That user is a bot lol.`);
+    return await message.replyT(`${bot.config.emojis.error} | That user is a bot lol.`);
   }
 
   if (Opponent.user.id === message.author.id) {
-    return await message.replyT(`${bot.config.Emojis.error} | You cannot play against yourself lol.`);
+    return await message.replyT(`${bot.config.emojis.error} | You cannot play against yourself lol.`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()

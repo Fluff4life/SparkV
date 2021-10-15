@@ -4,7 +4,7 @@ const cmd = require("../../templates/command");
 
 module.exports = new cmd(
   async (bot, message) => {
-    await message.replyT(`${bot.config.Emojis.success} | Here's my website! https://${process.env.BASEURL}/bot)`);
+    await message.replyT(`${bot.config.emojis.success} | Here's my website! https://${process.env.BASEURL}/bot)`);
   },
   {
     description: "I'll send my website!",

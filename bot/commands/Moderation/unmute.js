@@ -9,34 +9,34 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .replyT(`${bot.config.Emojis.error} | Please mention someone to mute!`);
+      .replyT(`${bot.config.emojis.error} | Please mention someone to mute!`);
   }
 
   if (!User) {
     return message
-      .replyT(`${bot.config.Emojis.error} | I cannot find that member!`);
+      .replyT(`${bot.config.emojis.error} | I cannot find that member!`);
   }
 
   if (User.id === message.author.id) {
     return message
-      .replyT(`${bot.config.Emojis.error} | You cannot unmute yourself.`);
+      .replyT(`${bot.config.emojis.error} | You cannot unmute yourself.`);
   }
 
   if (!User.kickable) {
     return message
-      .replyT(`${bot.config.Emojis.error} | Uh oh... I can't unmute this user!`);
+      .replyT(`${bot.config.emojis.error} | Uh oh... I can't unmute this user!`);
   }
 
   let Role = message.guild.roles.cache.find(role => role.name.toLowerCase().includes(`muted`));
 
   if (!Role) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | I couldn't find the muted role! Please make sure the role is called, \`Muted\`.`,
+      `${bot.config.emojis.error} | I couldn't find the muted role! Please make sure the role is called, \`Muted\`.`,
     );
   }
 
   if (User.roles.cache.has(Role)) {
-    return await message.replyT(`${bot.config.Emojis.error} | This user isn't muted!`);
+    return await message.replyT(`${bot.config.emojis.error} | This user isn't muted!`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -48,21 +48,21 @@ async function execute(bot, message, args, command, data) {
   const Emoji = await bot.PromptMessage(
     VerificationMessage,
     message.author,
-    [bot.config.Emojis.success, bot.config.Emojis.error],
+    [bot.config.emojis.success, bot.config.emojis.error],
     60,
   );
 
-  if (Emoji === bot.config.Emojis.success) {
+  if (Emoji === bot.config.emojis.success) {
     // Yes
     message.delete().catch(err => {});
 
     User.roles.remove(Role);
     User.send(
-      `${bot.config.Emojis.success} | You have been unmuted in ${message.guild.name}. Reason: ${Reason}.`,
+      `${bot.config.emojis.success} | You have been unmuted in ${message.guild.name}. Reason: ${Reason}.`,
     ).catch(err => {});
 
     const MuteEmbend = new Discord.MessageEmbed()
-      .setTitle(`${bot.config.Emojis.success} | Unmute Command`)
+      .setTitle(`${bot.config.emojis.success} | Unmute Command`)
       .setDescription(`Successfully unmuted ${User}(${User.id})`)
       .setThumbnail(User.avatar)
       .addField(`Moderator/Admin: `, `${message.author.tag}`)
@@ -74,10 +74,10 @@ async function execute(bot, message, args, command, data) {
     await message.replyT({
       embeds: [MuteEmbend],
     });
-  } else if (emoji === bot.config.Emojis.error) {
+  } else if (emoji === bot.config.emojis.error) {
     message.delete().catch(err => {});
 
-    await message.replyT(`${bot.config.Emojis.error} | Unmute canceled.`).then(m => m.delete({ timeout: 10000 }));
+    await message.replyT(`${bot.config.emojis.error} | Unmute canceled.`).then(m => m.delete({ timeout: 10000 }));
   }
 }
 

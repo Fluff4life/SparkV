@@ -5,7 +5,7 @@ const cmd = require("../../templates/musicCommand");
 async function execute(bot, message, args, command, data) {
   if (!message.member.voice.channel) {
     return message
-      .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
+      .replyT(`${bot.config.emojis.error} | You must be in a __**voice channel**__ to use this command!`);
   }
 
   let queue = await bot.distube.getQueue(message);
@@ -15,7 +15,7 @@ async function execute(bot, message, args, command, data) {
 
     await message.replyT({
       embed: {
-        title: `${bot.config.Emojis.music} | Skipped Song`,
+        title: `${bot.config.emojis.music} | Skipped Song`,
         description: `Skipped currently playing song.`,
         color: `#0099ff`,
 

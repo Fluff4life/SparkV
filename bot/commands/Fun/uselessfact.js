@@ -8,7 +8,7 @@ async function execute(bot, message) {
     .then(res => res.json())
     .then(async json => {
       const FunFactEmbed = new Discord.MessageEmbed()
-        .setTitle(`${bot.config.Emojis.success} | Did you know?`)
+        .setTitle(`${bot.config.emojis.success} | Did you know?`)
         .setDescription(json.text)
         .setFooter(`Fun facts powered by https://uselessfacts.jsph.pl! • ${bot.config.embed.footer}`)
         .setColor(bot.config.embed.color)

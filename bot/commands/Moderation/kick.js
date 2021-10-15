@@ -9,22 +9,22 @@ async function execute(bot, message, args, command, data) {
 
   if (!args[0]) {
     return message
-      .replyT(`${bot.config.Emojis.error} | Please mention someone to kick!`);
+      .replyT(`${bot.config.emojis.error} | Please mention someone to kick!`);
   }
 
   if (!UserToKick) {
     return message
-      .replyT(`${bot.config.Emojis.error} | I cannot find that member!`);
+      .replyT(`${bot.config.emojis.error} | I cannot find that member!`);
   }
 
   if (UserToKick.id === message.author.id) {
     return message
-      .replyT(`${bot.config.Emojis.error} | You cannot kick yourself.`);
+      .replyT(`${bot.config.emojis.error} | You cannot kick yourself.`);
   }
 
   if (!UserToKick.kickable) {
     return message
-      .replyT(`${bot.config.Emojis.error} | Uh oh... I can't kick this user!`);
+      .replyT(`${bot.config.emojis.error} | Uh oh... I can't kick this user!`);
   }
 
   const VerificationEmbed = new Discord.MessageEmbed()
@@ -39,25 +39,25 @@ async function execute(bot, message, args, command, data) {
   const Emoji = await bot.PromptMessage(
     VerificationMessage,
     message.author,
-    [bot.config.Emojis.success, bot.config.Emojis.error],
+    [bot.config.emojis.success, bot.config.emojis.error],
     60,
   );
 
-  if (Emoji === bot.config.Emojis.success) {
+  if (Emoji === bot.config.emojis.success) {
     // Yes
     message.delete().catch(err => {});
 
-    UserToKick.kick().catch(async err => await message.replyT(`${bot.config.Emojis.error} | Failed to kick. Error: ${err}`));
+    UserToKick.kick().catch(async err => await message.replyT(`${bot.config.emojis.error} | Failed to kick. Error: ${err}`));
 
     try {
       UserToKick.send(
-        `${bot.config.Emojis.error} | You have been kicked from ${message.guild.name}. Reason: ${ReasonForKick}.`,
+        `${bot.config.emojis.error} | You have been kicked from ${message.guild.name}. Reason: ${ReasonForKick}.`,
       );
     } catch (err) {}
 
     const KickEmbend = new Discord.MessageEmbed()
       .setTitle(`Kick Command`)
-      .setDescription(`${bot.config.Emojis.success} | Successfully kicked <@${UserToKick.id}>(${UserToKick.id})!`)
+      .setDescription(`${bot.config.emojis.success} | Successfully kicked <@${UserToKick.id}>(${UserToKick.id})!`)
       .setThumbnail(UserToKick.avatar)
       .addField(`Moderator/Admin: `, `${message.author.tag}`)
       .addField(`Reason: `, ReasonForKick)
@@ -66,10 +66,10 @@ async function execute(bot, message, args, command, data) {
       .setTimestamp();
 
     await message.replyT(KickEmbend);
-  } else if (emoji === bot.config.Emojis.error) {
+  } else if (emoji === bot.config.emojis.error) {
     message.delete().catch(err => {});
 
-    await message.replyT(`${bot.config.Emojis.error} | Kick canceled.`).then(m => m.delete({ timeout: 10000 }));
+    await message.replyT(`${bot.config.emojis.error} | Kick canceled.`).then(m => m.delete({ timeout: 10000 }));
   }
 }
 

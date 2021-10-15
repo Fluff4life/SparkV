@@ -11,7 +11,7 @@ module.exports = class ModCommand {
   async run(bot, message, args, command, data) {
     if (!message.member.voice.channel) {
       return message
-        .replyT(`${bot.config.Emojis.error} | You must be in a __**voice channel**__ to use this command!`);
+        .replyT(`${bot.config.emojis.error} | You must be in a __**voice channel**__ to use this command!`);
     }
 
     const perms = message.channel.permissionsFor(message.guild.me);

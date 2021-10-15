@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command) {
   if (!args) {
-    return await message.replyT(`${bot.config.Emojis.error} | Next time, respond with the ID of the game lmao.`);
+    return await message.replyT(`${bot.config.emojis.error} | Next time, respond with the ID of the game lmao.`);
   }
 
   request(`https://roblox-embed-discord-jpcnmriva99q.runkit.sh/${args}.json`)
@@ -27,7 +27,7 @@ async function execute(bot, message, args, command) {
         embeds: [Embed],
       });
     })
-    .catch(async err => await message.replyT(`${bot.config.Emojis.error} | An error occured!`));
+    .catch(async err => await message.replyT(`${bot.config.emojis.error} | An error occured!`));
 }
 
 module.exports = new cmd(execute, {

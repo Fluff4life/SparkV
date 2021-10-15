@@ -8,21 +8,21 @@ async function execute(bot, message, args, command, data) {
     .first();
 
   if (!Channel) {
-    return await message.replyT(`${bot.config.Emojis.error} | You cannot set slowmode in an announcements channel.`);
+    return await message.replyT(`${bot.config.emojis.error} | You cannot set slowmode in an announcements channel.`);
   }
 
   if (isNaN(args[0])) {
-    return await message.replyT(`${bot.config.Emojis.error} | That's not a nunber.`);
+    return await message.replyT(`${bot.config.emojis.error} | That's not a nunber.`);
   }
 
   if (args[0] > 21600) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | That's too high of a number! This is due to discord limiting slowmode up to 6 hours.`,
+      `${bot.config.emojis.error} | That's too high of a number! This is due to discord limiting slowmode up to 6 hours.`,
     );
   }
 
   message.channel.setRateLimitPerUser(args[0]);
-  await message.replyT(`${bot.config.Emojis.success} | Slowmode is now ${args[0]} seconds.`);
+  await message.replyT(`${bot.config.emojis.success} | Slowmode is now ${args[0]} seconds.`);
 }
 
 module.exports = new cmd(execute, {

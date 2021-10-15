@@ -11,13 +11,6 @@ const path = require("path");
 const Statcord = require("statcord.js");
 const { Collection, Intents, Permissions, Options } = require("discord.js");
 
-// Create Bot //
-console.log(require("chalk").blue("   ____ _     _ _ _ ____  _           "));
-console.log(require("chalk").blue("  / ___| |__ / | | | __ )| | _____  __"));
-console.log(require("chalk").blue(" | |   | '_ | | | |  _ | |/ _  / /"));
-console.log(require("chalk").blue(" | |___| | | | | | | |_) | | (_) >  < "));
-console.log(require("chalk").blue("  ____|_| |_|_|_|_|____/|_|___/_/_ "));
-
 const Client = require("./structures/client");
 const SparkV = new Client({
   intents: [
@@ -51,7 +44,7 @@ async function Start() {
 
   await SparkV.LoadModules(
     {
-      sharding: false,
+      sharding: process.execArgv.includes("--sharding"),
     },
     process.env.MainDir,
   );

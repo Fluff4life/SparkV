@@ -5,7 +5,7 @@ const cmd = require("../../templates/command");
 module.exports = new cmd(
   async (bot, message) => {
     await message.replyT(
-      `${bot.config.Emojis.success} | If you want to support SparkV's developement, go to **https://sparkv.tk/donate**. Thank you!`,
+      `${bot.config.emojis.success} | If you want to support SparkV's developement, go to **https://sparkv.tk/donate**. Thank you!`,
     );
   },
   {

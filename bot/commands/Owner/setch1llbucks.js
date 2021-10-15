@@ -13,7 +13,7 @@ async function execute(bot, message, args, command, data) {
   data.user.markModified("money.balance");
   await data.user.save();
 
-  await message.replyT(`${bot.config.Emojis.success} | Success!`);
+  await message.replyT(`${bot.config.emojis.success} | Success!`);
 }
 
 module.exports = new cmd(execute, {

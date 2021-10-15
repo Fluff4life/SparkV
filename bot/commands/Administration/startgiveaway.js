@@ -51,7 +51,7 @@ const wcFilter = async m => {
 
   if (m.content) {
     if (isNaN(m.content) || parseInt(m.content) < 1) {
-      await message.replyT(`${bot.config.Emojis.error} | Please provide a valid __number__ of winners (The number should also be higher than 0). Try again.`);
+      await message.replyT(`${bot.config.emojis.error} | Please provide a valid __number__ of winners (The number should also be higher than 0). Try again.`);
 
       return false;
     }
@@ -133,7 +133,7 @@ async function execute(bot, message, args, command, data) {
       dropMessage: `🎉 Be the first to react with 🎉 to enter! 🎉`,
       inviteToParticipate: `🎉 React to enter! 🎉`,
       winMessage: `⚡ Congrats, {winners}! You won just **{this.prize}**!\n{this.messageURL} ⚡`,
-      noWinner: `${bot.config.Emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
+      noWinner: `${bot.config.emojis.error} |  Couldn't determine a winner. Please do ^Reroll.`,
       hostedBy: `❔ Giveaway hosted by {this.hostedBy}!`,
       embedFooter: `SparkV - Making your Server Better`,
       winners: `${this.winnerCount} winner(s)`,
@@ -148,7 +148,7 @@ async function execute(bot, message, args, command, data) {
     },
   });
 
-  await message.replyT(`${bot.config.Emojis.success} | Giveaway starting in <#${channel.id}>!`);
+  await message.replyT(`${bot.config.emojis.success} | Giveaway starting in <#${channel.id}>!`);
 }
 
 module.exports = new cmd(execute, {

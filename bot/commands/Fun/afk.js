@@ -12,7 +12,7 @@ async function execute(bot, message, args, command, data) {
     data.user.markModified("afk");
     await data.user.save();
 
-    await message.replyT(bot.config.Responses.AFKWelcomeMessage);
+    await message.replyT(bot.config.responses.AFKWelcomeMessage);
   } else {
     data.user.afk = reason;
     data.user.markModified("afk");

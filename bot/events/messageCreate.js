@@ -71,7 +71,7 @@ module.exports = {
         data.user.markModified("afk");
 
         await data.user.save();
-        await message.replyT(bot.config.Responses.AFKWelcomeMessage);
+        await message.replyT(bot.config.responses.AFKWelcomeMessage);
       }
 
       // Check mentions for AFK
@@ -80,7 +80,7 @@ module.exports = {
 
         if (mentionedUserData.afk) {
           await message.replyT(
-            bot.config.Responses.AFKMessage.toString()
+            bot.config.responses.AFKMessage.toString()
               .replaceAll(`{userMentioned}`, u.username)
               .replaceAll(`{reason}`, mentionedUserData.afk || "Reason data not found!"),
           );
@@ -193,7 +193,7 @@ module.exports = {
             message.delete().catch(err => {});
           } catch (err) {
             message
-              .replyT(bot.config.Responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author));
+              .replyT(bot.config.responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author));
           }
 
           message.replyT(
@@ -368,7 +368,7 @@ module.exports = {
           console.log(User.level);
 
           await message.replyT(
-            bot.config.Responses.LevelUpMessage.toString()
+            bot.config.responses.LevelUpMessage.toString()
               .replaceAll(`{author}`, message.author)
               .replaceAll(`{level}`, bot.functions.formatNumber(User.level)),
           );
@@ -379,12 +379,12 @@ module.exports = {
     if (process.env.USERBLACKLIST.includes(message.author.id)) {
       try {
         return message.author
-          .send(`${bot.config.Emojis.Error} | Uh oh! Looks like you're banned from using SparkV.`)
+          .send(`${bot.config.emojis.Error} | Uh oh! Looks like you're banned from using SparkV.`)
           .then(() => {
             message.react("❌");
           });
       } catch {
-        message.react(bot.config.Emojis.Error);
+        message.react(bot.config.emojis.Error);
       }
     }
 
@@ -416,7 +416,7 @@ module.exports = {
     }
 
     if (commandfile.settings.enabled === false) {
-      return await message.replyT(`${bot.config.Emojis.error} | This command is currently disabled! Please try again later.`);
+      return await message.replyT(`${bot.config.emojis.error} | This command is currently disabled! Please try again later.`);
     }
 
     if (commandfile.settings.guildOnly && !message.guild) {
@@ -438,7 +438,7 @@ module.exports = {
 
     if (time > Date.now()) {
       const cooldownEmbed = new Discord.MessageEmbed()
-        .setTitle(`${bot.config.Emojis.error} | Whoa there ${message.author.username}!`)
+        .setTitle(`${bot.config.emojis.error} | Whoa there ${message.author.username}!`)
         .setDescription(`Please wait ${Math.ceil((time - Date.now()) / 1000)} more seconds to use that command again.`)
         .setThumbnail(message.author.avatarURL)
         .setColor(`#0099ff`)
@@ -475,7 +475,7 @@ module.exports = {
       });
 
       await message.replyT(
-        `${bot.config.Emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,
+        `${bot.config.emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,
       );
     }
   },

@@ -7,11 +7,11 @@ async function execute(bot, message, args, command, data) {
   const Reason = args.join(` `).slice(22) || `No reason provided.`;
 
   if (!User) {
-    return await message.replyT(`${bot.config.Emojis.error} | Please mention someone to warn!`);
+    return await message.replyT(`${bot.config.emojis.error} | Please mention someone to warn!`);
   }
 
   if (User.id === message.author.id) {
-    return await message.replyT(`${bot.config.Emojis.error} | You cannot warn yourself lmfao.`);
+    return await message.replyT(`${bot.config.emojis.error} | You cannot warn yourself lmfao.`);
   }
 
   const memberData = bot.database.getMember(message.author.id, message.guild.id);
@@ -20,7 +20,7 @@ async function execute(bot, message, args, command, data) {
 
   if (message.guild.ownerId !== message.author.id && !ModerationPosition > MemberPosition) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | Uh oh... I can\`t warn this user! This user is either the owner, or is a higher rank than SparkV.`,
+      `${bot.config.emojis.error} | Uh oh... I can\`t warn this user! This user is either the owner, or is a higher rank than SparkV.`,
     );
   }
 

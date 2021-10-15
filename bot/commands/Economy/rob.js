@@ -7,34 +7,34 @@ async function execute(bot, message, args, command, data) {
   const User = bot.users.cache.get(args[0]);
 
   if (!User) {
-    return await message.replyT(`${bot.config.Emojis.error} | Please say a person to rob.`);
+    return await message.replyT(`${bot.config.emojis.error} | Please say a person to rob.`);
   }
 
   let UserBalance = await bot.database.fetchUser(User.id);
 
   if (data.user.money.balance < 500) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`,
+      `${bot.config.emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`,
     );
   }
 
   if (UserBalance.money.balance <= 0 || UserBalance.money.balance === null) {
-    return await message.replyT(`${bot.config.Emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`);
+    return await message.replyT(`${bot.config.emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`);
   }
 
   if (message.author.id === User.id) {
-    return await message.replyT(`${bot.config.Emojis.error} | Why do you want to rob yourself lol.`);
+    return await message.replyT(`${bot.config.emojis.error} | Why do you want to rob yourself lol.`);
   }
 
   if (User.id === bot.config.ownerID) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | This user is protected! You can buy a protection shield from being robbed in the shop.`,
+      `${bot.config.emojis.error} | This user is protected! You can buy a protection shield from being robbed in the shop.`,
     );
   }
 
   if (UserBalance.money.balance < 0) {
     return await message.replyT(
-      `${bot.config.Emojis.error} | This user is in **DEBT**! LOL!! HOW ON EARTH DID THAT HAPPEN LMFAOOOOO!!! Anyways, contact support and we'll reset your balance. :)`,
+      `${bot.config.emojis.error} | This user is in **DEBT**! LOL!! HOW ON EARTH DID THAT HAPPEN LMFAOOOOO!!! Anyways, contact support and we'll reset your balance. :)`,
     );
   }
 
@@ -53,7 +53,7 @@ async function execute(bot, message, args, command, data) {
     await UserBalance.save();
 
     await message.replyT(
-      `${bot.config.Emojis.success} | You robbed ${User} and recieved ${bot.functions.formatNumber(
+      `${bot.config.emojis.success} | You robbed ${User} and recieved ${bot.functions.formatNumber(
         Ammount,
       )} Ch1llBucks!`,
     );
@@ -64,7 +64,7 @@ async function execute(bot, message, args, command, data) {
     await data.user.save();
     await UserBalance.save();
 
-    await message.replyT(`${bot.config.Emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`);
+    await message.replyT(`${bot.config.emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`);
   }
 }
 

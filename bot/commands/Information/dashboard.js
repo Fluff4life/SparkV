@@ -4,7 +4,7 @@ const cmd = require("../../templates/command");
 
 async function execute(bot, message) {
   await message.replyT(
-    `${bot.config.Emojis.success} | Click the following link to view my dashboard! Link: https://sparkvdash.kingch1ll.repl.co/`,
+    `${bot.config.emojis.success} | Click the following link to view my dashboard! https://dashboard.sparkv.tk/`,
   );
 }
 
