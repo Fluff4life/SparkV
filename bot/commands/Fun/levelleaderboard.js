@@ -6,6 +6,10 @@ const cmd = require("../../templates/command");
 const Emotes = ["🥇", "🥈", "🥉"];
 
 async function execute(bot, message, args, command, data) {
+  if (data.guild.plugins.leveling.enabled === false) {
+    return await message.reply("Leveling is disabled. Please enable it on the dashboard.");
+  }
+
   const RawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10);
   const Leaderboard = await Levels.computeLeaderboard(bot, RawLeaderboard, true);
   const Leader = Leaderboard.map(
