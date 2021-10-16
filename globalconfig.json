@@ -31,5 +31,5 @@
       "URL": "{author} sent a url, but I cannot delete it. Please give me permision to delete messages. (MANAGE_MESSAGES)"
     }
   },
-  "debug": true
+  "debug": false
 }
