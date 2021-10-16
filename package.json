@@ -1,6 +1,6 @@
 {
-  "name": "spark.v-site",
-  "version": "1.0.0-beta",
+  "name": "spark.v.showcase",
+  "version": "1.0.0",
   "description": "The showcase site for SparkV.",
   "main": "index.js",
   "scripts": {
@@ -21,19 +21,19 @@
   "author": "KingCh1ll",
   "license": "MIT",
   "engines": {
-    "node": "16.9.x",
-    "npm": "7.x"
+    "node": "=>14.x",
+    "npm": "=>7.x"
   },
   "dependencies": {
     "aos": "^2.3.4",
-    "bootstrap": "^5.1.1",
-    "sweetalert2": "^11.1.7"
+    "bootstrap": "^5.1.3",
+    "sweetalert2": "^11.1.8"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.24.2",
-    "npm": "^7.24.0",
+    "eslint": "^8.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "npm": "^8.1.0",
     "prettier": "2.4.1",
-    "sass": "^1.42.1"
+    "sass": "^1.43.2"
   }
 }

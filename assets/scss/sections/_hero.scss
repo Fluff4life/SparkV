@@ -1,58 +1,56 @@
-@use '../config' as *;
-@use '../components/mixins' as *;
+@use "../config" as *;
+@use "../components/mixins" as *;
 
 .hero {
-  @include gradient;
-  padding: 10rem 0 0 0;
-  width: 100%;
-  height: 100%;
+    @include gradient;
+    padding: 10rem;
+    width: 100%;
+    height: 100%;
 }
 
 .heros {
-  .video-box {
-    position: relative;
+    .video-box {
+        position: relative;
+        height: 400px;
+        width: 400px;
 
-    a {
-      span {
-        i {
-          font-size: 6rem;
-          color: $secondary;
+        a {
+            span {
+                i {
+                    font-size: 6rem;
+                    color: $secondary;
+                }
+            }
         }
-      }
     }
-  }
 }
 
-.heroContainer {
-  .hero-img {
-    position: relative;
-
-    a {
-      span {
-        i {
-          font-size: 6rem;
-          color: $secondary;
-        }
-      }
+.hero_container {
+    img {
+        position: relative;
+        border-radius: 0.6rem;
+        height: 100%;
+        width: 100%;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+            rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
-  }
 }
 
 .border-animation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6rem;
-  height: 6rem;
-  border: 0.55rem solid $white;
-  border-radius: 50%;
-  animation: pulse 1.5s linear infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6rem;
+    height: 6rem;
+    border: 0.55rem solid $white;
+    border-radius: 50%;
+    animation: pulse 1.5s linear infinite;
 
-  &--boarder-1 {
-    animation-delay: 1s;
-  }
+    &--boarder-1 {
+        animation-delay: 1s;
+    }
 
-  &--board-2 {
-    animation-delay: 1.5s;
-  }
+    &--board-2 {
+        animation-delay: 1.5s;
+    }
 }

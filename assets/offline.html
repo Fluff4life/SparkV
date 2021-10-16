@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Offline - Ch1ll Studios</title>
+    <title>Offline - SparkV</title>
   </head>
   <body>
     <div id="content">
@@ -20,6 +20,7 @@
         font-weight: 400;
         background-color: #ffffff;
       }
+
       #content {
         text-align: center;
         display: flex;
@@ -28,9 +29,11 @@
         align-items: center;
         justify-content: center;
       }
+
       p {
         margin-top: 0;
       }
+      
       button {
         cursor: pointer;
         height: 37px;
@@ -61,24 +64,17 @@
       });
 
       async function CheckNetwork() {
-        if (window.location.pathname === '/public/offline.html') {
-          return;
-        }
-
         try {
           const response = await fetch('/');
 
           if (response.status >= 200 && response.status < 500) {
             return window.location.reload();
           }
-        } catch {
-          // Unable to connect, ignore the error.
-        }
-
-        window.setTimeout(CheckNetwork, 2.5 * 1000);
+        } catch {}
       }
 
       CheckNetwork();
+      window.setTimeout(CheckNetwork, 2.5 * 1000);
     </script>
   </body>
 </html>
