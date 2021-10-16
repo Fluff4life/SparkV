@@ -67,7 +67,6 @@ module.exports = {
             ]);
           });
 
-          
         baseText += `${require("markdown-table")(info)}\n`;
       });
 
