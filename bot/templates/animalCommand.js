@@ -33,7 +33,7 @@ module.exports = class RedditCommand {
       body = body.image;
     }
 
-    if (bdoy.url) {
+    if (body.url) {
       body = body.url;
     }
 
