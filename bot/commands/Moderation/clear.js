@@ -22,7 +22,10 @@ async function execute(bot, message, args, command, data) {
   let messages = await message.channel.messages.fetch({
     limit: 100
   });
-  messages = messages.array();
+
+  let messagesTable = [];https://random-d.uk/api/v2
+  messages.forEach(message => messagesTable.push(message));
+  messages = messagesTable;
 
   if (user) {
     messages.filter(m => m.author.id === user.id);

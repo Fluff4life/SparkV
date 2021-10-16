@@ -6,6 +6,6 @@ module.exports = new animalCommand({
   aliases: ["ducc", "cuteduck"],
   usage: "",
   enabled: true,
-  endpoint: "https://dog.ceo/api/breeds/image/random",
+  endpoint: "https://random-d.uk/api/v2/random",
   type: "image",
 });

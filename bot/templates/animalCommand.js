@@ -21,6 +21,10 @@ module.exports = class RedditCommand {
   async run(bot, message, args, command) {
     let body = await fetch(`${this.settings.endpoint}`).then(response => response.json());
 
+    if (body.message) {
+      body = body.message;
+    }
+
     if (body.file) {
       body = body.file;
     }
@@ -29,8 +33,8 @@ module.exports = class RedditCommand {
       body = body.image;
     }
 
-    if (body.message) {
-      body = body.message;
+    if (bdoy.url) {
+      body = body.url;
     }
 
     const ImageEmbed = new Discord.MessageEmbed()
