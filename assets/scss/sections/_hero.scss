@@ -2,43 +2,11 @@
 @use "../components/mixins" as *;
 
 .hero {
-    @include gradient;
+    background: #272934;
     padding-top: 10rem;
     width: 100%;
     height: 100%;
 }
-
-.heros {
-    .video-box {
-        position: relative;
-        height: 400px;
-        width: 400px;
-
-        a {
-            span {
-                i {
-                    font-size: 6rem;
-                    color: $secondary;
-                }
-            }
-        }
-    }
-}
-
-.hero_container {
-    .hero-img {
-        position: relative;
-
-        a {
-            span {
-                i {
-                    font-size: 6rem;
-                    color: $secondary;
-                }
-            }
-        }
-    }
-} 
 
 .border-animation {
     position: absolute;
