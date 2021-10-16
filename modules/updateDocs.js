@@ -35,10 +35,6 @@ module.exports = {
         }
       })
       .forEach(cat => {
-        if (cat.name.toLowerCase().includes("owner")) {
-          return;
-        }
-
         const info = [];
         const cmds = bot.commands.filter(cmd => {
           if (cmd) {
@@ -47,9 +43,9 @@ module.exports = {
         });
 
         if (cat.emoji.includes("<")) {
-          baseText += `## ${cat.name}\n\n`;
+          baseText += `\n## ${cat.name}\n\n`;
         } else {
-          baseText += `## ${cat.emoji} ${cat.name}\n\n`;
+          baseText += `\n## ${cat.emoji} ${cat.name}\n\n`;
         }
 
         info.push(["Name", "Description", "Usage", "Cooldown"]);
@@ -70,7 +66,8 @@ module.exports = {
               `${Math.ceil(cmd.settings.cooldown / 1000)} seconds`,
             ]);
           });
-        info;
+
+          
         baseText += `${require("markdown-table")(info)}\n`;
       });
 
