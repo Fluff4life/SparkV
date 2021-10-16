@@ -33,7 +33,6 @@ module.exports = {
       .setColor("message-box", "#5f9afa")
       .setColor("title", "#5f9afa")
       .setColor("avatar", "#5f9afa")
-      .setBackground(path.join(`${process.env.MainDir}/assets/images/background.png`))
       .toAttachment();
 
     const attachment = new Discord.MessageAttachment(image.toBuffer(), `Goodbye-${member.user.tag}.png`);
