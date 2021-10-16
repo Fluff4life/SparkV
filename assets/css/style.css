@@ -13118,7 +13118,7 @@ hr {
 
 .hero {
   background: linear-gradient(#4169e1, #9198e5);
-  padding: 10rem;
+  padding-top: 10rem;
   width: 100%;
   height: 100%;
 }
@@ -13133,12 +13133,12 @@ hr {
   color: #9198e5;
 }
 
-.hero_container img {
+.hero_container .hero-img {
   position: relative;
-  border-radius: 0.6rem;
-  height: 100%;
-  width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.hero_container .hero-img a span i {
+  font-size: 6rem;
+  color: #9198e5;
 }
 
 .border-animation {

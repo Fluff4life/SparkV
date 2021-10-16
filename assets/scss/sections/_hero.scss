@@ -3,7 +3,7 @@
 
 .hero {
     @include gradient;
-    padding: 10rem;
+    padding-top: 10rem;
     width: 100%;
     height: 100%;
 }
@@ -26,15 +26,19 @@
 }
 
 .hero_container {
-    img {
+    .hero-img {
         position: relative;
-        border-radius: 0.6rem;
-        height: 100%;
-        width: 100%;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-            rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+        a {
+            span {
+                i {
+                    font-size: 6rem;
+                    color: $secondary;
+                }
+            }
+        }
     }
-}
+} 
 
 .border-animation {
     position: absolute;
