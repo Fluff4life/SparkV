@@ -25,6 +25,10 @@ module.exports = class RedditCommand {
       body = body.file;
     }
 
+    if (body.image) {
+      body = body.image;
+    }
+
     if (body.message) {
       body = body.message;
     }
