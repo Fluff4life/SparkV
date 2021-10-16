@@ -361,11 +361,10 @@ module.exports = {
         }
 
         const RandomXP = Math.floor(Math.random() * MaxXP || 25) + MinXP || 5;
-        const HasLeveledUp = Levels.appendXp(message.author.id, message.guild.id, RandomXP);
+        const HasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, RandomXP);
 
         if (HasLeveledUp) {
-          const User = Levels.fetch(message.author.id, message.guild.id);
-          console.log(User.level);
+          const User = await Levels.fetch(message.author.id, message.guild.id);
 
           await message.replyT(
             bot.config.responses.LevelUpMessage.toString()
