@@ -17,11 +17,17 @@ module.exports = async bot => {
 
   bot.distube
     .on("playSong", async (queue, song) => {
+      let NowPlayingEmbed = new Discord.MessageEmbed()
+      .setURL(song.url)
+      .setColor(bot.config.embed.color)
+      .setTimestamp();
+
       if (song.playlist) {
-        const NowPlayingEmbed = new Discord.MessageEmbed()
+        NowPlayingEmbed = NowPlayingEmbed
           .setTitle(`🎵 Now Playing a Playlist 🎵`)
           .setDescription(song.playlist.name)
           .setThumbnail(song.playlist.thumbnail.url)
+          .addField("`<:members:852268403934101535>` Creator", `\`${song.playlist.uploader}\``, true)
           .addFields(
             {
               name: `⚙︱Audio Stats`,
@@ -43,22 +49,16 @@ module.exports = async bot => {
               inline: true,
             },
           )
-          .setURL(song.url)
-          .setColor(bot.config.embed.color)
           .setFooter(
             `📼 ${song.user.username} (${song.user.tag}) • (${song.playlist.songs.length} songs) - Now Playing ${song.name} • ${bot.config.embed.footer}`,
             bot.user.displayAvatarURL(),
           )
-          .setTimestamp();
-
-        queue.textChannel.send({
-          embeds: [NowPlayingEmbed],
-        });
       } else {
-        const NowPlayingEmbed = new Discord.MessageEmbed()
+        NowPlayingEmbed = NowPlayingEmbed
           .setTitle(`🎵 Now Playing a Song 🎵`)
           .setDescription(song.name)
           .setThumbnail(song.thumbnail)
+          .addField("<:members:852268403934101535> Creator", `\`${song.uploader}\``, true)
           .addFields(
             {
               name: `⚙︱Audio Stats`,
@@ -87,11 +87,11 @@ module.exports = async bot => {
             bot.user.displayAvatarURL(),
           )
           .setTimestamp();
-
-        queue.textChannel.send({
-          embeds: [NowPlayingEmbed],
-        });
       }
+
+      queue.textChannel.send({
+        embeds: [NowPlayingEmbed],
+      });
     })
     .on("addSong", async (queue, song) => {
       const SongAddedQueue = new Discord.MessageEmbed()
@@ -165,7 +165,7 @@ module.exports = async bot => {
 
       queue.textChannel.send(SongAddedQueue);
     })
-    .on("searchResult", result => {
+    .on("searchResult", (message, results) => {
       try {
         let Pages = [];
 
@@ -179,9 +179,10 @@ module.exports = async bot => {
           Pages.push(NewEmbed);
         };
 
-        result.map(song => CreatePage(song));
+        results.map(song => CreatePage(song));
+        console.log(message)
         EasyPages(
-          queue.textChannel,
+          message,
           Pages,
           ["⬅", "➡"],
           "⚡ - To select this song, send the current page number. For example, to select page 1 send 1.",
@@ -190,13 +191,16 @@ module.exports = async bot => {
         console.error(err);
       }
     })
-    .on("searchCancel", message => message.channel.replyT(`Searching canceled.`))
+    .on("searchDone", (message, answer, query) => {
+      console.log(message, answer, query);
+    })
+    .on("searchCancel", async message => await message.replyT(`Searching canceled.`))
     .on("searchInvalidAnswer", message =>
       message.channel.replyT(
         "Search answer invalid. Make sure you're sending your selected song's page number. For example, if I wanted to play a song on the 5th page, I would send the number 5.",
       ),
     )
-    .on("searchNoResult", message => message.replyT("No result found!"))
+    .on("searchNoResult", async message => await message.replyT("No result found!"))
     .on("finish", queue => queue.textChannel.send("No songs left in queue."))
     .on("finishSong", queue => queue.textChannel.send("Hope you enjoyed the song!"))
     .on("noRelated", message =>
@@ -207,6 +211,6 @@ module.exports = async bot => {
     .on("error", (channel, err) => {
       console.error(err);
 
-      channel.replyT(`❎︱Uh oh! An error occured. Please try again later. Error: ${err.slice(0, 1950)}`);
+      channel.textChannel.send(`❎︱Uh oh! An error occured. Please try again later. Error: ${err.slice(0, 1950)}`);
     });
 };
