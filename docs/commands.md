@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **124 commands**!
+SparkV's Command List! SparkV contains more than **126 commands**!
 
 
 ## 🤵 Administration
@@ -29,12 +29,14 @@ SparkV's Command List! SparkV contains more than **124 commands**!
 | ------------ | -------------------------------------------------------------------- | ---------------- | --------- |
 | **balance**  | View your balance.                                                   | {optional user}  | 2 seconds |
 | **beg**      | Beg for coins.                                                       | {optional user}  | 2 seconds |
+| **buy**      | Buy an item from the shop.                                           |                  | 2 seconds |
 | **daily**    | Collect your daily ammount of Ch1llBucks!                            |                  | 6 seconds |
 | **deposit**  | Deposit your data.user.money.balance into your bank.                 | {all or ammount} | 2 seconds |
 | **pay**      | Give someone some data.user.money.balance!                           | {user}           | 2 seconds |
 | **rob**      | why u bully me?                                                      | {user}           | 2 seconds |
 | **shop**     | Give someone some data.user.money.balance!                           | {user}           | 2 seconds |
 | **slots**    | Don't gamble kids!                                                   | {amount}         | 2 seconds |
+| **use**      | Use an item in your inventory.                                       |                  | 2 seconds |
 | **withdraw** | Withdraw your data.user.money.balance in your bank into your wallet. |                  | 2 seconds |
 | **work**     | Work for your job and earn some Ch1llBucks.                          |                  | 2 seconds |
 
