@@ -11,6 +11,8 @@ const giveawayshandler = require("../../modules/dependencies/giveawayshandler");
 const Noblox = require("../../modules/dependencies/noblox");
 const updateDocs = require("../../modules/updateDocs");
 
+const shopdata = require("../shopdata.json");
+
 const GuildSchema = require("../../database/schemas/guild");
 const MemberSchema = require("../../database/schemas/member");
 const UserSchema = require("../../database/schemas/user");
@@ -40,6 +42,7 @@ module.exports = class bot extends Client {
     this.aliases = new Collection();
     this.events = new Collection();
     this.cooldowns = new Collection();
+    this.shop = new Collection();
 
     // Start functions
     require("../../modules/functions").init(this);
@@ -80,6 +83,12 @@ module.exports = class bot extends Client {
     Distube(this);
     giveawayshandler(this);
     Noblox(this);
+
+    for (let i = 0; i < shopdata.length; i++) {
+      shopdata[i].ids.push(shopdata[i].name);
+
+      this.shop.set(shopdata[i].name, shopdata[i]);
+    }
 
     if (!settings.sharding) {
       const StatClient = new Statcord.Client({
