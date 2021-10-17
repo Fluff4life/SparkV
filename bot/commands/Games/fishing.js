@@ -3,11 +3,11 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/gameCommand");
 
 module.exports = new cmd(null, {
-  description: "Catch some fish! Requires you to join a VC.",
-  dirname: __dirname,
-  usage: "",
-  aliases: [],
-  perms: ["EMBED_LINKS"],
-  gname: "fishing",
-  type: "together",
+	description: "Catch some fish! Requires you to join a VC.",
+	dirname: __dirname,
+	usage: "",
+	aliases: [],
+	perms: ["EMBED_LINKS"],
+	gname: "fishing",
+	type: "together",
 });

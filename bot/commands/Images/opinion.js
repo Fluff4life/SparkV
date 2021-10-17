@@ -4,23 +4,23 @@ const canvacord = require(`canvacord`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (!args || !args[0]) {
-    return await message.replyT(`Please provide text.`);
-  }
+	if (!args || !args[0]) {
+		return await message.replyT(`Please provide text.`);
+	}
 
-  args = args.join(` `);
+	args = args.join(` `);
 
-  const User = (await bot.functions.fetchUser(args[0])) || message.author;
-  const Image = await canvacord.Canvas.opinion(User.displayAvatarURL({ format: "png" }), args);
+	const User = (await bot.functions.fetchUser(args[0])) || message.author;
+	const Image = await canvacord.Canvas.opinion(User.displayAvatarURL({ format: "png" }), args);
 
-  await message.replyT({
-    files: [new Discord.MessageAttachment(Image, "opinion.png")],
-  });
+	await message.replyT({
+		files: [new Discord.MessageAttachment(Image, "opinion.png")],
+	});
 }
 
 module.exports = new cmd(execute, {
-  description: `lol`,
-  aliases: ["nofact"],
-  dirname: __dirname,
-  usage: `<text>`,
+	description: `lol`,
+	aliases: ["nofact"],
+	dirname: __dirname,
+	usage: `<text>`,
 });

@@ -4,27 +4,27 @@ const canvacord = require(`canvacord`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-  if (!args || !args[0]) {
-    return await message.replyT(`Please provide text.`);
-  }
+	if (!args || !args[0]) {
+		return await message.replyT(`Please provide text.`);
+	}
 
-  args = args.join(` `).slice(22);
+	args = args.join(` `).slice(22);
 
-  const User = (await bot.functions.fetchUser(args[0])) || message.author;
-  const Image = await canvacord.Canvas.youtube({
-    username: User.username,
-    avatar: User.displayAvatarURL({ format: "png" }),
-    content: args,
-  });
+	const User = (await bot.functions.fetchUser(args[0])) || message.author;
+	const Image = await canvacord.Canvas.youtube({
+		username: User.username,
+		avatar: User.displayAvatarURL({ format: "png" }),
+		content: args,
+	});
 
-  await message.replyT({
-    files: [new Discord.MessageAttachment(Image, "youtube.png")],
-  });
+	await message.replyT({
+		files: [new Discord.MessageAttachment(Image, "youtube.png")],
+	});
 }
 
 module.exports = new cmd(execute, {
-  description: `YouTube comment lol.`,
-  aliases: ["waste"],
-  dirname: __dirname,
-  usage: `<user | self> <text>`,
+	description: `YouTube comment lol.`,
+	aliases: ["waste"],
+	dirname: __dirname,
+	usage: `<user | self> <text>`,
 });

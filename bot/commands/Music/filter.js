@@ -3,31 +3,31 @@ const Discord = require("discord.js");
 const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
-  if (!bot.distube.isPlaying(message)) {
-    return message
-      .replyT(`${bot.config.emojis.error} | A song must be playing to use this command!`);
-  }
+	if (!bot.distube.isPlaying(message)) {
+		return message
+			.replyT(`${bot.config.emojis.error} | A song must be playing to use this command!`);
+	}
 
-  const Queue = bot.distube.getQueue(message);
+	const Queue = bot.distube.getQueue(message);
 
-  if (args[0].toLowerCase() === "off" && Queue.filter) {
-    bot.distube
-      .setFilter(message, Queue.filter)
-      .then(async () => await message.replyT(`${bot.config.emojis.error} | Okay, I turned off the filter.`));
-  } else if (Object.keys(bot.distube.filters).includes(args[0])) {
-    bot.distube
-      .setFilter(message, args[0])
-      .then(async () => await message.replyT(`${bot.config.emojis.music} | Okay, I turned on filter ${args[0]}.`));
-  } else {
-    return await message.replyT(`${bot.config.emojis.error} | That's not a valid filter!`);
-  }
+	if (args[0].toLowerCase() === "off" && Queue.filter) {
+		bot.distube
+			.setFilter(message, Queue.filter)
+			.then(async () => await message.replyT(`${bot.config.emojis.error} | Okay, I turned off the filter.`));
+	} else if (Object.keys(bot.distube.filters).includes(args[0])) {
+		bot.distube
+			.setFilter(message, args[0])
+			.then(async () => await message.replyT(`${bot.config.emojis.music} | Okay, I turned on filter ${args[0]}.`));
+	} else {
+		return await message.replyT(`${bot.config.emojis.error} | That's not a valid filter!`);
+	}
 }
 
 module.exports = new cmd(execute, {
-  description:
+	description:
     "Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse.",
-  dirname: __dirname,
-  usage: "<Filter>",
-  aliases: ["setfilter"],
-  perms: ["EMBED_LINKS"],
+	dirname: __dirname,
+	usage: "<Filter>",
+	aliases: ["setfilter"],
+	perms: ["EMBED_LINKS"],
 });

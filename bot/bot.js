@@ -13,53 +13,53 @@ const { Collection, Intents, Permissions, Options } = require("discord.js");
 
 const Client = require("./structures/client");
 const SparkV = new Client({
-  intents: [
-    // Intents.FLAGS.DIRECT_MESSAGES,
-    // Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_BANS,
-    Intents.FLAGS.GUILD_WEBHOOKS,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-    Intents.FLAGS.GUILD_VOICE_STATES,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_PRESENCES,
-  ],
-  allowedMentions: {
-    parse: ["users"],
-    repliedUser: true,
-  },
-  presence: {
-    activity: {
-      name: `Loading SparkV (99%)`,
-      type: "PLAYING",
-    },
-    status: "dnd",
-  },
+	intents: [
+		// Intents.FLAGS.DIRECT_MESSAGES,
+		// Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+		Intents.FLAGS.GUILDS,
+		Intents.FLAGS.GUILD_BANS,
+		Intents.FLAGS.GUILD_WEBHOOKS,
+		Intents.FLAGS.GUILD_MESSAGES,
+		Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+		Intents.FLAGS.GUILD_VOICE_STATES,
+		Intents.FLAGS.GUILD_MEMBERS,
+		Intents.FLAGS.GUILD_PRESENCES,
+	],
+	allowedMentions: {
+		parse: ["users"],
+		repliedUser: true,
+	},
+	presence: {
+		activity: {
+			name: `Loading SparkV (99%)`,
+			type: "PLAYING",
+		},
+		status: "dnd",
+	},
 });
 
 async function Start() {
-  await SparkV.LoadEvents(__dirname);
-  await SparkV.LoadCommands(__dirname);
+	await SparkV.LoadEvents(__dirname);
+	await SparkV.LoadCommands(__dirname);
 
-  await SparkV.LoadModules(
-    {
-      sharding: process.execArgv.includes("--sharding"),
-    },
-    process.env.MainDir,
-  );
+	await SparkV.LoadModules(
+		{
+			sharding: process.execArgv.includes("--sharding"),
+		},
+		process.env.MainDir,
+	);
 
-  SparkV.SocketioClient = require("socket.io-client").connect(
-    `https://${process.env.BASEURL}/api/communication?token=8010405464675`,
-    {
-      reconnection: true,
-      reconnectionDelay: 2000,
-      reconnectionDelayMax: 5000,
-      reconnectionAttempts: Infinity,
-    },
-  );
+	SparkV.SocketioClient = require("socket.io-client").connect(
+		`https://${process.env.BASEURL}/api/communication?token=8010405464675`,
+		{
+			reconnection: true,
+			reconnectionDelay: 2000,
+			reconnectionDelayMax: 5000,
+			reconnectionAttempts: Infinity,
+		},
+	);
 
-  SparkV.SocketioClient.on("connect", () => console.log("Website connected successfully."));
+	SparkV.SocketioClient.on("connect", () => console.log("Website connected successfully."));
 }
 
 Start();

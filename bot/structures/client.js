@@ -18,170 +18,170 @@ const MemberSchema = require("../../database/schemas/member");
 const UserSchema = require("../../database/schemas/user");
 
 module.exports = class bot extends Client {
-  constructor(settings) {
-    super(settings);
+	constructor(settings) {
+		super(settings);
 
-    // Config
-    this.config = require("../../globalconfig.json");
+		// Config
+		this.config = require("../../globalconfig.json");
 
-    // Utils
-    this.logger = require("../../modules/logger");
-    this.functions = require("../../modules/functions");
-    this.wait = util.promisify(setTimeout);
+		// Utils
+		this.logger = require("../../modules/logger");
+		this.functions = require("../../modules/functions");
+		this.wait = util.promisify(setTimeout);
 
-    // Database
-    this.database = require("../../database/handler");
+		// Database
+		this.database = require("../../database/handler");
 
-    this.GuildSchema = require("../../database/schemas/guild");
-    this.MemberSchema = require("../../database/schemas/member");
-    this.UserSchema = require("../../database/schemas/user");
+		this.GuildSchema = require("../../database/schemas/guild");
+		this.MemberSchema = require("../../database/schemas/member");
+		this.UserSchema = require("../../database/schemas/user");
 
-    // Collections
-    this.categories = new Collection();
-    this.commands = new Collection();
-    this.aliases = new Collection();
-    this.events = new Collection();
-    this.cooldowns = new Collection();
-    this.shop = new Collection();
+		// Collections
+		this.categories = new Collection();
+		this.commands = new Collection();
+		this.aliases = new Collection();
+		this.events = new Collection();
+		this.cooldowns = new Collection();
+		this.shop = new Collection();
 
-    // Start functions
-    require("../../modules/functions").init(this);
+		// Start functions
+		require("../../modules/functions").init(this);
 
-    return this;
-  }
+		return this;
+	}
 
-  async LoadModules(settings, MainDir) {
-    const client = this;
+	async LoadModules(settings, MainDir) {
+		const client = this;
 
-    // Function
-    const createRedis = () =>
-      new Promise(resolve => {
-        const rClient = require("redis").createClient({
-          host: process.env.REDIS_HOST,
-          port: process.env.REDIS_PORT,
-        });
-        rClient.auth(process.env.REDIS_PASSWORD);
+		// Function
+		const createRedis = () =>
+			new Promise(resolve => {
+				const rClient = require("redis").createClient({
+					host: process.env.REDIS_HOST,
+					port: process.env.REDIS_PORT,
+				});
+				rClient.auth(process.env.REDIS_PASSWORD);
 
-        for (const prop in rClient) {
-          if (typeof rClient[prop] === "function") {
-            rClient[`${prop}Async`] = util.promisify(rClient[prop]).bind(rClient);
-          }
-        }
+				for (const prop in rClient) {
+					if (typeof rClient[prop] === "function") {
+						rClient[`${prop}Async`] = util.promisify(rClient[prop]).bind(rClient);
+					}
+				}
 
-        rClient.on("error", err => console.error(err));
-        rClient.on("ready", resolve.bind(null, rClient));
-      });
+				rClient.on("error", err => console.error(err));
+				rClient.on("ready", resolve.bind(null, rClient));
+			});
 
-    // Update Docs
-    setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
+		// Update Docs
+		setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
 
-    // Cache
-    this.redis = await createRedis();
+		// Cache
+		this.redis = await createRedis();
 
-    // Functions
-    this.database.init(this);
-    Distube(this);
-    giveawayshandler(this);
-    Noblox(this);
+		// Functions
+		this.database.init(this);
+		Distube(this);
+		giveawayshandler(this);
+		Noblox(this);
 
-    for (let i = 0; i < shopdata.length; i++) {
-      shopdata[i].ids.push(shopdata[i].name);
+		for (let i = 0; i < shopdata.length; i++) {
+			shopdata[i].ids.push(shopdata[i].name);
 
-      this.shop.set(shopdata[i].name, shopdata[i]);
-    }
+			this.shop.set(shopdata[i].name, shopdata[i]);
+		}
 
-    if (!settings.sharding) {
-      const StatClient = new Statcord.Client({
-        client,
-        key: process.env.STATCORDAPIKEY,
-        postCpuStatistics: true,
-        postMemStatistics: true,
-        postNetworkStatistics: true,
-        autopost: true,
-      });
+		if (!settings.sharding) {
+			const StatClient = new Statcord.Client({
+				client,
+				key: process.env.STATCORDAPIKEY,
+				postCpuStatistics: true,
+				postMemStatistics: true,
+				postNetworkStatistics: true,
+				autopost: true,
+			});
 
-      this.StatClient = StatClient;
-    } else if (settings.sharding === true) {
-      const StatClient = new Statcord.ShardingClient({
-        client,
-        key: process.env.STATCORDAPIKEY,
-        postCpuStatistics: true,
-        postMemStatistics: true,
-        postNetworkStatistics: true,
-        autopost: true,
-      });
+			this.StatClient = StatClient;
+		} else if (settings.sharding === true) {
+			const StatClient = new Statcord.ShardingClient({
+				client,
+				key: process.env.STATCORDAPIKEY,
+				postCpuStatistics: true,
+				postMemStatistics: true,
+				postNetworkStatistics: true,
+				autopost: true,
+			});
 
-      this.StatClient = StatClient;
-    }
+			this.StatClient = StatClient;
+		}
 
-    this.discordTogether = new DiscordTogether(this);
-  }
+		this.discordTogether = new DiscordTogether(this);
+	}
 
-  async LoadEvents(MainPath) {
-    const events = fs.readdirSync(path.join(`${MainPath}/events`)).filter(file => file.endsWith(".js"));
+	async LoadEvents(MainPath) {
+		const events = fs.readdirSync(path.join(`${MainPath}/events`)).filter(file => file.endsWith(".js"));
 
-    for (const eventF of events) {
-      const event = require(path.resolve(`${MainPath}/events/${eventF}`));
+		for (const eventF of events) {
+			const event = require(path.resolve(`${MainPath}/events/${eventF}`));
 
-      if (event.once) {
-        this.once(eventF.split(".")[0], (...args) => event.execute(this, ...args));
-      } else {
-        this.on(eventF.split(".")[0], (...args) => event.execute(this, ...args));
-      }
-    }
-  }
+			if (event.once) {
+				this.once(eventF.split(".")[0], (...args) => event.execute(this, ...args));
+			} else {
+				this.on(eventF.split(".")[0], (...args) => event.execute(this, ...args));
+			}
+		}
+	}
 
-  async LoadCommands(MainPath) {
-    fs.readdir(path.join(`${MainPath}/commands`), (err, cats) => {
-      if (err) {
-        return this.logger(`Commands failed to load! ${err}`, "error");
-      }
+	async LoadCommands(MainPath) {
+		fs.readdir(path.join(`${MainPath}/commands`), (err, cats) => {
+			if (err) {
+				return this.logger(`Commands failed to load! ${err}`, "error");
+			}
 
-      cats.forEach(cat => {
-        const category = require(path.join(`${MainPath}/commands/${cat}`));
-        this.categories.set(category.name, category);
+			cats.forEach(cat => {
+				const category = require(path.join(`${MainPath}/commands/${cat}`));
+				this.categories.set(category.name, category);
 
-        fs.readdir(path.join(`${MainPath}/commands/${cat}`), (err, files) => {
-          if (err) {
-            return this.logger(`Commands failed to load! ${err}`, "error");
-          }
+				fs.readdir(path.join(`${MainPath}/commands/${cat}`), (err, files) => {
+					if (err) {
+						return this.logger(`Commands failed to load! ${err}`, "error");
+					}
 
-          files.forEach(file => {
-            if (!file.endsWith(".js")) {
-              return;
-            }
+					files.forEach(file => {
+						if (!file.endsWith(".js")) {
+							return;
+						}
 
-            let commandname = file.split(".")[0];
-            let command = require(path.resolve(`${MainPath}/commands/${cat}/${commandname}`));
+						const commandname = file.split(".")[0];
+						const command = require(path.resolve(`${MainPath}/commands/${cat}/${commandname}`));
 
-            if (!command || !command.settings || command.config) {
-              return;
-            }
+						if (!command || !command.settings || command.config) {
+							return;
+						}
 
-            command.category = category.name;
-            command.description = category.description;
+						command.category = category.name;
+						command.description = category.description;
 
-            if (!this.categories.has(command.category)) {
-              this.categories.set(command.category, category);
-            }
+						if (!this.categories.has(command.category)) {
+							this.categories.set(command.category, category);
+						}
 
-            command.settings.name = commandname;
-            this.commands.set(commandname, command);
+						command.settings.name = commandname;
+						this.commands.set(commandname, command);
 
-            if (!command.settings.aliases) {
-              return;
-            }
+						if (!command.settings.aliases) {
+							return;
+						}
 
-            for (const alias of command.settings.aliases) {
-              if (!alias) {
-                return;
-              }
+						for (const alias of command.settings.aliases) {
+							if (!alias) {
+								return;
+							}
 
-              this.aliases.set(alias, command);
-            }
-          });
-        });
-      });
-    });
-  }
+							this.aliases.set(alias, command);
+						}
+					});
+				});
+			});
+		});
+	}
 };
