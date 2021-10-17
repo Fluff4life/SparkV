@@ -29,7 +29,7 @@ module.exports = new cmd(
 
         data.user.inventory[item.name] = parseInt(data.user.inventory[item.name]) + amount;
         data.user.markModified(`inventory.${item.name}`);
-        await bot.user.save();
+        await data.user.save();
 
         await message.replyT(`Successfully bought ${item.name} for ${amount}!`);
     },
