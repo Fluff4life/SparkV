@@ -31,7 +31,7 @@ module.exports = new cmd(
         data.user.markModified(`inventory.${item.name}`);
         await data.user.save();
 
-        await message.replyT(`Successfully bought amount ${item.name} for ${item.cost}!`);
+        await message.replyT(`Successfully bought amount ${item.name} for ${item.price}!`);
     },
     {
         description: "Buy an item from the shop.",
