@@ -13101,7 +13101,7 @@ hr {
   list-style: none;
   padding: 1rem 0 0;
   flex-direction: row;
-  background: transparent;
+  background: linear-gradient(#272934, #1f2129);
 }
 .menu li {
   padding: 0 0.7rem;
@@ -13140,23 +13140,89 @@ hr {
   animation-delay: 1.5s;
 }
 
-.companies {
-  padding: 0 0 5rem 0;
-}
-.companies_logo {
-  max-width: 100%;
-  height: 3rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 0.5rem;
-  text-align: center;
+.services {
   position: relative;
+  padding: 1rem 0;
 }
-.companies_logo img {
-  height: 100%;
+.services_content {
+  padding: 1rem;
+  margin-top: 0;
 }
-.companies_logo img:hover {
-  filter: grayscale(120);
+.services_content p {
+  font-size: 0.8rem;
+}
+@media (min-width: 992px) {
+  .services_content p {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 992px) {
+  .services_content {
+    margin-top: 1rem;
+  }
+}
+@media (min-width: 992px) {
+  .services {
+    margin-top: 5rem;
+  }
+}
+.services .icon {
+  font-size: 1.5rem;
+  color: #272934;
+}
+@media (min-width: 992px) {
+  .services .icon {
+    font-size: 2.5rem;
+  }
+}
+.services_pic {
+  max-width: 100%;
+}
+
+.reviews {
+  position: relative;
+  padding: 0;
+  background: linear-gradient(to right, rgba(39, 41, 52, 0.95), rgba(31, 33, 41, 0.95));
+}
+.reviews__card {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem 1.25rem;
+  border-radius: 0.625rem;
+  height: auto;
+  text-align: center;
+}
+.reviews__card i {
+  font-size: 1.5rem;
+  color: rgba(39, 41, 52, 0.7);
+}
+.reviews__card .ratings i {
+  color: rgba(39, 41, 52, 0.7);
+  font-size: 1rem;
+}
+.reviews__picture {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.reviews__picture img {
+  border: 0.325rem solid rgba(39, 41, 52, 0.7);
+}
+.reviews__name {
+  padding-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+}
+.reviews__name h3 {
+  padding-top: 0.8rem;
+  text-transform: capitalize;
+}
+.reviews__name p {
+  padding-bottom: 2rem;
+  text-transform: capitalize;
 }
 
 .footer {

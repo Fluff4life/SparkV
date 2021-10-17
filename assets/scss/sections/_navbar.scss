@@ -5,7 +5,7 @@
   list-style: none;
   padding: 1rem 0 0;
   flex-direction: row;
-  background: transparent;
+  background: linear-gradient($primary, $secondary);
 
   li {
     padding: 0 0.7rem;
