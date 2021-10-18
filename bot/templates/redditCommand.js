@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const fetch = require("node-fetch");
+const fetch = require("axios");
 
 const NewCommand = require("./command");
 
@@ -30,8 +30,8 @@ module.exports = class RedditCommand {
 		if (cache) {
 			res = cache;
 		} else {
-			res = await fetch(`https://www.reddit.com${this.settings.endpoint}`)
-				.then(res => res.json())
+			res = await fetch.get(`https://www.reddit.com${this.settings.endpoint}`)
+				.then(res => res.data)
 				.catch(() => null);
 
 			bot.redis.setAsync(this.settings.endpoint, JSON.stringify(res), "EX", 15 * 60);

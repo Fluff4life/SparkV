@@ -1,5 +1,5 @@
 const Discord = require(`discord.js`);
-const fetch = require("node-fetch");
+const fetch = require("axios");
 
 const cmd = require("../../templates/command");
 
@@ -19,13 +19,12 @@ function CreateID() {
 async function execute(bot, message, args, command, data) {
 	const noblox = require(`noblox.js`);
 
-	fetch(`https://verify.eryn.io/api/user/${message.author.id}`)
-		.then(response => response.json())
-		.then(body => {
-			if (body.status === "ok") {
+	fetch.get(`https://verify.eryn.io/api/user/${message.author.id}`)
+		.then(response => {
+			if (response.data.status === "ok") {
 				const DiscordEmbed = new Discord.MessageEmbed()
 					.setTitle(`SparkV Verification`)
-					.setDescription(`You've been successfully verified as **${body.robloxUsername}**!`)
+					.setDescription(`You've been successfully verified as **${response.data.robloxUsername}**!`)
 					.setColor(`GREEN`)
 					.setFooter(bot.config.embed.footer);
 			} else {

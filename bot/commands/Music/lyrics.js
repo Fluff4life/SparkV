@@ -3,7 +3,6 @@ const EasyPages = require("discordeasypages");
 
 const cmd = require("../../templates/musicCommand");
 
-const fetch = require(`node-fetch`);
 const LyrcisFinder = require(`lyrics-finder`);
 
 async function execute(bot, message, args, command, data) {

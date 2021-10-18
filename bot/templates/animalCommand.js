@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const fetch = require("node-fetch");
+const fetch = require("axios");
 
 const NewCommand = require("./command");
 
@@ -19,21 +19,22 @@ module.exports = class RedditCommand {
 	}
 
 	async run(bot, message, args, command) {
-		let body = await fetch(`${this.settings.endpoint}`).then(response => response.json());
+		const data = await fetch.get(`${this.settings.endpoint}`).then(response => response.data);
+		let body;
 
-		if (body.message) {
+		if (data.message) {
 			body = body.message;
 		}
 
-		if (body.file) {
+		if (data.file) {
 			body = body.file;
 		}
 
-		if (body.image) {
+		if (data.image) {
 			body = body.image;
 		}
 
-		if (body.url) {
+		if (data.url) {
 			body = body.url;
 		}
 

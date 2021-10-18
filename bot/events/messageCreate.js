@@ -1,7 +1,7 @@
 const { configureScope } = require("@sentry/node");
 const Levels = require("discord-xp");
 const Discord = require("discord.js");
-const fetch = require("node-fetch");
+const fetch = require("axios");
 
 const cursewords = require("../cursewords.json");
 
@@ -492,23 +492,22 @@ async function chatbot(message, wasMentioned) {
 	}
 
 	try {
-		await fetch(
+		await fetch.get(
 			`http://api.brainshop.ai/get?bid=${encodeURIComponent(process.env.CHAT_BID)}&key=${encodeURIComponent(
 				process.env.CHAT_KEY,
 			)}&uid=${encodeURIComponent(message.author.id)}&msg=${encodeURIComponent(
 				wasMentioned === true ? SlicedMessage : message,
 			)}`,
 		)
-			.then(res => res.json())
-			.then(async body => {
-				if (body.cnt) {
+			.then(async response => {
+				if (response.data.cnt) {
 					if (message.deleted) {
 						return;
 					}
 
 					const APIEmbed = new Discord.MessageEmbed()
 						.setTitle(`SparkV`)
-						.setDescription(body.cnt)
+						.setDescription(response.data.cnt)
 						.setFooter(
 							`Never send personal information to SparkV. • ${message.client.config.embed.footer}`,
 							message.client.user.displayAvatarURL(),
@@ -521,7 +520,7 @@ async function chatbot(message, wasMentioned) {
 						embeds: [APIEmbed],
 					});
 				} else {
-					return console.error(`Failed to get message from Chat bot. Response: ${body}`);
+					return console.error(`Failed to get message from Chat bot. Response: ${response.data}`);
 				}
 			});
 	} catch (err) {

@@ -1,6 +1,6 @@
 const Discord = require(`discord.js`);
 const { inspect } = require("util");
-const fetch = require("node-fetch");
+const fetch = require("axios");
 
 const cmd = require("../../templates/command");
 
@@ -28,12 +28,7 @@ async function execute(bot, message, args, command, data) {
 	}
 
 	if (input.length + result.length >= 4000) {
-		const paste = await fetch(
-			`https://hastepaste.com/api/create?raw=false&ext=javascript&text=${encodeURIComponent(`${input}\n\n${result}`)}`,
-			{
-				method: "POST",
-			},
-		).catch(async err => await message.replyT(err.message));
+		const paste = await fetch.post(`https://hastepaste.com/api/create?raw=false&ext=javascript&text=${encodeURIComponent(`${input}\n\n${result}`)}`).catch(async err => await message.replyT(err.message));
 
 		return await message.replyT(`Eval exceeds 4000 characters. Please view here: ${paste.body}`);
 	} else {

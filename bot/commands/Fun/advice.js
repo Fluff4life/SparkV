@@ -1,23 +1,22 @@
 const Discord = require("discord.js");
-const request = require("node-fetch");
+const request = require("axios");
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message) {
-	request("https://api.adviceslip.com/advice")
-		.then(res => res.json())
-		.then(async json => {
+	request.get("https://api.adviceslip.com/advice")
+		.then(async response => {
 			const AdviceEmbed = new Discord.MessageEmbed()
 				.setTitle("Here's an advice")
-				.setDescription(json.slip.advice)
-				.setFooter(`You got advice #${json.slip.id} • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
+				.setDescription(response.data.slip.advice)
+				.setFooter(`You got advice #${response.data.slip.id} • ${bot.config.embed.footer}`, bot.user.displayAvatarURL())
 				.setColor(bot.config.embed.color)
 				.setTimestamp();
 
-			await await message.replyT({
+			await message.replyT({
 				embeds: [AdviceEmbed]
 			});
-		});
+		}).catch(err => console.error(err));
 }
 
 module.exports = new cmd(execute, {

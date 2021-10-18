@@ -1,15 +1,14 @@
 const Discord = require("discord.js");
-const request = require("node-fetch");
+const request = require("axios");
 
 const cmd = require("../../templates/command");
 
 async function execute(bot, message) {
-	request("https://uselessfacts.jsph.pl/random.json?language=en")
-		.then(res => res.json())
-		.then(async json => {
+	request.get("https://uselessfacts.jsph.pl/random.response?language=en")
+		.then(async response => {
 			const FunFactEmbed = new Discord.MessageEmbed()
 				.setTitle(`${bot.config.emojis.success} | Did you know?`)
-				.setDescription(json.text)
+				.setDescription(response.data.text)
 				.setFooter(`Fun facts powered by https://uselessfacts.jsph.pl! • ${bot.config.embed.footer}`)
 				.setColor(bot.config.embed.color)
 				.setTimestamp();
