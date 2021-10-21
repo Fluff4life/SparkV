@@ -30,11 +30,7 @@ module.exports = {
 			});
 		}
 
-		if (
-			guild.systemChannel &&
-      guild.systemChannel.permissionsFor(bot.user).has("SEND_MESSAGES") &&
-      guild.systemChannel.permissionsFor(bot.user).has("VIEW_CHANNEL")
-		) {
+		if (guild.systemChannel) {
 			const InviteButton = new Discord.MessageButton()
 				.setURL(bot.config.bot_invite)
 				.setLabel("Bot Invite")

@@ -4,6 +4,8 @@ const util = require("util");
 
 const { DiscordTogether } = require("discord-together");
 const { Client, Collection, Intents, Structures } = require("discord.js");
+const { REST } = require("@discordjs/rest");
+const { Routes } = require("discord-api-types/v9");
 const Statcord = require("statcord.js");
 
 const Distube = require("../../modules/dependencies/distubehandler");
@@ -44,6 +46,8 @@ module.exports = class bot extends Client {
 		this.cooldowns = new Collection();
 		this.shop = new Collection();
 
+		this.slashCommands = [];
+
 		// Start functions
 		require("../../modules/functions").init(this);
 
@@ -51,8 +55,6 @@ module.exports = class bot extends Client {
 	}
 
 	async LoadModules(settings, MainDir) {
-		const client = this;
-
 		// Function
 		const createRedis = () =>
 			new Promise(resolve => {
@@ -92,7 +94,7 @@ module.exports = class bot extends Client {
 
 		if (!settings.sharding) {
 			const StatClient = new Statcord.Client({
-				client,
+				client: this,
 				key: process.env.STATCORDAPIKEY,
 				postCpuStatistics: true,
 				postMemStatistics: true,
@@ -103,7 +105,7 @@ module.exports = class bot extends Client {
 			this.StatClient = StatClient;
 		} else if (settings.sharding === true) {
 			const StatClient = new Statcord.ShardingClient({
-				client,
+				client: this,
 				key: process.env.STATCORDAPIKEY,
 				postCpuStatistics: true,
 				postMemStatistics: true,
@@ -168,6 +170,20 @@ module.exports = class bot extends Client {
 						command.settings.name = commandname;
 						this.commands.set(commandname, command);
 
+						if (command.settings.slash && command.settings.slash === true) {
+							if (command.settings.description.length >= 100) {
+								const sliced = command.settings.description.slice(0, 96);
+
+								command.settings.description = `${sliced}...`;
+							}
+
+							this.slashCommands.push({
+								name: commandname,
+								description: command.settings.description,
+								options: command.options || []
+							});
+						}
+
 						if (!command.settings.aliases) {
 							return;
 						}
@@ -183,5 +199,28 @@ module.exports = class bot extends Client {
 				});
 			});
 		});
+	}
+
+	async LoadSlashCommands() {
+		const rest = new REST({
+			version: "9"
+		}).setToken(process.env.TOKEN);
+
+		try {
+			// For global: applicationCommands(CLIENTID) (takes a while to cache | recommended for full production)
+			// for only one server: applicationGuildCommands(CLIENTID, GUILDID)
+
+			// NOTE:
+			// 818922579623673867 is my test bot's id. (SparkV Alpha)
+			// 763803059876397056 is Ch1ll Studio's guild ID. (My Bot's Main Server)
+
+			await rest.put(this.config.debug === true ? Routes.applicationGuildCommands("818922579623673867", "763803059876397056") : Routes.applicationCommands(this.config.ID), {
+				body: this.slashCommands
+			});
+
+			this.logger("Successfully registered slash commands.");
+		} catch (error) {
+			console.error(error);
+		}
 	}
 };

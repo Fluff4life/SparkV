@@ -42,6 +42,8 @@ async function Start() {
 	await SparkV.LoadEvents(__dirname);
 	await SparkV.LoadCommands(__dirname);
 
+	setTimeout(async () => await SparkV.LoadSlashCommands(), 25 * 1000);
+
 	await SparkV.LoadModules(
 		{
 			sharding: process.execArgv.includes("--sharding"),

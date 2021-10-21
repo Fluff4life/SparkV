@@ -30,7 +30,7 @@ module.exports = class ModCommand {
 			manageRoles: "manage the roles on this server",
 		};
 
-		return `Aww man, ${type === "bot" ? "i'm" : "you're"} missing the \`${(
+		return `Sorry, ${type === "bot" ? "i'm" : "you're"} missing the \`${(
 			permission.charAt(0).toUpperCase() + permission.slice(1)
 		).replace(/([A-Z])/g, " $1")}\` permission.\nMake sure ${type === "bot" ? "I have" : "you have"} access to **${
 			permissions[permission]

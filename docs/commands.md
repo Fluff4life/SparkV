@@ -53,7 +53,7 @@ SparkV's Command List! SparkV contains more than **126 commands**!
 | **rank**             | View a users rank!                                                                                                                               | {optional user}   | 2 seconds |
 | **reverse**          | I will reverse any text you give me lol.                                                                                                         | {optional user}   | 2 seconds |
 | **say**              | I will say whatever you want me to say.                                                                                                          | {message}         | 2 seconds |
-| **showerthought**    | You know that momment where you think/realize something crazy in the shower? Well, there is a whole subreddit full of them...                    |                   | 2 seconds |
+| **showerthought**    | You know that momment where you think/realize something crazy in the shower? Well, there is a wh...                                              |                   | 2 seconds |
 | **urban**            | I will return an urban dictionary definition of a word! Due to recent API failures, this command is disabled to provide you a better experience. | {word}            | 2 seconds |
 | **uselessfact**      | I will get a useless fact! You're better off with the advice command...                                                                          | {word}            | 2 seconds |
 

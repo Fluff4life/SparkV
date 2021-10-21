@@ -9,7 +9,7 @@ module.exports = {
 			if (!command) return;
 
 			try {
-				await command.execute(bot, interaction);
+				await command.run(bot, interaction);
 			} catch (error) {
 				console.error(error);
 
