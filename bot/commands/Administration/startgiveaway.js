@@ -156,7 +156,5 @@ module.exports = new cmd(execute, {
 	dirname: __dirname,
 	usage: ``,
 	aliases: ["startg", "sgiveaway"],
-	perms: ["EMBED_LINKS", "MANAGE_MESSAGES"],
-	gname: "youtube",
-	type: "together",
+	perms: ["EMBED_LINKS", "MANAGE_MESSAGES"]
 });
