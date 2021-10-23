@@ -25,7 +25,7 @@ async function execute(bot, message, args, command, data) {
 		return await message.replyT(`${bot.config.emojis.error} | You cannot give a user negitive data.user.money.balance lol.`);
 	}
 
-	const UserMoney = await bot.database.fetchUser(User.id);
+	const UserMoney = await bot.database.getUser(User.id);
 
 	if (data.user.money.balance < args[1]) {
 		return await message.replyT(`${bot.config.emojis.error} | You don't have that much money!`);
@@ -40,7 +40,7 @@ async function execute(bot, message, args, command, data) {
 	await data.user.save();
 
 	await message.replyT(
-		`${bot.config.emojis.success} | You gave ${User} ❄${bot.functions.formatNumber(args[1])} data.user.money.balance!`,
+		`${bot.config.emojis.success} | You gave ${User} ⏣${bot.functions.formatNumber(args[1])} data.user.money.balance!`,
 	);
 }
 

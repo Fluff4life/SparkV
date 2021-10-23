@@ -3,21 +3,29 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/command");
 
 async function execute(bot, message, args, command, data) {
-	const User = await bot.functions.fetchUser(args[0]) || message.author;
+	let User = await bot.functions.fetchUser(args[0]);
+	let UserData;
+
+	if (User) {
+		UserData = await bot.database.getUser(User.id);
+	} else {
+		User = message.author;
+		UserData = data.user;
+	}
 
 	const BalanceEmbed = new Discord.MessageEmbed()
 		.setTitle(`**${User.tag}'s Balance**`)
 		.setDescription(
-			`Wallet: ❄${bot.functions.formatNumber(data.user.money.balance)}\nBank: ❄${bot.functions.formatNumber(
-				data.user.money.bank,
-			)}/${bot.functions.formatNumber(data.user.money.bankMax)}\nNet Worth: ${bot.functions.formatNumber(
-				data.user.money.bank + data.user.money.balance,
+			`Wallet: ⏣${bot.functions.formatNumber(UserData.money.balance)}\nBank: ⏣${bot.functions.formatNumber(
+				UserData.money.bank,
+			)}/${bot.functions.formatNumber(UserData.money.bankMax)}\nNet Worth: ⏣${bot.functions.formatNumber(
+				UserData.money.bank + UserData.money.balance,
 			)}`,
 		)
 		.setColor(bot.config.embed.color)
 		.setTimestamp();
 
-	await message.replyT({
+	await message.reply({
 		embeds: [BalanceEmbed],
 	});
 }

@@ -22,12 +22,12 @@ async function execute(bot, message, args, command, data) {
 			data.user.money.bank += data.user.money.bankMax;
 			data.user.money.balance -= data.user.money.bankMax;
 
-			data.markModified("money.bank");
-			data.markModified("money.balance");
+			data.user.markModified("money.bank");
+			data.user.markModified("money.balance");
 			await data.user.save();
 
 			await message.replyT(
-				`${bot.config.emojis.success} | You just deposited ❄${bot.functions.formatNumber(
+				`${bot.config.emojis.success} | You just deposited ⏣${bot.functions.formatNumber(
 					data.user.money.bankMax,
 				)} into your bank!`,
 			);
@@ -40,7 +40,7 @@ async function execute(bot, message, args, command, data) {
 			await data.user.save();
 
 			await message.replyT(
-				`${bot.config.emojis.success} | You just deposited ❄${bot.functions.formatNumber(
+				`${bot.config.emojis.success} | You just deposited ⏣${bot.functions.formatNumber(
 					data.user.money.balance,
 				)} into your bank!`,
 			);
@@ -55,25 +55,27 @@ async function execute(bot, message, args, command, data) {
 		}
 
 		if (message.content.includes(`-`)) {
-			return await message.replyT(`${bot.config.emojis.error} | You can't deposit negitive data.user.money.balance lol.`);
+			return await message.replyT(`${bot.config.emojis.error} | You can't deposit negitive money lol.`);
 		}
 
 		if (data.user.money.balance < args[0]) {
-			return await message.replyT(`${bot.config.emojis.error} | You don't have that much data.user.money.balance.`);
+			return await message.replyT(`${bot.config.emojis.error} | You don't have that money.`);
 		}
 
 		if (data.user.money.bankMax < args[0]) {
-			return await message.replyT(`${bot.config.emojis.error} | You don't have enough bank space to hold ❄${args[0]}!`);
+			return await message.replyT(`${bot.config.emojis.error} | You don't have enough bank space to hold ⏣${args[0]}!`);
 		}
 
-		data.user.money.balance -= args[0];
-		data.user.money.bank += args[0];
+		args[0] = parseInt(args[0]);
+
+		data.user.money.balance = parseInt(data.user.money.balance, 10) - args[0];
+		data.user.money.bank = parseInt(data.user.money.bank, 10) + args[0];
 
 		data.user.markModified("money.balance");
 		data.user.markModified("money.bank");
 		await data.user.save();
 
-		await message.replyT(`${bot.config.emojis.success} | Deposited ❄${bot.functions.formatNumber(args[0])} into bank!`);
+		await message.replyT(`${bot.config.emojis.success} | Deposited ⏣${bot.functions.formatNumber(args[0])} into bank!`);
 	}
 }
 

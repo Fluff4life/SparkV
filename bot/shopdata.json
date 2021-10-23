@@ -1,6 +1,8 @@
 [
     {
         "name": "pizza",
+        "description": "Yummy, pizza!",
+        "usedMessage": "🍕 | You ate delicious pizza!",
         "ids": [
             "pz"
         ],
@@ -10,6 +12,7 @@
     },
     {
         "name": "banknote",
+        "description": "A banknote. Used to expand your bank storage.",
         "ids": [
             "bn"
         ],
@@ -19,6 +22,7 @@
     },
     {
         "name": "topmedal",
+        "description": "Why would you even buy this.",
         "ids": [
             "medal"
         ],

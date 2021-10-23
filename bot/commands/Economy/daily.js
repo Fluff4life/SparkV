@@ -11,12 +11,12 @@ async function execute(bot, message, args, command, data) {
 	await data.user.save();
 
 	await message.replyT(
-		`${bot.config.emojis.success} | You've just earned ❄${bot.functions.formatNumber(Ammount)} coins!`,
+		`${bot.config.emojis.success} | You've just earned ⏣${bot.functions.formatNumber(Ammount)}!`,
 	);
 }
 
 module.exports = new cmd(execute, {
-	description: "Collect your daily ammount of Ch1llBucks!",
+	description: "Collect your daily amount of coins!",
 	dirname: __dirname,
 	usage: ``,
 	aliases: [],

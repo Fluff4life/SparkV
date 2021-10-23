@@ -17,7 +17,7 @@ async function execute(bot, message, args, command, data) {
 }
 
 module.exports = new cmd(execute, {
-	description: `Set someone's Ch1llBucks!`,
+	description: `Set someone's coins!`,
 	aliases: [],
 	dirname: __dirname,
 	usage: `<user> <ammount>`,

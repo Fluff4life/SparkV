@@ -31,12 +31,13 @@ module.exports = new cmd(
 		data.user.markModified(`inventory.${item.name}`);
 		await data.user.save();
 
-		await message.replyT(`Successfully bought amount ${item.name} for ${item.price}!`);
+		await message.replyT(`Successfully bought ${amount} ${amount > 1 ? `${item.name}s` : item.name} for ⏣${item.price}!`);
 	},
 	{
 		description: "Buy an item from the shop.",
 		dirname: __dirname,
-		aliases: ["job"],
-		usage: ``,
+		requireArgs: true,
+		aliases: [],
+		usage: `<item name> (optional: quantity)`
 	},
 );

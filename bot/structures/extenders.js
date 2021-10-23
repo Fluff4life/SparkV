@@ -37,8 +37,12 @@ Message.prototype.translate = async function(content) {
 
 Message.prototype.replyT = async function(options) {
 	if (typeof options === "string") {
-		const newOptions = {};
-		newOptions.content = options;
+		const newOptions = {
+			content: options,
+			allowedMentions: {
+				repliedUser: false
+			}
+		};
 
 		options = newOptions;
 	}
@@ -46,7 +50,12 @@ Message.prototype.replyT = async function(options) {
 	if (options.content) {
 		// Native languge.
 		if (this.guild.data.language === "en") {
-			return this.reply(options.content);
+			return this.reply({
+				content: options.content,
+				allowedMentions: {
+					repliedUser: false
+				}
+			});
 		}
 
 		// Can translate string.
@@ -61,7 +70,12 @@ Message.prototype.replyT = async function(options) {
 			this.client.redis.setAsync(`${options.content}-${this.guild.data.language}`, JSON.stringify(translation), "EX", 15 * 60);
 		}
 
-		this.reply(translation);
+		this.reply({
+			content: translation,
+			allowedMentions: {
+				repliedUser: false
+			}
+		});
 	} else {
 		// Cannot do anything.
 		this.reply(options);

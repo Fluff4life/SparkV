@@ -7,7 +7,7 @@ module.exports = new cmd(
 		const items = Object.keys(data.user.inventory);
 		args[0] = args[0].toLowerCase();
 
-		if (!bot.shop.some(i => i.ids.includes(args[0]) && i.useable) || !items.includes(args[0])) return await message.replyT("That's not a valid item to use. Please run the command inventory to see the items you have.");
+		if (!bot.shop.some(i => i.ids.includes(args[0]) && i.usable) || !items.includes(args[0])) return await message.replyT("That's not a valid item to use. Please run the command inventory to see the items you have.");
 
 		args[0] = bot.shop.find(i => i.ids.includes(args[0])).name;
 
@@ -19,8 +19,10 @@ module.exports = new cmd(
 
 		if (parseInt(data.user.inventory[args[0]]) < parseInt(args[1])) return await message.replyT("That's more items than you have in your inventory.");
 
-		data.user.inventory[args[0]] -= args[1];
+		data.user.inventory[args[0]] -= parseInt(args[1]);
 		data.user.markModified(`inventory.${args[0]}`);
+
+		await data.user.save();
 
 		if (args[0] === "banknote") {
 			data.user.money.bankMax += 10000 * args[1];
@@ -29,8 +31,9 @@ module.exports = new cmd(
 
 			return await message.replyT(`You turn in a note from SparkV to your local Spark Bank. The bank calls you back and says you gained ${10000 * args[1]} more bank space.`);
 		} else {
-			console.log(args[0]);
-			return await message.replyT(args[0]);
+			const itemData = bot.shop.filter(i => i.name === args[0] || i.ids.includes(args[0])).first();
+
+			return await message.replyT(itemData.usedMessage || "You used this item.");
 		}
 	},
 	{

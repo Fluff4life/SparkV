@@ -22,7 +22,7 @@ async function execute(bot, message, args, command, data) {
 		await data.user.save();
 
 		await message.replyT(
-			`${bot.config.emojis.success} | You just withdrawed ❄${bot.functions.formatNumber(data.user.money.bank)} from your bank!`,
+			`${bot.config.emojis.success} | You just withdrawed ⏣${bot.functions.formatNumber(data.user.money.bank)} from your bank!`,
 		);
 	} else {
 		if (!args[0]) {
@@ -41,15 +41,17 @@ async function execute(bot, message, args, command, data) {
 			return await message.replyT(`${bot.config.emojis.error} | You don't have that much data.user.money.balance in your bank!`);
 		}
 
-		data.user.money.balance += args[0];
-		data.user.money.bank -= args[0];
+		args[0] = parseInt(args[0]);
+
+		data.user.money.balance = parseInt(data.user.money.balance, 10) + args[0];
+		data.user.money.bank = parseInt(data.user.money.bank, 10) - args[0];
 
 		data.user.markModified("money.balance");
 		data.user.markModified("money.bank");
 		await data.user.save();
 
 		await message.replyT(
-			`${bot.config.emojis.success} | Withdrawed ❄${bot.functions.formatNumber(args[0])} from your bank!`,
+			`${bot.config.emojis.success} | Withdrawed ⏣${bot.functions.formatNumber(args[0])} from your bank!`,
 		);
 	}
 }

@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **126 commands**!
+SparkV's Command List! SparkV contains more than **127 commands**!
 
 
 ## 🤵 Administration
@@ -25,20 +25,21 @@ SparkV's Command List! SparkV contains more than **126 commands**!
 
 ## 💰 Economy
 
-| Name         | Description                                                          | Usage            | Cooldown  |
-| ------------ | -------------------------------------------------------------------- | ---------------- | --------- |
-| **balance**  | View your balance.                                                   | {optional user}  | 2 seconds |
-| **beg**      | Beg for coins.                                                       | {optional user}  | 2 seconds |
-| **buy**      | Buy an item from the shop.                                           |                  | 2 seconds |
-| **daily**    | Collect your daily ammount of Ch1llBucks!                            |                  | 6 seconds |
-| **deposit**  | Deposit your data.user.money.balance into your bank.                 | {all or ammount} | 2 seconds |
-| **pay**      | Give someone some data.user.money.balance!                           | {user}           | 2 seconds |
-| **rob**      | why u bully me?                                                      | {user}           | 2 seconds |
-| **shop**     | Give someone some data.user.money.balance!                           | {user}           | 2 seconds |
-| **slots**    | Don't gamble kids!                                                   | {amount}         | 2 seconds |
-| **use**      | Use an item in your inventory.                                       |                  | 2 seconds |
-| **withdraw** | Withdraw your data.user.money.balance in your bank into your wallet. |                  | 2 seconds |
-| **work**     | Work for your job and earn some Ch1llBucks.                          |                  | 2 seconds |
+| Name          | Description                                                          | Usage                            | Cooldown  |
+| ------------- | -------------------------------------------------------------------- | -------------------------------- | --------- |
+| **balance**   | View your balance.                                                   | {optional user}                  | 2 seconds |
+| **beg**       | Beg for coins.                                                       | {optional user}                  | 2 seconds |
+| **buy**       | Buy an item from the shop.                                           | {item name} (optional: quantity) | 2 seconds |
+| **daily**     | Collect your daily amount of coins!                                  |                                  | 6 seconds |
+| **deposit**   | Deposit your data.user.money.balance into your bank.                 | {all or ammount}                 | 2 seconds |
+| **inventory** | Shows the items you have.                                            |                                  | 2 seconds |
+| **pay**       | Give someone some data.user.money.balance!                           | {user}                           | 2 seconds |
+| **rob**       | why u bully me?                                                      | {user}                           | 2 seconds |
+| **shop**      | Give someone some data.user.money.balance!                           | {user}                           | 2 seconds |
+| **slots**     | Don't gamble kids!                                                   | {amount}                         | 2 seconds |
+| **use**       | Use an item in your inventory.                                       |                                  | 2 seconds |
+| **withdraw**  | Withdraw your data.user.money.balance in your bank into your wallet. |                                  | 2 seconds |
+| **work**      | Work for your job and earn some coins.                               |                                  | 2 seconds |
 
 ## 😃 Fun
 
@@ -171,8 +172,8 @@ SparkV's Command List! SparkV contains more than **126 commands**!
 | Name              | Description                    | Usage            | Cooldown  |
 | ----------------- | ------------------------------ | ---------------- | --------- |
 | **eval**          | This is an owner only command. | {user}           | 2 seconds |
-| **restart**       | This is an owner only command. | {ch1llbucks}     | 2 seconds |
-| **setch1llbucks** | Set someone's Ch1llBucks!      | {user} {ammount} | 2 seconds |
+| **restart**       | This is an owner only command. | {coins}          | 2 seconds |
+| **setch1llbucks** | Set someone's coins!           | {user} {ammount} | 2 seconds |
 | **setxp**         | Set XP.                        | {user} {ammount} | 2 seconds |
 
 ## Roblox

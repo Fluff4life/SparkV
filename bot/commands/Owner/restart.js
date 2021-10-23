@@ -43,6 +43,6 @@ module.exports = new cmd(execute, {
 	description: `This is an owner only command.`,
 	aliases: [],
 	dirname: __dirname,
-	usage: `<ch1llbucks>`,
+	usage: `<coins>`,
 	ownerOnly: true
 });

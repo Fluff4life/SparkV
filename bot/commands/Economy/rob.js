@@ -4,22 +4,24 @@ const cmd = require("../../templates/command");
 const results = [`WIN`, `LOST`];
 
 async function execute(bot, message, args, command, data) {
-	const User = bot.users.cache.get(args[0]);
+	const User = await bot.functions.GetMember(message, args);
 
 	if (!User) {
 		return await message.replyT(`${bot.config.emojis.error} | Please say a person to rob.`);
 	}
 
-	const UserBalance = await bot.database.fetchUser(User.id);
+	const UserBalance = await bot.database.getUser(User.id);
+
+	console.log(data.user.money.balance);
 
 	if (data.user.money.balance < 500) {
 		return await message.replyT(
-			`${bot.config.emojis.error} | Bruh you cannot rob someone unless you have over ❄500 Ch1llBucks.`,
+			`${bot.config.emojis.error} | Bruh you cannot rob someone unless you have over ⏣500 coins.`,
 		);
 	}
 
-	if (UserBalance.money.balance <= 0 || UserBalance.money.balance === null) {
-		return await message.replyT(`${bot.config.emojis.error} | Bruh they have no Ch1llBucks leave them alone you noob!`);
+	if (UserBalance.money.balance <= 0) {
+		return await message.replyT(`${bot.config.emojis.error} | Bruh they have no coins leave them alone you noob!`);
 	}
 
 	if (message.author.id === User.id) {
@@ -55,7 +57,7 @@ async function execute(bot, message, args, command, data) {
 		await message.replyT(
 			`${bot.config.emojis.success} | You robbed ${User} and recieved ${bot.functions.formatNumber(
 				Ammount,
-			)} Ch1llBucks!`,
+			)} coins!`,
 		);
 	} else {
 		data.user.money.balance -= 250;
@@ -64,7 +66,7 @@ async function execute(bot, message, args, command, data) {
 		await data.user.save();
 		await UserBalance.save();
 
-		await message.replyT(`${bot.config.emojis.error} | LOL you got caught! You payed ❄250 to ${User}.`);
+		await message.replyT(`${bot.config.emojis.error} | LOL you got caught! You payed ⏣250 to ${User}.`);
 	}
 }
 
