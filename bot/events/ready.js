@@ -12,25 +12,15 @@ module.exports = {
 
 		// Check Guild's Blacklist status
 		setInterval(async () => {
-			for (const guild of bot.guilds.cache) {
-				if (process.env.USERBLACKLIST.includes(guild.ownerId)) {
-					try {
-						await guild.leave();
+			for (const guildID of process.env.GUILDBLACKLIST) {
+				const guild = bot.guilds.cache.get(guildID) || await bot.guilds.fetch(guildID);
 
-						console.log(`Left guild ${guild.name} because it's on the UserBlacklist.`);
-					} catch {
-						console.log(`Failed to leave Blacklisted User's Guild! GuildName: ${guild.name} GuildID: ${id}`);
-					}
-				}
+				try {
+					await guild.leave();
 
-				if (process.env.GUILDBLACKLIST.includes(guild.id)) {
-					try {
-						await guild.leave();
-
-						console.log(`Left guild ${guild.name} because it's on the GuildBlacklist.`);
-					} catch {
-						console.log(`Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`);
-					}
+					console.log(`Left guild ${guild.name} because it's on the GuildBlacklist.`);
+				} catch {
+					console.log(`Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`);
 				}
 			}
 		}, 60 * 1000);
