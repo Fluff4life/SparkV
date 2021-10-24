@@ -70,6 +70,11 @@ const pFilter = async m => {
 	}
 
 	if (m.content) {
+		if (m.content.length >= 256) {
+			await m.replyT(`${bot.config.emojis.error} | The prize cannot be longer than 255 characters. Try again.`);
+
+			return false;
+		}
 		return true;
 	} else {
 		await m.replyT("Dude... I need you to send a valid message.");
