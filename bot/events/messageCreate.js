@@ -1,4 +1,4 @@
-const { configureScope } = require("@sentry/node");
+const sentry = require("@sentry/node");
 const Levels = require("discord-xp");
 const Discord = require("discord.js");
 const fetch = require("axios");
@@ -17,7 +17,7 @@ function deleteMessages(bot, matches) {
 			const msg = channel.messages.cache.get(message.messageID);
 
 			if (msg) {
-				msg.delete().catch(err => {});
+				msg.delete().catch(err => { });
 			}
 		}
 	});
@@ -26,18 +26,29 @@ function deleteMessages(bot, matches) {
 module.exports = {
 	once: false,
 	async execute(bot, message) {
-		// Data
-		const data = {};
+		// If the application owner isn't ready yet, wait for it.
+		if (!bot.application?.owner) await bot.application?.fetch();
+
+		// If the channel is a partial, wait for the channel to fetch.
+		if (message.channel?.partial) await message.channel.fetch();
+
+		// If the message is a partial, wait for the message to fetch.
+		if (message?.partial) await message.fetch();
 
 		// If the message's author is a bot, return. This prevents SparkV from responding to himself.
-		if (message.author.bot) {
-			return;
-		}
+		if (message.author.bot) return;
+
+		// If the message is from a DM, return. This prevents SparkV from responding to DMs.
+		if (message.channel.type === "dm") return;
+
+		// If the guild is part of the guild blacklist, return.
+		if (bot.config.blacklist.guilds[message.guild.id]) return await message.replyT(`Your server has been blacklisted. Reason: ${bot.config.blacklist.guilds[message.guild.id]}\n\nIf you think this ban wasn't correct, please contact support. (https://discord.gg/PPtzT8Mu3h)`);
 
 		// Cache the member.
-		if (message.guild && !message.member) {
-			await message.guild.members.fetch(message.author.id);
-		}
+		if (message.guild && !message.member) await message.guild.members.fetch(message.author.id);
+
+		// Data
+		const data = {};
 
 		// Get the Guild
 		if (message.guild) {
@@ -47,21 +58,12 @@ module.exports = {
 			message.guild.data = data.guild;
 		}
 
-		if (message.guild) {
-			// Fetch the member's data
-			const member = await bot.database.getMember(message.author.id, message.guild.id);
-
-			data.member = member;
-		}
+		if (message.guild) data.member = await bot.database.getMember(message.author.id, message.guild.id);
 
 		// User data
-		const userD = await bot.database.getUser(message.author.id);
+		data.user = await bot.database.getUser(message.author.id);
 
-		data.user = userD;
-
-		if (!data) {
-			return;
-		}
+		if (!data) return;
 
 		// Plugins
 		if (message.guild) {
@@ -115,7 +117,7 @@ module.exports = {
 						data.member.markModified("infractionsCount");
 						data.member.markModified("infractions");
 
-						message.delete().catch(err => {});
+						message.delete().catch(err => { });
 						message.replyT(
 							`🔨 | ${message.author}, please stop cursing. If you curse again, you'll be muted. | You have **${data.member.infractionsCount}** warning(s).`,
 						);
@@ -126,7 +128,7 @@ module.exports = {
 							try {
 								message.member.ban({
 									reason:
-                    "Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
+										"Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
 								});
 							} catch (err) {
 								return await message.replyT("Failed to ban user. Make sure I have the correct permisions!");
@@ -136,13 +138,13 @@ module.exports = {
 						if (data.member.infractionsCount === 6) {
 							message.member
 								.send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`)
-								.catch(err => {});
+								.catch(err => { });
 							await message.replyT(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`);
 
 							try {
 								message.member.kick({
 									reason:
-                    "Continued to curse after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
+										"Continued to curse after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
 								});
 							} catch (err) {
 								return await message.replyT("Failed to kick user. Make sure I have the correct permisions!");
@@ -176,8 +178,8 @@ module.exports = {
 			if (data.guild.plugins.automod.removeLinks === true) {
 				if (
 					!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.MANAGE_MESSAGES) &&
-          !message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.ADMINISTRATOR) &&
-          bot.functions.isURL(message.content)
+					!message.channel.permissionsFor(message.member).has(Discord.Permissions.FLAGS.ADMINISTRATOR) &&
+					bot.functions.isURL(message.content)
 				) {
 					++data.member.infractionsCount;
 					data.member.infractions.push({
@@ -190,7 +192,7 @@ module.exports = {
 					await data.member.save();
 
 					try {
-						message.delete().catch(err => {});
+						message.delete().catch(err => { });
 					} catch (err) {
 						message
 							.replyT(bot.config.responses.InvalidPermisions.bot.toString().replaceAll(`{author}`, message.author));
@@ -206,7 +208,7 @@ module.exports = {
 						try {
 							message.member.ban({
 								reason:
-                  "Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
+									"Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
 							});
 						} catch (err) {
 							return await message.replyT("Failed to ban user. Make sure I have the correct permisions!");
@@ -216,13 +218,13 @@ module.exports = {
 					if (data.member.infractionsCount === 6) {
 						message.member
 							.send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`)
-							.catch(err => {});
+							.catch(err => { });
 						await message.replyT(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`);
 
 						try {
 							message.member.kick({
 								reason:
-                  "Continued to curse after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
+									"Continued to curse after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
 							});
 						} catch (err) {
 							return await message.replyT("Failed to kick user. Make sure I have the correct permisions!");
@@ -300,7 +302,7 @@ module.exports = {
 								try {
 									message.member.ban({
 										reason:
-                      "Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
+											"Continued to break SparkV's auto mod rules after 12 warnings. The 3rd was a mute, the 6th was a kick from the server and now the 12th is being banned.",
 									});
 								} catch (err) {
 									return await message.replyT("Failed to ban user. Make sure I have the correct permisions!");
@@ -311,13 +313,13 @@ module.exports = {
 								deleteMessages(bot, matches);
 								message.member
 									.send(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`)
-									.catch(err => {});
+									.catch(err => { });
 								await message.replyT(`You've been **KICKED** for getting **${data.member.infractionsCount}** warning(s).`);
 
 								try {
 									message.member.kick({
 										reason:
-                      "Continued to spam after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
+											"Continued to spam after 6 warnings. The 3rd was a mute and now this punishment is a kick from the server. The next punishment, at 12 warnings, will be a ban.",
 									});
 								} catch (err) {
 									return await message.replyT("Failed to kick user. Make sure I have the correct permisions!");
@@ -375,21 +377,6 @@ module.exports = {
 			}
 		}
 
-		if (process.env.USERBLACKLIST.includes(message.author.id)) {
-			try {
-				return message.author
-					.send(`${bot.config.emojis.Error} | Uh oh! Looks like you're banned from using SparkV.`)
-					.then(() => {
-						message.react("❌");
-					});
-			} catch {
-				message.react(bot.config.emojis.Error);
-			}
-		}
-
-		// Chat Bot
-
-
 		// Check for a prefix
 		const prefix = bot.functions.getPrefix(message, data);
 
@@ -404,6 +391,9 @@ module.exports = {
 
 			return;
 		}
+
+		// If the user is part of the user blacklist, return.
+		if (bot.config.blacklist.users[message.author.id]) return await message.replyT(`You have been blacklisted. Reason: ${bot.config.blacklist.users[message.author.id]}\n\nIf you think this ban wasn't correct, please contact support. (https://discord.gg/PPtzT8Mu3h)`);
 
 		// Command Handler
 		const args = message.content.slice(prefix.length).trim().split(/ +/g);
@@ -433,9 +423,10 @@ module.exports = {
 		}
 
 		const userCooldown = cooldowns[message.author.id];
+
 		const time = userCooldown[commandfile.settings.name] || 0;
 
-		if (time > Date.now()) {
+		if (time && (time > Date.now())) {
 			const cooldownEmbed = new Discord.MessageEmbed()
 				.setTitle(`${bot.config.emojis.error} | Whoa there ${message.author.username}!`)
 				.setDescription(`Please wait ${Math.ceil((time - Date.now()) / 1000)} more seconds to use that command again.`)
@@ -443,7 +434,7 @@ module.exports = {
 				.setColor(`#0099ff`)
 				.setFooter(bot.config.embed.footer, bot.user.displayAvatarURL());
 
-			return await message.replyT({
+			return await message.reply({
 				embeds: [cooldownEmbed],
 			});
 		}
@@ -453,25 +444,24 @@ module.exports = {
 		try {
 			await commandfile.run(bot, message, args, command, data).then(async () => {
 				if (data.guild.autoRemoveCommands === true) {
-					message.delete().catch(() => {});
+					message.delete().catch(() => { });
 				}
 
 				bot.StatClient.postCommand(command, message.author.id);
 			});
 		} catch (err) {
-			console.error(err);
-
-			const AnnonymousUser = `Annonymous`;
-
-			configureScope(scope => {
+			const { tag, id } = message.author;
+			sentry.configureScope(scope => {
 				scope.setUser({
-					AnnonymousUser,
+					username: tag,
+					id
 				});
 
 				scope.setTag(`Command`, commandfile.settings.name);
-				scope.setTag(`CurrentPing`, bot.ws.ping);
 				scope.setTag(`GuildType`, message.channel.type);
 			});
+
+			bot.logger(err, "error");
 
 			await message.replyT(
 				`${bot.config.emojis.error} | Uh oh! Something went wrong handling that command. Please join my Support Server (^Invite), create a ticket and report the following error: ${err}. Sorry!`,

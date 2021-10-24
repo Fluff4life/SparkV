@@ -6,8 +6,7 @@ async function execute(bot, message, args, command, data) {
 	args = args.join(" ");
 
 	if (args.length >= 512) {
-		// await message.replyT("That's too long for a message for SparkV to say.");
-		return;
+		return await message.replyT("That's too long for a message for SparkV to say.");
 	}
 
 	message.replyT(`${args}\n*-${message.author.username}*`);

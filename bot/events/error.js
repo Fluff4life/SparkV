@@ -1,10 +1,9 @@
 const Discord = require("discord.js");
+const logger = require("../../modules/logger");
 
 module.exports = {
 	once: false,
-	execute(bot, event) {
-		LogError("Fatal", event);
-
-		console.log(`ERROR! => ${event}`);
+	async execute(bot, event) {
+		await logger(`Discord bot error. ${event}`, "error");
 	},
 };

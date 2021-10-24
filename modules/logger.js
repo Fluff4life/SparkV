@@ -4,6 +4,8 @@ const chalk = require("chalk");
 const config = require("../globalconfig.json");
 
 module.exports = async (content, type = "log") => {
+	if (!content) return;
+
 	if (type === "log") {
 		return console.log(`📋 | ${content}`);
 	} else if (type === "warn") {

@@ -10,21 +10,6 @@ module.exports = {
 			activities: [{ name: "Loading SparkV (100%)" }],
 		});
 
-		// Check Guild's Blacklist status
-		setInterval(async () => {
-			for (const guildID of process.env.GUILDBLACKLIST) {
-				const guild = bot.guilds.cache.get(guildID) || await bot.guilds.fetch(guildID);
-
-				try {
-					await guild.leave();
-
-					console.log(`Left guild ${guild.name} because it's on the GuildBlacklist.`);
-				} catch {
-					console.log(`Failed to leave Blacklisted guild! GuildName: ${guild.name} GuildID: ${id}`);
-				}
-			}
-		}, 60 * 1000);
-
 		// Bot Lists //
 		if (bot.config.debug === false) {
 			const poster = new dbots.Poster({

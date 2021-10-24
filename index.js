@@ -24,19 +24,6 @@ if (require("./globalconfig.json").debug === true) {
 
 // Functions //
 async function Start() {
-	fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
-		if (err) return Logger(err, "error");
-
-		files.forEach(file => {
-			const EventName = file.split(".")[0];
-			const FileEvent = require(`./events/${EventName}`);
-
-			process.on(EventName, (...args) => FileEvent.run(...args));
-		});
-	});
-
-	process.env.MainDir = __dirname;
-
 	init({
 		dsn: process.env.SENTRYTOKEN,
 		release: `${PackageInfo.name}@${PackageInfo.version}`,
@@ -49,6 +36,19 @@ async function Start() {
 
 	mongoose.connection.on("error", console.error.bind(console, "Database connection error!"));
 	mongoose.connection.on("open", () => Logger("DATABASE - ONLINE"));
+
+	fs.readdir(path.join(`${__dirname}/events`), (err, files) => {
+		if (err) return Logger(err, "error");
+
+		files.forEach(file => {
+			const EventName = file.split(".")[0];
+			const FileEvent = require(`./events/${EventName}`);
+
+			process.on(EventName, (...args) => FileEvent.run(...args));
+		});
+	});
+
+	process.env.MainDir = __dirname;
 
 	if (Config.sharding.shardingEnabled === true) {
 		const manager = new ShardingManager("./bot/bot.js", {
