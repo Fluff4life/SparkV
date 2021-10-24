@@ -5,6 +5,10 @@ const cmd = require("../../templates/command");
 async function execute(bot, message, args, command, data) {
 	args = args.join(" ");
 
+	if (args.length >= 512) {
+		return await message.replyT("That's too long for a message for SparkV to say.");
+	}
+
 	message.replyT(`${args}\n*-${message.author.username}*`);
 	message.delete().catch(_ => {});
 }
