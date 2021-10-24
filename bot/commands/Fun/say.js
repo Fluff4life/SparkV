@@ -18,4 +18,5 @@ module.exports = new cmd(execute, {
 	aliases: [],
 	dirname: __dirname,
 	usage: `<message>`,
+	cooldown: 15,
 });
