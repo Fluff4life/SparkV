@@ -75,6 +75,7 @@ const pFilter = async m => {
 
 			return false;
 		}
+
 		return true;
 	} else {
 		await m.replyT("Dude... I need you to send a valid message.");
