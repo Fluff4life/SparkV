@@ -10,7 +10,6 @@ async function execute(bot, message, args) {
 		return message.channel.send("Please mention a role to get the id of.");
 	}
 
-	console.log(role.name, role.id);
 	await message.replyT(`The id of the role **${role.name}** is **${role.id}**.`);
 }
 
