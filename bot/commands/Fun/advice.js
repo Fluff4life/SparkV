@@ -22,6 +22,6 @@ async function execute(bot, message) {
 module.exports = new cmd(execute, {
 	description: "You'll need it.",
 	dirname: __dirname,
-	aliases: ["job"],
+	aliases: ["helpfult", "htip"],
 	usage: ``,
 });

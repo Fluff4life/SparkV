@@ -27,6 +27,6 @@ module.exports = new cmd(execute, {
 	description: "Plays a song with the given name or URL.",
 	dirname: __dirname,
 	usage: "<song title or URL>",
-	aliases: ["leap"],
+	aliases: ["p"],
 	perms: ["EMBED_LINKS"],
 });

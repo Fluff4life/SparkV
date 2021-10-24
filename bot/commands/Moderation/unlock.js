@@ -17,7 +17,7 @@ async function execute(bot, message, args, command, data) {
 module.exports = new cmd(execute, {
 	description: "I'll unlock the current channel.",
 	dirname: __dirname,
-	aliases: ["slow"],
-	usage: `<user> <reason>`,
+	aliases: ["ulock"],
+	usage: ``,
 	perms: ["MANAGE_CHANNELS"],
 });

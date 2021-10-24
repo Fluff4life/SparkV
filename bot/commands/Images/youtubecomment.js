@@ -24,7 +24,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
 	description: `YouTube comment lol.`,
-	aliases: ["waste"],
+	aliases: ["ytcomment", "ytc"],
 	dirname: __dirname,
 	usage: `<user | self> <text>`,
 });

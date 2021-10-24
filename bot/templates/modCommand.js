@@ -10,9 +10,9 @@ module.exports = class ModCommand {
 	async run(bot, message, args, command, data) {
 		for (const requiredPerm of this.settings.perms || []) {
 			if (!message.channel.permissionsFor(message.member).has(requiredPerm)) {
-				return this.missingPermission("user", requiredPerm);
+				return await message.replyT(this.missingPermission("user", requiredPerm));
 			} else if (!message.channel.permissionsFor(message.guild.me).has(requiredPerm)) {
-				return this.missingPermission("bot", requiredPerm);
+				return await message.replyT(this.missingPermission("bot", requiredPerm));
 			}
 		}
 

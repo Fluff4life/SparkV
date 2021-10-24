@@ -42,6 +42,6 @@ async function execute(bot, message, args, command, data) {
 module.exports = new cmd(execute, {
 	description: `View a users rank!`,
 	dirname: __dirname,
-	aliases: ["memeeconomy"],
+	aliases: ["level", "xp"],
 	usage: `<optional user>`,
 });

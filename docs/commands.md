@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **127 commands**!
+SparkV's Command List! SparkV contains more than **132 commands**!
 
 
 ## 🤵 Administration
@@ -84,27 +84,26 @@ SparkV's Command List! SparkV contains more than **127 commands**!
 
 ## 📷 Images
 
-| Name               | Description                     | Usage                      | Cooldown  |
-| ------------------ | ------------------------------- | -------------------------- | --------- |
-| **affect**         | Yes it does noob                | {optional user}            | 2 seconds |
-| **avatar**         | 4K avatar 512x512               | (@member) (optional: -url) | 2 seconds |
-| **bed**            | Why do you hate me, brother?    | {optional user}            | 2 seconds |
-| **changemymind**   | Change my mind.                 | {text}                     | 2 seconds |
-| **color**          | Hex to color.                   | {hex}                      | 2 seconds |
-| **facepalm**       | bruh                            | {optional user}            | 2 seconds |
-| **invert**         | bruh                            | {optional user}            | 2 seconds |
-| **jail**           | Haha get in jail noob           | {optional user}            | 2 seconds |
-| **ohno**           | OH NO HE'S STUPID!              | {text}                     | 2 seconds |
-| **opinion**        | lol                             | {text}                     | 2 seconds |
-| **rainbow**        | wow bro are you gae?            | {optional user}            | 2 seconds |
-| **rip**            | Rest In Peace.                  | {optional user}            | 2 seconds |
-| **shit**           | Ew!                             | {user | self}              | 2 seconds |
-| **slap**           | SLAP SLAP SLAP!                 | {user | self}              | 2 seconds |
-| **trash**          | wow it trash                    | {user | self}              | 2 seconds |
-| **trigger**        | wow you mad bro                 | {user | self}              | 2 seconds |
-| **wanted**         | Wanted sign.                    | {user | self}              | 2 seconds |
-| **wasted**         | Dang man, that's a life wasted. | {user | self}              | 2 seconds |
-| **youtubecomment** | YouTube comment lol.            | {user | self} {text}       | 2 seconds |
+| Name               | Description                     | Usage                | Cooldown  |
+| ------------------ | ------------------------------- | -------------------- | --------- |
+| **affect**         | Yes it does noob                | {optional user}      | 2 seconds |
+| **bed**            | Why do you hate me, brother?    | {optional user}      | 2 seconds |
+| **changemymind**   | Change my mind.                 | {text}               | 2 seconds |
+| **color**          | Hex to color.                   | {hex}                | 2 seconds |
+| **facepalm**       | bruh                            | {optional user}      | 2 seconds |
+| **invert**         | bruh                            | {optional user}      | 2 seconds |
+| **jail**           | Haha get in jail noob           | {optional user}      | 2 seconds |
+| **ohno**           | OH NO HE'S STUPID!              | {text}               | 2 seconds |
+| **opinion**        | lol                             | {text}               | 2 seconds |
+| **rainbow**        | wow bro are you gae?            | {optional user}      | 2 seconds |
+| **rip**            | Rest In Peace.                  | {optional user}      | 2 seconds |
+| **shit**           | Ew!                             | {user | self}        | 2 seconds |
+| **slap**           | SLAP SLAP SLAP!                 | {user | self}        | 2 seconds |
+| **trash**          | wow it trash                    | {user | self}        | 2 seconds |
+| **trigger**        | wow you mad bro                 | {user | self}        | 2 seconds |
+| **wanted**         | Wanted sign.                    | {user | self}        | 2 seconds |
+| **wasted**         | Dang man, that's a life wasted. | {user | self}        | 2 seconds |
+| **youtubecomment** | YouTube comment lol.            | {user | self} {text} | 2 seconds |
 
 ## 📋 Information
 
@@ -145,7 +144,7 @@ SparkV's Command List! SparkV contains more than **127 commands**!
 | **mute**        | I'll mute someone.                                                                                                                   | {user} {reason}                                                                                | 2 seconds |
 | **nickname**    | I'll change a user's nickname to your choice.                                                                                        | {user} {reason}                                                                                | 2 seconds |
 | **slowmode**    | I will set the channel's slowmode to anything you want.                                                                              | {user} {reason}                                                                                | 2 seconds |
-| **unlock**      | I'll unlock the current channel.                                                                                                     | {user} {reason}                                                                                | 2 seconds |
+| **unlock**      | I'll unlock the current channel.                                                                                                     |                                                                                                | 2 seconds |
 | **unmute**      | I'll unmute someone who was muted previously.                                                                                        | {user} {reason}                                                                                | 2 seconds |
 | **warn**        | I will warn a user                                                                                                                   | {user} {optional reason}                                                                       | 2 seconds |
 
@@ -169,12 +168,12 @@ SparkV's Command List! SparkV contains more than **127 commands**!
 
 ## 👑 Owner
 
-| Name              | Description                    | Usage            | Cooldown  |
-| ----------------- | ------------------------------ | ---------------- | --------- |
-| **eval**          | This is an owner only command. | {user}           | 2 seconds |
-| **restart**       | This is an owner only command. | {coins}          | 2 seconds |
-| **setch1llbucks** | Set someone's coins!           | {user} {ammount} | 2 seconds |
-| **setxp**         | Set XP.                        | {user} {ammount} | 2 seconds |
+| Name         | Description                    | Usage            | Cooldown  |
+| ------------ | ------------------------------ | ---------------- | --------- |
+| **eval**     | This is an owner only command. | {user}           | 2 seconds |
+| **restart**  | This is an owner only command. | {coins}          | 2 seconds |
+| **setcoins** | Set someone's coins!           | {user} {ammount} | 2 seconds |
+| **setxp**    | Set XP.                        | {user} {ammount} | 2 seconds |
 
 ## Roblox
 
@@ -187,10 +186,16 @@ SparkV's Command List! SparkV contains more than **127 commands**!
 
 ## 🧰 Utility
 
-| Name           | Description                      | Usage           | Cooldown  |
-| -------------- | -------------------------------- | --------------- | --------- |
-| **calculator** | Calculate any equation!          |                 | 2 seconds |
-| **decode**     | decode a string that was encoded | {type} {string} | 2 seconds |
-| **encode**     | encode a string                  | {type} {string} | 2 seconds |
-| **stats**      | SparkV's stats.                  |                 | 2 seconds |
-| **userinfo**   | See information about a user.    | {user}          | 2 seconds |
+| Name              | Description                                                                                   | Usage                      | Cooldown  |
+| ----------------- | --------------------------------------------------------------------------------------------- | -------------------------- | --------- |
+| **avatar**        | 4K avatar 512x512                                                                             | (@member) (optional: -url) | 2 seconds |
+| **avatar copy 5** | 4K avatar 512x512                                                                             | (@member) (optional: -url) | 2 seconds |
+| **calculator**    | Calculate any equation!                                                                       |                            | 2 seconds |
+| **date**          | Gets the current date.                                                                        |                            | 2 seconds |
+| **decode**        | decode a string that was encoded                                                              | {type} {string}            | 2 seconds |
+| **encode**        | encode a string                                                                               | {type} {string}            | 2 seconds |
+| **roleid**        | 4K avatar 512x512                                                                             | (@member) (optional: -url) | 2 seconds |
+| **servericon**    | 4K server icon 512x512                                                                        | (optional: -url)           | 2 seconds |
+| **stats**         | SparkV's stats.                                                                               |                            | 2 seconds |
+| **userid**        | Gets the ID of the mentioned user. If you don't mention someone, I will send your ID instead. | (optional: @member)        | 2 seconds |
+| **userinfo**      | See information about a user.                                                                 | {user}                     | 2 seconds |

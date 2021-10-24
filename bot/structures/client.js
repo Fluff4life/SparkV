@@ -168,6 +168,13 @@ module.exports = class bot extends Client {
 						}
 
 						command.settings.name = commandname;
+
+						if (this.commands.has(commandname)) {
+							const existingCommand = this.commands.get(commandname);
+
+							return this.logger(`You cannot set command ${commandname} because it is already in use by the command ${existingCommand.settings.name}. This is most likely due to a accidental clone of a command with the same name.`, "error");
+						}
+
 						this.commands.set(commandname, command);
 
 						if (command.settings.slash && command.settings.slash === true) {
@@ -191,6 +198,12 @@ module.exports = class bot extends Client {
 						for (const alias of command.settings.aliases) {
 							if (!alias) {
 								return;
+							}
+
+							if (this.aliases.has(alias)) {
+								const existingCommand = this.aliases.get(alias);
+
+								return this.logger(`You cannot set alias ${alias} to ${command.settings.name} because it is already in use by the command ${existingCommand.settings.name}.`, "error");
 							}
 
 							this.aliases.set(alias, command);

@@ -14,7 +14,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
 	description: "Wanted sign.",
-	aliases: ["mad"],
+	aliases: ["wsign", "wanteds"],
 	dirname: __dirname,
 	usage: `<user | self>`,
 });

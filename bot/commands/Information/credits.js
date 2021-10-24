@@ -32,7 +32,7 @@ module.exports = new cmd(
 		description: `Look at everyone who helped make SparkV!`,
 		dirname: __dirname,
 		usage: "",
-		aliases: ["deleteg"],
+		aliases: ["devs", "developers"],
 		perms: ["EMBED_LINKS"],
 	},
 );

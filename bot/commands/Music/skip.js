@@ -43,6 +43,6 @@ async function execute(bot, message, args, command, data) {
 module.exports = new cmd(execute, {
 	description: `Skip to the next song in the queue.`,
 	usage: "",
-	aliases: ["unpause"],
+	aliases: ["nextsong", "nsong", "nexts", "next"],
 	perms: ["EMBED_LINKS"],
 });

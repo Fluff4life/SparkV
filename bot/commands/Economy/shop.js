@@ -26,6 +26,6 @@ module.exports = new cmd(execute, {
 	description: `Give someone some data.user.money.balance!`,
 	dirname: __dirname,
 	usage: `<user>`,
-	aliases: ["gift"],
+	aliases: [],
 	perms: ["EMBED_LINKS"],
 });

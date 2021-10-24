@@ -23,6 +23,6 @@ module.exports = new cmd(execute, {
 	description: `Shuffles the queue.`,
 	dirname: __dirname,
 	usage: "",
-	aliases: ["unpause"],
+	aliases: ["shufflequeue", "shuffleq", "squeue"],
 	perms: ["EMBED_LINKS"],
 });

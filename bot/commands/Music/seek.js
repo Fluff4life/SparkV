@@ -25,6 +25,6 @@ module.exports = new cmd(execute, {
 	description: `Change the current track's position.`,
 	dirname: __dirname,
 	usage: "<number>",
-	aliases: ["unpause"],
+	aliases: [],
 	perms: ["EMBED_LINKS"],
 });
