@@ -5,12 +5,12 @@ const cmd = require("../../templates/command");
 const Credits = [
 	{
 		name: "**🛠 | Developers**",
-		value: "The people who made SparkV!\n**KingCh1ll** - Head Developer\n**Qu1ckly_Frost** - Developer",
+		value: "The people who made SparkV!\n\n**KingCh1ll** - Head Developer\n**Qu1ckly_Frost** - Developer",
 		inline: true,
 	},
 	{
 		name: "**✨ | Contributors**",
-		value: "People that have contributed to SparkV.\n**2Lost4Discord** - Getting the bot verified.",
+		value: "People that have contributed to SparkV.\n\n**2Lost4Discord** - Getting the bot verified.",
 		inline: true,
 	},
 ];
