@@ -443,7 +443,7 @@ module.exports = {
 
 		// Do to recent events, *cough* Message Content: Privileged Intent for Verified Bots *cough*, commands with slash enabled being run not with slash will be notified that soon, those commands will be disabled.
 		if (commandfile.settings.slash === true) {
-			await message.replyT(`${bot.config.emojis.error} | This command has a dedicated slash command! Due to Discord wanting EVERY command being slash command supported (and Discord soon disabling SparkV to see messages and check if they have the prefix), on <t:1639861200:R> this change will be FORCED on all commands.`);
+			await message.replyT(`${bot.config.emojis.error} | This command has a dedicated slash command! Due to Discord wanting EVERY command being slash command supported (and Discord soon disabling SparkV to see messages and check if they have the prefix), on <t:1639861200:R> this command will be FORCED to be slash only.`);
 		}
 
 		try {
