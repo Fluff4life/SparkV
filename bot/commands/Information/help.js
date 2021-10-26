@@ -94,7 +94,7 @@ async function execute(bot, message, args, command, data) {
 
 module.exports = new cmd(execute, {
 	description: `View Ch1llBlox's 100+ commands.`,
-	aliases: [`cmds`, `commands`],
+	aliases: [`cmds`, `commands`, "vote", "support", "invite"],
 	usage: `<command>`,
 	dirname: __dirname,
 });
