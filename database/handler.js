@@ -19,6 +19,8 @@ module.exports = {
 		} else {
 			data = new UserS({
 				id: UserID,
+			}, {
+				versionKey: "1"
 			});
 
 			return data;
@@ -37,6 +39,8 @@ module.exports = {
 			member = new MemberS({
 				id: MemberID,
 				guildID: GuildID,
+			}, {
+				versionKey: "1"
 			});
 
 			return member;
@@ -53,6 +57,8 @@ module.exports = {
 		} else {
 			guild = new GuildS({
 				id: GuildID,
+			}, {
+				versionKey: "1"
 			});
 
 			return guild;
