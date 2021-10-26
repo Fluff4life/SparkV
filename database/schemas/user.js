@@ -32,7 +32,8 @@ const Schema = new mongoose.Schema({
 		bankMax: { type: Number, default: 0 },
 		multiplier: { type: Number, default: 0 }
 	},
-	inventory: {}
+	inventory: {},
+	schema_version: 1
 });
 
 Schema.method("GenerateAPIToken", async () => {

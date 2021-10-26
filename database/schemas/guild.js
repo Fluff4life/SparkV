@@ -53,6 +53,7 @@ const GuildSchema = new mongoose.Schema({
 		},
 		chatbot: { type: String, default: false },
 	},
+	schema_version: 1
 });
 
 const GuildData = new mongoose.model("Guild", GuildSchema);
