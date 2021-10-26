@@ -42,7 +42,7 @@ module.exports = {
 		if (message.channel.type === "dm") return;
 
 		// If the bot cannot send messages, return.
-		if (!message.guild.me.hasPermission(Discord.Permissions.FLAGS.SEND_MESSAGES)) return;
+		if (!message.guild.member(bot.user).hasPermission(Discord.Permissions.FLAGS.SEND_MESSAGES)) return;
 
 		// If the guild is part of the guild blacklist, return.
 		if (bot.config.blacklist.guilds[message.guild.id]) return await message.replyT(`Your server has been blacklisted. Reason: ${bot.config.blacklist.guilds[message.guild.id]}\n\nIf you think this ban wasn't correct, please contact support. (https://discord.gg/PPtzT8Mu3h)`);
