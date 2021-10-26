@@ -33,7 +33,7 @@ const Schema = new mongoose.Schema({
 		multiplier: { type: Number, default: 0 }
 	},
 	inventory: {},
-	schema_version: 1
+	schema_version: "1"
 });
 
 Schema.method("GenerateAPIToken", async () => {

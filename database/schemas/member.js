@@ -26,6 +26,6 @@ module.exports = mongoose.model(
 			type: Object,
 			default: { muted: false, case: null, endDate: null },
 		},
-		schema_version: 1
+		schema_version: "1"
 	}),
 );
