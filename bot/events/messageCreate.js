@@ -44,7 +44,7 @@ module.exports = {
 		const botMember = await message.guild.members.fetch(bot.user.id);
 
 		// If the bot cannot send messages, return.
-		if (!botMember.hasPermission(Discord.Permissions.FLAGS.SEND_MESSAGES)) return;
+		if (!botMember.permissionsIn(message.channel).has(Discord.Permissions.FLAGS.SEND_MESSAGES)) return;
 
 		// If the guild is part of the guild blacklist, return.
 		if (bot.config.blacklist.guilds[message.guild.id]) return await message.replyT(`Your server has been blacklisted. Reason: ${bot.config.blacklist.guilds[message.guild.id]}\n\nIf you think this ban wasn't correct, please contact support. (https://discord.gg/PPtzT8Mu3h)`);
