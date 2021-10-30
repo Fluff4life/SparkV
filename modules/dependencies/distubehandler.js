@@ -211,6 +211,6 @@ module.exports = async bot => {
 		.on("error", (channel, err) => {
 			console.error(err);
 
-			channel.textChannel.send(`❎︱Uh oh! An error occured. Please try again later. Error: ${err.slice(0, 1950)}`);
+			channel.textChannel.send(`❎︱Uh oh! An error occured. Please try again later. ${err}`);
 		});
 };
