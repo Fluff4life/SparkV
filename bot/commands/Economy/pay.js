@@ -22,7 +22,7 @@ async function execute(bot, message, args, command, data) {
 	}
 
 	if (message.content.includes(`-`)) {
-		return await message.replyT(`${bot.config.emojis.error} | You cannot give a user negitive data.user.money.balance lol.`);
+		return await message.replyT(`${bot.config.emojis.error} | You cannot give a user negitive money lol.`);
 	}
 
 	const UserMoney = await bot.database.getUser(User.id);
