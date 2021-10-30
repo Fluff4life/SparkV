@@ -58,11 +58,7 @@ module.exports = class bot extends Client {
 		// Function
 		const createRedis = () =>
 			new Promise(resolve => {
-				const rClient = require("redis").createClient({
-					host: process.env.REDIS_HOST,
-					port: process.env.REDIS_PORT,
-				});
-				rClient.auth(process.env.REDIS_PASSWORD);
+				const rClient = require("redis").createClient(process.env.REDIS_URL);
 
 				for (const prop in rClient) {
 					if (typeof rClient[prop] === "function") {
