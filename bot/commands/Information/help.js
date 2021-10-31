@@ -66,22 +66,22 @@ async function execute(bot, message, args, command, data) {
 		});
 	} else {
 		const name = args[0].toLowerCase();
-		const cmd = bot.commands.get(name) || bot.commands.find(c => c.aliases && c.aliases.includes(name));
+		const cmd = bot.commands.get(name) || bot.commands.find(c => c.settings.aliases && c.settings.aliases.includes(name));
 
 		const CommandHelpEmbed = new MessageEmbed()
-			.setTitle(`\`\`\`${prefix}${command.config.name} ${command.config.usage}\`\`\``)
-			.setDescription(command.config.description)
+			.setTitle(`\`\`\`${command.settings.slash === true ? "/" : data.guild.prefix}${command.settings.name} ${command.settings.usage}\`\`\``)
+			.setDescription(command.settings.description)
 			.setThumbnail(
 				message.author.displayAvatarURL({
 					dynamic: true,
 					format: "gif",
 				}),
 			)
-			.addField(`**ALIASES**`, `\`\`\`${command.config.aliases.join(`,\n`)}\`\`\``, true)
-			.addField(`**CATEGORY**`, `\`\`\`${command.config.category}\`\`\``, true)
-			.addField(`**COOLDOWN**`, `\`\`\`${command.config.cooldown || 3} second(s)\`\`\``, true)
+			.addField(`**ALIASES**`, `\`\`\`${command.settings.aliases.join(`,\n`)}\`\`\``, true)
+			.addField(`**CATEGORY**`, `\`\`\`${command.settings.category}\`\`\``, true)
+			.addField(`**COOLDOWN**`, `\`\`\`${command.settings.cooldown || 3} second(s)\`\`\``, true)
 			.setFooter(
-				`${prefix}Help to get a list of all commands • ${bot.config.embed.footer}`,
+				`${data.guild.prefix}Help to get a list of all commands • ${bot.config.embed.footer}`,
 				bot.user.displayAvatarURL(),
 			)
 			.setColor(bot.config.embed.color);

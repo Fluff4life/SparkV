@@ -3,10 +3,6 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
-	if (!bot.distube.playing(message)) {
-		return await message.replyT(`${bot.config.emojis.error} | A song must be __**playing**__ to use this command!`);
-	}
-
 	bot.distube
 		.jump(message, parseInt(args[0]))
 		.then(async () =>
