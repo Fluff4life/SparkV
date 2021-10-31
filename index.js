@@ -4,7 +4,8 @@
 // Libarys //
 const fs = require("fs");
 const path = require("path");
-const { init } = require("@sentry/node");
+const Sentry = require("@sentry/node");
+const { Integrations } = require("@sentry/tracing");
 const { ShardingManager } = require("discord.js");
 const mongoose = require("mongoose");
 
@@ -24,9 +25,12 @@ if (require("./globalconfig.json").debug === true) {
 
 // Functions //
 async function Start() {
-	init({
+	Sentry.init({
 		dsn: process.env.SENTRYTOKEN,
 		release: `${PackageInfo.name}@${PackageInfo.version}`,
+		integrations: [new Integrations.BrowserTracing()],
+		tracesSampleRate: 0.2,
+		tracesSampler: samplingContext => {}
 	});
 
 	await mongoose.connect(process.env.MONGOOSEURL, {
