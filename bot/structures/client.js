@@ -71,7 +71,9 @@ module.exports = class bot extends Client {
 			});
 
 		// Update Docs
-		setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
+		if (this.config.debug === true) {
+			setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
+		}
 
 		// Cache
 		this.redis = await createRedis();

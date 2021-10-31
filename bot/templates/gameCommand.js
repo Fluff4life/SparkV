@@ -2,6 +2,35 @@ const discord = require("discord.js");
 const akinator = require("discord.js-akinator");
 const NewCommand = require("./command");
 
+// The Type of Akinator Game to Play. ("animal", "character" or "object")
+const gameTypes = ["animal", "character", "object"];
+
+// Filter for akinator command.
+const filter = async m => {
+	if (m.author.id === m.client.user.id) {
+		return false;
+	}
+
+	if (m.content) {
+		if (m.content.length > 35) {
+			await m.replyT(`${bot.config.emojis.error} | The game type cannot be longer than 35 characters.`);
+
+			return false;
+		}
+
+		if (!gameTypes.includes(m.content.toLowerCase())) {
+			await m.replyT(`${bot.config.emojis.error} | The game type must be one of the following: ${gameTypes.join(", ")}`);
+
+			return false;
+		}
+
+		return true;
+	} else {
+		await m.replyT("Dude... I need you to send a valid message.");
+		return false;
+	}
+};
+
 module.exports = class ModCommand {
 	constructor(execute, sett) {
 		this.execute = execute;
@@ -20,25 +49,18 @@ module.exports = class ModCommand {
 				.then(async invite => await message.replyT(`${invite.code}`));
 		} else if (this.settings.type === "game") {
 			if (this.settings.gname === "akinator") {
-				const gameTypes = ["animal", "character", "object"];
+				message.replyT("What type of game would you like to play? (animal, character or object)").then(async () => {
+					await message.channel.awaitMessages({ filter, max: 1, time: 30 * 1000, errors: ["time"] }).then(async collected => {
+						const gameType = collected.first().content.toLowerCase();
 
-				let gameType;
-				// The Type of Akinator Game to Play. ("animal", "character" or "object")
-
-				if (args[0]) {
-					if (gameTypes.includes(args[0].toLowerCase())) {
-						gameType = args[0].toLowerCase();
-					} else {
-						return await message.replyT(`Invalid game type: \`${args[0]}\``);
-					}
-				} else {
-					gameType = "character";
-				}
-
-				akinator(message, {
-					gameType: gameType,
-					useButtons: true,
-					language: data.guild.languge
+						await message.replyT(`Alright, let's play akinator ${gameType}! Loading...`).then(async () => {
+							akinator(message, {
+								gameType,
+								useButtons: true,
+								language: data.guild.languge
+							});
+						});
+					}).catch(async collected => await message.replyT("Canceled due to no valid response within 30 seconds."));
 				});
 			} else {
 				await message.replyT(`Invalid game name: \`${this.settings.gname}\``);
