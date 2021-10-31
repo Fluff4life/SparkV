@@ -8,7 +8,7 @@ async function execute(bot, message, args, command, data) {
 			.replyT(`${bot.config.emojis.error} | You must be in a __**voice channel**__ to use this command!`);
 	}
 
-	if (!bot.distube.isPlaying(message)) {
+	if (!bot.distube.playing(message)) {
 		return message
 			.replyT(`${bot.config.emojis.error} | A song must be playing to use this command!`);
 	}
@@ -16,7 +16,7 @@ async function execute(bot, message, args, command, data) {
 	const Queue = bot.distube.getQueue(message);
 	let mode;
 
-	if (!bot.distube.isPlaying(message)) {
+	if (!bot.distube.playing(message)) {
 		return message
 			.replyT(`${bot.config.emojis.error} | A song must be playing to use this command!`);
 	}
