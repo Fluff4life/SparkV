@@ -1,6 +1,6 @@
 # Commands
 
-SparkV's Command List! SparkV contains more than **132 commands**!
+SparkV's Command List! SparkV contains more than **134 commands**!
 
 
 ## 🤵 Administration
@@ -154,7 +154,9 @@ SparkV's Command List! SparkV contains more than **132 commands**!
 | Name        | Description                                                                                                                     | Usage                                      | Cooldown   |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ---------- |
 | **filter**  | Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse. | {Filter}                                   | 60 seconds |
+| **join**    | Joins your voice channel.                                                                                                       |                                            | 60 seconds |
 | **jump**    | I will jump to a certain song in the queue.                                                                                     | {number}                                   | 60 seconds |
+| **leave**   | Joins your voice channel.                                                                                                       |                                            | 60 seconds |
 | **lyrics**  | Get any song's lyrics!                                                                                                          | {song title or URL}                        | 60 seconds |
 | **pause**   | Pauses the current song playing.                                                                                                |                                            | 60 seconds |
 | **play**    | Plays a song with the given name or URL.                                                                                        | {song title or URL}                        | 60 seconds |
