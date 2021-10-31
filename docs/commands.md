@@ -30,7 +30,7 @@ SparkV's Command List! SparkV contains more than **132 commands**!
 | **balance**   | View your balance.                                                   | {optional user}                  | 2 seconds |
 | **beg**       | Beg for coins.                                                       | {optional user}                  | 2 seconds |
 | **buy**       | Buy an item from the shop.                                           | {item name} (optional: quantity) | 2 seconds |
-| **daily**     | Collect your daily amount of coins!                                  |                                  | 6 seconds |
+| **daily**     | Collect your daily amount of coins!                                  |                                  | 1 seconds |
 | **deposit**   | Deposit your data.user.money.balance into your bank.                 | {all or ammount}                 | 2 seconds |
 | **inventory** | Shows the items you have.                                            |                                  | 2 seconds |
 | **pay**       | Give someone some data.user.money.balance!                           | {user}                           | 2 seconds |
@@ -112,7 +112,7 @@ SparkV's Command List! SparkV contains more than **132 commands**!
 | **credits**   | Look at everyone who helped make SparkV!                             |           | 2 seconds |
 | **dashboard** | I'll send my dashboard!                                              | {user}    | 2 seconds |
 | **donate**    | Donate to help SparkV's developement. Every donation is appreciated! |           | 2 seconds |
-| **help**      | View Ch1llBlox's 100+ commands.                                      | {command} | 2 seconds |
+| **help**      | View SparkV's 100+ commands.                                         | {command} | 2 seconds |
 | **invite**    | Displays links.                                                      |           | 2 seconds |
 | **rules**     | Follow them lol.                                                     |           | 2 seconds |
 | **website**   | I'll send my website!                                                |           | 2 seconds |
@@ -127,6 +127,7 @@ SparkV's Command List! SparkV contains more than **132 commands**!
 | **dankmeme**       | Meme but SUPER dank. Only the funnyiest memes.    |       | 2 seconds |
 | **doseofinternet** | I'll send a dose of the internet.                 |       | 2 seconds |
 | **economy**        | lol                                               |       | 2 seconds |
+| **gocommitdie**    | The funny Roblox subredit.                        |       | 2 seconds |
 | **meirl**          | meirl memes lol.                                  |       | 2 seconds |
 | **meme**           | LOL                                               |       | 2 seconds |
 | **prequel**        | Star Wars memes lol.                              |       | 2 seconds |
@@ -186,16 +187,15 @@ SparkV's Command List! SparkV contains more than **132 commands**!
 
 ## 🧰 Utility
 
-| Name              | Description                                                                                   | Usage                      | Cooldown  |
-| ----------------- | --------------------------------------------------------------------------------------------- | -------------------------- | --------- |
-| **avatar**        | 4K avatar 512x512                                                                             | (@member) (optional: -url) | 2 seconds |
-| **brokencommand** | uh oh                                                                                         |                            | 1 seconds |
-| **calculator**    | Calculate any equation!                                                                       |                            | 2 seconds |
-| **date**          | Gets the current date.                                                                        |                            | 2 seconds |
-| **decode**        | decode a string that was encoded                                                              | {type} {string}            | 2 seconds |
-| **encode**        | encode a string                                                                               | {type} {string}            | 2 seconds |
-| **roleid**        | 4K avatar 512x512                                                                             | (@member) (optional: -url) | 2 seconds |
-| **servericon**    | 4K server icon 512x512                                                                        | (optional: -url)           | 2 seconds |
-| **stats**         | SparkV's stats.                                                                               |                            | 2 seconds |
-| **userid**        | Gets the ID of the mentioned user. If you don't mention someone, I will send your ID instead. | (optional: @member)        | 2 seconds |
-| **userinfo**      | See information about a user.                                                                 | {user}                     | 2 seconds |
+| Name           | Description                                                                                   | Usage                      | Cooldown  |
+| -------------- | --------------------------------------------------------------------------------------------- | -------------------------- | --------- |
+| **avatar**     | 4K avatar 512x512                                                                             | (@member) (optional: -url) | 2 seconds |
+| **calculator** | Calculate any equation!                                                                       |                            | 2 seconds |
+| **date**       | Gets the current date.                                                                        |                            | 2 seconds |
+| **decode**     | decode a string that was encoded                                                              | {type} {string}            | 2 seconds |
+| **encode**     | encode a string                                                                               | {type} {string}            | 2 seconds |
+| **roleid**     | 4K avatar 512x512                                                                             | (@member) (optional: -url) | 2 seconds |
+| **servericon** | 4K server icon 512x512                                                                        | (optional: -url)           | 2 seconds |
+| **stats**      | SparkV's stats.                                                                               |                            | 2 seconds |
+| **userid**     | Gets the ID of the mentioned user. If you don't mention someone, I will send your ID instead. | (optional: @member)        | 2 seconds |
+| **userinfo**   | See information about a user.                                                                 | {user}                     | 2 seconds |
