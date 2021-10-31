@@ -12,7 +12,7 @@ module.exports = {
 
 		bot.commands.each(() => ++cmdCount);
 
-		let baseText = `# Commands\n\nSparkV's Command List! SparkV contains more than **${cmdCount} commands**!\n\n`;
+		let baseText = `# Commands\n\nSparkV's Command List! SparkV contains more than **${cmdCount} commands**!\n`;
 
 		bot.categories
 			.sort((a, b) => {
