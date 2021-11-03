@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 module.exports = {
 	once: false,
 	async execute(bot, guild) {
+		if (!guild.available) return;
+
 		console.log(`SparkV has been removed from ${guild.name} (Id: ${guild.id}).`);
 
 		bot.user.setPresence({
