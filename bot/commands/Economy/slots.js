@@ -39,7 +39,7 @@ async function execute(bot, message, args, command, data) {
 	let win = false;
 
 	if (data.user.money.balance === 0 || data.user.money.balance === null) {
-		return await message.replyT(`${bot.config.emojis.error} | You have no balance!`);
+		return await message.replyT(`${bot.config.emojis.error} | You have no money!`);
 	}
 
 	if (isNaN(args[0])) {
@@ -47,7 +47,7 @@ async function execute(bot, message, args, command, data) {
 	}
 
 	if (message.content.includes(`-`)) {
-		return await message.replyT(`${bot.config.emojis.error} | You cannot bet negitive balance lol.`);
+		return await message.replyT(`${bot.config.emojis.error} | You cannot bet negitive money lol.`);
 	}
 
 	if (args[0] > data.user.money.balance) {
@@ -72,7 +72,7 @@ async function execute(bot, message, args, command, data) {
 		await message.replyT(
 			`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
 				bot.config.emojis.success
-			} | You won ⏣${bot.functions.formatNumber(parseInt(args[0]) * 4)} balance!`,
+			} | You won ⏣${bot.functions.formatNumber(parseInt(args[0]) * 4)} coins!`,
 		);
 
 		data.user.money.balance += args[0] * SlotItems.length;
@@ -82,7 +82,7 @@ async function execute(bot, message, args, command, data) {
 		await message.replyT(
 			`${SlotItems[number[0]]} | ${SlotItems[number[1]]} | ${SlotItems[number[2]]}\n\n${
 				bot.config.emojis.error
-			} | You lost ⏣${bot.functions.formatNumber(parseInt(args[0]))} balance.`,
+			} | You lost ⏣${bot.functions.formatNumber(parseInt(args[0]))} coins.`,
 		);
 
 		data.user.money.balance -= parseInt(args[0]);

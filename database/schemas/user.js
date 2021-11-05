@@ -36,6 +36,8 @@ const Schema = new mongoose.Schema({
 		multiplier: { type: Number, default: 0 }
 	},
 	inventory: {},
+	totalVotes: { type: Number, default: 0 },
+	voteStreak: { type: Number, default: 0 }
 });
 
 Schema.method("GenerateAPIToken", async () => {
