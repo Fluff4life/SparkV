@@ -18,14 +18,14 @@ const Credits = [
 module.exports = new cmd(
 	async (bot, message) => {
 		const NewEmbed = new Discord.MessageEmbed()
-			.setTitle("Credits")
-			.setDescription(`Here's the list of people who've helped SparkV on his path to success!`)
+			.setTitle(await message.translate("Credits"))
+			.setDescription(await message.translate(`Here's the list of people who've helped SparkV on his path to success!`))
 			.setColor(bot.config.embed.color)
 			.setThumbnail(message.author.displayAvatarURL({ dynamic: true, format: "gif" }))
 			.addFields(Credits);
 
-		return await message.replyT({
-			embeds: [NewEmbed],
+		return await message.reply({
+			embeds: [NewEmbed]
 		});
 	},
 	{
@@ -34,5 +34,6 @@ module.exports = new cmd(
 		usage: "",
 		aliases: ["devs", "developers"],
 		perms: ["EMBED_LINKS"],
+		slash: true,
 	},
 );

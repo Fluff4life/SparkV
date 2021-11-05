@@ -185,7 +185,7 @@ module.exports = class bot extends Client {
 							this.slashCommands.push({
 								name: commandname,
 								description: command.settings.description,
-								options: command.options || []
+								options: command.settings.options || []
 							});
 						}
 

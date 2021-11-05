@@ -4,12 +4,44 @@ module.exports = {
 	once: false,
 	async execute(bot, interaction) {
 		if (interaction.isCommand()) {
+			// Get the command
 			const command = bot.commands.get(interaction.commandName);
 
 			if (!command) return;
 
+			const data = {};
+
+			// Get the Guild
+			if (interaction.inGuild()) {
+				const guild = await bot.database.getGuild(interaction.guild.id);
+
+				data.guild = guild;
+				interaction.guild.data = data.guild;
+			}
+
+			if (interaction.guild) data.member = await bot.database.getMember(interaction.user.id, interaction.guild.id);
+
+			// User data
+			data.user = await bot.database.getUser(interaction.user.id);
+
+			if (!data) return;
+
+			// Get the command's args
+			const args = [];
+
+			for (const arg of command.settings.options) {
+				const gotArg = await interaction.options.get(arg.name);
+
+				if (gotArg) {
+					args.push([
+						[arg.name] = gotArg.value
+					]);
+				}
+			}
+			console.log(args)
+
 			try {
-				await command.run(bot, interaction);
+				await command.run(bot, interaction, args, interaction.commandName, data);
 			} catch (error) {
 				console.error(error);
 
