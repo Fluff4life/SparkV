@@ -36,6 +36,7 @@
     "@vitalets/google-translate-api": "^7.0.0",
     "asciiart-logo": "^0.2.6",
     "axios": "^0.24.0",
+    "bufferutil": "^4.0.5",
     "canvacord": "^5.2.3",
     "canvas": "^2.8.0",
     "chalk": "^4.1.2",
@@ -50,6 +51,7 @@
     "discord.js-akinator": "^3.3.0",
     "discordeasypages": "^3.0.0",
     "distube": "^3.0.1",
+    "erlpack": "github:discord/erlpack",
     "express": "^4.17.1",
     "ffmpeg-static": "^4.4.0",
     "figlet": "^1.5.2",
@@ -66,8 +68,10 @@
     "socket.io-client": "^4.3.2",
     "statcord.js": "^3.3.0",
     "urban": "^0.3.4",
+    "utf-8-validate": "^5.0.7",
     "weather-js": "^2.0.0",
-    "weky": "^3.1.8"
+    "weky": "^3.1.8",
+    "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
     "eslint": "^8.1.0",
