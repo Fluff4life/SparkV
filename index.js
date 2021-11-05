@@ -55,7 +55,7 @@ async function Start() {
 	process.env.MainDir = __dirname;
 
 	if (Config.sharding.shardingEnabled === true && Config.debug === false) {
-		const manager = new ShardingManager("./bot/bot.js", {
+		const manager = new ShardingManager(path.join(__dirname + "/bot/bot.js", {
 			token: process.env.TOKEN,
 			totalShards: Config.sharding.totalShards || "auto",
 			shardArgs: [...process.argv, ...["--sharding"]],
@@ -66,11 +66,7 @@ async function Start() {
 		manager.on("shardCreate", Shard => {
 			console.log(require("chalk").green(`DEPLOYING - SHARD ${Shard.id}/${manager.totalShards} DEPLOYING`));
 
-			Shard.on("ready", () => {
-				console.log(
-					require("chalk").blue(`DEPLOY SUCCESS - SHARD ${Shard.id}/${manager.totalShards} DEPLOYED SUCCESSFULLY`),
-				);
-			});
+			Shard.on("ready", () => console.log(require("chalk").blue(`DEPLOY SUCCESS - SHARD ${Shard.id}/${manager.totalShards} DEPLOYED SUCCESSFULLY`)));
 
 			Shard.on("disconnect", event => {
 				Logger(event, "error");
@@ -91,9 +87,7 @@ async function Start() {
 					),
 				);
 
-				if (!event.exitCode) {
-					console.warn(`WARNING: SHARD ${Shard.id}/${manager.totalShards} EXITED DUE TO LACK OF AVAILABLE MEMORY.`);
-				}
+				if (!event.exitCode) console.warn(`WARNING: SHARD ${Shard.id}/${manager.totalShards} EXITED DUE TO LACK OF AVAILABLE MEMORY.`);
 			});
 		});
 
