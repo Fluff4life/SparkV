@@ -73,7 +73,7 @@ async function Start() {
 			});
 
 			Shard.on("disconnect", event => {
-				Logger("Fatal", err, {
+				Logger("Fatal", event, {
 					shard: Shard.id,
 				});
 
@@ -82,12 +82,10 @@ async function Start() {
 				);
 			});
 
-			Shard.on("reconnecting", () => {
-				console.log(require("chalk").red(`SHARD RECONNECTING - SHARD ${Shard.id}/${manager.totalShards} RECONNECTING`));
-			});
+			Shard.on("reconnecting", () => console.log(require("chalk").red(`SHARD RECONNECTING - SHARD ${Shard.id}/${manager.totalShards} RECONNECTING`)));
 
 			Shard.on("death", event => {
-				Logger("Fatal", err, {
+				Logger("Fatal", event, {
 					shard: Shard.id,
 				});
 
