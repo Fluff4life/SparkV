@@ -8,7 +8,7 @@
     "invite": "https://discord.gg/PPtzT8Mu3h"
   },
   "sharding": {
-    "shardingEnabled": false,
+    "shardingEnabled": true,
     "totalShards": "auto"
   },
   "embed": {

@@ -180,7 +180,7 @@ module.exports = async bot => {
 				};
 
 				results.map(song => CreatePage(song));
-				console.log(message);
+
 				EasyPages(
 					message,
 					Pages,

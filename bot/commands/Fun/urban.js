@@ -16,7 +16,6 @@ async function execute(bot, message, args, command, data) {
 	}
 
 	args = await urban(args.join(" "));
-	console.log(args);
 
 	const UrbanEmbed = new Discord.MessageEmbed()
 		.setTitle(`${bot.config.emojis.success} | Definition of ${args}`)

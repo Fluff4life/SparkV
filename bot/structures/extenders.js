@@ -72,7 +72,6 @@ async function translateContent(content) {
 		}
 
 		await translate(content2, { to: this.guild.data.language }).then(res => {
-			console.log(res.text);
 			if (content.includes(" | ")) {
 				translation = `${content1} | ${res.text}`;
 			} else {

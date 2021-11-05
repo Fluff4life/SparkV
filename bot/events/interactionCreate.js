@@ -38,7 +38,6 @@ module.exports = {
 					]);
 				}
 			}
-			console.log(args)
 
 			try {
 				await command.run(bot, interaction, args, interaction.commandName, data);
