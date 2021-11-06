@@ -3,28 +3,34 @@ const Discord = require(`discord.js`);
 const cmd = require("../../templates/musicCommand");
 
 async function execute(bot, message, args, command, data) {
-	if (!message.member.voice.channel) {
-		return message
-			.replyT(`${bot.config.emojis.error} | You must be in a __**voice channel**__ to use this command!`);
-	}
-
 	const Queue = bot.distube.getQueue(message);
 	let mode;
 
-	if (args[0].toLowerCase() === `song`) {
-		mode = 1;
-	} else if (args[0].toLowerCase() === `queue`) {
-		if (!Queue) {
-			return message
-				.replyT(`${bot.config.emojis.error} | There must be more than 2 songs in the queue to use this command!`);
-		}
+	if (!Queue) return await message.replyT(`${bot.config.emojis.error} | There is no music playing in this guild.`);
 
-		mode = 2;
-	} else {
-		mode = 0;
+	args[0] = args[0].toLowerCase();
+
+	if (args[0] === `song`) mode = 1;
+	else if (args[0] === `queue`) mode = 2;
+	else if (args[0] === "off") mode = 0;
+	else return await message.replyT(`${bot.config.emojis.error} | Invalid argument.`);
+
+	await message.replyT(`${bot.config.emojis.music} | Okay, I'll ${args[0] === "off" ? `stop the loop.` : `loop the ${args[0]}.`}`);
+
+	switch (args[0]) {
+		case "off":
+			mode = 0;
+			break;
+		case "song":
+			mode = 1;
+			break;
+		case "queue":
+			mode = 2;
+			break;
 	}
-
-	await message.replyT(`${bot.config.emojis.music} | Okay, I'll ${mode}.`);
+	mode = queue.setRepeatMode(mode);
+	mode = mode ? mode === 2 ? "Repeat queue" : "Repeat song" : "Off";
+	message.channel.send(`${client.emotes.repeat} | Set repeat mode to \`${mode}\``);
 }
 
 module.exports = new cmd(execute, {
@@ -33,4 +39,5 @@ module.exports = new cmd(execute, {
 	usage: "<song or queue: leave empty to deactivate>",
 	aliases: ["replay", "loop"],
 	perms: ["EMBED_LINKS"],
+	requireArgs: true,
 });
