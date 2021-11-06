@@ -233,9 +233,9 @@ module.exports = {
 			return bot.guilds.cache.size;
 		}
 
-		const promises = [bot.shard.fetchClientValues("guilds.cache.size")];
+		const guildCounts = await bot.shard.fetchClientValues("guilds.cache.size");
 
-		return Promise.all(promises).then(results => results.flat().reduce((acc, ServerCount) => acc + ServerCount, 0));
+		return guildCounts.reduce((p, n) => p + n, 0);
 	},
 
 	/**
