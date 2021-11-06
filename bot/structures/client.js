@@ -84,7 +84,7 @@ module.exports = class bot extends Client {
 		// Functions
 		this.database.init(this);
 		Distube(this);
-		giveawayshandler(this);
+		giveawayshandler(this, settings.sharding);
 		Noblox(this);
 
 		for (let i = 0; i < shopdata.length; i++) {

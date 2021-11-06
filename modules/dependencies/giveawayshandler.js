@@ -4,9 +4,10 @@ const Levels = require("discord-xp");
 const GiveawaysSchema = require("../../database/schemas/giveaways");
 const logger = require("../../modules/logger");
 
-module.exports = async bot => {
+module.exports = async (bot, shardingEnabled) => {
 	Levels.setURL(process.env.MONGOOSEURL);
-	class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
+
+	class BotGiveawayManager extends GiveawaysManager {
 		async getAllGiveaways() {
 			return await GiveawaysSchema.find().lean().exec();
 		}
@@ -32,9 +33,15 @@ module.exports = async bot => {
 
 			return true;
 		}
+
+		async refreshStorage() {
+			if (shardingEnabled === true) return bot.shard.broadcastEval(() => this.getAllGiveaways());
+
+			return this.getAllGiveaways();
+		}
 	}
 
-	bot.GiveawayManager = new GiveawayManagerWithOwnDatabase(bot, {
+	bot.GiveawayManager = new BotGiveawayManager(bot, {
 		updateCountdownEvery: 2.5 * 1000,
 		default: {
 			botsCanWin: false,

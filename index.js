@@ -9,6 +9,8 @@ const { Integrations } = require("@sentry/tracing");
 const { ShardingManager } = require("discord.js");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
+const Statcord = require("statcord.js");
+const { GiveawaysManager } = require('discord-giveaways');
 
 // Varibles //
 const Config = require("./globalconfig.json");
@@ -31,7 +33,7 @@ async function Start() {
 		release: `${PackageInfo.name}@${PackageInfo.version}`,
 		integrations: [new Integrations.BrowserTracing()],
 		tracesSampleRate: 0.2,
-		tracesSampler: samplingContext => {}
+		tracesSampler: samplingContext => { }
 	});
 
 	await mongoose.connect(process.env.MONGOOSEURL, {
@@ -60,7 +62,7 @@ async function Start() {
 			token: process.env.TOKEN,
 			totalShards: Config.sharding.totalShards || "auto",
 			shardArgs: [...process.argv, ...["--sharding"]],
-			execArgv: [...process.argv, ...[Config.debug === true ? "--trace-warnings" : null]],
+			execArgv: [...process.argv, ...["--trace-warnings"]],
 		});
 
 		// Shard Handlers //
@@ -68,6 +70,7 @@ async function Start() {
 			console.log(chalk.green(`DEPLOYING - SHARD ${Shard.id}/${manager.totalShards} DEPLOYING`));
 
 			Shard.on("ready", () => {
+				// StatCord
 				new Statcord.ShardingClient({
 					manager,
 					key: process.env.STATCORDAPIKEY,
