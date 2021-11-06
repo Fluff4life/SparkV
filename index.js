@@ -55,7 +55,7 @@ async function Start() {
 	process.env.MainDir = __dirname;
 
 	if (Config.sharding.shardingEnabled === true && Config.debug === false) {
-		const manager = new ShardingManager(path.join(__dirname + "/bot/bot.js", {
+		const manager = new ShardingManager(path.join(`${__dirname}/bot/bot.js`), {
 			token: process.env.TOKEN,
 			totalShards: Config.sharding.totalShards || "auto",
 			shardArgs: [...process.argv, ...["--sharding"]],
