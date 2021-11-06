@@ -15,22 +15,9 @@ async function execute(bot, message, args, command, data) {
 	else if (args[0] === "off") mode = 0;
 	else return await message.replyT(`${bot.config.emojis.error} | Invalid argument.`);
 
-	await message.replyT(`${bot.config.emojis.music} | Okay, I'll ${args[0] === "off" ? `stop the loop.` : `loop the ${args[0]}.`}`);
+	Queue.setRepeatMode(mode);
 
-	switch (args[0]) {
-		case "off":
-			mode = 0;
-			break;
-		case "song":
-			mode = 1;
-			break;
-		case "queue":
-			mode = 2;
-			break;
-	}
-	mode = queue.setRepeatMode(mode);
-	mode = mode ? mode === 2 ? "Repeat queue" : "Repeat song" : "Off";
-	message.channel.send(`${client.emotes.repeat} | Set repeat mode to \`${mode}\``);
+	await message.replyT(`${bot.config.emojis.music} | Okay, I'll ${args[0] === "off" ? `stop the loop.` : `loop the ${args[0]}.`}`);
 }
 
 module.exports = new cmd(execute, {
