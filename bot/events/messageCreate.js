@@ -457,7 +457,7 @@ module.exports = {
 					message.delete().catch(() => { });
 				}
 
-				bot.StatClient.postCommand(command, message.author.id);
+				bot.StatClient.ShardingClient.postCommand(command, message.author.id, bot);
 			});
 		} catch (err) {
 			const { tag, id } = message.author;
@@ -514,7 +514,7 @@ async function chatbot(message, wasMentioned) {
 						)
 						.setColor(message.client.config.embed.color);
 
-					message.client.StatClient.postCommand(`ChatBot`, message.author.id);
+					message.client.StatClient.ShardingClient.postCommand(`ChatBot`, message.author.id, message.client);
 
 					await message.replyT({
 						embeds: [APIEmbed],

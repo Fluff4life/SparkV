@@ -23,6 +23,9 @@ module.exports = class bot extends Client {
 	constructor(settings) {
 		super(settings);
 
+		// Libraries
+		this.StatClient = require("statcord.js");
+
 		// Config
 		this.config = require("../../globalconfig.json");
 
@@ -92,17 +95,6 @@ module.exports = class bot extends Client {
 
 		if (!settings.sharding) {
 			const StatClient = new Statcord.Client({
-				client: this,
-				key: process.env.STATCORDAPIKEY,
-				postCpuStatistics: true,
-				postMemStatistics: true,
-				postNetworkStatistics: true,
-				autopost: true,
-			});
-
-			this.StatClient = StatClient;
-		} else if (settings.sharding === true) {
-			const StatClient = new Statcord.ShardingClient({
 				client: this,
 				key: process.env.STATCORDAPIKEY,
 				postCpuStatistics: true,

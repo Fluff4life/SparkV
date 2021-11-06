@@ -31,8 +31,8 @@ module.exports = {
 			poster.startInterval();
 
 			// Auto Post Bot Stats
-			bot.StatClient.post();
-			bot.StatClient.autopost();
+			bot.StatClient.ShardingClient.post(bot);
+			bot.StatClient.ShardingClient.autopost(bot);
 		}
 
 		console.log("-------- SparkV --------");
