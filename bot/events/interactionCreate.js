@@ -29,6 +29,10 @@ module.exports = {
 			// Get the command's args
 			const args = [];
 
+			if (!command.settings.options) {
+				command.settings.options = [];
+			}
+
 			for (const arg of command.settings.options) {
 				const gotArg = await interaction.options.get(arg.name);
 
@@ -38,7 +42,6 @@ module.exports = {
 					]);
 				}
 			}
-			console.log(args)
 
 			try {
 				await command.run(bot, interaction, args, interaction.commandName, data);
