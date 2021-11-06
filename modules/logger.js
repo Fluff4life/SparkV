@@ -13,7 +13,7 @@ module.exports = async (content, type = "log") => {
 			scope.setLevel(Severity.Warning);
 		});
 
-		if (config.debug === false) {
+		if (!process.argv.includes("--dev") === false) {
 			try {
 				await captureException(content);
 			} catch (err) {
@@ -27,7 +27,7 @@ module.exports = async (content, type = "log") => {
 			scope.setLevel(Severity.Error);
 		});
 
-		if (config.debug === false) {
+		if (!process.argv.includes("--dev") === false) {
 			try {
 				await captureException(content);
 			} catch (err) {

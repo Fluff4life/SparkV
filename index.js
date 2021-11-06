@@ -10,7 +10,6 @@ const { ShardingManager } = require("discord.js");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
 const Statcord = require("statcord.js");
-const { GiveawaysManager } = require('discord-giveaways');
 
 // Varibles //
 const Config = require("./globalconfig.json");
@@ -20,9 +19,9 @@ const PackageInfo = require("./package.json");
 // Loading Splash Screen
 console.log(require("asciiart-logo")(require("./package.json")).render());
 
-if (require("./globalconfig.json").debug === true) {
+if (process.argv.includes("--dev") === true) {
 	console.log(chalk.grey("----------------------------------------"));
-	require("./modules/logger")("DEBUG - ENABLED -> Some features may not work on this mode.");
+	require("./modules/logger")("DEV - ENABLED -> Some features may not work on this mode.");
 	console.log(chalk.grey("----------------------------------------"));
 }
 
@@ -57,7 +56,7 @@ async function Start() {
 
 	process.env.MainDir = __dirname;
 
-	if (Config.sharding.shardingEnabled === true && Config.debug === false) {
+	if (Config.sharding.shardingEnabled === true && process.argv.includes("--dev") === false) {
 		const manager = new ShardingManager(path.join(`${__dirname}/bot/bot.js`), {
 			token: process.env.TOKEN,
 			totalShards: Config.sharding.totalShards || "auto",
@@ -67,7 +66,7 @@ async function Start() {
 
 		// Shard Handlers //
 		manager.on("shardCreate", Shard => {
-			console.log(chalk.green(`DEPLOYING - SHARD ${Shard.id}/${manager.totalShards} DEPLOYING`));
+			Logger(`SHARD ${Shard.id}/${manager.totalShards} DEPLOYING`);
 
 			Shard.on("ready", () => {
 				// StatCord
@@ -80,30 +79,19 @@ async function Start() {
 					autopost: true,
 				});
 
-				console.log(chalk.blue(`DEPLOY SUCCESS - SHARD ${Shard.id}/${manager.totalShards} DEPLOYED SUCCESSFULLY`));
+				Logger(`SHARD ${Shard.id}/${manager.totalShards} DEPLOYED SUCCESSFULLY`);
 			});
 
-			Shard.on("disconnect", event => {
-				Logger(event, "error");
-
-				console.log(
-					chalk.red(`SHARD DISCONNECTED - SHARD ${Shard.id}/${manager.totalShards} DISCONNECTED. ${event}`),
-				);
-			});
-
+			Shard.on("disconnect", event => Logger(`SHARD DISCONNECTED - SHARD ${Shard.id}/${manager.totalShards} DISCONNECTED. ${event}`, "error"));
 			Shard.on("reconnecting", () => console.log(chalk.red(`SHARD RECONNECTING - SHARD ${Shard.id}/${manager.totalShards} RECONNECTING`)));
 
 			Shard.on("death", event => {
-				Logger(event, "error");
-
-				console.log(
-					chalk.red(
-						`SHARD CLOSED - SHARD ${Shard.id}/${manager.totalShards} UNEXPECTEDLY CLOSED!\nPID: ${event.pid}\nExit Code: ${event.exitCode}.`,
-					),
-				);
+				Logger(`SHARD CLOSED - SHARD ${Shard.id}/${manager.totalShards} UNEXPECTEDLY CLOSED!\nPID: ${event.pid}\nExit Code: ${event.exitCode}.`, "error");
 
 				if (!event.exitCode) console.warn(`WARNING: SHARD ${Shard.id}/${manager.totalShards} EXITED DUE TO LACK OF AVAILABLE MEMORY.`);
 			});
+
+			Shard.on("error", error => Logger(`SHARD ERROR - SHARD ${Shard.id}/${manager.totalShards} ENCOUNTERED AN ERROR. ${error}`, "error"));
 		});
 
 		manager.spawn();
