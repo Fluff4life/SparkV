@@ -27,7 +27,7 @@ module.exports = {
    */
 	getPrefix(message, data) {
 		const acceptedPrefixes = [
-			bot.config.debug === true ? "_" : data.guild.prefix,
+			process.argv.includes("--dev") === true ? "_" : data.guild.prefix,
 		];
 
 		let prefix = null;

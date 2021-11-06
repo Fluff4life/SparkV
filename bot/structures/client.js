@@ -71,7 +71,7 @@ module.exports = class bot extends Client {
 			});
 
 		// Update Docs
-		if (this.config.debug === true) {
+		if (process.argv.includes("--dev") === true) {
 			setTimeout(() => updateDocs.update(this, MainDir), 10 * 1000);
 		}
 
@@ -225,7 +225,7 @@ module.exports = class bot extends Client {
 			// 818922579623673867 is my test bot's id. (SparkV Alpha)
 			// 763803059876397056 is Ch1ll Studio's guild ID. (My Bot's Main Server)
 
-			await rest.put(this.config.debug === true ? Routes.applicationGuildCommands("818922579623673867", "763803059876397056") : Routes.applicationCommands(this.config.ID), {
+			await rest.put(process.argv.includes("--dev") === true ? Routes.applicationGuildCommands("818922579623673867", "763803059876397056") : Routes.applicationCommands(this.config.ID), {
 				body: this.slashCommands
 			});
 

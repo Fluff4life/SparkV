@@ -17,9 +17,9 @@ const PackageInfo = require("./package.json");
 // Loading Splash Screen
 console.log(require("asciiart-logo")(require("./package.json")).render());
 
-if (require("./globalconfig.json").debug === true) {
+if (process.argv.includes("--dev") === true) {
 	console.log(require("chalk").grey("----------------------------------------"));
-	require("./modules/logger")("DEBUG - ENABLED -> Some features may not work on this mode.");
+	require("./modules/logger")("DEV - ENABLED -> Some features may not work on this mode.");
 	console.log(require("chalk").grey("----------------------------------------"));
 }
 
@@ -59,7 +59,7 @@ async function Start() {
 			token: process.env.TOKEN,
 			totalShards: Config.sharding.totalShards || "auto",
 			shardArgs: [...process.argv, ...["--sharding"]],
-			execArgv: [...process.argv, ...[Config.debug === true ? "--trace-warnings" : null]],
+			execArgv: [...process.argv, ...["--trace-warnings"]],
 		});
 
 		// Shard Handlers //

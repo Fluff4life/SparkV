@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "node .",
-    "dev": "doppler run -- node .",
+    "dev": "doppler run -- node . --dev",
     "update": "git pull && npm install",
     "checkPacs": "npx npm-check-updates",
     "checkPacs:u": "npx npm-check-updates -u && npm install",

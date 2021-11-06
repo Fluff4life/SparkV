@@ -11,7 +11,7 @@ module.exports = {
 		});
 
 		// Bot Lists //
-		if (bot.config.debug === false) {
+		if (process.argv.includes("--dev") === false) {
 			const poster = new dbots.Poster({
 				client: bot,
 				apiKeys: {
