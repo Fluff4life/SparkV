@@ -43,6 +43,8 @@ module.exports = {
 				}
 			}
 
+			bot.StatClient.postCommand(command.settings.name, message.author.id);
+
 			try {
 				await command.run(bot, interaction, args, interaction.commandName, data);
 			} catch (error) {
