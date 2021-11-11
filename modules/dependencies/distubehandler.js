@@ -196,7 +196,7 @@ module.exports = async bot => {
 		})
 		.on("searchCancel", async message => await message.replyT(`Searching canceled.`))
 		.on("searchInvalidAnswer", message =>
-			message.channel.replyT(
+			message.replyT(
 				"Search answer invalid. Make sure you're sending your selected song's page number. For example, if I wanted to play a song on the 5th page, I would send the number 5.",
 			),
 		)
@@ -204,7 +204,7 @@ module.exports = async bot => {
 		.on("finish", queue => queue.textChannel.send("No songs left in queue."))
 		.on("finishSong", queue => queue.textChannel.send("Hope you enjoyed the song!"))
 		.on("noRelated", message =>
-			message.channel.replyT("I cannot find a related video to play. I am stopping the music."),
+			message.replyT("I cannot find a related video to play. I am stopping the music."),
 		)
 		.on("empty", queue => queue.textChannel.send("Voice chat is empty. I'm going to leave the voice chat now."))
 		.on("disconnect", queue => queue.textChannel.send("Disconnected from voice chat."))
