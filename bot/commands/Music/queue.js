@@ -10,7 +10,7 @@ async function execute(bot, message, args, command, data) {
 	}
 
 	await message.replyT({
-		embed: {
+		embeds: [{
 			title: `${bot.config.emojis.music} | Queue for ${message.guild.name}`,
 			description: queue.songs
 				.map((song, id) => `**${id + 1}**. ${song.name} - ${song.formattedDuration}`)
@@ -27,7 +27,7 @@ async function execute(bot, message, args, command, data) {
 				text: `Displaying music queue.`,
 				icon_url: bot.user.displayAvatarURL(),
 			},
-		},
+		}]
 	});
 }
 
