@@ -19,8 +19,6 @@ module.exports = {
 			return;
 		}
 
-		channel.sendTyping();
-
 		const image = await new Canvas.Goodbye()
 			.setUsername(member.user.username)
 			.setDiscriminator(member.user.discriminator)
