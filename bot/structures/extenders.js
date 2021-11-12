@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 const { Message, Interaction } = require("discord.js");
 const translate = require("@vitalets/google-translate-api");
 
@@ -8,17 +9,15 @@ Interaction.prototype.replyT = replyTranslate;
 Message.prototype.replyT = replyTranslate;
 
 async function translateContent(content) {
+	if (!this?.guild?.data?.language) return content;
+
 	// Native languge
-	if (this.guild.data.language === "en") {
-		return content;
-	}
+	if (this.guild.data.language === "en") return content;
 
 	const cache = await this.client.redis.getAsync(`${content}-${this.guild.data.language}`).then(res => JSON.parse(res));
 	let translation;
 
-	if (cache) {
-		translation = cache;
-	} else {
+	if (cache) { translation = cache; } else {
 		let content1, content2;
 
 		if (content.includes(" | ")) {
@@ -26,19 +25,14 @@ async function translateContent(content) {
 			content2 = content.split(" | ")[1];
 		}
 
-		await translate(content2, { to: this.guild.data.language }).then(res => {
-			console.log(res.text);
-			if (content.includes(" | ")) {
-				translation = `${content1} | ${res.text}`;
-			} else {
-				translation = res.text;
-			}
-		}).catch(err => console.error(err));
+		await translate(content2, {
+			to: this.guild.data.language
+		}).then(res => content.includes(" | ") ? translation = `${content1} | ${res.text}` : translation = res.text).catch(err => console.error(err));
 
 		this.client.redis.setAsync(`${content}-${this.guild.data.language}`, JSON.stringify(translation), "EX", 15 * 60);
 	}
 
-	return translation;
+	return await translation;
 }
 
 async function replyTranslate(options) {
@@ -54,27 +48,7 @@ async function replyTranslate(options) {
 	}
 
 	if (options.content) {
-		// Native languge.
-		if (this.guild.data.language === "en") {
-			return this.reply({
-				content: options.content,
-				allowedMentions: {
-					repliedUser: false
-				}
-			});
-		}
-
-		// Can translate string.
-		const cache = await this.client.redis.getAsync(`${options.content}-${this.guild.data.language}`).then(res => JSON.parse(res));
-		let translation;
-
-		if (cache) {
-			translation = cache;
-		} else {
-			translation = await this.translate(options.content);
-
-			this.client.redis.setAsync(`${options.content}-${this.guild.data.language}`, JSON.stringify(translation), "EX", 15 * 60);
-		}
+		const translation = await translateContent(options.content);
 
 		this.reply({
 			content: translation,
@@ -82,8 +56,5 @@ async function replyTranslate(options) {
 				repliedUser: false
 			}
 		});
-	} else {
-		// Cannot do anything.
-		this.reply(options);
-	}
+	} else { this.reply(options); }
 }

@@ -152,21 +152,21 @@ SparkV's Command List! SparkV contains more than **134 commands**!
 
 | Name        | Description                                                                                                                     | Usage                                      | Cooldown   |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ---------- |
-| **filter**  | Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse. | {Filter}                                   | 60 seconds |
-| **join**    | Joins your voice channel.                                                                                                       |                                            | 60 seconds |
-| **jump**    | I will jump to a certain song in the queue.                                                                                     | {number}                                   | 60 seconds |
-| **leave**   | Joins your voice channel.                                                                                                       |                                            | 60 seconds |
-| **lyrics**  | Get any song's lyrics!                                                                                                          | {song title or URL}                        | 60 seconds |
-| **pause**   | Pauses the current song playing.                                                                                                |                                            | 60 seconds |
-| **play**    | Plays a song with the given name or URL.                                                                                        | {song title or URL}                        | 60 seconds |
-| **queue**   | Shows the songs in queue.                                                                                                       | {number}                                   | 60 seconds |
-| **repeat**  | Replays the currently playing song.                                                                                             | {song or queue: leave empty to deactivate} | 60 seconds |
-| **resume**  | Resume playing the current song.                                                                                                |                                            | 60 seconds |
-| **seek**    | Change the current track's position.                                                                                            | {number}                                   | 60 seconds |
-| **shuffle** | Shuffles the queue.                                                                                                             |                                            | 60 seconds |
-| **skip**    | Skip to the next song in the queue.                                                                                             |                                            | 60 seconds |
-| **stop**    | Disconnects me from the voice channel and removes all songs in queue.                                                           |                                            | 60 seconds |
-| **volume**  | Sets the volume of the currently playing track.                                                                                 |                                            | 60 seconds |
+| **filter**  | Change what the song sounds like! Filters: 3d, bassboost, echo, karaoke, nightcore, vaporwave. Requires admin to prevent abuse. | {Filter}                                   | 10 seconds |
+| **join**    | Joins your voice channel.                                                                                                       |                                            | 10 seconds |
+| **jump**    | I will jump to a certain song in the queue.                                                                                     | {number}                                   | 10 seconds |
+| **leave**   | Joins your voice channel.                                                                                                       |                                            | 10 seconds |
+| **lyrics**  | Get any song's lyrics!                                                                                                          | {song title or URL}                        | 10 seconds |
+| **pause**   | Pauses the current song playing.                                                                                                |                                            | 10 seconds |
+| **play**    | Plays a song with the given name or URL.                                                                                        | {song title or URL}                        | 10 seconds |
+| **queue**   | Shows the songs in queue.                                                                                                       | {number}                                   | 10 seconds |
+| **repeat**  | Replays the currently playing song.                                                                                             | {song or queue: leave empty to deactivate} | 10 seconds |
+| **resume**  | Resume playing the current song.                                                                                                |                                            | 10 seconds |
+| **seek**    | Change the current track's position.                                                                                            | {number}                                   | 10 seconds |
+| **shuffle** | Shuffles the queue.                                                                                                             |                                            | 10 seconds |
+| **skip**    | Skip to the next song in the queue.                                                                                             |                                            | 10 seconds |
+| **stop**    | Disconnects me from the voice channel and removes all songs in queue.                                                           |                                            | 10 seconds |
+| **volume**  | Sets the volume of the currently playing track.                                                                                 |                                            | 10 seconds |
 
 ## 👑 Owner
 
