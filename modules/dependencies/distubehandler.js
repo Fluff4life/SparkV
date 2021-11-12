@@ -47,36 +47,20 @@ module.exports = async bot => {
 				.setTitle(`${bot.config.emojis.music} | Added Song To Queue`)
 				.setDescription(song.name)
 				.setThumbnail(song.thumbnail)
-				.addFields(
-					{
-						name: `⚙︱Audio Stats`,
-						value: `\`\`\`👍︱Likes: ${bot.functions.formatNumber(
-							song.likes,
-						)}\n👎︱Dislikes: ${bot.functions.formatNumber(
-							song.dislikes,
-						)}\n▶︱Views: ${bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
-							song.formattedDuration
-						}\`\`\``,
-						inline: true,
-					},
-
-					{
-						name: `🔊︱Audio Settings`,
-						value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
-							queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
-						}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
-						inline: true,
-					},
-				)
+				.addField("`👍` Likes", `\`${bot.functions.formatNumber(song.likes)}\``, true)
+				.addField("`👎` Dislikes", `\`${bot.functions.formatNumber(song.dislikes)}\``, true)
+				.addField("`⏳` Duration", `\`${song.formattedDuration}\``, true)
+				.addField("`🔉` Volume", `\`${queue.volume}%\``, true)
+				.addField("`🔁` Loop", `\`${queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "`❎`"}\``, true)
+				.addField("`🔂` AutoPlay", `\`${queue.autoplay ? "`✅`" : "`❎`"}\``, true)
 				.setURL(song.url)
 				.setColor(bot.config.embed.color)
-				.setFooter(
-					`📼 Added by ${song.user.username} (${song.user.tag}) • ${bot.config.embed.footer}`,
-					bot.user.displayAvatarURL(),
-				)
+				.setFooter(`Requested by ${song.user.tag} • ${bot.config.embed.footer}`, song.user.displayAvatarURL())
 				.setTimestamp();
 
-			queue.textChannel.send(SongAddedQueue);
+			queue.textChannel.send({
+				embeds: [SongAddedQueue]
+			});
 		})
 		.on("addList", async (queue, playlist) => {
 			const SongAddedQueue = new Discord.MessageEmbed()
