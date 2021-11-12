@@ -18,75 +18,24 @@ module.exports = async bot => {
 	bot.distube
 		.on("playSong", async (queue, song) => {
 			let NowPlayingEmbed = new Discord.MessageEmbed()
+				.setTitle(`${bot.config.emojis.music} | Now Playing ${song.playlist?.name || song.name} by ${song.uploader.name}`)
 				.setURL(song.url)
+				.setImage(song.playlist?.thumbnail || song.thumbnail)
+				.addField("`👍` Likes", `\`${bot.functions.formatNumber(song.likes)}\``, true)
+				.addField("`👎` Dislikes", `\`${bot.functions.formatNumber(song.dislikes)}\``, true)
+				.addField("`⏳` Duration", `\`${song.formattedDuration}\``, true)
+				.addField("`🔉` Volume", `\`${queue.volume}%\``, true)
+				.addField("`🔁` Loop", `\`${queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "`❎`"}\``, true)
+				.addField("`🔂` AutoPlay", `\`${queue.autoplay ? "`✅`" : "`❎`"}\``, true)
 				.setColor(bot.config.embed.color)
 				.setTimestamp();
 
 			if (song.playlist) {
 				NowPlayingEmbed = NowPlayingEmbed
-					.setTitle(`🎵 Now Playing a Playlist 🎵`)
-					.setDescription(song.playlist.name)
-					.setThumbnail(song.playlist.thumbnail.url)
-					.addField("`<:members:852268403934101535>` Creator", `\`${song.playlist.uploader}\``, true)
-					.addFields(
-						{
-							name: `⚙︱Audio Stats`,
-							value: `\`\`\`👍︱Likes: ${bot.functions.formatNumber(
-								song.likes,
-							)}\n👎︱Dislikes: ${bot.functions.formatNumber(
-								song.dislikes,
-							)}\n▶︱Views: ${bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
-								song.formattedDuration
-							}\`\`\``,
-							inline: true,
-						},
-
-						{
-							name: `🔊︱Audio Settings`,
-							value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: \`${
-								queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
-							}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
-							inline: true,
-						},
-					)
-					.setFooter(
-						`📼 ${song.user.username} (${song.user.tag}) • (${song.playlist.songs.length} songs) - Now Playing ${song.name} • ${bot.config.embed.footer}`,
-						bot.user.displayAvatarURL(),
-					);
+					.setFooter(`${song.user.tag} • (${song.playlist.songs.length} songs) - Now Playing ${song.name} • ${bot.config.embed.footer}`, song.user.displayAvatarURL());
 			} else {
 				NowPlayingEmbed = NowPlayingEmbed
-					.setTitle(`🎵 Now Playing a Song 🎵`)
-					.setDescription(song.name)
-					.setThumbnail(song.thumbnail)
-					.addField("<:members:852268403934101535> Creator", `\`${song.uploader}\``, true)
-					.addFields(
-						{
-							name: `⚙︱Audio Stats`,
-							value: `\`\`\`👍︱Likes: ${bot.functions.formatNumber(
-								song.likes,
-							)}\n👎︱Dislikes: ${bot.functions.formatNumber(
-								song.dislikes,
-							)}\n▶︱Views: ${bot.functions.formatNumber(song.views)}\n📼︱Duration: ${
-								song.formattedDuration
-							}\`\`\``,
-							inline: true,
-						},
-
-						{
-							name: `🔊︱Audio Settings`,
-							value: `\`\`\`🔉︱Volume: ${queue.volume}%\n🔁︱Loop: ${
-								queue.repeatMode ? (queue.repeatMode === 2 ? "Server Queue" : "Current Song") : "❎"
-							}\n🔂︱AutoPlay: ${queue.autoplay ? "✅" : "❎"}\`\`\``,
-							inline: true,
-						},
-					)
-					.setURL(song.url)
-					.setColor(bot.config.embed.color)
-					.setFooter(
-						`📼 ${song.user.username} (${song.user.tag}) • ${bot.config.embed.footer}`,
-						bot.user.displayAvatarURL(),
-					)
-					.setTimestamp();
+					.setFooter(`Requested by ${song.user.tag} • ${bot.config.embed.footer}`, song.user.displayAvatarURL());
 			}
 
 			queue.textChannel.send({
@@ -95,7 +44,7 @@ module.exports = async bot => {
 		})
 		.on("addSong", async (queue, song) => {
 			const SongAddedQueue = new Discord.MessageEmbed()
-				.setTitle("➕ Added Song To Queue")
+				.setTitle(`${bot.config.emojis.music} | Added Song To Queue`)
 				.setDescription(song.name)
 				.setThumbnail(song.thumbnail)
 				.addFields(
@@ -131,7 +80,7 @@ module.exports = async bot => {
 		})
 		.on("addList", async (queue, playlist) => {
 			const SongAddedQueue = new Discord.MessageEmbed()
-				.setTitle("➕ Added Playlist To Queue")
+				.setTitle(`${bot.config.emojis.music} | Added Playlist To Queue`)
 				.setDescription(playlist.name)
 				.setThumbnail(playlist.thumbnail)
 				.addFields(
@@ -180,7 +129,7 @@ module.exports = async bot => {
 				};
 
 				results.map(song => CreatePage(song));
-				console.log(message);
+
 				EasyPages(
 					message,
 					Pages,
@@ -191,20 +140,17 @@ module.exports = async bot => {
 				console.error(err);
 			}
 		})
-		.on("searchDone", (message, answer, query) => {
-			console.log(message, answer, query);
-		})
+		.on("searchDone", (message, answer, query) => {})
 		.on("searchCancel", async message => await message.replyT(`Searching canceled.`))
-		.on("searchInvalidAnswer", message =>
-			message.replyT(
+		.on("searchInvalidAnswer", async message =>
+			await message.replyT(
 				"Search answer invalid. Make sure you're sending your selected song's page number. For example, if I wanted to play a song on the 5th page, I would send the number 5.",
 			),
 		)
 		.on("searchNoResult", async message => await message.replyT("No result found!"))
 		.on("finish", queue => queue.textChannel.send("No songs left in queue."))
-		.on("finishSong", queue => queue.textChannel.send("Hope you enjoyed the song!"))
-		.on("noRelated", message =>
-			message.replyT("I cannot find a related video to play. I am stopping the music."),
+		.on("noRelated", async message =>
+			await message.replyT("I cannot find a related video to play. I am stopping the music."),
 		)
 		.on("empty", queue => queue.textChannel.send("Voice chat is empty. I'm going to leave the voice chat now."))
 		.on("disconnect", queue => queue.textChannel.send("Disconnected from voice chat."))
