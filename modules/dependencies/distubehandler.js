@@ -48,7 +48,7 @@ module.exports = async bot => {
 			const SongAddedQueue = new Discord.MessageEmbed()
 				.setTitle(`${bot.config.emojis.music} | Added Song To Queue`)
 				.setDescription(song.name)
-				.setImage(playlist.thumbnail)
+				.setImage(song.playlist?.thumbnail || song.thumbnail)
 				.addField("`👍` Likes", `\`${bot.functions.formatNumber(song.likes)}\``, true)
 				.addField("`👎` Dislikes", `\`${bot.functions.formatNumber(song.dislikes)}\``, true)
 				.addField("`⏳` Duration", `\`${song.formattedDuration}\``, true)
