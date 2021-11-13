@@ -5,18 +5,16 @@ module.exports = {
 	async execute(bot, guild) {
 		if (!guild.available) return;
 
+		await bot.LoadSlashCommands();
+
 		console.log(`SparkV has been added to ${guild.name} (Id: ${guild.id}).`);
 
 		bot.user.setPresence({
 			status: "online",
-			activities: [
-				{
-					name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(
-						await bot.functions.GetServerCount(),
-					)} servers`,
-					type: "PLAYING",
-				},
-			],
+			activities: [{
+				name: `${bot.config.prefix}Help | ${bot.functions.formatNumber(await bot.functions.GetServerCount())} servers`,
+				type: "PLAYING"
+			}],
 		});
 
 		const Logger = bot.channels.cache.get("831314946624454656");
@@ -50,7 +48,7 @@ module.exports = {
 
 			await guild.systemChannel.send({
 				content:
-          "Hi! My name's SparkV. I'm a powerful multipurpose meme/chat bot with over 100+ commands to keep your server entertained and active! All, without spending a dime. Simply use the command ^Help to get a list of my commands. Want to enable a setting? Go to my dashboard! Use the command ^Dashboard and click on the link I send you. Thanks for inviting me!\n\nPsst... don't froget to review me on top.gg!",
+					"Hi! My name's SparkV. I'm a powerful multipurpose meme/chat bot with over 100+ commands to keep your server entertained and active! All, without spending a dime. Simply use the command ^Help to get a list of my commands. Want to enable a setting? Go to my dashboard! Use the command ^Dashboard and click on the link I send you. Thanks for inviting me!\n\nPsst... don't froget to review me on top.gg!",
 				components: [new Discord.MessageActionRow().addComponents(InviteButton, SupportButton, VoteButton)],
 			}).catch(err => console.log(`Failed to send message to ${guild.name} (${guild.id})! ${err.message}`));
 		}
