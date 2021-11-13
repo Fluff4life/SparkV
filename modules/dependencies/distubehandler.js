@@ -13,6 +13,8 @@ module.exports = async bot => {
 		leaveOnEmpty: true,
 		leaveOnStop: true,
 		plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
+		youtubeDL: true,
+		updateYouTubeDL: true,
 	});
 
 	bot.distube
